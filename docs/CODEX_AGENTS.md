@@ -1,5 +1,9 @@
 # Codex Agent Model
 
+This document describes only the Codex engineering organization. The Claude
+Cowork product organization is registered in `product/agents/README.md`; shared
+navigation is in `AI_ORGANIZATION.md`.
+
 ## Active Roles
 
 ### Primary Technical Governance System

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-20 |
-| Dependencies | `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md` |
+| Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `product/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Source authority changes; new canonical document class; source conflict; repository integration |
@@ -27,6 +27,23 @@ This registry governs project, product, architecture, implementation,
 organizational, operational, and documentation sources used by the Codex
 engineering organization. It does not create product requirements or technical
 architecture.
+
+## Repository Identity
+
+- **Canonical repository:** `PhilipGrishin/abris-universe-platform`
+- **Remote:** `https://github.com/PhilipGrishin/abris-universe-platform.git`
+- **Visibility:** Private
+- **Default branch:** `main`
+- **Initial local working tree:** the repository root containing this file
+- **Registration authority:** Project Owner instruction dated 2026-07-20
+- **External import source:** the audited, read-only Claude Cowork product
+  workspace; it was not version-controlled at import time and is identified in
+  `product/governance/SOURCE_INTEGRATION_MAP.md` without a portable absolute
+  path.
+
+The GitHub repository is canonical for imported and subsequently maintained
+project artifacts. The external workspace is provenance for the initial import,
+not a competing live repository source.
 
 ## Authority Hierarchy
 
@@ -50,11 +67,19 @@ project-owner approval.
 
 | Knowledge class | Canonical source | Authority owner | Notes |
 | --- | --- | --- | --- |
+| Shared repository navigation | `PROJECT_MANIFEST.md` | AU-CODEX-PRIMARY | Entry point only; cannot override this registry or a canonical source. |
+| Canonical Git repository | `PhilipGrishin/abris-universe-platform`, branch `main` | Project Owner | Private shared platform repository. |
 | Project-wide engineering governance | `AGENTS.md` | AU-CODEX-PRIMARY | More specific scoped instructions may narrow it. |
 | Operational project instructions | `.codex/PROJECT_INSTRUCTIONS.md` | AU-CODEX-PRIMARY | Must remain consistent with `AGENTS.md`. |
 | Agent identities and boundaries | `.codex/AGENT_REGISTRY.md` | AU-CODEX-PRIMARY | `docs/CODEX_AGENTS.md` is the readable organizational view. |
-| Product intent and acceptance criteria | Versioned Claude Cowork Task Package | Project Owner / Claude Cowork | Location and version protocol remain OQ-002. |
-| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | No implementation repository exists yet. |
+| Product contour navigation | `product/README.md` | Project Owner / Claude Cowork | Navigation layer; does not replace specifications or decisions. |
+| Consolidated product specification | `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` | Project Owner / Claude Cowork | Approved Master Product Specification v1.0. |
+| Product and owner decisions | `product/decisions/05_Decision_Log.md` | Project Owner / Claude Cowork | Each entry retains its own status. |
+| Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | Approval for review does not bypass engineering intake. |
+| Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
+| Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |
+| Shared delivery lifecycle | `docs/SHARED_WORKFLOW.md` | Project Owner / AU-CODEX-PRIMARY | Artifact routing and status flow, not product or technical meaning. |
+| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Repository exists; application implementation does not. |
 | Technical decisions | `docs/DECISIONS.md` and approved files under `docs/architecture/adr/` | AU-AGENT-001 | ADR indexes must not restate decision content. |
 | Architecture overview | `docs/ARCHITECTURE.md` | AU-AGENT-001 | Detailed architecture documents may be indexed under `docs/architecture/`. |
 | Proposed cross-cutting changes | Files under `docs/architecture/rfc/` | Proposal owner; AU-AGENT-001 approver | An RFC is not an approved decision unless its disposition says so and required ADRs exist. |
@@ -125,6 +150,10 @@ authority conflict exists.
 ## Related Sources
 
 - `AGENTS.md`
+- `PROJECT_MANIFEST.md`
+- `product/README.md`
+- `AI_ORGANIZATION.md`
+- `docs/SHARED_WORKFLOW.md`
 - `.codex/PROJECT_INSTRUCTIONS.md`
 - `.codex/AGENT_REGISTRY.md`
 - `docs/DECISIONS.md`

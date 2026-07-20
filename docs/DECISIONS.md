@@ -96,6 +96,36 @@
 - **Review date:** Event-driven by source hierarchy, ownership, or repository
   integration changes; no calendar date is justified.
 
+## DEC-006 — Use One Shared Repository With Separate Authority Contours
+
+- **Status:** `[APPROVED]`
+- **Date:** 2026-07-20
+- **Related task:** INIT-002
+- **Context:** Product governance existed in a non-version-controlled Claude
+  Cowork workspace while engineering governance existed in a separate non-Git
+  Codex workspace. The Project Owner selected one private platform repository.
+- **Decision:** Use `PhilipGrishin/abris-universe-platform` as the private shared
+  repository for product sources, engineering governance, future
+  implementation, evidence, and acceptance. Keep `product/` and the Codex
+  engineering contour in separate source classes, registries, and authority
+  paths.
+- **Alternatives:** Separate product and engineering repositories; import the
+  Claude workspace without classification; or merge both organizations into
+  one authority model.
+- **Reason:** One versioned platform improves traceability and handoff while
+  explicit contour boundaries prevent product and technical authority drift.
+- **Consequence:** Product decisions and Task Packages remain owned by the
+  Project Owner and Claude Cowork. Technical decisions and implementation
+  remain owned by Codex. AU-AGENT-002 integrates documentation without owning
+  meaning. The external source workspace is provenance, not a competing live
+  repository. Imported approved product sources retain their original language
+  for fidelity; this does not change the English policy for new artifacts.
+- **Reversibility:** Repository topology can change through a new owner decision
+  and a non-destructive migration with preserved history and source mapping.
+- **Owner:** Project Owner
+- **Review status:** Implemented and tested locally; independent verification
+  remains outstanding.
+
 ## Decision Process
 
 Future entries should include Decision ID, status, date, context, decision,

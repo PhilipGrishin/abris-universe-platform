@@ -8,17 +8,18 @@
 
 ## Executive Assessment
 
-`[CONFIRMED]` No product software architecture can be recovered from the current
-workspace. The directory is not a Git repository and contains only the
-documentation governance baseline. There are no languages, frameworks,
-dependency manifests, source modules, schemas, APIs, migrations, tests,
-infrastructure definitions, CI/CD workflows, deployment targets, or runtime
-commands to assess.
+`[CONFIRMED]` The private shared platform repository and imported product
+contour now exist. No product software implementation architecture can be
+recovered because there are still no languages, frameworks, dependency
+manifests, source modules, schemas, APIs, migrations, tests, infrastructure
+definitions, CI/CD workflows, deployment targets, or runtime commands to
+assess.
 
-`[DERIVED]` Selecting a stack or drawing product component boundaries now would
-turn unsupported assumptions into apparent commitments. Product architecture is
-therefore intentionally unapproved until OQ-001, OQ-002, and the first versioned
-Task Package are resolved.
+`[DERIVED]` Repository origin and product source location are resolved, and an
+approved Task Package is available for review. Selecting a stack or drawing
+implementation boundaries before its Technical Review would still convert
+proposals into unsupported commitments. Product software architecture remains
+unapproved.
 
 ## Current Non-Product Governance Architecture
 
@@ -77,6 +78,11 @@ These constraints do not yet define physical schemas, protocols, services,
 frameworks, or deployment topology.
 
 ## Repository Assessment Gaps
+
+The repository is confirmed as `PhilipGrishin/abris-universe-platform` on
+`main`. Its current contents are governance and product sources only. The
+product-side architecture document under `product/architecture-inputs/` is a
+`[PROPOSED]` input and does not alter this engineering assessment.
 
 The following cannot yet be assessed:
 
@@ -151,9 +157,9 @@ the substantiated documents among `SYSTEM_MAP.md`, `DATA_MODEL.md`,
 
 ## Next Assessment Gate
 
-AU-AGENT-001 should repeat this assessment when the repository origin and
-versioned product source are confirmed. The next assessment must inspect Git
-history and worktree state, source structure, manifests, schemas, migrations,
-tests, environments, services, secrets inventory by variable name only, CI/CD,
-deployment, observability, licenses, and documented run commands before
-proposing product architecture.
+AU-AGENT-001 should now repeat this assessment as part of engineering intake for
+AU-CDX-TASK-001 v1.0. The next assessment must inspect Git history and worktree
+state, the imported sources and conflicts, available role assignments, and all
+executable evidence that exists before proposing product architecture. Missing
+source, schema, migration, test, environment, service, CI/CD, deployment,
+observability, license, and run-command evidence must remain explicit.

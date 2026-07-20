@@ -2,16 +2,18 @@
 
 ## RISK-001 — Work Starts in the Wrong Repository
 
-- **Status:** `[OPEN]`
-- **Probability:** Medium
+- **Status:** `[IMPLEMENTED]` mitigation; residual monitoring
+- **Probability:** Low
 - **Impact:** High
-- **Trigger:** Product code is requested before OQ-001 is resolved.
+- **Trigger:** Work targets a repository other than the registered canonical
+  repository or an unreviewed external copy is treated as current.
 - **Affected areas:** All implementation, Git history, CI/CD, and documentation.
-- **Prevention:** Confirm whether to initialize this directory or import an
-  existing repository before coding.
-- **Mitigation:** Keep current changes documentation-only and portable.
-- **Fallback:** Move the reviewed baseline into the confirmed repository without
-  deleting or overwriting existing assets.
+- **Prevention:** Resolve repository identity through
+  `docs/SOURCE_OF_TRUTH.md` during bootstrap and use the configured `origin`.
+- **Mitigation:** Canonical repository, branch, remote, and source import are
+  registered with provenance and checksums.
+- **Fallback:** Stop work, compare histories and source maps, and perform only an
+  owner-approved non-destructive migration.
 - **Owner:** Project owner
 
 ## RISK-002 — Product Behavior Is Invented
@@ -120,3 +122,22 @@
 - **Fallback:** Register a time-bounded Documentation Exception or simplify the
   process with AU-CODEX-PRIMARY approval while preserving required traceability.
 - **Owner:** AU-AGENT-002 and AU-CODEX-PRIMARY
+
+## RISK-008 — Shared Repository Blurs Product and Engineering Authority
+
+- **Status:** `[OPEN]`
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A product draft is treated as an approved engineering decision,
+  a Codex proposal changes product meaning, or one agent registry is used to
+  infer activation in the other organization.
+- **Affected areas:** Requirements, architecture, role assignments, acceptance,
+  traceability, and implementation scope.
+- **Prevention:** Maintain separate `product/` and Codex registries, route all
+  conflicts through `docs/SOURCE_OF_TRUTH.md`, and use
+  `AI_ORGANIZATION.md` only as a navigation layer.
+- **Mitigation:** Mark drafts and planned roles explicitly; require content-owner
+  review and task-version traceability at every handoff.
+- **Fallback:** Stop affected work, issue a Conflict Report, restore reliance on
+  the higher-authority source, and record the owner decision.
+- **Owner:** Project Owner, AU-CODEX-PRIMARY, and product coordination owner

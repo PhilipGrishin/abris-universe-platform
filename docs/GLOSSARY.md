@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-20 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
@@ -62,6 +62,18 @@ standards instead of duplicating their technical facts.
 The role accountable for maintaining a document or decision through its
 lifecycle. Ownership of documentation structure does not imply ownership of
 technical or product meaning.
+
+### Product Contour
+
+The repository area under `product/` containing product meaning, decisions,
+Task Packages, Claude Cowork roles, research, and independent acceptance. Its
+authority is separate from the Codex engineering contour.
+
+### Engineering Contour
+
+The repository areas governed by `AGENTS.md`, `.codex/`, and `docs/`, plus
+future implementation sources. It owns technical decisions and evidence within
+approved product constraints, not product meaning.
 
 ### Request for Comments (RFC)
 

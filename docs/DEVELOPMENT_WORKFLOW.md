@@ -121,6 +121,13 @@ session continue without relying on chat history.
 
 ## 11. Git and Delivery Conventions
 
-`[OPEN]` Branching, commit, pull-request, CI, release, and deployment conventions
-will be finalized after the repository and hosting workflow are known. Until
-then, do not initialize Git or publish changes without owner authorization.
+The canonical private repository is `PhilipGrishin/abris-universe-platform` and
+the default branch is `main`. Initial repository bootstrap commits are
+owner-authorized. Subsequent substantive work should use a review branch and
+pull request unless an explicit owner-approved workflow says otherwise.
+
+Branch protection, required reviews, Issues, labels, Actions, release, and
+deployment conventions remain `[PROPOSED]`. Do not enable automation, add
+credentials, or claim CI evidence until separately approved and validated.
+
+The cross-contour artifact lifecycle is defined in `docs/SHARED_WORKFLOW.md`.

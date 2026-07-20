@@ -1,0 +1,113 @@
+# Product Contour
+
+| Field | Value |
+| --- | --- |
+| Document ID | AU-PROD-INDEX-001 |
+| Title | Product Contour |
+| Status | `[IMPLEMENTED]` |
+| Owner | Project Owner / Claude Cowork |
+| Technical Approver | Project Owner |
+| Version | 1.0.0 |
+| Created | 2026-07-20 |
+| Last Updated | 2026-07-20 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md` |
+| Supersedes | External-workspace physical navigation only |
+| Superseded By | None |
+| Review Triggers | Product authority change; product source import; Task Package lifecycle change; repository topology change |
+
+## Purpose
+
+Provide the portable repository entry point for approved product knowledge,
+product governance, Claude Cowork roles, Task Packages, research, product-side
+architecture inputs, and independent product reviews.
+
+## Scope
+
+This contour owns product meaning and product acceptance records. It does not
+own engineering implementation, approve an engineering stack, or replace the
+engineering sources under `docs/` and `.codex/`.
+
+## Authority
+
+Project-owner decisions and approved versioned Task Packages have the highest
+project authority. Product meaning is owned by the Project Owner and Claude
+Cowork. Engineering meaning remains with the Codex engineering organization.
+AU-AGENT-002 maintains documentation integration but owns neither meaning.
+
+Resolve every conflict through `docs/SOURCE_OF_TRUTH.md`; this index is a
+navigation layer, not a parallel source of truth.
+
+Imported owner-approved source documents retain their original language for
+fidelity. This is an explicit source-import exception; new repository-native
+artifacts continue to follow the project English-language policy.
+
+## Canonical Product Sources
+
+- [Master Product Specification v1.0](specifications/Abris_Universe_Master_Product_Specification_RU.docx)
+  is the current approved consolidated product specification.
+- [Product Decision Log](decisions/05_Decision_Log.md) contains product and
+  owner decisions; each entry retains its own status.
+- [Task Packages](task-packages/README.md) are authoritative only at their
+  declared version and approval state.
+- [Claude Cowork Organization](agents/README.md) registers the product roles
+  from their imported source definitions.
+- [Product Governance](governance/README.md) contains the imported Claude Cowork
+  project instructions and the Codex context pack.
+
+Draft vision, product-side architecture recommendations, and research evidence
+remain subordinate to approved decisions and specifications.
+
+## Navigation
+
+- [Governance](governance/README.md)
+- [Specifications](specifications/README.md)
+- [Task Packages](task-packages/README.md)
+- [Decisions](decisions/README.md)
+- [Research](research/README.md)
+- [Architecture Inputs](architecture-inputs/README.md)
+- [Reviews and Acceptance](reviews/README.md)
+- [Claude Cowork Agents](agents/README.md)
+- [Archive](archive/README.md)
+- [Source Integration Map](governance/SOURCE_INTEGRATION_MAP.md)
+
+## Task Package Lifecycle
+
+Every Task Package requires a stable ID, explicit version, status, owner,
+acceptance criteria, dependencies, evidence requirements, prohibited changes,
+reviewers, and Documentation Impact. A changed requirement creates a new
+version; history is not silently overwritten. Approval for Codex review does
+not imply approval to implement before engineering intake gates pass.
+
+## Claude Cowork and Codex Interaction
+
+The shared lifecycle is defined in `docs/SHARED_WORKFLOW.md`. Product sources
+provide intent, scope, constraints, and acceptance. Codex produces technical
+review, design, implementation, tests, evidence, and Completion Reports. Claude
+Cowork independently returns `VERIFIED` or `REWORK REQUIRED`; no author accepts
+its own work.
+
+## Acceptance Records
+
+Product and independent acceptance reports belong under `product/reviews/` and
+must reference the exact Task Package version, engineering commit or release,
+evidence reviewed, reviewer, decision, defects, and required rework.
+
+## Lifecycle
+
+Update this index whenever a canonical product source, product document class,
+role registry, Task Package status, or acceptance route changes. Superseded
+documents remain traceable.
+
+## Adding Documents
+
+Classify authority before import, record provenance and checksum where
+practical, place the document in exactly one canonical location, update the
+appropriate index and traceability, and avoid copying product definitions into
+navigation documents.
+
+## Related Sources
+
+- `PROJECT_MANIFEST.md`
+- `docs/SOURCE_OF_TRUTH.md`
+- `AI_ORGANIZATION.md`
+- `docs/SHARED_WORKFLOW.md`

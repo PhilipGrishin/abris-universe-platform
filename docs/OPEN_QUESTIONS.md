@@ -2,30 +2,29 @@
 
 ## OQ-001 — Repository Origin
 
-- **Status:** `[OPEN]`
-- **Question:** Should this workspace root be initialized as a new Git
-  repository, or should an existing Abris Universe repository be imported or
-  linked here?
-- **Why it matters:** The answer determines history, branch policy, existing
-  architecture, dependencies, and where baseline documents belong.
-- **Recommended option:** If implementation exists elsewhere, import the existing
-  repository and integrate this baseline after an overlap review. Otherwise,
-  explicitly authorize initialization of a new repository.
-- **Can continue without answer:** Governance documentation review.
-- **Blocked:** Product implementation, Git workflow, CI/CD, and source audit.
+- **Status:** `[CONFIRMED]`
+- **Answer:** The Project Owner authorized the private shared repository
+  `PhilipGrishin/abris-universe-platform` with `main` as the default branch.
+  This workspace is its initial working tree.
+- **Resolution evidence:** `docs/SOURCE_OF_TRUTH.md`, DEC-006, and the INIT-002
+  handoff record.
+- **Result:** Repository origin is resolved. Application architecture and CI/CD
+  remain separate open decisions.
 - **Decision owner:** Project owner
 
 ## OQ-002 — Product Source of Truth
 
-- **Status:** `[OPEN]`
-- **Question:** Where are the authoritative, versioned Claude Cowork product
-  documents and Task Packages stored, and what identifies the current version?
-- **Why it matters:** Codex cannot trace technical decisions or acceptance
-  evidence without a stable product source.
-- **Recommended option:** Provide a repository path or approved connected source
-  with immutable Task IDs and requirement versions.
-- **Can continue without answer:** Governance documentation review.
-- **Blocked:** Technical Design Proposal for product features.
+- **Status:** `[CONFIRMED]`
+- **Answer:** Imported product sources are maintained under `product/`. The
+  approved consolidated source is Master Product Specification v1.0; product
+  decisions are in `product/decisions/05_Decision_Log.md`; versioned work is
+  under `product/task-packages/`.
+- **Source provenance:** The initial read-only Claude Cowork workspace was not a
+  Git repository. Its file-level checksums and dispositions are recorded in
+  `product/governance/SOURCE_INTEGRATION_MAP.md`.
+- **Result:** Repository product-source location is resolved. Later changes in
+  the external workspace require controlled re-import or a separately approved
+  source-integration workflow.
 - **Decision owner:** Project owner / Claude Cowork
 
 ## OQ-003 — First Specialist Agent

@@ -59,7 +59,8 @@ AU-AGENT-002 review, or an approved registered Documentation Exception.
 
 Use evidence in this order:
 
-1. Project-owner decisions and versioned Claude Cowork Task Packages.
+1. Project-owner decisions and approved versioned Claude Cowork Task Packages
+   registered under `product/decisions/` and `product/task-packages/`.
 2. Scoped `AGENTS.md` instructions.
 3. Executable source, tests, schemas, configuration, and repository history.
 4. Approved technical decisions in `docs/DECISIONS.md`.
@@ -69,3 +70,7 @@ Use evidence in this order:
 
 If higher-priority sources conflict, record a conflict and stop the conflicting
 work until the proper owner decides.
+
+The Claude Cowork organization is registered separately in
+`product/agents/README.md`; `AI_ORGANIZATION.md` links the product and
+engineering registries without merging role activation or authority.

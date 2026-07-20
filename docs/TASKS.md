@@ -2,17 +2,26 @@
 
 ## Active
 
-### INIT-002 — Confirm Repository and Product Sources
-
-- **Status:** `[OPEN]`
-- **Goal:** Resolve OQ-001 and OQ-002 before product design or implementation.
-- **Dependencies:** Project-owner response; repository or authorization to
-  initialize; authoritative Claude Cowork source location.
-- **Completion evidence:** Confirmed repository root and Git state; documented
-  source-of-truth path and versioning protocol; refreshed workspace audit.
-- **Blocked work:** Product architecture and feature implementation.
+No product implementation task is active. AU-CDX-TASK-001 v1.0 is available for
+engineering intake and Technical Review only.
 
 ## Completed
+
+### INIT-002 — Initialize Shared Platform Repository and Product Sources
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`
+- **Documentation Impact:** Material
+- **Outcome:** Created the private shared repository, preserved the engineering
+  baseline as its own commit, audited and integrated the Claude Cowork product
+  contour, registered separate product and engineering organizations, and
+  established shared navigation and workflow.
+- **Documentation result:** `PROJECT_MANIFEST.md`, `product/`,
+  `AI_ORGANIZATION.md`, `docs/SHARED_WORKFLOW.md`, and updated governance.
+- **Documentation exception:** None.
+- **Evidence:** Repository history, `product/governance/SOURCE_INTEGRATION_MAP.md`,
+  `docs/SOURCE_OF_TRUTH.md`, and the INIT-002 handoff entry.
+- **Not included:** Product implementation, approved runtime architecture,
+  technology selection, CI/CD automation, or independent verification.
 
 ### AGENT-002 — Register Engineering Documentation Manager
 

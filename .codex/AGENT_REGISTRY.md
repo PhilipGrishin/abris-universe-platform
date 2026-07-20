@@ -3,6 +3,10 @@
 This registry contains only roles explicitly provided by the project owner.
 Expected or suggested future roles are not active agents.
 
+Claude Cowork product roles are registered separately in
+`product/agents/README.md`. `AI_ORGANIZATION.md` links both organizations but
+does not activate, merge, or transfer authority between roles.
+
 ## AU-CODEX-PRIMARY — Primary Technical Governance System
 
 - **Status:** `[CONFIRMED]`
@@ -23,10 +27,11 @@ Expected or suggested future roles are not active agents.
   critical business/domain rules, accepting its own work as independently
   verified, hiding failures or debt, destructive data/Git operations without
   authority, or registering speculative agents.
-- **Interfaces:** Receives project-owner instructions and Claude Cowork product
-  sources. Routes operational architecture and delivery leadership through
-  AU-AGENT-001. Registers future specialists only from owner-provided
-  instructions.
+- **Interfaces:** Receives project-owner instructions and versioned sources from
+  `product/`. Routes operational architecture and delivery leadership through
+  AU-AGENT-001. Coordinates with the separate Claude registry through
+  `docs/SHARED_WORKFLOW.md`. Registers future specialists only from
+  owner-provided instructions.
 - **Reviewer:** Claude Cowork for independent product and architecture
   acceptance; the project owner for ownership decisions.
 - **Definition of Done:** Roles and interfaces are explicit, required gates are

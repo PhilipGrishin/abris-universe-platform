@@ -30,6 +30,9 @@ monetization, or privacy policy.
 - Product changes required by technical constraints must be returned as a
   clarification, conflict, or technical alternative proposal. They must not be
   implemented silently.
+- Product sources and the Claude Cowork organization are maintained under
+  `product/`; engineering governance and evidence remain under `AGENTS.md`,
+  `.codex/`, and `docs/`. `AI_ORGANIZATION.md` is shared navigation only.
 
 ## Required Status Vocabulary
 
@@ -56,16 +59,19 @@ Never use `[IMPLEMENTED]`, `[TESTED]`, and `[VERIFIED]` interchangeably.
 Before substantive work:
 
 1. Determine the repository root and inspect Git branch and worktree state.
-2. Read this file and `.codex/PROJECT_INSTRUCTIONS.md`.
-3. Read `docs/PROJECT_CONTEXT.md`, `docs/CURRENT_STATUS.md`, and
+2. Read `PROJECT_MANIFEST.md`, `docs/SOURCE_OF_TRUTH.md`, this file, and
+   `.codex/PROJECT_INSTRUCTIONS.md`.
+3. Read `product/README.md` and the exact versioned Task Package when product
+   meaning or acceptance is in scope.
+4. Read `docs/PROJECT_CONTEXT.md`, `docs/CURRENT_STATUS.md`, and
    `.codex/CURRENT_FOCUS.md`.
-4. Read recent `docs/HANDOFF_LOG.md` entries and inspect `docs/TASKS.md`,
+5. Read recent `docs/HANDOFF_LOG.md` entries and inspect `docs/TASKS.md`,
    `docs/OPEN_QUESTIONS.md`, `docs/DECISIONS.md`, and
    `docs/TECHNICAL_DEBT.md` if it exists.
-5. Inspect relevant source, tests, schemas, configuration, dependencies, and
+6. Inspect relevant source, tests, schemas, configuration, dependencies, and
    unfinished changes.
-6. Run the applicable baseline checks once the repository defines them.
-7. Record conflicts between documentation and executable evidence.
+7. Run the applicable baseline checks once the repository defines them.
+8. Record conflicts between documentation and executable evidence.
 
 If the active task is unclear, do not guess product behavior.
 

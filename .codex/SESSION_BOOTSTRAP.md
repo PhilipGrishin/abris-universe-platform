@@ -14,20 +14,22 @@ Complete this checklist before substantive work in every new session.
 
 Read in this order:
 
-1. `AGENTS.md`
-2. `.codex/PROJECT_INSTRUCTIONS.md`
-3. `docs/SOURCE_OF_TRUTH.md`
-4. `docs/README.md`
-5. `docs/PROJECT_CONTEXT.md`
-6. `docs/CURRENT_STATUS.md`
-7. `.codex/CURRENT_FOCUS.md`
-8. The latest entries in `docs/HANDOFF_LOG.md`
-9. `docs/TASKS.md`
-10. `docs/OPEN_QUESTIONS.md`
-11. Recent entries in `docs/DECISIONS.md`
-12. `docs/RISKS.md`
-13. `docs/TECHNICAL_DEBT.md` if present
-14. `docs/GLOSSARY.md` and `docs/TRACEABILITY_MATRIX.md` when terminology or
+1. `PROJECT_MANIFEST.md`
+2. `docs/SOURCE_OF_TRUTH.md`
+3. `AGENTS.md`
+4. `.codex/PROJECT_INSTRUCTIONS.md`
+5. `product/README.md` and the exact Task Package when product scope applies
+6. `docs/README.md`
+7. `docs/PROJECT_CONTEXT.md`
+8. `docs/CURRENT_STATUS.md`
+9. `.codex/CURRENT_FOCUS.md`
+10. The latest entries in `docs/HANDOFF_LOG.md`
+11. `docs/TASKS.md`
+12. `docs/OPEN_QUESTIONS.md`
+13. Recent entries in `docs/DECISIONS.md`
+14. `docs/RISKS.md`
+15. `docs/TECHNICAL_DEBT.md` if present
+16. `docs/GLOSSARY.md` and `docs/TRACEABILITY_MATRIX.md` when terminology or
     traceability may be affected
 
 ## Implementation Evidence
@@ -43,6 +45,7 @@ Read in this order:
 
 ## Current Bootstrap Limitation
 
-`[OPEN]` This workspace does not yet contain a Git repository, application code,
-or build/test commands. Until that changes, bootstrap verification is limited to
-documentation consistency and filesystem inspection.
+`[OPEN]` The repository exists, but it does not yet contain application code or
+build/test commands. Until implementation begins through an approved Technical
+Design, executable verification is limited to Git, source, documentation, and
+repository consistency.

@@ -28,13 +28,16 @@ traceability, terminology, and documentation reviews.
 
 ## Start Here
 
-1. Read the [Source of Truth Registry](SOURCE_OF_TRUTH.md).
-2. Follow the project [Session Bootstrap](../.codex/SESSION_BOOTSTRAP.md).
-3. Read [Project Context](PROJECT_CONTEXT.md) and
+1. Read the [Platform Manifest](../PROJECT_MANIFEST.md).
+2. Read the [Source of Truth Registry](SOURCE_OF_TRUTH.md).
+3. Select the [Product Contour](../product/README.md) or engineering sources
+   indexed here.
+4. Follow the project [Session Bootstrap](../.codex/SESSION_BOOTSTRAP.md).
+5. Read [Project Context](PROJECT_CONTEXT.md) and
    [Current Status](CURRENT_STATUS.md).
-4. Check [Current Focus](../.codex/CURRENT_FOCUS.md), [Tasks](TASKS.md), and
+6. Check [Current Focus](../.codex/CURRENT_FOCUS.md), [Tasks](TASKS.md), and
    [Open Questions](OPEN_QUESTIONS.md).
-5. Use the indexes below for the relevant engineering knowledge class.
+7. Use the indexes below for the relevant engineering knowledge class.
 
 ## Canonical Navigation
 
@@ -50,6 +53,10 @@ traceability, terminology, and documentation reviews.
 - [Engineering Standards](standards/README.md)
 - [Engineering Assurance](assurance/README.md)
 - [Documentation Reviews](reviews/documentation/README.md)
+- [Shared Product-to-Engineering Workflow](SHARED_WORKFLOW.md)
+- [Shared AI Organization](../AI_ORGANIZATION.md)
+- [Product Contour](../product/README.md)
+- [GitHub Collaboration Recommendations](GITHUB_COLLABORATION_RECOMMENDATIONS.md)
 
 ## Existing Project Records
 

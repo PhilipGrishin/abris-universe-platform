@@ -1,13 +1,15 @@
 # Current Status
 
 **Status date:** 2026-07-20
-**Current focus:** AGENT-002
-**Technical state:** `[IMPLEMENTED]` governance baseline, two specialists, and documentation infrastructure
+**Current focus:** INIT-002 — shared platform repository integration
+**Technical state:** `[IMPLEMENTED]` private shared repository, product and engineering governance contours, two Codex specialists, and documentation infrastructure
 **Independent state:** Not `[VERIFIED]`
 
 ## Confirmed Workspace State
 
 - `[CONFIRMED]` The selected workspace directory exists.
+- `[CONFIRMED]` It is the working tree for the private
+  `PhilipGrishin/abris-universe-platform` repository on branch `main`.
 - `[CONFIRMED]` It was empty at the start of INIT-001.
 - `[CONFIRMED]` It was not a Git repository at the start of INIT-001.
 - `[CONFIRMED]` No source code, tests, schemas, configuration, dependencies,
@@ -31,6 +33,12 @@
 - `[PROPOSED]` The first architecture ADR sequence is documented in
   `docs/ARCHITECTURE.md`; no product architecture ADR is approved yet.
 - `[CONFIRMED]` No application code or product feature has been implemented.
+- `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
+  definitions, product navigation, and shared workflow are integrated under
+  `product/` without merging product and engineering authority.
+- `[CONFIRMED]` Master Product Specification v1.0 is the registered consolidated
+  product specification. AU-CDX-TASK-001 v1.0 is approved for Codex review, not
+  implementation.
 
 ## Verification Performed
 
@@ -50,10 +58,10 @@
 
 ## Blockers
 
-- `[OPEN]` Whether to initialize a new Git repository or import an existing one.
-- `[OPEN]` Location and versioning process for authoritative Claude Cowork
-  product sources and Task Packages.
-- `[OPEN]` First approved product Task Package and acceptance evidence.
+- `[OPEN]` Implementation and independent acceptance evidence; no product code
+  exists yet.
+- `[OPEN]` Engineering intake and Technical Review disposition for
+  AU-CDX-TASK-001 v1.0.
 - `[OPEN]` Independent Engineering Quality Review is unavailable until the
   corresponding specialist instruction is provided and registered.
 
@@ -72,13 +80,12 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered AU-AGENT-002, established the Source of Truth and documentation
-lifecycle infrastructure, and integrated Documentation Impact into engineering
-delivery without creating Handbook content or changing product/system
-architecture.
+Created the private shared repository, preserved separate product and
+engineering authority, imported the audited Claude product contour, and added
+portable navigation, role registries, traceability, and workflow records.
 
 ## Next Step
 
-Resolve OQ-001 and OQ-002, register the confirmed repository and product source
-location in `docs/SOURCE_OF_TRUTH.md`, then have AU-AGENT-001 perform a
-source-aware repository assessment before the first product Technical Design.
+Have AU-AGENT-001 perform engineering intake and a Technical Review of
+AU-CDX-TASK-001 v1.0, explicitly resolving inactive specialist assignments and
+the blocking import-format spike before any product implementation.

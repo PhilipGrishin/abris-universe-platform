@@ -55,13 +55,15 @@ cannot change its hierarchy independently.
 
 ## Current Constraints and Unknowns
 
-- `[OPEN]` No authoritative PRD, roadmap, first-release scope, or Task Package is
-  present in this workspace.
+- `[CONFIRMED]` The approved Master Product Specification v1.0, product Decision
+  Log, and AU-CDX-TASK-001 v1.0 are present under `product/`. The Task Package
+  is ready for Codex review, not implementation.
 - `[OPEN]` No technology stack, target platform order, architecture, data model,
   API, internal format, service provider, deployment model, or performance SLO
   has been approved.
-- `[OPEN]` No implementation repository, Git history, dependencies, secrets
-  inventory, environments, or test data are present.
+- `[CONFIRMED]` The private implementation repository and Git history exist.
+  `[OPEN]` Dependencies, secrets inventory, environments, executable source,
+  and test data are not yet present.
 - `[CONFIRMED]` AU-AGENT-001, Lead Software Architect & Development
   Orchestrator, is the first registered specialist and owns operational
   architecture, decomposition, contract coordination, integration, and the
