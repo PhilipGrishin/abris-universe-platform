@@ -117,3 +117,54 @@
 - **Next step:** Resolve repository origin and product source location, then
   register both in `docs/SOURCE_OF_TRUTH.md` before the first product Technical
   Design.
+
+## 2026-07-20 — Project Owner to Codex — INIT-002
+
+- **Direction received:** Create the private shared platform repository
+  `PhilipGrishin/abris-universe-platform`; preserve separate Claude Cowork
+  product and Codex engineering authority; audit the external Claude workspace;
+  import only classified sources; register both organizations and their shared
+  workflow; do not implement product software or unapproved automation.
+- **Source:** Project-owner Phase 2 instruction supplied in the Codex task.
+- **Documentation Impact:** Material.
+- **Authority:** Explicit Project Owner approval for repository creation,
+  controlled import, commits, and push to `main`.
+
+## 2026-07-20 — Codex Technical Handoff — INIT-002
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
+- **Repository:** `PhilipGrishin/abris-universe-platform`, private, default
+  branch `main`, canonical remote registered in `docs/SOURCE_OF_TRUTH.md`.
+- **Engineering baseline:** Commit `9c85d3d` preserves the existing engineering
+  governance and documentation infrastructure as a separate root commit.
+- **Product integration:** Commit `5edc777` adds the classified product contour,
+  Master Product Specification, product decisions, Task Package, research,
+  product-side architecture proposal, review evidence, seven Claude role source
+  files, product indexes, shared organization, workflow, manifest, and updated
+  governance.
+- **Product audit:** Audited 18 external files; imported 17; excluded
+  `.DS_Store`; recorded source SHA-256 values and normalizations in
+  `product/governance/SOURCE_INTEGRATION_MAP.md`.
+- **External-source integrity:** All 18 source checksums matched after import;
+  the external Claude workspace was not changed.
+- **Commit safety:** No secret, credential, token, private-key, embedded-auth,
+  machine-local path, temporary file, or unintended binary was found. The sole
+  committed binary is the approved Master Product Specification and its
+  checksum matches the source.
+- **Documentation validation:** 71 Markdown files, 167 local links, 39 external
+  links, zero broken local links; 15 new managed documents passed required
+  metadata checks; staged diffs passed `git diff --cached --check`.
+- **Authority boundary:** Product and Codex registries remain separate;
+  AU-AGENT-002 owns integration structure, not product or technical meaning;
+  planned Codex roles remain inactive.
+- **Remote validation:** GitHub reported `PRIVATE`, default branch `main`, and
+  the approved description. Local `HEAD`, `origin/main`, and `ls-remote` matched
+  at `5edc777a770384945a2c1656c32a78c0ae49d19a` before this audit-trail commit.
+- **Automation:** No branch protection, Issues, labels, Actions, secret-scanning
+  configuration, CI/CD, or agent API automation was enabled. Recommendations
+  are recorded in `docs/GITHUB_COLLABORATION_RECOMMENDATIONS.md`.
+- **Documentation exception:** None. Imported approved product sources retain
+  their original language under the owner-directed source-import exception.
+- **Independent review:** Awaiting; no result is marked `[VERIFIED]`.
+- **Next step:** Independent review of the repository foundation, followed by
+  AU-AGENT-001 engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.

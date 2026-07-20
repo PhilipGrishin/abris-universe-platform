@@ -55,6 +55,11 @@
   role fields, managed-document metadata, local link resolution, Source of Truth
   routing, Documentation Impact gates, English-only artifacts, and absence of
   Handbook chapters or product/system architecture changes.
+- `[TESTED]` INIT-002 verified private GitHub visibility, default branch `main`,
+  configured `origin`, local/remote commit parity, expected committed files,
+  product-source checksum preservation, secret and temporary-file absence, the
+  single intended Master Specification binary, required metadata, and Markdown
+  link resolution.
 
 ## Blockers
 
