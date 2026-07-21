@@ -168,3 +168,58 @@
 - **Independent review:** Awaiting; no result is marked `[VERIFIED]`.
 - **Next step:** Independent review of the repository foundation, followed by
   AU-AGENT-001 engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
+
+## 2026-07-21 — Project Owner to Codex — BRIDGE-001
+
+- **Direction received:** Implement a permanent local Claude-Codex
+  collaboration bridge while GitHub remains canonical and Codex remains the
+  sole Git operator and repository writer.
+- **Topology requirement:** Discover whether an in-repository or synchronized
+  external bridge fits current access; keep machine paths local-only; do not
+  change existing Claude source files.
+- **Safety requirement:** Use exact source identity, machine-readable manifests,
+  checksums, path and file controls, dry-run-first writes, validation before
+  staging, and no automatic commit or push.
+- **First exchange:** Prepare independent review titled “Platform Repository
+  Initialization and Product/Engineering Governance Integration” for the
+  Quality, Security & Independent Acceptance Lead over
+  `9c85d3d..1ccaace`.
+- **Documentation Impact:** Material.
+
+## 2026-07-21 — Codex Technical Handoff — BRIDGE-001
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
+- **Topology:** Option B, synchronized external bridge. Reliable direct Claude
+  repository access is unconfirmed; Claude's established local workspace is
+  available. The external absolute path exists only in ignored local config.
+- **Implemented:** Committed portable documentation, schemas, exchange
+  manifests, and dependency-free Node.js tools for prepare, sync, validate,
+  stage, archive, and status. All write-capable operations default to dry-run
+  and require `--apply`; none performs Git operations.
+- **Safety:** Validation covers traversal, symlinks, hidden and temporary output,
+  binaries, secret-like material, machine paths, file/package size, extensions,
+  duplicate IDs, stale source, required-source registration, checksums,
+  unsupported statuses, and ambiguous independent acceptance.
+- **First exchange:** `AU-EX-20260721-001` was prepared from full SHA
+  `1ccaace4aa6c5a441dca52bcbbab3fd26017f908`, exact review range
+  `9c85d3d..1ccaace`, 75 text artifacts, and 1,462,321 registered bytes. The
+  approved binary Master Product Specification was explicitly out of scope for
+  substantive content review and was not copied.
+- **External integrity:** External bridge creation and package export changed
+  none of the 19 pre-existing Claude workspace files; all before/after SHA-256
+  values matched.
+- **Authority:** Claude reads its inbox and writes its outbox. AU-CODEX-PRIMARY
+  validates, stages, integrates, and alone operates Git/GitHub. AU-AGENT-001
+  reviews technical meaning; AU-AGENT-002 maintains documentation placement,
+  navigation, terminology, traceability, and lifecycle without changing meaning.
+- **Documentation result:** `collaboration/`, DEC-007, RISK-009, updated Source
+  of Truth, organization, workflows, registries, status, tasks, traceability,
+  navigation, and current focus.
+- **Documentation exception:** None.
+- **Independent review:** Package delivered; no Claude return exists. Status
+  remains not `[VERIFIED]`.
+- **Rollback:** The committed branch can be reviewed or reverted normally. The
+  external bridge is an additive isolated directory; do not remove it while the
+  active exchange is open. No pre-existing external file requires rollback.
+- **Next step:** The named Claude reviewer writes a schema-valid return only to
+  `claude/outbox/AU-EX-20260721-001`; Codex then validates and stages it.

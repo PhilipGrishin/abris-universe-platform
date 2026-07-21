@@ -50,6 +50,11 @@ domain meaning and evidence
        Claude Cowork independent acceptance
 ```
 
+Task packages and review results cross the Claude-Codex boundary through the
+controlled local bridge when direct repository access is unavailable. Claude
+uses only its assigned inbox and outbox; AU-CODEX-PRIMARY performs validation,
+integration, and all Git/GitHub operations.
+
 This is an operating model, not the Abris Universe runtime architecture.
 
 AU-AGENT-002 is a cross-cutting documentation steward, not an architecture
@@ -58,6 +63,12 @@ AU-AGENT-001 and assigned domain agents retain technical meaning. This
 organizational extension does not define or change product or system
 architecture. Canonical architecture sources and their authority are registered
 through `docs/SOURCE_OF_TRUTH.md`.
+
+The local bridge is a governance and transport interface only. Its committed
+schemas and manifests define exchange contracts; generated packages and the
+external synchronized workspace are non-canonical staging. It introduces no
+runtime component, product behavior, implementation architecture, or product
+data flow.
 
 ## Confirmed Architectural Constraints
 

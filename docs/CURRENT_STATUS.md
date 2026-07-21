@@ -1,8 +1,8 @@
 # Current Status
 
-**Status date:** 2026-07-20
-**Current focus:** INIT-002 — shared platform repository integration
-**Technical state:** `[IMPLEMENTED]` private shared repository, product and engineering governance contours, two Codex specialists, and documentation infrastructure
+**Status date:** 2026-07-21
+**Current focus:** BRIDGE-001 — local Claude-Codex collaboration bridge
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, and controlled Option B local exchange
 **Independent state:** Not `[VERIFIED]`
 
 ## Confirmed Workspace State
@@ -39,6 +39,15 @@
 - `[CONFIRMED]` Master Product Specification v1.0 is the registered consolidated
   product specification. AU-CDX-TASK-001 v1.0 is approved for Codex review, not
   implementation.
+- `[IMPLEMENTED]`, `[TESTED]` The committed bridge contracts and dry-run-first
+  tools prepare, synchronize, validate, stage, archive, and report controlled
+  local exchanges without performing Git operations.
+- `[CONFIRMED]` Direct Claude Cowork GitHub access is unavailable. This is
+  non-blocking because the controlled Option B local bridge is operational.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260721-001` packages the exact
+  source commit `1ccaace` and review range `9c85d3d..1ccaace` for the Quality,
+  Security & Independent Acceptance Lead.
+- `[OPEN]` No Claude return or independent acceptance decision exists yet.
 
 ## Verification Performed
 
@@ -60,6 +69,13 @@
   product-source checksum preservation, secret and temporary-file absence, the
   single intended Master Specification binary, required metadata, and Markdown
   link resolution.
+- `[TESTED]` Bridge unit tests reject traversal, hidden outputs, symlinks,
+  secret-like material, machine paths, unexpected extensions, ambiguous
+  independent acceptance, unregistered output, and checksum mismatch.
+- `[TESTED]` The first package dry-run and apply produced 75 registered text
+  files with checksums; its source branch and commit are current.
+- `[TESTED]` External synchronization changed no pre-existing Claude workspace
+  file: all 19 pre-existing SHA-256 values remained identical.
 
 ## Blockers
 
@@ -69,6 +85,7 @@
   AU-CDX-TASK-001 v1.0.
 - `[OPEN]` Independent Engineering Quality Review is unavailable until the
   corresponding specialist instruction is provided and registered.
+- `[OPEN]` Claude output for exchange `AU-EX-20260721-001` has not been returned.
 
 ## Active Risks
 
@@ -80,17 +97,20 @@
   or become a parallel source of truth.
 - RISK-007: excessive documentation gates or unused indexes could become a
   delivery bottleneck or dead documentation.
+- RISK-009: local exchange artifacts may be unsafe, stale, or mistaken for
+  acceptance unless bridge controls remain enforced.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Created the private shared repository, preserved separate product and
-engineering authority, imported the audited Claude product contour, and added
-portable navigation, role registries, traceability, and workflow records.
+Implemented and locally tested the controlled Option B collaboration bridge,
+preserved all pre-existing Claude workspace files, and delivered the first
+exact-source independent review package to the external Claude inbox.
 
 ## Next Step
 
-Have AU-AGENT-001 perform engineering intake and a Technical Review of
-AU-CDX-TASK-001 v1.0, explicitly resolving inactive specialist assignments and
-the blocking import-format spike before any product implementation.
+Have the Quality, Security & Independent Acceptance Lead review exchange
+`AU-EX-20260721-001` and return a schema-valid `VERIFIED` or
+`REWORK_REQUIRED` result. Codex must validate and stage that result before any
+canonical integration. Product implementation remains out of scope.

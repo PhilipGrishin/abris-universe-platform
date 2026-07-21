@@ -119,7 +119,20 @@ Update current status, focus, task state, handoff log, questions, decisions,
 risks, debt, and internal changelog as applicable. The handoff must let a new
 session continue without relying on chat history.
 
-## 11. Git and Delivery Conventions
+## 11. Claude-Codex Local Exchange
+
+Use `collaboration/README.md` when Claude cannot reliably access the canonical
+repository. Codex registers the task against an exact source commit, prepares
+and validates the package, exports it to the controlled inbox, validates the
+returned manifest and files, and imports valid output only into ignored
+staging. Authorized owners review meaning before any canonical integration.
+
+All write, synchronization, import, and archive commands default to dry-run and
+require explicit `--apply`. No bridge script commits, pushes, merges, or
+silently edits canonical product or technical sources. AU-CODEX-PRIMARY remains
+the sole Git writer and GitHub operator.
+
+## 12. Git and Delivery Conventions
 
 The canonical private repository is `PhilipGrishin/abris-universe-platform` and
 the default branch is `main`. Initial repository bootstrap commits are

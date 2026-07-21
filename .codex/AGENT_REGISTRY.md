@@ -16,7 +16,8 @@ does not activate, merge, or transfer authority between roles.
   and supportable product.
 - **Owns:** Project instructions, source hierarchy, status vocabulary, role
   registration, workflow enforcement, persistent context, ownership conflict
-  escalation, and owner-level technical governance.
+  escalation, local exchange validation and integration, sole Git/GitHub write
+  authority for Claude returns, and owner-level technical governance.
 - **Required inputs:** Current project instructions and status, a versioned Task
   Package for substantive product work, related product sources, acceptance
   criteria, constraints, required evidence, and named independent reviewer.
@@ -30,8 +31,8 @@ does not activate, merge, or transfer authority between roles.
 - **Interfaces:** Receives project-owner instructions and versioned sources from
   `product/`. Routes operational architecture and delivery leadership through
   AU-AGENT-001. Coordinates with the separate Claude registry through
-  `docs/SHARED_WORKFLOW.md`. Registers future specialists only from
-  owner-provided instructions.
+  `docs/SHARED_WORKFLOW.md` and the controlled `collaboration/` bridge. Registers
+  future specialists only from owner-provided instructions.
 - **Reviewer:** Claude Cowork for independent product and architecture
   acceptance; the project owner for ownership decisions.
 - **Definition of Done:** Roles and interfaces are explicit, required gates are
@@ -96,8 +97,9 @@ does not activate, merge, or transfer authority between roles.
   without an approved process; or integrating multi-agent work without
   integration evidence.
 - **Interfaces:** Receives product intent, constraints, and independent
-  acceptance from Claude Cowork through the governed handoff. Receives ownership
-  decisions and specialist instructions from the project owner. Coordinates all
+  acceptance from Claude Cowork through the governed handoff and validated local
+  bridge. It receives ownership decisions and specialist instructions from the
+  project owner. Coordinates all
   registered specialist agents. Routes implementation for independent
   Engineering Quality Review and consolidates reviewed results. Operates within
   AU-CODEX-PRIMARY rules and escalates scope, ownership, safety, cost, or
@@ -198,6 +200,9 @@ does not activate, merge, or transfer authority between roles.
 - **Interface with Claude Cowork and external Architecture AI:** Records and
   integrates approved product or architecture inputs with provenance. Draft AI
   output remains non-authoritative until the proper content owner approves it.
+  Maintains canonical placement, navigation, terminology, traceability, and
+  lifecycle after AU-CODEX-PRIMARY validates and stages a bridge return; it does
+  not validate its own meaning or perform Git operations on Claude's behalf.
 - **Reviewer:** AU-CODEX-PRIMARY reviews governance and source hierarchy;
   AU-AGENT-001 or the assigned domain agent reviews technical meaning; Claude
   Cowork or the project owner reviews product meaning and independent acceptance
@@ -228,3 +233,16 @@ does not activate, merge, or transfer authority between roles.
 None. AU-AGENT-001 and AU-AGENT-002 are active specialists. Additional agents
 must be added one at a time from owner-provided instructions after overlap and
 interface review.
+
+## Claude-Codex Bridge Interaction Model
+
+- Claude Cowork retains its registered product and independent-review authority
+  but reads and writes only inside its assigned bridge exchange boundaries.
+- AU-CODEX-PRIMARY prepares, validates, stages, integrates, and performs all
+  Git/GitHub operations.
+- AU-AGENT-001 reviews technical implications and preserves approved technical
+  meaning.
+- AU-AGENT-002 maintains documentation structure, navigation, terminology,
+  traceability, and lifecycle without changing product or technical meaning.
+- A transported or schema-valid result is not canonical, accepted, or
+  `[VERIFIED]` until the applicable authorized review and integration gates pass.

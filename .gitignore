@@ -7,3 +7,20 @@
 *.swp
 *.swo
 *~
+
+# Local Claude-Codex bridge state. Canonical contracts and exchange manifests
+# remain committed under collaboration/; payloads and machine paths do not.
+.collaboration-bridge.local.json
+collaboration/runtime/
+collaboration/claude/inbox/*
+!collaboration/claude/inbox/.gitkeep
+collaboration/claude/outbox/*
+!collaboration/claude/outbox/.gitkeep
+collaboration/claude/archive/*
+!collaboration/claude/archive/.gitkeep
+collaboration/codex/inbox/*
+!collaboration/codex/inbox/.gitkeep
+collaboration/codex/outbox/*
+!collaboration/codex/outbox/.gitkeep
+collaboration/codex/archive/*
+!collaboration/codex/archive/.gitkeep

@@ -141,3 +141,26 @@
 - **Fallback:** Stop affected work, issue a Conflict Report, restore reliance on
   the higher-authority source, and record the owner decision.
 - **Owner:** Project Owner, AU-CODEX-PRIMARY, and product coordination owner
+
+## RISK-009 — Local Exchange Introduces Unsafe or Stale Artifacts
+
+- **Status:** `[OPEN]`, controlled
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A package uses a stale commit, a return contains an unsafe or
+  unregistered file, a checksum differs, a local path leaks into a committed
+  artifact, or transport is mistaken for acceptance.
+- **Affected areas:** Repository integrity, confidentiality, provenance,
+  independent acceptance, product meaning, and documentation lifecycle.
+- **Prevention:** Use exact source commits, unique Exchange IDs, schema and
+  status validation, path confinement, symlink/binary/secret/size checks,
+  registered extensions, SHA-256 checksums, Git-ignored runtime state, and
+  dry-run-by-default write commands. Keep AU-CODEX-PRIMARY as sole Git writer.
+- **Mitigation:** Reject invalid returns before staging, preserve evidence,
+  regenerate stale packages, require authorized meaning review, and keep every
+  state below `[VERIFIED]` until independent acceptance.
+- **Fallback:** Stop the exchange, quarantine the affected local package, issue
+  a security or conflict report, rotate any exposed credential through its
+  owner, and resume only from a new Exchange ID and clean source commit.
+- **Owner:** AU-CODEX-PRIMARY; AU-AGENT-002 for documentation lifecycle;
+  applicable product or technical owner for meaning

@@ -126,6 +126,37 @@
 - **Review status:** Implemented and tested locally; independent verification
   remains outstanding.
 
+## DEC-007 — Use a Synchronized External Claude-Codex Bridge
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`
+- **Date:** 2026-07-21
+- **Related task:** BRIDGE-001
+- **Context:** GitHub is canonical and Codex has repository access, but reliable
+  direct Claude access to the repository is unconfirmed. Claude has an
+  established external local workspace that must remain unchanged outside a new
+  controlled exchange boundary.
+- **Decision:** Use Option B: committed portable contracts, manifests, and
+  tooling under `collaboration/`, with generated payloads in Git-ignored local
+  runtime and a synchronized external `Collaboration-Bridge`. Store its absolute
+  path only in Git-ignored local configuration. AU-CODEX-PRIMARY is the sole Git
+  writer and GitHub operator.
+- **Alternatives:** Option A inside the repository if reliable Claude access is
+  later confirmed; direct ungoverned file copying; direct Claude Git access; or
+  no local exchange.
+- **Reason:** Option B uses Claude's established workspace while preserving one
+  canonical repository, explicit authority, exact-source provenance, safety
+  validation, and a reversible transport boundary.
+- **Consequence:** Exchange payloads are non-canonical until validation,
+  authorized meaning review, and Codex integration. All write-capable bridge
+  commands default to dry-run. No bridge script commits, pushes, merges, or
+  grants Claude repository write authority.
+- **Reversibility:** A later approved decision may adopt Option A or another
+  transport. Existing manifests and archives remain traceable; no source
+  history needs destructive migration.
+- **Owner:** Project Owner / AU-CODEX-PRIMARY
+- **Review status:** Local controls and first package are tested; independent
+  acceptance for exchange `AU-EX-20260721-001` is outstanding.
+
 ## Decision Process
 
 Future entries should include Decision ID, status, date, context, decision,

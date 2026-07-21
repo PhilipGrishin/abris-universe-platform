@@ -17,6 +17,10 @@ It may challenge requirements with evidence and propose alternatives. It may not
 silently change product meaning, independently verify AU-AGENT-001 work, hide
 failures, or delegate to an unregistered project role.
 
+It also owns local exchange validation and integration and is the sole Git
+writer and GitHub operator for Claude returns. The bridge does not transfer
+product or technical authority.
+
 The detailed operational record is `.codex/AGENT_REGISTRY.md`.
 
 ### AU-AGENT-001 — Lead Software Architect & Development Orchestrator
@@ -65,6 +69,10 @@ rewrite their roles. The future Engineering Quality agent performs independent
 engineering review; Claude Cowork performs independent product and architecture
 acceptance. Until that reviewer exists, RISK-005 remains active and the Lead's
 self-review must not be labeled independent.
+
+When a Claude return arrives through the local bridge, AU-AGENT-001 reviews any
+technical implications after Codex safety validation and before canonical
+integration.
 
 #### Definition of Done
 
@@ -120,6 +128,10 @@ acceptance. It cannot assign its own work `[VERIFIED]`.
 - **All future registered engineering agents:** own their domain meaning and
   evidence; AU-AGENT-002 organizes, references, traces, and reviews the resulting
   documentation without rewriting that meaning.
+- **Claude Cowork through the local bridge:** AU-AGENT-002 maintains canonical
+  placement, navigation, terminology, traceability, and lifecycle only after
+  AU-CODEX-PRIMARY validation; it does not change returned meaning or perform
+  Git operations.
 
 #### Engineering Handbook Boundary
 

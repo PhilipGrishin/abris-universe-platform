@@ -9,10 +9,10 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Repository topology; authority hierarchy; organization; canonical source; platform scope; implementation-state change |
@@ -118,6 +118,10 @@ in `docs/SHARED_WORKFLOW.md`. Product hands off a versioned Task Package; Codex
 performs technical review, design, implementation, tests, and reporting; Claude
 Cowork independently reviews the result.
 
+When direct repository access is unavailable, artifacts cross the local
+boundary only through the controlled bridge in `collaboration/`. GitHub remains
+canonical and AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.
+
 ## 15. Documentation System
 
 Engineering documentation is indexed by `docs/README.md` and governed by
@@ -134,7 +138,8 @@ terminology consistency, traceability, and lifecycle.
 |-- AGENTS.md                 engineering operating instructions
 |-- .codex/                   Codex governance and agent registry
 |-- docs/                     engineering knowledge and evidence
-`-- product/                  product knowledge, governance, and acceptance
+|-- product/                  product knowledge, governance, and acceptance
+`-- collaboration/           governed local Claude-Codex exchange contracts
 ```
 
 No application source tree exists yet. Its structure is `[TBD]` and requires an
@@ -146,6 +151,9 @@ approved Technical Design.
 - `[IMPLEMENTED]` Engineering governance and documentation infrastructure.
 - `[IMPLEMENTED]` Controlled import of the initial Claude product contour.
 - `[IMPLEMENTED]` Separate Claude and Codex role registries and shared workflow.
+- `[IMPLEMENTED]`, `[TESTED]` Controlled Option B local collaboration bridge.
+- `[OPEN]` First independent acceptance exchange `AU-EX-20260721-001` is
+  prepared and delivered but has no returned decision.
 - `[OPEN]` Product implementation and executable architecture.
 - Not `[VERIFIED]` pending independent review.
 
@@ -201,6 +209,7 @@ requiring explicit controls and evidence.
 - `product/agents/README.md`
 - `AI_ORGANIZATION.md`
 - `docs/SHARED_WORKFLOW.md`
+- `collaboration/README.md`
 - `docs/ARCHITECTURE.md`
 - `docs/DECISIONS.md`
 - `docs/CURRENT_STATUS.md`

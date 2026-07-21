@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-21 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -57,6 +57,21 @@ material defect.
 - Status: `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
 - Evidence: `product/governance/SOURCE_INTEGRATION_MAP.md`, DEC-006,
   `docs/TRACEABILITY_MATRIX.md`, and repository history.
+
+## 2026-07-21 — BRIDGE-001 Local Claude-Codex Collaboration
+
+- Selected and implemented the synchronized external Option B bridge while
+  preserving GitHub as canonical and AU-CODEX-PRIMARY as sole Git writer.
+- Added versioned task and return schemas, canonical exchange manifests,
+  dry-run-first local tooling, ignored runtime boundaries, and safety tests.
+- Integrated bridge authority, lifecycle, traceability, risk, status, and
+  navigation into project governance without changing product or system
+  architecture.
+- Prepared and exported independent review exchange `AU-EX-20260721-001` for
+  exact range `9c85d3d..1ccaace`; no result has been fabricated or received.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
+- Evidence: `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
 
 ## Owner
 

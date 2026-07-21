@@ -196,3 +196,17 @@ The Engineering Handbook is an explanatory and navigational layer. It must use
 references and must not duplicate ADRs, RFCs, specifications, architecture
 documents, or product decisions. Handbook content can be created only from
 approved engineering knowledge.
+
+## Local Claude-Codex Collaboration
+
+Use `collaboration/README.md` and its registered schemas when Claude lacks
+reliable access to the canonical repository. GitHub remains canonical.
+AU-CODEX-PRIMARY is the sole Git writer and GitHub operator. Claude may read
+only prepared inbox packages and write only registered return artifacts to its
+outbox; it must not commit, push, merge, or directly mutate repository files.
+
+Every exchange must use a unique Exchange ID, exact source commit, checksums,
+portable paths, explicit authority boundaries, and Documentation Impact. Codex
+must reject unsafe or stale packages before staging. A valid return is not an
+approved or canonical result until the authorized meaning review and Codex
+integration are complete. No bridge participant may self-assign `[VERIFIED]`.

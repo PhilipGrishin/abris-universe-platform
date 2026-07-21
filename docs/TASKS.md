@@ -2,8 +2,21 @@
 
 ## Active
 
-No product implementation task is active. AU-CDX-TASK-001 v1.0 is available for
-engineering intake and Technical Review only.
+### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, independent acceptance `[OPEN]`
+- **Owner:** AU-CODEX-PRIMARY
+- **Reviewer:** Quality, Security & Independent Acceptance Lead through
+  exchange `AU-EX-20260721-001`
+- **Documentation Impact:** Material
+- **Outcome:** Option B bridge infrastructure, schemas, dry-run-first tooling,
+  governance integration, and the exact-source first review package are ready.
+- **Open completion gate:** Claude return has not been received, validated,
+  staged, or integrated. Do not claim `[VERIFIED]`.
+- **Evidence:** `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
+
+No product implementation task is active. AU-CDX-TASK-001 v1.0 remains
+available for engineering intake and Technical Review only.
 
 ## Completed
 

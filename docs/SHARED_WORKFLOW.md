@@ -7,10 +7,10 @@
 | Status | `[APPROVED]` |
 | Owner | AU-CODEX-PRIMARY / Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `docs/DEVELOPMENT_WORKFLOW.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Product-to-engineering lifecycle change; artifact path change; acceptance model change; approved automation |
@@ -83,6 +83,21 @@ GitHub stores versioned artifacts, review history, commits, and future pull
 requests. Branch protection, Issues, labels, Actions, automated intake, and
 agent API automation remain `[PROPOSED]` and are not enabled by this document.
 
+AU-CODEX-PRIMARY is the sole Git writer and GitHub operator for artifacts
+returned by Claude. Claude does not commit, push, merge, or directly edit the
+canonical repository.
+
+## Local Bridge Route
+
+When Claude lacks reliable repository access, use the canonical twelve-step
+exchange lifecycle in `collaboration/README.md`. It covers task identification,
+versioned exact-commit packaging, bounded Claude read/write access, return
+validation, authorized meaning review, AU-AGENT-002 placement, Codex-only branch
+and Git integration, provenance archive, and traceability/status updates.
+Generated and external bridge copies are non-canonical transport state. Invalid
+output never enters staging, and valid staging never implies integration or
+acceptance.
+
 ## Owner, Lifecycle, and Additions
 
 Product and engineering owners jointly maintain routing through their separate
@@ -95,3 +110,4 @@ only through an approved governance decision and keep artifact indexes current.
 - `docs/DEVELOPMENT_WORKFLOW.md`
 - `AI_ORGANIZATION.md`
 - `docs/SOURCE_OF_TRUTH.md`
+- `collaboration/README.md`

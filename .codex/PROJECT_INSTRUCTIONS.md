@@ -22,6 +22,8 @@ authoritative full instruction set for this workspace.
 10. Treat `[IMPLEMENTED]`, `[TESTED]`, and `[VERIFIED]` as distinct states.
 11. Write all project artifacts in English.
 12. Do not register speculative specialist agents.
+13. Use the controlled local bridge for Claude exchanges when direct repository
+    access is unavailable; AU-CODEX-PRIMARY remains the sole Git writer.
 
 ## Active Specialist Leadership
 
@@ -74,3 +76,12 @@ work until the proper owner decides.
 The Claude Cowork organization is registered separately in
 `product/agents/README.md`; `AI_ORGANIZATION.md` links the product and
 engineering registries without merging role activation or authority.
+
+## Local Collaboration Bridge
+
+Follow `collaboration/README.md` for the canonical twelve-step exchange. Exact
+source identity, checksums, path confinement, safety validation, staging,
+meaning review, and archive reference are mandatory. Generated packages and
+the external bridge are non-canonical local state. Claude must not use Git or
+directly edit this repository; AU-CODEX-PRIMARY alone integrates and publishes
+accepted artifacts.

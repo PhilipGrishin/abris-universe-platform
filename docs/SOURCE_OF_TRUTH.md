@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `product/README.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `product/README.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Source authority changes; new canonical document class; source conflict; repository integration |
@@ -93,6 +93,24 @@ project-owner approval.
 | Engineering Handbook | `docs/handbook/` | AU-AGENT-002 | Explanatory navigation and synthesis; never a parallel source of technical truth. |
 | Risks | `docs/RISKS.md` | AU-CODEX-PRIMARY / named risk owner | Risk status does not approve a technical change. |
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
+| Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
+| Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |
+| Registered exchange provenance | `collaboration/manifests/` | AU-CODEX-PRIMARY | Committed request and exact-source manifest records; transported content is not canonical by transport alone. |
+
+## Collaboration Source Boundary
+
+GitHub and the committed repository remain canonical. Generated packages under
+`collaboration/runtime/`, transient repository mirrors under
+`collaboration/claude/` and `collaboration/codex/`, and the synchronized
+external `Collaboration-Bridge` are local transport or staging state and are
+not sources of truth. Their machine-specific location is held only in the
+Git-ignored local configuration.
+
+A Claude return becomes a candidate for canonical integration only after
+schema, path, safety, freshness, registration, and checksum validation. It
+becomes canonical only after authorized meaning review and Codex integration
+into a registered repository location. Transport never implies approval or
+`[VERIFIED]` status.
 
 ## Handbook Authority Rule
 

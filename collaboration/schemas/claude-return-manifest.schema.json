@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abris-universe.local/schemas/claude-return-manifest.schema.json",
+  "title": "Abris Universe Claude Return Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "exchange_id",
+    "source_task_id",
+    "claude_role",
+    "result_type",
+    "result_status",
+    "created_at",
+    "reviewed_sources",
+    "findings",
+    "blocking_findings",
+    "non_blocking_findings",
+    "decision",
+    "required_rework",
+    "open_questions",
+    "output_files",
+    "checksums",
+    "product_authority_statement",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "exchange_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{5,127}$"
+    },
+    "source_task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "claude_role": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "result_type": {
+      "enum": [
+        "PRODUCT_TASK_PACKAGE",
+        "PRODUCT_CLARIFICATION",
+        "PRODUCT_DECISION",
+        "INDEPENDENT_ACCEPTANCE_REVIEW",
+        "REQUIREMENTS_REVIEW",
+        "RESEARCH_REPORT",
+        "DOCUMENTATION_REVIEW"
+      ]
+    },
+    "result_status": {
+      "enum": [
+        "COMPLETED",
+        "BLOCKED",
+        "PARTIAL"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reviewed_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/fileRecord"
+      }
+    },
+    "findings": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "blocking_findings": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "non_blocking_findings": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "decision": {
+      "enum": [
+        "VERIFIED",
+        "REWORK_REQUIRED",
+        "NO_DECISION"
+      ]
+    },
+    "required_rework": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "open_questions": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "output_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/fileRecord"
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "product_authority_statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "limitations": {
+      "$ref": "#/$defs/stringArray"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "result_type": {
+            "const": "INDEPENDENT_ACCEPTANCE_REVIEW"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "enum": [
+              "VERIFIED",
+              "REWORK_REQUIRED"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Organization change; role registration; authority conflict; review-route change |
@@ -43,6 +43,16 @@ sources define approved technical decisions and implementation evidence. The
 Project Owner resolves authority conflicts through
 `docs/SOURCE_OF_TRUTH.md`.
 
+## Local Collaboration Interface
+
+The controlled bridge in [`collaboration/`](collaboration/README.md) transports
+versioned task packages and returned review artifacts when Claude cannot access
+GitHub directly. It does not merge the organizations or transfer authority.
+Claude reads its inbox and writes its outbox; AU-CODEX-PRIMARY validates,
+integrates, and is the sole Git writer and GitHub operator. AU-AGENT-001 reviews
+technical meaning and AU-AGENT-002 maintains documentation placement,
+navigation, terminology, traceability, and lifecycle without changing meaning.
+
 ## Lifecycle and Adding Roles
 
 Register roles only from owner-approved source instructions. Update the owning
@@ -56,3 +66,4 @@ infer activation from a roadmap, Task Package, or planning document.
 - `.codex/AGENT_REGISTRY.md`
 - `docs/CODEX_AGENTS.md`
 - `docs/SHARED_WORKFLOW.md`
+- `collaboration/README.md`
