@@ -97,6 +97,11 @@ Product and independent acceptance reports belong under `product/reviews/` and
 must reference the exact Task Package version, engineering commit or release,
 evidence reviewed, reviewer, decision, defects, and required rework.
 
+The first completed record is the
+[INIT-002 Independent Acceptance Report](reviews/INIT-002_Independent_Acceptance_Report.md).
+Its `VERIFIED` decision is limited to the repository initialization and
+governance-integration scope stated by the report and exchange outcome.
+
 ## Lifecycle
 
 Update this index whenever a canonical product source, product document class,

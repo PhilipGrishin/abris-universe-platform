@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Quality, Security & Independent Acceptance Lead |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md`, `collaboration/manifests/AU-EX-20260721-001/outcome.json` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Review result; acceptance result; defect status; Task Package version |
@@ -24,8 +24,10 @@ without the authorized owner decision.
 ## Registered Review Evidence
 
 - [Critical Review of the Initial Product Package](08_Critical_Review_Report.md)
-
-No implementation Acceptance Report exists yet.
+- [INIT-002 Independent Acceptance Report](INIT-002_Independent_Acceptance_Report.md)
+  — `VERIFIED` for the explicitly bounded repository initialization and
+  governance-integration scope at source commit `1ccaace`; not application
+  implementation acceptance.
 
 ## Acceptance Rules
 

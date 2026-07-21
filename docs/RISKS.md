@@ -164,3 +164,24 @@
   owner, and resume only from a new Exchange ID and clean source commit.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-002 for documentation lifecycle;
   applicable product or technical owner for meaning
+
+## RISK-010 — Canonical Repository and Claude Workspace Copies Diverge
+
+- **Status:** `[OPEN]`, controlled by exchange policy
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A maintained product artifact is edited independently in the
+  external Claude workspace after its repository copy became canonical.
+- **Affected areas:** Product meaning, provenance, requirements, decisions,
+  Task Packages, acceptance, and source hierarchy.
+- **Prevention:** Treat repository artifacts as canonical; treat external copies
+  as drafting or bridge state; route changes through unique exchanges with exact
+  source identity, checksums, and explicit integration mapping.
+- **Mitigation:** Detect checksum or content divergence before import, stop
+  integration, identify the authorized source owner, and produce a controlled
+  source-difference review.
+- **Fallback:** Preserve both versions without overwrite, issue a Conflict
+  Report, and require the Project Owner or Claude product authority to select
+  the canonical meaning before Codex integration.
+- **Owner:** Claude Cowork product coordination owner for local workflow;
+  AU-CODEX-PRIMARY for repository exchange enforcement

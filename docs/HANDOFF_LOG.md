@@ -223,3 +223,42 @@
   active exchange is open. No pre-existing external file requires rollback.
 - **Next step:** The named Claude reviewer writes a schema-valid return only to
   `claude/outbox/AU-EX-20260721-001`; Codex then validates and stages it.
+
+## 2026-07-21 — Claude Cowork to Codex — ACCEPT-INIT-002
+
+- **Exchange:** `AU-EX-20260721-001`; source task
+  `INIT-002-INDEPENDENT-REVIEW`.
+- **Reviewer:** Claude Cowork — Quality, Security & Independent Acceptance Lead.
+- **Source:** Commit `1ccaace4aa6c5a441dca52bcbbab3fd26017f908`, range
+  `9c85d3d..1ccaace`.
+- **Result:** `COMPLETED`; decision `VERIFIED`; no blocking findings; F1–F5
+  returned as non-blocking follow-ups.
+- **Authority limit:** Product and governance acceptance only. The result does
+  not verify engineering implementation, stack, runtime architecture, planned
+  agents, AU-CDX-TASK-001 implementation, or Engineering Handbook content.
+
+## 2026-07-21 — Codex Acceptance Integration — ACCEPT-INIT-002
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the exact
+  independent scope and limitations.
+- **Validation:** Exchange ID, task ID, Claude role, result type/status,
+  decision, source commit/range, reviewed sources, allowed output, path, size,
+  SHA-256, authority statement, limitations, source freshness, and absence of
+  unregistered files passed the registered contract.
+- **Meaning preservation:** The canonical report is byte-identical to the
+  validated Claude output; SHA-256
+  `fb0325185ff3da68eee01ce90ee00c0af88387a94c390abca9be7845b135b0c7`.
+- **Canonical evidence:**
+  `product/reviews/INIT-002_Independent_Acceptance_Report.md` and
+  `collaboration/manifests/AU-EX-20260721-001/outcome.json`.
+- **Follow-ups:** INIT-002-F1 through INIT-002-F5 are separately registered. F1
+  records the owner decision to activate specialist agents but does not activate
+  them.
+- **Archive:** External inbox and outbox moved to
+  `claude/archive/AU-EX-20260721-001` with the canonical report as review
+  reference.
+- **Documentation Impact:** Material; result completed without exception.
+- **Not performed:** No product implementation, stack/runtime decision, Handbook
+  content, or AU-AGENT-003–006 activation.
+- **Next step:** Receive the full AU-AGENT-003 operating instruction in a
+  separate owner task.

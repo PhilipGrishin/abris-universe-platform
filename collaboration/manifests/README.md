@@ -31,7 +31,8 @@ not approve returned meaning.
 
 - [`AU-EX-20260721-001`](AU-EX-20260721-001/README.md) — independent review of
   platform repository initialization and product/engineering governance
-  integration; package prepared and delivered, return open.
+  integration; completed, validated, integrated, and archived with decision
+  `VERIFIED` within the registered scope.
 
 ## Rules
 

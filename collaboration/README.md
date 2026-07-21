@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-COLLAB-INDEX-001 |
 | Title | Local Claude-Codex Collaboration Bridge |
-| Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; exercised operating model `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-21 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md`, `AI_ORGANIZATION.md` |

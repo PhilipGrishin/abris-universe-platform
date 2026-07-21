@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-21 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -72,6 +72,23 @@ material defect.
 - Documentation Impact: Material.
 - Status: `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
 - Evidence: `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
+
+## 2026-07-21 — ACCEPT-INIT-002 Independent Acceptance Integration
+
+- Validated the reissued Claude return manifest against the registered bridge
+  contract and preserved the Acceptance Report byte-for-byte.
+- Registered `VERIFIED` only for the exact repository initialization,
+  contour-integration, governance, Source of Truth, and exercised bridge
+  operating-model scope; preserved all stated exclusions and limitations.
+- Registered F1–F5 as separate follow-up records and the owner's F1 activation
+  resolution without activating AU-AGENT-003–006.
+- Archived exchange `AU-EX-20260721-001` with provenance and a canonical review
+  reference.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the independent
+  report's bounded scope.
+- Evidence: canonical Acceptance Report, exchange outcome, Traceability Matrix,
+  and ACCEPT-INIT-002 handoff.
 
 ## Owner
 

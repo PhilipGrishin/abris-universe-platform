@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-21 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `product/README.md`, `collaboration/README.md` |
@@ -75,6 +75,7 @@ project-owner approval.
 | Product contour navigation | `product/README.md` | Project Owner / Claude Cowork | Navigation layer; does not replace specifications or decisions. |
 | Consolidated product specification | `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` | Project Owner / Claude Cowork | Approved Master Product Specification v1.0. |
 | Product and owner decisions | `product/decisions/05_Decision_Log.md` | Project Owner / Claude Cowork | Each entry retains its own status. |
+| Independent product and governance acceptance | `product/reviews/` | Claude Cowork reviewer identified by each report | Acceptance applies only to the exact source, scope, evidence, and limitations declared by the report. |
 | Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | Approval for review does not bypass engineering intake. |
 | Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
 | Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |

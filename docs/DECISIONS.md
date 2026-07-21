@@ -123,12 +123,14 @@
 - **Reversibility:** Repository topology can change through a new owner decision
   and a non-destructive migration with preserved history and source mapping.
 - **Owner:** Project Owner
-- **Review status:** Implemented and tested locally; independent verification
-  remains outstanding.
+- **Review status:** `[VERIFIED]` by the INIT-002 Independent Acceptance Report
+  for the exact repository and authority-contour scope at source commit
+  `1ccaace`; later implementation changes remain outside that decision.
 
 ## DEC-007 — Use a Synchronized External Claude-Codex Bridge
 
-- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exercised operating
+  model `[VERIFIED]`
 - **Date:** 2026-07-21
 - **Related task:** BRIDGE-001
 - **Context:** GitHub is canonical and Codex has repository access, but reliable
@@ -154,8 +156,42 @@
   transport. Existing manifests and archives remain traceable; no source
   history needs destructive migration.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY
-- **Review status:** Local controls and first package are tested; independent
-  acceptance for exchange `AU-EX-20260721-001` is outstanding.
+- **Review status:** Exchange `AU-EX-20260721-001` completed a validated full
+  round-trip. The exercised operating model is independently accepted; this does
+  not verify every tooling implementation change or future exchange.
+
+## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
+
+- **Status:** `[APPROVED]`; role activation remains `[OPEN]`
+- **Date:** 2026-07-21
+- **Related records:** INIT-002-F1, INIT-002-F3, AU-CDX-TASK-001
+- **Context:** Independent Acceptance Finding F1 confirmed that the Task Package
+  names specialist Codex roles that were planned but inactive. Assigning the
+  entire implementation to AU-AGENT-001 would collapse orchestration and
+  specialist execution responsibilities.
+- **Decision:** Activate specialized Codex agents in this order: AU-AGENT-003 —
+  Engineering Quality, DevOps & Security Lead; AU-AGENT-004 — Pattern Engine,
+  Import, Rendering & Algorithms Lead; AU-AGENT-005 — Backend, Data &
+  Synchronization Lead; AU-AGENT-006 — Mobile/Web Client Lead. AU-AGENT-001
+  retains intake, Technical Review, architecture, decomposition, assignment,
+  contracts, integration, and the final engineering Completion Report.
+- **Alternatives:** Assign all AU-CDX-TASK-001 work to AU-AGENT-001; retain the
+  roles as inactive plans; or activate them without full operating instructions.
+- **Reason:** Specialized execution preserves separation between architecture,
+  implementation, independent engineering quality, and product acceptance.
+- **Consequence:** Product implementation remains blocked until the required
+  roles are individually instructed and registered in the approved order.
+- **Reversibility:** A later owner decision may change role scope or assignment,
+  but existing registration and task provenance must remain preserved.
+- **Activation gate:** Names and order do not activate roles. Each role requires
+  its full owner-provided operating instruction, overlap analysis, registration,
+  and the approved activation workflow. AU-AGENT-003–006 remain inactive in
+  this acceptance-integration task.
+- **Prohibited interpretation:** The decision does not approve product
+  implementation, stack, runtime architecture, or AU-CDX-TASK-001 execution.
+- **Owner:** Project Owner
+- **Review status:** Owner decision registered; implementation deferred to
+  separate owner inputs beginning with AU-AGENT-003.
 
 ## Decision Process
 

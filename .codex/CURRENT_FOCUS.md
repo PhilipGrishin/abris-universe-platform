@@ -1,30 +1,26 @@
 # Current Focus
 
-## Focus ID: BRIDGE-001
+## Focus ID: ACCEPT-INIT-002
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`
+**Status:** `[IMPLEMENTED]`, `[TESTED]`; incorporates the bounded independent
+`[VERIFIED]` decision without extending its scope
 
-Establish a controlled local Claude-Codex collaboration bridge while GitHub
-remains canonical, Codex remains the sole Git writer, and product, technical,
-and documentation authority remain separate.
+Integrate the schema-valid Claude Cowork independent acceptance result for
+INIT-002, preserve its exact meaning and limitations, register findings F1–F5,
+and archive the completed exchange with provenance.
 
 ## Completed in This Focus
 
-- Selected Option B from current access evidence and stored the external path
-  only in Git-ignored local configuration.
-- Created committed schemas, manifests, documentation, and dry-run-first local
-  tools for prepare, sync, validate, stage, archive, and status operations.
-- Preserved product/engineering/documentation authority and sole Codex Git
-  authority without introducing product or runtime architecture.
-- Prepared and exported `AU-EX-20260721-001` against exact source commit
-  `1ccaace` and review range `9c85d3d..1ccaace`.
-- Verified that external bridge creation changed none of the 19 pre-existing
-  Claude workspace files.
+- Validated the reissued return manifest against the registered bridge contract.
+- Preserved the Claude-authored Acceptance Report byte-for-byte.
+- Registered `VERIFIED` only for the exact INIT-002 scope and exercised bridge
+  operating model, with all exclusions and limitations explicit.
+- Registered F1–F5 as separate follow-up records and the owner's F1 resolution.
+- Archived `AU-EX-20260721-001` with its canonical review reference.
 
 ## Blocked or Awaiting Input
 
-- Claude return and independent decision for `AU-EX-20260721-001`.
-- Validation, staging, meaning review, and archival of that future return.
+- Full owner-provided operating instruction for AU-AGENT-003.
 - Engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
 - Registration or reassignment of specialist roles named by the Task Package.
 - A registered independent Engineering Quality reviewer before substantial
@@ -32,7 +28,6 @@ and documentation authority remain separate.
 
 ## Next Concrete Step
 
-The Quality, Security & Independent Acceptance Lead should read the prepared
-external inbox package and write only a schema-valid result to its assigned
-outbox. Codex then validates it before staging. Do not fabricate a review result
-or start product implementation.
+Stop after acceptance integration. In a separate owner input, receive the full
+operating instruction for AU-AGENT-003. Do not activate AU-AGENT-003–006 and do
+not start AU-CDX-TASK-001 implementation in this focus.

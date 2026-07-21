@@ -1,15 +1,16 @@
 # Current Status
 
 **Status date:** 2026-07-21
-**Current focus:** BRIDGE-001 — local Claude-Codex collaboration bridge
+**Current focus:** ACCEPT-INIT-002 — integrate bounded independent acceptance
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, and controlled Option B local exchange
-**Independent state:** Not `[VERIFIED]`
+**Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
 
 ## Confirmed Workspace State
 
 - `[CONFIRMED]` The selected workspace directory exists.
 - `[CONFIRMED]` It is the working tree for the private
-  `PhilipGrishin/abris-universe-platform` repository on branch `main`.
+  `PhilipGrishin/abris-universe-platform` repository, whose default branch is
+  `main`; current acceptance integration uses a dedicated review branch.
 - `[CONFIRMED]` It was empty at the start of INIT-001.
 - `[CONFIRMED]` It was not a Git repository at the start of INIT-001.
 - `[CONFIRMED]` No source code, tests, schemas, configuration, dependencies,
@@ -47,7 +48,17 @@
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260721-001` packages the exact
   source commit `1ccaace` and review range `9c85d3d..1ccaace` for the Quality,
   Security & Independent Acceptance Lead.
-- `[OPEN]` No Claude return or independent acceptance decision exists yet.
+- `[VERIFIED]` Claude Cowork independently accepted INIT-002 repository
+  initialization and governance integration at source commit `1ccaace` through
+  exchange `AU-EX-20260721-001`.
+- `[VERIFIED]` scope is limited to platform repository initialization, product
+  contour integration, engineering contour integration, governance and
+  authority boundaries, Source of Truth organization, and the Collaboration
+  Bridge operating model exercised by the completed exchange.
+- `[CONFIRMED]` Application implementation, technology stack, runtime
+  architecture, AU-CDX-TASK-001 implementation, planned Codex agents,
+  Engineering Handbook content, and unreviewed bridge tooling implementation
+  are not `[VERIFIED]`.
 
 ## Verification Performed
 
@@ -76,16 +87,21 @@
   files with checksums; its source branch and commit are current.
 - `[TESTED]` External synchronization changed no pre-existing Claude workspace
   file: all 19 pre-existing SHA-256 values remained identical.
+- `[TESTED]` The reissued return manifest passed the registered schema, role,
+  result, source, reviewed-file, status, path, checksum, size, authority, and
+  unregistered-file controls. The canonical report is byte-identical to the
+  validated Claude output.
+- `[VERIFIED]` Independent evidence and limitations are preserved in
+  `product/reviews/INIT-002_Independent_Acceptance_Report.md`.
 
 ## Blockers
 
-- `[OPEN]` Implementation and independent acceptance evidence; no product code
-  exists yet.
+- `[OPEN]` Product implementation and its independent acceptance evidence; no
+  product code exists yet.
 - `[OPEN]` Engineering intake and Technical Review disposition for
   AU-CDX-TASK-001 v1.0.
 - `[OPEN]` Independent Engineering Quality Review is unavailable until the
   corresponding specialist instruction is provided and registered.
-- `[OPEN]` Claude output for exchange `AU-EX-20260721-001` has not been returned.
 
 ## Active Risks
 
@@ -99,18 +115,19 @@
   delivery bottleneck or dead documentation.
 - RISK-009: local exchange artifacts may be unsafe, stale, or mistaken for
   acceptance unless bridge controls remain enforced.
+- RISK-010: canonical repository product artifacts and local Claude copies may
+  diverge without exchange enforcement.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and locally tested the controlled Option B collaboration bridge,
-preserved all pre-existing Claude workspace files, and delivered the first
-exact-source independent review package to the external Claude inbox.
+Validated and integrated the byte-identical INIT-002 Independent Acceptance
+Report, registered the bounded `VERIFIED` scope and F1–F5 follow-ups, and
+archived exchange `AU-EX-20260721-001` with provenance.
 
 ## Next Step
 
-Have the Quality, Security & Independent Acceptance Lead review exchange
-`AU-EX-20260721-001` and return a schema-valid `VERIFIED` or
-`REWORK_REQUIRED` result. Codex must validate and stage that result before any
-canonical integration. Product implementation remains out of scope.
+Receive the project owner's full operating instruction for AU-AGENT-003 in a
+separate task. Do not activate AU-AGENT-003–006 or begin product implementation
+from this acceptance-integration task.

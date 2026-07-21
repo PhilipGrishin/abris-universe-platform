@@ -9,7 +9,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-21 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
@@ -152,10 +152,14 @@ approved Technical Design.
 - `[IMPLEMENTED]` Controlled import of the initial Claude product contour.
 - `[IMPLEMENTED]` Separate Claude and Codex role registries and shared workflow.
 - `[IMPLEMENTED]`, `[TESTED]` Controlled Option B local collaboration bridge.
-- `[OPEN]` First independent acceptance exchange `AU-EX-20260721-001` is
-  prepared and delivered but has no returned decision.
+- `[VERIFIED]` INIT-002 platform repository initialization, product and
+  engineering contour integration, governance boundaries, Source of Truth
+  organization, and the Collaboration Bridge operating model exercised by
+  exchange `AU-EX-20260721-001`, subject to the report's limitations.
 - `[OPEN]` Product implementation and executable architecture.
-- Not `[VERIFIED]` pending independent review.
+- The verified status does not cover application implementation, stack, runtime
+  architecture, AU-CDX-TASK-001 implementation, planned Codex agents,
+  Engineering Handbook content, or unreviewed bridge tooling changes.
 
 ## 18. Confirmed Capabilities
 
@@ -192,6 +196,10 @@ technical evidence. Independent Claude Cowork reviewers evaluate product,
 domain, architecture, quality, security, and acceptance criteria. No agent
 independently accepts its own work.
 
+The bounded INIT-002 decision is recorded in
+`product/reviews/INIT-002_Independent_Acceptance_Report.md` and must not be
+generalized beyond its commit, scope, evidence, or limitations.
+
 ## 23. Security and Confidentiality Baseline
 
 The repository is private. Secrets must never be committed; use environment
@@ -213,6 +221,7 @@ requiring explicit controls and evidence.
 - `docs/ARCHITECTURE.md`
 - `docs/DECISIONS.md`
 - `docs/CURRENT_STATUS.md`
+- `product/reviews/INIT-002_Independent_Acceptance_Report.md`
 
 ## 25. Manifest Maintenance Rules
 

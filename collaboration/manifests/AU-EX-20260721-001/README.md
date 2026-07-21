@@ -4,13 +4,13 @@
 |---|---|
 | Document ID | AU-COLLAB-EX-20260721-001 |
 | Title | Platform Repository Initialization and Product/Engineering Governance Integration |
-| Status | PREPARED |
+| Status | COMPLETED; decision `VERIFIED` within registered scope |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-21 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`; `collaboration/README.md` |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`; `collaboration/README.md`; `product/reviews/INIT-002_Independent_Acceptance_Report.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Source commit changes; package validation failure; returned acceptance decision |
@@ -29,10 +29,11 @@ architecture, and implementation behavior are outside this review.
 
 ## Owner and Lifecycle
 
-AU-CODEX-PRIMARY prepares, validates, stages, and archives the exchange. The
-Quality, Security & Independent Acceptance Lead performs the independent review
-without Git access. The record remains `PREPARED` until a schema-valid result is
-returned; it is not `VERIFIED` by package preparation.
+AU-CODEX-PRIMARY prepared, validated, staged, integrated, and archived the
+exchange. The Quality, Security & Independent Acceptance Lead performed the
+independent review without Git access. The schema-valid return assigned
+`VERIFIED` only to the scope recorded in `outcome.json`; preparation and
+transport did not create that status.
 
 ## Adding Exchange Artifacts
 
@@ -46,4 +47,6 @@ documentation decision.
 - [`docs/SOURCE_OF_TRUTH.md`](../../../docs/SOURCE_OF_TRUTH.md)
 - [`collaboration/README.md`](../../README.md)
 - [`request.json`](request.json)
-- `task-manifest.json` after controlled preparation
+- [`task-manifest.json`](task-manifest.json)
+- [`outcome.json`](outcome.json)
+- [`Independent Acceptance Report`](../../../product/reviews/INIT-002_Independent_Acceptance_Report.md)
