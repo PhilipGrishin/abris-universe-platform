@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.7.0 |
+| Version | 2.9.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,49 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Canonical Domain Core
+
+- Implemented the canonical records and version constants in the
+  framework-independent `packages/domain-core` package and recorded their
+  evidence in Technical Design v1.4.0.
+- Added runtime validation for canonical grid, dimensions, identities,
+  palette/symbol/stitch references, cloth separation, coordinate bounds,
+  one-stitch-per-cell, source/import/version links, Project lifecycle, and
+  ordered project/version-bound progress events.
+- Added a detached validated deep-freeze boundary for committed canonical
+  snapshots without implementing persistence semantics.
+- Added strict TypeScript 7.0.2 typecheck and 9 focused tests; full workspace,
+  fixture, and domain checks pass.
+- Preserved OXS parsing, deterministic imported IDs and content hashing,
+  persistence, rendering, client behavior, CI/CD, and deployment for their
+  registered later stages.
+- Recorded that this internal implementation stage requires no Claude return;
+  AU-AGENT-003 consolidated implementation verification remains pending.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; no project `[VERIFIED]`.
+
+## 2026-07-25 — Route-1 Fixture Evidence and Workspace Scaffold
+
+- Added ten deterministic, project-original OXS fixtures covering the minimal
+  mapping proof, a 100,000-stitch medium case, empty/unsupported input,
+  malformed XML, DTD isolation, invalid references, duplicate indices,
+  out-of-bounds coordinates, and declared-grid limits.
+- Added expected outcomes, checksum manifest, source-chart metadata,
+  provenance, compatibility, symbol-mapping, and scoped technical-review
+  records.
+- Closed TD-GATE-001 only for the registered route-1 producer profile:
+  top-left origin, x rightward, y downward, zero-based integer coordinates,
+  and no transposition. Other producer profiles remain detect-or-reject.
+- Added the approved strict TypeScript pnpm workspace and package-boundary
+  scaffold without runtime application source or product behavior.
+- Verified fixture determinism, XML validity/rejection, mapping evidence,
+  medium-fixture count, DTD isolation, and workspace boundaries through
+  `pnpm test` and focused checks.
+- Recorded that this internal stage requires no Claude return or new Bridge
+  Exchange ID; project `[VERIFIED]` remains unchanged.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Design Revision Confirmation Integration
 

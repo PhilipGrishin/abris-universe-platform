@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.9.0 |
+| Version | 2.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -81,7 +81,8 @@ project-owner approval.
 | Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
 | Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |
 | Shared delivery lifecycle | `docs/SHARED_WORKFLOW.md` | Project Owner / AU-CODEX-PRIMARY | Artifact routing and status flow, not product or technical meaning. |
-| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Repository exists; application implementation does not. |
+| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Canonical domain-core and test tooling exist; executable application behavior does not. |
+| Project-original test fixtures and expected results | `tests/fixtures/`, with task-scoped registries and checksum manifests | Assigned domain owner; AU-AGENT-003 reviews implementation evidence | Fixture evidence does not itself prove importer, renderer, persistence, security, performance, or product behavior. |
 | Technical decisions | `docs/DECISIONS.md` and approved files under `docs/architecture/adr/` | AU-AGENT-001 | ADR indexes must not restate decision content. |
 | Architecture overview | `docs/ARCHITECTURE.md` | AU-AGENT-001 | Detailed architecture documents may be indexed under `docs/architecture/`. |
 | Task-scoped Technical Designs | `docs/architecture/designs/` | AU-AGENT-001 with named domain owners | A `[PROPOSED]` design is not approved architecture, implementation evidence, or product acceptance. |

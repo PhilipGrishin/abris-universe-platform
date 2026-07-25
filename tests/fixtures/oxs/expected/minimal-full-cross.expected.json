@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "fixture": "minimal-full-cross.oxs",
+  "expectedDisposition": "completed",
+  "canonical": {
+    "grid": {
+      "width": 7,
+      "height": 5,
+      "origin": "top-left",
+      "coordinateBase": 0,
+      "xDirection": "right",
+      "yDirection": "down",
+      "axisOrder": "x,y"
+    },
+    "paletteItems": 6,
+    "fullCrossStitches": [
+      {
+        "x": 0,
+        "y": 0,
+        "palindex": 1
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "palindex": 2
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "palindex": 5
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "palindex": 3
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "palindex": 4
+      }
+    ],
+    "stitchSequenceSha256": "28187c5205b18d3e4afbbcd75eb392cf881dd735066de5096b6013538976060d"
+  },
+  "importReport": {
+    "status": "completed",
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "paletteItems": 6,
+      "fullCrossStitches": 5,
+      "unsupportedPartStitches": 0,
+      "unsupportedBackstitches": 0,
+      "unsupportedObjects": 0
+    }
+  }
+}

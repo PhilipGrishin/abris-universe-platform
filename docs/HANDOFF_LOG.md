@@ -1,5 +1,46 @@
 # Handoff Log
 
+## 2026-07-25 — Internal Canonical Domain-Core Stage
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; no Engineering Verification Status
+  or project `[VERIFIED]`.
+- **Scope:** Added canonical records, explicit format/schema constants,
+  cross-record invariants, immutable snapshot construction, Project lifecycle
+  validation, and ordered ProgressState rebuilding in
+  `packages/domain-core`.
+- **Evidence:** TypeScript 7.0.2 strict `pnpm typecheck`, 9 focused tests, full
+  `pnpm test`, workspace-boundary verification, and
+  `DOMAIN_CORE_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** No OXS parser, canonical import hash/ID implementation,
+  persistence, renderer, client, CI/CD, deployment, or user-facing application.
+- **Bridge disposition:** This is an internal engineering implementation stage
+  under the confirmed design and requires no Claude return. No Exchange ID was
+  registered after `AU-EX-20260725-006`.
+- **Documentation Impact:** Material.
+- **Next gate:** Implement and test the bounded OXS route-1 adapter; stop before
+  persistence.
+
+## 2026-07-25 — Internal Route-1 Fixture and Workspace Scaffold Stage
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; no project `[VERIFIED]`.
+- **Scope:** Added deterministic project-original route-1 OXS fixtures,
+  expected outcomes, provenance, compatibility and symbol records, plus the
+  approved non-behavioral TypeScript pnpm workspace scaffold.
+- **Gate result:** TD-GATE-001 is closed only for the registered route-1
+  producer profile. The lawful literal-symbol evidence is tested for that
+  profile; TD-GATE-002 remains open for other producer/font/asset claims.
+- **Evidence:** `pnpm test`, deterministic generation check, `xmllint`
+  positive/negative validation, checksum manifest, and
+  `ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md`.
+- **Boundary:** No importer, renderer, persistence, client, CI/CD, or deployment
+  behavior was implemented.
+- **Bridge disposition:** This is an internal engineering-evidence stage and
+  requires no Claude return. No Exchange ID was registered after
+  `AU-EX-20260725-006`.
+- **Documentation Impact:** Material.
+- **Next gate:** Implement and test canonical `domain-core` contracts, then
+  stop before the OXS adapter.
+
 ## 2026-07-25 — Claude Design Revision Confirmation Integration — AU-EX-20260725-006
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; valid return integrated and

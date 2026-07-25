@@ -24,9 +24,15 @@ engineering documentation governance infrastructure are registered.
 Cowork organization registry, and shared product-to-engineering workflow are
 present.
 
-`[OPEN]` No application source code, approved software architecture, technology
-stack, or implemented product capability is present yet. The first imported
-Task Package is approved for Codex review, not implementation.
+`[IMPLEMENTED]`, `[TESTED]` The approved non-behavioral pnpm workspace
+scaffold and project-original OXS route-1 fixture suite are present.
+
+`[IMPLEMENTED]`, `[TESTED]` The framework-independent canonical `domain-core`
+contracts and invariant tests are present.
+
+`[OPEN]` No executable application or user-facing product capability is
+present. The current Technical Design remains `[PROPOSED]` with registered
+evidence gates.
 
 ## Start Here
 
@@ -43,9 +49,18 @@ Task Package is approved for Codex review, not implementation.
 
 ## Running and Testing
 
-There is no executable application or test suite in this workspace yet. Build,
-run, lint, test, migration, and deployment commands must be documented here
-after the implementation stack and executable structure are approved.
+There is no executable application yet. The current checks validate fixture
+determinism, workspace boundaries, and canonical-domain contracts:
+
+```bash
+pnpm test
+pnpm typecheck
+pnpm run verify:fixtures
+pnpm run verify:workspace
+```
+
+Build, run, lint, migration, and deployment commands remain absent until their
+implementation stages.
 
 ## Documentation
 
@@ -61,6 +76,7 @@ after the implementation stack and executable structure are approved.
 - [Technical Decisions](docs/DECISIONS.md)
 - [Technical Risks](docs/RISKS.md)
 - [Handoff Log](docs/HANDOFF_LOG.md)
+- [OXS Route-1 Fixtures](tests/fixtures/oxs/README.md)
 
 The documentation intentionally does not invent product architecture, data
 models, API contracts, internal pattern formats, security controls, performance

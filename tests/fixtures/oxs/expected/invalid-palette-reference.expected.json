@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "fixture": "invalid-palette-reference.oxs",
+  "expectedDisposition": "rejected",
+  "canonical": null,
+  "importReport": {
+    "status": "rejected",
+    "errors": [
+      "OXS_PALETTE_REFERENCE_INVALID"
+    ],
+    "warnings": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "abris-universe-platform",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Abris Universe platform workspace",
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "test": "pnpm run verify:fixtures && pnpm run verify:workspace && pnpm --filter @abris-universe/domain-core test",
+    "typecheck": "pnpm --filter @abris-universe/domain-core typecheck",
+    "verify:fixtures": "node tests/fixtures/oxs/verify-fixtures.mjs",
+    "verify:workspace": "node scripts/verify-workspace.mjs"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

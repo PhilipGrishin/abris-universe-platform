@@ -287,6 +287,11 @@ confirmation `AU-EX-20260725-006` records
 route-1 fixture production and workspace scaffolding without authorizing
 importer implementation, deployment, or project `[VERIFIED]`.
 
+The project-original fixture stage is now `[IMPLEMENTED]`, `[TESTED]`.
+TD-GATE-001 is closed only for the registered route-1 producer profile; this
+evidence does not approve the ADR, other producer coordinate profiles, general
+exact-symbol fidelity, runtime implementation, or deployment.
+
 ## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
 
 - **Status:** `[APPROVED]`, `[IMPLEMENTED]`

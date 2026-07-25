@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.2.2 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -35,8 +35,9 @@ OXS 1.0 bytes
 ```
 
 This proposal selects technical mechanisms inside approved product constraints.
-It does not change product behavior, authorize application implementation,
-create fixtures, claim performance, or assign project `[VERIFIED]`.
+It does not change product behavior, claim runtime implementation or
+performance, or assign project `[VERIFIED]`. Fixture and scaffold evidence is
+maintained in separately reviewed artifacts.
 
 Version 1.1.0 integrates the mandatory R-1 through R-8 design findings from
 `AU-EX-20260725-005` without changing the returned review meaning. The review
@@ -49,6 +50,12 @@ Version 1.2.1 registers the independent `VERIFIED WITH FINDINGS` design-only
 security result and closes TD-GATE-004 without changing technical meaning.
 Version 1.2.2 records the independent revision confirmation and reconciles
 documentation terminology without changing architecture or product meaning.
+Version 1.3.0 records route-1 fixture evidence, the initial coordinate
+compatibility profile, and the non-behavioral workspace scaffold. It changes
+gate evidence, not product meaning or the selected architecture.
+Version 1.4.0 records the tested canonical domain-core implementation and its
+focused evidence. It does not change the selected architecture or product
+meaning.
 
 ## 2. Scope and Non-Scope
 
@@ -101,12 +108,12 @@ it is not converted into hidden Phase 1 behavior.
 - A static deploy must remain backward-compatible with browser-local data
   because deployment rollback cannot roll back IndexedDB.
 
-### Open pre-code evidence
+### Evidence gates
 
 | Gate | Required evidence | Owner | Effect |
 | --- | --- | --- | --- |
-| TD-GATE-001 | Project-original non-square OXS fixture with four distinct corner symbol/palette pairs, one asymmetric interior stitch, and a full coordinate-convention record | AU-AGENT-004 | Blocks importer implementation until origin, axis directions, index base, and transposition behavior are proven |
-| TD-GATE-002 | Project-original symbol fixture plus lawful font/glyph mapping evidence | AU-AGENT-004 with AU-AGENT-006 | Blocks claims that rendered symbols match OXS source semantics |
+| TD-GATE-001 | Project-original non-square OXS fixture with four distinct corner symbol/palette pairs, one asymmetric interior stitch, and a full coordinate-convention record | AU-AGENT-004 | `[TESTED]`, closed for `Abris Universe Route-1 Fixture Generator 1.0.0`; other producers require a profile or rejection |
+| TD-GATE-002 | Project-original symbol fixture plus lawful font/glyph mapping evidence | AU-AGENT-004 with AU-AGENT-006 | Route-1 literal Unicode codes `[TESTED]`; remains `[OPEN]` for exact-symbol claims about other producers |
 | TD-GATE-003 | Current Cloudflare Worker version ID, route ownership, and recoverable placeholder artifact recorded before first production deploy | AU-AGENT-001 | Blocks production deployment, not local implementation |
 | TD-GATE-004 | `AU-EX-20260725-005` architecture disposition integrated; R-1 through R-8 design amendments complete; AU-AGENT-003 report `AU-REVIEW-ENG-TS001-SEC-001` records `VERIFIED WITH FINDINGS` and no mandatory unresolved finding | AU-AGENT-001 and AU-AGENT-003 within their separate authorities | `[TESTED]`, closed at design level; implementation and release verification remain separate |
 
@@ -114,16 +121,19 @@ No source coordinate offset or glyph meaning may be guessed to bypass these
 gates.
 
 TD-GATE-004 is closed at the independently reverified source
-`b4eaedc0233f1f785beff87968c300d54c449c28`. TD-GATE-001, TD-GATE-002, and
-TD-GATE-003 remain open within their recorded scopes.
+`b4eaedc0233f1f785beff87968c300d54c449c28`. TD-GATE-001 is closed only for
+the initial route-1 producer profile recorded in the compatibility matrix.
+TD-GATE-002 and TD-GATE-003 remain open within their recorded scopes.
 
 Claude Cowork independently confirmed the complete revision at source
 `395c5d62975ba0f52e0da69af256ef870bf02770` through
 `AU-EX-20260725-006` with disposition `CONFIRMED_ACCEPTED_WITH_GATES`.
-Route-1 fixture production and workspace scaffolding may proceed. Importer
-implementation remains blocked by TD-GATE-001, exact-symbol claims by
-TD-GATE-002, and production deployment by TD-GATE-003 plus its runtime
-security evidence.
+Route-1 fixture production and workspace scaffolding were completed after that
+confirmation. The registered implementation sequence may proceed to
+domain-core and then bounded importer implementation for the explicit route-1
+profile. Exact-symbol claims for other producers remain blocked by TD-GATE-002,
+and production deployment remains blocked by TD-GATE-003 plus runtime security
+evidence.
 
 ## 4. Selected System Shape
 
@@ -930,11 +940,11 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 
 ## 15. Implementation Sequence After Approval
 
-1. Complete AU-AGENT-003 review of the revised security-relevant design and
+1. `[IMPLEMENTED]`, `[TESTED]`: complete AU-AGENT-003 review of the revised security-relevant design and
    ADR sections.
-2. Produce and review the route-1 coordinate and symbol fixtures.
-3. Scaffold the strict workspace and dependency boundaries.
-4. Implement and test `domain-core`.
+2. `[IMPLEMENTED]`, `[TESTED]`: produce and review the route-1 coordinate and symbol fixtures.
+3. `[IMPLEMENTED]`, `[TESTED]`: scaffold the strict workspace and dependency boundaries.
+4. `[IMPLEMENTED]`, `[TESTED]`: implement and test `domain-core`.
 5. Implement the bounded OXS importer and golden/security tests.
 6. Implement IndexedDB repositories and recovery tests.
 7. Implement tiled renderer and measured medium-fixture prototype.
@@ -953,11 +963,14 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
       `ACCEPTED_WITH_GATES`; R-1 through R-8 integrated in version 1.1.0.
 - [x] AU-AGENT-003 security review of the revised security-relevant sections is
       recorded.
-- [ ] TD-GATE-001 coordinate evidence is accepted.
+- [x] TD-GATE-001 coordinate evidence is accepted for the initial route-1
+      producer profile; other producers require separate evidence.
 - [ ] TD-GATE-002 symbol evidence is accepted or product limitation is
       explicitly dispositioned.
-- [ ] Canonical entities and version boundaries satisfy section 18.
-- [ ] Symbol/Palette and Pattern/Progress independence are enforceable.
+- [x] Canonical entities and version boundaries are implemented for the
+      section 5 contract; importer/persistence integration remains open.
+- [x] Symbol/Palette and Pattern/Progress independence are enforced by
+      domain validation and focused tests.
 - [ ] Unsupported OXS data is visible and source-preserved.
 - [ ] Security limits are justified and testable.
 - [ ] Renderer never requires whole-pattern per-frame work or per-stitch DOM.
@@ -981,6 +994,9 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
 - [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
 - [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)
+- [Route-1 Fixture and Workspace Scaffold Review](../../reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md)
+- [Domain Core Implementation Review](../../reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
+- [OXS Route-1 Fixture Registry](../../../tests/fixtures/oxs/README.md)
 - [OXS Format Specification](https://www.ursasoftware.com/OXSFormat/)
 - [Cloudflare Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
 - [Cloudflare Workers versions and deployments](https://developers.cloudflare.com/workers/configuration/versions-and-deployments/)

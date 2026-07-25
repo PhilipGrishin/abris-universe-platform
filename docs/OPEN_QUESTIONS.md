@@ -70,9 +70,9 @@
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
 - **Result:** OQ-005 is closed. The Technical Design mapping contract has
   independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`, and the
-  AU-AGENT-003 security design review is complete. Route-1 fixture evidence for
-  DEP-001 may now be produced; importer implementation remains blocked until
-  TD-GATE-001 closes.
+  AU-AGENT-003 security design review is complete. Route-1 fixture evidence is
+  `[IMPLEMENTED]`, `[TESTED]`; TD-GATE-001 is closed for the registered
+  route-1 producer profile. Other producer profiles remain evidence-gated.
 - **Decision owner:** Project Owner for the criterion; Claude Cowork within
   PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
   evidence; AU-AGENT-001 for the Technical Review disposition.

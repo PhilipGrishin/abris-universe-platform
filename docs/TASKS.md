@@ -107,7 +107,7 @@
 ### AU-CDX-TASK-001-TECHNICAL-REVIEW — TASK-THINSLICE-001 Intake
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; product clarification integrated;
-  ready for Technical Design, development blocked
+  Technical Design and gated implementation now in progress
 - **Source:** TASK-THINSLICE-001 v1.0 exact review source, v1.1 current
   editorial revision, PROD-DEC-005 through PROD-DEC-009.
 - **Owner:** AU-AGENT-001.
@@ -127,14 +127,15 @@
 - **Resolved clarifications:** PROD-DEC-009 confirms `SXP` as the `XSP` typo,
   accepts OXS 1.0, and authorizes the route-1 fixture rule.
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
-- **Gate:** Ready for Technical Design, not ready for development. Route-1
-  fixtures, the proposal, architecture review, and required ADR dispositions
-  remain open.
+- **Gate outcome:** Technical Design and independent architecture/security
+  review completed with gates. Route-1 fixtures, workspace scaffold, and
+  domain-core subsequently passed their registered internal stages; remaining
+  implementation is governed by the current Technical Design gates.
 
 ### AU-CDX-TASK-001-CLARIFICATION — OQ-005 Product Disposition
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; return validated and integrated;
-  development blocked
+  clarification gate resolved
 - **Source:** TASK-THINSLICE-001 Technical Review and OQ-005 spike at
   `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
 - **Owner:** Claude Cowork / Project Owner for product meaning;
@@ -159,9 +160,9 @@
 ### AU-CDX-TASK-001-TECHNICAL-DESIGN — Phase 0 Thin-Slice Design
 
 - **Status:** `[PROPOSED]`; independent revision disposition
-  `CONFIRMED_ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003 security
-  design review `VERIFIED WITH FINDINGS`; TD-GATE-004 closed; remaining
-  evidence gates open; not implementation
+  `CONFIRMED_ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003
+  security design review `VERIFIED WITH FINDINGS`; TD-GATE-001 closed for the
+  route-1 profile; TD-GATE-004 closed; remaining evidence gates open
 - **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, PROD-DEC-011, and
   `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
 - **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
@@ -174,10 +175,11 @@
 - **Design artifacts:** `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`;
   ADR-TS001-001 through ADR-TS001-004; the task threat model and benchmark
   plan.
-- **Open evidence:** TD-GATE-001 strengthened OXS coordinate evidence,
-  TD-GATE-002 lawful source-symbol mapping, TD-GATE-003 current Cloudflare
-  placeholder rollback anchor, and TS001-SEC-002 runtime evidence before
-  deployment. TD-GATE-004 is closed at design level.
+- **Open evidence:** TD-GATE-002 exact-symbol evidence for other producers,
+  TD-GATE-003 current Cloudflare placeholder rollback anchor, and
+  TS001-SEC-002 runtime evidence before deployment. TD-GATE-001 is closed only
+  for the registered route-1 producer profile; TD-GATE-004 is closed at design
+  level.
 - **Architecture review exchange:** `AU-EX-20260725-005`, exact source
   `d90de60f98b8e187e2f75bcab697c6f3e747462d`; prepared from the immutable
   `codex/task-thinslice-001-design-source` branch. The `COMPLETED /
@@ -188,17 +190,64 @@
   the design, ADR, threat-model, benchmark, and test contracts. N-8 is recorded
   separately as Phase 1 work.
 - **Gate:** AU-AGENT-003 completed the independent security design review.
-  Coordinate/symbol route-1 fixture evidence blocks importer code, and
-  TD-GATE-003 plus header/request-inventory/network-capture evidence blocks
-  production deployment. Route-1 fixture production and non-behavioral
-  workspace scaffolding may proceed; application implementation has not
-  started.
+  Route-1 coordinate evidence now permits `domain-core` and bounded importer
+  implementation for the explicit profile. TD-GATE-002 continues to block
+  exact-symbol claims for other producers; TD-GATE-003 plus
+  header/request-inventory/network-capture evidence blocks production
+  deployment.
 - **Revision confirmation exchange:** `AU-EX-20260725-006`, exact source
   `395c5d62975ba0f52e0da69af256ef870bf02770`, immutable branch
   `codex/task-thinslice-001-design-revision-source`; 41 checksum-registered
   sources exported to Claude for confirmation. The valid return is integrated
   byte-for-byte with `CONFIRMED_ACCEPTED_WITH_GATES`; TD-GATE-004 is confirmed
   closed, and no project `[VERIFIED]` status is assigned.
+
+### AU-CDX-TASK-001-ROUTE1-SCAFFOLD — Route-1 Fixtures and Workspace Boundary
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; no product implementation or project
+  `[VERIFIED]`.
+- **Source:** Technical Design v1.3.0 sections 3, 6.3, 6.4, 11.1, and 15;
+  `AU-EX-20260725-006` revision confirmation.
+- **Owner:** AU-AGENT-004 for fixture/compatibility meaning; AU-AGENT-001 for
+  technical disposition; AU-AGENT-006 and AU-AGENT-005 for their scaffold
+  boundaries; AU-AGENT-002 for documentation lifecycle.
+- **Documentation Impact:** Material.
+- **Result:** Ten deterministic project-original OXS fixtures, expected
+  canonical/ImportReport records, checksums, source designs, provenance,
+  coordinate and symbol evidence, and a private five-package pnpm scaffold.
+- **Evidence:** `tests/fixtures/oxs/`,
+  `docs/reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md`,
+  `pnpm test`, and `scripts/verify-workspace.mjs`.
+- **Gate:** TD-GATE-001 is `[TESTED]` and closed for
+  `Abris Universe Route-1 Fixture Generator 1.0.0`. TD-GATE-002 route-1 literal
+  symbol evidence is `[TESTED]`, but exact-symbol claims for other producers
+  remain `[OPEN]`.
+- **Boundary:** No runtime domain, importer, renderer, persistence, client,
+  pipeline, or deployment implementation exists. Unknown OXS coordinate or
+  glyph conventions require a registered profile or rejection.
+- **Next step:** Implement and test `domain-core` from the confirmed Technical
+  Design before implementing the bounded OXS importer.
+
+### AU-CDX-TASK-001-DOMAIN-CORE — Canonical Domain Contracts
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
+  implementation verification pending; no project `[VERIFIED]`.
+- **Source:** Technical Design v1.3.0 section 5 and ADR-TS001-001.
+- **Owner:** AU-AGENT-001 with AU-AGENT-004 domain input; AU-AGENT-002 for
+  documentation lifecycle; AU-AGENT-003 remains the independent reviewer.
+- **Documentation Impact:** Material.
+- **Result:** Implemented framework-independent canonical types, format
+  constants, cross-record invariant validation, immutable snapshot boundary,
+  Project lifecycle validation, and ordered ProgressState rebuilding in
+  `packages/domain-core`.
+- **Evidence:** Strict TypeScript 7.0.2 `pnpm typecheck`; 9 focused domain tests;
+  full `pnpm test`; workspace-boundary verification; and
+  `DOMAIN_CORE_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** No OXS parsing/mapping, canonical serialization/hash algorithm,
+  deterministic imported-ID generation, IndexedDB, rendering, client behavior,
+  CI/CD, deployment, or product acceptance.
+- **Next step:** Implement the bounded route-1 OXS adapter and golden/security
+  tests without extending exact-symbol claims beyond the tested profile.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

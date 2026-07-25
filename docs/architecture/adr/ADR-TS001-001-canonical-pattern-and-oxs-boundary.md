@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.1.1 |
+| Version | 1.1.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-009, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -121,3 +121,7 @@ source-byte recovery, and architecture review.
   `VERIFIED WITH FINDINGS` for the design-only security scope and closes the
   security-review component of TD-GATE-004. Fixture and implementation evidence
   remain open.
+- 2026-07-25: Route-1 coordinate evidence closes TD-GATE-001 only for the
+  registered producer profile. The canonical domain records and cross-record
+  invariants are `[IMPLEMENTED]`, `[TESTED]`; importer, persistence, remaining
+  evidence, and ADR approval remain open.

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -56,6 +56,7 @@ traceability, terminology, and documentation reviews.
 - [Documentation Reviews](reviews/documentation/README.md)
 - [Technical Reviews](reviews/technical/README.md)
 - [Engineering Verification Reports](reviews/engineering/README.md)
+- [Route-1 OXS Fixture Registry](../tests/fixtures/oxs/README.md)
 - [Codex Agent Definitions](../.codex/agents/README.md)
 - [Shared Product-to-Engineering Workflow](SHARED_WORKFLOW.md)
 - [Shared AI Organization](../AI_ORGANIZATION.md)

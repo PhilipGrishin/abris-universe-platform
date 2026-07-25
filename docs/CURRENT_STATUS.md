@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 route-1 fixture evidence and workspace scaffolding
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
+**Current focus:** TASK-THINSLICE-001 bounded OXS route-1 importer
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, and canonical domain-core
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
@@ -64,7 +64,10 @@
   dependencies, tests, migrations, or deployment assets.
 - `[PROPOSED]` The first architecture ADR sequence is documented in
   `docs/ARCHITECTURE.md`; no product architecture ADR is approved yet.
-- `[CONFIRMED]` No application code or product feature has been implemented.
+- `[IMPLEMENTED]`, `[TESTED]` The canonical domain library now exists with
+  strict types, invariant validation, immutable snapshot construction, Project
+  lifecycle validation, and ordered progress projection. No executable
+  application or user-facing product feature exists.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -137,21 +140,26 @@
 - `[IMPLEMENTED]` TASK-THINSLICE-001 v1.1 contains only the authorized
   editorial changes; the product-side architecture input contains only the
   authorized terminology correction.
-- `[OPEN]` Route-1 project-original fixture production for DEP-001. The
-  architecture and AU-AGENT-003 security-design review components of DEP-TR-001
-  are complete with gates; the design package remains `[PROPOSED]` and
-  module-specific evidence gates remain enforced.
+- `[IMPLEMENTED]`, `[TESTED]` The project-original route-1 OXS fixture set and
+  deterministic generation/verification tooling cover minimal, medium,
+  unsupported, empty, corrupt, and bounded-security cases. The architecture and
+  AU-AGENT-003 security-design review components of DEP-TR-001 remain complete
+  with gates; the design package remains `[PROPOSED]`.
 - `[PROPOSED]` The TASK-THINSLICE-001 Technical Design defines the canonical
   Pattern/OXS boundary, tiled Canvas2D renderer, IndexedDB event persistence,
   XML security limits, benchmark method, and immutable
   GitHub-to-Cloudflare delivery/rollback path.
 - `[PROPOSED]` ADR-TS001-001 through ADR-TS001-004 record the task-scoped
   architecture choices without assigning implementation or acceptance status.
-- `[OPEN]` TD-GATE-001 and TD-GATE-002 require project-original evidence for
-  the complete OXS coordinate convention and lawful source-symbol rendering
-  before importer code or exact-symbol claims. TD-GATE-001 now requires a
-  non-square fixture with distinct corner identities and an asymmetric
-  interior stitch.
+- `[TESTED]` TD-GATE-001 is closed for the registered route-1 producer profile
+  by a non-square 7×5 fixture with four distinct corner symbol/palette pairs and
+  an asymmetric interior stitch. The recorded convention is top-left origin,
+  x rightward, y downward, zero-based integer coordinates, and no
+  transposition. Other producer profiles must be detected or rejected, never
+  guessed.
+- `[TESTED]` The lawful route-1 literal-symbol profile has project-original
+  Basic Latin evidence. TD-GATE-002 remains `[OPEN]` for exact-symbol claims
+  involving other producers, proprietary mappings, fonts, or assets.
 - `[OPEN]` TD-GATE-003 requires a recoverable current Cloudflare placeholder
   version/artifact before the first production deployment.
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-005` reviewed the exact
@@ -163,7 +171,7 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.2.2 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.4.0 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
@@ -173,9 +181,10 @@
   TS001-SEC-002 design action is complete and remains open only for future
   runtime request inventory and network-capture evidence. No mandatory
   security-design finding remains unresolved.
-- `[TESTED]` TD-GATE-004 is closed at design level. This does not close
-  TD-GATE-001, TD-GATE-002, TD-GATE-003, implementation verification, release
-  readiness, Claude acceptance, or project `[VERIFIED]`.
+- `[TESTED]` TD-GATE-004 is closed at design level. TD-GATE-001 is separately
+  closed only for the registered route-1 producer profile. TD-GATE-002 for
+  other symbol profiles, TD-GATE-003, implementation verification, release
+  readiness, Claude acceptance, and project `[VERIFIED]` remain open.
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-006` packages 41
   checksum-registered sources from exact current source `395c5d6` and revision
   range `d90de60..395c5d6` for Claude design-revision confirmation. Its valid
@@ -315,13 +324,23 @@
 - `[TESTED]` The AU-AGENT-003 Engineering Verification Report has complete
   metadata, exact review/reverification commits, preserved finding history,
   one allowed Engineering Verification Status, and resolvable local links.
+- `[TESTED]` `pnpm test` verifies the complete route-1 fixture registry and
+  approved workspace package boundaries.
+- `[TESTED]` Fixture regeneration in `--check` mode proves deterministic bytes,
+  manifests, expected results, and human-readable source-chart metadata.
+- `[TESTED]` `xmllint` accepts every positive OXS fixture and rejects the
+  intentionally truncated corrupt fixture; the fixture verifier also checks
+  coordinate corners, asymmetric identity, 100,000-stitch medium scale, DTD
+  isolation, and bounded rejection cases.
+- `[TESTED]` `pnpm typecheck` passes with TypeScript 7.0.2, and all 9 focused
+  domain-core tests pass without failures.
 
 ## Blockers
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` Route-1 coordinate/symbol fixture evidence for the proposed
-  AU-CDX-TASK-001 v1.1 Technical Design.
+- `[OPEN]` Importer, renderer, persistence, and client implementation and their
+  independent engineering evidence.
 - `[OPEN]` Runtime request inventory and network-capture evidence before
   deployment; TS001-SEC-002 is non-blocking for the current design gate.
 
@@ -353,17 +372,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated, meaning-reviewed, integrated, and archived the
-`AU-EX-20260725-006` design revision confirmation. The canonical report is
-byte-identical to the Claude return, the disposition is
-`CONFIRMED_ACCEPTED_WITH_GATES`, and PROD-DEC-011 is registered within its
-product authority. No application, fixture, pipeline, or deployment
-implementation was started.
+Implemented and tested the canonical `domain-core` contracts, runtime
+cross-record invariants, detached immutable snapshot boundary, Project
+lifecycle validation, and ordered progress projection. Strict TypeScript
+typecheck and 9 focused tests pass. No importer, renderer, persistence, client,
+pipeline, deployment, or user-facing application was implemented, and this
+internal stage requires no Claude return.
 
 ## Next Step
 
-Produce the project-original route-1 OXS fixture and compatibility record
-required by TD-GATE-001, and prepare the approved non-behavioral workspace
-scaffold. Do not begin importer implementation until TD-GATE-001 closes; do not
+Implement and test the bounded OXS 1.0 route-1 adapter defined by Technical
+Design v1.3.0, including deterministic identities/content hash, golden mapping,
+ImportReport, unsupported/malformed/security limits, source-byte preservation
+contract, and source-progress-ignore evidence. Stop before persistence; do not
 make exact-symbol or production-deployment claims while their gates remain
 open.

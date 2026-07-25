@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.1 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, target browser/device, renderer, importer, storage, budget, method, or implementation change |
@@ -159,7 +159,8 @@ The later benchmark report must include:
 
 ## Review Checklist
 
-- [ ] Fixtures are project-original and checksum-registered.
+- [x] Minimal and medium OXS fixtures are project-original and
+      checksum-registered; the progress-history fixture remains open.
 - [ ] Hardware, browser, build, and capability path are recorded.
 - [ ] Raw samples are retained.
 - [ ] Cold and warm states are not mixed.
@@ -176,3 +177,4 @@ The later benchmark report must include:
 - [Technical Review](../../reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
 - [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
+- [Route-1 Fixture Registry](../../../tests/fixtures/oxs/README.md)

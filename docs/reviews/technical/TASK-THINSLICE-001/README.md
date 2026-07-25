@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -38,16 +38,21 @@ implementation or final implementation acceptance.
 - [Threat Model](../../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
 - [Benchmark Plan](../../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
 - [Independent Pre-Implementation Architecture Review](../../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [Independent Design Revision Confirmation](../../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
+- [Route-1 Fixture and Workspace Scaffold Review](ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md)
+- [Domain Core Implementation Review](DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
+- [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
 ## Current Disposition
 
 The task is technically feasible. Its Technical Design Proposal and four
-task-scoped ADRs remain `[PROPOSED]` with independent disposition
-`ACCEPTED_WITH_GATES`. Mandatory document rework is integrated, but the task is
-**not ready for importer development**. AU-AGENT-003 security design review is
-complete with `VERIFIED WITH FINDINGS`; route-1 coordinate/symbol evidence
-remains mandatory. Production deployment also requires TD-GATE-003 and
-security-header/request-inventory/network-capture evidence.
+task-scoped ADRs remain `[PROPOSED]` with independent revision disposition
+`CONFIRMED_ACCEPTED_WITH_GATES`. TD-GATE-001 is `[TESTED]` and closed for the
+initial route-1 producer profile, so the registered sequence may proceed to
+bounded importer implementation after the canonical domain-core contracts were
+implemented and tested. TD-GATE-002 remains open for
+exact-symbol claims about other producers. Production deployment also requires
+TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 
 ## Owner
 

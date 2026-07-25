@@ -228,8 +228,9 @@
 
 ## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
 
-- **Status:** `[OPEN]`, format and rights rule resolved; design `[PROPOSED]`;
-  coordinate/symbol evidence and fixtures pending
+- **Status:** `[OPEN]`, format and rights rule resolved; route-1 coordinate and
+  literal-symbol evidence `[TESTED]`; other producers and implementation
+  evidence pending
 - **Probability:** High without the OQ-005 and fixture gates
 - **Impact:** High
 - **Trigger:** Importer development starts from an undocumented/proprietary
@@ -244,10 +245,10 @@
   limits; require fixture provenance and permission.
 - **Mitigation:** PROD-DEC-009 resolves the format, terminology, and rights-safe
   acquisition rule. The Technical Design and ADR-TS001-001 define the bounded
-  mapping and prohibit heuristic coordinate/symbol interpretation. Keep
-  importer development blocked until route-1 coordinate and symbol fixtures
-  exist, and require golden, malformed, size-limit, coordinate,
-  palette-reference, and unsupported-content tests. PROD-DEC-011 keeps the four
+  mapping and prohibit heuristic coordinate/symbol interpretation. The
+  route-1 profile has deterministic golden, malformed, size-limit, coordinate,
+  palette-reference, and unsupported-content fixtures. Keep unregistered
+  producer profiles blocked or rejected. PROD-DEC-011 keeps the four
   owner-granted XSP binaries outside the Bridge and Git pending a separate
   owner-controlled transfer and prioritizes licensed XSD export over reverse
   engineering for Phase 1.

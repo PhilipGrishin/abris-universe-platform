@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "generator": "generate-fixtures.mjs",
+  "generatorVersion": "1.0.0",
+  "sourceFormat": "OXS 1.0",
+  "fixtureCount": 10,
+  "files": [
+    {
+      "path": "expected/corrupt-truncated.expected.json",
+      "bytes": 240,
+      "sha256": "8e513357dd0a5534f163e5e02ae0cb035932dab8c857867b071cb86f0cbfb18b"
+    },
+    {
+      "path": "expected/duplicate-palette-index.expected.json",
+      "bytes": 256,
+      "sha256": "d9d1fbda22f0b43b50bc59c5bcefecb02fe0af1de19b24a6c6ea6141e8cf5532"
+    },
+    {
+      "path": "expected/empty-full-cross.expected.json",
+      "bytes": 640,
+      "sha256": "35e4442212a6277be1aa94e6b23468b43e864b84414b1cbc7b50b00c0cc80b60"
+    },
+    {
+      "path": "expected/invalid-palette-reference.expected.json",
+      "bytes": 260,
+      "sha256": "ac4380eb9ee355f6eab726f5ac4c707ad214752b4acac6ab2f3eb0f140ec345c"
+    },
+    {
+      "path": "expected/medium-full-cross.expected.json",
+      "bytes": 888,
+      "sha256": "25fe7439fc59ce468823dd16e7986a2bc3ad7d2d36840772f86e1e3ba772bc90"
+    },
+    {
+      "path": "expected/minimal-full-cross.expected.json",
+      "bytes": 1094,
+      "sha256": "de9a83bb0c949bc158ccbaf7b3d89e5d70d203954b17220fe686bc36380e5ee7"
+    },
+    {
+      "path": "expected/out-of-bounds-coordinate.expected.json",
+      "bytes": 258,
+      "sha256": "f5b23ca9f92f2b48b93df868038a8ed671cdbebb8618ca9c723e83f00e9792f9"
+    },
+    {
+      "path": "expected/oversized-declared-grid.expected.json",
+      "bytes": 243,
+      "sha256": "7a93ec8dd1b002d247800ec1cfcd5a6289002552eff2209924285519c2ad705a"
+    },
+    {
+      "path": "expected/security-doctype.expected.json",
+      "bytes": 239,
+      "sha256": "344e3a225f93561c445d12587cba270d720c2fc39b6086b53c4570ea447fcd4f"
+    },
+    {
+      "path": "expected/unsupported-content.expected.json",
+      "bytes": 815,
+      "sha256": "cf422210e81cc9af2aca266342743af6ae004dcfb28840db0e8ec1285d800f47"
+    },
+    {
+      "path": "generated/corrupt-truncated.oxs",
+      "bytes": 1053,
+      "sha256": "f24462124da57c66a2c03c96851ad96525f5f0d21fff22d39a9dfa6d2ac9b1d8"
+    },
+    {
+      "path": "generated/duplicate-palette-index.oxs",
+      "bytes": 1407,
+      "sha256": "1720a535db2a55c30a85b0bfedb547ba360fc500709fc24a37a3abb7640ad10f"
+    },
+    {
+      "path": "generated/empty-full-cross.oxs",
+      "bytes": 1005,
+      "sha256": "a6c81639ce98e8fd38d7b5e53b1c61a15190774503f8ad0858a6400cf67b1081"
+    },
+    {
+      "path": "generated/invalid-palette-reference.oxs",
+      "bytes": 1236,
+      "sha256": "ccccebc0a580ddaf0de98881bec8c35fe78aec5d745b0adf9f2bd5cffd5fc91f"
+    },
+    {
+      "path": "generated/medium-full-cross.oxs",
+      "bytes": 4308166,
+      "sha256": "1211319f5cb392b2c0b9c401d6898e6c18564d90c218035d274d96bcdc2aa167"
+    },
+    {
+      "path": "generated/minimal-full-cross.oxs",
+      "bytes": 2063,
+      "sha256": "912fc540e3d92e789c6c5bf94ccf89079773bc578a3b6db594b05708290e818d"
+    },
+    {
+      "path": "generated/out-of-bounds-coordinate.oxs",
+      "bytes": 1234,
+      "sha256": "9059757503b63ee2bca366996c19aedb0a2e99dc039648c13ce49826ea17af90"
+    },
+    {
+      "path": "generated/oversized-declared-grid.oxs",
+      "bytes": 1189,
+      "sha256": "85d3456fee85beee8281a3322509a312ff30da4ff859a1e7444d713a5f314d8f"
+    },
+    {
+      "path": "generated/security-doctype.oxs",
+      "bytes": 1272,
+      "sha256": "273f404670311cedd170bcf71dd4367111419b37c70eb67c9a551d78d0a33636"
+    },
+    {
+      "path": "generated/unsupported-content.oxs",
+      "bytes": 1814,
+      "sha256": "c260c51d527c028b97973f20feeb03c1e75fb39afbb801f2bc99beb8bfe64bba"
+    },
+    {
+      "path": "source-charts/fixture-designs.md",
+      "bytes": 1527,
+      "sha256": "207d71671a83bafc5812e34df70faa3295811375577f7002798ce033910ea0c6"
+    },
+    {
+      "path": "source-charts/minimal-full-cross.txt",
+      "bytes": 133,
+      "sha256": "5de63cb56f5e486649785a55cc07661ab5412d4e0c9d74038eb61f23c6b411af"
+    }
+  ]
+}

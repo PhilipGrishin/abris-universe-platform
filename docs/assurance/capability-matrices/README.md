@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -26,7 +26,12 @@ scope, version, evidence, and an assigned technical approver.
 
 ## Current Matrices
 
-None.
+- [OXS Coordinate Compatibility Matrix](../../../tests/fixtures/oxs/COMPATIBILITY_MATRIX.md)
+  — `[TESTED]` for `Abris Universe Route-1 Fixture Generator 1.0.0`; all other
+  producer profiles remain explicitly open.
+- [OXS Route-1 Symbol Mapping Evidence](../../../tests/fixtures/oxs/SYMBOL_MAPPING.md)
+  — `[TESTED]` for literal Basic Latin route-1 source codes; no general
+  producer exact-symbol claim.
 
 ## Owner
 

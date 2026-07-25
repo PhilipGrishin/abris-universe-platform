@@ -9,7 +9,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.7.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
@@ -156,13 +156,18 @@ terminology consistency, traceability, and lifecycle.
 |-- AI_ORGANIZATION.md        shared organization index
 |-- AGENTS.md                 engineering operating instructions
 |-- .codex/                   Codex governance and agent registry
+|-- apps/                     approved application package boundaries
+|-- packages/                 approved portable package boundaries
 |-- docs/                     engineering knowledge and evidence
 |-- product/                  product knowledge, governance, and acceptance
-`-- collaboration/           governed local Claude-Codex exchange contracts
+|-- collaboration/           governed local Claude-Codex exchange contracts
+`-- tests/                    project-original fixtures and test evidence
 ```
 
-No application source tree exists yet. Its structure is `[TBD]` and requires an
-approved Technical Design.
+The package tree is an `[IMPLEMENTED]`, `[TESTED]` workspace from the
+independently confirmed Technical Design. `packages/domain-core` now contains
+the bounded canonical model and invariant validation; every sibling package
+remains a non-behavioral scaffold.
 
 ## 17. Current Project State
 
@@ -179,11 +184,21 @@ approved Technical Design.
   role registration; no backend implementation is claimed.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-006 mobile/web client domain role
   registration; no client application implementation is claimed.
+- `[IMPLEMENTED]`, `[TESTED]` The pnpm workspace reserves the approved web,
+  domain-core, OXS importer, renderer, and persistence package boundaries.
+- `[IMPLEMENTED]`, `[TESTED]` `packages/domain-core` implements canonical
+  records, version constants, cross-record invariants, immutable snapshot
+  validation, Project lifecycle validation, and progress projection with strict
+  typecheck and 9 focused tests.
+- `[IMPLEMENTED]`, `[TESTED]` Ten project-original OXS route-1 fixtures,
+  deterministic generation, checksums, expected results, provenance,
+  compatibility evidence, and local verification exist.
 - `[VERIFIED]` INIT-002 platform repository initialization, product and
   engineering contour integration, governance boundaries, Source of Truth
   organization, and the Collaboration Bridge operating model exercised by
   exchange `AU-EX-20260721-001`, subject to the report's limitations.
-- `[OPEN]` Product implementation and executable architecture.
+- `[OPEN]` User-facing product runtime, importer, renderer, persistence, client,
+  CI/CD, and deployment implementation.
 - The verified status does not cover application implementation, stack, runtime
   architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 through
   AU-AGENT-006 activation, Engineering Handbook content, or unreviewed bridge
@@ -199,9 +214,10 @@ release scope.
 
 ## 19. Not Yet Implemented
 
-No application code, runtime architecture, approved stack, database, cloud
-provider, API implementation, CI/CD implementation, deployment, migration,
-automated test suite, or product feature exists in this repository.
+No executable application, database, API, CI/CD implementation, deployment,
+migration, or user-facing product feature exists. The canonical domain library,
+test-only fixture generation, and workspace checks are executable engineering
+components and must not be misrepresented as a completed product capability.
 
 ## 20. Open Product Questions
 
@@ -212,10 +228,10 @@ declared owners. Engineering must not resolve product meaning silently.
 
 ## 21. Open Architecture Questions
 
-Repository topology is resolved. Technology stack, platform implementation,
-data model, internal format, API, offline/sync design, rendering architecture,
-security boundaries, deployment, and CI/CD remain `[OPEN]` or `[PROPOSED]` as
-registered in `docs/ARCHITECTURE.md` and product architecture inputs.
+Repository topology and initial package boundaries are resolved. The
+task-scoped canonical model, importer, rendering, persistence, security, and
+delivery contracts remain `[PROPOSED]`; their implementation and evidence
+remain open as registered in the Technical Design and ADRs.
 
 ## 22. Verification and Approval Model
 

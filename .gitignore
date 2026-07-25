@@ -8,6 +8,14 @@
 *.swo
 *~
 
+# JavaScript/TypeScript workspace outputs and local caches.
+node_modules/
+.pnpm-store/
+.turbo/
+dist/
+coverage/
+*.tsbuildinfo
+
 # Local Claude-Codex bridge state. Canonical contracts and exchange manifests
 # remain committed under collaboration/; payloads and machine paths do not.
 .collaboration-bridge.local.json

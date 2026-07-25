@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "fixture": "medium-full-cross.oxs",
+  "expectedDisposition": "completed",
+  "canonical": {
+    "grid": {
+      "width": 512,
+      "height": 256,
+      "origin": "top-left",
+      "coordinateBase": 0,
+      "xDirection": "right",
+      "yDirection": "down",
+      "axisOrder": "x,y"
+    },
+    "paletteItems": 33,
+    "fullCrossStitchCount": 100000,
+    "stitchSequenceSha256": "16ccfe4ecce5aad08f4159d89b5351ba689c32dfff90337bc5d81a5b8305e098",
+    "coverage": {
+      "denseRegion": "x=0..319, y=0..255",
+      "deterministicSparseRegion": "18,080 cells across x=320..511"
+    }
+  },
+  "importReport": {
+    "status": "completed",
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "paletteItems": 33,
+      "fullCrossStitches": 100000,
+      "unsupportedPartStitches": 0,
+      "unsupportedBackstitches": 0,
+      "unsupportedObjects": 0
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "fixture": "security-doctype.oxs",
+  "expectedDisposition": "rejected",
+  "canonical": null,
+  "importReport": {
+    "status": "rejected",
+    "errors": [
+      "OXS_DTD_FORBIDDEN"
+    ],
+    "warnings": []
+  }
+}
