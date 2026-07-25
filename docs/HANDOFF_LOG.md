@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-25 — Codex Product Decision Handoff — AU-EX-20260725-002
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return
+  and canonical product integration `[OPEN]`.
+- **Task:** `PRODUCT_DECISION` for INIT-003-PD-001.
+- **Requested role:** Chief Project Orchestrator.
+- **Exact source:** branch `codex/owner-dispositions-pd-exchange`, commit
+  `aec043a0796948c27b825907c929d783f6f8fca0`, review range
+  `35130a50605bf7cfa3bf0522775954fd73070cd7..aec043a0796948c27b825907c929d783f6f8fca0`.
+- **Package evidence:** 27 registered text sources, 389,275 payload bytes,
+  valid task manifest, present required inputs, and zero difference between the
+  runtime package and external inbox.
+- **Requested result:** Append-ready Cowork DEC-005 through DEC-008 records and
+  precise OQ-005 register text without technical or product invention.
+- **Authority:** Claude owns the authorized product-decision formulation and
+  writes only to its outbox. AU-CODEX-PRIMARY remains the sole Git writer;
+  transport does not make the result canonical or `[VERIFIED]`.
+- **Gate:** Stop with `Codex finished`. Technical Review, OQ-005 spike, product
+  development, pipeline design, and deployment changes remain unstarted until
+  the Product Decision return is validated and integrated.
+
 ## 2026-07-25 — Project Owner to Codex — INIT-003 Dispositions and PD-001
 
 - **Authority:** Explicit Project Owner directive dated 2026-07-25.

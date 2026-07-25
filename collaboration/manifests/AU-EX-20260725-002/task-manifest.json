@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260725-002",
+  "task_id": "INIT-003-PD-001",
+  "task_type": "PRODUCT_DECISION",
+  "requested_claude_role": "Chief Project Orchestrator",
+  "source_commit_sha": "aec043a0796948c27b825907c929d783f6f8fca0",
+  "source_branch": "codex/owner-dispositions-pd-exchange",
+  "review_commit_range": "35130a50605bf7cfa3bf0522775954fd73070cd7..aec043a0796948c27b825907c929d783f6f8fca0",
+  "prepared_at": "2026-07-25T12:43:47Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Formally return Cowork DEC-005 through DEC-008 for canonical product-decision integration before TASK-THINSLICE-001 Technical Review.",
+  "scope": [
+    "Preserve and formalize Cowork DEC-005: Project Owner approval without changes of the Product Vision and Roadmap as a product input.",
+    "Preserve and formalize Cowork DEC-006: Project Owner approval of the product-side Architecture and Stack input, while the stack remains a recommendation subject to Codex Technical Review and proposed ADRs remain unapproved.",
+    "Preserve and formalize Cowork DEC-006 OQ-005 disposition: select the first import format by minimal parsing complexity while remaining representative of real user files; delegate the concrete choice to a Codex spike over two or three structured XSD/PAT/SXP-class candidates, excluding PDF and raster, with justification inside the Technical Review.",
+    "Preserve and formalize Cowork DEC-007: the owner reports the live test environment at https://abris.653915.com in owner Cloudflare zone 653915.com, currently a temporary placeholder deployed as Worker abris-universe with static assets; Phase 0 targets Cloudflare static hosting on this domain; Codex must design the permanent GitHub-to-CI-to-deploy pipeline in the Technical Design Proposal.",
+    "Preserve and formalize Cowork DEC-008: the 2026-07-25 Project Owner dispositions approving wording-only OVR-001, OVR-002, and OVR-005 normalization, separate tested OVR-004 tooling, this Product Decision exchange, and the subsequent Technical Review plus OQ-005 spike gate.",
+    "Return one authoritative, append-ready Product Decision integration artifact that identifies exact source authority, dates, status, relationships, and any required OQ-005 register update without duplicating or silently changing existing product meaning.",
+    "Keep development gated behind the Technical Review and keep the permanent deployment pipeline as a Codex Technical Design responsibility rather than a Cowork implementation design."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, product Decision Log, engineering governance, architecture, code, infrastructure, Cloudflare configuration, GitHub configuration, CI/CD, or deployment.",
+    "Inventing technology choices, a permanent pipeline design, application architecture, import-format selection, implementation details, product behavior, UX, scope, priority, or acceptance criteria.",
+    "Changing the Project Owner dispositions, role authority, the registered Collaboration Bridge route, or the separation of product, engineering, documentation, and independent-review authority.",
+    "Starting or accepting TASK-THINSLICE-001 Technical Review, the OQ-005 spike, product development, or deployment work.",
+    "Assigning project VERIFIED or independently accepting any engineering implementation."
+  ],
+  "required_inputs": [
+    "sources/repository/product/reviews/INIT-003_Independent_Acceptance_Report.md",
+    "sources/repository/docs/HANDOFF_LOG.md",
+    "sources/repository/docs/TASKS.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/.codex/CURRENT_FOCUS.md",
+    "sources/repository/product/decisions/05_Decision_Log.md",
+    "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+    "sources/repository/product/agents/README.md",
+    "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/collaboration/README.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "8c76e7c5a7403e53abf4a15146d2a87a258865977b306f52666ee8e97bc18f4b",
+      "size_bytes": 2310
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "048082169d2426370da4195fd8a05bb65841ef2264634180b5cabf616659af80",
+      "size_bytes": 15872
+    },
+    {
+      "path": "sources/repository/AI_ORGANIZATION.md",
+      "sha256": "3c838d2abd2a0af450200d0fee6528ddd9809f0646d68e23235a5bd8a14828af",
+      "size_bytes": 3848
+    },
+    {
+      "path": "sources/repository/PROJECT_MANIFEST.md",
+      "sha256": "77f9c7f47342dbd7bf273cabdde7bca0e6f7a0016de4a82218bb1711a40560ce",
+      "size_bytes": 11999
+    },
+    {
+      "path": "sources/repository/collaboration/README.md",
+      "sha256": "cf4c8f51692d3b534e671b9d378f72b3d14d9eb4ceecbb5f0e3c766c88fc3ecf",
+      "size_bytes": 5427
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/README.md",
+      "sha256": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+      "size_bytes": 2073
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-return-manifest.schema.json",
+      "sha256": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+      "size_bytes": 3542
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-task-manifest.schema.json",
+      "sha256": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+      "size_bytes": 4451
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "01063aa9daced5a7868dbda6a5b1f12ec991cac928d3b1821d0e0ef91f480458",
+      "size_bytes": 15013
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "6a9fce74fbe230aa265029eed8afa2691ab9a328663da9a1b8a2584f33d1c0de",
+      "size_bytes": 15580
+    },
+    {
+      "path": "sources/repository/docs/HANDOFF_LOG.md",
+      "sha256": "5ed36e4ac667fe2e71aa8a0a1a236639806cda7cbb528dfdcb15c9791b1aeeff",
+      "size_bytes": 34439
+    },
+    {
+      "path": "sources/repository/docs/OPEN_QUESTIONS.md",
+      "sha256": "52c21946433a6e20edc8381b6b66101743ee475ec43d53b50586166d3120c0e6",
+      "size_bytes": 2721
+    },
+    {
+      "path": "sources/repository/docs/SHARED_WORKFLOW.md",
+      "sha256": "39d2355645b3e8a0e235ec0689c0f139f63e4b5b4b46b9c5bc2a2649edf3635b",
+      "size_bytes": 5692
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "432e9d75e48dbce8ee5579faff86cabf990f61e134ebe85f34f03b28e4500003",
+      "size_bytes": 11799
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "a837094ac15d2f55f68955d2b3ff1df63912f7375daee9cce65c6041760a239e",
+      "size_bytes": 20184
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "425badb798eae4de0e62e235cf16993c5b93e4a3745f2028d10eec3fc4e0cc2f",
+      "size_bytes": 10779
+    },
+    {
+      "path": "sources/repository/product/README.md",
+      "sha256": "61c34c2eccece373465de81c23375286c8bdb0cb2496c8a454106bf13cf3837d",
+      "size_bytes": 5468
+    },
+    {
+      "path": "sources/repository/product/agents/README.md",
+      "sha256": "12729ad40735c8408a335897a0e79effc24c9256cf52b7b637f54dec1a575364",
+      "size_bytes": 3489
+    },
+    {
+      "path": "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+      "sha256": "2fabaa266687a1e473b1714efec4bb9254bd9b6e5a3677e4b12a7c64ee3e051a",
+      "size_bytes": 25935
+    },
+    {
+      "path": "sources/repository/product/decisions/05_Decision_Log.md",
+      "sha256": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+      "size_bytes": 23601
+    },
+    {
+      "path": "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+      "sha256": "299c70eca5cd80983310767afccc7a52669f040818298de92464f4edfca2bd72",
+      "size_bytes": 11466
+    },
+    {
+      "path": "sources/repository/product/reviews/INIT-003_Independent_Acceptance_Report.md",
+      "sha256": "9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d",
+      "size_bytes": 10989
+    },
+    {
+      "path": "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md",
+      "sha256": "f91638dd5e960d23b983ca62b9c151e4970f2d96c46b311281e4139194f44a3e",
+      "size_bytes": 30053
+    },
+    {
+      "path": "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+      "sha256": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+      "size_bytes": 45081
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "dc732928714e1fe42b061a8962b5cfd8c507752ffe1cdafe9990b5546663e3c0",
+      "size_bytes": 65701
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "48e11d96750351713378d1ef956a3c5543dd71549836d65e3df3d9773966d097",
+      "size_bytes": 1605
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "0cfde3a30530dd7b84933c574068a44094eaa8ffec8562c1f649294363ce52ac",
+      "size_bytes": 158
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type PRODUCT_DECISION.",
+    "outputs/product-decision-integration.md containing exact append-ready Cowork DEC-005 through DEC-008 records, OQ-005 register disposition text, provenance, authority, limitations, and the explicit next gate."
+  ],
+  "acceptance_criteria": [
+    "The return explicitly identifies Cowork DEC-005 through DEC-008 and preserves every owner-supplied meaning without additions or omissions.",
+    "DEC-005 records approval of the Product Vision and Roadmap as a product input.",
+    "DEC-006 records approval of the product-side Architecture and Stack input, preserves the recommended-stack/Technical Review boundary, and formally resolves the owner criterion portion of OQ-005 while delegating the concrete structured format choice to the Codex spike.",
+    "DEC-007 records the owner-confirmed Cloudflare domain, zone, temporary Worker/static placeholder state, Phase 0 static-hosting target, and Codex ownership of permanent GitHub-to-CI-to-deploy design in the Technical Design Proposal.",
+    "DEC-008 records exactly the owner dispositions for OVR-001, OVR-002, OVR-004, OVR-005, PD-001, and the subsequent Technical Review plus OQ-005 spike gate.",
+    "The artifact distinguishes owner-confirmed facts from Codex-tested public endpoint evidence and does not claim public verification of Worker identity or deployment internals.",
+    "The artifact provides append-ready decision-log text and a precise OQ-005 status update without rewriting unrelated existing decisions.",
+    "No product, technical, role, governance, or implementation meaning is invented; no canonical file is directly edited by Claude.",
+    "The result is COMPLETED with decision NO_DECISION unless a genuine authority or source conflict requires PARTIAL or BLOCKED; product-decision content is not a project acceptance status.",
+    "The next gate is explicit: Codex validates and integrates this return, then begins TASK-THINSLICE-001 Technical Review plus the bounded OQ-005 spike; development remains blocked behind Technical Review."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and Claude Cowork own the meaning and canonical formulation of Cowork DEC-005 through DEC-008. Claude may return the authorized product-decision artifact but may not invent or expand the supplied decisions.",
+    "engineering_authority": "AU-CODEX-PRIMARY governs integration; AU-AGENT-001 and assigned domain agents retain Technical Review, Technical Design, spike, architecture, and implementation authority. The permanent deployment pipeline and concrete import-format recommendation are not designed in this exchange.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, metadata, navigation, terminology consistency, traceability, and lifecycle after validation, without changing Claude-authored product meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260725-002",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/CURRENT_FOCUS.md": "8c76e7c5a7403e53abf4a15146d2a87a258865977b306f52666ee8e97bc18f4b",
+    "sources/repository/AGENTS.md": "048082169d2426370da4195fd8a05bb65841ef2264634180b5cabf616659af80",
+    "sources/repository/AI_ORGANIZATION.md": "3c838d2abd2a0af450200d0fee6528ddd9809f0646d68e23235a5bd8a14828af",
+    "sources/repository/PROJECT_MANIFEST.md": "77f9c7f47342dbd7bf273cabdde7bca0e6f7a0016de4a82218bb1711a40560ce",
+    "sources/repository/collaboration/README.md": "cf4c8f51692d3b534e671b9d378f72b3d14d9eb4ceecbb5f0e3c766c88fc3ecf",
+    "sources/repository/collaboration/schemas/README.md": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+    "sources/repository/collaboration/schemas/claude-return-manifest.schema.json": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+    "sources/repository/collaboration/schemas/claude-task-manifest.schema.json": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+    "sources/repository/docs/CURRENT_STATUS.md": "01063aa9daced5a7868dbda6a5b1f12ec991cac928d3b1821d0e0ef91f480458",
+    "sources/repository/docs/DECISIONS.md": "6a9fce74fbe230aa265029eed8afa2691ab9a328663da9a1b8a2584f33d1c0de",
+    "sources/repository/docs/HANDOFF_LOG.md": "5ed36e4ac667fe2e71aa8a0a1a236639806cda7cbb528dfdcb15c9791b1aeeff",
+    "sources/repository/docs/OPEN_QUESTIONS.md": "52c21946433a6e20edc8381b6b66101743ee475ec43d53b50586166d3120c0e6",
+    "sources/repository/docs/SHARED_WORKFLOW.md": "39d2355645b3e8a0e235ec0689c0f139f63e4b5b4b46b9c5bc2a2649edf3635b",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "432e9d75e48dbce8ee5579faff86cabf990f61e134ebe85f34f03b28e4500003",
+    "sources/repository/docs/TASKS.md": "a837094ac15d2f55f68955d2b3ff1df63912f7375daee9cce65c6041760a239e",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "425badb798eae4de0e62e235cf16993c5b93e4a3745f2028d10eec3fc4e0cc2f",
+    "sources/repository/product/README.md": "61c34c2eccece373465de81c23375286c8bdb0cb2496c8a454106bf13cf3837d",
+    "sources/repository/product/agents/README.md": "12729ad40735c8408a335897a0e79effc24c9256cf52b7b637f54dec1a575364",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md": "2fabaa266687a1e473b1714efec4bb9254bd9b6e5a3677e4b12a7c64ee3e051a",
+    "sources/repository/product/decisions/05_Decision_Log.md": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+    "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md": "299c70eca5cd80983310767afccc7a52669f040818298de92464f4edfca2bd72",
+    "sources/repository/product/reviews/INIT-003_Independent_Acceptance_Report.md": "9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d",
+    "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md": "f91638dd5e960d23b983ca62b9c151e4970f2d96c46b311281e4139194f44a3e",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+    "sources/review/review-range.diff": "dc732928714e1fe42b061a8962b5cfd8c507752ffe1cdafe9990b5546663e3c0",
+    "sources/review/review-range.stat.txt": "48e11d96750351713378d1ef956a3c5543dd71549836d65e3df3d9773966d097",
+    "sources/review/review-range.commits.txt": "0cfde3a30530dd7b84933c574068a44094eaa8ffec8562c1f649294363ce52ac"
+  }
+}

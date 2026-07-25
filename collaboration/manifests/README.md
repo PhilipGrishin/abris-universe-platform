@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -37,6 +37,9 @@ not approve returned meaning.
   INIT-003 full engineering-organization readiness validation; completed,
   validated, integrated, and archived with decision `VERIFIED` within the
   registered scope.
+- [`AU-EX-20260725-002`](AU-EX-20260725-002/README.md) — Product Decision
+  integration request for Cowork DEC-005 through DEC-008; exact-source package
+  exported to the Claude inbox; return and canonical integration remain open.
 
 ## Rules
 

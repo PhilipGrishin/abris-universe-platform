@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** INIT-003-PD-001 — owner dispositions implemented; Product Decision exchange preparation
+**Current focus:** INIT-003-PD-001 — Product Decision package exported; awaiting Claude return
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -118,6 +118,11 @@
   are not independently exposed by the public response.
 - `[OPEN]` INIT-002-F2, INIT-002-F5, and canonical integration of Cowork
   DEC-005 through DEC-008 remain follow-up work.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-002` packages 27
+  checksum-registered text sources and review evidence from exact source
+  `aec043a0796948c27b825907c929d783f6f8fca0`; its external Claude inbox is
+  byte-equivalent and reports `EXPORTED`, `CURRENT`, `NOT_RETURNED`, and
+  `NOT_INTEGRATED`.
 
 ## Verification Performed
 
@@ -231,13 +236,14 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and tested the Project Owner dispositions for OVR-001, OVR-002,
-OVR-004, and OVR-005 without changing product or role meaning. Registered Cowork
-DEC-005 through DEC-008 as Product Decision exchange inputs only.
+Prepared and synchronized `AU-EX-20260725-002` from immutable source
+`aec043a0796948c27b825907c929d783f6f8fca0` after implementing and testing the
+Project Owner dispositions. Cowork DEC-005 through DEC-008 remain exchange
+inputs only.
 
 ## Next Step
 
-Prepare and synchronize `AU-EX-20260725-002`, a `PRODUCT_DECISION` exchange for
-Cowork DEC-005 through DEC-008, then stop with `Codex finished`. Do not begin
-TASK-THINSLICE-001 Technical Review, the OQ-005 spike, or product implementation
-until the validated Product Decision return is canonically integrated.
+Stop with `Codex finished` and await the `AU-EX-20260725-002` return. Do not
+begin TASK-THINSLICE-001 Technical Review, the OQ-005 spike, or product
+implementation until the validated Product Decision return is canonically
+integrated.

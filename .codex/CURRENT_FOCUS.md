@@ -2,8 +2,8 @@
 
 ## Focus ID: INIT-003-PD-001
 
-**Status:** Owner dispositions `[IMPLEMENTED]`, `[TESTED]`; Product Decision
-Bridge return and canonical integration `[OPEN]`
+**Status:** Owner dispositions and Product Decision package `[IMPLEMENTED]`,
+`[TESTED]`; Bridge return and canonical integration `[OPEN]`
 
 Resolve the approved INIT-003 governance follow-ups and prepare the controlled
 `PRODUCT_DECISION` exchange for Cowork DEC-005 through DEC-008. Preserve those
@@ -28,10 +28,11 @@ decisions as product inputs only until a validated Claude return is integrated.
 
 ## Current Gate
 
-Prepare and synchronize exchange `AU-EX-20260725-002` from an immutable source
-commit, then stop for Claude Cowork. Do not begin TASK-THINSLICE-001 Technical
-Review, the OQ-005 spike, or product development before the returned Product
-Decision artifact is validated and canonically integrated.
+Exchange `AU-EX-20260725-002` is synchronized from immutable source
+`aec043a0796948c27b825907c929d783f6f8fca0`. Stop for Claude Cowork. Do not
+begin TASK-THINSLICE-001 Technical Review, the OQ-005 spike, or product
+development before the returned Product Decision artifact is validated and
+canonically integrated.
 
 ## Boundaries
 
@@ -46,6 +47,5 @@ Decision artifact is validated and canonically integrated.
 
 ## Next Concrete Step
 
-Create the exact-source Product Decision package, synchronize it to the
-exclusive Collaboration Bridge, and stop with the registered `Codex finished`
-trigger.
+Stop with the registered `Codex finished` trigger and await the Claude return
+in `claude/outbox/AU-EX-20260725-002`.
