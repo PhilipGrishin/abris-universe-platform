@@ -16,6 +16,7 @@ import {
   validateClaudeReturn,
   validateExchangeOutcome,
   validateReturnManifest,
+  validateTaskManifest,
   validateTextFile,
 } from "./lib/bridge-core.mjs";
 
@@ -91,6 +92,38 @@ test("rejects stale source commits", () => {
   execFileSync("git", ["add", "source.md"], { cwd: root });
   execFileSync("git", ["-c", "user.name=Bridge Test", "-c", "user.email=bridge@example.invalid", "commit", "-m", "two"], { cwd: root, stdio: "ignore" });
   expectCode(() => assertSourceIsCurrent(root, { source_branch: "main", source_commit_sha: first }), "STALE_SOURCE_COMMIT");
+});
+
+test("rejects task manifests whose required inputs are not packaged", () => {
+  const included = { path: "sources/present.md", sha256: "a".repeat(64), size_bytes: 1 };
+  expectCode(() => validateTaskManifest({
+    schema_version: "1.0.0",
+    exchange_id: "AU-EX-MISSING-INPUT",
+    task_id: "TASK-MISSING-INPUT",
+    task_type: "PRODUCT_DECISION",
+    requested_claude_role: "Chief Project Orchestrator",
+    source_commit_sha: "b".repeat(40),
+    source_branch: "codex/test",
+    prepared_at: "2026-07-25T00:00:00Z",
+    prepared_by: "AU-CODEX-PRIMARY",
+    purpose: "Validate required package inputs.",
+    scope: ["Validate input registration."],
+    out_of_scope: ["No integration."],
+    required_inputs: ["sources/missing.md"],
+    included_files: [included],
+    expected_outputs: ["return-manifest.json"],
+    acceptance_criteria: ["Every required input exists."],
+    authority_boundaries: {
+      product_authority: "Product owner.",
+      engineering_authority: "Engineering owner.",
+      documentation_authority: "Documentation owner.",
+      git_authority: "Git owner."
+    },
+    documentation_impact: "Minor",
+    return_location: "claude/outbox/AU-EX-MISSING-INPUT",
+    allowed_output_extensions: [".md", ".json"],
+    integrity_checksums: { [included.path]: included.sha256 },
+  }), "MISSING_REQUIRED_INPUT");
 });
 
 test("requires an explicit independent acceptance decision", () => {

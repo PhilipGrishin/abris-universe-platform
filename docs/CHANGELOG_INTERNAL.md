@@ -33,7 +33,7 @@ material defect.
   OVR-002, and OVR-005 without changing role authority or meaning.
 - Made exchange status reporting archive-aware for OVR-004 and added archive
   record and outcome-provenance validation.
-- Passed all 18 Bridge unit tests and revalidated both archived exchanges as
+- Passed all 19 Bridge unit tests and revalidated both archived exchanges as
   integrated, including correct `HISTORICAL_ARCHIVED` reporting.
 - Registered Cowork DEC-005 through DEC-008 only as inputs to
   `AU-EX-20260725-002`; no product decision was directly changed.

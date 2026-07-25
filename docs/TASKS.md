@@ -61,7 +61,7 @@
 - **Required result:** In a separate tooling task, make status reporting
   distinguish active, returned, integrated, and archived states; add tests and
   preserve current validation safety.
-- **Evidence:** 18/18 Bridge unit tests and live reports for archived exchanges
+- **Evidence:** 19/19 Bridge unit tests and live reports for archived exchanges
   `AU-EX-20260721-001` and `AU-EX-20260725-001`.
 
 ### INIT-003-OVR-005 — Normalize Exclusive Bridge Communication Governance

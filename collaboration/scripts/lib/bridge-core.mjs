@@ -323,6 +323,9 @@ export function validateTaskManifest(manifest) {
   }
   validateChecksumMap(manifest.integrity_checksums, "integrity_checksums");
   const records = new Map(manifest.included_files.map((record) => [record.path, record.sha256]));
+  for (const required of manifest.required_inputs) {
+    if (!records.has(required)) fail(`Required input is not included in the package: ${required}`, "MISSING_REQUIRED_INPUT");
+  }
   for (const [path, checksum] of Object.entries(manifest.integrity_checksums)) {
     if (!records.has(path) || records.get(path) !== checksum) fail(`Checksum map is inconsistent for ${path}.`, "CHECKSUM_MISMATCH");
   }

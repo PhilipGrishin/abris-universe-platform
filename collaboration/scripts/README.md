@@ -81,7 +81,8 @@ node --test collaboration/scripts/bridge-core.test.mjs
 The suite includes negative checks for traversal, hidden outputs, symbolic
 links, secret-like material, machine paths, unexpected extensions, ambiguous
 acceptance, unregistered output, checksum mismatch, mismatched archive records,
-and inconsistent canonical outcome provenance.
+inconsistent canonical outcome provenance, and a required input that is absent
+from the checksum-registered package.
 
 `report-exchange-status.mjs` distinguishes `REGISTERED`, `PREPARED`, `EXPORTED`,
 `RETURNED`, and `ARCHIVED`. For archived exchanges it revalidates the archived

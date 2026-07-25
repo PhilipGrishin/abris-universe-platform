@@ -187,7 +187,7 @@
   until the product-decision exchange is integrated.
 - **Evidence:** `.codex/AGENT_REGISTRY.md`, `docs/CODEX_AGENTS.md`,
   `collaboration/README.md`, the canonical governance indexes,
-  `collaboration/scripts/report-exchange-status.mjs`, and 18 passing Bridge
+  `collaboration/scripts/report-exchange-status.mjs`, and 19 passing Bridge
   unit tests.
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents

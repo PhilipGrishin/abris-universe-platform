@@ -139,10 +139,11 @@
   product-source checksum preservation, secret and temporary-file absence, the
   single intended Master Specification binary, required metadata, and Markdown
   link resolution.
-- `[TESTED]` 18 Bridge unit tests reject traversal, hidden outputs, symlinks,
+- `[TESTED]` 19 Bridge unit tests reject traversal, hidden outputs, symlinks,
   secret-like material, machine paths, unexpected extensions, ambiguous
   independent acceptance, unregistered output, checksum mismatch, archive
-  record mismatch, and canonical-outcome provenance mismatch.
+  record mismatch, canonical-outcome provenance mismatch, and missing required
+  package inputs.
 - `[TESTED]` The first package dry-run and apply produced 75 registered text
   files with checksums; its source branch and commit are current.
 - `[TESTED]` External synchronization changed no pre-existing Claude workspace
