@@ -311,10 +311,10 @@
 
 ### AU-CDX-TASK-001-RENDERER — Bounded Tiled Renderer Core
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; initial Engineering Verification
-  Status `REWORK REQUIRED`; remediation candidate pending exact-source
-  reverification; no project `[VERIFIED]`.
-- **Source:** Technical Design v1.5.1 section 8; ADR-TS001-002; task benchmark
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering
+  Verification Status `VERIFIED` at exact commit `930cad2`; no project
+  `[VERIFIED]`.
+- **Source:** Technical Design v1.5.2 section 8; ADR-TS001-002; task benchmark
   plan.
 - **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
   AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
@@ -345,8 +345,10 @@
   004. Reverification at `f3e2fdc` left only the bounded
   `patternVersionId` case open; the final candidate closes it and registers the
   empty-tile regression.
-- **Next step:** Commit the final narrow remediation candidate and submit its
-  exact source to AU-AGENT-003 before client integration.
+- **Final verification:** AU-AGENT-003 resolved TS001-RENDER-001 through 004 at
+  exact commit `930cad2`. Browser/client evidence remains out of this gate.
+- **Next step:** Proceed to the accessible web-flow and end-to-end browser
+  persistence integration.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

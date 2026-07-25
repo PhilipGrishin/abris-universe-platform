@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-RENDER-001 |
 | Title | TASK-THINSLICE-001 Tiled Renderer Core Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; initial engineering status `REWORK REQUIRED`; remediation candidate pending reverification |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering Verification Status `VERIFIED` |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan; route-1 fixtures |
+| Dependencies | Technical Design v1.5.2 section 8; ADR-TS001-002 v1.1.2; task benchmark plan; route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Renderer contract, tile size, viewport transform, symbol treatment, progress visualization, execution path, benchmark, accessibility, browser support, or AU-AGENT-003 finding change |
@@ -94,7 +94,8 @@ validation, declared stitch counts, and absolute pre-provider/request-response
 ceilings. Reverification at `f3e2fdc` confirmed those controls and left only
 the oversized `patternVersionId` case open. The final candidate bounds that
 identity before summary acceptance and adds durable version-identity and
-empty-tile regressions. Exact-source reverification remains required.
+empty-tile regressions. AU-AGENT-003 reverified exact commit `930cad2` and
+resolved all four findings.
 
 ## Limitations and Open Evidence
 
@@ -120,16 +121,15 @@ Documentation Exception is required.
 
 ## Quality Gate
 
-AU-AGENT-003 has assigned initial status `REWORK REQUIRED`. The remediation
-candidate must be committed and independently reverified before the
-repository-level renderer gate can pass. The agent may not assign project
-`[VERIFIED]` or product acceptance.
+AU-AGENT-003 assigned Engineering Verification Status `VERIFIED` to the bounded
+repository-level renderer core at exact commit `930cad2`. This does not cover
+the listed browser/client gates and does not assign project `[VERIFIED]` or
+product acceptance.
 
 ## Next Step
 
-Commit the exact remediation candidate, run AU-AGENT-003 reverification, and
-retain browser/Worker/accessibility/performance evidence for the
-client-integration gate.
+Proceed to browser/client integration while retaining every
+Worker/accessibility/performance evidence obligation.
 
 ## References
 

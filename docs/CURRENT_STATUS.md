@@ -196,7 +196,7 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.5.1 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.5.2 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
@@ -421,12 +421,13 @@ but reverification at `f3e2fdc` retained the single oversized
 `patternVersionId` portion of finding 003. The final narrow candidate bounds
 that identity and records the empty-tile case; 15 renderer tests pass. The
 100,000-stitch Node regression signal requests 12 of 128 tiles.
+AU-AGENT-003 resolved all four findings at exact commit `930cad2` and assigned
+repository-level Engineering Verification Status `VERIFIED`.
 Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
-independent renderer verification, deployment, and project `[VERIFIED]` remain
-open. This internal stage requires no Claude return.
+deployment, and project `[VERIFIED]` remain open. This internal stage requires
+no Claude return.
 
 ## Next Step
 
-Commit the final narrow renderer remediation and submit its exact source to
-AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for the
-later integration stage.
+Implement the accessible web flow and end-to-end browser persistence while
+keeping deployment and project `[VERIFIED]` gated.

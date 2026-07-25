@@ -1,16 +1,16 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-RENDERER
+## Focus ID: AU-CDX-TASK-001-CLIENT-INTEGRATION
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
-`VERIFIED WITH FINDINGS`; renderer-core initial status is `REWORK REQUIRED`,
-and its remediation candidate is `[IMPLEMENTED]`, `[TESTED]`
+`VERIFIED WITH FINDINGS`; renderer core is `[IMPLEMENTED]`, `[TESTED]` with
+repository-level Engineering Verification Status `VERIFIED`
 
-Commit and independently reverify the final narrow tiled Canvas2D renderer-core
-remediation for the remaining TS001-RENDER-003 version-identity bound. Keep
-client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
+Implement the approved accessible Phase 0 web flow, dedicated importer Worker,
+browser Canvas adapter, and end-to-end IndexedDB progress behavior. Keep
+production deployment outside this stage.
 
 ## Confirmed Inputs
 
@@ -29,7 +29,7 @@ client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
 
 ## Current Design State
 
-- Technical Design v1.5.1 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.2 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -67,21 +67,28 @@ client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
   remediation.
 - AU-AGENT-005 owns IndexedDB repositories, transactions, recovery, and data
   integrity.
-- AU-AGENT-006 owns client workspace and integration boundaries without
-  implementing product behavior at the scaffolding stage.
+- AU-AGENT-006 owns the approved client flow, browser integration,
+  accessibility, interaction, and client evidence.
 - AU-AGENT-003 independently verifies later implementation evidence.
 - AU-AGENT-002 maintains documentation, navigation, terminology, and
   traceability without changing technical or product meaning.
 
 ## Immediate Boundaries
 
-- Implement only renderer-core contracts from Technical Design section 8:
-  32×32 tile construction/query, visible range, transforms, hit testing,
-  deterministic draw-plan behavior, and measured medium-fixture evidence.
-- Do not implement client UI, navigation, Worker integration, CI/CD, or
-  deployment.
-- Do not close browser, real two-tab, power-loss, eviction, save-state, or
-  migration evidence from fake IndexedDB API tests.
+- Implement only the approved Phase 0 web flow from Technical Design sections
+  4, 8, 9, 10, and 11: OXS selection/import, project open, zoom/pan, readable
+  symbol view, mark/unmark, explicit saving/not-saved state, reload recovery,
+  and required accessible controls/status.
+- Run untrusted OXS parsing only in a dedicated Worker with no UI-thread
+  fallback.
+- Integrate existing renderer and persistence public contracts; do not
+  duplicate their algorithms or bypass their validation.
+- Add browser-level functional evidence for Canvas, IndexedDB, reload,
+  two-context locking, interaction, accessibility, and runtime requests where
+  the approved harness can verify them.
+- Do not claim power-loss, eviction, supported-browser, performance,
+  accessibility, or pixel-golden completion without exact evidence.
+- Do not implement CI/CD or deploy in this stage.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
 - Do not deploy to production before TD-GATE-003 and runtime security evidence
   close.
@@ -127,8 +134,13 @@ the missing `patternVersionId` length check inside finding 003. The final narrow
 candidate adds the pre-acceptance bound, a dedicated oversized-identity test,
 and a committed empty-tile regression. Fifteen renderer tests pass.
 
+Final reverification at exact commit `930cad2` resolved
+TS001-RENDER-001 through 004. The bounded repository-level renderer-core gate
+passes with Engineering Verification Status `VERIFIED`. Browser/client evidence
+remains open.
+
 ## Next Concrete Step
 
-Commit the final narrow renderer remediation and assign AU-AGENT-003
-exact-source reverification. Do not start client integration before the
-renderer-core gate passes.
+Inspect the web scaffold and approved UX/client contracts, then implement the
+smallest end-to-end browser flow with dedicated Worker import, renderer Canvas
+integration, IndexedDB persistence, and focused browser evidence.

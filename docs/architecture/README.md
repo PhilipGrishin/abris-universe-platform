@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/ARCHITECTURE.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -38,11 +38,11 @@ independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`. Architecture
 and AU-AGENT-003 design-only security review are complete. TD-GATE-001 is
 `[TESTED]` and closed for the initial route-1 producer profile; TD-GATE-004 is
 closed. Canonical domain-core, the bounded route-1 importer core, persistence,
-and the renderer-core remediation are `[IMPLEMENTED]`, `[TESTED]`. Renderer
-exact-source reverification, exact-symbol claims for other producers, Worker
-and client integration, runtime, browser performance, and deployment evidence
-remain open. These dispositions are not product or project `[VERIFIED]`
-acceptance.
+and the renderer core are `[IMPLEMENTED]`, `[TESTED]`; the bounded renderer
+gate has Engineering Verification Status `VERIFIED` at `930cad2`.
+Exact-symbol claims for other producers, Worker and client integration,
+runtime, browser performance, and deployment evidence remain open. These
+dispositions are not product or project `[VERIFIED]` acceptance.
 
 ## Owner
 

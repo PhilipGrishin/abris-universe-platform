@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.1 |
+| Version | 1.5.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -972,8 +972,12 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 5. `[IMPLEMENTED]`, `[TESTED]`: implement the bounded OXS route-1 importer
    core and golden/security tests. Dedicated Web Worker integration remains in
    the client stage.
-6. Implement IndexedDB repositories and recovery tests.
-7. Implement tiled renderer and measured medium-fixture prototype.
+6. `[IMPLEMENTED]`, `[TESTED]`; repository-level
+   `VERIFIED WITH FINDINGS`: implement IndexedDB repositories and recovery
+   tests. TS001-PERSIST-006 browser/client evidence remains open.
+7. `[IMPLEMENTED]`, `[TESTED]`; repository-level `VERIFIED`: implement tiled
+   renderer and measured medium-fixture prototype. Browser rendering and
+   performance evidence remains open.
 8. Integrate the accessible web flow and end-to-end persistence.
 9. Add the reviewed CI pipeline and a non-production deployment rehearsal.
 10. Pass AU-AGENT-003 engineering verification.

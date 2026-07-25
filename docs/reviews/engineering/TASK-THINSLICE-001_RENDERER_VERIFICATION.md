@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-REVIEW-ENG-TS001-RENDER-001 |
 | Title | TASK-THINSLICE-001 Renderer Engineering Verification |
-| Status | `[IMPLEMENTED]`; initial Engineering Verification Status `REWORK REQUIRED` |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status `VERIFIED` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | Exact initial source `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`; exact first remediation `bdaf3ed35d33560b180f385c114bc9f9d2cf606a`; TASK-THINSLICE-001 v1.1; Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan and threat model |
+| Dependencies | Exact initial source `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`; exact first remediation `bdaf3ed35d33560b180f385c114bc9f9d2cf606a`; TASK-THINSLICE-001 v1.1; Technical Design v1.5.2 section 8; ADR-TS001-002 v1.1.2; task benchmark plan and threat model |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Renderer remediation commit; browser/client evidence; renderer contract, tile integrity, progress state, viewport, performance, accessibility, or security change |
@@ -173,3 +173,40 @@ mutation requires an internal violation of readonly contracts.
 
 The candidate passes 15 renderer tests. Exact-source AU-AGENT-003
 reverification remains required before the quality-gate status can change.
+
+## Final Exact-Source Reverification
+
+AU-AGENT-003 reverified exact commit
+`930cad2e1eabd9bb8b9db7a0acef3b5e0e6ae8c9` against
+`f3e2fdc59c15068faa383bae9e1de7a3226b5056`. Local and remote identities
+matched, the worktree was clean, diff hygiene passed, and the reviewer modified
+no files.
+
+The reviewer confirmed that `patternVersionId` is bounded before trimming and
+acceptance; the 8,193-code-unit regression rejects with
+`RENDER_INVALID_SUMMARY` before provider use; empty returned tiles remain in
+the committed corruption matrix; and all prior summary, request, response, and
+stitch controls remain intact.
+
+| Finding | Final Disposition |
+| --- | --- |
+| TS001-RENDER-001 | Resolved |
+| TS001-RENDER-002 | Resolved |
+| TS001-RENDER-003 | Resolved |
+| TS001-RENDER-004 | Resolved |
+
+The final evidence passes strict renderer and workspace typecheck, fixture and
+workspace verification, 10 domain tests, 15 importer tests, 17 persistence
+tests, 15 renderer tests, and the explicitly non-acceptance 100,000-stitch Node
+signal.
+
+The bounded repository-level renderer-core gate passes at exact commit
+`930cad2`. Defensive copy/freeze remains a non-mandatory hardening
+recommendation. Browser Canvas/goldens, glyph atlas, Worker transport,
+accessibility, gestures, browser performance, supported-device coverage, and
+the later 500,000-stitch prototype remain separate later gates.
+
+**Engineering Verification Status:** `VERIFIED`
+
+This decision is not product acceptance, release approval, or project
+`[VERIFIED]`.

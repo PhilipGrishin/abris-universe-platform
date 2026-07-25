@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.11.0 |
+| Version | 1.12.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -58,9 +58,9 @@ initial route-1 producer profile, so the registered sequence may proceed to
 the next registered stages. Canonical domain-core, the bounded route-1 importer
 core, IndexedDB persistence/recovery, and the tiled renderer core are
 implemented and tested. The renderer's initial exact-source AU-AGENT-003 review
-assigned `REWORK REQUIRED`; its remediation candidate awaits reverification,
-and later browser/Worker/client evidence remains open. TD-GATE-002 remains open
-for
+assigned `REWORK REQUIRED`; final exact source `930cad2` subsequently resolved
+all renderer-core findings with Engineering Verification Status `VERIFIED`.
+Later browser/Worker/client evidence remains open. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

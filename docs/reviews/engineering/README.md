@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -33,7 +33,7 @@ contain Claude Cowork product acceptance reports and does not grant project
 | --- | --- | --- | --- |
 | TASK-THINSLICE-001 | [Pre-Code Security Design Verification](TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Design-only security review; not implementation, release, product acceptance, or project `[VERIFIED]` |
 | TASK-THINSLICE-001 | [Persistence Verification](TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Exact remediation commit `854073c`; findings 001–005 resolved; finding 006 remains the browser/client evidence gate |
-| TASK-THINSLICE-001 | [Renderer Verification](TASK-THINSLICE-001_RENDERER_VERIFICATION.md) | `REWORK REQUIRED` | Exact commit `f3e2fdc` left only the bounded `patternVersionId` portion of finding 003 open; final narrow remediation awaits exact-source reverification |
+| TASK-THINSLICE-001 | [Renderer Verification](TASK-THINSLICE-001_RENDERER_VERIFICATION.md) | `VERIFIED` | Exact commit `930cad2`; findings TS001-RENDER-001 through 004 resolved; repository-core scope only |
 
 The report closes the independent security-review component of TD-GATE-004.
 TS001-SEC-001 is resolved. TS001-SEC-002 retains its future runtime request
@@ -43,9 +43,9 @@ The bounded repository-level persistence gate passes at exact commit `854073c`.
 TS001-PERSIST-006 remains mandatory before any browser/client persistence,
 operational durability, release, or complete thin-slice claim.
 
-The renderer-core gate did not pass at `cb34a48`, `bdaf3ed`, or `f3e2fdc`.
-The final narrow remediation candidate must receive exact-source AU-AGENT-003
-reverification before client integration.
+The bounded repository-level renderer-core gate passes at exact commit
+`930cad2`. Browser/client evidence remains mandatory and the result assigns no
+project `[VERIFIED]`.
 
 ## Owner
 
