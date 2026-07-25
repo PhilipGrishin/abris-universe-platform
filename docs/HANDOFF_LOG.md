@@ -1,5 +1,20 @@
 # Handoff Log
 
+## 2026-07-25 — Independent Persistence Verification at `776a149`
+
+- **Engineering Verification Status:** `REWORK REQUIRED`.
+- **Reviewer:** AU-AGENT-003, independent of AU-AGENT-005 implementation.
+- **Findings:** High TS001-PERSIST-001/002 and Medium
+  TS001-PERSIST-003/004/005 require implementation remediation. Medium
+  TS001-PERSIST-006 preserves the real-browser/client evidence gate.
+- **Evidence:** Strict typecheck, 11 focused persistence tests, full workspace
+  suite, source/design/ADR/threat-model comparison, and exact source/ref checks.
+- **Boundary:** No project `[VERIFIED]`, product acceptance, release approval,
+  deployment permission, or client/browser evidence was assigned.
+- **Documentation Impact:** Material.
+- **Next gate:** Remediate findings 001 through 005 and submit an exact new
+  source to AU-AGENT-003. Finding 006 remains open until client integration.
+
 ## 2026-07-25 — Internal IndexedDB Persistence and Recovery Stage
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 implementation review

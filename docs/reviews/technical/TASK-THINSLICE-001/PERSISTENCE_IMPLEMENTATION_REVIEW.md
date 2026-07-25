@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-PERSIST-001 |
 | Title | TASK-THINSLICE-001 IndexedDB Persistence Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification `REWORK REQUIRED` at `776a149` |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 at the consolidated implementation gate |
@@ -104,7 +104,12 @@ production IndexedDB dependency was added.
   release-specific evidence.
 - The importer Worker and tile-construction integration are not part of this
   package.
-- AU-AGENT-003 has not yet issued consolidated implementation verification.
+- AU-AGENT-003 issued `REWORK REQUIRED` at exact commit `776a149`. Mandatory
+  findings TS001-PERSIST-001 through TS001-PERSIST-005 require final-event
+  hashing, stitch referential integrity, Blob/hash binding, bounded runtime
+  ImportReport validation, and fail-closed replay/rebuild integrity.
+- TS001-PERSIST-006 preserves real-browser, two-tab, power-loss, eviction, and
+  client save-state evidence as a later mandatory gate.
 
 ## Documentation Result
 
@@ -114,9 +119,9 @@ evidence. No Documentation Exception is required.
 
 ## Next Step
 
-Submit this exact implementation to AU-AGENT-003 for an independent persistence
-quality/security review. Resolve mandatory findings before integrating the
-renderer and client save-state behavior.
+Remediate TS001-PERSIST-001 through TS001-PERSIST-005 and submit the exact new
+source for AU-AGENT-003 reverification. Do not close TS001-PERSIST-006 from
+fake IndexedDB evidence.
 
 ## References
 
@@ -126,3 +131,4 @@ renderer and client save-state behavior.
 - [Domain Core Review](DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
 - [OXS Importer Review](OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [Persistence Package](../../../../packages/persistence/README.md)
+- [Independent Persistence Verification](../../engineering/TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md)

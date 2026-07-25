@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 persistence implementation verification
+**Current focus:** TASK-THINSLICE-001 persistence finding remediation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -79,6 +79,10 @@
   single-writer progress events, rebuilds projections, and surfaces typed
   storage/capability failures. Eleven focused tests pass; real browser and
   AU-AGENT-003 implementation verification remain open.
+- `[IMPLEMENTED]` AU-AGENT-003 independently reviewed exact persistence source
+  `776a149` and assigned Engineering Verification Status `REWORK REQUIRED`.
+  TS001-PERSIST-001 through TS001-PERSIST-005 are mandatory code/evidence
+  findings; TS001-PERSIST-006 remains the later real-browser/client gate.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -400,6 +404,6 @@ remain open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Run AU-AGENT-003 independent verification against the exact persistence
-implementation and evidence. Resolve mandatory findings before renderer/client
-integration.
+Remediate TS001-PERSIST-001 through TS001-PERSIST-005 and obtain AU-AGENT-003
+reverification on an exact new commit. Keep TS001-PERSIST-006 open for
+renderer/client integration.

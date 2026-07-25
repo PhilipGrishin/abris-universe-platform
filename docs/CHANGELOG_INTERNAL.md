@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.1.0 |
+| Version | 3.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — Independent Persistence Verification
+
+- Registered AU-AGENT-003 report AU-REVIEW-ENG-TS001-PERSIST-001 for exact
+  source `776a149`.
+- Recorded Engineering Verification Status `REWORK REQUIRED` without changing
+  the independent report meaning.
+- Routed High TS001-PERSIST-001/002 and Medium
+  TS001-PERSIST-003/004/005 to AU-AGENT-005/AU-AGENT-001 remediation.
+- Preserved TS001-PERSIST-006 as the real-browser/client evidence gate rather
+  than treating fake IndexedDB tests as runtime acceptance.
+- Blocked the persistence Completion Report and renderer/client integration
+  until the mandatory implementation findings are independently reverified.
+- Documentation Impact: Material.
+- Status: independent report `[IMPLEMENTED]`; findings open; no project
+  `[VERIFIED]`.
 
 ## 2026-07-25 — TASK-THINSLICE-001 IndexedDB Persistence and Recovery
 

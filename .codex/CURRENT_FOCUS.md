@@ -4,11 +4,12 @@
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
-`[IMPLEMENTED]`, `[TESTED]`; independent persistence verification is next
+`[IMPLEMENTED]`, `[TESTED]`; persistence gate is `REWORK REQUIRED`
 
-Independently verify the persistence implementation and evidence against
-Technical Design v1.5.0 and ADR-TS001-003. Resolve mandatory findings before
-starting rendering or client integration.
+Remediate TS001-PERSIST-001 through TS001-PERSIST-005 from the independent
+report at exact source `776a149`, then obtain AU-AGENT-003 reverification.
+Do not start rendering or client integration before the mandatory findings
+close.
 
 ## Confirmed Inputs
 
@@ -103,6 +104,6 @@ Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Assign AU-AGENT-003 to review the exact persistence implementation, tests,
-dependency boundary, risk claims, and unresolved browser/client evidence.
-Resolve mandatory findings before starting renderer implementation.
+Implement the five mandatory persistence findings, add focused negative
+evidence, update lifecycle records, and submit the exact remediation source to
+AU-AGENT-003. Keep TS001-PERSIST-006 open for browser/client integration.
