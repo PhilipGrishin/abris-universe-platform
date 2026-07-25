@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-001 |
 | Title | TASK-THINSLICE-001 v1.0 Technical Review |
-| Status | `[IMPLEMENTED]`, development disposition blocked |
+| Status | `[IMPLEMENTED]`; product clarifications resolved, development blocked |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Claude Cowork / Project Owner for product-facing dispositions |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0, `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` v1.0, `product/architecture-inputs/02_Architecture_and_Stack.md` v1.0, PROD-DEC-005 through PROD-DEC-008 |
+| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0 exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` v1.0, `product/architecture-inputs/02_Architecture_and_Stack.md` v1.0, PROD-DEC-005 through PROD-DEC-009 |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package revision; clarification disposition; OQ-005 decision integration; Technical Design Proposal; repository implementation arrival |
@@ -34,15 +34,14 @@ TASK-THINSLICE-001 is **technically feasible**, and the narrow vertical slice is
 a reasonable way to validate the Pattern/import/viewer/progress boundaries.
 The task is **not ready for development**.
 
-Mandatory pre-development conditions are:
+The product clarification gate is resolved by PROD-DEC-009. Mandatory
+pre-development conditions that remain are:
 
-1. Claude Cowork disposition of the OXS recommendation and `SXP`/`XSP`
-   inconsistency.
-2. Redistribution-authorized representative fixtures.
-3. A Technical Design Proposal covering the canonical Pattern subset, OXS
+1. Project-original representative fixtures under PROD-DEC-009(3).
+2. A Technical Design Proposal covering the canonical Pattern subset, OXS
    mapping, client persistence, rendering boundary, security limits, tests,
    performance budgets, Cloudflare deployment path, and rollback.
-4. Architecture review of that proposal and any required ADR dispositions.
+3. Architecture review of that proposal and any required ADR dispositions.
 
 No application, importer, renderer, persistence, pipeline, or deployment code
 was created during this review.
@@ -135,9 +134,8 @@ The attached [OQ-005 spike](OQ-005_IMPORT_FORMAT_SPIKE.md) recommends **OXS
 real official XSP sample was an encrypted container without a public payload
 schema. OXS is therefore the lowest-complexity representative candidate.
 
-The recommendation is not yet a canonical product decision. DEP-001 remains
-open until the Product Decision Log records the disposition and fixture
-authority is established.
+PROD-DEC-009 accepts this recommendation and resolves OQ-005. DEP-001 remains
+open only until the authorized project-original fixture set is produced.
 
 ## 8. Data Model Review
 
@@ -255,7 +253,7 @@ engineering status does not assign project `[VERIFIED]`.
 
 ### Blocking
 
-- **DEP-001:** concrete importer format integration and fixture authority.
+- **DEP-001:** project-original fixture production under PROD-DEC-009(3).
 - **DEP-TR-001:** approved Technical Design Proposal and required ADR
   dispositions.
 
@@ -270,6 +268,10 @@ engineering status does not assign project `[VERIFIED]`.
 
 - **DEP-003:** the owner confirmed the OQ-005 selection criterion through
   PROD-DEC-006.
+- **OQ-005 / format:** OXS 1.0 and the `SXP` to `XSP` normalization are
+  confirmed by PROD-DEC-009.
+- **Fixture authority:** the rights-safe acquisition rule is confirmed by
+  PROD-DEC-009(3).
 
 ## 15. Alternatives
 
@@ -316,24 +318,26 @@ files or progress. Deleting local user data is not an acceptable rollback.
 ## 17. Clarifications and Conflicts
 
 The attached [Clarification and Conflict
-Report](CLARIFICATION_AND_CONFLICT_REPORT.md) requests:
+Report](CLARIFICATION_AND_CONFLICT_REPORT.md) records the resolved
+dispositions:
 
-- product-authorized normalization of `SXP` versus official `XSP`;
-- integration or rejection of the OXS recommendation;
-- fixture redistribution/derivative authority.
+- `SXP` is the authorized typo normalization to `XSP`;
+- OXS 1.0 is the selected Phase 0 importer format;
+- project-original fixtures are authorized under PROD-DEC-009(3).
 
-No product source was silently rewritten.
+Task Package v1.1 and the architecture-input wording contain only the
+authorized edits. No architecture was approved.
 
 ## 18. Risks
 
 | Risk | Impact | Current control | Remaining action |
 | --- | --- | --- | --- |
-| Proprietary-format lock-in | High | OXS recommendation; original retention | Claude disposition and ADR |
+| Proprietary-format lock-in | High | OXS selected; original retention | Mapping design and ADR disposition |
 | Malicious XML or resource exhaustion | High | Threat requirements identified | Design limits and security tests |
 | Coordinate/symbol semantic mismatch | High | Explicit mapping gate | Mapping specification and golden fixtures |
 | Progress loss on local writes | High | Separate event model required | Transaction/recovery design and fault tests |
 | Renderer architecture does not scale | High | Tiling required | Medium-fixture benchmark and later 500k prototype |
-| Third-party fixture rights | High | No external samples committed | Permission/license evidence |
+| Third-party fixture rights | High | Project-original route authorized; no external samples committed | Produce route-1 fixtures and evidence |
 | Static deploy lacks rollback | Medium | Target confirmed only | CI/deploy/rollback design |
 | Scope expansion | High | Task exclusions preserved | Review against Task Package in every gate |
 
@@ -344,7 +348,7 @@ because it combines untrusted file parsing, a new canonical domain boundary,
 interactive rendering, durable local state, performance evidence, and first
 deployment infrastructure. The correct delivery strategy is staged:
 
-1. product clarification and fixture authority;
+1. product clarification and fixture authority — resolved;
 2. Technical Design and architecture review;
 3. smallest executable foundation;
 4. importer/domain integration;
@@ -366,18 +370,18 @@ updates. Product meaning remains owned by the Project Owner and Claude Cowork.
 
 - **Technical Review:** completed
 - **Feasibility:** feasible with stated controls
-- **OQ-005:** OXS recommendation issued; canonical decision pending
-- **Ready for Technical Design:** after Claude clarification response
+- **OQ-005:** fully resolved; OXS 1.0 confirmed by PROD-DEC-009
+- **Ready for Technical Design:** **Yes**
 - **Ready for Development:** **No**
 - **Development status:** blocked
 - **Project `[VERIFIED]`:** not assigned
 
 ## 22. Exact Next Step
 
-Commit this Technical Review package, prepare a `PRODUCT_CLARIFICATION`
-Collaboration Bridge exchange at the exact source commit, and request Claude
-Cowork disposition of CLR-001 through CLR-003. Stop before Technical Design or
-implementation.
+Prepare the TASK-THINSLICE-001 Technical Design Proposal, including the binding
+OXS mapping invariant, security limits, performance environments, route-1
+fixture plan, and GitHub-to-CI-to-Cloudflare deployment and rollback design.
+Development remains blocked until DEP-TR-001 architecture review completes.
 
 ## References
 
@@ -385,6 +389,7 @@ implementation.
 - [OQ-005 Spike](OQ-005_IMPORT_FORMAT_SPIKE.md)
 - [Clarification and Conflict Report](CLARIFICATION_AND_CONFLICT_REPORT.md)
 - [TASK-THINSLICE-001 v1.0](../../../../product/task-packages/07_TaskPackage_EP01_ThinSlice.md)
+- [TASK-THINSLICE-001 v1.1](../../../../product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md)
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
 - [Product Architecture Input](../../../../product/architecture-inputs/02_Architecture_and_Stack.md)
 - [Master Product Specification](../../../../product/specifications/Abris_Universe_Master_Product_Specification_RU.docx)

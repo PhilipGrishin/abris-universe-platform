@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | System Architecture, Data & AI Governance Lead |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/ARCHITECTURE.md` |
@@ -27,7 +27,8 @@ topology.
 - [Architecture, Data, Scalability, and Recommended Stack](02_Architecture_and_Stack.md)
   — `[APPROVED]` product-side architecture input under PROD-DEC-005; stack
   recommendations and proposed ADRs still require Codex Technical Review and
-  the engineering decision process.
+  the engineering decision process. Section 9.5 contains the wording-only
+  `SXP` to `XSP` correction authorized by PROD-DEC-009.
 
 ## Owner, Lifecycle, and Additions
 

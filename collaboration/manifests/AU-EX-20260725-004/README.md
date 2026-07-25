@@ -4,16 +4,16 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260725-004 |
 | Title | TASK-THINSLICE-001 Product Clarification Exchange |
-| Status | `EXPORTED`; source `CURRENT`; Claude return `[OPEN]` |
+| Status | `ARCHIVED`; source `CURRENT`; return valid and integrated |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `docs/reviews/technical/TASK-THINSLICE-001/`, `collaboration/manifests/AU-EX-20260725-003/withdrawal.json` |
 | Supersedes | Rejected exchange preparation `AU-EX-20260725-003` |
 | Superseded By | None |
-| Review Triggers | Claude return; validation failure; source mismatch; clarification disposition; canonical integration |
+| Review Triggers | Outcome mismatch; archive validation failure; source-provenance issue; superseding product decision |
 
 ## Purpose
 
@@ -31,11 +31,11 @@ solution.
 ## Owner and Lifecycle
 
 AU-CODEX-PRIMARY prepared and synchronized the checksum-bound package from the
-dedicated immutable source branch. The Chief Project Orchestrator owns the
+dedicated immutable source branch. The Chief Project Orchestrator returned the
 coordinated product clarification within the supplied authority. AU-AGENT-002
-maintains placement, metadata, navigation, and traceability after validation. A
-return remains non-canonical until contract validation, authorized meaning
-review, Codex integration, and provenance archive complete.
+maintains placement, metadata, navigation, and traceability. Contract
+validation, authorized meaning review, canonical integration, and provenance
+archive are complete.
 
 ## Package State
 
@@ -47,25 +47,27 @@ review, Codex integration, and provenance archive complete.
   `1319f4746565be9ed962b8150365e1abacf08fb7..e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`
 - Registered files: 28
 - Registered payload bytes: 394,832
-- External inbox: checksum-equivalent
-- Lifecycle: `EXPORTED`
+- External inbox and outbox: archived with checksum provenance
+- Lifecycle: `ARCHIVED`
 - Source status: `CURRENT`
-- Return: `NOT_RETURNED`
-- Integration: `NOT_INTEGRATED`
+- Return: `VALID`, `COMPLETED / NO_DECISION`
+- Integration: `INTEGRATED`
+- Canonical result: PROD-DEC-009, OQ-005 resolution, Task Package v1.1, and
+  authorized architecture-input terminology normalization
+- Acceptance status: none; `[VERIFIED]` not assigned
 - Development: blocked
 
 ## Adding Exchange Artifacts
 
-Do not edit `task-manifest.json`, replace the runtime package, reuse this
-Exchange ID, or advance the dedicated source branch before return processing.
-Claude may write only the registered return manifest and output files to its
-outbox. A valid transport return does not approve product meaning or
-engineering work.
+Do not edit `task-manifest.json` or `outcome.json`, replace archive evidence, or
+reuse this Exchange ID. Preserve the dedicated source branch and external
+archive. Any later product change requires a new decision and exchange.
 
 ## Related Sources
 
 - [Request](request.json)
 - [Task Manifest](task-manifest.json)
+- [Outcome](outcome.json)
 - [Rejected Predecessor](../AU-EX-20260725-003/README.md)
 - [Exchange Manifest Registry](../README.md)
 - [Collaboration Bridge](../../README.md)

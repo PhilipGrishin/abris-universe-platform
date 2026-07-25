@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -46,8 +46,9 @@ not approve returned meaning.
   branch advanced; retained as provenance and replaced.
 - [`AU-EX-20260725-004`](AU-EX-20260725-004/README.md) — replacement
   TASK-THINSLICE-001 product clarification for `SXP`/`XSP`, the OXS
-  recommendation, and fixture authority; exact-source package exported from a
-  dedicated immutable branch, return open.
+  recommendation, and fixture authority; return validated and integrated as
+  PROD-DEC-009 and related records, then archived with `NO_DECISION` and no
+  `[VERIFIED]` status.
 
 ## Rules
 

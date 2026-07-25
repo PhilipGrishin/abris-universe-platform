@@ -228,7 +228,7 @@
 
 ## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
 
-- **Status:** `[OPEN]`, development blocked by controls
+- **Status:** `[OPEN]`, format and rights rule resolved; design and fixtures pending
 - **Probability:** High without the OQ-005 and fixture gates
 - **Impact:** High
 - **Trigger:** Importer development starts from an undocumented/proprietary
@@ -237,14 +237,14 @@
   and derivative authority.
 - **Affected areas:** Pattern correctness, data loss, security, compatibility,
   legal exposure, tests, repository distribution, and roadmap.
-- **Prevention:** Prefer the documented OXS recommendation; preserve original
+- **Prevention:** Use the confirmed OXS 1.0 selection; preserve original
   files; define a mapping contract; keep Symbol separate from PaletteItem and
   Pattern separate from Progress; disable unsafe XML features; impose resource
   limits; require fixture provenance and permission.
-- **Mitigation:** Keep DEP-001 and development blocked until Claude dispositions
-  the format and terminology and authorized fixtures exist. Require golden,
-  malformed, size-limit, coordinate, palette-reference, and unsupported-content
-  tests.
+- **Mitigation:** PROD-DEC-009 resolves the format, terminology, and rights-safe
+  acquisition rule. Keep DEP-001 and development blocked until route-1 fixtures
+  exist, and require the mapping design, golden, malformed, size-limit,
+  coordinate, palette-reference, and unsupported-content tests.
 - **Fallback:** Reject the affected format or fixture, preserve evidence,
   disable the importer, restore the last known-good static deployment, and
   return the choice through a Technical Alternative or Conflict Report.

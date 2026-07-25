@@ -77,7 +77,7 @@ project-owner approval.
 | Consolidated product specification | `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` | Project Owner / Claude Cowork | Approved Master Product Specification v1.0. |
 | Product and owner decisions | `product/decisions/05_Decision_Log.md` | Project Owner / Claude Cowork | Each entry retains its own status. |
 | Independent product and governance acceptance | `product/reviews/` | Claude Cowork reviewer identified by each report | Acceptance applies only to the exact source, scope, evidence, and limitations declared by the report. |
-| Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | Approval for review does not bypass engineering intake. |
+| Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | TASK-THINSLICE-001 v1.1 is current; v1.0 is preserved. Approval for review or design does not bypass engineering intake. |
 | Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
 | Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |
 | Shared delivery lifecycle | `docs/SHARED_WORKFLOW.md` | Project Owner / AU-CODEX-PRIMARY | Artifact routing and status flow, not product or technical meaning. |

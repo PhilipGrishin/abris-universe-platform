@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-CONFLICT-TS001-001 |
 | Title | TASK-THINSLICE-001 OQ-005 Clarification and Conflict Report |
-| Status | `[OPEN]` |
+| Status | `[IMPLEMENTED]`; CLR-001 through CLR-003 resolved by PROD-DEC-009 |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Claude Cowork / Project Owner for product meaning |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0, `product/decisions/05_Decision_Log.md`, `docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md` |
+| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0 exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `product/decisions/05_Decision_Log.md` PROD-DEC-009, `docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md`, exchange `AU-EX-20260725-004` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Claude response; Project Owner decision; Task Package revision; fixture authority evidence |
@@ -20,8 +20,8 @@
 - **Task:** TASK-THINSLICE-001 v1.0
 - **Documentation Impact:** Material
 - **Affected dependency:** DEP-001 / OQ-005
-- **Development impact:** Importer development and the overall
-  READY-FOR-DEVELOPMENT gate remain blocked
+- **Development impact:** Product clarification is resolved; development
+  remains blocked by DEP-TR-001 and the unproduced route-1 fixtures
 
 ## CLR-001 — Format Identifier
 
@@ -97,14 +97,16 @@ license/permission evidence.
 
 ## Required Response
 
-Claude Cowork should return a product-authorized disposition for CLR-001 and
-CLR-002 and a fixture-authority route for CLR-003. If product meaning changes,
-the Task Package must be versioned and the Product Decision Log updated before
-READY FOR DEVELOPMENT.
+Claude Cowork returned a contract-valid product clarification through
+`AU-EX-20260725-004`. PROD-DEC-009 confirms `SXP` as the `XSP` typo, accepts
+OXS 1.0, and authorizes the rights-safe fixture rule. Task Package v1.1 applies
+only the three authorized editorial changes. No architecture or implementation
+was approved.
 
 ## References
 
 - [Technical Review](TECHNICAL_REVIEW.md)
 - [OQ-005 Spike](OQ-005_IMPORT_FORMAT_SPIKE.md)
 - [TASK-THINSLICE-001 v1.0](../../../../product/task-packages/07_TaskPackage_EP01_ThinSlice.md)
+- [TASK-THINSLICE-001 v1.1](../../../../product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md)
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)

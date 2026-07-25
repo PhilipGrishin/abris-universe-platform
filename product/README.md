@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner / Claude Cowork |
 | Technical Approver | Project Owner |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md`, `collaboration/README.md` |
@@ -58,6 +58,11 @@ The Product Vision/Roadmap and product-side Architecture input are approved
 without content changes under PROD-DEC-005. Stack recommendations and proposed
 ADRs still require Codex Technical Review. Research evidence remains
 subordinate to approved decisions and specifications.
+
+PROD-DEC-009 selects OXS 1.0 for the Phase 0 importer, confirms the authorized
+`SXP` to `XSP` wording normalization, and establishes the rights-safe fixture
+rule. TASK-THINSLICE-001 v1.1 is the current editorial revision. These product
+inputs authorize Technical Design, not implementation.
 
 ## Navigation
 

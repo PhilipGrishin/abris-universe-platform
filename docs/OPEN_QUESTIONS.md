@@ -56,22 +56,21 @@
 
 ## OQ-005 — First Phase 0 Import Format
 
-- **Status:** `[CONFIRMED]` owner criterion; technical recommendation
-  `[PROPOSED]`; product integration `[OPEN]`
+- **Status:** `[CONFIRMED]`, fully resolved
 - **Answer:** Per PROD-DEC-006, the Project Owner confirmed the criterion on
   2026-07-21: minimize parsing complexity while remaining representative of
-  real user files.
+  real user files. PROD-DEC-009 confirms OXS 1.0 as the concrete Phase 0
+  format under that standing delegation.
 - **Spike result:** The bounded review inspected real official OXS and XSP
-  samples. OXS 1.0 is recommended because its official XML specification and
+  samples. OXS 1.0 was selected because its official XML specification and
   sample expose the required Phase 0 fields; the inspected XSP sample contains
   an encrypted payload without a public official schema.
-- **Conflicts and inputs required:** Product sources use `SXP`, while official
-  vendor/ecosystem sources use `XSP`. Claude Cowork must disposition that
-  terminology, integrate or reject OXS, and establish authority for committed
-  representative fixtures.
+- **Terminology and fixtures:** PROD-DEC-009 confirms `SXP` as a typographical
+  error for `XSP`, authorizes normalization, and registers the fixture rule.
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
-- **Result:** The spike recommendation is complete, but DEP-001 and importer
-  coding remain blocked pending product integration and fixture authority.
-- **Decision owner:** Project Owner for the criterion; AU-AGENT-004 prepares the
-  technical recommendation; AU-AGENT-001 approves the Technical Review
-  disposition.
+- **Result:** OQ-005 is closed. Remaining engineering work is route-1 fixture
+  production for DEP-001 and the Technical Design mapping contract for
+  DEP-TR-001. Development remains blocked.
+- **Decision owner:** Project Owner for the criterion; Claude Cowork within
+  PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
+  evidence; AU-AGENT-001 for the Technical Review disposition.

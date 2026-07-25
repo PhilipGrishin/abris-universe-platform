@@ -7,18 +7,19 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
+| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package revision; clarification decision; spike evidence change; Technical Review supersession |
 
 ## Purpose
 
-Provide the canonical navigation record for the TASK-THINSLICE-001 v1.0
-engineering intake and its OQ-005 import-format evidence.
+Provide the canonical navigation record for the TASK-THINSLICE-001 engineering
+intake, its v1.0 exact review source, current v1.1 editorial revision, and
+OQ-005 import-format evidence.
 
 ## Scope
 
@@ -34,12 +35,11 @@ contains no application implementation or approved Technical Design.
 
 ## Current Disposition
 
-The task is technically feasible, but it is **not ready for development**.
-OQ-005 has a provisional OXS recommendation. Claude Cowork must review the
-recommendation, resolve the `SXP`/`XSP` source inconsistency, and establish
-fixture authority before importer implementation. A Technical Design Proposal
-and its required review remain mandatory after those product inputs are
-resolved.
+The task is technically feasible and ready for Technical Design, but it is
+**not ready for development**. PROD-DEC-009 confirms OXS 1.0, resolves
+`SXP`/`XSP`, and authorizes the rights-safe fixture rule. Route-1 fixture
+production, a Technical Design Proposal, architecture review, and required ADR
+dispositions remain mandatory.
 
 ## Owner
 
@@ -67,5 +67,6 @@ the same change.
 - [Source of Truth Registry](../../../SOURCE_OF_TRUTH.md)
 - [Technical Review Library](../README.md)
 - [TASK-THINSLICE-001 v1.0](../../../../product/task-packages/07_TaskPackage_EP01_ThinSlice.md)
+- [TASK-THINSLICE-001 v1.1](../../../../product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md)
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
 - [Current Focus](../../../../.codex/CURRENT_FOCUS.md)

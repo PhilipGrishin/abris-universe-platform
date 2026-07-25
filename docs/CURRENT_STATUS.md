@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AU-CDX-TASK-001 Technical Review clarification handoff
+**Current focus:** AU-CDX-TASK-001 Technical Design gate
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -69,8 +69,8 @@
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
 - `[CONFIRMED]` Master Product Specification v1.0 is the registered consolidated
-  product specification. AU-CDX-TASK-001 v1.0 is approved for Codex review, not
-  implementation.
+  product specification. AU-CDX-TASK-001 v1.1 is the current approved editorial
+  revision for Technical Design, not implementation; v1.0 is preserved.
 - `[IMPLEMENTED]`, `[TESTED]` The committed bridge contracts and dry-run-first
   tools prepare, synchronize, validate, stage, archive, and report controlled
   local exchanges without performing Git operations.
@@ -131,21 +131,25 @@
   chart, 7 non-cloth palette entries, 1,000 full stitches, 1,105 backstitches,
   and 18 ornaments. A real official XSP sample was confirmed as an encrypted
   ZIP-compatible container with one encrypted payload.
-- `[PROPOSED]` OXS 1.0 is the Phase 0 importer recommendation.
-- `[CONFLICT]` Product sources use `SXP`; official vendor and ecosystem sources
-  use `XSP` for Cross Stitch Professional Platinum.
-- `[OPEN]` Claude disposition of the OXS recommendation and `SXP`/`XSP`,
-  plus fixture redistribution/derivative authority. Development remains
-  blocked, and Technical Design has not begun.
+- `[CONFIRMED]` PROD-DEC-009 selects OXS 1.0 as the Phase 0 importer format,
+  confirms `SXP` as a typographical error for `XSP`, and authorizes the
+  rights-safe fixture rule.
+- `[IMPLEMENTED]` TASK-THINSLICE-001 v1.1 contains only the authorized
+  editorial changes; the product-side architecture input contains only the
+  authorized terminology correction.
+- `[OPEN]` Route-1 project-original fixture production and DEP-TR-001 Technical
+  Design plus architecture review. Development remains blocked.
 - `[REJECTED]` Exchange preparation `AU-EX-20260725-003` was withdrawn before
   return after freshness reporting detected that its source branch advanced.
   Its manifests and withdrawal evidence remain registered; no Claude output or
   canonical integration exists.
 - `[IMPLEMENTED]`, `[TESTED]` Replacement exchange `AU-EX-20260725-004`
-  packages 28
-  checksum-registered sources from exact commit
-  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf` and was exported to the external
-  Claude inbox. Status is `EXPORTED / CURRENT / NOT_RETURNED / NOT_INTEGRATED`.
+  packages 28 checksum-registered sources from exact commit
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`. Its contract-valid
+  `COMPLETED / NO_DECISION` return was meaning-reviewed, integrated as
+  PROD-DEC-009 and related current records, and archived with provenance.
+- `[CONFIRMED]` The clarification return assigns no `[VERIFIED]` status and
+  authorizes no architecture or implementation.
 
 ## Verification Performed
 
@@ -232,6 +236,12 @@
 - `[TESTED]` The OQ-005 spike inspected official vendor samples without
   executing vendor applications; XML validation and structured counts passed
   for OXS, while archive inspection confirmed the XSP payload is encrypted.
+- `[TESTED]` The `AU-EX-20260725-004` return passed schema, exact-source, role,
+  result type, status, reviewed-source, path, extension, checksum, size,
+  authority, and unregistered-file controls; the append-ready PROD-DEC-009 and
+  OQ-005 row were integrated without changing Claude-authored meaning.
+- `[TESTED]` TASK-THINSLICE-001 v1.1 differs from v1.0 only by version
+  metadata and the three editorial changes authorized by PROD-DEC-009.
 - `[TESTED]` The 26-page Master Product Specification was rendered and visually
   inspected without observed clipping, overlap, or unreadable pages.
 
@@ -239,9 +249,8 @@
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` Product clarification and fixture authority for OQ-005, followed by
-  the Technical Design Proposal and architecture review for AU-CDX-TASK-001
-  v1.0.
+- `[OPEN]` Route-1 fixture production, Technical Design Proposal, architecture
+  review, and required ADR dispositions for AU-CDX-TASK-001 v1.1.
 
 ## Active Risks
 
@@ -260,17 +269,20 @@
   diverge without exchange enforcement.
 - RISK-011: agent-registration auto-merge could bypass required review unless
   its guardrails remain enforced.
+- RISK-012: importer design or fixture handling could create security, mapping,
+  lock-in, or rights exposure.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated and integrated the `AU-EX-20260725-002` product-decision return,
-preserved canonical Cowork text, archived the exchange, and opened the
-Technical Review intake.
+Validated and integrated the `AU-EX-20260725-004` product clarification,
+preserved Claude-authored meaning, registered PROD-DEC-009 and Task Package
+v1.1, and archived the exchange with provenance.
 
 ## Next Step
 
-Perform TASK-THINSLICE-001 Technical Review and the bounded OQ-005 format spike
-under the registered executor mapping. Do not implement product code or design
-the permanent deployment pipeline before the Technical Review disposition.
+Prepare the TASK-THINSLICE-001 Technical Design Proposal under the registered
+executor mapping, then perform architecture review and required ADR
+dispositions. Do not begin application or fixture implementation before the
+design gate authorizes it.

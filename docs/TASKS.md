@@ -106,9 +106,10 @@
 
 ### AU-CDX-TASK-001-TECHNICAL-REVIEW — TASK-THINSLICE-001 Intake
 
-- **Status:** `[IMPLEMENTED]` Technical Review and bounded spike; product
-  clarification `[OPEN]`; development blocked
-- **Source:** TASK-THINSLICE-001 v1.0, PROD-DEC-005 through PROD-DEC-008.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; product clarification integrated;
+  ready for Technical Design, development blocked
+- **Source:** TASK-THINSLICE-001 v1.0 exact review source, v1.1 current
+  editorial revision, PROD-DEC-005 through PROD-DEC-009.
 - **Owner:** AU-AGENT-001.
 - **Contributors:** AU-AGENT-004 for OQ-005 spike and Pattern/import/rendering
   feasibility; AU-AGENT-005 for storage/persistence interfaces; AU-AGENT-006
@@ -120,20 +121,20 @@
   constraints, executor mapping, risks, evidence plan, and disposition is
   complete.
 - **Spike result:** Real vendor-distributed OXS and XSP files were inspected.
-  OXS 1.0 is recommended because it has a public official field-level
+  OXS 1.0 was selected because it has a public official field-level
   specification and a standard XML parse path; the XSP payload is encrypted.
   No importer was coded and no third-party fixture was committed.
-- **Open clarifications:** Confirm `SXP` versus official `XSP`, integrate or
-  reject the OXS recommendation, and establish redistribution/derivative
-  authority for the required fixtures.
+- **Resolved clarifications:** PROD-DEC-009 confirms `SXP` as the `XSP` typo,
+  accepts OXS 1.0, and authorizes the route-1 fixture rule.
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
-- **Gate:** Not ready for development. After Claude disposition, prepare the
-  Technical Design Proposal and required architecture review.
+- **Gate:** Ready for Technical Design, not ready for development. Route-1
+  fixtures, the proposal, architecture review, and required ADR dispositions
+  remain open.
 
 ### AU-CDX-TASK-001-CLARIFICATION — OQ-005 Product Disposition
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]` package preparation; Claude return
-  `[OPEN]`; development blocked
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; return validated and integrated;
+  development blocked
 - **Source:** TASK-THINSLICE-001 Technical Review and OQ-005 spike at
   `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
 - **Owner:** Claude Cowork / Project Owner for product meaning;
@@ -143,14 +144,33 @@
   under the confirmed criterion, establish fixture authority, provide exact
   product-source integration text when authorized, and state whether the Task
   Package requires versioning.
-- **Exchange:** `AU-EX-20260725-004`, lifecycle `EXPORTED`, source `CURRENT`,
-  output `NOT_RETURNED`.
+- **Exchange:** `AU-EX-20260725-004`; valid `COMPLETED / NO_DECISION` return;
+  canonical product integration complete; archive provenance registered.
+- **Outcome:** PROD-DEC-009 and the OQ-005 resolution are canonical; Task
+  Package v1.1 contains only the authorized editorial changes; architecture
+  input contains only the authorized `SXP` to `XSP` wording correction.
 - **Preparation correction:** `AU-EX-20260725-003` was rejected before return
   because its registered source branch advanced. It is retained as provenance
   and must not be processed.
 - **Prohibited work:** No Technical Design, importer, Pattern Engine, viewer,
   persistence, client, pipeline, deployment, fixture commitment, or product
   `[VERIFIED]` status.
+
+### AU-CDX-TASK-001-TECHNICAL-DESIGN — Phase 0 Thin-Slice Design
+
+- **Status:** `[OPEN]`; next gate, not implementation
+- **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, and
+  `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
+- **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
+  AU-AGENT-006; AU-AGENT-002 for documentation lifecycle.
+- **Documentation Impact:** Material.
+- **Required result:** A Technical Design Proposal covering canonical Pattern
+  boundaries, the binding OXS mapping invariant, persistence, tiled rendering,
+  XML security limits, performance environments, route-1 fixture plan,
+  testing, and GitHub-to-CI-to-Cloudflare deployment and rollback.
+- **Gate:** Architecture review and required ADR dispositions must complete
+  before development. Fixture creation and application implementation have not
+  started.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 
@@ -167,8 +187,8 @@
   not every bridge implementation change or future exchange.
 - **Evidence:** `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
 
-No product implementation task is active. AU-CDX-TASK-001 v1.0 remains
-available for engineering intake and Technical Review only.
+No product implementation task is active. AU-CDX-TASK-001 v1.1 is ready for
+Technical Design only.
 
 ### INIT-002-F1 — Activate Specialized Codex Agents
 

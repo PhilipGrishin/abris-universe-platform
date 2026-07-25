@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.1.0 |
+| Version | 2.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,26 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Product Clarification Integration
+
+- Validated the `AU-EX-20260725-004` `PRODUCT_CLARIFICATION` return against the
+  registered Bridge contract and exact source commit.
+- Integrated Claude-authored PROD-DEC-009 and the OQ-005 register disposition
+  without changing returned meaning.
+- Preserved Task Package v1.0 and registered v1.1 with only the three authorized
+  editorial changes: `SXP` to `XSP`, OXS 1.0 binding, and the fixture-rule
+  reference.
+- Applied only the authorized terminology correction to the product
+  architecture input and updated navigation, status, traceability, review, and
+  risk records.
+- Registered the rights-safe fixture rule without creating fixtures or
+  committing third-party samples.
+- Archived the exchange with provenance; no `[VERIFIED]` status, architecture,
+  or implementation approval was inferred.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; Technical Design `[OPEN]`; development
+  blocked.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Technical Review and OQ-005 Spike
 

@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-SPIKE-OQ-005-001 |
 | Title | OQ-005 Import-Format Spike for TASK-THINSLICE-001 |
-| Status | `[IMPLEMENTED]`, recommendation pending product integration |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; recommendation accepted by PROD-DEC-009 |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0, `product/decisions/05_Decision_Log.md` PROD-DEC-006, `product/architecture-inputs/02_Architecture_and_Stack.md` section 9.5 |
+| Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` v1.0 exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `product/decisions/05_Decision_Log.md` PROD-DEC-006 and PROD-DEC-009, `product/architecture-inputs/02_Architecture_and_Stack.md` section 9.5 |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Product clarification; new licensed representative fixture; official format specification change; candidate-set change |
@@ -79,7 +79,7 @@ would violate the evidence and rights controls.
 
 ### OQ5-F01 — OXS is the lowest-complexity representative candidate
 
-**Status:** `[PROPOSED]`
+**Status:** `[CONFIRMED]` by PROD-DEC-009
 
 OXS is the only inspected candidate with both a real vendor sample and a public
 field-level specification. It directly exposes the Phase 0 grid, palette,
@@ -88,21 +88,22 @@ out-of-scope data may appear in real files.
 
 ### OQ5-F02 — `SXP` conflicts with official format identity
 
-**Status:** `[CONFLICT]`
+**Status:** `[CONFIRMED]` resolved by PROD-DEC-009
 
-The Task Package and architecture input say `SXP`. Official Cross Stitch Saga
-and DP Software sources consistently identify the Cross Stitch Professional
-format as `XSP`. This report does not silently alter the product source.
+The exact review-source Task Package and architecture input said `SXP`.
+PROD-DEC-009 confirmed it as a typographical error for `XSP` and authorized the
+wording-only normalization in the current product sources.
 
-### OQ5-F03 — fixture redistribution authority is missing
+### OQ5-F03 — rights-safe fixture route is authorized
 
-**Status:** `[OPEN]`
+**Status:** `[CONFIRMED]` authority; fixture production `[OPEN]`
 
-The inspected files are sufficient for transient technical analysis but not for
-canonical test-fixture commitment. Implementation requires an owner-supplied or
-explicitly licensed small full-cross OXS file, a medium representative OXS file,
-and a permitted corrupted derivative. The fixture record must capture source,
-license/permission, checksum, expected content, and permitted transformations.
+PROD-DEC-009(3) authorizes project-original route-1 fixtures and limits
+third-party material to explicitly licensed commitment or transient
+cross-validation. The required small, medium, and permitted corrupted
+project-original fixtures have not been produced. Each fixture must retain the
+authorized authorship or generation record, checksum, golden values, and
+permitted transformations.
 
 ### OQ5-F04 — OXS source semantics require an explicit mapping contract
 
@@ -116,9 +117,7 @@ constraint or silently import source progress.
 
 ## Recommendation
 
-**Recommend OXS 1.0 as the first Phase 0 importer format**, subject to Claude
-Cowork integration of the choice into the Product Decision Log and closure of
-OQ5-F02 and OQ5-F03.
+**OXS 1.0 is the selected first Phase 0 importer format** under PROD-DEC-009.
 
 The importer scope should accept the documented OXS container, map only the
 approved Phase 0 subset, preserve the original file and provenance, and issue
@@ -129,23 +128,23 @@ belong in the Technical Design Proposal.
 ## Decision State
 
 - **Criterion:** `[CONFIRMED]` by PROD-DEC-006
-- **Technical recommendation:** `[PROPOSED]` OXS 1.0
-- **Concrete product integration:** `[OPEN]`
-- **DEP-001:** not closed
+- **Technical recommendation:** `[CONFIRMED]` OXS 1.0 by PROD-DEC-009
+- **Concrete product integration:** `[IMPLEMENTED]`
+- **DEP-001:** format and authority resolved; route-1 fixtures still `[OPEN]`
 - **Importer development:** blocked
 
 ## Required Next Evidence
 
-1. Claude Cowork disposition of OXS and `SXP`/`XSP`.
-2. Redistribution-authorized representative OXS fixtures.
-3. Technical Design mapping table from OXS fields to canonical entities.
-4. Security limits for XML size, depth, attributes, entity/DTD handling,
+1. Project-original representative OXS fixtures under PROD-DEC-009(3).
+2. Technical Design mapping table from OXS fields to canonical entities.
+3. Security limits for XML size, depth, attributes, entity/DTD handling,
    coordinate bounds, palette references, and stitch counts.
-5. Golden expected canonical Pattern and negative-fixture policy.
+4. Golden expected canonical Pattern and negative-fixture policy.
 
 ## References
 
 - `product/task-packages/07_TaskPackage_EP01_ThinSlice.md`
+- `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`
 - `product/decisions/05_Decision_Log.md`
 - `product/architecture-inputs/02_Architecture_and_Stack.md`
 - `https://www.ursasoftware.com/OXSFormat/`

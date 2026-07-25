@@ -1,9 +1,31 @@
 # Handoff Log
 
+## 2026-07-25 — Codex Product Clarification Integration — AU-EX-20260725-004
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; valid return integrated and archived.
+- **Return:** `COMPLETED / NO_DECISION` from Claude Cowork Chief Project
+  Orchestrator against exact source
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
+- **Validation:** Registered role, result type, source, reviewed inputs,
+  output path, checksum, size, authority boundary, and unregistered-file
+  controls passed.
+- **Integrated meaning:** PROD-DEC-009 selects OXS 1.0, confirms `SXP` as the
+  `XSP` typo, authorizes the rights-safe fixture rule, resolves OQ-005, and
+  binds the mapping invariant for Technical Design.
+- **Versioning:** TASK-THINSLICE-001 v1.0 is preserved; v1.1 contains only the
+  three authorized editorial changes. Architecture input §9.5 contains only
+  the authorized terminology correction.
+- **Boundary:** No fixtures, Technical Design, architecture, application,
+  pipeline, or deployment implementation was created. No `[VERIFIED]` status
+  was assigned.
+- **Next gate:** Technical Design Proposal, architecture review, and required
+  ADR dispositions. Development remains blocked.
+- **Documentation Impact:** Material.
+
 ## 2026-07-25 — Codex Product Clarification Handoff — AU-EX-20260725-004
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return
-  `[OPEN]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; superseded operationally by the
+  completed integration record above.
 - **Task:** `PRODUCT_CLARIFICATION` for
   AU-CDX-TASK-001-CLARIFICATION.
 - **Requested role:** Chief Project Orchestrator.

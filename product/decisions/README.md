@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -23,7 +23,8 @@ Index product and owner decisions without merging them with engineering ADRs or
 ## Canonical Register
 
 - [Abris Universe Product Decision Log](05_Decision_Log.md)
-  now includes owner-approved Cowork DEC-005 through DEC-008. Use
+  now includes owner-approved Cowork DEC-005 through DEC-008 and delegated
+  PROD-DEC-009. Use
   `PROD-DEC-xxx` for cross-contour references from DEC-005 onward.
 
 Each decision retains its own status. Recommendations and derived resolutions
