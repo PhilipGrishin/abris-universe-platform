@@ -5,12 +5,12 @@
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
-`VERIFIED WITH FINDINGS`; renderer-core candidate is `[IMPLEMENTED]`,
-`[TESTED]` and pending independent engineering verification
+`VERIFIED WITH FINDINGS`; renderer-core initial status is `REWORK REQUIRED`,
+and its remediation candidate is `[IMPLEMENTED]`, `[TESTED]`
 
-Independently verify the exact tiled Canvas2D renderer-core candidate from
-Technical Design section 8 and ADR-TS001-002. Remediate mandatory findings.
-Keep client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
+Commit and independently reverify the tiled Canvas2D renderer-core remediation
+for TS001-RENDER-001 through TS001-RENDER-004. Keep client UI, Worker
+integration, and TS001-PERSIST-006 outside this stage.
 
 ## Confirmed Inputs
 
@@ -109,7 +109,16 @@ resolved. TS001-PERSIST-006 remains open for later real browser/client evidence.
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
 
+## Current Renderer Gate
+
+AU-AGENT-003 reviewed exact commit `cb34a48` and assigned `REWORK REQUIRED`.
+High findings TS001-RENDER-001 through 003 and Medium finding
+TS001-RENDER-004 are registered. The remediation candidate now has 12 focused
+renderer tests plus the full workspace suite, but finding disposition remains
+with AU-AGENT-003 until exact-source reverification.
+
 ## Next Concrete Step
 
-Commit the exact renderer-core candidate and assign AU-AGENT-003 independent
-review. Resolve mandatory findings before starting client integration.
+Commit the renderer remediation candidate and assign AU-AGENT-003 exact-source
+reverification. Do not start client integration before the renderer-core gate
+passes.

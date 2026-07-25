@@ -11,6 +11,7 @@ import type {
 } from "@abris-universe/domain-core";
 import {
   INITIAL_TILE_SIZE,
+  RendererIntegrityError,
   TiledPatternRenderer,
   buildPatternTiles,
   contrastRatio,
@@ -38,9 +39,13 @@ class RecordingCanvas implements Canvas2DLike {
   textBaseline: CanvasTextBaseline = "alphabetic";
   readonly calls: string[] = [];
 
-  clearRect(): void { this.calls.push("clear"); }
+  clearRect(x: number, y: number, width: number, height: number): void {
+    this.calls.push(`clear:${x}:${y}:${width}:${height}`);
+  }
   fillRect(): void { this.calls.push("fill"); }
-  strokeRect(): void { this.calls.push("rect"); }
+  strokeRect(x: number, y: number, width: number, height: number): void {
+    this.calls.push(`rect:${x}:${y}:${width}:${height}`);
+  }
   fillText(text: string): void { this.calls.push(`text:${text}`); }
   beginPath(): void { this.calls.push("begin"); }
   moveTo(): void { this.calls.push("move"); }
@@ -234,6 +239,40 @@ test("calculates a clamped visible tile range with one-tile prefetch", () => {
     }),
     { minTileX: 0, maxTileX: 2, minTileY: 0, maxTileY: 1 },
   );
+  const oneCellTiles = { ...summary(pattern, version), tileSize: 1 };
+  assert.deepEqual(
+    visibleTileRange(oneCellTiles, {
+      ...viewport,
+      offsetX: -64,
+      offsetY: -64,
+      cellSize: 32,
+      width: 32,
+      height: 32,
+    }),
+    { minTileX: 1, maxTileX: 3, minTileY: 1, maxTileY: 3 },
+  );
+  assert.deepEqual(
+    visibleTileRange(oneCellTiles, {
+      ...viewport,
+      offsetX: -64.5,
+      offsetY: 0,
+      cellSize: 32,
+      width: 32,
+      height: 32,
+    }),
+    { minTileX: 1, maxTileX: 4, minTileY: 0, maxTileY: 1 },
+  );
+  assert.deepEqual(
+    visibleTileRange(oneCellTiles, {
+      ...viewport,
+      offsetX: 200,
+      offsetY: 200,
+      cellSize: 32,
+      width: 32,
+      height: 32,
+    }),
+    { minTileX: 0, maxTileX: -1, minTileY: 0, maxTileY: -1 },
+  );
 });
 
 test("loads bounded tiles, draws separate layers, and hit-tests canonical cells", async () => {
@@ -241,10 +280,11 @@ test("loads bounded tiles, draws separate layers, and hit-tests canonical cells"
   const tiles = buildPatternTiles(version.id, stitches);
   const provider = new MemoryProvider(summary(pattern, version), tiles);
   const states = new Map<string, ProgressRenderState>([
-    ["stitch-a", "marked"],
+    ["stitch-a", { status: "committed", value: "marked" }],
   ]);
   const renderer = new TiledPatternRenderer(provider, {
-    getState: (id) => states.get(id) ?? "unmarked",
+    getState: (id) =>
+      states.get(id) ?? { status: "committed", value: "unmarked" },
   });
   renderer.setPattern(summary(pattern, version));
   renderer.setViewport(viewport);
@@ -262,12 +302,57 @@ test("loads bounded tiles, draws separate layers, and hit-tests canonical cells"
     y: 2,
   });
 
-  const staticCalls = output.staticCanvas.calls.length;
-  states.set("stitch-a", "not-saved");
+  const staticFills = output.staticCanvas.calls.filter(
+    (call) => call === "fill",
+  ).length;
+  const savingCallStart = output.progressCanvas.calls.length;
+  states.set("stitch-a", {
+    status: "saving",
+    committed: "unmarked",
+    pending: "marked",
+  });
   renderer.setProgress(["stitch-a"]);
   renderer.render(output.frame);
-  assert.equal(output.staticCanvas.calls.length, staticCalls + 1);
+  const savingCalls = output.progressCanvas.calls.slice(savingCallStart);
+  assert.equal(savingCalls.includes("begin"), true);
+  assert.equal(
+    savingCalls.filter((call) => call.startsWith("rect:")).length,
+    1,
+  );
+
+  const progressCallStart = output.progressCanvas.calls.length;
+  states.set("stitch-a", {
+    status: "not-saved",
+    committed: "unmarked",
+  });
+  renderer.setProgress(["stitch-a"]);
+  renderer.render(output.frame);
+  assert.equal(
+    output.staticCanvas.calls.filter((call) => call === "fill").length,
+    staticFills,
+  );
   assert.equal(output.progressCanvas.strokeStyle, "#B00020");
+  const failedMarkCalls = output.progressCanvas.calls.slice(progressCallStart);
+  assert.equal(failedMarkCalls.includes("begin"), false);
+  assert.equal(
+    failedMarkCalls.filter((call) => call.startsWith("rect:")).length,
+    2,
+  );
+
+  const failedUnmarkStart = output.progressCanvas.calls.length;
+  states.set("stitch-a", {
+    status: "not-saved",
+    committed: "marked",
+  });
+  renderer.setProgress(["stitch-a"]);
+  renderer.render(output.frame);
+  const failedUnmarkCalls =
+    output.progressCanvas.calls.slice(failedUnmarkStart);
+  assert.equal(failedUnmarkCalls.includes("begin"), true);
+  assert.equal(
+    failedUnmarkCalls.filter((call) => call.startsWith("rect:")).length,
+    2,
+  );
 });
 
 test("overview mode omits glyph claims and disables hit testing", async () => {
@@ -365,6 +450,186 @@ test("discards a tile result made stale by a viewport change", async () => {
   renderer.setViewport({ ...viewport, offsetX: -320 });
   release?.();
   assert.equal(await pending, false);
+});
+
+test("budgets changed progress cells incrementally without static redraw", async () => {
+  const { pattern, version } = smallPattern();
+  const stitches: FullCrossStitch[] = [];
+  for (let y = 0; y < 64; y += 1) {
+    for (let x = 0; x < 64; x += 1) {
+      stitches.push({
+        id: `dense-${y}-${x}`,
+        type: "full-cross",
+        x,
+        y,
+        symbolId: "symbol-x",
+        paletteItemId: "palette-dark",
+      });
+    }
+  }
+  const patternSummary = summary(pattern, version);
+  const provider = new MemoryProvider(
+    patternSummary,
+    buildPatternTiles(version.id, stitches),
+  );
+  let pending = false;
+  let controlled = false;
+  let tick = 0;
+  const renderer = new TiledPatternRenderer(
+    provider,
+    {
+      getState: () =>
+        pending
+          ? { status: "committed", value: "marked" }
+          : { status: "committed", value: "unmarked" },
+    },
+    () => (controlled ? tick++ : 0),
+  );
+  renderer.setPattern(patternSummary);
+  renderer.setViewport({
+    ...viewport,
+    cellSize: 16,
+    width: 1024,
+    height: 1024,
+  });
+  await renderer.loadVisibleTiles(new AbortController().signal);
+  const output = frame();
+  assert.equal(
+    renderer.render({ ...output.frame, budgetMs: 10_000 }).complete,
+    true,
+  );
+  const staticFills = output.staticCanvas.calls.filter(
+    (call) => call === "fill",
+  ).length;
+  pending = true;
+  renderer.setProgress(stitches.map((stitch) => stitch.id));
+  controlled = true;
+  const first = renderer.render({ ...output.frame, budgetMs: 2 });
+  assert.equal(first.complete, false);
+  assert.ok(first.drawnProgressStitches > 0);
+  assert.ok(first.drawnProgressStitches < stitches.length);
+  let current = first;
+  while (!current.complete) {
+    current = renderer.render({ ...output.frame, budgetMs: 2 });
+  }
+  assert.equal(
+    output.staticCanvas.calls.filter((call) => call === "fill").length,
+    staticFills,
+  );
+});
+
+test("fails closed on corrupt or over-returned provider tiles", async () => {
+  const { pattern, version, stitches } = smallPattern();
+  const patternSummary = summary(pattern, version);
+  const validTile = buildPatternTiles(version.id, stitches)[0]!;
+  const cases: ReadonlyArray<{
+    readonly expectedCode: string;
+    readonly tiles: readonly PatternTile[];
+  }> = [
+    {
+      expectedCode: "RENDER_INVALID_TILE_RESPONSE",
+      tiles: [{ ...validTile, patternVersionId: "wrong-version" }],
+    },
+    {
+      expectedCode: "RENDER_INVALID_TILE_RESPONSE",
+      tiles: [{ ...validTile, tileX: 2 }],
+    },
+    {
+      expectedCode: "RENDER_DUPLICATE_TILE",
+      tiles: [validTile, validTile],
+    },
+    {
+      expectedCode: "RENDER_INVALID_STITCH",
+      tiles: [
+        {
+          ...validTile,
+          stitches: [{ ...validTile.stitches[0]!, x: 33 }],
+        },
+      ],
+    },
+    {
+      expectedCode: "RENDER_INVALID_STITCH",
+      tiles: [
+        {
+          ...validTile,
+          stitches: [{ ...validTile.stitches[0]!, x: 80 }],
+        },
+      ],
+    },
+    {
+      expectedCode: "RENDER_INVALID_STITCH",
+      tiles: [
+        {
+          ...validTile,
+          stitches: [
+            { ...validTile.stitches[0]!, symbolId: "missing-symbol" },
+          ],
+        },
+      ],
+    },
+    {
+      expectedCode: "RENDER_DUPLICATE_STITCH",
+      tiles: [
+        {
+          ...validTile,
+          stitches: [validTile.stitches[0]!, validTile.stitches[0]!],
+        },
+      ],
+    },
+    {
+      expectedCode: "RENDER_UNSORTED_TILE",
+      tiles: [
+        {
+          ...validTile,
+          stitches: [
+            validTile.stitches[0]!,
+            {
+              ...validTile.stitches[0]!,
+              id: "stitch-before",
+              x: 2,
+              y: 1,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      expectedCode: "RENDER_TILE_RESPONSE_LIMIT",
+      tiles: [validTile, validTile, validTile, validTile, validTile],
+    },
+  ];
+  for (const item of cases) {
+    const provider: PatternTileProvider = {
+      getPatternSummary: async () => patternSummary,
+      getTiles: async () => item.tiles,
+    };
+    const renderer = new TiledPatternRenderer(provider);
+    renderer.setPattern(patternSummary);
+    renderer.setViewport(viewport);
+    await assert.rejects(
+      renderer.loadVisibleTiles(new AbortController().signal),
+      (error: unknown) =>
+        error instanceof RendererIntegrityError &&
+        error.code === item.expectedCode,
+    );
+  }
+});
+
+test("does not query the provider when the viewport is outside the grid", async () => {
+  const { pattern, version } = smallPattern();
+  const provider = new MemoryProvider(summary(pattern, version), []);
+  const renderer = new TiledPatternRenderer(provider);
+  renderer.setPattern(summary(pattern, version));
+  renderer.setViewport({
+    ...viewport,
+    offsetX: 500,
+    offsetY: 500,
+  });
+  assert.equal(
+    await renderer.loadVisibleTiles(new AbortController().signal),
+    true,
+  );
+  assert.equal(provider.ranges.length, 0);
 });
 
 test("keeps medium-fixture work bounded to requested visible tiles", async () => {

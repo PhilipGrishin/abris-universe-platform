@@ -22,7 +22,26 @@ export function buildPatternTiles(
     throw new TypeError("Pattern version and positive tile size are required.");
   }
   const grouped = new Map<string, FullCrossStitch[]>();
+  const stitchIds = new Set<string>();
+  const stitchCells = new Set<string>();
   for (const stitch of stitches) {
+    const cell = `${stitch.y}:${stitch.x}`;
+    if (
+      stitch.type !== "full-cross" ||
+      stitch.id.trim().length === 0 ||
+      !Number.isSafeInteger(stitch.x) ||
+      !Number.isSafeInteger(stitch.y) ||
+      stitch.x < 0 ||
+      stitch.y < 0 ||
+      stitchIds.has(stitch.id) ||
+      stitchCells.has(cell)
+    ) {
+      throw new TypeError(
+        "Tile input must contain unique non-negative full-cross stitches.",
+      );
+    }
+    stitchIds.add(stitch.id);
+    stitchCells.add(cell);
     const tileX = Math.floor(stitch.x / tileSize);
     const tileY = Math.floor(stitch.y / tileSize);
     const key = tileKey(tileX, tileY);

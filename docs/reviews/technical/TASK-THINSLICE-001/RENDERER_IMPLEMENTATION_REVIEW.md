@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-RENDER-001 |
 | Title | TASK-THINSLICE-001 Tiled Renderer Core Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; initial engineering status `REWORK REQUIRED`; remediation candidate pending reverification |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark plan; route-1 fixtures |
@@ -52,16 +52,19 @@ Technical Design section 8.
 - Calculated black-or-white glyph treatment meeting at least 4.5:1 contrast
   against tested palette colors.
 - Non-color-only cross marks for progress, with additional pending/error
-  outlines for `saving` and `not-saved`.
+  outlines for `saving` and `not-saved`, explicit committed-state restoration,
+  and distinct grayscale geometry.
 - Inverse viewport transform to a single canonical cell followed by tile-local
   stitch resolution.
+- Fail-closed summary and tile-provider validation before cache admission.
+- Incremental full-overlay and changed-cell work under the frame budget.
 
 ## Evidence
 
 | Check | Result |
 | --- | --- |
 | Renderer strict typecheck | `[TESTED]`; TypeScript 7.0.2 passes |
-| Renderer focused suite | `[TESTED]`; 9 passed, 0 failed |
+| Renderer focused suite | `[TESTED]`; 12 passed, 0 failed after finding remediation |
 | Tile determinism | `[TESTED]`; coordinates, ordering, and absent empty tiles |
 | Bounded viewport work | `[TESTED]`; 100,000-stitch fixture loads 12 of 128 tiles and 12,288 visible/prefetch stitches for the measured viewport |
 | Cancellation and stale work | `[TESTED]`; aborted request rejects and viewport-invalidated result is discarded |
@@ -70,10 +73,20 @@ Technical Design section 8.
 | Contrast | `[TESTED]`; black/white selection is at least 4.5:1 for registered test colors |
 | Medium regression signal | `[TESTED]`; Node v26.0.0 reports 100,000 stitches, 128 total tiles, 12 requested tiles, one simulated render frame, and no all-pattern frame query |
 
-The medium command reported approximately 958 ms import, 8.2 ms tile build,
-0.33 ms in-memory visible-tile query, and 4.67 ms Canvas-contract simulation on
-this run. These figures are environment-specific diagnostics, not controlled
-browser benchmarks or acceptance evidence.
+The final pre-commit remediation measurement reported approximately 908 ms
+import, 37.8 ms tile build, 6.1 ms validated in-memory visible-tile query, and
+6.1 ms
+Canvas-contract simulation on this run. These figures are environment-specific
+diagnostics, not controlled browser benchmarks or acceptance evidence.
+
+## Independent Findings and Remediation
+
+AU-AGENT-003 issued `REWORK REQUIRED` at exact commit `cb34a48` with High
+findings TS001-RENDER-001 through TS001-RENDER-003 and Medium finding
+TS001-RENDER-004. The remediation candidate adds committed/pending/error
+progress semantics, incremental changed-overlay work, fail-closed tile-provider
+validation, and corrected inclusive viewport boundaries with focused negative
+tests. Exact-source reverification remains required.
 
 ## Limitations and Open Evidence
 
@@ -99,15 +112,16 @@ Documentation Exception is required.
 
 ## Quality Gate
 
-AU-AGENT-003 must review the exact implementation commit before this
-repository-level stage receives an Engineering Verification Status. The agent
-may not assign project `[VERIFIED]` or product acceptance.
+AU-AGENT-003 has assigned initial status `REWORK REQUIRED`. The remediation
+candidate must be committed and independently reverified before the
+repository-level renderer gate can pass. The agent may not assign project
+`[VERIFIED]` or product acceptance.
 
 ## Next Step
 
-Commit the exact renderer-core candidate, run independent AU-AGENT-003 review,
-resolve mandatory findings, and retain browser/Worker/accessibility/performance
-evidence for the client-integration gate.
+Commit the exact remediation candidate, run AU-AGENT-003 reverification, and
+retain browser/Worker/accessibility/performance evidence for the
+client-integration gate.
 
 ## References
 
@@ -115,4 +129,5 @@ evidence for the client-integration gate.
 - [Tiled Rendering ADR](../../../architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md)
 - [Benchmark Plan](../../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
 - [Renderer Package](../../../../packages/renderer/README.md)
+- [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
 - [Task Review Index](README.md)

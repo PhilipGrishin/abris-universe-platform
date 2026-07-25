@@ -311,8 +311,9 @@
 
 ### AU-CDX-TASK-001-RENDERER — Bounded Tiled Renderer Core
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent AU-AGENT-003
-  verification pending; no project `[VERIFIED]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; initial Engineering Verification
+  Status `REWORK REQUIRED`; remediation candidate pending exact-source
+  reverification; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark
   plan.
 - **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
@@ -324,15 +325,23 @@
   layers, incremental frame budgets, readable/overview modes, contrast
   selection, non-color progress marks, and canonical-cell hit testing in
   `packages/renderer`.
-- **Evidence:** Strict typecheck; 9 focused renderer tests; full workspace
+- **Evidence:** Strict typecheck; 12 focused renderer tests after remediation;
+  full workspace
   checks; and a Node renderer-core medium-fixture signal with 100,000 stitches,
   128 total tiles, and 12 requested tiles for the measured viewport.
 - **Boundary:** No browser Canvas adapter, bitmap glyph atlas,
   OffscreenCanvas Worker transport, client gestures, companion accessible DOM,
   rendering goldens, controlled browser benchmark, 500,000-stitch scale claim,
   exact-symbol claim outside route 1, UI, deployment, or product acceptance.
-- **Next step:** Submit the exact renderer-core commit to AU-AGENT-003 and
-  remediate mandatory findings before client integration.
+- **Initial findings:** Exact commit `cb34a48` received High
+  TS001-RENDER-001/002/003 and Medium TS001-RENDER-004 for progress-state
+  semantics, unbounded overlay work, missing tile-provider integrity checks,
+  and exact-boundary viewport math.
+- **Remediation candidate:** Adds committed/pending/error state, incremental
+  changed-cell overlay work, fail-closed provider validation, corrected
+  inclusive viewport ranges, and focused negative/regression tests.
+- **Next step:** Commit the remediation candidate and submit its exact source
+  to AU-AGENT-003 before client integration.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

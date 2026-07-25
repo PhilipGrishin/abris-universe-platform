@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.10.0 |
+| Version | 1.11.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -26,8 +26,9 @@ OQ-005 import-format evidence.
 The record covers pre-development feasibility, repository readiness, technical
 risks, the bounded format-selection spike, product clarifications, the current
 Technical Design review disposition, and non-independent implementation
-evidence for completed internal stages. It contains no AU-AGENT-003 Engineering
-Verification Report or final product acceptance.
+evidence for completed internal stages. AU-AGENT-003 reports remain canonical
+in the engineering-review library and are linked here; this record contains no
+final product acceptance.
 
 ## Artifacts
 
@@ -45,6 +46,7 @@ Verification Report or final product acceptance.
 - [OXS Importer Implementation Review](OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [Persistence Implementation Review](PERSISTENCE_IMPLEMENTATION_REVIEW.md)
 - [Renderer Core Implementation Review](RENDERER_IMPLEMENTATION_REVIEW.md)
+- [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
 ## Current Disposition
@@ -55,8 +57,10 @@ task-scoped ADRs remain `[PROPOSED]` with independent revision disposition
 initial route-1 producer profile, so the registered sequence may proceed to
 the next registered stages. Canonical domain-core, the bounded route-1 importer
 core, IndexedDB persistence/recovery, and the tiled renderer core are
-implemented and tested. The renderer result still requires AU-AGENT-003 review
-and later browser/Worker/client evidence. TD-GATE-002 remains open for
+implemented and tested. The renderer's initial exact-source AU-AGENT-003 review
+assigned `REWORK REQUIRED`; its remediation candidate awaits reverification,
+and later browser/Worker/client evidence remains open. TD-GATE-002 remains open
+for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

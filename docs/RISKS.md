@@ -360,9 +360,11 @@
   Require exact-source AU-AGENT-003 review and the task benchmark plan before
   release claims.
 - **Mitigation:** The renderer core bounds viewport work, rejects stale
-  requests, separates static/progress layers, and records its Node measurement
-  explicitly as a non-acceptance regression signal. Open browser evidence is
-  listed in the implementation review.
+  requests, separates static/progress layers, validates provider data, budgets
+  changed overlays, restores committed state after save failure, and records
+  its Node measurement explicitly as a non-acceptance regression signal.
+  AU-AGENT-003 initial status is `REWORK REQUIRED`; remediation awaits
+  reverification. Open browser evidence is listed in the implementation review.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

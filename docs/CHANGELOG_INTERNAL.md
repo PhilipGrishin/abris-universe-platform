@@ -553,6 +553,25 @@ material defect.
   `docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md`,
   and `TRACE-RENDER-TS001`.
 
+## 2026-07-25 — TASK-THINSLICE-001 Renderer Finding Remediation
+
+- Registered AU-AGENT-003 initial renderer status `REWORK REQUIRED` at exact
+  commit `cb34a48` with TS001-RENDER-001 through TS001-RENDER-004.
+- Replaced ambiguous string progress states with explicit committed, pending,
+  and failed-save records that restore committed mark state and use distinct
+  non-color geometry.
+- Made full-overlay rebuild and changed-cell redraw incremental under the frame
+  budget without static stitch redraw.
+- Added fail-closed summary and tile-provider validation for identity, range,
+  bounds, keys, duplicates, references, ordering, and response capacity.
+- Corrected inclusive viewport boundary calculations and added fractional,
+  clamped, outside-grid, corrupt-provider, and thousands-of-progress-cell tests.
+- Documentation Impact: Material.
+- Status: Remediation candidate `[IMPLEMENTED]`, `[TESTED]`; exact-source
+  reverification `[OPEN]`; no project `[VERIFIED]`.
+- Evidence: 12 renderer tests, full workspace suite,
+  `AU-REVIEW-ENG-TS001-RENDER-001`, and updated traceability.
+
 ## Owner
 
 AU-AGENT-002 maintains entries, references, navigation, and lifecycle. Technical

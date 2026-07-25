@@ -47,10 +47,23 @@ export function visibleTileRange(
   const firstY = Math.floor(-viewport.offsetY / viewport.cellSize);
   const lastX = Math.ceil(
     (viewport.width - viewport.offsetX) / viewport.cellSize,
-  );
+  ) - 1;
   const lastY = Math.ceil(
     (viewport.height - viewport.offsetY) / viewport.cellSize,
-  );
+  ) - 1;
+  if (
+    lastX < 0 ||
+    lastY < 0 ||
+    firstX >= summary.grid.width ||
+    firstY >= summary.grid.height
+  ) {
+    return {
+      minTileX: 0,
+      maxTileX: -1,
+      minTileY: 0,
+      maxTileY: -1,
+    };
+  }
   const maxTileX = Math.max(
     0,
     Math.ceil(summary.grid.width / summary.tileSize) - 1,

@@ -59,11 +59,22 @@ export interface StitchHit {
   readonly y: number;
 }
 
+export type ProgressMark = "unmarked" | "marked";
+
 export type ProgressRenderState =
-  | "unmarked"
-  | "marked"
-  | "saving"
-  | "not-saved";
+  | {
+      readonly status: "committed";
+      readonly value: ProgressMark;
+    }
+  | {
+      readonly status: "saving";
+      readonly committed: ProgressMark;
+      readonly pending: ProgressMark;
+    }
+  | {
+      readonly status: "not-saved";
+      readonly committed: ProgressMark;
+    };
 
 export interface ProgressStateProvider {
   getState(stitchId: string): ProgressRenderState;

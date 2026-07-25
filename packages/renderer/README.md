@@ -28,6 +28,8 @@ overlay invalidation, and canonical-cell hit testing.
 - Requests only the visible viewport plus one-tile prefetch through
   `PatternTileProvider` and discards aborted or stale results.
 - Separates static-pattern and progress-overlay draw paths.
+- Budgets both full progress reconstruction and changed-cell redraws
+  incrementally without invalidating static stitch content.
 - Uses readable and overview modes at the 16 CSS-pixel threshold.
 - Selects black or white symbol treatment with a calculated minimum 4.5:1
   contrast ratio.
@@ -37,6 +39,8 @@ overlay invalidation, and canonical-cell hit testing.
   incremental main-thread frame-budget fallback.
 - Uses no DOM node per stitch and does not mutate Pattern, PatternVersion,
   Project, or Progress.
+- Rejects invalid summaries and corrupt, duplicate, mis-keyed, out-of-range,
+  broken-reference, unsorted, or over-returned provider tiles before caching.
 
 ## Evidence
 

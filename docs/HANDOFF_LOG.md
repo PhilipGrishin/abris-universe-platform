@@ -1007,3 +1007,24 @@
 - **Claude handoff:** Not required for this internal implementation candidate.
 - **Next step:** Commit the exact candidate and assign AU-AGENT-003 independent
   engineering verification.
+
+## 2026-07-25 — AU-AGENT-003 Renderer Review and Codex Remediation
+
+- **Exact reviewed source:** `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`.
+- **Initial Engineering Verification Status:** `REWORK REQUIRED`.
+- **Findings:** High TS001-RENDER-001 through 003 and Medium
+  TS001-RENDER-004 cover save-state geometry, unbounded overlay work, missing
+  provider integrity validation, and exact-boundary viewport overfetch.
+- **Remediation:** Added explicit committed/pending/error progress state,
+  distinct grayscale geometry, incremental full/changed overlay work,
+  fail-closed summary/tile validation, corrected inclusive cell boundaries,
+  and exact/fractional/outside/corrupt-provider regression coverage.
+- **Evidence:** Strict typecheck; 10 domain, 15 importer, 17 persistence, and 12
+  renderer tests; medium Node signal remains explicitly non-acceptance.
+- **Documentation Impact:** Material; independent report registered without
+  changing AU-AGENT-003 meaning, with task, risk, traceability, status, focus,
+  technical review, changelog, and navigation updates.
+- **Claude handoff:** Not required; this is an internal engineering quality
+  remediation.
+- **Next step:** Commit the remediation candidate and request exact-source
+  AU-AGENT-003 reverification.

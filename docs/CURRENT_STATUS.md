@@ -409,14 +409,18 @@ See `docs/RISKS.md` for controls.
 Implemented and tested the bounded tiled renderer core: deterministic 32×32
 tiles, visible-plus-prefetch requests, stale-result rejection, separate
 static/progress layers, incremental budgets, readable/overview modes, contrast,
-progress marks, and canonical hit testing. Nine focused renderer tests pass,
-and the 100,000-stitch Node regression signal requests 12 of 128 tiles.
+progress marks, and canonical hit testing. AU-AGENT-003 assigned initial status
+`REWORK REQUIRED` at `cb34a48`. The remediation candidate addresses
+TS001-RENDER-001 through 004 with committed/pending/error state, bounded
+changed-overlay work, fail-closed tile validation, and corrected viewport
+boundaries. Twelve focused renderer tests pass, and the 100,000-stitch Node
+regression signal requests 12 of 128 tiles.
 Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
 independent renderer verification, deployment, and project `[VERIFIED]` remain
 open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Submit the exact renderer-core candidate to AU-AGENT-003, remediate mandatory
-findings, and keep browser/client evidence plus TS001-PERSIST-006 open for the
+Commit the renderer remediation candidate and submit its exact source to
+AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for the
 later integration stage.
