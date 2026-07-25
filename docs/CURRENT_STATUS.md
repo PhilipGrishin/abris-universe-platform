@@ -196,7 +196,7 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.5.0 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.5.1 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
@@ -413,14 +413,17 @@ progress marks, and canonical hit testing. AU-AGENT-003 assigned initial status
 `REWORK REQUIRED` at `cb34a48`. The remediation candidate addresses
 TS001-RENDER-001 through 004 with committed/pending/error state, bounded
 changed-overlay work, fail-closed tile validation, and corrected viewport
-boundaries. Twelve focused renderer tests pass, and the 100,000-stitch Node
-regression signal requests 12 of 128 tiles.
+boundaries. Reverification at `bdaf3ed` resolved 001, 002, and 004 while
+retaining High finding 003 for incomplete symbol validation and missing
+absolute ceilings. The second candidate closes both gaps with declared stitch
+counts and 500,000 tile/stitch limits. Fourteen focused renderer tests pass,
+and the 100,000-stitch Node regression signal requests 12 of 128 tiles.
 Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
 independent renderer verification, deployment, and project `[VERIFIED]` remain
 open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Commit the renderer remediation candidate and submit its exact source to
-AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for the
-later integration stage.
+Commit the second renderer remediation candidate and submit its exact source
+to AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for
+the later integration stage.

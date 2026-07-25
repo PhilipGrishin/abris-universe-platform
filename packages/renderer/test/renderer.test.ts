@@ -11,6 +11,7 @@ import type {
 } from "@abris-universe/domain-core";
 import {
   INITIAL_TILE_SIZE,
+  MAX_RENDER_REQUESTED_TILES,
   RendererIntegrityError,
   TiledPatternRenderer,
   buildPatternTiles,
@@ -187,6 +188,7 @@ function smallPattern(): {
 function summary(
   pattern: Pattern,
   version: PatternVersion,
+  stitchCount = 3,
 ): PatternSummary {
   return {
     patternVersionId: version.id,
@@ -194,6 +196,7 @@ function summary(
     paletteItems: pattern.paletteItems,
     symbols: pattern.symbols,
     tileSize: INITIAL_TILE_SIZE,
+    stitchCount,
   };
 }
 
@@ -432,7 +435,7 @@ test("discards an aborted tile request", async () => {
 
 test("discards a tile result made stale by a viewport change", async () => {
   const { pattern, version, stitches } = smallPattern();
-  const patternSummary = summary(pattern, version);
+  const patternSummary = summary(pattern, version, stitches.length);
   let release: (() => void) | undefined;
   const provider: PatternTileProvider = {
     getPatternSummary: async () => patternSummary,
@@ -467,7 +470,7 @@ test("budgets changed progress cells incrementally without static redraw", async
       });
     }
   }
-  const patternSummary = summary(pattern, version);
+  const patternSummary = summary(pattern, version, stitches.length);
   const provider = new MemoryProvider(
     patternSummary,
     buildPatternTiles(version.id, stitches),
@@ -632,6 +635,109 @@ test("does not query the provider when the viewport is outside the grid", async 
   assert.equal(provider.ranges.length, 0);
 });
 
+test("rejects malformed symbol visuals before drawing", () => {
+  const { pattern, version } = smallPattern();
+  const invalidSummaries = [
+    {
+      ...summary(pattern, version),
+      symbols: [
+        {
+          id: "symbol-x",
+          sourceCode: "X",
+        },
+      ],
+    },
+    {
+      ...summary(pattern, version),
+      symbols: [
+        {
+          id: "symbol-x",
+          sourceCode: "X",
+          visual: { kind: "unknown" },
+        },
+      ],
+    },
+  ];
+  for (const invalidSummary of invalidSummaries) {
+    const renderer = new TiledPatternRenderer(
+      new MemoryProvider(
+        invalidSummary as unknown as PatternSummary,
+        [],
+      ),
+    );
+    assert.throws(
+      () =>
+        renderer.setPattern(invalidSummary as unknown as PatternSummary),
+      (error: unknown) =>
+        error instanceof RendererIntegrityError &&
+        error.code === "RENDER_INVALID_SUMMARY",
+    );
+  }
+});
+
+test("enforces absolute tile request and response limits", async () => {
+  const { pattern, version } = smallPattern();
+  let providerCalls = 0;
+  const oversizedRequestSummary: PatternSummary = {
+    ...summary(pattern, version, 500_000),
+    grid: {
+      ...pattern.grid,
+      width: 1_000,
+      height: 501,
+    },
+    tileSize: 1,
+  };
+  const requestProvider: PatternTileProvider = {
+    getPatternSummary: async () => oversizedRequestSummary,
+    getTiles: async () => {
+      providerCalls += 1;
+      return [];
+    },
+  };
+  const requestRenderer = new TiledPatternRenderer(requestProvider);
+  requestRenderer.setPattern(oversizedRequestSummary);
+  requestRenderer.setViewport({
+    ...viewport,
+    cellSize: 1,
+    width: 1_000,
+    height: 501,
+  });
+  await assert.rejects(
+    requestRenderer.loadVisibleTiles(new AbortController().signal),
+    (error: unknown) =>
+      error instanceof RendererIntegrityError &&
+      error.code === "RENDER_TILE_REQUEST_LIMIT",
+  );
+  assert.equal(providerCalls, 0);
+
+  const maximumRequestSummary: PatternSummary = {
+    ...oversizedRequestSummary,
+    grid: {
+      ...oversizedRequestSummary.grid,
+      height: 500,
+    },
+  };
+  const responseProvider: PatternTileProvider = {
+    getPatternSummary: async () => maximumRequestSummary,
+    getTiles: async () =>
+      new Array(MAX_RENDER_REQUESTED_TILES + 1) as PatternTile[],
+  };
+  const responseRenderer = new TiledPatternRenderer(responseProvider);
+  responseRenderer.setPattern(maximumRequestSummary);
+  responseRenderer.setViewport({
+    ...viewport,
+    cellSize: 1,
+    width: 1_000,
+    height: 500,
+  });
+  await assert.rejects(
+    responseRenderer.loadVisibleTiles(new AbortController().signal),
+    (error: unknown) =>
+      error instanceof RendererIntegrityError &&
+      error.code === "RENDER_TILE_RESPONSE_LIMIT",
+  );
+});
+
 test("keeps medium-fixture work bounded to requested visible tiles", async () => {
   const bytes = readFileSync(
     join(
@@ -661,12 +767,20 @@ test("keeps medium-fixture work bounded to requested visible tiles", async () =>
   );
   const tileBuildMs = performance.now() - started;
   const provider = new MemoryProvider(
-    summary(imported.canonical.pattern, imported.canonical.patternVersion),
+    summary(
+      imported.canonical.pattern,
+      imported.canonical.patternVersion,
+      imported.canonical.stitches.length,
+    ),
     tiles,
   );
   const renderer = new TiledPatternRenderer(provider);
   renderer.setPattern(
-    summary(imported.canonical.pattern, imported.canonical.patternVersion),
+    summary(
+      imported.canonical.pattern,
+      imported.canonical.patternVersion,
+      imported.canonical.stitches.length,
+    ),
   );
   renderer.setViewport({
     offsetX: 0,

@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark plan; route-1 fixtures |
+| Dependencies | Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan; route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Renderer contract, tile size, viewport transform, symbol treatment, progress visualization, execution path, benchmark, accessibility, browser support, or AU-AGENT-003 finding change |
@@ -57,6 +57,8 @@ Technical Design section 8.
 - Inverse viewport transform to a single canonical cell followed by tile-local
   stitch resolution.
 - Fail-closed summary and tile-provider validation before cache admission.
+- Absolute pre-provider tile-request and response/stitch ceilings derived from
+  the Phase 0 500,000-stitch limit.
 - Incremental full-overlay and changed-cell work under the frame budget.
 
 ## Evidence
@@ -64,7 +66,7 @@ Technical Design section 8.
 | Check | Result |
 | --- | --- |
 | Renderer strict typecheck | `[TESTED]`; TypeScript 7.0.2 passes |
-| Renderer focused suite | `[TESTED]`; 12 passed, 0 failed after finding remediation |
+| Renderer focused suite | `[TESTED]`; 14 passed, 0 failed after second finding remediation |
 | Tile determinism | `[TESTED]`; coordinates, ordering, and absent empty tiles |
 | Bounded viewport work | `[TESTED]`; 100,000-stitch fixture loads 12 of 128 tiles and 12,288 visible/prefetch stitches for the measured viewport |
 | Cancellation and stale work | `[TESTED]`; aborted request rejects and viewport-invalidated result is discarded |
@@ -86,7 +88,10 @@ findings TS001-RENDER-001 through TS001-RENDER-003 and Medium finding
 TS001-RENDER-004. The remediation candidate adds committed/pending/error
 progress semantics, incremental changed-overlay work, fail-closed tile-provider
 validation, and corrected inclusive viewport boundaries with focused negative
-tests. Exact-source reverification remains required.
+tests. Reverification at `bdaf3ed` resolved findings 001, 002, and 004 but kept
+finding 003 partially resolved. The second candidate adds full runtime symbol
+validation, declared stitch counts, and absolute pre-provider/request-response
+ceilings. Exact-source reverification remains required.
 
 ## Limitations and Open Evidence
 

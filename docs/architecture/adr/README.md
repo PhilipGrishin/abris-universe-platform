@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -45,6 +45,11 @@ AU-AGENT-003 design-only security review is registered at
 with status `VERIFIED WITH FINDINGS`. The ADRs remain `[PROPOSED]` until their
 recorded evidence gates complete; neither review authorizes implementation or
 assigns project `[VERIFIED]`.
+
+The renderer-core implementation review is registered at
+`docs/reviews/engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md`.
+Its second remediation adds fail-closed summary/tile controls under
+ADR-TS001-002 and awaits exact-source AU-AGENT-003 reverification.
 
 DEC-001 through DEC-004 and later governance decisions remain in
 `docs/DECISIONS.md` and are not duplicated here.

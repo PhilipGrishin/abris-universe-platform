@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.0 |
+| Version | 1.5.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -549,6 +549,15 @@ The task-scoped threat model is
 ### 8.2 Runtime boundary
 
 ```ts
+interface PatternSummary {
+  patternVersionId: string;
+  grid: Grid;
+  paletteItems: readonly PaletteItem[];
+  symbols: readonly SymbolDefinition[];
+  tileSize: number;
+  stitchCount: number;
+}
+
 interface PatternTileProvider {
   getPatternSummary(patternVersionId: string): Promise<PatternSummary>;
   getTiles(
@@ -571,6 +580,16 @@ interface PatternRenderer {
 The client requests the viewport plus a one-tile prefetch margin. Requests carry
 an `AbortSignal`; stale pan/zoom requests are discarded. The renderer never
 queries all stitches for a frame.
+
+The renderer validates every rendering-relevant summary and tile field before
+cache admission or drawing. Phase 0 rejects a summary or response above the
+500,000-stitch import ceiling. It also rejects a rectangular request spanning
+more than 500,000 tile coordinates before invoking the provider. Returned
+tiles must be non-empty, inside the exact requested range, unique, correctly
+keyed, locally sorted, reference-valid, and bounded by both declared
+`stitchCount` and the same absolute ceiling. These are safety limits rather
+than performance acceptance; the initial 32×32 tile configuration stays well
+below the tile-coordinate ceiling for the 10,000×10,000 grid limit.
 
 ### 8.3 Canvas strategy
 

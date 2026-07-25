@@ -7,6 +7,9 @@ import type {
 
 export const INITIAL_TILE_SIZE = 32;
 export const READABLE_CELL_SIZE_CSS_PX = 16;
+export const MAX_RENDER_REQUESTED_TILES = 500_000;
+export const MAX_RENDER_STITCHES = 500_000;
+export const MAX_RENDER_STRING_CODE_UNITS = 8 * 1024;
 
 export interface PatternTile {
   readonly patternVersionId: string;
@@ -28,6 +31,7 @@ export interface PatternSummary {
   readonly paletteItems: readonly PaletteItem[];
   readonly symbols: readonly SymbolDefinition[];
   readonly tileSize: number;
+  readonly stitchCount: number;
 }
 
 export interface PatternTileProvider {

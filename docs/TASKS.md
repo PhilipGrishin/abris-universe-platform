@@ -314,7 +314,7 @@
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; initial Engineering Verification
   Status `REWORK REQUIRED`; remediation candidate pending exact-source
   reverification; no project `[VERIFIED]`.
-- **Source:** Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark
+- **Source:** Technical Design v1.5.1 section 8; ADR-TS001-002; task benchmark
   plan.
 - **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
   AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
@@ -325,10 +325,10 @@
   layers, incremental frame budgets, readable/overview modes, contrast
   selection, non-color progress marks, and canonical-cell hit testing in
   `packages/renderer`.
-- **Evidence:** Strict typecheck; 12 focused renderer tests after remediation;
-  full workspace
-  checks; and a Node renderer-core medium-fixture signal with 100,000 stitches,
-  128 total tiles, and 12 requested tiles for the measured viewport.
+- **Evidence:** Strict typecheck; 14 focused renderer tests after second
+  remediation; full workspace checks; and a Node renderer-core medium-fixture
+  signal with 100,000 stitches, 128 total tiles, and 12 requested tiles for the
+  measured viewport.
 - **Boundary:** No browser Canvas adapter, bitmap glyph atlas,
   OffscreenCanvas Worker transport, client gestures, companion accessible DOM,
   rendering goldens, controlled browser benchmark, 500,000-stitch scale claim,
@@ -339,9 +339,12 @@
   and exact-boundary viewport math.
 - **Remediation candidate:** Adds committed/pending/error state, incremental
   changed-cell overlay work, fail-closed provider validation, corrected
-  inclusive viewport ranges, and focused negative/regression tests.
-- **Next step:** Commit the remediation candidate and submit its exact source
-  to AU-AGENT-003 before client integration.
+  inclusive viewport ranges, complete symbol-visual validation, declared
+  stitch counts, absolute 500,000 tile/stitch ceilings, and focused
+  negative/regression tests. First remediation `bdaf3ed` resolved 001, 002, and
+  004; the second candidate completes finding 003.
+- **Next step:** Commit the second remediation candidate and submit its exact
+  source to AU-AGENT-003 before client integration.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

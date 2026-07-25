@@ -8,9 +8,9 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `VERIFIED WITH FINDINGS`; renderer-core initial status is `REWORK REQUIRED`,
 and its remediation candidate is `[IMPLEMENTED]`, `[TESTED]`
 
-Commit and independently reverify the tiled Canvas2D renderer-core remediation
-for TS001-RENDER-001 through TS001-RENDER-004. Keep client UI, Worker
-integration, and TS001-PERSIST-006 outside this stage.
+Commit and independently reverify the second tiled Canvas2D renderer-core
+remediation for the remaining TS001-RENDER-003 controls. Keep client UI,
+Worker integration, and TS001-PERSIST-006 outside this stage.
 
 ## Confirmed Inputs
 
@@ -29,7 +29,7 @@ integration, and TS001-PERSIST-006 outside this stage.
 
 ## Current Design State
 
-- Technical Design v1.5.0 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.1 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -117,8 +117,13 @@ TS001-RENDER-004 are registered. The remediation candidate now has 12 focused
 renderer tests plus the full workspace suite, but finding disposition remains
 with AU-AGENT-003 until exact-source reverification.
 
+Reverification at exact commit `bdaf3ed` resolved TS001-RENDER-001, 002, and
+004 and left High TS001-RENDER-003 partially resolved. The second remediation
+candidate adds complete rendering-relevant symbol validation, declared stitch
+counts, and absolute request/response ceilings with 14 focused renderer tests.
+
 ## Next Concrete Step
 
-Commit the renderer remediation candidate and assign AU-AGENT-003 exact-source
-reverification. Do not start client integration before the renderer-core gate
-passes.
+Commit the second renderer remediation candidate and assign AU-AGENT-003
+exact-source reverification. Do not start client integration before the
+renderer-core gate passes.

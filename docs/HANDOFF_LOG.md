@@ -1028,3 +1028,24 @@
   remediation.
 - **Next step:** Commit the remediation candidate and request exact-source
   AU-AGENT-003 reverification.
+
+## 2026-07-25 — Renderer Finding 003 Second Remediation
+
+- **First remediation review:** Exact commit `bdaf3ed` resolved
+  TS001-RENDER-001, 002, and 004; TS001-RENDER-003 remained High and partially
+  resolved. Engineering Verification Status remained `REWORK REQUIRED`.
+- **Remaining gap:** Renderer-consumed symbol visuals were not fully validated
+  before drawing, and request/response capacity lacked an absolute ceiling.
+- **Second remediation:** Added bounded `PatternSummary.stitchCount`, complete
+  text/generated symbol visual validation, bounded renderer strings,
+  pre-provider 500,000 tile-coordinate limit, independent 500,000 tile/stitch
+  response ceilings, and empty-tile rejection.
+- **Evidence:** 14 focused renderer tests include malformed-symbol,
+  over-limit request-before-provider, and absolute-response cases.
+- **Documentation:** Technical Design v1.5.1 and ADR-TS001-002 v1.1.2 record the
+  security boundary; reviews, status, focus, task, risk, traceability, package,
+  and changelog records are synchronized.
+- **Claude handoff:** Not required; technical security remediation remains
+  internal.
+- **Next step:** Commit and request a second exact-source AU-AGENT-003
+  reverification.

@@ -572,6 +572,23 @@ material defect.
 - Evidence: 12 renderer tests, full workspace suite,
   `AU-REVIEW-ENG-TS001-RENDER-001`, and updated traceability.
 
+## 2026-07-25 — Renderer Absolute Safety Ceiling
+
+- Preserved AU-AGENT-003 `REWORK REQUIRED` after exact `bdaf3ed`
+  reverification resolved findings 001, 002, and 004 but kept finding 003
+  partially resolved.
+- Added full pre-draw validation for renderer-consumed Symbol records and
+  bounded rendering-relevant strings.
+- Added declared PatternSummary stitch count plus pre-provider request and
+  independent response limits derived from the Phase 0 500,000-stitch ceiling.
+- Added malformed-symbol and absolute over-limit regression tests, bringing the
+  renderer suite to 14.
+- Updated Technical Design to v1.5.1 and ADR-TS001-002 to v1.1.2 without
+  changing product meaning.
+- Documentation Impact: Material.
+- Status: Second remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
+  reverification `[OPEN]`; no project `[VERIFIED]`.
+
 ## Owner
 
 AU-AGENT-002 maintains entries, references, navigation, and lifecycle. Technical

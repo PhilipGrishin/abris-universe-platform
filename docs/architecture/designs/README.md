@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/architecture/README.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
@@ -30,7 +30,7 @@ acceptance, or project `[VERIFIED]` status.
 
 | Task | Design | Status | Architecture review |
 | --- | --- | --- | --- |
-| TASK-THINSLICE-001 | [Phase 0 Thin-Slice Technical Design Proposal](TASK-THINSLICE-001_TECHNICAL_DESIGN.md) | `[PROPOSED]`; independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`; security design `VERIFIED WITH FINDINGS` | TD-GATE-001 closed for route-1 profile; TD-GATE-004 closed; scaffold, fixtures, domain-core, and bounded importer core `[TESTED]`; TD-GATE-002/003 and remaining implementation evidence `[OPEN]` |
+| TASK-THINSLICE-001 | [Phase 0 Thin-Slice Technical Design Proposal](TASK-THINSLICE-001_TECHNICAL_DESIGN.md) | `[PROPOSED]`; independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`; security design `VERIFIED WITH FINDINGS` | TD-GATE-001 closed for route-1 profile; TD-GATE-004 closed; scaffold, fixtures, domain, importer, persistence, and renderer remediation `[TESTED]`; renderer reverification, TD-GATE-002/003, browser/client, and remaining implementation evidence `[OPEN]` |
 
 ## Owner
 

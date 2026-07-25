@@ -7,7 +7,7 @@
 | Status | Renderer core `[IMPLEMENTED]`, `[TESTED]`; browser integration and performance acceptance `[OPEN]` |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-002 |
@@ -41,6 +41,8 @@ overlay invalidation, and canonical-cell hit testing.
   Project, or Progress.
 - Rejects invalid summaries and corrupt, duplicate, mis-keyed, out-of-range,
   broken-reference, unsorted, or over-returned provider tiles before caching.
+- Requires declared stitch count, validates symbol visuals before drawing, and
+  enforces the Phase 0 absolute 500,000 tile-request/stitch-response ceilings.
 
 ## Evidence
 

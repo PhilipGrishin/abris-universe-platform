@@ -105,6 +105,7 @@ const summary: PatternSummary = {
   paletteItems: imported.canonical.pattern.paletteItems,
   symbols: imported.canonical.pattern.symbols,
   tileSize: INITIAL_TILE_SIZE,
+  stitchCount: imported.canonical.stitches.length,
 };
 const provider = new MemoryTileProvider(summary, tiles);
 const renderer = new TiledPatternRenderer(provider);

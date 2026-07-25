@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; initial Engineering Verification Status `REWORK REQUIRED` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | Exact source commit `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`; TASK-THINSLICE-001 v1.1; Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark plan and threat model |
+| Dependencies | Exact initial source `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`; exact first remediation `bdaf3ed35d33560b180f385c114bc9f9d2cf606a`; TASK-THINSLICE-001 v1.1; Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan and threat model |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Renderer remediation commit; browser/client evidence; renderer contract, tile integrity, progress state, viewport, performance, accessibility, or security change |
@@ -107,3 +107,42 @@ The remediation passes strict workspace typecheck, 10 domain tests, 15 importer
 tests, 17 persistence tests, and 12 renderer tests. This is a remediation
 candidate only. Finding disposition and Engineering Verification Status remain
 owned by AU-AGENT-003 pending exact-source reverification.
+
+## First Remediation Reverification
+
+AU-AGENT-003 reverified exact commit
+`bdaf3ed35d33560b180f385c114bc9f9d2cf606a` and confirmed local and remote
+identity, a clean worktree, diff hygiene, strict typecheck, all 54 tests, and
+the non-acceptance medium signal.
+
+| Finding | Disposition |
+| --- | --- |
+| TS001-RENDER-001 | Resolved |
+| TS001-RENDER-002 | Resolved |
+| TS001-RENDER-003 | Partially Resolved |
+| TS001-RENDER-004 | Resolved |
+
+TS001-RENDER-003 remained High because symbol `sourceCode` and `visual` were not
+fully runtime-validated before drawing and the tile/request limit had no
+absolute ceiling. The quality gate remained `REWORK REQUIRED`; no separate new
+finding was registered.
+
+## Second Remediation Candidate
+
+- `PatternSummary` now declares a bounded `stitchCount`.
+- Every renderer-consumed symbol field is validated, including bounded IDs and
+  source codes, the `text-code-point` and `generated` discriminants, one-code-
+  point text values, font family, generator version, and ordinal.
+- Palette colors and rendering-relevant string lengths fail closed before
+  summary acceptance.
+- A request spanning more than 500,000 tile coordinates is rejected before
+  provider invocation.
+- Tile count and stitch count are independently capped at 500,000 and at the
+  declared summary count during response validation; empty returned tiles are
+  rejected.
+- Malformed-symbol, pre-provider absolute-request, and absolute-response
+  regression tests are added.
+
+The candidate passes 14 renderer tests. Exact-source AU-AGENT-003
+reverification remains required before changing the Engineering Verification
+Status.

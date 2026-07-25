@@ -1,6 +1,8 @@
 import type { FullCrossStitch } from "@abris-universe/domain-core";
 import {
   INITIAL_TILE_SIZE,
+  MAX_RENDER_STITCHES,
+  MAX_RENDER_STRING_CODE_UNITS,
   type PatternTile,
   type TileRange,
 } from "./contracts.ts";
@@ -16,8 +18,11 @@ export function buildPatternTiles(
 ): readonly PatternTile[] {
   if (
     patternVersionId.trim().length === 0 ||
+    patternVersionId.length > MAX_RENDER_STRING_CODE_UNITS ||
     !Number.isSafeInteger(tileSize) ||
-    tileSize <= 0
+    tileSize <= 0 ||
+    tileSize > 10_000 ||
+    stitches.length > MAX_RENDER_STITCHES
   ) {
     throw new TypeError("Pattern version and positive tile size are required.");
   }
@@ -29,6 +34,9 @@ export function buildPatternTiles(
     if (
       stitch.type !== "full-cross" ||
       stitch.id.trim().length === 0 ||
+      stitch.id.length > MAX_RENDER_STRING_CODE_UNITS ||
+      stitch.paletteItemId.length > MAX_RENDER_STRING_CODE_UNITS ||
+      stitch.symbolId.length > MAX_RENDER_STRING_CODE_UNITS ||
       !Number.isSafeInteger(stitch.x) ||
       !Number.isSafeInteger(stitch.y) ||
       stitch.x < 0 ||

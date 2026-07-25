@@ -1,5 +1,8 @@
 import type { FullCrossStitch } from "@abris-universe/domain-core";
 import {
+  MAX_RENDER_REQUESTED_TILES,
+  MAX_RENDER_STITCHES,
+  MAX_RENDER_STRING_CODE_UNITS,
   READABLE_CELL_SIZE_CSS_PX,
   type Canvas2DLike,
   type PatternSummary,
@@ -64,6 +67,9 @@ function assertSummary(summary: PatternSummary): void {
     summary.grid.height > 10_000 ||
     summary.paletteItems.length > 4_096 ||
     summary.symbols.length > 4_096 ||
+    !Number.isSafeInteger(summary.stitchCount) ||
+    summary.stitchCount < 0 ||
+    summary.stitchCount > MAX_RENDER_STITCHES ||
     summary.grid.origin !== "top-left" ||
     summary.grid.coordinateBase !== 0 ||
     summary.grid.xDirection !== "right" ||
@@ -82,6 +88,7 @@ function assertSummary(summary: PatternSummary): void {
       typeof item.id !== "string" ||
       typeof item.displayColor !== "string" ||
       item.id.trim().length === 0 ||
+      item.id.length > MAX_RENDER_STRING_CODE_UNITS ||
       paletteIds.has(item.id)
     ) {
       integrityFailure(
@@ -89,7 +96,14 @@ function assertSummary(summary: PatternSummary): void {
         "Pattern summary contains an invalid or duplicate palette identity.",
       );
     }
-    readableGlyphColor(item.displayColor);
+    try {
+      readableGlyphColor(item.displayColor);
+    } catch {
+      integrityFailure(
+        "RENDER_INVALID_SUMMARY",
+        "Pattern summary contains an invalid palette display color.",
+      );
+    }
     paletteIds.add(item.id);
   }
   const symbolIds = new Set<string>();
@@ -98,12 +112,42 @@ function assertSummary(summary: PatternSummary): void {
       symbol === null ||
       typeof symbol !== "object" ||
       typeof symbol.id !== "string" ||
+      typeof symbol.sourceCode !== "string" ||
       symbol.id.trim().length === 0 ||
+      symbol.id.length > MAX_RENDER_STRING_CODE_UNITS ||
+      symbol.sourceCode.length === 0 ||
+      symbol.sourceCode.length > MAX_RENDER_STRING_CODE_UNITS ||
+      symbol.visual === null ||
+      typeof symbol.visual !== "object" ||
       symbolIds.has(symbol.id)
     ) {
       integrityFailure(
         "RENDER_INVALID_SUMMARY",
         "Pattern summary contains an invalid or duplicate symbol identity.",
+      );
+    }
+    if (symbol.visual.kind === "text-code-point") {
+      if (
+        typeof symbol.visual.value !== "string" ||
+        [...symbol.visual.value].length !== 1 ||
+        typeof symbol.visual.fontFamily !== "string" ||
+        symbol.visual.fontFamily.trim().length === 0 ||
+        symbol.visual.fontFamily.length > MAX_RENDER_STRING_CODE_UNITS
+      ) {
+        integrityFailure(
+          "RENDER_INVALID_SUMMARY",
+          "Pattern summary contains an invalid text symbol visual.",
+        );
+      }
+    } else if (
+      symbol.visual.kind !== "generated" ||
+      symbol.visual.generatorVersion !== 1 ||
+      !Number.isSafeInteger(symbol.visual.ordinal) ||
+      symbol.visual.ordinal < 0
+    ) {
+      integrityFailure(
+        "RENDER_INVALID_SUMMARY",
+        "Pattern summary contains an invalid or unknown symbol visual.",
       );
     }
     symbolIds.add(symbol.id);
@@ -183,6 +227,9 @@ export class TiledPatternRenderer implements PatternRenderer {
       if (stitchId.trim().length === 0) {
         throw new TypeError("Changed stitch identities must be non-empty.");
       }
+      if (stitchId.length > MAX_RENDER_STRING_CODE_UNITS) {
+        throw new TypeError("Changed stitch identity exceeds the renderer limit.");
+      }
       if (this.#visibleById.has(stitchId)) {
         this.#changedProgressIds.add(stitchId);
       }
@@ -203,6 +250,15 @@ export class TiledPatternRenderer implements PatternRenderer {
       this.#visibleById.clear();
       this.#invalidateAll();
       return true;
+    }
+    const requestedTileCount =
+      (range.maxTileX - range.minTileX + 1) *
+      (range.maxTileY - range.minTileY + 1);
+    if (requestedTileCount > MAX_RENDER_REQUESTED_TILES) {
+      integrityFailure(
+        "RENDER_TILE_REQUEST_LIMIT",
+        "Visible tile request exceeds the Phase 0 safety limit.",
+      );
     }
     const tiles = await this.#provider.getTiles(
       summary.patternVersionId,
@@ -372,6 +428,15 @@ export class TiledPatternRenderer implements PatternRenderer {
     const requestedTileCount =
       (range.maxTileX - range.minTileX + 1) *
       (range.maxTileY - range.minTileY + 1);
+    if (
+      tiles.length > MAX_RENDER_REQUESTED_TILES ||
+      tiles.length > summary.stitchCount
+    ) {
+      integrityFailure(
+        "RENDER_TILE_RESPONSE_LIMIT",
+        "Tile response exceeds the absolute Phase 0 tile limit.",
+      );
+    }
     if (tiles.length > requestedTileCount) {
       integrityFailure(
         "RENDER_TILE_RESPONSE_LIMIT",
@@ -414,7 +479,10 @@ export class TiledPatternRenderer implements PatternRenderer {
         );
       }
       tileKeys.add(key);
-      if (tile.stitches.length > summary.tileSize * summary.tileSize) {
+      if (
+        tile.stitches.length === 0 ||
+        tile.stitches.length > summary.tileSize * summary.tileSize
+      ) {
         integrityFailure(
           "RENDER_TILE_RESPONSE_LIMIT",
           "Tile contains more stitches than its cell capacity.",
@@ -423,7 +491,11 @@ export class TiledPatternRenderer implements PatternRenderer {
       let previousLocalIndex = -1;
       for (const stitch of tile.stitches) {
         stitchCount += 1;
-        if (stitchCount > requestedTileCount * summary.tileSize ** 2) {
+        if (
+          stitchCount > MAX_RENDER_STITCHES ||
+          stitchCount > summary.stitchCount ||
+          stitchCount > requestedTileCount * summary.tileSize ** 2
+        ) {
           integrityFailure(
             "RENDER_TILE_RESPONSE_LIMIT",
             "Tile response exceeds the requested cell capacity.",
@@ -437,6 +509,9 @@ export class TiledPatternRenderer implements PatternRenderer {
           typeof stitch.paletteItemId !== "string" ||
           typeof stitch.symbolId !== "string" ||
           stitch.id.trim().length === 0 ||
+          stitch.id.length > MAX_RENDER_STRING_CODE_UNITS ||
+          stitch.paletteItemId.length > MAX_RENDER_STRING_CODE_UNITS ||
+          stitch.symbolId.length > MAX_RENDER_STRING_CODE_UNITS ||
           !Number.isSafeInteger(stitch.x) ||
           !Number.isSafeInteger(stitch.y) ||
           stitch.x < 0 ||

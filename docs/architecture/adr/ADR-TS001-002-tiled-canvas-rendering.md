@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.1.1 |
+| Version | 1.1.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -48,6 +48,12 @@ and an accessible representation of the current chart and selected stitch.
 Readable mode, glyph/background contrast, non-color-only progress states,
 one-based user-facing coordinates, and tap-versus-pan discrimination are
 binding functional renderer/client contracts in the Technical Design.
+
+The renderer boundary fails closed on malformed summaries and persisted tile
+records before drawing. Phase 0 applies the approved 500,000-stitch ceiling to
+declared and returned stitches and rejects a request spanning more than
+500,000 tile coordinates before provider invocation. Empty returned tiles are
+invalid because empty tiles are represented by absence.
 
 ## Alternatives
 
@@ -114,3 +120,7 @@ measurements on both required fixtures, and accessibility review.
   `VERIFIED WITH FINDINGS` for the design-only security scope and closes the
   security-review component of TD-GATE-004. Benchmark and implementation
   evidence remain open.
+- 2026-07-25: Renderer finding TS001-RENDER-003 added fail-closed summary/tile
+  validation plus absolute Phase 0 request/response ceilings derived from the
+  existing 500,000-stitch import boundary. The renderer implementation remains
+  subject to exact-source AU-AGENT-003 reverification.
