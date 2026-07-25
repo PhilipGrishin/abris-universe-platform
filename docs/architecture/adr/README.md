@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | ADR added, approved, rejected, or superseded; decision index conflict; broken reference |
@@ -34,7 +34,9 @@ No individual ADR files exist. DEC-001 through DEC-004 remain in
 ## Owner
 
 AU-AGENT-002 owns indexing, metadata, references, and supersession links.
-AU-AGENT-001 owns technical decision meaning and approval routing.
+AU-AGENT-001 owns technical decision approval routing. AU-AGENT-004 may author
+Pattern Engine domain ADRs and owns their domain technical proposal; it cannot
+override AU-AGENT-001 system architecture decisions.
 
 ## Lifecycle
 

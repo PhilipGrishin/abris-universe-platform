@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Target, method, environment, dataset, implementation, or result change |
@@ -31,7 +31,8 @@ None.
 ## Owner
 
 AU-AGENT-002 maintains indexing, metadata, references, traceability, and result
-lifecycle. Assigned technical and quality owners approve method and conclusions.
+lifecycle. AU-AGENT-004 owns pattern-processing benchmark method and technical
+meaning; AU-AGENT-003 independently reviews evidence and conclusions.
 
 ## Lifecycle
 

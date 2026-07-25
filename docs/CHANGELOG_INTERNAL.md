@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -108,6 +108,28 @@ material defect.
 - Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
 - Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-003 operating definition,
   `docs/reviews/engineering/`, `docs/TRACEABILITY_MATRIX.md`, and the AGENT-003
+  handoff.
+
+## 2026-07-25 — AGENT-004 Pattern Engineering Role Activation
+
+- Merged the prior linear Collaboration Bridge, acceptance, and AU-AGENT-003
+  branch chain into `main` through checked GitHub PR #1.
+- Registered AU-AGENT-004 — Pattern Engine, Import, Rendering & Algorithms Lead
+  from the complete Project Owner instruction.
+- Preserved AU-AGENT-004 ownership of pattern representation, parsing, import,
+  rendering core, algorithms, compatibility, correctness, performance, memory,
+  and domain documentation without creating implementation or architecture.
+- Preserved AU-AGENT-001 system architecture, AU-AGENT-002 documentation
+  lifecycle, AU-AGENT-003 independent quality review, Claude product authority,
+  and the Project Owner override.
+- Registered the owner-authorized checked auto-merge workflow for future
+  agent-registration branches with conflict, check, review, finding, safety, and
+  scope guardrails.
+- Kept AU-AGENT-005 and AU-AGENT-006 inactive.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-004 operating definition,
+  `docs/TRACEABILITY_MATRIX.md`, OWNER-DEC-AGENT-MERGE-001, and the AGENT-004
   handoff.
 
 ## Owner

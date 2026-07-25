@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md`, `AGENTS.md` |
@@ -29,6 +29,7 @@ identity, registration status, and cross-role boundaries.
 ## Registered Definitions
 
 - [AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead](definitions/au-agent-003-engineering-quality-devsecops-security-lead.md)
+- [AU-AGENT-004 — Pattern Engine, Import, Rendering & Algorithms Lead](definitions/au-agent-004-pattern-engine-import-rendering-algorithms-lead.md)
 
 AU-AGENT-001 and AU-AGENT-002 were registered before this definition library
 was established. Their complete active boundaries remain directly in

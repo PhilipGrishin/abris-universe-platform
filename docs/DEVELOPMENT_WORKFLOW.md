@@ -74,6 +74,12 @@ and recommendation. Do not implement a product-significant alternative silently.
 - Route non-`None` Documentation Impact through AU-AGENT-002 for structure,
   navigation, terminology, traceability, lifecycle, and documentation review.
 - Preserve technical and product meaning; AU-AGENT-002 does not approve meaning.
+- Route Pattern Engine, import, parsing, rendering-core, algorithm,
+  compatibility, and pattern-processing performance implementation to
+  AU-AGENT-004. AU-AGENT-001 retains system architecture and integration;
+  AU-AGENT-003 independently verifies the result.
+- Require supported-format, compatibility, benchmark, performance, algorithm,
+  coverage, and known-limitation evidence for applicable AU-AGENT-004 work.
 - Register accepted temporary limitations in `docs/TECHNICAL_DEBT.md`.
 
 ## 7. Verification
@@ -167,5 +173,12 @@ pull request unless an explicit owner-approved workflow says otherwise.
 Branch protection, required reviews, Issues, labels, Actions, release, and
 deployment conventions remain `[PROPOSED]`. Do not enable automation, add
 credentials, or claim CI evidence until separately approved and validated.
+
+For owner-supplied agent-registration tasks, Codex creates a branch from current
+`main`, validates the exact organizational change, publishes a pull request,
+checks mergeability and configured checks, and merges automatically when no
+conflict, failed or pending required check, required review, or mandatory
+finding remains. This authorization is limited to agent registration and does
+not bypass repository protection or expand product implementation authority.
 
 The cross-contour artifact lifecycle is defined in `docs/SHARED_WORKFLOW.md`.

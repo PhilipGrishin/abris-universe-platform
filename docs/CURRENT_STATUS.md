@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AGENT-003 — register the independent engineering quality gate
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, and AU-AGENT-003 quality-gate infrastructure
+**Current focus:** AGENT-004 — register Pattern Engine domain ownership
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004 role infrastructure
 **Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
 
 ## Confirmed Workspace State
@@ -23,6 +23,8 @@
   registered as the permanent documentation specialist.
 - `[IMPLEMENTED]` AU-AGENT-003, Engineering Quality, DevSecOps & Security Lead,
   is registered as the independent engineering quality-gate specialist.
+- `[IMPLEMENTED]` AU-AGENT-004, Pattern Engine, Import, Rendering & Algorithms
+  Lead, is registered as the pattern-processing domain engineering specialist.
 - `[IMPLEMENTED]` The Source of Truth Registry, documentation standard,
   navigation, metadata, glossary, traceability, Handbook shell, ADR/RFC,
   specification, standard, assurance, and documentation-review indexes exist.
@@ -35,6 +37,10 @@
 - `[IMPLEMENTED]` Engineering Verification Reports have a canonical library and
   template. Their unbracketed status values are distinct from project
   `[VERIFIED]`.
+- `[CONFIRMED]` AU-AGENT-004 owns pattern representation, parsing,
+  rendering-core, algorithms, supported-format import compatibility, and
+  pattern-processing performance inside AU-AGENT-001 architecture. It does not
+  own UI, backend, synchronization, product meaning, or quality acceptance.
 - `[CONFIRMED]` The initial Architecture & Repository Assessment found no
   application repository, source architecture, code, contracts, schemas,
   dependencies, tests, migrations, or deployment assets.
@@ -63,7 +69,7 @@
   authority boundaries, Source of Truth organization, and the Collaboration
   Bridge operating model exercised by the completed exchange.
 - `[CONFIRMED]` Application implementation, technology stack, runtime
-  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-004–006,
+  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-005–006,
   Engineering Handbook content, and unreviewed bridge tooling implementation
   are not `[VERIFIED]`.
 
@@ -106,6 +112,13 @@
   relationships, independence, and Definition of Done.
 - `[TESTED]` Governance distinguishes task-scoped Engineering Verification
   Status `VERIFIED` from Claude Cowork project `[VERIFIED]`.
+- `[TESTED]` AU-AGENT-004 registration was checked for the complete supplied
+  mission, responsibilities, authority, inputs, outputs, ownership, interfaces,
+  design principles, required evidence, deliverables, rules, and Definition of
+  Done.
+- `[TESTED]` PR #1 was mergeable and clean, reported no configured GitHub
+  checks, and merged the prior linear branch chain into `main` without
+  conflicts.
 
 ## Blockers
 
@@ -113,8 +126,8 @@
   product code exists yet.
 - `[OPEN]` Engineering intake and Technical Review disposition for
   AU-CDX-TASK-001 v1.0.
-- `[OPEN]` AU-AGENT-004–006 remain inactive pending their individual complete
-  owner instructions.
+- `[OPEN]` AU-AGENT-005 and AU-AGENT-006 remain inactive pending their
+  individual complete owner instructions.
 
 ## Active Risks
 
@@ -131,17 +144,19 @@
   acceptance unless bridge controls remain enforced.
 - RISK-010: canonical repository product artifacts and local Claude copies may
   diverge without exchange enforcement.
+- RISK-011: agent-registration auto-merge could bypass required review unless
+  its guardrails remain enforced.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered AU-AGENT-003 from the complete owner instruction, integrated the
-independent engineering quality gate, and created the canonical Engineering
-Verification Report infrastructure without implementing product features.
+Merged PR #1 and registered AU-AGENT-004 from the complete owner instruction,
+including Pattern Engine domain boundaries and evidence obligations, without
+implementing product features or defining runtime architecture.
 
 ## Next Step
 
-Receive the Project Owner's complete operating instruction for AU-AGENT-004 in a
-separate task. Do not activate AU-AGENT-004–006 from this task and do not begin
-product implementation.
+Receive the Project Owner's complete operating instruction for AU-AGENT-005 in a
+separate task. Do not activate AU-AGENT-005 or AU-AGENT-006 from this task and
+do not begin product implementation.
