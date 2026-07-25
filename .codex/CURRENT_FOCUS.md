@@ -1,33 +1,36 @@
 # Current Focus
 
-## Focus ID: ACCEPT-INIT-002
+## Focus ID: AGENT-003
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`; incorporates the bounded independent
-`[VERIFIED]` decision without extending its scope
+**Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
 
-Integrate the schema-valid Claude Cowork independent acceptance result for
-INIT-002, preserve its exact meaning and limitations, register findings F1–F5,
-and archive the completed exchange with provenance.
+Register AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead from the
+complete Project Owner instruction and integrate its independent engineering
+quality gate without product implementation or activation of AU-AGENT-004–006.
 
 ## Completed in This Focus
 
-- Validated the reissued return manifest against the registered bridge contract.
-- Preserved the Claude-authored Acceptance Report byte-for-byte.
-- Registered `VERIFIED` only for the exact INIT-002 scope and exercised bridge
-  operating model, with all exclusions and limitations explicit.
-- Registered F1–F5 as separate follow-up records and the owner's F1 resolution.
-- Archived `AU-EX-20260721-001` with its canonical review reference.
+- Preserved the complete supplied mission, responsibilities, authority,
+  prohibitions, inputs, outputs, verification scope, evidence rules, statuses,
+  severities, relationships, independence rules, and Definition of Done.
+- Registered AU-AGENT-003 in the authoritative and readable agent registries.
+- Created the complete operating definition, agent index, Engineering
+  Verification Report library, and report template.
+- Integrated the engineering quality gate before Claude Cowork product
+  acceptance.
+- Distinguished unbracketed Engineering Verification Status from project
+  `[VERIFIED]`.
+- Kept AU-AGENT-004–006 inactive and made no product or runtime-architecture
+  change.
 
 ## Blocked or Awaiting Input
 
-- Full owner-provided operating instruction for AU-AGENT-003.
+- Full owner-provided operating instruction for AU-AGENT-004.
 - Engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
-- Registration or reassignment of specialist roles named by the Task Package.
-- A registered independent Engineering Quality reviewer before substantial
-  implementation can receive independent engineering acceptance.
+- Registration of the remaining specialist roles named by Owner Decision F1.
 
 ## Next Concrete Step
 
-Stop after acceptance integration. In a separate owner input, receive the full
-operating instruction for AU-AGENT-003. Do not activate AU-AGENT-003–006 and do
-not start AU-CDX-TASK-001 implementation in this focus.
+Stop after AU-AGENT-003 activation. In a separate owner input, receive the full
+operating instruction for AU-AGENT-004. Do not activate AU-AGENT-004–006 or
+start AU-CDX-TASK-001 implementation in this focus.

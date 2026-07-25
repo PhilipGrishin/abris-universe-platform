@@ -18,18 +18,20 @@ Read in this order:
 2. `docs/SOURCE_OF_TRUTH.md`
 3. `AGENTS.md`
 4. `.codex/PROJECT_INSTRUCTIONS.md`
-5. `product/README.md` and the exact Task Package when product scope applies
-6. `docs/README.md`
-7. `docs/PROJECT_CONTEXT.md`
-8. `docs/CURRENT_STATUS.md`
-9. `.codex/CURRENT_FOCUS.md`
-10. The latest entries in `docs/HANDOFF_LOG.md`
-11. `docs/TASKS.md`
-12. `docs/OPEN_QUESTIONS.md`
-13. Recent entries in `docs/DECISIONS.md`
-14. `docs/RISKS.md`
-15. `docs/TECHNICAL_DEBT.md` if present
-16. `docs/GLOSSARY.md` and `docs/TRACEABILITY_MATRIX.md` when terminology or
+5. `.codex/AGENT_REGISTRY.md`, `.codex/agents/README.md`, and the complete
+   definition of every specialist assigned to the task
+6. `product/README.md` and the exact Task Package when product scope applies
+7. `docs/README.md`
+8. `docs/PROJECT_CONTEXT.md`
+9. `docs/CURRENT_STATUS.md`
+10. `.codex/CURRENT_FOCUS.md`
+11. The latest entries in `docs/HANDOFF_LOG.md`
+12. `docs/TASKS.md`
+13. `docs/OPEN_QUESTIONS.md`
+14. Recent entries in `docs/DECISIONS.md`
+15. `docs/RISKS.md`
+16. `docs/TECHNICAL_DEBT.md` if present
+17. `docs/GLOSSARY.md` and `docs/TRACEABILITY_MATRIX.md` when terminology or
     traceability may be affected
 
 ## Implementation Evidence

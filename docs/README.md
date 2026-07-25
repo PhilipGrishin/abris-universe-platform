@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -53,6 +53,8 @@ traceability, terminology, and documentation reviews.
 - [Engineering Standards](standards/README.md)
 - [Engineering Assurance](assurance/README.md)
 - [Documentation Reviews](reviews/documentation/README.md)
+- [Engineering Verification Reports](reviews/engineering/README.md)
+- [Codex Agent Definitions](../.codex/agents/README.md)
 - [Shared Product-to-Engineering Workflow](SHARED_WORKFLOW.md)
 - [Shared AI Organization](../AI_ORGANIZATION.md)
 - [Product Contour](../product/README.md)

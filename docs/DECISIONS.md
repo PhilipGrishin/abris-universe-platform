@@ -162,7 +162,8 @@
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 
-- **Status:** `[APPROVED]`; role activation remains `[OPEN]`
+- **Status:** `[APPROVED]`; AU-AGENT-003 activation `[IMPLEMENTED]`;
+  AU-AGENT-004–006 activation `[OPEN]`
 - **Date:** 2026-07-21
 - **Related records:** INIT-002-F1, INIT-002-F3, AU-CDX-TASK-001
 - **Context:** Independent Acceptance Finding F1 confirmed that the Task Package
@@ -170,7 +171,7 @@
   entire implementation to AU-AGENT-001 would collapse orchestration and
   specialist execution responsibilities.
 - **Decision:** Activate specialized Codex agents in this order: AU-AGENT-003 —
-  Engineering Quality, DevOps & Security Lead; AU-AGENT-004 — Pattern Engine,
+  Engineering Quality, DevSecOps & Security Lead; AU-AGENT-004 — Pattern Engine,
   Import, Rendering & Algorithms Lead; AU-AGENT-005 — Backend, Data &
   Synchronization Lead; AU-AGENT-006 — Mobile/Web Client Lead. AU-AGENT-001
   retains intake, Technical Review, architecture, decomposition, assignment,
@@ -190,8 +191,8 @@
 - **Prohibited interpretation:** The decision does not approve product
   implementation, stack, runtime architecture, or AU-CDX-TASK-001 execution.
 - **Owner:** Project Owner
-- **Review status:** Owner decision registered; implementation deferred to
-  separate owner inputs beginning with AU-AGENT-003.
+- **Review status:** AU-AGENT-003 was registered from its full owner instruction
+  on 2026-07-25. AU-AGENT-004–006 remain deferred to separate owner inputs.
 
 ## Decision Process
 

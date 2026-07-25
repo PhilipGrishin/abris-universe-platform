@@ -65,23 +65,25 @@
   task-specific plan.
 - **Owner:** To be assigned per Task Package
 
-## RISK-005 — Independent Engineering Review Is Not Yet Available
+## RISK-005 — Independent Engineering Review Is Missing or Bypassed
 
-- **Status:** `[OPEN]`
-- **Probability:** Certain until the reviewer role is registered
+- **Status:** `[IMPLEMENTED]` role-registration mitigation; residual assignment
+  monitoring
+- **Probability:** Low when the quality gate is enforced
 - **Impact:** High for substantial implementation
-- **Trigger:** AU-AGENT-001 designs, integrates, or reviews product code before a
-  separate Engineering Quality reviewer is registered and assigned.
+- **Trigger:** A Codex engineering result reaches completion or Claude handoff
+  without an independent AU-AGENT-003 review assignment and report.
 - **Affected areas:** Architecture review, security, performance, integration,
   release confidence, and acceptance evidence.
-- **Prevention:** Register the owner-supplied Engineering Quality role before
-  relying on independent engineering acceptance.
-- **Mitigation:** Perform explicit self-review and automated checks, label them
-  non-independent, preserve evidence, and avoid claiming Engineering Quality
-  acceptance.
-- **Fallback:** Request external or Claude Cowork-directed independent review for
-  high-risk work before release.
-- **Owner:** Project owner for role instruction; AU-AGENT-001 for disclosure
+- **Prevention:** AU-AGENT-003 is registered and the Development Workflow
+  requires its engineering quality gate before Claude product acceptance.
+- **Mitigation:** Assign AU-AGENT-003 independently for each engineering result,
+  preserve exact evidence, findings, and dispositions, and keep self-review
+  labeled non-independent.
+- **Fallback:** Block the Completion Report and request an independent
+  AU-AGENT-003 review; if independence cannot be established, escalate to
+  AU-CODEX-PRIMARY and the Project Owner.
+- **Owner:** AU-CODEX-PRIMARY for gate enforcement; AU-AGENT-003 for review
 
 ## RISK-006 — Documentation Authority Is Confused With Meaning Authority
 

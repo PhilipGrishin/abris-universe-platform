@@ -262,3 +262,52 @@
   content, or AU-AGENT-003–006 activation.
 - **Next step:** Receive the full AU-AGENT-003 operating instruction in a
   separate owner task.
+
+## 2026-07-25 — Project Owner to Codex — AGENT-003
+
+- **Direction received:** Create and activate AU-AGENT-003 — Engineering
+  Quality, DevSecOps & Security Lead from the supplied complete operating
+  instruction.
+- **Mission:** Ensure every Codex engineering result meets approved engineering
+  standards before completion by independently validating quality, evidence,
+  security, reliability, testing, and operational readiness.
+- **Authority:** May reject incomplete implementation, require evidence,
+  clarification, tests, documentation, security fixes, or performance
+  measurements, and block a Completion Report while mandatory findings remain.
+- **Boundary:** Must not implement features, modify implementation, redesign
+  architecture, change product requirements, approve product acceptance, or
+  override the Project Owner.
+- **Required outputs:** Engineering Verification Report, findings, Risk
+  Assessment, Quality Gate Decision, and one of the four supplied Engineering
+  Verification Status values.
+- **Documentation Impact:** Material.
+
+## 2026-07-25 — Codex Activation Handoff — AGENT-003
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- **Registration:** AU-AGENT-003 is active in `.codex/AGENT_REGISTRY.md`,
+  `docs/CODEX_AGENTS.md`, `AGENTS.md`, and the shared organization navigation.
+- **Operating definition:** The owner-supplied mission, responsibilities,
+  authority, prohibitions, inputs, outputs, verification scope, evidence rule,
+  relationships, statuses, severities, rules, and Definition of Done are
+  preserved in
+  `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`.
+- **Quality gate:** AU-AGENT-003 reviews the consolidated engineering result
+  before Claude Cowork product acceptance and may block the Completion Report
+  until mandatory findings are resolved. Implementation owners perform fixes.
+- **Status boundary:** `VERIFIED`, `VERIFIED WITH FINDINGS`, `REWORK REQUIRED`,
+  and `BLOCKED` are unbracketed, task-scoped Engineering Verification Status
+  values. Only Claude Cowork may assign project `[VERIFIED]`.
+- **Documentation result:** Added the agent-definition index, canonical
+  Engineering Verification Report library and template, Source of Truth entries,
+  workflow gate, glossary term, traceability mappings, and persistent state.
+- **Validation:** Required role clauses, metadata, navigation, local links,
+  terminology, inactive-role boundaries, Markdown whitespace, and repository
+  diff consistency were checked. Existing bridge unit tests remained passing.
+- **Documentation exception:** None.
+- **Not performed:** No feature or fix implementation, architecture redesign,
+  CI/CD implementation, product acceptance, product-source modification,
+  Engineering Verification Report for nonexistent product code, or
+  AU-AGENT-004–006 activation.
+- **Next step:** Receive the complete Project Owner operating instruction for
+  AU-AGENT-004 in a separate task.

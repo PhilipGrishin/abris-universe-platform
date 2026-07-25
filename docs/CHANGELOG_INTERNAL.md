@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -89,6 +89,26 @@ material defect.
   report's bounded scope.
 - Evidence: canonical Acceptance Report, exchange outcome, Traceability Matrix,
   and ACCEPT-INIT-002 handoff.
+
+## 2026-07-25 — AGENT-003 Engineering Quality Gate Activation
+
+- Registered AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead from
+  the complete Project Owner instruction.
+- Preserved the role's independent review authority and its prohibitions on
+  implementation, architecture redesign, product changes, and product
+  acceptance.
+- Added the canonical agent definition and Engineering Verification Report
+  library and template.
+- Integrated engineering verification between the consolidated Completion
+  Report and Claude Cowork independent product acceptance.
+- Defined unbracketed Engineering Verification Status values separately from
+  project `[VERIFIED]`.
+- Kept AU-AGENT-004–006 inactive and changed no product or runtime architecture.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-003 operating definition,
+  `docs/reviews/engineering/`, `docs/TRACEABILITY_MATRIX.md`, and the AGENT-003
+  handoff.
 
 ## Owner
 

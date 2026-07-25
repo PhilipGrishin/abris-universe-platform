@@ -1,8 +1,8 @@
 # Current Status
 
-**Status date:** 2026-07-21
-**Current focus:** ACCEPT-INIT-002 — integrate bounded independent acceptance
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, and controlled Option B local exchange
+**Status date:** 2026-07-25
+**Current focus:** AGENT-003 — register the independent engineering quality gate
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, and AU-AGENT-003 quality-gate infrastructure
 **Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
 
 ## Confirmed Workspace State
@@ -21,13 +21,20 @@
   Orchestrator, is registered as the chief specialist.
 - `[IMPLEMENTED]` AU-AGENT-002, Engineering Documentation Manager, is
   registered as the permanent documentation specialist.
+- `[IMPLEMENTED]` AU-AGENT-003, Engineering Quality, DevSecOps & Security Lead,
+  is registered as the independent engineering quality-gate specialist.
 - `[IMPLEMENTED]` The Source of Truth Registry, documentation standard,
   navigation, metadata, glossary, traceability, Handbook shell, ADR/RFC,
   specification, standard, assurance, and documentation-review indexes exist.
 - `[CONFIRMED]` AU-CODEX-PRIMARY retains governance and source hierarchy;
   AU-AGENT-001 retains technical meaning and architecture decisions;
   AU-AGENT-002 owns documentation structure, navigation, consistency,
-  terminology records, traceability, and lifecycle.
+  terminology records, traceability, and lifecycle; AU-AGENT-003 independently
+  reviews engineering results and evidence without implementing fixes or
+  approving product acceptance.
+- `[IMPLEMENTED]` Engineering Verification Reports have a canonical library and
+  template. Their unbracketed status values are distinct from project
+  `[VERIFIED]`.
 - `[CONFIRMED]` The initial Architecture & Repository Assessment found no
   application repository, source architecture, code, contracts, schemas,
   dependencies, tests, migrations, or deployment assets.
@@ -56,7 +63,7 @@
   authority boundaries, Source of Truth organization, and the Collaboration
   Bridge operating model exercised by the completed exchange.
 - `[CONFIRMED]` Application implementation, technology stack, runtime
-  architecture, AU-CDX-TASK-001 implementation, planned Codex agents,
+  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-004–006,
   Engineering Handbook content, and unreviewed bridge tooling implementation
   are not `[VERIFIED]`.
 
@@ -93,6 +100,12 @@
   validated Claude output.
 - `[VERIFIED]` Independent evidence and limitations are preserved in
   `product/reviews/INIT-002_Independent_Acceptance_Report.md`.
+- `[TESTED]` AU-AGENT-003 registration was checked for the complete
+  owner-supplied mission, responsibilities, authority, prohibitions, inputs,
+  outputs, review scope, evidence rules, status and severity values,
+  relationships, independence, and Definition of Done.
+- `[TESTED]` Governance distinguishes task-scoped Engineering Verification
+  Status `VERIFIED` from Claude Cowork project `[VERIFIED]`.
 
 ## Blockers
 
@@ -100,15 +113,16 @@
   product code exists yet.
 - `[OPEN]` Engineering intake and Technical Review disposition for
   AU-CDX-TASK-001 v1.0.
-- `[OPEN]` Independent Engineering Quality Review is unavailable until the
-  corresponding specialist instruction is provided and registered.
+- `[OPEN]` AU-AGENT-004–006 remain inactive pending their individual complete
+  owner instructions.
 
 ## Active Risks
 
 - RISK-001: work may begin in the wrong repository.
 - RISK-002: product behavior may be invented without an authoritative handoff.
 - RISK-003: documentation may diverge before executable evidence exists.
-- RISK-005: AU-AGENT-001 currently lacks an independent engineering reviewer.
+- RISK-005: the independent engineering gate could be bypassed or left
+  unassigned for a task.
 - RISK-006: documentation authority could be confused with technical authority
   or become a parallel source of truth.
 - RISK-007: excessive documentation gates or unused indexes could become a
@@ -122,12 +136,12 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated and integrated the byte-identical INIT-002 Independent Acceptance
-Report, registered the bounded `VERIFIED` scope and F1–F5 follow-ups, and
-archived exchange `AU-EX-20260721-001` with provenance.
+Registered AU-AGENT-003 from the complete owner instruction, integrated the
+independent engineering quality gate, and created the canonical Engineering
+Verification Report infrastructure without implementing product features.
 
 ## Next Step
 
-Receive the project owner's full operating instruction for AU-AGENT-003 in a
-separate task. Do not activate AU-AGENT-003–006 or begin product implementation
-from this acceptance-integration task.
+Receive the Project Owner's complete operating instruction for AU-AGENT-004 in a
+separate task. Do not activate AU-AGENT-004–006 from this task and do not begin
+product implementation.

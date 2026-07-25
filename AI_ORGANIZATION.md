@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -33,7 +33,8 @@ The [Codex Agent Registry](.codex/AGENT_REGISTRY.md) contains the active
 engineering organization. AU-CODEX-PRIMARY governs source hierarchy and
 workflow; AU-AGENT-001 owns technical meaning and engineering decisions;
 AU-AGENT-002 owns documentation integration without owning product or technical
-meaning.
+meaning; AU-AGENT-003 independently verifies engineering quality and evidence
+without implementing features or approving product acceptance.
 
 ## Shared Boundary
 
@@ -52,6 +53,9 @@ Claude reads its inbox and writes its outbox; AU-CODEX-PRIMARY validates,
 integrates, and is the sole Git writer and GitHub operator. AU-AGENT-001 reviews
 technical meaning and AU-AGENT-002 maintains documentation placement,
 navigation, terminology, traceability, and lifecycle without changing meaning.
+Before a completed engineering result is sent to Claude, AU-AGENT-003 performs
+the independent engineering quality gate. Its unbracketed Engineering
+Verification Status does not assign project `[VERIFIED]`.
 
 ## Lifecycle and Adding Roles
 

@@ -41,10 +41,11 @@ Registered engineering agents ------+
 domain meaning and evidence
          |
          v
- Independent Engineering Quality Review (not registered)
+       Consolidated Completion Report
          |
          v
-       Consolidated Completion Report
+ AU-AGENT-003 Engineering Quality Gate
+ evidence, security, testing, operational readiness
          |
          v
        Claude Cowork independent acceptance
@@ -63,6 +64,11 @@ AU-AGENT-001 and assigned domain agents retain technical meaning. This
 organizational extension does not define or change product or system
 architecture. Canonical architecture sources and their authority are registered
 through `docs/SOURCE_OF_TRUTH.md`.
+
+AU-AGENT-003 is an independent engineering reviewer, not an implementation or
+architecture-design role. It checks results and evidence, issues findings, and
+may block the engineering Completion Report. Its quality-gate status is not
+Claude Cowork product acceptance or project `[VERIFIED]`.
 
 The local bridge is a governance and transport interface only. Its committed
 schemas and manifests define exchange contracts; generated packages and the

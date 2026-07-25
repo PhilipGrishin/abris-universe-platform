@@ -72,8 +72,12 @@ cannot change its hierarchy independently.
   permanent documentation specialist and owns documentation structure,
   navigation, consistency, approved terminology records, traceability, and
   lifecycle without owning technical or product meaning.
-- `[OPEN]` No implementation-domain specialist or independent Engineering
-  Quality reviewer has been supplied or registered.
+- `[CONFIRMED]` AU-AGENT-003, Engineering Quality, DevSecOps & Security Lead, is
+  the independent engineering quality-gate specialist. It reviews engineering
+  results and evidence before Claude product acceptance but does not implement
+  features, redesign architecture, or approve product acceptance.
+- `[OPEN]` No implementation-domain specialist has been supplied or registered;
+  AU-AGENT-004–006 remain inactive.
 
 These unknowns intentionally block product implementation but do not block the
 governance baseline.

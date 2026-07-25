@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -22,13 +22,18 @@ risks, and architecture.
 
 ## Scope
 
-No domain checklist exists yet. The mandatory documentation checks are defined
-by the Documentation Standard and Documentation Review Report template.
+No product-domain checklist exists yet. The mandatory documentation checks are
+defined by the Documentation Standard and Documentation Review Report template.
+The cross-cutting engineering quality checks are defined by the AU-AGENT-003
+operating definition and Engineering Verification Report template.
 
 ## Current Checklists
 
 - Documentation validation gate in
   `docs/standards/DOCUMENTATION_STANDARD.md`.
+- Engineering verification scope in
+  `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`
+  and its evidence capture in `docs/reviews/engineering/TEMPLATE.md`.
 
 ## Owner
 
@@ -53,3 +58,4 @@ Documentation Impact.
 - [Assurance Index](../README.md)
 - [Documentation Standard](../../standards/DOCUMENTATION_STANDARD.md)
 - [Development Workflow](../../DEVELOPMENT_WORKFLOW.md)
+- [Engineering Verification Reports](../../reviews/engineering/README.md)

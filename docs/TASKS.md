@@ -22,15 +22,17 @@ available for engineering intake and Technical Review only.
 
 ### INIT-002-F1 — Activate Specialized Codex Agents
 
-- **Status:** Owner resolution `[APPROVED]`; activation `[OPEN]`
+- **Status:** Owner resolution `[APPROVED]`; AU-AGENT-003 `[IMPLEMENTED]`;
+  AU-AGENT-004–006 `[OPEN]`
 - **Source:** Independent Acceptance Report F1 and Owner Decision F1.
 - **Resolution:** `ACTIVATE SPECIALIZED CODEX AGENTS`; do not remap the whole
   AU-CDX-TASK-001 implementation to AU-AGENT-001.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY for governed registration.
-- **Dependencies:** Full owner-provided operating instruction for each role;
-  approval gate; AU-AGENT-003 before product implementation and AU-AGENT-004
-  before the import-format spike.
-- **Prohibited:** This record does not activate AU-AGENT-003–006.
+- **Dependencies:** Full owner-provided operating instruction for each remaining
+  role; approval gate; AU-AGENT-004 before the import-format spike.
+- **Progress:** AU-AGENT-003 was registered from its complete owner instruction
+  on 2026-07-25.
+- **Prohibited:** This record does not activate AU-AGENT-004–006.
 
 ### INIT-002-F2 — Resolve Decision-ID Namespace Collision
 
@@ -43,12 +45,12 @@ available for engineering intake and Technical Review only.
 
 ### INIT-002-F3 — Activate Independent Engineering Quality Role
 
-- **Status:** `[OPEN]`
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
 - **Source:** Independent Acceptance Report F3; RISK-005; Owner Decision F1.
-- **Owner:** Project Owner for the full instruction; AU-CODEX-PRIMARY for
-  registration.
-- **Required result:** Register AU-AGENT-003 before first product
-  implementation. AU-AGENT-001 self-review remains non-independent.
+- **Owner:** Project Owner for role meaning; AU-CODEX-PRIMARY for registration.
+- **Result:** AU-AGENT-003 is registered as an independent engineering
+  quality-gate specialist; Engineering Verification Reports and workflow gates
+  are registered. AU-AGENT-001 self-review remains non-independent.
 
 ### INIT-002-F4 — Canonicalize Collaboration Bridge Protocol
 
@@ -70,6 +72,30 @@ available for engineering intake and Technical Review only.
   use registered exchanges and explicit source mapping.
 
 ## Completed
+
+### AGENT-003 — Register Engineering Quality, DevSecOps & Security Lead
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
+- **Owner:** AU-CODEX-PRIMARY
+- **Reviewer:** Project Owner for supplied role meaning; documentation
+  consistency reviewed under AU-AGENT-002 rules.
+- **Documentation Impact:** Material
+- **Outcome:** Registered AU-AGENT-003; preserved its non-implementation and
+  non-product-acceptance boundaries; defined inputs, outputs, verification
+  scope, evidence rule, findings, severity, quality-gate statuses, independence,
+  interfaces, and Definition of Done; and inserted engineering verification
+  before Claude Cowork product acceptance.
+- **Documentation result:** `.codex/agents/`,
+  `docs/reviews/engineering/`, agent registries, workflows, Source of Truth,
+  glossary, traceability, and persistent project state.
+- **Documentation exception:** None.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`,
+  `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`,
+  `docs/CODEX_AGENTS.md`, `docs/reviews/engineering/README.md`, and the AGENT-003
+  handoff entry.
+- **Not included:** Product implementation, architecture redesign, CI/CD
+  implementation, product acceptance, an Engineering Verification Report for
+  nonexistent product code, or AU-AGENT-004–006 activation.
 
 ### INIT-002 — Initialize Shared Platform Repository and Product Sources
 

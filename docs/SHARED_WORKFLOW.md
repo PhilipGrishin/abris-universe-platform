@@ -7,9 +7,9 @@
 | Status | `[APPROVED]` |
 | Owner | AU-CODEX-PRIMARY / Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `docs/DEVELOPMENT_WORKFLOW.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -38,8 +38,9 @@ Product discovery
   -> implementation
   -> tests and evidence
   -> Completion Report
+  -> AU-AGENT-003 engineering verification
   -> Claude independent review
-  -> VERIFIED or REWORK REQUIRED
+  -> project VERIFIED or product rework
 ```
 
 Clarification, Conflict, or Technical Alternative records may pause the flow and
@@ -55,6 +56,7 @@ return the affected question to its authorized owner.
 | Technical Designs | `docs/architecture/rfc/` or a task-scoped design source registered in `docs/SOURCE_OF_TRUTH.md` | AU-AGENT-001 / assigned technical owner |
 | Clarification and Conflict Reports | Task-scoped engineering review path, referenced by the affected Task Package and decision log | Author records evidence; authorized product or technical owner decides |
 | Completion Reports | Task-scoped engineering report path registered when the first artifact exists | AU-AGENT-001 consolidates engineering evidence |
+| Engineering Verification Reports | `docs/reviews/engineering/` | AU-AGENT-003 owns engineering findings and the task-scoped quality-gate decision |
 | Acceptance Reports | `product/reviews/` | Independent Claude Cowork reviewer |
 | Engineering ADRs | `docs/architecture/adr/` | Assigned technical owner and approver |
 | Traceability | `docs/TRACEABILITY_MATRIX.md` | AU-AGENT-002 maintains mappings; source owners retain meaning |
@@ -67,7 +69,12 @@ establishes its task-scoped path and index under the Source of Truth rules.
 - `[IMPLEMENTED]` means present in project artifacts or code.
 - `[TESTED]` requires stated verification evidence.
 - `[VERIFIED]` requires independent Claude Cowork acceptance.
-- `REWORK REQUIRED` is an acceptance outcome requiring a new engineering cycle.
+- AU-AGENT-003 Engineering Verification Status uses the unbracketed values
+  `VERIFIED`, `VERIFIED WITH FINDINGS`, `REWORK REQUIRED`, and `BLOCKED`; none
+  assigns project `[VERIFIED]`.
+- An engineering `REWORK REQUIRED` decision returns mandatory findings to the
+  implementation owner. A product rework decision returns the affected scope
+  from Claude Cowork to the engineering cycle.
 - No author independently verifies its own result.
 
 ## Documentation Impact

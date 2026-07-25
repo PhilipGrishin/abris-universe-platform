@@ -100,7 +100,8 @@ completion without the required documentation result or an approved registered
 Documentation Exception.
 
 Codex may report `[IMPLEMENTED]` and `[TESTED]`; only independent Claude Cowork
-acceptance establishes `[VERIFIED]`.
+acceptance establishes project `[VERIFIED]`. AU-AGENT-003 uses a separate,
+unbracketed Engineering Verification Status for its quality-gate decision.
 
 ## 9. Documentation Gate
 
@@ -113,13 +114,37 @@ The Engineering Handbook may explain and connect approved knowledge but must not
 duplicate canonical ADRs, RFCs, specifications, architecture documents, or
 product decisions.
 
-## 10. Persistent Handoff
+## 10. Independent Engineering Verification Gate
+
+After the integrated result and Completion Report are ready, AU-AGENT-003
+reviews the exact source, Task Package, Technical Design, implementation, Test
+Results, documentation, Completion Report, traceability, ADRs, Standards, and
+all claimed evidence.
+
+The review covers engineering quality, coding standards, architecture
+compliance, documentation completeness, testing completeness, regression
+coverage, security compliance, CI/CD readiness, release readiness, and
+traceability. Missing evidence is treated as missing implementation.
+
+AU-AGENT-003 issues an Engineering Verification Report under
+`docs/reviews/engineering/` with findings, severity, Risk Assessment, Quality
+Gate Decision, and one Engineering Verification Status: `VERIFIED`, `VERIFIED
+WITH FINDINGS`, `REWORK REQUIRED`, or `BLOCKED`. These are unbracketed,
+task-scoped gate values and never assign project `[VERIFIED]`.
+
+Critical findings block completion. Any mandatory unresolved finding blocks the
+Completion Report from proceeding to Claude. The implementation owner performs
+remediation; AU-AGENT-003 does not edit implementation or redesign
+architecture. Reverification preserves original findings and disposition
+evidence.
+
+## 11. Persistent Handoff
 
 Update current status, focus, task state, handoff log, questions, decisions,
 risks, debt, and internal changelog as applicable. The handoff must let a new
 session continue without relying on chat history.
 
-## 11. Claude-Codex Local Exchange
+## 12. Claude-Codex Local Exchange
 
 Use `collaboration/README.md` when Claude cannot reliably access the canonical
 repository. Codex registers the task against an exact source commit, prepares
@@ -132,7 +157,7 @@ require explicit `--apply`. No bridge script commits, pushes, merges, or
 silently edits canonical product or technical sources. AU-CODEX-PRIMARY remains
 the sole Git writer and GitHub operator.
 
-## 12. Git and Delivery Conventions
+## 13. Git and Delivery Conventions
 
 The canonical private repository is `PhilipGrishin/abris-universe-platform` and
 the default branch is `main`. Initial repository bootstrap commits are

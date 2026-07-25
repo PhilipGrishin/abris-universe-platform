@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
-| Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `product/README.md`, `collaboration/README.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Source authority changes; new canonical document class; source conflict; repository integration |
@@ -72,6 +72,7 @@ project-owner approval.
 | Project-wide engineering governance | `AGENTS.md` | AU-CODEX-PRIMARY | More specific scoped instructions may narrow it. |
 | Operational project instructions | `.codex/PROJECT_INSTRUCTIONS.md` | AU-CODEX-PRIMARY | Must remain consistent with `AGENTS.md`. |
 | Agent identities and boundaries | `.codex/AGENT_REGISTRY.md` | AU-CODEX-PRIMARY | `docs/CODEX_AGENTS.md` is the readable organizational view. |
+| Complete specialist operating definitions | `.codex/agents/definitions/`, indexed by `.codex/agents/README.md` | Project Owner for supplied meaning; AU-CODEX-PRIMARY for registration | A definition does not activate a role unless the registry marks it active. |
 | Product contour navigation | `product/README.md` | Project Owner / Claude Cowork | Navigation layer; does not replace specifications or decisions. |
 | Consolidated product specification | `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` | Project Owner / Claude Cowork | Approved Master Product Specification v1.0. |
 | Product and owner decisions | `product/decisions/05_Decision_Log.md` | Project Owner / Claude Cowork | Each entry retains its own status. |
@@ -94,6 +95,7 @@ project-owner approval.
 | Engineering Handbook | `docs/handbook/` | AU-AGENT-002 | Explanatory navigation and synthesis; never a parallel source of technical truth. |
 | Risks | `docs/RISKS.md` | AU-CODEX-PRIMARY / named risk owner | Risk status does not approve a technical change. |
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
+| Engineering verification evidence | `docs/reviews/engineering/` | AU-AGENT-003 | Engineering Verification Status is a task-scoped quality gate, not project `[VERIFIED]` or product acceptance. |
 | Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
 | Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |
 | Registered exchange provenance | `collaboration/manifests/` | AU-CODEX-PRIMARY | Committed request and exact-source manifest records; transported content is not canonical by transport alone. |
@@ -175,6 +177,7 @@ authority conflict exists.
 - `docs/SHARED_WORKFLOW.md`
 - `.codex/PROJECT_INSTRUCTIONS.md`
 - `.codex/AGENT_REGISTRY.md`
+- `.codex/agents/README.md`
 - `docs/DECISIONS.md`
 - `docs/ARCHITECTURE.md`
 - `docs/standards/DOCUMENTATION_STANDARD.md`
