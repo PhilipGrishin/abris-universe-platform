@@ -28,6 +28,10 @@ authoritative full instruction set for this workspace.
     limited to the registered trigger phrases `Codex finished` and `Claude
     finished` unless a later explicit owner governance decision changes the
     route; AU-CODEX-PRIMARY remains the sole Git writer.
+14. End every completed Codex work package that is ready for owner-mediated
+    handoff to Claude with the exact standalone final line `Codex finished`.
+    This transport marker is not evidence, approval, acceptance, or
+    `[VERIFIED]` status.
 
 ## Active Specialist Leadership
 

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -51,8 +51,9 @@ not approve returned meaning.
   `[VERIFIED]` status.
 - [`AU-EX-20260725-005`](AU-EX-20260725-005/README.md) —
   TASK-THINSLICE-001 pre-implementation architecture review of the exact
-  Technical Design, ADRs, threat model, and benchmark plan; package exported
-  from an immutable current source, return pending, development blocked.
+  Technical Design, ADRs, threat model, and benchmark plan; valid
+  `COMPLETED / NO_DECISION` return integrated as `ACCEPTED_WITH_GATES` and
+  archived with no project `[VERIFIED]` status; development remains blocked.
 
 ## Rules
 

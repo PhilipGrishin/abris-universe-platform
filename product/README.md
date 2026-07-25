@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner / Claude Cowork |
 | Technical Approver | Project Owner |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md`, `collaboration/README.md` |
@@ -101,6 +101,10 @@ returned artifact canonical or accepted. Chat history is not evidence. Project
 Owner manual input is limited to the registered trigger phrases `Codex
 finished` and `Claude finished` unless a later explicit owner governance
 decision changes the route.
+For a completed Codex work package that is ready for owner-mediated Claude
+handoff, Codex ends its final response with the exact standalone line `Codex
+finished`. This is a transport marker, not evidence, approval, acceptance, or
+`[VERIFIED]` status.
 
 ## Acceptance Records
 

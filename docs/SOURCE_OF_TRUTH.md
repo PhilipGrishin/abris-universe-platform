@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -116,6 +116,10 @@ registered Collaboration Bridge, regardless of direct repository availability.
 Chat history is not evidence. Project Owner manual input is limited to the
 registered trigger phrases `Codex finished` and `Claude finished` unless a
 later explicit owner governance decision changes the route.
+Every completed Codex work package that is ready for owner-mediated handoff to
+Claude ends with the exact standalone final line `Codex finished`. The marker
+records transport readiness only and does not become a source of engineering
+evidence, approval, acceptance, or `[VERIFIED]` status.
 
 A Claude return becomes a candidate for canonical integration only after
 schema, path, safety, freshness, registration, and checksum validation. It

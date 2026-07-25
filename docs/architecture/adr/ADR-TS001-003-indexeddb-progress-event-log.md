@@ -4,13 +4,15 @@
 | --- | --- |
 | Document ID | ADR-TS001-003 |
 | Title | IndexedDB Persistence with an Append-Only Local Progress Event Log |
-| Status | `[PROPOSED]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES` |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
+| Security Review | AU-AGENT-003 `[OPEN]` |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Storage schema change; migration or rollback change; browser compatibility change; sync scope; durability finding |
@@ -41,6 +43,13 @@ Save success is emitted only after transaction completion. Duplicate delivery
 of an identical event ID is a no-op; conflicting reuse is corruption. Request
 persistent storage when supported and surface denial, quota, upgrade, and
 unavailable-storage states.
+
+Each event records stable `deviceId` and in-transaction `localSequence`.
+Exactly one tab holds the project writer lock; a second tab is read-only.
+Derivation, sequence allocation, append, projection, and Project update share
+one transaction, while the idempotency record stores a canonical payload hash.
+Strict IndexedDB durability is requested when supported. Rejected/interrupted
+imports delete their Blob while retaining bounded provenance and diagnostics.
 
 No backend, CRDT, synchronization queue, manual backup, or progress export is
 implemented in this slice.
@@ -108,4 +117,7 @@ upgrade, persistence capability, and prior-client compatibility.
 
 - 2026-07-25: Initial proposal by AU-AGENT-005 within AU-AGENT-001 system
   architecture. Approval pending.
-
+- 2026-07-25: Claude Cowork independent architecture review
+  `AU-EX-20260725-005` dispositioned this ADR `ACCEPTED_WITH_GATES`; R-1,
+  R-3, R-4, and N-3 are integrated in version 1.1.0. AU-AGENT-003 security
+  review and implementation evidence remain open.

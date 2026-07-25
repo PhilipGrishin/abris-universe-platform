@@ -1,5 +1,42 @@
 # Handoff Log
 
+## 2026-07-25 — Codex Architecture Review Integration — AU-EX-20260725-005
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; valid return integrated and
+  archived; Technical Design remains `[PROPOSED]`; development blocked.
+- **Exact review source:** Branch
+  `codex/task-thinslice-001-design-source`, commit
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d`, range
+  `fdcf4fddb6d20d5556e2a9f541b6f86b1d07cd88..d90de60f98b8e187e2f75bcab697c6f3e747462d`.
+- **Validation:** The `REQUIREMENTS_REVIEW / COMPLETED / NO_DECISION` return
+  passed schema, requested-role, exact-source, reviewed-input, path, extension,
+  checksum, size, authority, and unregistered-file controls.
+- **Canonical review:** The repository copy is byte-identical to the validated
+  Claude-authored report; SHA-256
+  `260bea570a070e74fc914ad9427a18ef5cfbe5be791c18b4eca87645da2651b0`.
+- **Disposition:** The Technical Design and ADR-TS001-001 through
+  ADR-TS001-004 are `ACCEPTED_WITH_GATES`. No project `[VERIFIED]`, product
+  acceptance, implementation acceptance, security verification, release
+  readiness, or deployment authorization was assigned.
+- **Integrated rework:** Technical Design v1.1.0, the four ADR review
+  histories, threat model, benchmark plan, and test/delivery contracts now
+  integrate R-1 through R-8 and N-1 through N-7/N-9 without changing product
+  meaning.
+- **Product input:** PROD-DEC-010 is integrated with its explicit route-2 grant
+  boundary and unchanged Phase 0 scope. N-8 and the Abris Art source-format
+  survey are separate Phase 1 records.
+- **Provenance:** External inbox and outbox are archived at
+  `claude/archive/AU-EX-20260725-005`; committed outcome records no verified
+  scope.
+- **Governance:** OWNER-DEC-CODEX-HANDOFF-001 requires every completed work
+  package ready for owner-mediated Claude handoff to end with the exact
+  standalone marker `Codex finished`; the marker grants no status.
+- **Documentation Impact:** Material; AU-AGENT-002 navigation, status,
+  traceability, lifecycle, and index updates are included.
+- **Next gate:** AU-AGENT-003 independent security design review. Route-1
+  fixture production, scaffolding, implementation, and deployment remain
+  unstarted.
+
 ## 2026-07-25 — Codex Technical Design Handoff — TASK-THINSLICE-001
 
 - **Status:** Design package `[PROPOSED]`; exact-source architecture-review

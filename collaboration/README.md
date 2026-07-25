@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; exercised operating model `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md`, `AI_ORGANIZATION.md` |
@@ -30,6 +30,10 @@ technical architecture, implementation behavior, or independent acceptance.
 Chat history is not evidence. Project Owner manual input is limited to the
 registered trigger phrases `Codex finished` and `Claude finished` unless a
 later explicit owner governance decision changes the route.
+For every completed Codex work package that is ready for owner-mediated handoff
+to Claude, the final user-facing response ends with the exact standalone line
+`Codex finished`. The marker signals transport readiness only; it is not
+evidence, approval, acceptance, or `[VERIFIED]` status.
 
 ## Selected Topology
 

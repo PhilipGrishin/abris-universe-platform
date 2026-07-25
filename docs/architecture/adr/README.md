@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -30,10 +30,15 @@ use this library and retain their own approval lifecycle.
 
 | ADR | Title | Status | Task |
 | --- | --- | --- | --- |
-| [ADR-TS001-001](ADR-TS001-001-canonical-pattern-and-oxs-boundary.md) | Canonical Pattern and OXS Boundary | `[PROPOSED]` | TASK-THINSLICE-001 |
-| [ADR-TS001-002](ADR-TS001-002-tiled-canvas-rendering.md) | Tiled Canvas2D Rendering | `[PROPOSED]` | TASK-THINSLICE-001 |
-| [ADR-TS001-003](ADR-TS001-003-indexeddb-progress-event-log.md) | IndexedDB and Local Progress Event Log | `[PROPOSED]` | TASK-THINSLICE-001 |
-| [ADR-TS001-004](ADR-TS001-004-web-workspace-and-cloudflare-delivery.md) | Web Workspace and Cloudflare Delivery | `[PROPOSED]` | TASK-THINSLICE-001 |
+| [ADR-TS001-001](ADR-TS001-001-canonical-pattern-and-oxs-boundary.md) | Canonical Pattern and OXS Boundary | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES` | TASK-THINSLICE-001 |
+| [ADR-TS001-002](ADR-TS001-002-tiled-canvas-rendering.md) | Tiled Canvas2D Rendering | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES` | TASK-THINSLICE-001 |
+| [ADR-TS001-003](ADR-TS001-003-indexeddb-progress-event-log.md) | IndexedDB and Local Progress Event Log | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES` | TASK-THINSLICE-001 |
+| [ADR-TS001-004](ADR-TS001-004-web-workspace-and-cloudflare-delivery.md) | Web Workspace and Cloudflare Delivery | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES` | TASK-THINSLICE-001 |
+
+The independent pre-implementation architecture review is registered at
+`product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`.
+The ADRs remain `[PROPOSED]` until their recorded gates and AU-AGENT-003
+security review complete; the review did not authorize implementation.
 
 DEC-001 through DEC-004 and later governance decisions remain in
 `docs/DECISIONS.md` and are not duplicated here.

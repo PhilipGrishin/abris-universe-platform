@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.3.0 |
+| Version | 2.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,28 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Architecture Review Integration
+
+- Validated and archived `AU-EX-20260725-005` with exact-source and checksum
+  provenance; integrated its byte-identical canonical review.
+- Recorded `ACCEPTED_WITH_GATES` for the Technical Design and four task ADRs
+  without assigning project `[VERIFIED]` or implementation authority.
+- Revised the Technical Design, ADR review histories, threat model, benchmark
+  plan, and evidence contracts for R-1 through R-8 and N-1 through N-7/N-9.
+- Integrated PROD-DEC-010 within its product-authority and explicit-content-
+  grant boundaries; registered N-8 and the Abris Art format survey as Phase 1
+  follow-up records.
+- Registered the AU-AGENT-003 pre-code security design review as the next
+  mandatory gate.
+- Added OWNER-DEC-CODEX-HANDOFF-001 and the exact standalone `Codex finished`
+  transport marker to canonical governance. The marker grants no evidence,
+  approval, acceptance, or `[VERIFIED]` status.
+- Updated design, ADR, assurance, product review, product decision, exchange,
+  task, risk, traceability, focus, status, and handoff navigation.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; design remains `[PROPOSED]`; development
+  blocked.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Technical Design Proposal
 

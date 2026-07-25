@@ -7,7 +7,7 @@
 | Status | `[APPROVED]` |
 | Owner | AU-CODEX-PRIMARY / Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `docs/DEVELOPMENT_WORKFLOW.md`, `collaboration/README.md` |
@@ -109,6 +109,10 @@ acceptance.
 Chat history is not evidence. Project Owner manual input is limited to the
 registered trigger phrases `Codex finished` and `Claude finished` unless a
 later explicit owner governance decision changes the route.
+Every completed Codex work package that is ready for owner-mediated handoff to
+Claude ends with the exact standalone final line `Codex finished`. This marker
+is a transport trigger only and does not confer evidence, approval, acceptance,
+or `[VERIFIED]` status.
 
 ## Owner, Lifecycle, and Additions
 

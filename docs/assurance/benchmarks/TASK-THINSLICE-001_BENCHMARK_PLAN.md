@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Benchmark Plan |
-| Status | `[PROPOSED]`; no benchmark result exists |
+| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; no benchmark result exists |
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, target browser/device, renderer, importer, storage, budget, method, or implementation change |
@@ -35,9 +35,10 @@ future scale gate and is not replaced by the medium test.
 
 | Dataset | Required content | Purpose |
 | --- | --- | --- |
-| `minimal-full-cross` | Project-original OXS, known boundary coordinates, at least 8 symbols/colors, no unsupported content | Correctness and minimum-flow timing |
+| `minimal-full-cross` | Project-original non-square OXS, four distinct corner pairs, asymmetric interior stitch, at least 8 symbols/colors, no unsupported content | Coordinate correctness and minimum-flow timing |
 | `medium-full-cross` | Deterministically generated project-original OXS, 100,000 full-cross stitches, at least 32 symbols/colors, sparse and dense tiles | Early rendering and memory signal |
 | `corrupt-truncated` | Project-original truncated OXS | Failure timing and UI containment |
+| `progress-history-10k` | Project-original Project with 10,000 valid ordered progress events | Reload, projection rebuild, and recovery timing |
 
 Every dataset must record generator/source, SHA-256, byte size, grid, counts,
 expected canonical hash, and rights statement.
@@ -46,7 +47,16 @@ expected canonical hash, and rights statement.
 
 ### Reference desktop profile
 
-Record, do not infer:
+The gate reference class is fixed before results:
+
+- at least 4 logical CPU cores available to the browser;
+- at least 8 GiB system memory;
+- current stable Chromium on a supported desktop OS;
+- 1365×768 viewport at device-pixel-ratio 1;
+- AC power / performance mode and no CPU throttling;
+- production build with no unrelated extension or background workload.
+
+For every run, record:
 
 - hardware model, CPU, memory, OS and power mode;
 - browser name and exact version;
@@ -55,8 +65,9 @@ Record, do not infer:
 - cold/warm cache state;
 - build source commit and production build mode.
 
-The first accepted run establishes the named reference profile. CI results are
-regression signals, not substitutes for a controlled device profile.
+The first accepted run names one machine within this fixed class as the
+repeatable reference device. Changing the class requires review. CI results are
+regression signals, not substitutes for the controlled device profile.
 
 ### Constrained profile
 
@@ -81,10 +92,12 @@ recorded browser/profile.
 | Autosave latency | progress command created | IndexedDB transaction completes | median, p95, max |
 | Long task count | scenario start | scenario end | count and longest duration |
 | Peak memory | before scenario baseline | scenario completion | peak and retained delta |
+| Reload with history | navigation start with a 10,000-event Project | projection verified and viewer interactive | median, p95, max |
 
-Each latency scenario uses at least 30 measured iterations after warm-up unless
-the report justifies another sample size. Import cold runs reload the page and
-clear only task-owned test storage between iterations.
+Gate latency scenarios use at least 100 measured iterations after warm-up.
+Cold import and reload scenarios use at least 30 independent runs and report a
+confidence interval in addition to median/p95/max. Import cold runs reload the
+page and clear only task-owned test storage between iterations.
 
 ## Provisional Budgets
 
@@ -101,6 +114,8 @@ change requires evidence and architecture review.
 | Autosave commit p95 | <= 100 ms | <= 150 ms | <= 300 ms |
 | Main-thread long tasks >50 ms | 0 during steady pan/zoom | 0 during steady pan/zoom | <= 1 per scripted gesture |
 | Retained memory delta after open | <= 40 MiB | <= 160 MiB | Record only |
+| Import-worker peak memory | <= 96 MiB | <= 256 MiB | <= 384 MiB hard preflight budget |
+| 10,000-event reload p95 | <= 1,000 ms | <= 1,000 ms | <= 2,000 ms |
 
 Meeting these budgets does not prove the 500,000-stitch requirement. Missing a
 budget blocks completion unless AU-AGENT-003 accepts a documented finding and
@@ -149,6 +164,7 @@ The later benchmark report must include:
 - [ ] Raw samples are retained.
 - [ ] Cold and warm states are not mixed.
 - [ ] UI responsiveness and persistence are measured independently.
+- [ ] Import-worker and 10,000-event reload budgets are measured.
 - [ ] No target is changed after observing a failure without review.
 - [ ] AU-AGENT-003 independently reviews evidence.
 
@@ -158,3 +174,4 @@ The later benchmark report must include:
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Benchmark Index](README.md)
 - [Technical Review](../../reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md)
+- [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)

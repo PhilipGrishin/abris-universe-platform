@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -24,8 +24,9 @@ OQ-005 import-format evidence.
 ## Scope
 
 The record covers pre-development feasibility, repository readiness, technical
-risks, the bounded format-selection spike, and product clarifications. It
-contains no application implementation or approved Technical Design.
+risks, the bounded format-selection spike, product clarifications, and the
+current Technical Design review disposition. It contains no application
+implementation or final implementation acceptance.
 
 ## Artifacts
 
@@ -36,14 +37,16 @@ contains no application implementation or approved Technical Design.
 - [Task-Scoped ADRs](../../../architecture/adr/README.md)
 - [Threat Model](../../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
 - [Benchmark Plan](../../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Independent Pre-Implementation Architecture Review](../../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
 
 ## Current Disposition
 
-The task is technically feasible. Its Technical Design Proposal, four
-task-scoped ADRs, threat model, and benchmark plan are `[PROPOSED]`. It is
-**not ready for development**. Route-1 coordinate/symbol fixture evidence,
-architecture review, ADR dispositions, and independent review routing remain
-mandatory.
+The task is technically feasible. Its Technical Design Proposal and four
+task-scoped ADRs remain `[PROPOSED]` with independent disposition
+`ACCEPTED_WITH_GATES`. Mandatory document rework is integrated, but the task is
+**not ready for development**. AU-AGENT-003 security review and route-1
+coordinate/symbol evidence remain mandatory; production deployment also
+requires TD-GATE-003 and security-header evidence.
 
 ## Owner
 

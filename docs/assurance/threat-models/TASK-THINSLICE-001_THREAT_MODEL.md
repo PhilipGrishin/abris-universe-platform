@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-THREAT-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Threat Model |
-| Status | `[PROPOSED]`; independent security review open |
+| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security review open |
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Data flow, parser, persistence, dependency, hosting, analytics, or deployment credential change; security finding or incident |
@@ -81,7 +81,7 @@ no product-data network egress in Phase 0.
 | TM-005 | Unsupported OXS data is silently lost or misrepresented | Preserve original bytes; explicit warning counts; no partial-success claim | Unsupported-content golden test and source-byte hash | User may overlook warnings |
 | TM-006 | OXS `marked` contaminates user progress | Never map source `marked`; emit stable warning | Golden test with marked source | None after correct enforcement |
 | TM-007 | Progress is reported saved before durable commit | Commit-driven UI state; atomic event/projection transaction; explicit failure | Quota/abort/reload tests | Browser storage eviction outside active transaction |
-| TM-008 | Partial import creates orphan or inconsistent records | One short multi-store transaction after parse/validation | Fault-injection tests at each put | Browser implementation defect |
+| TM-008 | Partial import creates orphan or inconsistent records | explicit importing attempt plus atomic success/failure transitions; no partial canonical commit | fault-injection tests at each put and interrupted-attempt recovery | Browser implementation defect |
 | TM-009 | Local data is evicted or unavailable | Request persistent storage; expose durability and quota state; never silently reset | Capability and denial tests | No manual backup in approved scope |
 | TM-010 | Worker or renderer denial of service blocks UI | Worker isolation, cancellation, visible-tile work, bounded cache | long-task and cancellation evidence | Main-thread fallback limitations |
 | TM-011 | Dependency or GitHub Action compromise | Frozen lockfile, minimal dependencies, action SHA pinning, review, read-only default token | dependency inventory, provenance and workflow review | Upstream compromise |
@@ -90,7 +90,11 @@ no product-data network egress in Phase 0.
 | TM-014 | Failed deploy cannot restore service | capture prior version/artifact; automatic and manual rollback; post-rollback smoke | rollback rehearsal and recorded IDs | Initial placeholder may lack recoverable source |
 | TM-015 | Public preview exposes unreleased content | no public preview until access policy is approved | workflow condition review | Authorized reviewers can still disclose content |
 | TM-016 | Static rollback cannot read newer IndexedDB schema | one-release backward read compatibility; migration/rollback review | prior-client compatibility test | Multi-release downgrade is not guaranteed |
-| TM-017 | Product pattern data is transmitted unexpectedly | no analytics/network client for pattern data; CSP/connect review when implemented | network capture and dependency review | Browser extensions and device compromise |
+| TM-017 | Product pattern data is transmitted unexpectedly | no analytics/network client for pattern data; restrictive `connect-src`; network review | header assertion, network capture, and dependency review | Browser extensions and device compromise |
+| TM-018 | Fixture provenance or redistribution authority is missing or falsified | project-original route-1 fixtures by default; explicit Decision Log grant for route 2; checksums and provenance README | fixture inventory, rights record, generator review, and checksum verification | Fraudulent or mistaken source-owner assertion |
+| TM-019 | Static application executes injected content or is framed after a dependency defect | Worker-enforced CSP, `nosniff`, `frame-ancestors 'none'`, no-referrer policy, no inline/runtime-remote assets | pre-promotion and production header assertions; CSP browser test | Browser or platform enforcement defect |
+| TM-020 | Concurrent tabs corrupt progress ordering or derive from stale state | exclusive per-project Web Lock; read-only second tab; in-transaction derivation and sequence; event payload hash | two-context concurrency and duplicate-ID tests | Web Locks unavailable disables editing |
+| TM-021 | Failed imports retain large orphaned source Blobs | byte limit before persistence; failure/interruption transaction deletes Blob and preserves bounded metadata/report | repeated-failure quota and orphan-absence tests | Browser transaction defect |
 
 ## Security Requirements
 
@@ -106,6 +110,8 @@ no product-data network egress in Phase 0.
    versions.
 8. Security controls are independently reviewed by AU-AGENT-003 before an
    Engineering Verification Report can pass.
+9. Progress and import transactions request strict durability when supported;
+   unsupported abrupt-power-loss durability is recorded rather than overstated.
 
 ## Open Findings
 
@@ -117,6 +123,8 @@ no product-data network egress in Phase 0.
   remain disabled.
 - `THREAT-OPEN-004`: browser persistent-storage grants cannot be guaranteed and
   manual backup is outside scope.
+- `THREAT-OPEN-005`: AU-AGENT-003 has not yet reviewed the revised CSP,
+  persistence, multi-tab, parser-worker, and fixture controls.
 
 ## Verification Checklist
 
@@ -127,6 +135,8 @@ no product-data network egress in Phase 0.
 - [ ] Dependency and action inventories are reviewed.
 - [ ] CI permission and secret boundaries are tested.
 - [ ] Rollback rehearsal restores the prior Cloudflare version.
+- [ ] CSP and required HTTP headers pass pre-promotion and production checks.
+- [ ] Two-context progress and failed-import Blob-lifecycle tests pass.
 - [ ] AU-AGENT-003 records findings and a Quality Gate Decision.
 
 ## References
@@ -135,4 +145,4 @@ no product-data network egress in Phase 0.
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Threat Model Index](README.md)
 - [Project Risks](../../RISKS.md)
-
+- [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)

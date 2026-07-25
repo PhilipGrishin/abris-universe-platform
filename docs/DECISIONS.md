@@ -261,9 +261,11 @@
 
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
-The following task-scoped decisions are `[PROPOSED]`. Their full context,
-alternatives, consequences, risks, migration, rollback, and evidence obligations
-live in the ADR library and are not duplicated here:
+The following task-scoped decisions remain `[PROPOSED]` and have independent
+pre-implementation disposition `ACCEPTED_WITH_GATES` through
+`AU-EX-20260725-005`. Their full context, alternatives, consequences, risks,
+migration, rollback, evidence obligations, and review histories live in the ADR
+library and are not duplicated here:
 
 - [ADR-TS001-001](architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md):
   canonical Pattern independent of OXS; evidence-gated coordinate and symbol
@@ -276,8 +278,27 @@ live in the ADR library and are not duplicated here:
 - [ADR-TS001-004](architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md):
   portable TypeScript workspace and immutable GitHub-to-Cloudflare delivery.
 
-None of these records authorizes implementation until the Technical Design
-architecture-review gate completes.
+None of these records authorizes implementation. The architecture-review
+component is complete, but AU-AGENT-003 security review and the recorded
+pre-code evidence gates remain open.
+
+## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`
+- **Date:** 2026-07-25
+- **Context:** The Project Owner manually transfers completed Codex work to
+  Claude through the registered Collaboration Bridge trigger flow.
+- **Decision:** Every completed Codex work package that is ready for
+  owner-mediated handoff to Claude must end its final user-facing response with
+  the exact standalone line `Codex finished`.
+- **Boundary:** The marker records transport readiness only. It is not
+  engineering evidence, approval, product acceptance, or `[VERIFIED]` status.
+- **Owner:** Project Owner
+- **Implemented by:** AU-CODEX-PRIMARY; AU-AGENT-002 maintains the documented
+  rule and navigation.
+- **Related records:** `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`,
+  `collaboration/README.md`, `docs/SHARED_WORKFLOW.md`, and
+  `docs/SOURCE_OF_TRUTH.md`.
 
 ## Decision Process
 

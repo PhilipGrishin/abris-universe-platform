@@ -4,13 +4,15 @@
 | --- | --- |
 | Document ID | ADR-TS001-002 |
 | Title | Tiled Canvas2D Rendering Behind a Stable Renderer Interface |
-| Status | `[PROPOSED]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES` |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
+| Security Review | AU-AGENT-003 `[OPEN]` |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Benchmark failure; 500k prototype result; browser capability change; renderer contract or accessibility change |
@@ -43,6 +45,9 @@ renderer interface as the replacement seam.
 
 No stitch is a DOM node. Accessibility is supplied through real DOM controls
 and an accessible representation of the current chart and selected stitch.
+Readable mode, glyph/background contrast, non-color-only progress states,
+one-based user-facing coordinates, and tap-versus-pan discrimination are
+binding functional renderer/client contracts in the Technical Design.
 
 ## Alternatives
 
@@ -101,4 +106,7 @@ measurements on both required fixtures, and accessibility review.
 ## Review History
 
 - 2026-07-25: Initial proposal by AU-AGENT-004. Approval pending.
-
+- 2026-07-25: Claude Cowork independent architecture review
+  `AU-EX-20260725-005` dispositioned this ADR `ACCEPTED_WITH_GATES`; R-5 and
+  N-7 are integrated in version 1.1.0. Benchmark evidence and AU-AGENT-003
+  security review remain open.

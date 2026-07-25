@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/ARCHITECTURE.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -33,9 +33,11 @@ ADRs, and RFCs when approved sources exist.
 - [Architecture Decision Records](adr/README.md)
 - [Requests for Comments](rfc/README.md)
 
-The first task-scoped Technical Design Proposal is registered as `[PROPOSED]`.
-It does not change the current architecture overview until its review gate and
-ADR dispositions complete.
+The first task-scoped Technical Design Proposal remains `[PROPOSED]` with
+independent disposition `ACCEPTED_WITH_GATES`. Its architecture-review
+component is complete; AU-AGENT-003 security review and declared evidence gates
+remain open. It does not become implemented architecture or product acceptance
+through the review disposition.
 
 ## Owner
 

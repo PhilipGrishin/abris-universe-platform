@@ -158,8 +158,9 @@
 
 ### AU-CDX-TASK-001-TECHNICAL-DESIGN — Phase 0 Thin-Slice Design
 
-- **Status:** `[PROPOSED]`; design package authored, architecture review and
-  pre-code evidence gates open; not implementation
+- **Status:** `[PROPOSED]`; independent architecture disposition
+  `ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003 security
+  review and pre-code evidence gates open; not implementation
 - **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, and
   `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
 - **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
@@ -172,17 +173,72 @@
 - **Design artifacts:** `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`;
   ADR-TS001-001 through ADR-TS001-004; the task threat model and benchmark
   plan.
-- **Open evidence:** TD-GATE-001 OXS coordinate origin, TD-GATE-002 lawful
-  source-symbol mapping, TD-GATE-003 current Cloudflare placeholder rollback
-  anchor, and TD-GATE-004 architecture review.
+- **Open evidence:** TD-GATE-001 strengthened OXS coordinate evidence,
+  TD-GATE-002 lawful source-symbol mapping, TD-GATE-003 current Cloudflare
+  placeholder rollback anchor, and the AU-AGENT-003 portion of TD-GATE-004.
 - **Architecture review exchange:** `AU-EX-20260725-005`, exact source
   `d90de60f98b8e187e2f75bcab697c6f3e747462d`; prepared from the immutable
-  `codex/task-thinslice-001-design-source` branch and exported to the registered
-  Claude inbox; return pending.
-- **Gate:** Architecture review and required ADR dispositions must complete
-  before development. Coordinate/symbol route-1 fixture evidence blocks
-  importer code. Fixture creation and application implementation have not
+  `codex/task-thinslice-001-design-source` branch. The `COMPLETED /
+  NO_DECISION` return was contract-validated and integrated without changing
+  Claude-authored meaning. The Technical Design and all four ADRs received
+  `ACCEPTED_WITH_GATES`; no project `[VERIFIED]` status was assigned.
+- **Integrated rework:** R-1 through R-8 and N-1 through N-7/N-9 were added to
+  the design, ADR, threat-model, benchmark, and test contracts. N-8 is recorded
+  separately as Phase 1 work.
+- **Gate:** AU-AGENT-003 must review the security-relevant design before
+  `[PROPOSED]` is lifted. Coordinate/symbol route-1 fixture evidence blocks
+  importer code, and TD-GATE-003 plus header evidence blocks production
+  deployment. Fixture creation and application implementation have not
   started.
+
+### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
+
+- **Status:** `[OPEN]`; mandatory before application implementation.
+- **Source:** `AU-EX-20260725-005` finding N-9; revised Technical Design v1.1.0;
+  revised threat model and ADR-TS001-003/004.
+- **Owner:** AU-AGENT-003.
+- **Technical recipient:** AU-AGENT-001.
+- **Documentation owner:** AU-AGENT-002.
+- **Documentation Impact:** Material.
+- **Scope:** Independently review the untrusted XML boundary, worker isolation,
+  resource and memory limits, IndexedDB durability and multi-tab concurrency,
+  failed-import Blob lifecycle, local-only privacy boundary, dependency/CI
+  controls, security headers, smoke assertions, and residual risks.
+- **Required output:** Engineering Verification Report with unbracketed
+  Engineering Verification Status, findings, severity, evidence references,
+  and explicit disposition of the security-relevant design sections.
+- **Boundary:** AU-AGENT-003 does not implement fixes, redesign architecture,
+  change product meaning, approve product acceptance, or assign project
+  `[VERIFIED]`.
+- **Gate:** A blocking result keeps TD-GATE-004 open. A passing task-scoped
+  engineering result may close the security-review portion only; route-1
+  evidence and implementation acceptance remain separate.
+
+### PHASE1-VIEW-GRID-001 — Every-Tenth Grid Emphasis
+
+- **Status:** `[DEFERRED]`; Phase 1 backlog.
+- **Source:** `AU-EX-20260725-005` finding N-8 and the accepted Phase 0 scope.
+- **Owner:** Product owner for Phase 1 UX meaning; AU-AGENT-006 for future
+  client implementation after an approved Task Package.
+- **Documentation Impact:** Minor.
+- **Scope:** Consider a bold every-tenth grid line with Phase 1 rulers and
+  marking aids.
+- **Boundary:** It is not required for TASK-THINSLICE-001 Phase 0 and does not
+  authorize implementation.
+
+### PHASE1-ABRIS-ART-FORMAT-SURVEY — Anchor-Catalog Source-Format Survey
+
+- **Status:** `[DEFERRED]`; Phase 1 discovery backlog.
+- **Source:** PROD-DEC-010 transmitted through `AU-EX-20260725-005`.
+- **Owner:** AU-AGENT-004 for future technical survey; Project Owner/Abris Art
+  for access and explicit route-2 content grants.
+- **Documentation Impact:** Material.
+- **Scope:** Survey the actual Abris Art electronic-pattern source formats
+  (including XSD, PAT, PDF, and any other confirmed formats) to inform the
+  post-OXS importer roadmap.
+- **Boundary:** Phase 0 remains OXS 1.0 only. The general resource commitment
+  does not replace an explicit grant for each concrete route-2 content
+  transfer, and this record authorizes no file acquisition or implementation.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

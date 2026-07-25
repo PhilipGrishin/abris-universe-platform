@@ -4,16 +4,17 @@
 | --- | --- |
 | Document ID | AU-TDP-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Thin-Slice Technical Design Proposal |
-| Status | `[PROPOSED]`; architecture review and pre-code evidence gates open |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security review and evidence gates open |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
-| Version | 1.0.0 |
+| Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-009, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md` |
+| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-010, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
-| Review Triggers | Task Package change; OXS contract evidence change; canonical-format change; renderer benchmark result; browser-storage compatibility change; Cloudflare deployment contract change; security finding |
+| Review Triggers | Task Package change; architecture-review finding; OXS contract evidence change; canonical-format change; renderer benchmark result; browser-storage compatibility change; Cloudflare deployment contract change; security finding |
 | Task ID | TASK-THINSLICE-001 / AU-CDX-TASK-001 v1.1 |
 | Documentation Impact | Material |
 
@@ -35,6 +36,11 @@ OXS 1.0 bytes
 This proposal selects technical mechanisms inside approved product constraints.
 It does not change product behavior, authorize application implementation,
 create fixtures, claim performance, or assign project `[VERIFIED]`.
+
+Version 1.1.0 integrates the mandatory R-1 through R-8 design findings from
+`AU-EX-20260725-005` without changing the returned review meaning. The review
+accepted the design and all four task ADRs with gates; it did not assign project
+acceptance or authorize implementation while the remaining gates are open.
 
 ## 2. Scope and Non-Scope
 
@@ -91,10 +97,10 @@ it is not converted into hidden Phase 1 behavior.
 
 | Gate | Required evidence | Owner | Effect |
 | --- | --- | --- | --- |
-| TD-GATE-001 | Project-original OXS fixture exported by an OXS-compatible producer with stitches intentionally placed at both grid boundaries | AU-AGENT-004 | Blocks importer implementation until OXS coordinate origin is proven |
+| TD-GATE-001 | Project-original non-square OXS fixture with four distinct corner symbol/palette pairs, one asymmetric interior stitch, and a full coordinate-convention record | AU-AGENT-004 | Blocks importer implementation until origin, axis directions, index base, and transposition behavior are proven |
 | TD-GATE-002 | Project-original symbol fixture plus lawful font/glyph mapping evidence | AU-AGENT-004 with AU-AGENT-006 | Blocks claims that rendered symbols match OXS source semantics |
 | TD-GATE-003 | Current Cloudflare Worker version ID, route ownership, and recoverable placeholder artifact recorded before first production deploy | AU-AGENT-001 | Blocks production deployment, not local implementation |
-| TD-GATE-004 | Architecture review and ADR dispositions | AU-AGENT-001; independent Claude review routed through the Bridge where required | Blocks application implementation |
+| TD-GATE-004 | `AU-EX-20260725-005` architecture disposition integrated; R-1 through R-8 design amendments complete; AU-AGENT-003 reviews security-relevant sections before `[PROPOSED]` is lifted | AU-AGENT-001 and AU-AGENT-003 within their separate authorities | Blocks application implementation until the independent security review is recorded |
 
 No source coordinate offset or glyph meaning may be guessed to bypass these
 gates.
@@ -171,7 +177,8 @@ interface SourceFile {
   detectedFormatVersion: "1.0" | null;
   byteLength: number;
   sha256: string;
-  bytesRef: string;
+  bytesRef: string | null;
+  retentionStatus: "retained" | "deleted-after-failure";
   receivedAt: string;
 }
 
@@ -288,9 +295,11 @@ interface ProgressEvent {
   id: string;
   projectId: string;
   patternVersionId: string;
+  localSequence: number;
   type: "mark" | "unmark";
   targetStitchId: string;
   occurredAt: string;
+  deviceId: string;
   source: "user";
 }
 ```
@@ -307,11 +316,21 @@ type ProgressState = ReadonlyMap<string, "marked" | "unmarked">;
 ```
 
 Events are ordered by local append sequence, with event ID as the idempotency
-key. No network merge rule or CRDT is introduced in Phase 0.
+key. `deviceId` is a stable installation identifier created with
+`crypto.randomUUID()` on first local initialization and retained in database
+metadata; it is not an account or cross-origin tracking identifier.
+`targetStitchId` is the accepted technical refinement of the Task Package
+`targetRef`: the deterministic stitch ID resolves to the exact canonical
+coordinate while avoiding coordinate-only ambiguity. No network merge rule or
+CRDT is introduced in Phase 0.
 
 `Stitch` is a versioned tagged union. Its Phase 0 member is
 `FullCrossStitch`; later stitch members can be added through a canonical-format
 version without changing the meaning of `full-cross`.
+
+`Grid.width` and `Grid.height` are authoritative. The same values exposed in
+`PatternMetadata` are readonly derived aliases and are not independently
+persisted or hashed.
 
 ### 5.3 Required invariants
 
@@ -341,7 +360,7 @@ File selection
   -> structural and referential validation
   -> OXS-to-canonical mapping
   -> deterministic canonical hash and tiles
-  -> one persistence commit
+  -> staged persistence with one atomic canonical-result commit
   -> ImportReport and Project
 ```
 
@@ -390,12 +409,14 @@ listing available to this review did not establish whether all producers write
 zero-based or one-based coordinates. The importer therefore has no permitted
 default offset yet.
 
-TD-GATE-001 must use a project-original fixture with known stitches at all four
-corners, export it through the chosen OXS-compatible producer, and compare its
-raw coordinates with the visible source chart. The resulting offset and
-producer/version are recorded in the importer compatibility matrix. A mismatch
-between producers becomes a detected compatibility profile or a rejected file,
-not a heuristic.
+TD-GATE-001 must use a project-original non-square fixture (`width != height`)
+with four corner stitches that each use a distinct palette/symbol pair and at
+least one asymmetrically placed interior stitch. Export it through the chosen
+OXS-compatible producer and compare every raw coordinate with the visible
+source chart. The compatibility matrix records origin corner, X direction, Y
+direction, index base, axis ordering/transposition, and producer/version. A
+mismatch between producers becomes a detected compatibility profile or a
+rejected file, not a heuristic.
 
 ### 6.4 Symbol evidence rule
 
@@ -405,6 +426,16 @@ glyphs. If exact rendering cannot be proven, import remains possible only with
 an explicit symbol-substitution warning and deterministic generated symbols;
 the result cannot satisfy the exact-symbol acceptance criterion until product
 acceptance dispositions that limitation.
+
+For one OXS source code used with one palette index, the Symbol identity key is
+`sourceCode`. If the same source code is used by multiple palette indices, the
+lowest source palette index deterministically retains the validated source
+visual and each later conflicting use receives a separately generated Symbol
+whose identity is derived from source hash, source code, and palette index. The
+importer emits `OXS_SYMBOL_CODE_COLLISION` for every disambiguated use. If two
+different source codes resolve to the same browser glyph, the same deterministic
+fallback rule applies with `OXS_SYMBOL_GLYPH_COLLISION`. Palette index remains
+import provenance, not a canonical Symbol/PaletteItem uniqueness constraint.
 
 ### 6.5 ImportReport
 
@@ -458,7 +489,12 @@ the canonical grid after the proven normalization.
 
 Parsing runs in a dedicated Web Worker and supports cancellation. Security is
 enforced by byte, element, and allocation budgets rather than a device-dependent
-wall-clock timeout. No imported content leaves the browser.
+wall-clock timeout. If worker creation or initialization fails, import rejects
+with `IMPORT_WORKER_UNAVAILABLE`; it never silently parses on the UI thread. A
+preflight estimator rejects an import when source bytes plus decoded text,
+canonical buffers, tile buffers, and bounded parser overhead would exceed the
+provisional 384 MiB import-worker peak budget. No imported content leaves the
+browser.
 
 The task-scoped threat model is
 [TASK-THINSLICE-001 Threat Model](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md).
@@ -520,14 +556,37 @@ queries all stitches for a frame.
 
 Hit testing converts the pointer through the inverse viewport transform to one
 canonical cell and then resolves the tile-local stitch. A click/tap on a
-supported stitch emits one toggle command; rapid toggles are serialized by the
-client command queue.
+supported stitch emits one toggle command only when pointer movement remains at
+or below 6 CSS pixels and no pan gesture has been recognized. A larger movement
+is pan-only and cannot mark a stitch. Rapid toggles are serialized by the client
+command queue.
+
+Readable symbol mode begins at a cell size of 16 CSS pixels. At or above that
+threshold, the renderer selects black or white glyph treatment by calculated
+background relative luminance and must achieve at least 4.5:1 glyph/background
+contrast. Below the threshold, the renderer displays a non-interactive overview,
+omits glyph claims, prevents progress toggles, and exposes a resource-backed
+“zoom in to read symbols” status.
+
+Progress state is never represented by hue alone:
+
+- `unmarked` preserves the readable source/generated symbol;
+- `marked` adds a persistent geometric completion mark and a luminance change;
+- `saving` adds a distinct non-color-only pending outline;
+- `not-saved` restores the last committed mark state and adds a persistent
+  error outline/status.
+
+Exact colors, line weights, and motion belong to the approved UI design, but
+automated and manual tests must distinguish all four states in grayscale and
+with reduced motion.
 
 Canvas content exposes an accessible name and current chart summary. Zoom and
 pan controls are real DOM controls with keyboard operation. The currently
 focused/selected stitch is represented in an accessible DOM status region with
-coordinate, symbol, and color information. This is technical accessibility
-support for the approved flow; it does not add unapproved viewer features.
+coordinate, symbol, and color information. User-facing coordinates are
+one-based counted-chart coordinates; canonical storage and hit testing remain
+zero-based. This is technical accessibility support for the approved flow; it
+does not add unapproved viewer features.
 
 ## 9. Local Persistence
 
@@ -549,16 +608,17 @@ Initial object stores:
 | `patternTiles` | `[patternVersionId, tileY, tileX]` | Compact full-cross tiles |
 | `projects` | `Project.id` | Local project record |
 | `progressEvents` | `[projectId, localSequence]` | Append-only event log |
-| `progressEventIds` | `ProgressEvent.id` | Idempotency lookup |
+| `progressEventIds` | `ProgressEvent.id` | Idempotency lookup containing project ID, local sequence, and canonical payload SHA-256 |
 | `progressProjections` | `[projectId, stitchId]` | Rebuildable current state |
-| `metadata` | key | Schema and capability metadata |
+| `metadata` | key | Schema, stable installation `deviceId`, per-project sequence, and capability metadata |
 
 ### 9.2 Import transaction
 
-The import attempt first stores the opaque SourceFile Blob, an `importing`
-ImportJob, and an `importing` Project in one short transaction. Parsing,
-validation, hashing, and tile construction then run outside any IndexedDB
-transaction.
+File byte length is checked against the 64 MiB limit before any Blob is
+persisted. The accepted-size import attempt then stores the opaque SourceFile
+Blob, an `importing` ImportJob, and an `importing` Project in one short
+transaction. Parsing, validation, hashing, and tile construction run outside
+any IndexedDB transaction.
 
 On success, a second single read-write transaction stores the
 ImportReport, Pattern, PatternVersion, tiles, changes the ImportJob to
@@ -568,26 +628,36 @@ opens the Project only after transaction completion.
 
 On rejected input, a short transaction stores the bounded report and changes
 the ImportJob and Project to `rejected`/`import_failed`; no Pattern,
-PatternVersion, or tile is written. On startup, an attempt left `importing` by a
-crash is changed to `interrupted`/`import_failed` without interpreting partial
-canonical data.
+PatternVersion, or tile is written. That same transaction deletes the Blob,
+sets `bytesRef` to `null`, and sets `retentionStatus` to
+`deleted-after-failure` while retaining source hash/size/name metadata and the
+bounded report. On startup, an attempt left `importing` by a crash is changed to
+`interrupted`/`import_failed` and receives the same Blob cleanup without
+interpreting partial canonical data. Successful and
+`completed_with_warnings` imports retain the original Blob.
 
 ### 9.3 Progress transaction
 
 For each toggle:
 
-1. derive `mark` or `unmark` from the current committed projection;
-2. create a stable event ID;
-3. optimistically paint the overlay as `saving`;
-4. in one read-write transaction, idempotently add the event ID, append the
-   event, update the projection, and update Project `updatedAt`;
+1. acquire the exclusive Web Lock `au:project:<projectId>:progress-writer`;
+2. if the lock is held by another tab, expose this tab as read-only until the
+   lock becomes available; if Web Locks is unavailable, progress editing is
+   disabled with a typed capability error rather than risking concurrent writes;
+3. create a stable event ID and optimistically paint the overlay as `saving`;
+4. in one read-write transaction, read the committed projection, derive `mark`
+   or `unmark`, allocate and increment `nextLocalSequence`, build the event with
+   `deviceId`, calculate its canonical payload SHA-256, idempotently add the
+   event-ID record, append the event, update the projection, and update Project
+   `updatedAt`;
 5. on commit, mark UI state `saved`;
 6. on abort/quota/error, revert to the last committed projection and expose
    `not saved` without discarding the live Project.
 
 Reapplying an identical event ID with identical payload is a no-op. Reusing an
-event ID with a different payload is a corruption error. Events are never
-updated in place.
+event ID with a different payload hash is a corruption error. Event sequence
+allocation, command derivation, event append, projection update, and Project
+update are one transaction. Events are never updated in place.
 
 ### 9.4 Recovery and lifecycle
 
@@ -599,6 +669,12 @@ The client requests persistent browser storage after the first successful
 project creation when the API is supported. Denial is surfaced as a durability
 risk but does not claim a product backup feature. `QuotaExceededError`,
 blocked upgrades, and unavailable IndexedDB are explicit operational states.
+
+Progress and import transactions request IndexedDB durability `strict` when the
+browser supports the option. When it is unsupported, transaction completion is
+still the application save boundary for reload/tab-close recovery, while
+abrupt-power-loss durability remains an explicit residual risk in the Threat
+Model and supported-platform evidence.
 
 Future schema upgrades must be additive or include a tested forward migration
 and code rollback compatibility. Production code must never solve an upgrade
@@ -636,13 +712,16 @@ Fixtures are project-original and committed only after their generation task is
 approved. The set must include:
 
 1. `minimal-full-cross.oxs`: small chart, known corners, multiple symbols and
-   colors, no unsupported content;
+   colors, no unsupported content; the TD-GATE-001 version is non-square, uses
+   four distinct corner pairs, and contains an asymmetric interior stitch;
 2. `medium-full-cross.oxs`: deterministic generator output with 100,000
    full-cross stitches, at least 32 symbols/colors, sparse and dense tiles;
 3. `unsupported-content.oxs`: lawful project-original full-cross plus
    out-of-scope elements to verify warnings and preservation;
 4. `corrupt-truncated.oxs`: intentionally truncated project-original XML;
-5. bounded security cases for DTD, limits, invalid references, duplicates, and
+5. `empty-full-cross.oxs`: valid project-original chart with zero stitches,
+   expected successful ImportReport message, and defined empty-viewer state;
+6. bounded security cases for DTD, limits, invalid references, duplicates, and
    coordinates.
 
 Each fixture has a provenance README, generation recipe, SHA-256, expected
@@ -656,8 +735,10 @@ source chart. No vendor sample is committed.
 - unsupported/corrupt/security-limit tests;
 - tile partition, visible-set, hit-test, and rendering golden tests;
 - progress idempotency and rapid-toggle ordering tests;
+- two-browser-context writer-lock, sequence-allocation, stale-projection, and
+  duplicate-ID/payload-hash tests;
 - IndexedDB atomic import, quota failure, projection rebuild, reload, and
-  upgrade tests;
+  upgrade tests, including failed/interrupted Blob orphan absence;
 - keyboard/accessibility automated checks plus manual screen-reader review;
 - end-to-end import, view, zoom/pan, toggle, reload, and reopen test;
 - production build and deployment smoke tests.
@@ -682,6 +763,30 @@ pattern upload is introduced.
 
 The build emits a non-secret `version.json` containing application version,
 source commit, and build timestamp for smoke verification.
+
+The static-assets Worker applies these minimum response headers to HTML and
+app-owned assets:
+
+```text
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'self';
+  style-src 'self';
+  img-src 'self' data:;
+  font-src 'self';
+  connect-src 'self';
+  worker-src 'self';
+  object-src 'none';
+  base-uri 'none';
+  form-action 'none';
+  frame-ancestors 'none'
+X-Content-Type-Options: nosniff
+Referrer-Policy: no-referrer
+```
+
+The build must not require inline scripts/styles or remote runtime assets.
+Changing the CSP or adding a network destination requires security review and a
+Documentation Impact assessment.
 
 ### 12.2 GitHub workflow
 
@@ -745,6 +850,8 @@ Pre-promotion smoke checks validate the immutable preview version:
 - application shell and hashed assets load;
 - SPA fallback resolves a non-root route;
 - no secret is present in the build;
+- CSP, `nosniff`, `frame-ancestors`, and `Referrer-Policy` match the reviewed
+  policy;
 - browser smoke opens the import entry point without console errors.
 
 After promotion, the same checks run against `abris.653915.com`. Failure
@@ -769,7 +876,9 @@ version or have a separately approved migration/rollback design.
 | ADR-008 ICU resource strings | Resource-backed client messages required; exact library selected and pinned during implementation review |
 
 No product proposal is silently treated as an already approved engineering
-decision. The four task-scoped ADRs remain `[PROPOSED]` until TD-GATE-004.
+decision. `AU-EX-20260725-005` dispositions all four task-scoped ADRs as
+`ACCEPTED_WITH_GATES`. They remain `[PROPOSED]` until the revised design,
+applicable evidence gates, and AU-AGENT-003 security review are recorded.
 
 ## 14. Risks and Controls
 
@@ -779,31 +888,39 @@ decision. The four task-scoped ADRs remain `[PROPOSED]` until TD-GATE-004.
 | OXS symbol/font ambiguity | TD-GATE-002 glyph fixture and lawful mapping | `[OPEN]`, blocks exact-symbol claim |
 | XML resource exhaustion | Streaming worker parser and hard limits | Review and tests required |
 | Silent local data loss | Atomic transactions, committed-state UI, persistence request, explicit quota errors | Browser eviction remains an environmental risk |
+| Concurrent-tab progress corruption | One exclusive project writer, in-transaction sequence/derivation, payload-hash idempotency record | Web Locks capability required for editing |
 | Canvas accessibility gap | DOM controls, status representation, keyboard path, manual assistive-tech evidence | Review required |
 | Tiled renderer misses future 500k target | Medium fixture now; separate 500k prototype before scale claim | `[OPEN]`, non-blocking for Phase 0 design |
 | Public preview leaks unreleased UI | No public preview until access policy exists | Controlled |
 | First deploy cannot restore placeholder | TD-GATE-003 recoverable version/artifact | `[OPEN]`, blocks production deploy |
+| Browser-side code execution or product-data egress | Worker-enforced restrictive headers and smoke assertions | Dependency/browser defects remain review risks |
 | Dependency/action supply chain | Frozen lockfile, least privilege, pinned action SHAs, review | Implementation evidence required |
 
 ## 15. Implementation Sequence After Approval
 
-1. Produce and review the route-1 coordinate and symbol fixtures.
-2. Scaffold the strict workspace and dependency boundaries.
-3. Implement and test `domain-core`.
-4. Implement the bounded OXS importer and golden/security tests.
-5. Implement IndexedDB repositories and recovery tests.
-6. Implement tiled renderer and measured medium-fixture prototype.
-7. Integrate the accessible web flow and end-to-end persistence.
-8. Add the reviewed CI pipeline and a non-production deployment rehearsal.
-9. Pass AU-AGENT-003 engineering verification.
-10. Capture the current production rollback anchor and perform the separately
+1. Complete AU-AGENT-003 review of the revised security-relevant design and
+   ADR sections.
+2. Produce and review the route-1 coordinate and symbol fixtures.
+3. Scaffold the strict workspace and dependency boundaries.
+4. Implement and test `domain-core`.
+5. Implement the bounded OXS importer and golden/security tests.
+6. Implement IndexedDB repositories and recovery tests.
+7. Implement tiled renderer and measured medium-fixture prototype.
+8. Integrate the accessible web flow and end-to-end persistence.
+9. Add the reviewed CI pipeline and a non-production deployment rehearsal.
+10. Pass AU-AGENT-003 engineering verification.
+11. Capture the current production rollback anchor and perform the separately
     authorized production deployment.
-11. Produce the Completion Report and send evidence through the Collaboration
+12. Produce the Completion Report and send evidence through the Collaboration
     Bridge for independent Claude acceptance.
 
 ## 16. Architecture Review Checklist
 
 - [ ] Exact Task Package and product decisions are unchanged.
+- [x] `AU-EX-20260725-005` independent architecture review completed with
+      `ACCEPTED_WITH_GATES`; R-1 through R-8 integrated in version 1.1.0.
+- [ ] AU-AGENT-003 security review of the revised security-relevant sections is
+      recorded.
 - [ ] TD-GATE-001 coordinate evidence is accepted.
 - [ ] TD-GATE-002 symbol evidence is accepted or product limitation is
       explicitly dispositioned.
@@ -828,6 +945,7 @@ decision. The four task-scoped ADRs remain `[PROPOSED]` until TD-GATE-004.
 - [ADR Library](../adr/README.md)
 - [Threat Model](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
 - [Benchmark Plan](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
 - [OXS Format Specification](https://www.ursasoftware.com/OXSFormat/)
 - [Cloudflare Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
 - [Cloudflare Workers versions and deployments](https://developers.cloudflare.com/workers/configuration/versions-and-deployments/)

@@ -3,11 +3,13 @@
 ## Focus ID: AU-CDX-TASK-001-TECHNICAL-DESIGN
 
 **Status:** Product clarification `[IMPLEMENTED]`, `[TESTED]`; Technical Design
-package `[PROPOSED]`; architecture review and evidence gates open; development
-blocked
+package `[PROPOSED]` with independent disposition `ACCEPTED_WITH_GATES`;
+mandatory review findings integrated; AU-AGENT-003 security review and evidence
+gates open; development blocked
 
-Validate and review the TASK-THINSLICE-001 v1.1 Technical Design Proposal after
-canonical integration of PROD-DEC-009 and the completed OQ-005 spike.
+Complete the independent pre-code security gate for the revised
+TASK-THINSLICE-001 v1.1 Technical Design Proposal after canonical integration
+of the `AU-EX-20260725-005` architecture review.
 
 ## Confirmed Inputs
 
@@ -21,6 +23,9 @@ canonical integration of PROD-DEC-009 and the completed OQ-005 spike.
 - PROD-DEC-008 authorizes this Technical Review and spike as the next gate.
 - PROD-DEC-009 selects OXS 1.0, confirms `SXP` as the `XSP` typo, and
   authorizes the rights-safe fixture rule.
+- PROD-DEC-010 establishes Abris Art as the launch and proof anchor, preserves
+  explicit route-2 grants for each concrete content transfer, leaves Phase 0
+  unchanged, and creates a Phase 1 source-format survey input.
 - TASK-THINSLICE-001 v1.1 is approved for Technical Design, not implementation.
 
 ## Assigned Roles
@@ -62,24 +67,38 @@ canonical integration of PROD-DEC-009 and the completed OQ-005 spike.
   GitHub-to-Cloudflare deployment/rollback design.
 - Registered ADR-TS001-001 through ADR-TS001-004, the task threat model, and
   the task benchmark plan.
+- Validated the `AU-EX-20260725-005` return against its registered schema,
+  exact source, requested role, paths, checksums, result, and authority
+  boundaries.
+- Preserved the Claude-authored architecture review byte-for-byte under
+  `product/reviews/` and integrated its `ACCEPTED_WITH_GATES` disposition.
+- Revised the design, ADRs, threat model, benchmark plan, and test obligations
+  for R-1 through R-8 and N-1 through N-7/N-9 without changing product meaning.
+- Registered N-8 and the PROD-DEC-010 format survey as separate Phase 1 backlog
+  records.
 
 ## Open Design Gates
 
-- TD-GATE-001: project-original boundary fixture proves OXS coordinate origin.
+- TD-GATE-001: a project-original non-square boundary fixture with four
+  distinct corners and one asymmetric interior stitch proves the complete OXS
+  coordinate convention.
 - TD-GATE-002: project-original symbol fixture proves a lawful glyph mapping or
   records an explicit acceptance limitation.
 - TD-GATE-003: current Cloudflare placeholder has a recoverable rollback anchor
   before production deployment.
-- TD-GATE-004: architecture review and ADR dispositions.
+- TD-GATE-004: architecture-review component complete; AU-AGENT-003
+  security-relevant design review remains open before `[PROPOSED]` can be
+  lifted.
 
-## Active Architecture Review Exchange
+## Completed Architecture Review Exchange
 
 `AU-EX-20260725-005` packages 41 checksum-registered sources from exact commit
 `d90de60f98b8e187e2f75bcab697c6f3e747462d` on immutable branch
-`codex/task-thinslice-001-design-source`. It requests a
-`REQUIREMENTS_REVIEW / NO_DECISION` return from the System Architecture, Data &
-AI Governance Lead. The package is exported to the registered external inbox;
-source status is `CURRENT`; return and canonical integration are pending.
+`codex/task-thinslice-001-design-source`. Its contract-valid
+`REQUIREMENTS_REVIEW / COMPLETED / NO_DECISION` return from the System
+Architecture, Data & AI Governance Lead is integrated without modifying the
+review meaning. The design and all four ADRs are `ACCEPTED_WITH_GATES`; no
+project `[VERIFIED]` status or implementation authorization was issued.
 
 ## Completed Exchange
 
@@ -91,6 +110,8 @@ authority; the valid result is integrated and archived. Rejected predecessor
 
 ## Next Concrete Step
 
-On the next owner trigger `Claude finished`, validate and integrate the
-`AU-EX-20260725-005` return. Do not begin implementation or fixture production
-before the applicable design gates are accepted.
+Route the revised security-relevant design, threat model, and ADR sections to
+AU-AGENT-003 for an independent Engineering Verification Report. Do not begin
+route-1 fixture production, workspace scaffolding, application implementation,
+pipeline implementation, or deployment until the applicable recorded gates
+authorize that work.

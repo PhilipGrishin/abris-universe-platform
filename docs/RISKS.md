@@ -265,12 +265,15 @@
 - **Affected areas:** Progress integrity, user trust, reload recovery, rollback,
   and Phase 1 compatibility.
 - **Prevention:** Keep Pattern and Progress separate; use short atomic
-  transactions, append-only idempotent events, a rebuildable projection,
-  commit-driven save status, persistent-storage requests, explicit quota
-  errors, and one-release schema rollback compatibility.
+  transactions, append-only idempotent events with `deviceId`, in-transaction
+  sequence allocation and payload hashes, a Web Locks single-writer policy
+  across tabs, a rebuildable projection, strict IndexedDB durability when
+  supported, commit-driven save status, persistent-storage requests, explicit
+  quota errors, and one-release schema rollback compatibility.
 - **Mitigation:** Revert failed optimistic state to the last committed
   projection, retain the live session, expose `not saved`, and stop release on
-  failed reload/recovery evidence.
+  failed two-context, idempotency, reload, or recovery evidence. Record the
+  relaxed-durability residual on browsers that do not support strict mode.
 - **Fallback:** Roll back the client without deleting IndexedDB and recover the
   projection from retained events. Manual backup remains out of approved Phase
   0 scope.
@@ -288,7 +291,9 @@
   and deployment rollback.
 - **Prevention:** Complete TD-GATE-003 before first production deployment:
   record the current Worker/version, route, smoke baseline, and restorable
-  artifact; keep DNS unchanged; deploy immutable versions through protected CI.
+  artifact; keep DNS unchanged; deploy immutable versions through protected
+  CI; serve and assert CSP, `X-Content-Type-Options`, `frame-ancestors`, and
+  `Referrer-Policy` controls.
 - **Mitigation:** Smoke the uploaded version before promotion, record prior and
   new version IDs, serialize production deployments, and automatically roll
   back on failed production smoke.

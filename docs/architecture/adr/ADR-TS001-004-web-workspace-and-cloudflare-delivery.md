@@ -4,13 +4,15 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
+| Security Review | AU-AGENT-003 `[OPEN]` |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Supported platform change; workspace boundary change; hosting target change; pipeline or rollback failure; dependency policy change |
@@ -44,6 +46,9 @@ it to `abris.653915.com`, and records both new and previous version IDs.
 
 Production deployment is blocked until the existing placeholder is recorded as
 a recoverable rollback target. The pipeline does not change DNS.
+The Worker applies a restrictive reviewed CSP, `nosniff`,
+`frame-ancestors 'none'`, and `Referrer-Policy: no-referrer`; both preview and
+production smoke checks assert the headers before a release can pass.
 
 ## Alternatives
 
@@ -112,3 +117,7 @@ production smoke, rollback rehearsal, and local-data compatibility.
 ## Review History
 
 - 2026-07-25: Initial proposal by AU-AGENT-001. Approval pending.
+- 2026-07-25: Claude Cowork independent architecture review
+  `AU-EX-20260725-005` dispositioned this ADR `ACCEPTED_WITH_GATES`; R-8 is
+  integrated in version 1.1.0. TD-GATE-003 and AU-AGENT-003 security review
+  remain open.

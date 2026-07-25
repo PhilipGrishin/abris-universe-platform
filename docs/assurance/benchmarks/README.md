@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -28,7 +28,7 @@ may define reproducible targets and methods but creates no performance claim.
 
 | Task | Record | Status | Result |
 | --- | --- | --- | --- |
-| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]` | No implementation result |
+| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES` | No implementation result |
 
 ## Owner
 

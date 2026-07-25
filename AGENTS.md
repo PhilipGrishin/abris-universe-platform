@@ -306,6 +306,10 @@ repository availability. GitHub remains canonical. Chat history is not
 evidence. Project Owner manual input is limited to the registered trigger
 phrases `Codex finished` and `Claude finished` unless a later explicit owner
 governance decision changes the route.
+After every completed Codex work package that is ready for owner-mediated
+handoff to Claude, the final user-facing response must end with the exact
+standalone line `Codex finished`. The marker is a transport trigger only; it is
+not evidence, approval, acceptance, or `[VERIFIED]` status.
 AU-CODEX-PRIMARY is the sole Git writer and GitHub operator. Claude may read
 only prepared inbox packages and write only registered return artifacts to its
 outbox; it must not commit, push, merge, or directly mutate repository files.

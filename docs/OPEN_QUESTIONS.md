@@ -68,9 +68,10 @@
 - **Terminology and fixtures:** PROD-DEC-009 confirms `SXP` as a typographical
   error for `XSP`, authorizes normalization, and registers the fixture rule.
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
-- **Result:** OQ-005 is closed. Remaining engineering work is route-1 fixture
-  production for DEP-001 and the Technical Design mapping contract for
-  DEP-TR-001. Development remains blocked.
+- **Result:** OQ-005 is closed. The Technical Design mapping contract has
+  independent disposition `ACCEPTED_WITH_GATES`; remaining engineering work is
+  the AU-AGENT-003 security review and route-1 fixture evidence for DEP-001.
+  Development remains blocked.
 - **Decision owner:** Project Owner for the criterion; Claude Cowork within
   PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
   evidence; AU-AGENT-001 for the Technical Review disposition.

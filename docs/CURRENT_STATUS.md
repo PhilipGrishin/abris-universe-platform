@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AU-CDX-TASK-001 Technical Design gate
+**Current focus:** AU-CDX-TASK-001 independent security design gate
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -10,7 +10,7 @@
 - `[CONFIRMED]` The selected workspace directory exists.
 - `[CONFIRMED]` It is the working tree for the private
   `PhilipGrishin/abris-universe-platform` repository, whose default branch is
-  `main`; current agent registration uses a dedicated review branch.
+  `main`; current TASK-THINSLICE-001 work uses a dedicated review branch.
 - `[CONFIRMED]` It was empty at the start of INIT-001.
 - `[CONFIRMED]` It was not a Git repository at the start of INIT-001.
 - `[CONFIRMED]` No source code, tests, schemas, configuration, dependencies,
@@ -137,9 +137,10 @@
 - `[IMPLEMENTED]` TASK-THINSLICE-001 v1.1 contains only the authorized
   editorial changes; the product-side architecture input contains only the
   authorized terminology correction.
-- `[OPEN]` Route-1 project-original fixture production and DEP-TR-001 Technical
-  Design architecture review. The design package is now `[PROPOSED]`;
-  development remains blocked.
+- `[OPEN]` Route-1 project-original fixture production and the AU-AGENT-003
+  security-review portion of DEP-TR-001. The architecture-review component is
+  complete with gates; the design package remains `[PROPOSED]` and development
+  remains blocked.
 - `[PROPOSED]` The TASK-THINSLICE-001 Technical Design defines the canonical
   Pattern/OXS boundary, tiled Canvas2D renderer, IndexedDB event persistence,
   XML security limits, benchmark method, and immutable
@@ -147,15 +148,30 @@
 - `[PROPOSED]` ADR-TS001-001 through ADR-TS001-004 record the task-scoped
   architecture choices without assigning implementation or acceptance status.
 - `[OPEN]` TD-GATE-001 and TD-GATE-002 require project-original evidence for
-  OXS coordinate origin and lawful source-symbol rendering before importer code
-  or exact-symbol claims.
+  the complete OXS coordinate convention and lawful source-symbol rendering
+  before importer code or exact-symbol claims. TD-GATE-001 now requires a
+  non-square fixture with distinct corner identities and an asymmetric
+  interior stitch.
 - `[OPEN]` TD-GATE-003 requires a recoverable current Cloudflare placeholder
   version/artifact before the first production deployment.
-- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-005` packages the exact
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-005` reviewed the exact
   Technical Design source commit
-  `d90de60f98b8e187e2f75bcab697c6f3e747462d` from an immutable source branch
-  for the System Architecture, Data & AI Governance Lead; its external inbox
-  copy is exported, source status is `CURRENT`, and return is pending.
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d` from an immutable source branch.
+  Its `COMPLETED / NO_DECISION` return passed the registered contract, was
+  meaning-reviewed, integrated, and archived with provenance.
+- `[CONFIRMED]` The independent architecture disposition for the Technical
+  Design and ADR-TS001-001 through ADR-TS001-004 is
+  `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
+  acceptance, security verification, or deployment approval was assigned.
+- `[IMPLEMENTED]` Technical Design v1.1.0 and its ADR, threat-model, benchmark,
+  persistence, rendering, import, test, and delivery contracts integrate
+  mandatory R-1 through R-8 and N-1 through N-7/N-9.
+- `[CONFIRMED]` PROD-DEC-010 records Abris Art as the launch, distribution, and
+  anchor-catalog relationship; explicit grants remain mandatory for each
+  concrete route-2 content transfer and Phase 0 scope is unchanged.
+- `[DEFERRED]` PHASE1-VIEW-GRID-001 and
+  PHASE1-ABRIS-ART-FORMAT-SURVEY preserve N-8 and the DEC-010 importer-roadmap
+  consequence outside Phase 0.
 - `[REJECTED]` Exchange preparation `AU-EX-20260725-003` was withdrawn before
   return after freshness reporting detected that its source branch advanced.
   Its manifests and withdrawal evidence remain registered; no Claude output or
@@ -264,13 +280,20 @@
 - `[TESTED]` The proposed design package is registered in the architecture,
   ADR, threat-model, benchmark, Source of Truth, task, and traceability indexes;
   local Markdown links and governance consistency are checked before handoff.
+- `[TESTED]` The `AU-EX-20260725-005` return passed schema, exact-source, role,
+  result type, status, reviewed-source, path, extension, checksum, size,
+  authority, and unregistered-file controls. The canonical review is
+  byte-identical to the Claude output with SHA-256
+  `260bea570a070e74fc914ad9427a18ef5cfbe5be791c18b4eca87645da2651b0`.
+- `[TESTED]` The exchange archive records the canonical review reference and
+  the committed outcome records no verified scope.
 
 ## Blockers
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` Route-1 coordinate and symbol fixture evidence, architecture review,
-  and ADR dispositions for the proposed AU-CDX-TASK-001 v1.1 Technical Design.
+- `[OPEN]` AU-AGENT-003 security review and route-1 coordinate/symbol fixture
+  evidence for the proposed AU-CDX-TASK-001 v1.1 Technical Design.
 
 ## Active Risks
 
@@ -298,12 +321,13 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Authored and registered the TASK-THINSLICE-001 Technical Design Proposal, four
-task-scoped ADRs, a threat model, and a benchmark plan without application,
-fixture, pipeline, or deployment implementation.
+Validated, integrated, and archived the TASK-THINSLICE-001 independent
+pre-implementation architecture review; revised the design package to satisfy
+its documented findings without application, fixture, pipeline, or deployment
+implementation.
 
 ## Next Step
 
-Wait for the `AU-EX-20260725-005` architecture-review return, then validate and
-integrate its disposition without changing Claude-authored meaning. Do not begin
-application or fixture implementation before the design gate authorizes it.
+Perform the independent AU-AGENT-003 security design review. Do not begin
+application or fixture implementation before the remaining design gates
+authorize it.
