@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260725-006 |
 | Title | TASK-THINSLICE-001 Design Revision Confirmation Exchange |
-| Status | `PREPARED`; source `CURRENT`; export pending |
+| Status | `EXPORTED`; source `CURRENT`; return pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Version | 1.0.0 |
@@ -42,7 +42,8 @@ Task Package acceptance.
   `d90de60f98b8e187e2f75bcab697c6f3e747462d..395c5d62975ba0f52e0da69af256ef870bf02770`
 - Registered files: 41
 - Registered payload bytes: 724,478
-- Lifecycle: `PREPARED`
+- External inbox: exported and checksum-bound
+- Lifecycle: `EXPORTED`
 - Source status: `CURRENT`
 - Return: pending
 - Integration: not started

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 2.4.0 |
+| Version | 2.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -73,6 +73,7 @@ intake of a versioned Task Package.
 | TRACE-PERSIST-TS001 | Persist original source, immutable PatternVersion, Project, and idempotent progress without silent save loss | TASK-THINSLICE-001 FR-05 through FR-07 and sections 14/18/21/27 | Technical Design section 9; ADR-TS001-003; task threat model | Architecture `[PROPOSED]`; durability evidence `[OPEN]`; no storage implemented |
 | TRACE-SECURITY-TS001 | Bound untrusted OXS processing and preserve local-only privacy | TASK-THINSLICE-001 sections 22/23/27 | Technical Design sections 7, 9, and 12; `docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md`; `docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md` | Design review `VERIFIED WITH FINDINGS`; TD-GATE-004 closed; implementation/runtime control evidence `[OPEN]` |
 | TRACE-ENGVERIFY-TS001-SEC | Independently review security-relevant design sections before lifting the TD-GATE-004 security hold | `AU-EX-20260725-005` N-9; AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW | `docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md`, Technical Design v1.2.1, Threat Model v1.2.1, ADR review histories | AU-AGENT-003 `VERIFIED WITH FINDINGS`; TS001-SEC-001 resolved; TS001-SEC-002 design action complete/runtime evidence open; no project `[VERIFIED]` |
+| TRACE-DESIGNCONFIRM-TS001 | Confirm the exact revised design and internal security-gate dispositions through the exclusive Collaboration Bridge before the next engineering stage | Project Owner 2026-07-25; AU-CDX-TASK-001-DESIGN-REVISION-CONFIRMATION | Exchange `AU-EX-20260725-006`; immutable source branch `codex/task-thinslice-001-design-revision-source` at `395c5d6` | Package `[IMPLEMENTED]`, `[TESTED]`, exported; return and canonical integration `[OPEN]`; no project `[VERIFIED]` |
 
 ## Owner
 

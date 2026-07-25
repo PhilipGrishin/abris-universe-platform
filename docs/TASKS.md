@@ -192,6 +192,10 @@
   TD-GATE-003 plus header/request-inventory/network-capture evidence blocks
   production deployment. Fixture creation and application implementation have
   not started.
+- **Revision confirmation exchange:** `AU-EX-20260725-006`, exact source
+  `395c5d62975ba0f52e0da69af256ef870bf02770`, immutable branch
+  `codex/task-thinslice-001-design-revision-source`; 41 checksum-registered
+  sources exported to Claude for confirmation. Return pending.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

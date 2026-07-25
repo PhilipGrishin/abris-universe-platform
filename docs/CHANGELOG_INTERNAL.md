@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.5.0 |
+| Version | 2.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -46,6 +46,8 @@ material defect.
 - Registered the report, ADR review references, risk, traceability, task,
   current state, and next handoff without implementation or product
   `[VERIFIED]`.
+- Prepared and exported exact-source exchange `AU-EX-20260725-006` for Claude
+  confirmation of the revised design and gate dispositions.
 - Documentation Impact: Material.
 - Status: `[IMPLEMENTED]`, `[TESTED]`; TD-GATE-004 closed; remaining evidence
   gates open.

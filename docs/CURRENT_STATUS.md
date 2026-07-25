@@ -176,6 +176,11 @@
 - `[TESTED]` TD-GATE-004 is closed at design level. This does not close
   TD-GATE-001, TD-GATE-002, TD-GATE-003, implementation verification, release
   readiness, Claude acceptance, or project `[VERIFIED]`.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-006` packages 41
+  checksum-registered sources from exact current source `395c5d6` and revision
+  range `d90de60..395c5d6` for Claude design-revision confirmation. The
+  external inbox export is complete; return and canonical integration are
+  pending.
 - `[CONFIRMED]` PROD-DEC-010 records Abris Art as the launch, distribution, and
   anchor-catalog relationship; explicit grants remain mandatory for each
   concrete route-2 content transfer and Phase 0 scope is unchanged.
@@ -338,13 +343,12 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Completed and reverified the independent AU-AGENT-003 pre-code security design
-review, resolved TS001-SEC-001, recorded the TS001-SEC-002 deployment-evidence
-gate, and closed TD-GATE-004 without application, fixture, pipeline, or
-deployment implementation.
+Prepared and exported the exact-commit `AU-EX-20260725-006` confirmation package
+after completing and revalidating the AU-AGENT-003 security design gate. No
+application, fixture, pipeline, or deployment implementation was started.
 
 ## Next Step
 
-Prepare an exact-commit Collaboration Bridge package for Claude confirmation of
-the revised design and gate dispositions, then stop. Do not begin fixture or
+Wait for the `AU-EX-20260725-006` return. On `Claude finished`, validate and
+meaning-review it before canonical integration. Do not begin fixture or
 application implementation in this handoff stage.

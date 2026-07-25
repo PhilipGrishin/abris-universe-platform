@@ -109,6 +109,16 @@ Architecture, Data & AI Governance Lead is integrated without modifying the
 review meaning. The design and all four ADRs are `ACCEPTED_WITH_GATES`; no
 project `[VERIFIED]` status or implementation authorization was issued.
 
+## Active Design Revision Confirmation Exchange
+
+`AU-EX-20260725-006` packages 41 checksum-registered sources from exact commit
+`395c5d62975ba0f52e0da69af256ef870bf02770` on immutable branch
+`codex/task-thinslice-001-design-revision-source`. Its review range starts at
+the previously reviewed design source `d90de60` and includes the revised
+design, ADR histories, threat model, benchmark plan, AU-AGENT-003 report, and
+current gate records. The package is exported to the registered external Claude
+inbox; source status is `CURRENT`; return and canonical integration are pending.
+
 ## Completed Exchange
 
 `AU-EX-20260725-004` returned against exact source
@@ -119,8 +129,7 @@ authority; the valid result is integrated and archived. Rejected predecessor
 
 ## Next Concrete Step
 
-Register and export `AU-EX-20260725-006` from an immutable exact source commit
-for Claude design-revision confirmation, then stop on `Codex finished`. Do not
-begin route-1 fixture production, workspace scaffolding, application
-implementation, pipeline implementation, or deployment during this handoff
-stage.
+On the next owner trigger `Claude finished`, validate and meaning-review the
+`AU-EX-20260725-006` return before any canonical integration. Do not begin
+route-1 fixture production, workspace scaffolding, application implementation,
+pipeline implementation, or deployment during this handoff stage.

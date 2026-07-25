@@ -1,5 +1,30 @@
 # Handoff Log
 
+## 2026-07-25 — Codex Design Revision Confirmation Handoff — AU-EX-20260725-006
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; exact-source package exported;
+  return pending; no implementation started.
+- **Requested review:** Confirm Technical Design v1.2.1, the R-1 through R-8
+  and N-1 through N-7/N-9 dispositions, AU-AGENT-003 independence/status, and
+  the exact remaining design and evidence gates.
+- **Requested role:** Claude Cowork System Architecture, Data & AI Governance
+  Lead.
+- **Exact source:** Immutable branch
+  `codex/task-thinslice-001-design-revision-source`, commit
+  `395c5d62975ba0f52e0da69af256ef870bf02770`, range
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d..395c5d62975ba0f52e0da69af256ef870bf02770`.
+- **Package evidence:** 41 checksum-registered sources and 724,478 payload
+  bytes; source `CURRENT`; external inbox export complete.
+- **Authority:** Claude reviews conformance only. AU-AGENT-001 retains
+  Technical Design; AU-AGENT-003 retains its report meaning; AU-AGENT-002
+  retains documentation lifecycle; AU-CODEX-PRIMARY remains sole Git writer.
+- **Boundary:** No fixture, application, dependency, pipeline, Cloudflare
+  configuration, deployment, product acceptance, or project `[VERIFIED]`
+  status is requested.
+- **Documentation Impact:** Material.
+- **Next gate:** Stop on `Codex finished`; on `Claude finished`, validate the
+  return under the registered contract.
+
 ## 2026-07-25 — Codex Security Design Gate — TASK-THINSLICE-001
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 Engineering
