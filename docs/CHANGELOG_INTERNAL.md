@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.0.0 |
+| Version | 2.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Technical Review and OQ-005 Spike
+
+- Completed the pre-development feasibility, repository, architecture-boundary,
+  data, API, migration, security, performance, testability, dependency,
+  rollback, risk, and complexity review.
+- Inspected real vendor-distributed OXS and XSP samples without executing their
+  Windows applications or committing third-party files.
+- Recommended OXS 1.0 based on its official public XML specification and
+  observable Phase 0 fields; recorded that the XSP sample has an encrypted
+  payload.
+- Registered the `SXP`/`XSP` source conflict, OXS product-integration request,
+  and fixture-authority requirement.
+- Created the canonical Technical Review library and task-scoped navigation,
+  updated Source of Truth and traceability, and kept development blocked.
+- Documentation Impact: Material.
+- Status: Review and spike `[IMPLEMENTED]`; OXS `[PROPOSED]`; clarification
+  `[OPEN]`; no product implementation.
 
 ## 2026-07-25 — Cowork DEC-005 Through DEC-008 Integration
 

@@ -106,7 +106,8 @@
 
 ### AU-CDX-TASK-001-TECHNICAL-REVIEW — TASK-THINSLICE-001 Intake
 
-- **Status:** `[OPEN]`, intake authorized; development blocked
+- **Status:** `[IMPLEMENTED]` Technical Review and bounded spike; product
+  clarification `[OPEN]`; development blocked
 - **Source:** TASK-THINSLICE-001 v1.0, PROD-DEC-005 through PROD-DEC-008.
 - **Owner:** AU-AGENT-001.
 - **Contributors:** AU-AGENT-004 for OQ-005 spike and Pattern/import/rendering
@@ -114,14 +115,20 @@
   for client/viewer integration; AU-AGENT-002 for documentation; AU-AGENT-003
   is the independent engineering reviewer and must not implement.
 - **Documentation Impact:** Material.
-- **Required result:** Technical Review with confirmed facts, assumptions,
+- **Result:** Technical Review with confirmed facts, assumptions,
   conflicts, feasibility, recommended architecture direction, deployment
-  constraints, executor mapping, risks, evidence plan, and disposition.
-- **Mandatory spike:** Compare two or three structured XSD/PAT/SXP-class
-  candidate formats against the PROD-DEC-006 criterion. Do not code the
-  importer.
-- **Gate:** No product development begins until the Technical Review disposition
-  explicitly authorizes the next design stage.
+  constraints, executor mapping, risks, evidence plan, and disposition is
+  complete.
+- **Spike result:** Real vendor-distributed OXS and XSP files were inspected.
+  OXS 1.0 is recommended because it has a public official field-level
+  specification and a standard XML parse path; the XSP payload is encrypted.
+  No importer was coded and no third-party fixture was committed.
+- **Open clarifications:** Confirm `SXP` versus official `XSP`, integrate or
+  reject the OXS recommendation, and establish redistribution/derivative
+  authority for the required fixtures.
+- **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
+- **Gate:** Not ready for development. After Claude disposition, prepare the
+  Technical Design Proposal and required architecture review.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

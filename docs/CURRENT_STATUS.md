@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AU-CDX-TASK-001 Technical Review and OQ-005 spike intake
+**Current focus:** AU-CDX-TASK-001 Technical Review clarification handoff
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -125,9 +125,18 @@
   PROD-DEC-005 through PROD-DEC-008, resolved the owner criterion portion of
   OQ-005, updated authorized product-source statuses, and was archived with
   `COMPLETED / NO_DECISION`.
-- `[OPEN]` The concrete OQ-005 format recommendation and
-  TASK-THINSLICE-001 Technical Review disposition are the current engineering
-  work. Development remains blocked.
+- `[IMPLEMENTED]` The TASK-THINSLICE-001 Technical Review and bounded OQ-005
+  spike are registered under `docs/reviews/technical/TASK-THINSLICE-001/`.
+- `[TESTED]` A real official OXS sample validated as XML and exposed a 69×73
+  chart, 7 non-cloth palette entries, 1,000 full stitches, 1,105 backstitches,
+  and 18 ornaments. A real official XSP sample was confirmed as an encrypted
+  ZIP-compatible container with one encrypted payload.
+- `[PROPOSED]` OXS 1.0 is the Phase 0 importer recommendation.
+- `[CONFLICT]` Product sources use `SXP`; official vendor and ecosystem sources
+  use `XSP` for Cross Stitch Professional Platinum.
+- `[OPEN]` Claude disposition of the OXS recommendation and `SXP`/`XSP`,
+  plus fixture redistribution/derivative authority. Development remains
+  blocked, and Technical Design has not begun.
 
 ## Verification Performed
 
@@ -211,13 +220,19 @@
   `ARCHIVED`, validates their archived task/return records and canonical
   outcomes, reports each as `INTEGRATED`, and correctly labels the older
   advanced-branch exchange `HISTORICAL_ARCHIVED`.
+- `[TESTED]` The OQ-005 spike inspected official vendor samples without
+  executing vendor applications; XML validation and structured counts passed
+  for OXS, while archive inspection confirmed the XSP payload is encrypted.
+- `[TESTED]` The 26-page Master Product Specification was rendered and visually
+  inspected without observed clipping, overlap, or unreadable pages.
 
 ## Blockers
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` Engineering intake and Technical Review disposition for
-  AU-CDX-TASK-001 v1.0.
+- `[OPEN]` Product clarification and fixture authority for OQ-005, followed by
+  the Technical Design Proposal and architecture review for AU-CDX-TASK-001
+  v1.0.
 
 ## Active Risks
 

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 2.0.0 |
+| Version | 2.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -61,7 +61,8 @@ intake of a versioned Task Package.
 | TRACE-INIT003-OVR | Normalize OVR-001, OVR-002, and OVR-005 without authority changes; implement tested archive-aware status reporting for OVR-004 | INIT-003 Independent Acceptance Report section 5; Project Owner directive 2026-07-25 | `.codex/AGENT_REGISTRY.md`, canonical Bridge governance documents, `collaboration/scripts/report-exchange-status.mjs`, 19-test Bridge suite, RISK-009 | `[IMPLEMENTED]`, `[TESTED]`; tooling not project `[VERIFIED]` |
 | TRACE-INIT003-PD | Formally integrate transmitted Cowork DEC-005 through DEC-008 only through a new Product Decision exchange | INIT-003 Independent Acceptance Report section 6; Project Owner directive 2026-07-25 | `product/decisions/05_Decision_Log.md`; exchange `AU-EX-20260725-002` and its outcome | `[IMPLEMENTED]`, `[TESTED]`; result `COMPLETED / NO_DECISION` |
 | TRACE-DEPLOY-INPUT-001 | Preserve owner-confirmed Phase 0 Cloudflare target as a Technical Review input without inventing the permanent pipeline | PROD-DEC-007; Project Owner 2026-07-25 | `product/decisions/05_Decision_Log.md`, `docs/CURRENT_STATUS.md`, exchange `AU-EX-20260725-002`; future Technical Design Proposal | Product input `[CONFIRMED]`; HTTPS endpoint `[TESTED]`; pipeline design `[OPEN]` |
-| TRACE-TECHREVIEW-001 | Perform TASK-THINSLICE-001 Technical Review and bounded OQ-005 spike before development | TASK-THINSLICE-001 v1.0; PROD-DEC-006; PROD-DEC-008 | `docs/TASKS.md` AU-CDX-TASK-001-TECHNICAL-REVIEW; future Technical Review and spike report | Intake `[OPEN]`; development blocked |
+| TRACE-TECHREVIEW-001 | Perform TASK-THINSLICE-001 Technical Review and bounded OQ-005 spike before development | TASK-THINSLICE-001 v1.0; PROD-DEC-006; PROD-DEC-008 | `docs/reviews/technical/TASK-THINSLICE-001/`, `docs/TASKS.md` | Review and spike `[IMPLEMENTED]`; OXS `[PROPOSED]`; clarification `[OPEN]`; development blocked |
+| TRACE-OQ005-001 | Select the Phase 0 structured importer by the confirmed minimal-complexity/representativeness criterion without silently changing product meaning | PROD-DEC-006; OQ-005; TASK-THINSLICE-001 v1.0 | `docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md`, `docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md` | Real OXS/XSP evidence `[TESTED]`; OXS recommendation `[PROPOSED]`; DEP-001 `[OPEN]` |
 
 ## Owner
 

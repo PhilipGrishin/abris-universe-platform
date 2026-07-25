@@ -225,3 +225,29 @@
   conflict, required review, protection rule, unclear target, or mandatory
   finding cannot be resolved safely.
 - **Owner:** AU-CODEX-PRIMARY
+
+## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
+
+- **Status:** `[OPEN]`, development blocked by controls
+- **Probability:** High without the OQ-005 and fixture gates
+- **Impact:** High
+- **Trigger:** Importer development starts from an undocumented/proprietary
+  format, untrusted XML lacks resource limits, a source format dictates the
+  canonical model, or third-party samples are committed without redistribution
+  and derivative authority.
+- **Affected areas:** Pattern correctness, data loss, security, compatibility,
+  legal exposure, tests, repository distribution, and roadmap.
+- **Prevention:** Prefer the documented OXS recommendation; preserve original
+  files; define a mapping contract; keep Symbol separate from PaletteItem and
+  Pattern separate from Progress; disable unsafe XML features; impose resource
+  limits; require fixture provenance and permission.
+- **Mitigation:** Keep DEP-001 and development blocked until Claude dispositions
+  the format and terminology and authorized fixtures exist. Require golden,
+  malformed, size-limit, coordinate, palette-reference, and unsupported-content
+  tests.
+- **Fallback:** Reject the affected format or fixture, preserve evidence,
+  disable the importer, restore the last known-good static deployment, and
+  return the choice through a Technical Alternative or Conflict Report.
+- **Owner:** AU-AGENT-004 for importer evidence; AU-AGENT-001 for architecture
+  disposition; AU-AGENT-003 for independent security/quality verification;
+  Project Owner or rights holder for fixture permission

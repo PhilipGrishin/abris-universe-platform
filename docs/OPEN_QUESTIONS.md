@@ -56,16 +56,22 @@
 
 ## OQ-005 — First Phase 0 Import Format
 
-- **Status:** `[CONFIRMED]` owner criterion; technical spike `[OPEN]`
+- **Status:** `[CONFIRMED]` owner criterion; technical recommendation
+  `[PROPOSED]`; product integration `[OPEN]`
 - **Answer:** Per PROD-DEC-006, the Project Owner confirmed the criterion on
   2026-07-21: minimize parsing complexity while remaining representative of
   real user files.
-- **Delegated choice:** The concrete format is selected by a bounded Codex spike
-  over two or three structured XSD/PAT/SXP-class candidates, excluding PDF and
-  raster inputs, with the recommendation justified inside the
-  TASK-THINSLICE-001 Technical Review.
-- **Result:** Only the technical spike remains open; importer coding cannot
-  begin before the spike recommendation and Technical Review disposition.
+- **Spike result:** The bounded review inspected real official OXS and XSP
+  samples. OXS 1.0 is recommended because its official XML specification and
+  sample expose the required Phase 0 fields; the inspected XSP sample contains
+  an encrypted payload without a public official schema.
+- **Conflicts and inputs required:** Product sources use `SXP`, while official
+  vendor/ecosystem sources use `XSP`. Claude Cowork must disposition that
+  terminology, integrate or reject OXS, and establish authority for committed
+  representative fixtures.
+- **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
+- **Result:** The spike recommendation is complete, but DEP-001 and importer
+  coding remain blocked pending product integration and fixture authority.
 - **Decision owner:** Project Owner for the criterion; AU-AGENT-004 prepares the
   technical recommendation; AU-AGENT-001 approves the Technical Review
   disposition.
