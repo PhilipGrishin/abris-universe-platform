@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -49,6 +49,10 @@ not approve returned meaning.
   recommendation, and fixture authority; return validated and integrated as
   PROD-DEC-009 and related records, then archived with `NO_DECISION` and no
   `[VERIFIED]` status.
+- [`AU-EX-20260725-005`](AU-EX-20260725-005/README.md) —
+  TASK-THINSLICE-001 pre-implementation architecture review of the exact
+  Technical Design, ADRs, threat model, and benchmark plan; package exported
+  from an immutable current source, return pending, development blocked.
 
 ## Rules
 

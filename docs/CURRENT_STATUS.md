@@ -151,6 +151,11 @@
   or exact-symbol claims.
 - `[OPEN]` TD-GATE-003 requires a recoverable current Cloudflare placeholder
   version/artifact before the first production deployment.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-005` packages the exact
+  Technical Design source commit
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d` from an immutable source branch
+  for the System Architecture, Data & AI Governance Lead; its external inbox
+  copy is exported, source status is `CURRENT`, and return is pending.
 - `[REJECTED]` Exchange preparation `AU-EX-20260725-003` was withdrawn before
   return after freshness reporting detected that its source branch advanced.
   Its manifests and withdrawal evidence remain registered; no Claude output or
@@ -299,6 +304,6 @@ fixture, pipeline, or deployment implementation.
 
 ## Next Step
 
-Validate the proposed design package, commit its exact source, and route the
-architecture-review request through the Collaboration Bridge. Do not begin
+Wait for the `AU-EX-20260725-005` architecture-review return, then validate and
+integrate its disposition without changing Claude-authored meaning. Do not begin
 application or fixture implementation before the design gate authorizes it.

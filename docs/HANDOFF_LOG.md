@@ -2,8 +2,8 @@
 
 ## 2026-07-25 — Codex Technical Design Handoff — TASK-THINSLICE-001
 
-- **Status:** Design package `[PROPOSED]`; architecture review and ADR
-  dispositions `[OPEN]`; development blocked.
+- **Status:** Design package `[PROPOSED]`; exact-source architecture-review
+  exchange `[IMPLEMENTED]`, `[TESTED]`; return pending; development blocked.
 - **Exact product source:** TASK-THINSLICE-001 / AU-CDX-TASK-001 v1.1 with
   PROD-DEC-005 through PROD-DEC-009.
 - **Design:** Registered canonical Pattern entities and invariants, bounded OXS
@@ -20,8 +20,12 @@
   Cloudflare mutation, or deployment was created.
 - **Documentation Impact:** Material; result supplied through registered
   indexes and traceability with no exception.
-- **Next gate:** Commit the exact proposal and use the Collaboration Bridge for
-  independent architecture review before implementation.
+- **Exchange:** `AU-EX-20260725-005` packages 41 checksum-registered sources
+  from immutable branch `codex/task-thinslice-001-design-source` at
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d`; the external inbox export is
+  complete and source status is `CURRENT`.
+- **Next gate:** On `Claude finished`, validate the architecture-review return
+  and integrate only its authorized meaning before implementation.
 
 ## 2026-07-25 — Codex Product Clarification Integration — AU-EX-20260725-004
 

@@ -175,6 +175,10 @@
 - **Open evidence:** TD-GATE-001 OXS coordinate origin, TD-GATE-002 lawful
   source-symbol mapping, TD-GATE-003 current Cloudflare placeholder rollback
   anchor, and TD-GATE-004 architecture review.
+- **Architecture review exchange:** `AU-EX-20260725-005`, exact source
+  `d90de60f98b8e187e2f75bcab697c6f3e747462d`; prepared from the immutable
+  `codex/task-thinslice-001-design-source` branch and exported to the registered
+  Claude inbox; return pending.
 - **Gate:** Architecture review and required ADR dispositions must complete
   before development. Coordinate/symbol route-1 fixture evidence blocks
   importer code. Fixture creation and application implementation have not

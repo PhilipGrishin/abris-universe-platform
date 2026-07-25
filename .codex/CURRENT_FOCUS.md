@@ -72,6 +72,15 @@ canonical integration of PROD-DEC-009 and the completed OQ-005 spike.
   before production deployment.
 - TD-GATE-004: architecture review and ADR dispositions.
 
+## Active Architecture Review Exchange
+
+`AU-EX-20260725-005` packages 41 checksum-registered sources from exact commit
+`d90de60f98b8e187e2f75bcab697c6f3e747462d` on immutable branch
+`codex/task-thinslice-001-design-source`. It requests a
+`REQUIREMENTS_REVIEW / NO_DECISION` return from the System Architecture, Data &
+AI Governance Lead. The package is exported to the registered external inbox;
+source status is `CURRENT`; return and canonical integration are pending.
+
 ## Completed Exchange
 
 `AU-EX-20260725-004` returned against exact source
@@ -82,6 +91,6 @@ authority; the valid result is integrated and archived. Rejected predecessor
 
 ## Next Concrete Step
 
-Commit the exact proposed design package and route architecture review through
-the registered Collaboration Bridge. Do not begin implementation or fixture
-production before the applicable design gates are accepted.
+On the next owner trigger `Claude finished`, validate and integrate the
+`AU-EX-20260725-005` return. Do not begin implementation or fixture production
+before the applicable design gates are accepted.

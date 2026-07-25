@@ -41,6 +41,9 @@ material defect.
   current Cloudflare placeholder.
 - Updated Source of Truth, architecture, ADR, assurance, task, risk,
   traceability, current-focus, current-status, and review navigation.
+- Prepared and exported exact-source Collaboration Bridge exchange
+  `AU-EX-20260725-005` for independent pre-implementation architecture review;
+  no `[VERIFIED]` status or implementation authority was requested.
 - Documentation Impact: Material.
 - Status: design package `[PROPOSED]`; architecture review `[OPEN]`;
   development blocked.

@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260725-005",
+  "task_id": "AU-CDX-TASK-001-ARCHITECTURE-REVIEW",
+  "task_type": "REQUIREMENTS_REVIEW",
+  "requested_claude_role": "System Architecture, Data & AI Governance Lead",
+  "source_commit_sha": "d90de60f98b8e187e2f75bcab697c6f3e747462d",
+  "source_branch": "codex/task-thinslice-001-design-source",
+  "review_commit_range": "fdcf4fddb6d20d5556e2a9f541b6f86b1d07cd88..d90de60f98b8e187e2f75bcab697c6f3e747462d",
+  "prepared_at": "2026-07-25T15:39:38Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Request an independent pre-implementation architecture review of the exact TASK-THINSLICE-001 Technical Design Proposal and task-scoped ADRs while development remains blocked.",
+  "scope": [
+    "Review the exact Technical Design Proposal, ADR-TS001-001 through ADR-TS001-004, threat model, and benchmark plan at source commit d90de60f98b8e187e2f75bcab697c6f3e747462d.",
+    "Check conformance with TASK-THINSLICE-001 v1.1, PROD-DEC-005 through PROD-DEC-009, the Master Product Specification, and the product-side architecture constraints.",
+    "Review the canonical Pattern and OXS 1.0 boundary, including source retention, PatternVersion immutability, Symbol and PaletteItem separation, Pattern and Progress separation, unsupported-content handling, and the prohibition on importing OXS marked state.",
+    "Review TD-GATE-001 coordinate-origin evidence and TD-GATE-002 lawful symbol/glyph evidence and determine whether the proposed evidence gates are sufficient before importer implementation.",
+    "Review the tiled Canvas2D renderer boundary, visible-tile contract, accessibility support, benchmark plan, and future 500,000-stitch migration seam.",
+    "Review IndexedDB transactions, Project states, append-only ProgressEvent idempotency, reload recovery, storage-failure surfacing, migration, and static-client rollback compatibility.",
+    "Review XML security limits, the threat model, local-only privacy boundary, dependency and CI controls, and identify missing mandatory controls.",
+    "Review the GitHub-to-CI-to-Cloudflare design for abris.653915.com, including immutable version promotion, secret boundaries, current-placeholder rollback evidence, smoke tests, and no-DNS-mutation rule.",
+    "Provide an explicit architecture disposition for the Technical Design and for each ADR: ACCEPTED_FOR_IMPLEMENTATION, ACCEPTED_WITH_GATES, REWORK_REQUIRED, or BLOCKED.",
+    "Distinguish this pre-code architecture review from the later implementation-based independent architecture acceptance required by Task Package acceptance criterion 8."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, Technical Design, ADRs, threat model, benchmark plan, product sources, code, fixtures, dependencies, GitHub settings, Cloudflare state, CI/CD, or deployment.",
+    "Writing implementation code, creating route-1 fixtures, choosing a mobile framework, adding a backend, or implementing any TASK-THINSLICE-001 section 10 exclusion.",
+    "Changing product requirements, UX behavior, scope, priority, acceptance criteria, product terminology, or PROD-DEC-005 through PROD-DEC-009.",
+    "Replacing Codex technical ownership or prescribing a concrete library, framework, database, or cloud service without identifying a requirement-level conflict.",
+    "Assigning project VERIFIED status or treating this design review as final product, quality, security, release, or implementation acceptance."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+    "sources/repository/docs/architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md",
+    "sources/repository/docs/architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md",
+    "sources/repository/docs/architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md",
+    "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+    "sources/repository/product/governance/04_Codex_Context_Pack.md",
+    "sources/repository/product/decisions/05_Decision_Log.md",
+    "sources/repository/product/agents/definitions/system-architecture-data-ai-governance-lead.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/collaboration/README.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "028314ec975bf8138983996f9af99589fd0e6eb42118d5d53b329efd98457187",
+      "size_bytes": 4017
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "048082169d2426370da4195fd8a05bb65841ef2264634180b5cabf616659af80",
+      "size_bytes": 15872
+    },
+    {
+      "path": "sources/repository/collaboration/README.md",
+      "sha256": "cf4c8f51692d3b534e671b9d378f72b3d14d9eb4ceecbb5f0e3c766c88fc3ecf",
+      "size_bytes": 5427
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/README.md",
+      "sha256": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+      "size_bytes": 2073
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-return-manifest.schema.json",
+      "sha256": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+      "size_bytes": 3542
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-task-manifest.schema.json",
+      "sha256": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+      "size_bytes": 4451
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "b1c4fc6d2da863eda6bc67cac2a97e188fc725716c1c8222150e56eb6b664907",
+      "size_bytes": 19236
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "60ef148f258df3d0e915f69e3fea04f5f1ad45c28e6def1234467ed87d7b4365",
+      "size_bytes": 16635
+    },
+    {
+      "path": "sources/repository/docs/HANDOFF_LOG.md",
+      "sha256": "9e53f46ded1897a3e1479ab25a7045894c4d06071bdc38c138159b05ab3882f5",
+      "size_bytes": 42440
+    },
+    {
+      "path": "sources/repository/docs/RISKS.md",
+      "sha256": "23cfefa156291204219609c29a676f2963d163f1942ea1b62ba525ad39a1f0da",
+      "size_bytes": 16252
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "c5d496885cfb22f2ea025c4aec1784973ff98aa3dc3f01fe43ab04badc3a59ca",
+      "size_bytes": 12322
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "a7b2eb6cbcdb02a223440a3dfc1ab932e8644ee7db22b41496bb1f09c06384b9",
+      "size_bytes": 24975
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "f5e28ead786c9edfa8fc93c436c01db1745cdfcfe9384169d1be59f579a6f97d",
+      "size_bytes": 14110
+    },
+    {
+      "path": "sources/repository/docs/architecture/README.md",
+      "sha256": "45bc45f5711b0e7367a70504226799c4028fe45abb8366c609e919b1863662b1",
+      "size_bytes": 2050
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md",
+      "sha256": "6bd6668bb107e7ccb508864a038507c5844d710ae9180f4a10a2b3fef45e7611",
+      "size_bytes": 4023
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md",
+      "sha256": "bccd873a001cdb58d1d086955d3f54ad05eb568c3d5821aa89798dadd9f85357",
+      "size_bytes": 3790
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md",
+      "sha256": "8872d48899688f1650b1379e7a9ef286cd53849f711fd65598700207c46b5d3d",
+      "size_bytes": 4145
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md",
+      "sha256": "70f79e23dd1262cc9587cf755831112f9113a3e0d47720fd0f7b6135169e084e",
+      "size_bytes": 4423
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/README.md",
+      "sha256": "49b69028bc67a7e6208db62bf641e5a17e15c6b770d972ff04e66015385a20e0",
+      "size_bytes": 3019
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/TEMPLATE.md",
+      "sha256": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+      "size_bytes": 1985
+    },
+    {
+      "path": "sources/repository/docs/architecture/designs/README.md",
+      "sha256": "577b8a24885b0e7662a6380c3e5cf574f07b6bd73c72f32150e4930a15abf202",
+      "size_bytes": 2413
+    },
+    {
+      "path": "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+      "sha256": "f9afdf2b247285444cfe70ab11942e9f2f29333de6dc9cdab60356dc7f2e3bbc",
+      "size_bytes": 34847
+    },
+    {
+      "path": "sources/repository/docs/architecture/rfc/README.md",
+      "sha256": "c128d3b6b045f8282e06032b8175729d859aa0366d216aa8f27caa184ceb09cc",
+      "size_bytes": 1753
+    },
+    {
+      "path": "sources/repository/docs/architecture/rfc/TEMPLATE.md",
+      "sha256": "e7e46a478498abf9c8e8944ee8eae79264a806be58e2148727a72a9e7a1dc155",
+      "size_bytes": 2064
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/README.md",
+      "sha256": "f6ed95d7836a329f87ce82b6747ae1f1adf7ff9a8e2f278330061a4abee5af6e",
+      "size_bytes": 2102
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md",
+      "sha256": "5df1bae548cb2a5370123c197d4d2dbb8fd6e85c2becf0fcb1b01e678b4f2e82",
+      "size_bytes": 6855
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/README.md",
+      "sha256": "89517197f5172f3bf4ac6ce1ebc862d579a98976a8e433325136f73ebf9e2c57",
+      "size_bytes": 2372
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md",
+      "sha256": "f31dae91ad20e8060376ea082f840fc7dea58a411f481b7743df47408094c8bf",
+      "size_bytes": 8000
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md",
+      "sha256": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+      "size_bytes": 4433
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md",
+      "sha256": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+      "size_bytes": 8442
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md",
+      "sha256": "ec2f20d9c672c33c3fe38efc5a30f8b382353e864813626658f0e7f1dd9aa9dc",
+      "size_bytes": 3338
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md",
+      "sha256": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+      "size_bytes": 17897
+    },
+    {
+      "path": "sources/repository/product/README.md",
+      "sha256": "1a692e23029e9c317aab5ab052d2e7d93138a034035aa47a2571b22888c34116",
+      "size_bytes": 5898
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/system-architecture-data-ai-governance-lead.md",
+      "sha256": "367e242f907f3fc34d9278f4ca44d7310bc79b9aacafc9fda8fa38d1c5da5e01",
+      "size_bytes": 51534
+    },
+    {
+      "path": "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+      "sha256": "ee2ea2ae807bd2b93771f7fc898b9a80e8a9d275ab5e9247770f16646ba46064",
+      "size_bytes": 26015
+    },
+    {
+      "path": "sources/repository/product/decisions/05_Decision_Log.md",
+      "sha256": "dea0c970ad6805bb0bb1dd2209ab67cbe0e24b7b89a2f670b0e86d76245a7bd4",
+      "size_bytes": 34811
+    },
+    {
+      "path": "sources/repository/product/governance/04_Codex_Context_Pack.md",
+      "sha256": "ad6c9e23ed82a6a1da22b1e964ec88e73e7f8fb34d3345249da19ee21287dcb9",
+      "size_bytes": 25471
+    },
+    {
+      "path": "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+      "sha256": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+      "size_bytes": 45137
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "11977b655c78562f5d57d3df31c623991a3416602ed3509feee703cbf954cca5",
+      "size_bytes": 108825
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "f1e91ad33c1208f113ce9026bfdedfb2b8b33b7a1ce8df40e8bec048f955f26f",
+      "size_bytes": 1483
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "f8bbec99324bad97cdcbd30d088f9ea9443ae302988c080fbee9b61af84106ba",
+      "size_bytes": 85
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type REQUIREMENTS_REVIEW and decision NO_DECISION.",
+    "outputs/task-thinslice-001-architecture-review.md containing reviewed-source identity, architecture disposition, ADR-by-ADR dispositions, blocking and non-blocking findings, required rework, accepted gates, risks, limitations, and the exact next gate."
+  ],
+  "acceptance_criteria": [
+    "The response reviews every checksum-registered required input and identifies the exact source commit.",
+    "The response explicitly checks all approved domain invariants and identifies any product or architecture conflict without silently rewriting it.",
+    "The response explicitly evaluates TD-GATE-001 through TD-GATE-004 and distinguishes pre-code blockers from pre-deploy blockers.",
+    "The response explicitly dispositions ADR-TS001-001 through ADR-TS001-004 and the Technical Design as ACCEPTED_FOR_IMPLEMENTATION, ACCEPTED_WITH_GATES, REWORK_REQUIRED, or BLOCKED.",
+    "Any required rework names the affected section, violated source or invariant, severity, and evidence needed for closure.",
+    "Technology feedback remains a conformance review of Codex proposals and does not transfer technical implementation ownership to Claude.",
+    "The response does not authorize implementation if mandatory pre-code findings remain unresolved.",
+    "The response preserves final Task Package acceptance criterion 8 as a later code-and-Completion-Report review and assigns no project VERIFIED status.",
+    "The return uses COMPLETED, PARTIAL, or BLOCKED with decision NO_DECISION; architecture disposition is recorded inside the report, not overloaded into project acceptance status."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and Claude Cowork retain product requirements, product architecture constraints, domain meaning, UX meaning, and acceptance criteria. This review may identify conflicts and assess conformance but may not rewrite product sources.",
+    "engineering_authority": "AU-AGENT-001 retains system Technical Design and ADR decision ownership; AU-AGENT-004 through AU-AGENT-006 retain their registered domain inputs. The requested Claude role independently reviews architecture conformance and future readiness without implementing or taking over concrete technical selection.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, metadata, navigation, consistency, traceability, and lifecycle after validation, without changing Claude-authored review meaning or Codex technical meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260725-005",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/CURRENT_FOCUS.md": "028314ec975bf8138983996f9af99589fd0e6eb42118d5d53b329efd98457187",
+    "sources/repository/AGENTS.md": "048082169d2426370da4195fd8a05bb65841ef2264634180b5cabf616659af80",
+    "sources/repository/collaboration/README.md": "cf4c8f51692d3b534e671b9d378f72b3d14d9eb4ceecbb5f0e3c766c88fc3ecf",
+    "sources/repository/collaboration/schemas/README.md": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+    "sources/repository/collaboration/schemas/claude-return-manifest.schema.json": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+    "sources/repository/collaboration/schemas/claude-task-manifest.schema.json": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+    "sources/repository/docs/CURRENT_STATUS.md": "b1c4fc6d2da863eda6bc67cac2a97e188fc725716c1c8222150e56eb6b664907",
+    "sources/repository/docs/DECISIONS.md": "60ef148f258df3d0e915f69e3fea04f5f1ad45c28e6def1234467ed87d7b4365",
+    "sources/repository/docs/HANDOFF_LOG.md": "9e53f46ded1897a3e1479ab25a7045894c4d06071bdc38c138159b05ab3882f5",
+    "sources/repository/docs/RISKS.md": "23cfefa156291204219609c29a676f2963d163f1942ea1b62ba525ad39a1f0da",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "c5d496885cfb22f2ea025c4aec1784973ff98aa3dc3f01fe43ab04badc3a59ca",
+    "sources/repository/docs/TASKS.md": "a7b2eb6cbcdb02a223440a3dfc1ab932e8644ee7db22b41496bb1f09c06384b9",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "f5e28ead786c9edfa8fc93c436c01db1745cdfcfe9384169d1be59f579a6f97d",
+    "sources/repository/docs/architecture/README.md": "45bc45f5711b0e7367a70504226799c4028fe45abb8366c609e919b1863662b1",
+    "sources/repository/docs/architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md": "6bd6668bb107e7ccb508864a038507c5844d710ae9180f4a10a2b3fef45e7611",
+    "sources/repository/docs/architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md": "bccd873a001cdb58d1d086955d3f54ad05eb568c3d5821aa89798dadd9f85357",
+    "sources/repository/docs/architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md": "8872d48899688f1650b1379e7a9ef286cd53849f711fd65598700207c46b5d3d",
+    "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md": "70f79e23dd1262cc9587cf755831112f9113a3e0d47720fd0f7b6135169e084e",
+    "sources/repository/docs/architecture/adr/README.md": "49b69028bc67a7e6208db62bf641e5a17e15c6b770d972ff04e66015385a20e0",
+    "sources/repository/docs/architecture/adr/TEMPLATE.md": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+    "sources/repository/docs/architecture/designs/README.md": "577b8a24885b0e7662a6380c3e5cf574f07b6bd73c72f32150e4930a15abf202",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md": "f9afdf2b247285444cfe70ab11942e9f2f29333de6dc9cdab60356dc7f2e3bbc",
+    "sources/repository/docs/architecture/rfc/README.md": "c128d3b6b045f8282e06032b8175729d859aa0366d216aa8f27caa184ceb09cc",
+    "sources/repository/docs/architecture/rfc/TEMPLATE.md": "e7e46a478498abf9c8e8944ee8eae79264a806be58e2148727a72a9e7a1dc155",
+    "sources/repository/docs/assurance/benchmarks/README.md": "f6ed95d7836a329f87ce82b6747ae1f1adf7ff9a8e2f278330061a4abee5af6e",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md": "5df1bae548cb2a5370123c197d4d2dbb8fd6e85c2becf0fcb1b01e678b4f2e82",
+    "sources/repository/docs/assurance/threat-models/README.md": "89517197f5172f3bf4ac6ce1ebc862d579a98976a8e433325136f73ebf9e2c57",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md": "f31dae91ad20e8060376ea082f840fc7dea58a411f481b7743df47408094c8bf",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md": "ec2f20d9c672c33c3fe38efc5a30f8b382353e864813626658f0e7f1dd9aa9dc",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+    "sources/repository/product/README.md": "1a692e23029e9c317aab5ab052d2e7d93138a034035aa47a2571b22888c34116",
+    "sources/repository/product/agents/definitions/system-architecture-data-ai-governance-lead.md": "367e242f907f3fc34d9278f4ca44d7310bc79b9aacafc9fda8fa38d1c5da5e01",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md": "ee2ea2ae807bd2b93771f7fc898b9a80e8a9d275ab5e9247770f16646ba46064",
+    "sources/repository/product/decisions/05_Decision_Log.md": "dea0c970ad6805bb0bb1dd2209ab67cbe0e24b7b89a2f670b0e86d76245a7bd4",
+    "sources/repository/product/governance/04_Codex_Context_Pack.md": "ad6c9e23ed82a6a1da22b1e964ec88e73e7f8fb34d3345249da19ee21287dcb9",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+    "sources/review/review-range.diff": "11977b655c78562f5d57d3df31c623991a3416602ed3509feee703cbf954cca5",
+    "sources/review/review-range.stat.txt": "f1e91ad33c1208f113ce9026bfdedfb2b8b33b7a1ce8df40e8bec048f955f26f",
+    "sources/review/review-range.commits.txt": "f8bbec99324bad97cdcbd30d088f9ea9443ae302988c080fbee9b61af84106ba"
+  }
+}
