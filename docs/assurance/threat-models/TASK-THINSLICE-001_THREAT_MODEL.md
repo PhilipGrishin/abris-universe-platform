@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -90,7 +90,7 @@ no product-data network egress in Phase 0.
 | TM-014 | Failed deploy cannot restore service | capture prior version/artifact; automatic and manual rollback; post-rollback smoke | rollback rehearsal and recorded IDs | Initial placeholder may lack recoverable source |
 | TM-015 | Public preview exposes unreleased content | no public preview until access policy is approved | workflow condition review | Authorized reviewers can still disclose content |
 | TM-016 | Static rollback cannot read newer IndexedDB schema | one-release backward read compatibility; migration/rollback review | prior-client compatibility test | Multi-release downgrade is not guaranteed |
-| TM-017 | Product pattern data is transmitted unexpectedly | no analytics/network client for pattern data; restrictive `connect-src`; network review | header assertion, network capture, and dependency review | Browser extensions and device compromise |
+| TM-017 | Product pattern data is transmitted unexpectedly | no analytics client for pattern data; restrictive `connect-src`; reviewed minimum runtime request inventory; no pattern-derived URL, body, header, log, analytics, or telemetry content | header assertion, dependency review, inventory comparison, and full network capture across import, render, toggle, reload, and error paths | Browser extensions and device compromise |
 | TM-018 | Fixture provenance or redistribution authority is missing or falsified | project-original route-1 fixtures by default; explicit Decision Log grant for route 2; checksums and provenance README | fixture inventory, rights record, generator review, and checksum verification | Fraudulent or mistaken source-owner assertion |
 | TM-019 | Static application executes injected content or is framed after a dependency defect | Worker-enforced CSP, `nosniff`, `frame-ancestors 'none'`, no-referrer policy, no inline/runtime-remote assets | pre-promotion and production header assertions; CSP browser test | Browser or platform enforcement defect |
 | TM-020 | Concurrent tabs corrupt progress ordering or derive from stale state | exclusive per-project Web Lock; read-only second tab; in-transaction derivation and sequence; event payload hash | two-context concurrency and duplicate-ID tests | Web Locks unavailable disables editing |
@@ -99,7 +99,10 @@ no product-data network egress in Phase 0.
 ## Security Requirements
 
 1. Imported bytes and values remain untrusted until validation completes.
-2. Validation precedes canonical allocation and persistence.
+2. File-size and allocation preflight precedes opaque source-Blob staging.
+   Structural and referential validation precedes canonical allocation and
+   canonical-result persistence. Failed or interrupted staging follows the
+   explicit transactional Blob-cleanup contract.
 3. No user pattern data is transmitted.
 4. No raw imported content is placed into HTML, logs, build evidence, or
    telemetry.
@@ -125,6 +128,8 @@ no product-data network egress in Phase 0.
   manual backup is outside scope.
 - `THREAT-OPEN-005`: AU-AGENT-003 has not yet reviewed the revised CSP,
   persistence, multi-tab, parser-worker, and fixture controls.
+- `THREAT-OPEN-006`: the production runtime request inventory and clean
+  full-path network capture do not exist before implementation.
 
 ## Verification Checklist
 

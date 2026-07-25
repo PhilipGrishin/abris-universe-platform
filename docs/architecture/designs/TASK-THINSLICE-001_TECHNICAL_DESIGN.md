@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-010, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -41,6 +41,9 @@ Version 1.1.0 integrates the mandatory R-1 through R-8 design findings from
 `AU-EX-20260725-005` without changing the returned review meaning. The review
 accepted the design and all four task ADRs with gates; it did not assign project
 acceptance or authorize implementation while the remaining gates are open.
+Version 1.2.0 records the AU-AGENT-003 design-review dispositions for opaque
+source staging and same-origin request inventory without changing architecture
+or product behavior.
 
 ## 2. Scope and Non-Scope
 
@@ -788,6 +791,14 @@ The build must not require inline scripts/styles or remote runtime assets.
 Changing the CSP or adding a network destination requires security review and a
 Documentation Impact assessment.
 
+Before deployment, the client and Worker must have a reviewed minimum runtime
+request inventory. It identifies every script-initiated same-origin connection,
+its method, route, payload class, and purpose. If the production client requires
+no such connection, `connect-src` is tightened from `'self'` to `'none'`. If a
+same-origin connection remains necessary, it is limited to reviewed
+non-pattern static metadata and may not carry pattern-derived data in a URL,
+request body, header, log, analytics event, or telemetry.
+
 ### 12.2 GitHub workflow
 
 ```text
@@ -852,6 +863,10 @@ Pre-promotion smoke checks validate the immutable preview version:
 - no secret is present in the build;
 - CSP, `nosniff`, `frame-ancestors`, and `Referrer-Policy` match the reviewed
   policy;
+- the observed request set matches the reviewed runtime request inventory;
+- a full browser network capture across import, render, toggle, reload, and
+  representative error paths contains no pattern-derived data in URLs, request
+  bodies, headers, logs, analytics, or telemetry;
 - browser smoke opens the import entry point without console errors.
 
 After promotion, the same checks run against `abris.653915.com`. Failure
