@@ -2,13 +2,13 @@
 
 ## Focus ID: AU-CDX-TASK-001-PERSISTENCE
 
-**Status:** Route-1 evidence, workspace scaffold, canonical domain-core, and
-bounded OXS route-1 importer core `[IMPLEMENTED]`, `[TESTED]`; IndexedDB
-persistence and recovery are the next internal step
+**Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
+bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
+`[IMPLEMENTED]`, `[TESTED]`; independent persistence verification is next
 
-Implement the smallest IndexedDB repositories, atomic import commit, failed
-import cleanup, append-only progress transactions, recovery, and capability
-errors required by Technical Design v1.5.0. Do not start rendering or client UI.
+Independently verify the persistence implementation and evidence against
+Technical Design v1.5.0 and ADR-TS001-003. Resolve mandatory findings before
+starting rendering or client integration.
 
 ## Confirmed Inputs
 
@@ -38,6 +38,10 @@ errors required by Technical Design v1.5.0. Do not start rendering or client UI.
 - The route-1 importer core, deterministic IDs/hash, ImportReport, unsupported
   handling, source-progress isolation, and parser limits are `[IMPLEMENTED]`,
   `[TESTED]`.
+- IndexedDB schema version 1, source staging, atomic import commit,
+  failed/interrupted cleanup, metadata, idempotent progress, Web Locks,
+  capability failures, reopen, and projection rebuild are `[IMPLEMENTED]`,
+  `[TESTED]` at the repository API boundary.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -63,15 +67,10 @@ errors required by Technical Design v1.5.0. Do not start rendering or client UI.
 
 ## Immediate Boundaries
 
-- Implement only the local IndexedDB contracts required by Technical Design
-  v1.5.0.
-- Preserve original SourceFile Blob separately from canonical Pattern data.
-- Commit accepted canonical results atomically; no partial PatternVersion or
-  tile state may survive failure.
-- Keep progress append-only and idempotent; save success requires transaction
-  commit.
-- Treat missing Web Locks as a typed capability failure; do not introduce an
-  unsafe multi-tab fallback.
+- Review only the implemented local IndexedDB contracts against Technical
+  Design v1.5.0 and their evidence.
+- Do not close browser, real two-tab, power-loss, eviction, save-state, or
+  migration evidence from fake IndexedDB API tests.
 - Do not start renderer, client flow, CI/CD, or deployment.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
 - Do not deploy to production before TD-GATE-003 and runtime security evidence
@@ -93,21 +92,17 @@ with checksum provenance and no verified scope.
 
 ## Completed Internal Stage
 
-The route-1 fixture set contains minimal, medium, empty, unsupported, corrupt,
-and bounded-security cases with deterministic manifests and expected outcomes.
-The workspace establishes the approved package boundaries. `domain-core`
-implements the approved canonical records and cross-record invariants with
-strict typecheck and 9 focused tests. The OXS importer core passes 14 focused
-tests, including the 100,000-stitch golden case, exact rejection codes,
-determinism, progress isolation, symbol collision fallback, and adversarial
-parser limits.
+The persistence package implements the registered schema-v1 repositories,
+transaction boundaries, retention lifecycle, progress journal, recovery, and
+capability failures. Strict typecheck and 11 focused tests pass, including
+atomic abort, tile integrity, blocked upgrade, simulated quota, persistence denial,
+idempotency/corruption, lock failure, close/reopen, and projection rebuild.
 
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Implement IndexedDB schema version 1 repositories and focused tests for atomic
-accepted import, rejected/interrupted cleanup, event idempotency/corruption,
-sequence allocation, projection rebuild, reload, and capability failure. Stop
-before renderer implementation.
+Assign AU-AGENT-003 to review the exact persistence implementation, tests,
+dependency boundary, risk claims, and unresolved browser/client evidence.
+Resolve mandatory findings before starting renderer implementation.

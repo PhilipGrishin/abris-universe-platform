@@ -251,7 +251,7 @@
 
 ### AU-CDX-TASK-001-OXS-IMPORTER — Bounded Route-1 OXS Importer Core
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; worker/persistence integration and
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; worker integration and
   consolidated AU-AGENT-003 verification pending; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.0 sections 6, 7, 11, and 15;
   ADR-TS001-001; TD-GATE-001 route-1 profile; route-1 symbol evidence.
@@ -266,13 +266,36 @@
 - **Evidence:** Strict typecheck; 14 focused importer tests; 100,000-stitch
   golden mapping; exact registered rejection codes; full `pnpm test`; dependency
   integrity lock; and `OXS_IMPORTER_IMPLEMENTATION_REVIEW.md`.
-- **Boundary:** No Web Worker/client integration, SourceFile Blob persistence,
-  atomic commit, tile construction, renderer, UI, CI/CD, deployment, general
+- **Boundary:** No Web Worker/client integration, tile construction, renderer,
+  UI, CI/CD, deployment, general
   producer compatibility, other-producer exact-symbol claim, or product
   acceptance.
-- **Next step:** Implement IndexedDB repositories and recovery tests. Worker
-  integration remains assigned to the later client stage with no UI-thread
-  fallback.
+- **Next step:** Integrate the importer into the later client-owned Worker with
+  no UI-thread fallback.
+
+### AU-CDX-TASK-001-PERSISTENCE — IndexedDB Persistence and Recovery
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 implementation
+  verification pending; no project `[VERIFIED]`.
+- **Source:** Technical Design v1.5.0 section 9; ADR-TS001-003; task threat
+  model.
+- **Owner:** AU-AGENT-005; AU-AGENT-001 for technical integration;
+  AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
+- **Documentation Impact:** Material.
+- **Result:** Implemented IndexedDB schema version 1, retained source staging,
+  atomic accepted-import commit, rejected/interrupted cleanup, stable metadata,
+  append-only idempotent progress events, single-writer Web Locks, rebuildable
+  projections, persistence capability recording, and typed storage failures in
+  `packages/persistence`.
+- **Evidence:** Strict typecheck; 11 focused persistence tests; atomic rollback,
+  reopen/rebuild, idempotency/corruption, quota, blocked upgrade, persistence
+  denial, lock capability, and full workspace checks; and
+  `PERSISTENCE_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** No client save-state behavior, real two-tab/browser matrix,
+  power-loss/eviction test, Worker integration, tile construction, renderer,
+  UI, synchronization, backup, CI/CD, deployment, or product acceptance.
+- **Next step:** AU-AGENT-003 independently reviews this exact persistence
+  result before renderer/client integration proceeds.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

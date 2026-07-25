@@ -252,7 +252,8 @@
   uses a non-DOM SAX parser, rejects DTD/processing instructions and unknown
   producer profiles, enforces the registered hard limits, keeps source progress
   out of canonical Progress, and produces bounded reports. Dedicated Worker
-  integration and source-byte persistence remain open. Keep unregistered
+  integration remains open; source Blob retention and atomic canonical
+  persistence are now tested at the repository boundary. Keep unregistered
   producer profiles blocked or rejected. PROD-DEC-011 keeps the four
   owner-granted XSP binaries outside the Bridge and Git pending a separate
   owner-controlled transfer and prioritizes licensed XSD export over reverse
@@ -266,7 +267,8 @@
 
 ## RISK-013 — Browser-Local Progress Is Lost or Misreported as Saved
 
-- **Status:** `[OPEN]`; design controls `[PROPOSED]`
+- **Status:** `[OPEN]`; repository controls `[IMPLEMENTED]`, `[TESTED]`;
+  client/browser/independent evidence pending
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
@@ -283,6 +285,10 @@
   projection, retain the live session, expose `not saved`, and stop release on
   failed two-context, idempotency, reload, or recovery evidence. Record the
   relaxed-durability residual on browsers that do not support strict mode.
+  The schema-v1 repository now has focused atomic rollback, blocked-upgrade,
+  simulated quota, persistence-denial, idempotency, lock-failure, reopen, and
+  projection-rebuild tests. Real supported-browser, two-tab, power-loss,
+  eviction, and client save-state evidence remains mandatory.
 - **Fallback:** Roll back the client without deleting IndexedDB and recover the
   projection from retained events. Manual backup remains out of approved Phase
   0 scope.

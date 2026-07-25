@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.0.0 |
+| Version | 3.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,27 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 IndexedDB Persistence and Recovery
+
+- Implemented `@abris-universe/persistence` 0.1.0 with native IndexedDB schema
+  version 1 and the ten stores registered by Technical Design v1.5.0.
+- Added short opaque-source staging, atomic successful import commit,
+  failed/interrupted source-byte cleanup, stable device/schema/capability
+  metadata, and typed storage failures.
+- Added append-only ProgressEvents with stable IDs, canonical SHA-256
+  idempotency hashes, in-transaction sequence allocation, exclusive per-project
+  Web Locks, same-transaction projections, and event-derived rebuild.
+- Added 11 focused tests for schema/reopen, atomic rollback, tile integrity, retention,
+  interruption, blocked upgrade, simulated quota, persistence denial,
+  idempotency/corruption, lock/stale-command failure, and projection rebuild.
+- Added exact `fake-indexeddb` 6.2.5 as an Apache-2.0 test-only dependency and
+  reused exact MIT `@noble/hashes` 2.2.0; no storage wrapper was introduced.
+- Preserved browser integration, real two-tab/power-loss/eviction evidence,
+  tile construction, renderer, UI, synchronization, backup, CI/CD, deployment,
+  independent verification, and product acceptance as open later gates.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; no project `[VERIFIED]`.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Bounded OXS Importer Core
 

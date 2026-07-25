@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 IndexedDB persistence and recovery
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, and bounded route-1 importer core
+**Current focus:** TASK-THINSLICE-001 persistence implementation verification
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
@@ -73,6 +73,12 @@
   rejection, deterministic imported IDs/content hash, canonical full-cross
   mapping, bounded ImportReport diagnostics, unsupported-content reporting, and
   source-progress isolation.
+- `[IMPLEMENTED]`, `[TESTED]` The IndexedDB schema-v1 repository now preserves
+  original source Blobs, commits accepted canonical imports atomically, removes
+  failed/interrupted bytes, stores stable metadata, appends idempotent
+  single-writer progress events, rebuilds projections, and surfaces typed
+  storage/capability failures. Eleven focused tests pass; real browser and
+  AU-AGENT-003 implementation verification remain open.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -384,17 +390,16 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and tested the bounded OXS route-1 importer core: strict UTF-8/OXS
-detection, SAX parsing, hard limits, explicit producer-profile rejection,
-deterministic IDs/content hash, canonical mapping, ImportReport,
-unsupported-content visibility, and source-progress isolation. Fourteen focused
-tests pass. Worker/client integration, SourceFile Blob persistence, atomic
-commit, rendering, deployment, and project `[VERIFIED]` remain open. This
-internal stage requires no Claude return.
+Implemented and tested IndexedDB schema version 1, opaque source retention,
+atomic accepted-import commit, failed/interrupted cleanup, stable metadata,
+append-only idempotent progress, single-writer Web Locks, persistence-capability
+reporting, and projection rebuild. Eleven focused persistence tests pass. Real
+browser/two-tab/power-loss/eviction and client save-state evidence, rendering,
+deployment, independent implementation verification, and project `[VERIFIED]`
+remain open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Implement and test IndexedDB schema version 1 repositories, atomic accepted
-import, failed/interrupted cleanup, append-only idempotent progress
-transactions, projection rebuild, reload/recovery, and typed capability
-failures from Technical Design v1.5.0. Stop before rendering and client UI.
+Run AU-AGENT-003 independent verification against the exact persistence
+implementation and evidence. Resolve mandatory findings before renderer/client
+integration.

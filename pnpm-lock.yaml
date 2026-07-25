@@ -28,7 +28,18 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
 
-  packages/persistence: {}
+  packages/persistence:
+    dependencies:
+      '@abris-universe/domain-core':
+        specifier: workspace:*
+        version: link:../domain-core
+      '@noble/hashes':
+        specifier: 2.2.0
+        version: 2.2.0
+    devDependencies:
+      fake-indexeddb:
+        specifier: 6.2.5
+        version: 6.2.5
 
   packages/renderer: {}
 
@@ -158,6 +169,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  fake-indexeddb@6.2.5:
+    resolution: {integrity: sha512-CGnyrvbhPlWYMngksqrSSUT1BAVP49dZocrHuK0SvtR0D5TMs5wP0o3j7jexDJW01KSadjBp1M/71o/KR3nD1w==}
+    engines: {node: '>=18'}
+
   saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
@@ -233,6 +248,8 @@ snapshots:
 
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
+
+  fake-indexeddb@6.2.5: {}
 
   saxes@6.0.0:
     dependencies:

@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-25 — Internal IndexedDB Persistence and Recovery Stage
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 implementation review
+  pending; no project `[VERIFIED]`.
+- **Scope:** Added native IndexedDB schema v1, opaque source staging, atomic
+  accepted-import commit, failed/interrupted cleanup, stable metadata,
+  persistent-storage capability reporting, append-only idempotent progress,
+  exclusive Web Locks, and projection rebuild.
+- **Evidence:** Strict typecheck, 11 focused persistence tests, full workspace
+  suite, dependency lock/license review, and
+  `PERSISTENCE_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** API-level fake IndexedDB evidence does not replace supported
+  browser, real two-tab, power-loss, eviction, client save-state, Worker,
+  renderer, CI/CD, deployment, or independent acceptance evidence.
+- **Bridge disposition:** This is an internal engineering implementation stage
+  and requires no Claude return. No Exchange ID was registered after
+  `AU-EX-20260725-006`.
+- **Documentation Impact:** Material.
+- **Next gate:** AU-AGENT-003 independently reviews the exact persistence
+  implementation before renderer/client integration.
+
 ## 2026-07-25 — Internal Bounded OXS Importer-Core Stage
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; no Engineering Verification Status

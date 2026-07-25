@@ -22,7 +22,11 @@ for (const [directory, expectedName] of expectedPackages) {
     throw new Error(`${packagePath} must remain private ESM scaffolding`);
   }
   const allowedEntries =
-    ["packages/domain-core", "packages/importers/oxs"].includes(directory)
+    [
+      "packages/domain-core",
+      "packages/importers/oxs",
+      "packages/persistence",
+    ].includes(directory)
       ? [
           "README.md",
           "node_modules",
@@ -55,9 +59,17 @@ for (const requiredPath of [
   "packages/importers/oxs/src/parser.ts",
   "packages/importers/oxs/test/oxs-importer.test.ts",
   "packages/importers/oxs/tsconfig.json",
+  "packages/persistence/src/capability.ts",
+  "packages/persistence/src/contracts.ts",
+  "packages/persistence/src/database.ts",
+  "packages/persistence/src/import-repository.ts",
+  "packages/persistence/src/index.ts",
+  "packages/persistence/src/progress-repository.ts",
+  "packages/persistence/test/persistence.test.ts",
+  "packages/persistence/tsconfig.json",
 ]) {
   if (!existsSync(requiredPath)) {
-    throw new Error(`Domain-core implementation is missing ${requiredPath}`);
+    throw new Error(`Approved workspace implementation is missing ${requiredPath}`);
   }
 }
 
@@ -69,5 +81,5 @@ for (const pattern of ["apps/*", "packages/*", "packages/*/*"]) {
 }
 
 process.stdout.write(
-  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer scope, and scaffold-only renderer/persistence/client packages.\n"
+  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer/persistence scope, and scaffold-only renderer/client packages.\n"
 );
