@@ -55,6 +55,7 @@ function assertSummary(summary: PatternSummary): void {
     typeof summary.grid !== "object" ||
     !Array.isArray(summary.paletteItems) ||
     !Array.isArray(summary.symbols) ||
+    summary.patternVersionId.length > MAX_RENDER_STRING_CODE_UNITS ||
     summary.patternVersionId.trim().length === 0 ||
     !Number.isSafeInteger(summary.tileSize) ||
     summary.tileSize <= 0 ||

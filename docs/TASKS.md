@@ -325,7 +325,7 @@
   layers, incremental frame budgets, readable/overview modes, contrast
   selection, non-color progress marks, and canonical-cell hit testing in
   `packages/renderer`.
-- **Evidence:** Strict typecheck; 14 focused renderer tests after second
+- **Evidence:** Strict typecheck; 15 focused renderer tests after final
   remediation; full workspace checks; and a Node renderer-core medium-fixture
   signal with 100,000 stitches, 128 total tiles, and 12 requested tiles for the
   measured viewport.
@@ -342,9 +342,11 @@
   inclusive viewport ranges, complete symbol-visual validation, declared
   stitch counts, absolute 500,000 tile/stitch ceilings, and focused
   negative/regression tests. First remediation `bdaf3ed` resolved 001, 002, and
-  004; the second candidate completes finding 003.
-- **Next step:** Commit the second remediation candidate and submit its exact
-  source to AU-AGENT-003 before client integration.
+  004. Reverification at `f3e2fdc` left only the bounded
+  `patternVersionId` case open; the final candidate closes it and registers the
+  empty-tile regression.
+- **Next step:** Commit the final narrow remediation candidate and submit its
+  exact source to AU-AGENT-003 before client integration.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

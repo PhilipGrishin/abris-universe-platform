@@ -417,13 +417,16 @@ boundaries. Reverification at `bdaf3ed` resolved 001, 002, and 004 while
 retaining High finding 003 for incomplete symbol validation and missing
 absolute ceilings. The second candidate closes both gaps with declared stitch
 counts and 500,000 tile/stitch limits. Fourteen focused renderer tests pass,
-and the 100,000-stitch Node regression signal requests 12 of 128 tiles.
+but reverification at `f3e2fdc` retained the single oversized
+`patternVersionId` portion of finding 003. The final narrow candidate bounds
+that identity and records the empty-tile case; 15 renderer tests pass. The
+100,000-stitch Node regression signal requests 12 of 128 tiles.
 Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
 independent renderer verification, deployment, and project `[VERIFIED]` remain
 open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Commit the second renderer remediation candidate and submit its exact source
-to AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for
-the later integration stage.
+Commit the final narrow renderer remediation and submit its exact source to
+AU-AGENT-003. Keep browser/client evidence plus TS001-PERSIST-006 open for the
+later integration stage.

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; initial Engineering Verification Status `REWORK REQUIRED` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | Exact initial source `cb34a48e082caf1c4f4244d8c22dcc4291caaf63`; exact first remediation `bdaf3ed35d33560b180f385c114bc9f9d2cf606a`; TASK-THINSLICE-001 v1.1; Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan and threat model |
@@ -146,3 +146,30 @@ finding was registered.
 The candidate passes 14 renderer tests. Exact-source AU-AGENT-003
 reverification remains required before changing the Engineering Verification
 Status.
+
+## Second Remediation Reverification
+
+AU-AGENT-003 reverified exact commit
+`f3e2fdc59c15068faa383bae9e1de7a3226b5056`. Findings 001, 002, and 004
+remained resolved. Finding 003 remained partially resolved only because
+`PatternSummary.patternVersionId` was not checked against the registered 8,192
+code-unit string limit. The reviewer independently confirmed request rejection
+before provider invocation, empty-tile rejection, declared-count rejection, and
+pre-draw malformed/unknown visual rejection. Engineering Verification Status
+remained `REWORK REQUIRED`.
+
+The reviewer also recorded defensive copy/freeze of validated provider data as
+a hardening recommendation, not a mandatory repository-core finding, because
+mutation requires an internal violation of readonly contracts.
+
+## Final Narrow Remediation Candidate
+
+- `patternVersionId` is now length-checked before trimming and summary
+  acceptance.
+- A dedicated oversized version-identity test proves rejection before any
+  provider use.
+- Empty-tile rejection is now part of the committed corrupt-provider regression
+  matrix.
+
+The candidate passes 15 renderer tests. Exact-source AU-AGENT-003
+reverification remains required before the quality-gate status can change.

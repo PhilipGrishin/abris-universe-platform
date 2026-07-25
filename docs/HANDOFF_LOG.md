@@ -1049,3 +1049,20 @@
   internal.
 - **Next step:** Commit and request a second exact-source AU-AGENT-003
   reverification.
+
+## 2026-07-25 — Renderer Finding 003 Final Narrow Remediation
+
+- **Second remediation review:** Exact commit `f3e2fdc` confirmed symbol,
+  request, response, empty-tile, and declared-count controls. Status remained
+  `REWORK REQUIRED` only because `patternVersionId` was not length-bounded.
+- **Correction:** Apply the common 8,192-code-unit limit before trimming or
+  accepting the renderer version identity.
+- **Regression evidence:** Add a dedicated oversized-identity pre-provider test
+  and move empty-tile rejection into the committed corrupt-provider matrix.
+- **Additional observation:** Defensive copying/freezing of readonly provider
+  records remains a non-mandatory hardening recommendation.
+- **Evidence:** Strict renderer typecheck and 15 focused tests pass.
+- **Claude handoff:** Not required; the correction is internal and
+  non-product.
+- **Next step:** Commit and request final exact-source AU-AGENT-003
+  reverification.

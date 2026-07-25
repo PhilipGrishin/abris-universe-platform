@@ -366,8 +366,9 @@
   AU-AGENT-003 initial status is `REWORK REQUIRED`; remediation awaits
   reverification. The second candidate adds full renderer-consumed summary
   validation and absolute Phase 0 request/response limits after finding 003
-  remained partially resolved at `bdaf3ed`. Open browser evidence is listed in
-  the implementation review.
+  remained partially resolved at `bdaf3ed`. Reverification at `f3e2fdc` left
+  only the bounded version-identity gap; the final narrow candidate closes it.
+  Open browser evidence is listed in the implementation review.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

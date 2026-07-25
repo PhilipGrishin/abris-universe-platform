@@ -589,6 +589,18 @@ material defect.
 - Status: Second remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
   reverification `[OPEN]`; no project `[VERIFIED]`.
 
+## 2026-07-25 — Renderer Version-Identity Bound
+
+- Preserved `REWORK REQUIRED` after exact `f3e2fdc` reverification left one
+  narrow part of TS001-RENDER-003 open.
+- Applied the common 8,192-code-unit limit to `patternVersionId` before summary
+  acceptance.
+- Added a dedicated oversized-identity pre-provider test and committed
+  empty-tile regression coverage.
+- Documentation Impact: Material.
+- Status: Final narrow remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
+  reverification `[OPEN]`; no project `[VERIFIED]`.
+
 ## Owner
 
 AU-AGENT-002 maintains entries, references, navigation, and lifecycle. Technical

@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | Technical Design v1.5.1 section 8; ADR-TS001-002 v1.1.2; task benchmark plan; route-1 fixtures |
@@ -66,7 +66,7 @@ Technical Design section 8.
 | Check | Result |
 | --- | --- |
 | Renderer strict typecheck | `[TESTED]`; TypeScript 7.0.2 passes |
-| Renderer focused suite | `[TESTED]`; 14 passed, 0 failed after second finding remediation |
+| Renderer focused suite | `[TESTED]`; 15 passed, 0 failed after final narrow remediation |
 | Tile determinism | `[TESTED]`; coordinates, ordering, and absent empty tiles |
 | Bounded viewport work | `[TESTED]`; 100,000-stitch fixture loads 12 of 128 tiles and 12,288 visible/prefetch stitches for the measured viewport |
 | Cancellation and stale work | `[TESTED]`; aborted request rejects and viewport-invalidated result is discarded |
@@ -91,7 +91,10 @@ validation, and corrected inclusive viewport boundaries with focused negative
 tests. Reverification at `bdaf3ed` resolved findings 001, 002, and 004 but kept
 finding 003 partially resolved. The second candidate adds full runtime symbol
 validation, declared stitch counts, and absolute pre-provider/request-response
-ceilings. Exact-source reverification remains required.
+ceilings. Reverification at `f3e2fdc` confirmed those controls and left only
+the oversized `patternVersionId` case open. The final candidate bounds that
+identity before summary acceptance and adds durable version-identity and
+empty-tile regressions. Exact-source reverification remains required.
 
 ## Limitations and Open Evidence
 

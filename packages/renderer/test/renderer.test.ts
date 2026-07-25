@@ -12,6 +12,7 @@ import type {
 import {
   INITIAL_TILE_SIZE,
   MAX_RENDER_REQUESTED_TILES,
+  MAX_RENDER_STRING_CODE_UNITS,
   RendererIntegrityError,
   TiledPatternRenderer,
   buildPatternTiles,
@@ -600,6 +601,10 @@ test("fails closed on corrupt or over-returned provider tiles", async () => {
       expectedCode: "RENDER_TILE_RESPONSE_LIMIT",
       tiles: [validTile, validTile, validTile, validTile, validTile],
     },
+    {
+      expectedCode: "RENDER_TILE_RESPONSE_LIMIT",
+      tiles: [{ ...validTile, stitches: [] }],
+    },
   ];
   for (const item of cases) {
     const provider: PatternTileProvider = {
@@ -673,6 +678,29 @@ test("rejects malformed symbol visuals before drawing", () => {
         error.code === "RENDER_INVALID_SUMMARY",
     );
   }
+});
+
+test("rejects an oversized pattern version identity before provider use", () => {
+  const { pattern, version } = smallPattern();
+  const patternSummary: PatternSummary = {
+    ...summary(pattern, version),
+    patternVersionId: "v".repeat(MAX_RENDER_STRING_CODE_UNITS + 1),
+  };
+  let providerCalls = 0;
+  const renderer = new TiledPatternRenderer({
+    getPatternSummary: async () => patternSummary,
+    getTiles: async () => {
+      providerCalls += 1;
+      return [];
+    },
+  });
+  assert.throws(
+    () => renderer.setPattern(patternSummary),
+    (error: unknown) =>
+      error instanceof RendererIntegrityError &&
+      error.code === "RENDER_INVALID_SUMMARY",
+  );
+  assert.equal(providerCalls, 0);
 });
 
 test("enforces absolute tile request and response limits", async () => {

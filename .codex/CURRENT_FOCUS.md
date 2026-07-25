@@ -8,9 +8,9 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `VERIFIED WITH FINDINGS`; renderer-core initial status is `REWORK REQUIRED`,
 and its remediation candidate is `[IMPLEMENTED]`, `[TESTED]`
 
-Commit and independently reverify the second tiled Canvas2D renderer-core
-remediation for the remaining TS001-RENDER-003 controls. Keep client UI,
-Worker integration, and TS001-PERSIST-006 outside this stage.
+Commit and independently reverify the final narrow tiled Canvas2D renderer-core
+remediation for the remaining TS001-RENDER-003 version-identity bound. Keep
+client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
 
 ## Confirmed Inputs
 
@@ -122,8 +122,13 @@ Reverification at exact commit `bdaf3ed` resolved TS001-RENDER-001, 002, and
 candidate adds complete rendering-relevant symbol validation, declared stitch
 counts, and absolute request/response ceilings with 14 focused renderer tests.
 
+Reverification at exact commit `f3e2fdc` confirmed those controls and left only
+the missing `patternVersionId` length check inside finding 003. The final narrow
+candidate adds the pre-acceptance bound, a dedicated oversized-identity test,
+and a committed empty-tile regression. Fifteen renderer tests pass.
+
 ## Next Concrete Step
 
-Commit the second renderer remediation candidate and assign AU-AGENT-003
+Commit the final narrow renderer remediation and assign AU-AGENT-003
 exact-source reverification. Do not start client integration before the
 renderer-core gate passes.
