@@ -158,7 +158,8 @@
 
 ### AU-CDX-TASK-001-TECHNICAL-DESIGN — Phase 0 Thin-Slice Design
 
-- **Status:** `[OPEN]`; next gate, not implementation
+- **Status:** `[PROPOSED]`; design package authored, architecture review and
+  pre-code evidence gates open; not implementation
 - **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, and
   `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
 - **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
@@ -168,8 +169,15 @@
   boundaries, the binding OXS mapping invariant, persistence, tiled rendering,
   XML security limits, performance environments, route-1 fixture plan,
   testing, and GitHub-to-CI-to-Cloudflare deployment and rollback.
+- **Design artifacts:** `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`;
+  ADR-TS001-001 through ADR-TS001-004; the task threat model and benchmark
+  plan.
+- **Open evidence:** TD-GATE-001 OXS coordinate origin, TD-GATE-002 lawful
+  source-symbol mapping, TD-GATE-003 current Cloudflare placeholder rollback
+  anchor, and TD-GATE-004 architecture review.
 - **Gate:** Architecture review and required ADR dispositions must complete
-  before development. Fixture creation and application implementation have not
+  before development. Coordinate/symbol route-1 fixture evidence blocks
+  importer code. Fixture creation and application implementation have not
   started.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
@@ -187,8 +195,8 @@
   not every bridge implementation change or future exchange.
 - **Evidence:** `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
 
-No product implementation task is active. AU-CDX-TASK-001 v1.1 is ready for
-Technical Design only.
+No product implementation task is active. AU-CDX-TASK-001 v1.1 has a proposed
+Technical Design package and remains blocked pending its review gates.
 
 ### INIT-002-F1 — Activate Specialized Codex Agents
 

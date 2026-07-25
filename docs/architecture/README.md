@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/ARCHITECTURE.md`, `docs/SOURCE_OF_TRUTH.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -29,10 +29,13 @@ ADRs, and RFCs when approved sources exist.
 ## Current Sources
 
 - [Architecture and Repository Assessment](../ARCHITECTURE.md)
+- [Technical Design Library](designs/README.md)
 - [Architecture Decision Records](adr/README.md)
 - [Requests for Comments](rfc/README.md)
 
-No detailed product or system architecture document is present.
+The first task-scoped Technical Design Proposal is registered as `[PROPOSED]`.
+It does not change the current architecture overview until its review gate and
+ADR dispositions complete.
 
 ## Owner
 

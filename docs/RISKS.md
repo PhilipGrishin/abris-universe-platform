@@ -228,7 +228,8 @@
 
 ## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
 
-- **Status:** `[OPEN]`, format and rights rule resolved; design and fixtures pending
+- **Status:** `[OPEN]`, format and rights rule resolved; design `[PROPOSED]`;
+  coordinate/symbol evidence and fixtures pending
 - **Probability:** High without the OQ-005 and fixture gates
 - **Impact:** High
 - **Trigger:** Importer development starts from an undocumented/proprietary
@@ -242,12 +243,55 @@
   Pattern separate from Progress; disable unsafe XML features; impose resource
   limits; require fixture provenance and permission.
 - **Mitigation:** PROD-DEC-009 resolves the format, terminology, and rights-safe
-  acquisition rule. Keep DEP-001 and development blocked until route-1 fixtures
-  exist, and require the mapping design, golden, malformed, size-limit,
-  coordinate, palette-reference, and unsupported-content tests.
+  acquisition rule. The Technical Design and ADR-TS001-001 define the bounded
+  mapping and prohibit heuristic coordinate/symbol interpretation. Keep
+  importer development blocked until route-1 coordinate and symbol fixtures
+  exist, and require golden, malformed, size-limit, coordinate,
+  palette-reference, and unsupported-content tests.
 - **Fallback:** Reject the affected format or fixture, preserve evidence,
   disable the importer, restore the last known-good static deployment, and
   return the choice through a Technical Alternative or Conflict Report.
 - **Owner:** AU-AGENT-004 for importer evidence; AU-AGENT-001 for architecture
   disposition; AU-AGENT-003 for independent security/quality verification;
   Project Owner or rights holder for fixture permission
+
+## RISK-013 — Browser-Local Progress Is Lost or Misreported as Saved
+
+- **Status:** `[OPEN]`; design controls `[PROPOSED]`
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
+  an upgrade fails, or optimistic UI state is presented as durably saved.
+- **Affected areas:** Progress integrity, user trust, reload recovery, rollback,
+  and Phase 1 compatibility.
+- **Prevention:** Keep Pattern and Progress separate; use short atomic
+  transactions, append-only idempotent events, a rebuildable projection,
+  commit-driven save status, persistent-storage requests, explicit quota
+  errors, and one-release schema rollback compatibility.
+- **Mitigation:** Revert failed optimistic state to the last committed
+  projection, retain the live session, expose `not saved`, and stop release on
+  failed reload/recovery evidence.
+- **Fallback:** Roll back the client without deleting IndexedDB and recover the
+  projection from retained events. Manual backup remains out of approved Phase
+  0 scope.
+- **Owner:** AU-AGENT-005 for persistence design; AU-AGENT-006 for client
+  surfacing; AU-AGENT-003 for independent verification
+
+## RISK-014 — First Cloudflare Deployment Has No Recoverable Rollback Anchor
+
+- **Status:** `[OPEN]`; blocks production deployment
+- **Probability:** Unknown
+- **Impact:** High
+- **Trigger:** The current `abris-universe` placeholder is replaced before its
+  immutable version ID or recoverable artifact is recorded.
+- **Affected areas:** `abris.653915.com`, production availability, auditability,
+  and deployment rollback.
+- **Prevention:** Complete TD-GATE-003 before first production deployment:
+  record the current Worker/version, route, smoke baseline, and restorable
+  artifact; keep DNS unchanged; deploy immutable versions through protected CI.
+- **Mitigation:** Smoke the uploaded version before promotion, record prior and
+  new version IDs, serialize production deployments, and automatically roll
+  back on failed production smoke.
+- **Fallback:** If no prior version is recoverable, do not deploy until the
+  Project Owner approves a specific replacement rollback artifact.
+- **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence

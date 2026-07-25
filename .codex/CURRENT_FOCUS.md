@@ -3,10 +3,11 @@
 ## Focus ID: AU-CDX-TASK-001-TECHNICAL-DESIGN
 
 **Status:** Product clarification `[IMPLEMENTED]`, `[TESTED]`; Technical Design
-`[OPEN]`; development blocked
+package `[PROPOSED]`; architecture review and evidence gates open; development
+blocked
 
-Prepare the TASK-THINSLICE-001 v1.1 Technical Design Proposal after canonical
-integration of PROD-DEC-009 and the completed OQ-005 spike.
+Validate and review the TASK-THINSLICE-001 v1.1 Technical Design Proposal after
+canonical integration of PROD-DEC-009 and the completed OQ-005 spike.
 
 ## Confirmed Inputs
 
@@ -56,6 +57,20 @@ integration of PROD-DEC-009 and the completed OQ-005 spike.
 - Validated and integrated the `AU-EX-20260725-004` product clarification,
   PROD-DEC-009, OQ-005 resolution, Task Package v1.1, and authorized
   architecture-input wording normalization.
+- Authored the proposed canonical Pattern and OXS mapping, tiled renderer,
+  IndexedDB persistence, security-limit, benchmark, test, and
+  GitHub-to-Cloudflare deployment/rollback design.
+- Registered ADR-TS001-001 through ADR-TS001-004, the task threat model, and
+  the task benchmark plan.
+
+## Open Design Gates
+
+- TD-GATE-001: project-original boundary fixture proves OXS coordinate origin.
+- TD-GATE-002: project-original symbol fixture proves a lawful glyph mapping or
+  records an explicit acceptance limitation.
+- TD-GATE-003: current Cloudflare placeholder has a recoverable rollback anchor
+  before production deployment.
+- TD-GATE-004: architecture review and ADR dispositions.
 
 ## Completed Exchange
 
@@ -67,7 +82,6 @@ authority; the valid result is integrated and archived. Rejected predecessor
 
 ## Next Concrete Step
 
-Prepare the Technical Design Proposal with the OXS mapping contract, security
-limits, performance environments, route-1 fixture plan, and
-GitHub-to-CI-to-Cloudflare deployment/rollback design. Then perform architecture
-review and required ADR dispositions. Do not begin implementation.
+Commit the exact proposed design package and route architecture review through
+the registered Collaboration Bridge. Do not begin implementation or fixture
+production before the applicable design gates are accepted.

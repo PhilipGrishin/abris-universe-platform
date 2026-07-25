@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -21,12 +21,14 @@ Index reproducible benchmark definitions, baselines, results, and limitations.
 
 ## Scope
 
-No performance claim or benchmark result exists yet. This index does not define
-targets, datasets, environments, or implementation performance.
+This index distinguishes benchmark plans from measured results. A proposed plan
+may define reproducible targets and methods but creates no performance claim.
 
 ## Current Benchmarks
 
-None.
+| Task | Record | Status | Result |
+| --- | --- | --- | --- |
+| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]` | No implementation result |
 
 ## Owner
 

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -23,12 +23,19 @@ durable context, alternatives, consequences, risks, migration, and rollback.
 ## Scope
 
 Existing governance decisions remain in [docs/DECISIONS.md](../../DECISIONS.md).
-No existing decision is moved or rewritten in this phase. New substantial ADRs
-may use this library when a Task Package and architecture review require them.
+No existing decision is moved or rewritten. Task-scoped architecture decisions
+use this library and retain their own approval lifecycle.
 
 ## Current Records
 
-No individual ADR files exist. DEC-001 through DEC-004 remain in
+| ADR | Title | Status | Task |
+| --- | --- | --- | --- |
+| [ADR-TS001-001](ADR-TS001-001-canonical-pattern-and-oxs-boundary.md) | Canonical Pattern and OXS Boundary | `[PROPOSED]` | TASK-THINSLICE-001 |
+| [ADR-TS001-002](ADR-TS001-002-tiled-canvas-rendering.md) | Tiled Canvas2D Rendering | `[PROPOSED]` | TASK-THINSLICE-001 |
+| [ADR-TS001-003](ADR-TS001-003-indexeddb-progress-event-log.md) | IndexedDB and Local Progress Event Log | `[PROPOSED]` | TASK-THINSLICE-001 |
+| [ADR-TS001-004](ADR-TS001-004-web-workspace-and-cloudflare-delivery.md) | Web Workspace and Cloudflare Delivery | `[PROPOSED]` | TASK-THINSLICE-001 |
+
+DEC-001 through DEC-004 and later governance decisions remain in
 `docs/DECISIONS.md` and are not duplicated here.
 
 ## Owner

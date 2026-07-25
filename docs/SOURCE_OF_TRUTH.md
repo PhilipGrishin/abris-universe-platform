@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -84,6 +84,7 @@ project-owner approval.
 | Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Repository exists; application implementation does not. |
 | Technical decisions | `docs/DECISIONS.md` and approved files under `docs/architecture/adr/` | AU-AGENT-001 | ADR indexes must not restate decision content. |
 | Architecture overview | `docs/ARCHITECTURE.md` | AU-AGENT-001 | Detailed architecture documents may be indexed under `docs/architecture/`. |
+| Task-scoped Technical Designs | `docs/architecture/designs/` | AU-AGENT-001 with named domain owners | A `[PROPOSED]` design is not approved architecture, implementation evidence, or product acceptance. |
 | Proposed cross-cutting changes | Files under `docs/architecture/rfc/` | Proposal owner; AU-AGENT-001 approver | An RFC is not an approved decision unless its disposition says so and required ADRs exist. |
 | Engineering specifications | `docs/specifications/` | Assigned technical owner | Each specification declares its own owner and approver. |
 | Engineering standards | `docs/standards/` | AU-CODEX-PRIMARY or assigned technical owner | Documentation governance is defined by `docs/standards/DOCUMENTATION_STANDARD.md`. |

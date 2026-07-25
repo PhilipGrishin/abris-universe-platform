@@ -138,7 +138,19 @@
   editorial changes; the product-side architecture input contains only the
   authorized terminology correction.
 - `[OPEN]` Route-1 project-original fixture production and DEP-TR-001 Technical
-  Design plus architecture review. Development remains blocked.
+  Design architecture review. The design package is now `[PROPOSED]`;
+  development remains blocked.
+- `[PROPOSED]` The TASK-THINSLICE-001 Technical Design defines the canonical
+  Pattern/OXS boundary, tiled Canvas2D renderer, IndexedDB event persistence,
+  XML security limits, benchmark method, and immutable
+  GitHub-to-Cloudflare delivery/rollback path.
+- `[PROPOSED]` ADR-TS001-001 through ADR-TS001-004 record the task-scoped
+  architecture choices without assigning implementation or acceptance status.
+- `[OPEN]` TD-GATE-001 and TD-GATE-002 require project-original evidence for
+  OXS coordinate origin and lawful source-symbol rendering before importer code
+  or exact-symbol claims.
+- `[OPEN]` TD-GATE-003 requires a recoverable current Cloudflare placeholder
+  version/artifact before the first production deployment.
 - `[REJECTED]` Exchange preparation `AU-EX-20260725-003` was withdrawn before
   return after freshness reporting detected that its source branch advanced.
   Its manifests and withdrawal evidence remain registered; no Claude output or
@@ -244,13 +256,16 @@
   metadata and the three editorial changes authorized by PROD-DEC-009.
 - `[TESTED]` The 26-page Master Product Specification was rendered and visually
   inspected without observed clipping, overlap, or unreadable pages.
+- `[TESTED]` The proposed design package is registered in the architecture,
+  ADR, threat-model, benchmark, Source of Truth, task, and traceability indexes;
+  local Markdown links and governance consistency are checked before handoff.
 
 ## Blockers
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` Route-1 fixture production, Technical Design Proposal, architecture
-  review, and required ADR dispositions for AU-CDX-TASK-001 v1.1.
+- `[OPEN]` Route-1 coordinate and symbol fixture evidence, architecture review,
+  and ADR dispositions for the proposed AU-CDX-TASK-001 v1.1 Technical Design.
 
 ## Active Risks
 
@@ -271,18 +286,19 @@
   its guardrails remain enforced.
 - RISK-012: importer design or fixture handling could create security, mapping,
   lock-in, or rights exposure.
+- RISK-013: browser-local progress may be lost or misreported as saved.
+- RISK-014: first Cloudflare deployment may lack a recoverable rollback anchor.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated and integrated the `AU-EX-20260725-004` product clarification,
-preserved Claude-authored meaning, registered PROD-DEC-009 and Task Package
-v1.1, and archived the exchange with provenance.
+Authored and registered the TASK-THINSLICE-001 Technical Design Proposal, four
+task-scoped ADRs, a threat model, and a benchmark plan without application,
+fixture, pipeline, or deployment implementation.
 
 ## Next Step
 
-Prepare the TASK-THINSLICE-001 Technical Design Proposal under the registered
-executor mapping, then perform architecture review and required ADR
-dispositions. Do not begin application or fixture implementation before the
-design gate authorizes it.
+Validate the proposed design package, commit its exact source, and route the
+architecture-review request through the Collaboration Bridge. Do not begin
+application or fixture implementation before the design gate authorizes it.

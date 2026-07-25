@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
@@ -18,17 +18,19 @@
 
 ## Purpose
 
-Index approved threat models and their security review status.
+Index proposed and approved threat models and their security review status.
 
 ## Scope
 
-No threat model exists yet. This index does not invent trust boundaries,
-controls, assets, actors, or threats.
+This index contains task-scoped threat models grounded in approved requirements
+and proposed technical data flows. A proposed threat model does not prove that
+its controls are implemented or tested.
 
 ## Current Threat Models
 
-None. Creation requires an approved task, confirmed architecture/data flow, and
-an assigned security reviewer.
+| Task | Threat model | Status | Security review |
+| --- | --- | --- | --- |
+| TASK-THINSLICE-001 | [Phase 0 Threat Model](TASK-THINSLICE-001_THREAT_MODEL.md) | `[PROPOSED]` | AU-AGENT-003 review `[OPEN]` |
 
 ## Owner
 

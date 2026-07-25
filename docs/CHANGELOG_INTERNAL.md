@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.2.0 |
+| Version | 2.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Technical Design Proposal
+
+- Added the task-scoped Technical Design library and the Phase 0 proposal for
+  the canonical Pattern/OXS boundary, renderer, persistence, security, tests,
+  benchmark method, and Cloudflare delivery/rollback path.
+- Added ADR-TS001-001 through ADR-TS001-004 as `[PROPOSED]` decisions; no ADR
+  was marked approved before architecture review.
+- Added a task-scoped threat model and benchmark plan while making no
+  implementation, performance, security, or production-readiness claim.
+- Registered explicit pre-code evidence gates for OXS coordinate origin and
+  lawful source-symbol mapping, plus a pre-deploy rollback-anchor gate for the
+  current Cloudflare placeholder.
+- Updated Source of Truth, architecture, ADR, assurance, task, risk,
+  traceability, current-focus, current-status, and review navigation.
+- Documentation Impact: Material.
+- Status: design package `[PROPOSED]`; architecture review `[OPEN]`;
+  development blocked.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Product Clarification Integration
 

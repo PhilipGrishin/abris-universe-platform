@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -32,14 +32,18 @@ contains no application implementation or approved Technical Design.
 - [Technical Review](TECHNICAL_REVIEW.md)
 - [OQ-005 Import-Format Spike](OQ-005_IMPORT_FORMAT_SPIKE.md)
 - [Clarification and Conflict Report](CLARIFICATION_AND_CONFLICT_REPORT.md)
+- [Technical Design Proposal](../../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
+- [Task-Scoped ADRs](../../../architecture/adr/README.md)
+- [Threat Model](../../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
+- [Benchmark Plan](../../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
 
 ## Current Disposition
 
-The task is technically feasible and ready for Technical Design, but it is
-**not ready for development**. PROD-DEC-009 confirms OXS 1.0, resolves
-`SXP`/`XSP`, and authorizes the rights-safe fixture rule. Route-1 fixture
-production, a Technical Design Proposal, architecture review, and required ADR
-dispositions remain mandatory.
+The task is technically feasible. Its Technical Design Proposal, four
+task-scoped ADRs, threat model, and benchmark plan are `[PROPOSED]`. It is
+**not ready for development**. Route-1 coordinate/symbol fixture evidence,
+architecture review, ADR dispositions, and independent review routing remain
+mandatory.
 
 ## Owner
 

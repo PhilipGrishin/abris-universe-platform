@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -47,6 +47,7 @@ traceability, terminology, and documentation reviews.
 - [Traceability Matrix](TRACEABILITY_MATRIX.md)
 - [Engineering Handbook](handbook/README.md)
 - [Architecture Index](architecture/README.md)
+- [Technical Design Library](architecture/designs/README.md)
 - [ADR Library](architecture/adr/README.md)
 - [RFC Library](architecture/rfc/README.md)
 - [Specifications](specifications/README.md)

@@ -259,6 +259,26 @@
   Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain, by PR #2 for
   AU-AGENT-004, and by PR #3 for AU-AGENT-005. AU-AGENT-006 uses the same gate.
 
+## TASK-THINSLICE-001 Proposed Architecture Decisions
+
+The following task-scoped decisions are `[PROPOSED]`. Their full context,
+alternatives, consequences, risks, migration, rollback, and evidence obligations
+live in the ADR library and are not duplicated here:
+
+- [ADR-TS001-001](architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md):
+  canonical Pattern independent of OXS; evidence-gated coordinate and symbol
+  mapping.
+- [ADR-TS001-002](architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md):
+  tiled Canvas2D behind a stable renderer interface; WebGL deferred to measured
+  evidence.
+- [ADR-TS001-003](architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md):
+  IndexedDB with an append-only local ProgressEvent log and atomic projections.
+- [ADR-TS001-004](architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md):
+  portable TypeScript workspace and immutable GitHub-to-Cloudflare delivery.
+
+None of these records authorizes implementation until the Technical Design
+architecture-review gate completes.
+
 ## Decision Process
 
 Future entries should include Decision ID, status, date, context, decision,
