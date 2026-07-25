@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md`, `collaboration/README.md` |
@@ -36,7 +36,9 @@ AU-AGENT-002 owns documentation integration without owning product or technical
 meaning; AU-AGENT-003 independently verifies engineering quality and evidence
 without implementing features or approving product acceptance; AU-AGENT-004
 owns Pattern Engine, import, rendering-core, and algorithm implementation inside
-approved architecture and product requirements.
+approved architecture and product requirements; AU-AGENT-005 owns backend,
+data, API, persistence, storage, synchronization, migration, and integrity
+inside the same governance envelope.
 
 ## Shared Boundary
 

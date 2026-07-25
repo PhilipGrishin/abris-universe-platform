@@ -7,7 +7,7 @@
 | Status | `[CONFIRMED]`, `[IMPLEMENTED]` in the agent infrastructure, not project `[VERIFIED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `AGENTS.md`, `.codex/AGENT_REGISTRY.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -149,10 +149,11 @@ implementation quality.
 
 ### AU-AGENT-005
 
-When separately instructed and registered, AU-AGENT-005 will own storage,
-persistence, and synchronization interfaces outside the Pattern Engine.
-AU-AGENT-004 owns the pattern-side representation and compatibility requirements
-of those interfaces. This statement does not activate or define AU-AGENT-005.
+AU-AGENT-005 owns storage, persistence, API, and synchronization interfaces
+outside the Pattern Engine. AU-AGENT-004 owns the pattern-side representation,
+import contract, and rendering-data compatibility requirements. Neither agent
+may independently change their shared contract; AU-AGENT-001 coordinates
+versioning, migration, tests, and integration.
 
 ### AU-AGENT-006
 

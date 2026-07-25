@@ -363,3 +363,53 @@
   activation.
 - **Next step:** Receive the complete Project Owner operating instruction for
   AU-AGENT-005 in a separate task.
+
+## 2026-07-25 — Project Owner to Codex — AGENT-005
+
+- **Direction received:** Create AU-AGENT-005 — Backend, Data & Synchronization
+  Lead under all registered agent-activation and checked auto-merge rules.
+- **Mission:** Design, implement, and maintain backend architecture, the data
+  model, persistence, APIs, storage, and synchronization while owning data
+  integrity.
+- **Authority:** May design backend domain architecture, API contracts,
+  database schemas, storage and synchronization mechanisms, and backend ADRs.
+- **Boundary:** Must not modify product requirements, redesign UI, change
+  rendering algorithms, override AU-AGENT-001 architecture, or approve
+  engineering quality.
+- **Required evidence:** Database schema, API documentation, synchronization
+  flow diagrams, migration plan, performance benchmarks, security review,
+  automated tests, and known limitations.
+- **Documentation Impact:** Material.
+
+## 2026-07-25 — Codex Activation Handoff — AGENT-005
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- **Prior branch integration:** PR #2 was `MERGEABLE/CLEAN`, had no configured
+  GitHub checks, and merged AU-AGENT-004 into `main` as merge commit `cfa922d`.
+- **Registration:** AU-AGENT-005 is active in `.codex/AGENT_REGISTRY.md`,
+  `docs/CODEX_AGENTS.md`, `AGENTS.md`, and organization navigation.
+- **Operating definition:** The complete owner-supplied mission,
+  responsibilities, authority, inputs, outputs, ownership, interactions,
+  principles, evidence, deliverables, rules, and Definition of Done are
+  preserved in
+  `.codex/agents/definitions/au-agent-005-backend-data-synchronization-lead.md`.
+- **Ownership boundary:** AU-AGENT-005 owns backend/data/API/synchronization
+  domain design and implementation inside AU-AGENT-001 system architecture.
+  AU-AGENT-002 owns documentation lifecycle; AU-AGENT-003 independently verifies
+  quality; AU-AGENT-004 owns Pattern Engine representation and algorithms;
+  Claude owns product clarification and acceptance.
+- **Evidence boundary:** Role registration creates no backend service,
+  database, schema, API, authentication, synchronization, storage, migration,
+  backup, recovery, benchmark, security, test, compatibility, or performance
+  claim.
+- **Documentation result:** Updated agent infrastructure, governance,
+  architecture operating model, workflows, ADR/specification/benchmark/
+  migration/threat-model ownership, risks, decisions, traceability, status, and
+  navigation.
+- **Documentation exception:** None.
+- **Not performed:** No product implementation, runtime architecture, schema,
+  API, synchronization protocol, conflict policy, UI, rendering algorithm,
+  authentication provider, technology selection, migration execution, or
+  AU-AGENT-006 activation.
+- **Next step:** Receive the complete Project Owner operating instruction for
+  AU-AGENT-006 in a separate task.

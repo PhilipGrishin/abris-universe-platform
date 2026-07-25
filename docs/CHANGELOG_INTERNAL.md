@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -131,6 +131,27 @@ material defect.
 - Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-004 operating definition,
   `docs/TRACEABILITY_MATRIX.md`, OWNER-DEC-AGENT-MERGE-001, and the AGENT-004
   handoff.
+
+## 2026-07-25 — AGENT-005 Backend, Data, and Synchronization Role Activation
+
+- Confirmed PR #2 merged AU-AGENT-004 into canonical `main` before starting the
+  next agent from the synchronized branch.
+- Registered AU-AGENT-005 — Backend, Data & Synchronization Lead from the
+  complete Project Owner instruction.
+- Preserved AU-AGENT-005 ownership of backend services, persistence, database,
+  APIs, authentication integration, storage, synchronization, migrations,
+  backup, recovery, data integrity, performance, and domain documentation
+  without creating implementation or runtime architecture.
+- Preserved AU-AGENT-001 system architecture, AU-AGENT-002 documentation
+  lifecycle, AU-AGENT-003 independent quality review, AU-AGENT-004 Pattern
+  Engine ownership, Claude product authority, and the Project Owner override.
+- Updated shared Pattern Engine/backend contract governance and
+  specification/ADR/benchmark/migration/threat-model documentation ownership.
+- Kept AU-AGENT-006 inactive.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-005 operating definition,
+  `docs/TRACEABILITY_MATRIX.md`, and the AGENT-005 handoff.
 
 ## Owner
 

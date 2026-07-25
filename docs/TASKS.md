@@ -22,18 +22,18 @@ available for engineering intake and Technical Review only.
 
 ### INIT-002-F1 — Activate Specialized Codex Agents
 
-- **Status:** Owner resolution `[APPROVED]`; AU-AGENT-003 and AU-AGENT-004
-  `[IMPLEMENTED]`; AU-AGENT-005–006 `[OPEN]`
+- **Status:** Owner resolution `[APPROVED]`; AU-AGENT-003 through AU-AGENT-005
+  `[IMPLEMENTED]`; AU-AGENT-006 `[OPEN]`
 - **Source:** Independent Acceptance Report F1 and Owner Decision F1.
 - **Resolution:** `ACTIVATE SPECIALIZED CODEX AGENTS`; do not remap the whole
   AU-CDX-TASK-001 implementation to AU-AGENT-001.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY for governed registration.
 - **Dependencies:** Full owner-provided operating instruction for each remaining
   role and the registration approval gate.
-- **Progress:** AU-AGENT-003 and AU-AGENT-004 were registered from their complete
-  owner instructions on 2026-07-25. The independent quality and Pattern Engine
-  ownership prerequisites are now available.
-- **Prohibited:** This record does not activate AU-AGENT-005 or AU-AGENT-006.
+- **Progress:** AU-AGENT-003 through AU-AGENT-005 were registered from their
+  complete owner instructions on 2026-07-25. Independent quality, Pattern
+  Engine, and Backend/Data/Sync ownership prerequisites are now available.
+- **Prohibited:** This record does not activate AU-AGENT-006.
 
 ### INIT-002-F2 — Resolve Decision-ID Namespace Collision
 
@@ -73,6 +73,35 @@ available for engineering intake and Technical Review only.
   use registered exchanges and explicit source mapping.
 
 ## Completed
+
+### AGENT-005 — Register Backend, Data & Synchronization Lead
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
+- **Owner:** AU-CODEX-PRIMARY
+- **Reviewer:** Project Owner for supplied role meaning; AU-AGENT-001 for
+  architecture boundary; AU-AGENT-002 for documentation consistency;
+  AU-AGENT-003 is the future independent reviewer of domain implementation, not
+  of its own registration; AU-AGENT-004 for shared Pattern Engine contracts.
+- **Documentation Impact:** Material
+- **Outcome:** Registered AU-AGENT-005; preserved backend, data, persistence,
+  database, API, authentication, synchronization, conflict mechanism, storage,
+  backup, recovery, migration, integrity, performance, security, evidence, and
+  documentation responsibilities; defined interfaces and prohibitions; and
+  kept product, UX, UI, rendering algorithms, system architecture, independent
+  quality, and product acceptance outside its authority.
+- **Documentation result:** Complete operating definition, agent registries,
+  organization navigation, workflow routing, architecture governance,
+  specification/ADR/benchmark/migration/threat-model ownership, traceability,
+  and persistent project state.
+- **Documentation exception:** None.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`,
+  `.codex/agents/definitions/au-agent-005-backend-data-synchronization-lead.md`,
+  `docs/CODEX_AGENTS.md`, relevant documentation indexes, and the AGENT-005
+  handoff entry.
+- **Not included:** Backend or product implementation, physical schema or API
+  design, synchronization or conflict policy, authentication provider,
+  technology selection, runtime architecture, migration execution,
+  compatibility or performance claims, or AU-AGENT-006 activation.
 
 ### AGENT-004 — Register Pattern Engine, Import, Rendering & Algorithms Lead
 

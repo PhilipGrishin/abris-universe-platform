@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -37,7 +37,9 @@ AU-AGENT-002 owns index structure, metadata, links, terminology, traceability,
 and lifecycle. Each specification declares a technical owner and approver who
 own its meaning. AU-AGENT-004 owns the technical meaning of approved
 Pattern Engine, import, rendering, and algorithm specifications; AU-AGENT-001
-retains cross-system architecture approval.
+retains cross-system architecture approval. AU-AGENT-005 owns technical meaning
+for approved backend, schema, API, storage, and synchronization specifications,
+including compatibility and migration requirements.
 
 ## Lifecycle
 

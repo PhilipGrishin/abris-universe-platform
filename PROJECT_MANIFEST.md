@@ -9,7 +9,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
@@ -83,6 +83,9 @@ AU-AGENT-001 and assigned technical owners within AU-CODEX-PRIMARY governance.
   rendering-core, algorithm, compatibility, and pattern-processing performance
   implementation inside AU-AGENT-001 architecture and approved product
   requirements.
+- Backend engineering: AU-AGENT-005 owns backend services, persistence,
+  database, APIs, storage, synchronization, migration, and data integrity inside
+  AU-AGENT-001 architecture and approved product and security requirements.
 - Final authority: Project Owner decisions and approved versioned Task Packages
   retain the highest applicable authority.
 
@@ -102,13 +105,12 @@ explained in `docs/CODEX_AGENTS.md`. The two registries remain separate; use
 
 - Claude Cowork: Chief Project Orchestrator plus the seven specialized roles in
   `product/agents/README.md`.
-- Codex: AU-CODEX-PRIMARY and AU-AGENT-001 through AU-AGENT-004.
+- Codex: AU-CODEX-PRIMARY and AU-AGENT-001 through AU-AGENT-005.
 
 ## 12. Planned Agents
 
-The following Codex directions are `[PLANNED]`, not active: Mobile and Web; and
-Backend, Data, and Synchronization. AU-AGENT-005 and AU-AGENT-006 require
-separate owner-provided role instructions and registration. Names or
+The Mobile and Web direction remains `[PLANNED]`, not active. AU-AGENT-006
+requires a separate owner-provided role instruction and registration. Names or
 relationships in a Task Package or active role do not activate another role.
 
 ## 13. Source of Truth Hierarchy
@@ -164,14 +166,16 @@ approved Technical Design.
   quality-gate role and report infrastructure.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-004 pattern-processing domain role
   registration; no Pattern Engine implementation is claimed.
+- `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-005 backend/data/synchronization domain
+  role registration; no backend implementation is claimed.
 - `[VERIFIED]` INIT-002 platform repository initialization, product and
   engineering contour integration, governance boundaries, Source of Truth
   organization, and the Collaboration Bridge operating model exercised by
   exchange `AU-EX-20260721-001`, subject to the report's limitations.
 - `[OPEN]` Product implementation and executable architecture.
 - The verified status does not cover application implementation, stack, runtime
-  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 or AU-AGENT-004
-  activation, remaining planned Codex agents,
+  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 through
+  AU-AGENT-005 activation, remaining planned Codex agents,
   Engineering Handbook content, or unreviewed bridge tooling changes.
 
 ## 18. Confirmed Capabilities

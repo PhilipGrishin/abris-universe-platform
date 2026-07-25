@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
@@ -35,7 +35,9 @@ an assigned security reviewer.
 AU-AGENT-002 maintains the index and lifecycle. AU-AGENT-001 and assigned
 technical owners approve model meaning and controls. AU-AGENT-003 independently
 reviews security evidence and findings without redesigning architecture or
-implementing controls.
+implementing controls. AU-AGENT-005 owns backend, data, API, authentication,
+storage, synchronization, backup, and recovery threat-model inputs and
+implementation evidence in its domain.
 
 ## Lifecycle
 

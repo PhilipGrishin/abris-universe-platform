@@ -63,7 +63,10 @@
   make operations idempotent where required.
 - **Fallback:** Disable or roll back the affected capability using the approved
   task-specific plan.
-- **Owner:** To be assigned per Task Package
+- **Owner:** AU-AGENT-004 for Pattern Engine/import/rendering evidence;
+  AU-AGENT-005 for backend/data/sync/migration/backup/recovery evidence;
+  AU-AGENT-003 for independent engineering verification; task-specific owners
+  for remaining areas
 
 ## RISK-005 — Independent Engineering Review Is Missing or Bypassed
 

@@ -38,6 +38,7 @@ technical meaning, decisions   structure, navigation, traceability
          |                           ^
          v                           |
 AU-AGENT-004 Pattern Engineering ---+
+AU-AGENT-005 Backend/Data/Sync -----+
 domain design, implementation, evidence
          |
          v
@@ -129,15 +130,17 @@ the named reviewers.
 
 - **Status:** `[PROPOSED]`, blocked by the product domain source and relevant
   Pattern and Backend agent reviews. AU-AGENT-004 is available for the Pattern
-  Engine review; the Backend/Data/Sync role remains inactive.
+  Engine review; AU-AGENT-005 is available for backend, identity, persistence,
+  versioning, and migration review.
 - **Question:** How are Pattern, User Project, Source File, Imported Pattern
   Version, internal-format version, Pattern Data, corrections, and Progress Data
   identified, owned, versioned, retained, and migrated?
 
 ### ADR-P003 — Offline and Synchronization Consistency Model
 
-- **Status:** `[PROPOSED]`, blocked by product flows, data requirements, and the
-  future Backend/Data/Sync role.
+- **Status:** `[PROPOSED]`, blocked by product flows, data and synchronization
+  requirements, and the required Technical Design and evidence. AU-AGENT-005 is
+  the registered backend/data/synchronization domain owner.
 - **Question:** Which durable operation, ordering, conflict, tombstone,
   multi-device, retry, idempotency, and recovery semantics protect progress?
 

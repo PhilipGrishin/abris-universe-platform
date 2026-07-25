@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Schema, contract, data volume, deployment order, recovery, or compatibility change |
@@ -31,7 +31,10 @@ None.
 ## Owner
 
 AU-AGENT-002 maintains indexing, metadata, links, traceability, and lifecycle.
-AU-AGENT-001 and the assigned data owner approve migration meaning and safety.
+AU-AGENT-005 owns backend/data migration design, implementation, validation,
+backup, recovery, compatibility, and evidence. AU-AGENT-001 approves
+cross-system sequencing and architecture; AU-AGENT-003 independently reviews
+migration safety evidence.
 
 ## Lifecycle
 
