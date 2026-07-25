@@ -1,9 +1,9 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** INIT-003 — full engineering-organization readiness validation
+**Current focus:** ACCEPT-INIT-003 — independent acceptance integration complete
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
-**Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
+**Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
 
@@ -100,7 +100,17 @@
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-001` contains 48
   checksum-registered text sources for exact commit `f748c95` and range
   `1ccaace..f748c95`; its external Claude inbox copy is byte-equivalent.
-- `[OPEN]` No Claude return or independent INIT-003 decision exists yet.
+- `[VERIFIED]` Claude Cowork independently accepted the INIT-003
+  engineering-organization readiness validation at exact source commit
+  `f748c95` through exchange `AU-EX-20260725-001`.
+- `[CONFIRMED]` INIT-003 acceptance does not verify or approve application
+  implementation, runtime architecture, technology stack, production
+  readiness, TASK-THINSLICE-001 implementation, Engineering Handbook content,
+  post-package merge state, or formal integration of transmitted Cowork
+  DEC-005/DEC-006.
+- `[OPEN]` OVR-001, OVR-002, OVR-004, OVR-005, INIT-002-F2,
+  INIT-002-F5, and the dedicated PRODUCT_DECISION exchange for transmitted
+  Cowork DEC-005/DEC-006 remain follow-up work.
 
 ## Verification Performed
 
@@ -170,6 +180,14 @@
   exchange `AU-EX-20260721-001`; confirmed runtime/archive checksum agreement;
   and found no orphan exchange ID, secret, binary, symlink, or machine-specific
   path in 163 scanned exchange-area files.
+- `[TESTED]` The AU-EX-20260725-001 return passed schema, exact-source, role,
+  result-type, status, reviewed-source, path, extension, checksum, size,
+  authority, and unregistered-file controls.
+- `[TESTED]` The canonical INIT-003 Independent Acceptance Report is
+  byte-identical to the validated Claude output with SHA-256
+  `9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d`;
+  the archived outbox revalidated and its archive record identifies the
+  canonical review.
 
 ## Blockers
 
@@ -200,16 +218,16 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Completed the INIT-003 organizational validation and registered every finding,
-executor boundary, Bridge self-test result, synchronization result, and
-persistent-state correction without product implementation or authority
-rewrites.
+Validated, integrated, and archived the independent INIT-003 acceptance result
+without changing Claude-authored meaning. Registered `[VERIFIED]` only for its
+exact organizational-validation scope and preserved every exclusion and
+follow-up.
 
 ## Next Step
 
-Stop and notify the Project Owner with “Codex finished.” Await the Claude Cowork
-return for `AU-EX-20260725-001`, validate it through the Bridge, and integrate
-only the authorized meaning. Do not begin product implementation. After
-independent disposition and owner routing of open findings, AU-AGENT-001 may
-perform the separate engineering intake and Technical Review of
-AU-CDX-TASK-001 v1.0.
+Stop and notify the Project Owner with “Codex finished.” Await owner direction
+for OVR-001/002/005 wording and the next bridge trigger. The recommended next
+bridge task is `INIT-003-PD-001`, a `PRODUCT_DECISION` exchange for Cowork
+DEC-005/DEC-006. Do not begin product implementation; AU-AGENT-001 performs the
+separate AU-CDX-TASK-001 Technical Review only after the applicable inputs are
+canonical and the owner selects that next task.

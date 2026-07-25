@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
@@ -31,7 +31,7 @@ missing metadata, orphan documents, source conflicts, and lifecycle defects.
 - [INIT-003 Organizational Validation Report](INIT-003_Organizational_Validation_Report.md)
   — full engineering-organization, documentation, Bridge, synchronization, and
   intake-readiness validation with five recorded findings; `[IMPLEMENTED]`,
-  `[TESTED]`, independent acceptance `[OPEN]`.
+  `[TESTED]`, `[VERIFIED]` within the exact INIT-003 acceptance scope.
 
 ## Owner
 

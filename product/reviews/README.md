@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Quality, Security & Independent Acceptance Lead |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
-| Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md`, `collaboration/manifests/AU-EX-20260721-001/outcome.json` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md`, `collaboration/manifests/` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Review result; acceptance result; defect status; Task Package version |
@@ -28,6 +28,11 @@ without the authorized owner decision.
   — `VERIFIED` for the explicitly bounded repository initialization and
   governance-integration scope at source commit `1ccaace`; not application
   implementation acceptance.
+- [INIT-003 Independent Acceptance Report](INIT-003_Independent_Acceptance_Report.md)
+  — `VERIFIED` for the explicitly bounded engineering-organization readiness
+  validation at source commit `f748c95`; not application implementation,
+  architecture, stack, production, or TASK-THINSLICE-001 implementation
+  acceptance.
 
 ## Acceptance Rules
 

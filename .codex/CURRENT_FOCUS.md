@@ -1,51 +1,53 @@
 # Current Focus
 
-## Focus ID: INIT-003-ORG-VALIDATION
+## Focus ID: ACCEPT-INIT-003
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`; independent acceptance `[OPEN]`
+**Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the exact
+INIT-003 independent acceptance scope
 
-Validate the complete Abris Universe engineering organization, documentation
-system, Collaboration Bridge, synchronization state, communication contract,
-and TASK-THINSLICE-001 intake readiness without implementation, architecture
-changes, product changes, or silent authority repair.
+Validate, integrate, register, and archive the Claude Cowork independent
+acceptance return for `AU-EX-20260725-001` without changing authored meaning,
+broadening acceptance, starting product work, or directly integrating product
+decisions transmitted only for planning awareness.
 
 ## Completed in This Focus
 
-- Validated AU-CODEX-PRIMARY and AU-AGENT-001 through AU-AGENT-006 against
-  owner-instruction evidence and DEC-003.
-- Checked required fields and all 21 pairwise ownership boundaries.
-- Confirmed AU-AGENT-003 owns independent engineering quality review while
-  Claude Cowork retains project `[VERIFIED]`.
-- Validated documentation consistency, TRACE-ORG coverage, Source of Truth,
-  links, Documentation Impact, and lifecycle.
-- Passed 14 of 14 Bridge unit tests.
-- Revalidated the completed exchange archive, runtime/external checksum parity,
-  canonical integrated review, shared-folder inventory, and exchange-area
-  safety.
-- Mapped registered roles to TASK-THINSLICE-001 intake and recorded every
-  blocking gate and open input.
-- Issued
-  `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`.
+- Confirmed source branch `codex/init-003-org-validation` remains at exact
+  reviewed commit `f748c95`.
+- Validated the return manifest, 23 reviewed-source records, one output file,
+  role, result type, decision, paths, sizes, checksums, and authority statement.
+- Preserved the acceptance report byte-for-byte at
+  `product/reviews/INIT-003_Independent_Acceptance_Report.md`.
+- Registered bounded `VERIFIED`, every limitation, and five non-blocking
+  follow-up records.
+- Preserved Cowork DEC-005/DEC-006 as non-canonical planning awareness pending a
+  separate `PRODUCT_DECISION` exchange.
+- Archived the validated external inbox and outbox with the canonical report as
+  review reference.
+- Updated exchange outcome, navigation, traceability, status, task, review,
+  changelog, and handoff records.
 
-## Open Findings
+## Open Follow-ups
 
-- OVR-001: explicit AU-CODEX-PRIMARY instruction provenance field.
-- OVR-002: explicit `Does not own` fields for AU-CODEX-PRIMARY and
-  AU-AGENT-003.
-- OVR-004: archive-aware Bridge status reporting.
-- OVR-005: owner-approved canonical wording for exclusive future Bridge
-  communication.
+- INIT-003-OVR-001: owner-approved PRIMARY provenance wording.
+- INIT-003-OVR-002: standalone exclusion-field normalization.
+- INIT-003-OVR-004: archive-aware status tooling.
+- INIT-003-OVR-005: owner-approved exclusive Bridge governance wording.
+- INIT-003-PD-001: formal `PRODUCT_DECISION` exchange for transmitted Cowork
+  DEC-005/DEC-006.
 - INIT-002-F2 and INIT-002-F5 remain open.
 
-## Blocked or Awaiting Input
+## Boundaries
 
-- Claude Cowork independent review and return for `AU-EX-20260725-001`.
-- Project Owner dispositions for authority and communication findings.
-- Engineering intake and mandatory Technical Review of AU-CDX-TASK-001 v1.0.
-- Product OQ-005 format-spike result before importer coding.
+- No application implementation, architecture, stack, platform, production,
+  Handbook, or TASK-THINSLICE-001 implementation status is `[VERIFIED]`.
+- No product decision was changed or integrated from acceptance-report prose.
+- Product development remains gated by canonical inputs and the mandatory
+  Technical Review.
 
 ## Next Concrete Step
 
 Stop and notify the Project Owner with the allowed trigger phrase “Codex
-finished.” Await a Claude return in the registered outbox. Do not begin product
-development or integrate any result before Bridge validation.
+finished.” Await the next owner/Bridge trigger. The recommended next exchange is
+INIT-003-PD-001; do not start it or product development without the next
+authorized task.

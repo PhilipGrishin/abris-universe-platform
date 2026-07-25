@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260725-001 |
 | Title | INIT-003 Full Engineering Organization Readiness Validation |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; synchronized; independent return `[OPEN]` |
+| Status | COMPLETED; decision `VERIFIED` within registered scope |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md` |
@@ -36,11 +36,10 @@ are outside scope.
 ## Owner and Lifecycle
 
 AU-CODEX-PRIMARY prepared and synchronized the checksum-bound package to the
-registered external Claude inbox. Claude may read the immutable inbox and write
-only a schema-conforming return under the designated outbox. Transport does not
-assign acceptance. Codex must validate and stage a return before any meaning or
-status integration, then archive the exchange only after an authorized review
-reference exists.
+registered external Claude inbox. The Quality, Security & Independent
+Acceptance Lead returned one schema-conforming report. Codex validated the
+return, preserved the report byte-for-byte, registered the bounded decision,
+and archived the exchange with provenance. Transport did not assign acceptance.
 
 ## Package State
 
@@ -51,21 +50,27 @@ reference exists.
 - Registered files: 48
 - Registered payload bytes: 925,939
 - External inbox copy: checksum-equivalent
-- Return: `[OPEN]`
-- Independent decision: `[OPEN]`
+- Return: `COMPLETED`, validated
+- Independent decision: `VERIFIED` within the scope and limitations in
+  `outcome.json`
+- Canonical report SHA-256:
+  `9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d`
+- Archive: `claude/archive/AU-EX-20260725-001`
 
 ## Adding Exchange Artifacts
 
-Do not edit `task-manifest.json`, replace the runtime package, or reuse this
-Exchange ID. A return enters through the registered outbox and validation
-workflow. Add `outcome.json` and update this lifecycle record only after
-validation, authorized meaning review, canonical integration, and archival.
+Do not edit `task-manifest.json`, replace the runtime package, reuse this
+Exchange ID, or broaden the accepted scope. The immutable outcome and prior
+review remain available for audit. Any new decision or review requires a new
+Exchange ID.
 
 ## Related Sources
 
 - [Request](request.json)
 - [Task Manifest](task-manifest.json)
+- [Outcome](outcome.json)
 - [Organizational Validation Report](../../../docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md)
+- [Independent Acceptance Report](../../../product/reviews/INIT-003_Independent_Acceptance_Report.md)
 - [Exchange Manifest Registry](../README.md)
 - [Collaboration Bridge](../../README.md)
 - [Source of Truth Registry](../../../docs/SOURCE_OF_TRUTH.md)

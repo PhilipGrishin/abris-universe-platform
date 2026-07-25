@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -56,7 +56,10 @@ intake of a versioned Task Package.
 | TRACE-FINDING-F3 | Activate an independent Engineering Quality role before product implementation | Acceptance F3; RISK-005; Owner Decision F1; owner instruction 2026-07-25 | `docs/TASKS.md` INIT-002-F3, `.codex/AGENT_REGISTRY.md`, `docs/reviews/engineering/` | `[IMPLEMENTED]`, `[TESTED]`; task assignment remains required |
 | TRACE-FINDING-F4 | Register the Collaboration Bridge Protocol after a complete round-trip | Acceptance F4 | `docs/SOURCE_OF_TRUTH.md`, `collaboration/`, exchange outcome | `[IMPLEMENTED]`, `[TESTED]` |
 | TRACE-FINDING-F5 | Prevent divergence between canonical repository artifacts and local Claude copies | Acceptance F5 | `docs/TASKS.md` INIT-002-F5, RISK-010 | `[OPEN]` |
-| TRACE-VALIDATION-003 | Validate the complete engineering organization, Bridge, synchronization, and TASK-THINSLICE-001 intake readiness without implementation or silent authority repair | INIT-003 owner-directed validation request, 2026-07-21 | `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`, `docs/TASKS.md`, `docs/CURRENT_STATUS.md`, `.codex/CURRENT_FOCUS.md`, `docs/HANDOFF_LOG.md`; exchange `AU-EX-20260725-001` | `[IMPLEMENTED]`, `[TESTED]`; independent acceptance `[OPEN]` |
+| TRACE-VALIDATION-003 | Validate the complete engineering organization, Bridge, synchronization, and TASK-THINSLICE-001 intake readiness without implementation or silent authority repair | INIT-003 owner-directed validation request, 2026-07-21 | `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`, `docs/TASKS.md`, `docs/CURRENT_STATUS.md`, `.codex/CURRENT_FOCUS.md`, `docs/HANDOFF_LOG.md`; exchange `AU-EX-20260725-001` | `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within exact acceptance scope |
+| TRACE-ACCEPT-002 | Independently review INIT-003 engineering-organization readiness at exact source `f748c95` | Claude Cowork Quality, Security & Independent Acceptance Lead; exchange `AU-EX-20260725-001` | `product/reviews/INIT-003_Independent_Acceptance_Report.md`, `collaboration/manifests/AU-EX-20260725-001/outcome.json` | `[VERIFIED]` only within recorded scope and limitations |
+| TRACE-INIT003-OVR | Preserve and route OVR-001, OVR-002, OVR-004, and OVR-005 without silent authority or tooling changes | INIT-003 Independent Acceptance Report section 5 | `docs/TASKS.md` INIT-003-OVR-001/002/004/005, RISK-009 | `[OPEN]`; accepted as valid and non-blocking |
+| TRACE-INIT003-PD | Formally import transmitted Cowork DEC-005/DEC-006 only through a new Product Decision exchange | INIT-003 Independent Acceptance Report section 6 | `docs/TASKS.md` INIT-003-PD-001; future exchange not yet created | `[OPEN]`; report transmission is not canonical decision integration |
 
 ## Owner
 

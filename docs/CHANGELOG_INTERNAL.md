@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — ACCEPT-INIT-003 Independent Acceptance Integration
+
+- Validated the AU-EX-20260725-001 Claude return against the registered Bridge
+  contract and preserved the Independent Acceptance Report byte-for-byte.
+- Registered `VERIFIED` only for the exact INIT-003 organizational-validation
+  source, scope, evidence, and limitations.
+- Preserved OVR-001/002/004/005 and INIT-002-F2/F5 as open follow-ups; recorded
+  OVR-003 as independently accepted as resolved.
+- Registered a separate required `PRODUCT_DECISION` exchange for transmitted
+  Cowork DEC-005/DEC-006 instead of directly changing product decisions.
+- Archived the exchange with provenance and updated outcome, navigation,
+  traceability, tasks, status, and handoff.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the bounded
+  independent report scope.
+- Evidence: canonical INIT-003 Independent Acceptance Report and
+  `collaboration/manifests/AU-EX-20260725-001/outcome.json`.
 
 ## 2026-07-25 — INIT-003 Engineering Organization Readiness Validation
 

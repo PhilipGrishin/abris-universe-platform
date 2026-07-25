@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -34,8 +34,9 @@ not approve returned meaning.
   integration; completed, validated, integrated, and archived with decision
   `VERIFIED` within the registered scope.
 - [`AU-EX-20260725-001`](AU-EX-20260725-001/README.md) — independent review of
-  INIT-003 full engineering-organization readiness validation; package
-  prepared, validated, and synchronized; return `[OPEN]`.
+  INIT-003 full engineering-organization readiness validation; completed,
+  validated, integrated, and archived with decision `VERIFIED` within the
+  registered scope.
 
 ## Rules
 

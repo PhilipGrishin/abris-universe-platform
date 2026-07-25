@@ -1,5 +1,43 @@
 # Handoff Log
 
+## 2026-07-25 — Claude Cowork to Codex — ACCEPT-INIT-003
+
+- **Trigger:** “Claude finished.”
+- **Exchange:** `AU-EX-20260725-001`.
+- **Return:** `COMPLETED`; independent decision `VERIFIED` within the exact
+  INIT-003 source, scope, and limitations.
+- **Independent findings:** OVR-001, OVR-002, OVR-004, and OVR-005 accepted as
+  valid and non-blocking; OVR-003 accepted as resolved; INIT-002-F2/F5 remain
+  open.
+- **Product-awareness boundary:** Cowork DEC-005/DEC-006 were transmitted for
+  planning awareness only. Formal integration requires a new
+  `PRODUCT_DECISION` exchange.
+
+## 2026-07-25 — Codex Acceptance Integration Handoff — ACCEPT-INIT-003
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the
+  independently recorded INIT-003 scope.
+- **Validation:** Return schema, exact source, role, result type, status,
+  reviewed sources, output registration, paths, extensions, sizes, checksums,
+  authority statement, and absence of extra files passed.
+- **Meaning preservation:** The canonical report is byte-identical to the
+  Claude output; SHA-256
+  `9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d`.
+- **Canonical report:**
+  `product/reviews/INIT-003_Independent_Acceptance_Report.md`.
+- **Outcome:**
+  `collaboration/manifests/AU-EX-20260725-001/outcome.json`.
+- **Archive:** External inbox and outbox moved to
+  `claude/archive/AU-EX-20260725-001` with canonical report reference at
+  `2026-07-25T12:15:10.720Z`; archived return revalidated.
+- **Follow-ups:** INIT-003-OVR-001, INIT-003-OVR-002, INIT-003-OVR-004,
+  INIT-003-OVR-005, and INIT-003-PD-001 registered separately.
+- **Not performed:** No role meaning, product decision, application
+  implementation, architecture, stack, production, Handbook, or
+  TASK-THINSLICE-001 implementation change.
+- **Next step:** Stop with “Codex finished” and await the next authorized
+  owner/Bridge trigger.
+
 ## 2026-07-25 — Claude Cowork / Project Owner to Codex — INIT-003
 
 - **Direction received:** Perform full engineering-organization readiness

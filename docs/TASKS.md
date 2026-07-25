@@ -4,7 +4,8 @@
 
 ### INIT-003-ORG-VALIDATION — Full Engineering Organization Readiness Validation
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent acceptance `[OPEN]`
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within the exact
+  independent report scope and limitations
 - **Owner:** AU-CODEX-PRIMARY
 - **Reviewers:** Project Owner for authority findings; AU-AGENT-001 for
   technical boundaries; AU-AGENT-002 for documentation lifecycle; Claude
@@ -21,12 +22,63 @@
   standalone exclusion-field normalization `[OPEN]`; OVR-003 persistent-state
   lag `[IMPLEMENTED]`, `[TESTED]`; OVR-004 archive-aware status reporting
   `[OPEN]`; OVR-005 exclusive Bridge governance normalization `[OPEN]`.
-- **Exchange state:** `AU-EX-20260725-001` prepared from exact commit
-  `f748c95`, validated, and synchronized with 48 registered text sources;
-  return `[OPEN]`.
-- **Next gate:** Await and validate the independent review return. Do not begin
-  product development before its disposition and the separate AU-CDX-TASK-001
-  Technical Review.
+- **Acceptance:** `AU-EX-20260725-001` returned `COMPLETED` / `VERIFIED`; the
+  report was validated, preserved byte-for-byte, integrated, and archived.
+  Verification applies only to source `f748c95` and the recorded organizational
+  scope. It does not approve product implementation, architecture, stack,
+  production readiness, or TASK-THINSLICE-001 implementation.
+- **Next gate:** Route the registered non-blocking follow-ups. Do not begin
+  product development before the separate AU-CDX-TASK-001 Technical Review.
+
+### INIT-003-OVR-001 — Normalize AU-CODEX-PRIMARY Instruction Provenance
+
+- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Source:** INIT-003 OVR-001; independent acceptance report section 5.
+- **Owner:** Project Owner for exact wording; AU-CODEX-PRIMARY and
+  AU-AGENT-002 for approved normalization.
+- **Required result:** Add explicit owner-instruction provenance and date to the
+  canonical PRIMARY entry without changing authority.
+
+### INIT-003-OVR-002 — Add Standalone Does-Not-Own Fields
+
+- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Source:** INIT-003 OVR-002; independent acceptance report section 5.
+- **Owner:** AU-CODEX-PRIMARY for governance; AU-AGENT-002 for structure;
+  Project Owner for any wording that changes meaning.
+- **Required result:** Add explicit `Does not own` fields for
+  AU-CODEX-PRIMARY and AU-AGENT-003 while preserving their existing substantive
+  exclusions.
+
+### INIT-003-OVR-004 — Make Exchange Status Reporting Archive-Aware
+
+- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Source:** INIT-003 OVR-004; RISK-009.
+- **Owner:** AU-CODEX-PRIMARY.
+- **Required result:** In a separate tooling task, make status reporting
+  distinguish active, returned, integrated, and archived states; add tests and
+  preserve current validation safety.
+
+### INIT-003-OVR-005 — Normalize Exclusive Bridge Communication Governance
+
+- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Source:** INIT-003 OVR-005; owner-directed INIT-003 communication rule.
+- **Owner:** Project Owner for exact canonical wording; AU-CODEX-PRIMARY and
+  AU-AGENT-002 for approved integration.
+- **Required result:** Normalize canonical governance so substantive future
+  Claude–Codex communication uses the Collaboration Bridge and owner manual
+  input is limited to registered trigger phrases.
+
+### INIT-003-PD-001 — Import Cowork DEC-005 and DEC-006 Through Product Decision Exchange
+
+- **Status:** `[OPEN]`; transmitted for planning awareness, not yet canonical
+- **Source:** INIT-003 Independent Acceptance Report section 6.
+- **Owner:** Claude Cowork / Project Owner for product meaning;
+  AU-CODEX-PRIMARY for exchange preparation and validation.
+- **Required result:** Open a new `PRODUCT_DECISION` exchange, receive the
+  authoritative decision artifacts, validate them, and integrate them into the
+  product decision source without changing meaning.
+- **Prohibited interpretation:** The INIT-003 acceptance report alone does not
+  authorize direct edits to `product/decisions/05_Decision_Log.md`.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

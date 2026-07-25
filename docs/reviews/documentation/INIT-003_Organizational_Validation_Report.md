@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-DOC-REVIEW-003 |
 | Title | INIT-003 Organizational Validation Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`, independent acceptance `[OPEN]` |
+| Status | `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within the exact INIT-003 acceptance scope |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner for authority findings; AU-AGENT-001 for technical boundaries; AU-AGENT-002 for documentation lifecycle |
 | Version | 1.0.0 |
@@ -19,7 +19,8 @@
 
 ## 1. Status
 
-`[IMPLEMENTED]`, `[TESTED]`; independent acceptance is `[OPEN]`.
+`[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within the exact source, scope, and
+limitations recorded by `AU-EX-20260725-001`.
 
 The seven-role engineering organization exists and is ready to receive and
 route governed work. It is not ready to begin product development because the
@@ -335,7 +336,9 @@ tooling task before or alongside the AU-CDX-TASK-001 Technical Review.
 
 - 2026-07-25: AU-CODEX-PRIMARY completed evidence-based self-validation and
   assigned only `[IMPLEMENTED]` and `[TESTED]`.
-- Independent Claude Cowork acceptance: `[OPEN]`.
+- 2026-07-25: Claude Cowork independently assigned `[VERIFIED]` to the bounded
+  INIT-003 validation scope at source commit `f748c95`; OVR-001, OVR-002,
+  OVR-004, and OVR-005 remain non-blocking follow-ups.
 
 ## Related Sources
 
@@ -346,3 +349,4 @@ tooling task before or alongside the AU-CDX-TASK-001 Technical Review.
 - [Traceability Matrix](../../TRACEABILITY_MATRIX.md)
 - [Collaboration Bridge](../../../collaboration/README.md)
 - [Technical Tasks](../../TASKS.md)
+- [Independent Acceptance Report](../../../product/reviews/INIT-003_Independent_Acceptance_Report.md)
