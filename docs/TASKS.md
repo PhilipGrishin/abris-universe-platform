@@ -143,8 +143,11 @@
   under the confirmed criterion, establish fixture authority, provide exact
   product-source integration text when authorized, and state whether the Task
   Package requires versioning.
-- **Exchange:** `AU-EX-20260725-003`, lifecycle `EXPORTED`, source `CURRENT`,
+- **Exchange:** `AU-EX-20260725-004`, lifecycle `EXPORTED`, source `CURRENT`,
   output `NOT_RETURNED`.
+- **Preparation correction:** `AU-EX-20260725-003` was rejected before return
+  because its registered source branch advanced. It is retained as provenance
+  and must not be processed.
 - **Prohibited work:** No Technical Design, importer, Pattern Engine, viewer,
   persistence, client, pipeline, deployment, fixture commitment, or product
   `[VERIFIED]` status.

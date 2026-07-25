@@ -1,0 +1,95 @@
+{
+  "exchange_id": "AU-EX-20260725-004",
+  "task_id": "AU-CDX-TASK-001-CLARIFICATION",
+  "task_type": "PRODUCT_CLARIFICATION",
+  "requested_claude_role": "Chief Project Orchestrator",
+  "source_commit_sha": "e53794b51e0ed753e9d1b7b39ac455df23e4b5bf",
+  "source_branch": "codex/task-thinslice-001-review-source",
+  "review_commit_range": "1319f4746565be9ed962b8150365e1abacf08fb7..e53794b51e0ed753e9d1b7b39ac455df23e4b5bf",
+  "prepared_at": "2026-07-25T14:17:05Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Request product-authorized disposition of the TASK-THINSLICE-001 Technical Review clarifications after the bounded OQ-005 spike, while development remains blocked.",
+  "scope": [
+    "Review the exact TASK-THINSLICE-001 v1.0 Technical Review and OQ-005 spike evidence at source commit e53794b51e0ed753e9d1b7b39ac455df23e4b5bf.",
+    "Disposition CLR-001: confirm whether product-source SXP is a typographical error for the officially documented XSP Cross Stitch Professional Platinum format, or identify the intended distinct SXP format with authoritative evidence.",
+    "Disposition CLR-002: accept or reject the Codex recommendation of OXS 1.0 as the first Phase 0 structured importer under the owner-confirmed minimal parsing complexity while representative criterion.",
+    "Disposition CLR-003: define the authorized route for repository fixtures, including redistribution and derivative permission for a small full-cross OXS pattern, a medium representative OXS pattern, and a corrupted negative-test derivative.",
+    "If OXS is accepted or product terminology changes, return exact append-ready Product Decision Log and OQ-005 register text and identify whether TASK-THINSLICE-001 requires a new version.",
+    "Preserve the separation between product clarification, Codex Technical Design authority, documentation lifecycle, later independent engineering verification, and independent product acceptance."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, product sources, engineering review documents, code, fixtures, dependencies, infrastructure, Cloudflare, GitHub, CI/CD, or deployment.",
+    "Designing or implementing the importer, canonical Pattern schema, renderer, client, persistence, security limits, performance budgets, pipeline, or rollback.",
+    "Approving a Technical Design, ADR, implementation, release, or project VERIFIED status.",
+    "Inventing a format, license, rights grant, fixture content, product behavior, UX, scope, priority, or acceptance criterion.",
+    "Treating publicly downloadable vendor samples as redistribution-authorized without explicit evidence.",
+    "Starting development or authorizing Codex to bypass the Technical Design and architecture-review gates."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+    "sources/repository/product/decisions/05_Decision_Log.md",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+    "sources/repository/docs/OPEN_QUESTIONS.md",
+    "sources/repository/docs/TASKS.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/.codex/CURRENT_FOCUS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/collaboration/README.md"
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type PRODUCT_CLARIFICATION.",
+    "outputs/task-thinslice-001-clarification-response.md containing explicit dispositions for CLR-001 through CLR-003, exact product-source integration text where authorized, authority provenance, limitations, open questions, and the next gate."
+  ],
+  "acceptance_criteria": [
+    "The response reviews the exact Technical Review, spike, Conflict Report, Task Package, and product decisions registered by checksum.",
+    "CLR-001 is answered explicitly: SXP is confirmed as XSP, or a distinct SXP format is identified with authoritative specification and representative-file evidence.",
+    "CLR-002 explicitly accepts or rejects OXS 1.0 under the confirmed criterion and explains the product-authorized consequence for OQ-005 and DEP-001.",
+    "CLR-003 provides a rights-safe fixture route and does not infer redistribution or derivative permission from public download availability.",
+    "Any authorized product change is returned as exact append-ready Decision Log and OQ-005 text without silently rewriting unrelated product sources.",
+    "The response identifies whether TASK-THINSLICE-001 v1.0 remains valid or requires a versioned update.",
+    "Technical Design, architecture, implementation, security, performance, pipeline, and rollback choices remain with Codex and are not invented by Claude.",
+    "Development remains blocked until the returned clarification is validated and integrated and the required Technical Design and architecture review complete.",
+    "The result uses COMPLETED, PARTIAL, or BLOCKED with decision NO_DECISION; this clarification is not independent acceptance and cannot assign project VERIFIED."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and Claude Cowork own product terminology, OQ-005 product integration, Task Package versioning, and the meaning of any fixture authorization supplied by the rights holder. Claude may formulate an authorized clarification but must not invent rights or broaden product scope.",
+    "engineering_authority": "AU-AGENT-001 owns the Technical Review disposition and future Technical Design; AU-AGENT-004 owns format and importer engineering evidence; AU-AGENT-005 and AU-AGENT-006 own their registered technical domains. No implementation or architecture is approved by this exchange.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, metadata, navigation, terminology consistency, traceability, and lifecycle after validation, without changing Claude-authored product meaning or Codex technical meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260725-004",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "include_paths": [
+    ".codex/CURRENT_FOCUS.md",
+    "AGENTS.md",
+    "collaboration/README.md",
+    "collaboration/schemas",
+    "docs/CURRENT_STATUS.md",
+    "docs/HANDOFF_LOG.md",
+    "docs/OPEN_QUESTIONS.md",
+    "docs/RISKS.md",
+    "docs/SHARED_WORKFLOW.md",
+    "docs/SOURCE_OF_TRUTH.md",
+    "docs/TASKS.md",
+    "docs/TRACEABILITY_MATRIX.md",
+    "docs/reviews/technical",
+    "product/README.md",
+    "product/architecture-inputs/02_Architecture_and_Stack.md",
+    "product/decisions/05_Decision_Log.md",
+    "product/governance/04_Codex_Context_Pack.md",
+    "product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+    "product/task-packages/07_TaskPackage_EP01_ThinSlice.md"
+  ],
+  "exclude_paths": []
+}

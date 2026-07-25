@@ -2,16 +2,16 @@
 
 | Field | Value |
 | --- | --- |
-| Document ID | AU-COLLAB-EX-20260725-003 |
+| Document ID | AU-COLLAB-EX-20260725-004 |
 | Title | TASK-THINSLICE-001 Product Clarification Exchange |
-| Status | `[REJECTED]` before Claude return; stale source-branch registration |
+| Status | `EXPORTED`; source `CURRENT`; Claude return `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
 | Version | 1.0.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `docs/reviews/technical/TASK-THINSLICE-001/` |
-| Supersedes | None |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `docs/reviews/technical/TASK-THINSLICE-001/`, `collaboration/manifests/AU-EX-20260725-003/withdrawal.json` |
+| Supersedes | Rejected exchange preparation `AU-EX-20260725-003` |
 | Superseded By | None |
 | Review Triggers | Claude return; validation failure; source mismatch; clarification disposition; canonical integration |
 
@@ -30,41 +30,43 @@ solution.
 
 ## Owner and Lifecycle
 
-AU-CODEX-PRIMARY prepared and synchronized the checksum-bound package, then
-detected that the registered source branch advanced when the manifest commit
-was added to that same branch. No Claude return existed. The external inbox
-copy was withdrawn without deletion to a recoverable temporary backup, and the
-request was reissued under a new Exchange ID using a dedicated immutable source
-branch. This rejected record remains as provenance and must not be processed.
+AU-CODEX-PRIMARY prepared and synchronized the checksum-bound package from the
+dedicated immutable source branch. The Chief Project Orchestrator owns the
+coordinated product clarification within the supplied authority. AU-AGENT-002
+maintains placement, metadata, navigation, and traceability after validation. A
+return remains non-canonical until contract validation, authorized meaning
+review, Codex integration, and provenance archive complete.
 
 ## Package State
 
 - Task type: `PRODUCT_CLARIFICATION`
 - Requested role: `Chief Project Orchestrator`
-- Source branch: `codex/task-thinslice-001-technical-review`
+- Source branch: `codex/task-thinslice-001-review-source`
 - Source commit: `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`
 - Review range:
   `1319f4746565be9ed962b8150365e1abacf08fb7..e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`
 - Registered files: 28
 - Registered payload bytes: 394,832
-- External inbox: withdrawn before return
-- Lifecycle: `[REJECTED]`
-- Return: not created
-- Replacement: `AU-EX-20260725-004`
+- External inbox: checksum-equivalent
+- Lifecycle: `EXPORTED`
+- Source status: `CURRENT`
+- Return: `NOT_RETURNED`
+- Integration: `NOT_INTEGRATED`
 - Development: blocked
 
 ## Adding Exchange Artifacts
 
-Do not reuse or process this Exchange ID. Retain its request and manifest as
-evidence of the detected freshness defect. Use only replacement exchange
-`AU-EX-20260725-004`.
+Do not edit `task-manifest.json`, replace the runtime package, reuse this
+Exchange ID, or advance the dedicated source branch before return processing.
+Claude may write only the registered return manifest and output files to its
+outbox. A valid transport return does not approve product meaning or
+engineering work.
 
 ## Related Sources
 
 - [Request](request.json)
 - [Task Manifest](task-manifest.json)
-- [Withdrawal Record](withdrawal.json)
-- [Replacement Exchange](../AU-EX-20260725-004/README.md)
+- [Rejected Predecessor](../AU-EX-20260725-003/README.md)
 - [Exchange Manifest Registry](../README.md)
 - [Collaboration Bridge](../../README.md)
 - [Technical Review](../../../docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md)

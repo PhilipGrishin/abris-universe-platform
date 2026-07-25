@@ -55,10 +55,11 @@ PROD-DEC-008.
 
 ## Current Exchange
 
-`AU-EX-20260725-003` is exported at exact source
+`AU-EX-20260725-004` is exported at exact source
 `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`. It requests Claude Cowork
 disposition of the `SXP`/`XSP` conflict, OXS recommendation, and fixture
-authority.
+authority. Rejected predecessor `AU-EX-20260725-003` received no return and is
+retained only as provenance.
 
 ## Next Concrete Step
 

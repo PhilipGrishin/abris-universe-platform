@@ -42,8 +42,12 @@ not approve returned meaning.
   product records integrated, and exchange archived with decision
   `NO_DECISION`.
 - [`AU-EX-20260725-003`](AU-EX-20260725-003/README.md) — TASK-THINSLICE-001
-  product clarification for `SXP`/`XSP`, the OXS recommendation, and fixture
-  authority; exact-source package exported, return open.
+  product clarification preparation rejected before return after the source
+  branch advanced; retained as provenance and replaced.
+- [`AU-EX-20260725-004`](AU-EX-20260725-004/README.md) — replacement
+  TASK-THINSLICE-001 product clarification for `SXP`/`XSP`, the OXS
+  recommendation, and fixture authority; exact-source package exported from a
+  dedicated immutable branch, return open.
 
 ## Rules
 

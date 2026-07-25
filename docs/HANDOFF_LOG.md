@@ -1,6 +1,6 @@
 # Handoff Log
 
-## 2026-07-25 — Codex Product Clarification Handoff — AU-EX-20260725-003
+## 2026-07-25 — Codex Product Clarification Handoff — AU-EX-20260725-004
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return
   `[OPEN]`.
@@ -12,6 +12,12 @@
   `1319f4746565be9ed962b8150365e1abacf08fb7..e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
 - **Package evidence:** 28 checksum-registered sources, 394,832 payload bytes,
   current source, valid required inputs, and external inbox export.
+- **Preparation correction:** Initial exchange `AU-EX-20260725-003` was
+  rejected before Claude return because its source branch advanced after the
+  manifest commit. The external inbox copy was withdrawn without deletion, the
+  manifests were retained with a withdrawal record, and `AU-EX-20260725-004`
+  was issued from dedicated immutable branch
+  `codex/task-thinslice-001-review-source`.
 - **Requested result:** Dispositions for `SXP`/`XSP`, OXS 1.0, fixture
   authority, product-source text, and Task Package versioning.
 - **Authority:** Claude owns product clarification only. AU-CODEX-PRIMARY

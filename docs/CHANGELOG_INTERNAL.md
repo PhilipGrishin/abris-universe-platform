@@ -47,13 +47,18 @@ material defect.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Product Clarification Exchange
 
-- Registered and exported `AU-EX-20260725-003` at exact source
-  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
+- Detected and rejected initial preparation `AU-EX-20260725-003` before Claude
+  return because its registered source branch advanced after the manifest
+  commit; retained its manifests and withdrawal evidence.
+- Created dedicated immutable source branch
+  `codex/task-thinslice-001-review-source` at
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf` and exported replacement
+  `AU-EX-20260725-004`.
 - Included the Technical Review, spike, Conflict Report, product sources,
   governance, status, and traceability as 28 checksum-bound sources.
 - Requested only product-authorized dispositions for `SXP`/`XSP`, OXS, fixture
   authority, product-source integration text, and Task Package versioning.
-- Passed all 19 Bridge tests and reported the exchange as
+- Passed all 19 Bridge tests and reported the replacement exchange as
   `EXPORTED / CURRENT / NOT_RETURNED / NOT_INTEGRATED`.
 - Documentation Impact: Material.
 - Status: `[IMPLEMENTED]`, `[TESTED]`; Claude return `[OPEN]`; development
