@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/architecture/README.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
@@ -30,7 +30,7 @@ acceptance, or project `[VERIFIED]` status.
 
 | Task | Design | Status | Architecture review |
 | --- | --- | --- | --- |
-| TASK-THINSLICE-001 | [Phase 0 Thin-Slice Technical Design Proposal](TASK-THINSLICE-001_TECHNICAL_DESIGN.md) | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES` | Architecture component complete; AU-AGENT-003 security review and evidence gates `[OPEN]` |
+| TASK-THINSLICE-001 | [Phase 0 Thin-Slice Technical Design Proposal](TASK-THINSLICE-001_TECHNICAL_DESIGN.md) | `[PROPOSED]`; independent disposition `ACCEPTED_WITH_GATES`; security design `VERIFIED WITH FINDINGS` | TD-GATE-004 closed; TD-GATE-001/002/003 and implementation evidence `[OPEN]` |
 
 ## Owner
 

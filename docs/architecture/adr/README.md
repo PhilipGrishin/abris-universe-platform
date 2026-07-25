@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/DECISIONS.md`, `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -37,8 +37,11 @@ use this library and retain their own approval lifecycle.
 
 The independent pre-implementation architecture review is registered at
 `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`.
-The ADRs remain `[PROPOSED]` until their recorded gates and AU-AGENT-003
-security review complete; the review did not authorize implementation.
+AU-AGENT-003 design-only security review is registered at
+`docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md`
+with status `VERIFIED WITH FINDINGS`. The ADRs remain `[PROPOSED]` until their
+recorded evidence gates complete; neither review authorizes implementation or
+assigns project `[VERIFIED]`.
 
 DEC-001 through DEC-004 and later governance decisions remain in
 `docs/DECISIONS.md` and are not duplicated here.

@@ -160,7 +160,8 @@
 
 - **Status:** `[PROPOSED]`; independent architecture disposition
   `ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003 security
-  review and pre-code evidence gates open; not implementation
+  design review `VERIFIED WITH FINDINGS`; TD-GATE-004 closed; remaining
+  evidence gates open; not implementation
 - **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, and
   `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
 - **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
@@ -175,7 +176,8 @@
   plan.
 - **Open evidence:** TD-GATE-001 strengthened OXS coordinate evidence,
   TD-GATE-002 lawful source-symbol mapping, TD-GATE-003 current Cloudflare
-  placeholder rollback anchor, and the AU-AGENT-003 portion of TD-GATE-004.
+  placeholder rollback anchor, and TS001-SEC-002 runtime evidence before
+  deployment. TD-GATE-004 is closed at design level.
 - **Architecture review exchange:** `AU-EX-20260725-005`, exact source
   `d90de60f98b8e187e2f75bcab697c6f3e747462d`; prepared from the immutable
   `codex/task-thinslice-001-design-source` branch. The `COMPLETED /
@@ -185,15 +187,16 @@
 - **Integrated rework:** R-1 through R-8 and N-1 through N-7/N-9 were added to
   the design, ADR, threat-model, benchmark, and test contracts. N-8 is recorded
   separately as Phase 1 work.
-- **Gate:** AU-AGENT-003 must review the security-relevant design before
-  `[PROPOSED]` is lifted. Coordinate/symbol route-1 fixture evidence blocks
-  importer code, and TD-GATE-003 plus header evidence blocks production
-  deployment. Fixture creation and application implementation have not
-  started.
+- **Gate:** AU-AGENT-003 completed the independent security design review.
+  Coordinate/symbol route-1 fixture evidence blocks importer code, and
+  TD-GATE-003 plus header/request-inventory/network-capture evidence blocks
+  production deployment. Fixture creation and application implementation have
+  not started.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
-- **Status:** `[OPEN]`; mandatory before application implementation.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status
+  `VERIFIED WITH FINDINGS`; TD-GATE-004 security component passed.
 - **Source:** `AU-EX-20260725-005` finding N-9; revised Technical Design v1.1.0;
   revised threat model and ADR-TS001-003/004.
 - **Owner:** AU-AGENT-003.
@@ -207,12 +210,17 @@
 - **Required output:** Engineering Verification Report with unbracketed
   Engineering Verification Status, findings, severity, evidence references,
   and explicit disposition of the security-relevant design sections.
+- **Result:** `AU-REVIEW-ENG-TS001-SEC-001` reviewed baseline `07895e0` and
+  reverified dispositions at `b4eaedc`. TS001-SEC-001 is resolved.
+  TS001-SEC-002 design action is complete and remains open only for future
+  runtime request-inventory and network-capture evidence. No mandatory finding
+  remains unresolved.
 - **Boundary:** AU-AGENT-003 does not implement fixes, redesign architecture,
   change product meaning, approve product acceptance, or assign project
   `[VERIFIED]`.
-- **Gate:** A blocking result keeps TD-GATE-004 open. A passing task-scoped
-  engineering result may close the security-review portion only; route-1
-  evidence and implementation acceptance remain separate.
+- **Gate:** The security-review portion of TD-GATE-004 is closed. Route-1
+  evidence, implementation verification, release evidence, Claude acceptance,
+  and project `[VERIFIED]` remain separate.
 
 ### PHASE1-VIEW-GRID-001 — Every-Tenth Grid Emphasis
 

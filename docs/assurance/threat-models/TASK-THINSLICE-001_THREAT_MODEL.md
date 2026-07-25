@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-THREAT-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Threat Model |
-| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security review open |
+| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security design review `VERIFIED WITH FINDINGS` |
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.2.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -126,8 +126,10 @@ no product-data network egress in Phase 0.
   remain disabled.
 - `THREAT-OPEN-004`: browser persistent-storage grants cannot be guaranteed and
   manual backup is outside scope.
-- `THREAT-OPEN-005`: AU-AGENT-003 has not yet reviewed the revised CSP,
-  persistence, multi-tab, parser-worker, and fixture controls.
+- `THREAT-OPEN-005`: `[TESTED]`, closed for design scope. AU-AGENT-003
+  reviewed the revised CSP, persistence, multi-tab, parser-worker, and fixture
+  controls through `AU-REVIEW-ENG-TS001-SEC-001`; implementation evidence
+  remains separate.
 - `THREAT-OPEN-006`: the production runtime request inventory and clean
   full-path network capture do not exist before implementation.
 
@@ -142,7 +144,7 @@ no product-data network egress in Phase 0.
 - [ ] Rollback rehearsal restores the prior Cloudflare version.
 - [ ] CSP and required HTTP headers pass pre-promotion and production checks.
 - [ ] Two-context progress and failed-import Blob-lifecycle tests pass.
-- [ ] AU-AGENT-003 records findings and a Quality Gate Decision.
+- [x] AU-AGENT-003 records design findings and a Quality Gate Decision.
 
 ## References
 
@@ -151,3 +153,4 @@ no product-data network egress in Phase 0.
 - [Threat Model Index](README.md)
 - [Project Risks](../../RISKS.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)

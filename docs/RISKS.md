@@ -300,3 +300,28 @@
 - **Fallback:** If no prior version is recoverable, do not deploy until the
   Project Owner approves a specific replacement rollback artifact.
 - **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence
+
+## RISK-015 — Same-Origin Requests Expose Pattern-Derived Data
+
+- **Status:** `[OPEN]`; design control `[PROPOSED]`; blocks deployment evidence,
+  not the current design gate
+- **Probability:** Low with the reviewed controls; unknown until implementation
+- **Impact:** High
+- **Trigger:** Production code makes an unregistered same-origin connection,
+  keeps `connect-src 'self'` without a justified runtime need, or places
+  pattern-derived content in a URL, request body, header, log, analytics event,
+  or telemetry.
+- **Affected areas:** Pattern confidentiality, local-only privacy boundary,
+  CSP effectiveness, Cloudflare delivery, security evidence, and user trust.
+- **Prevention:** Maintain a reviewed minimum runtime request inventory; use
+  `connect-src 'none'` when no script-initiated connection is required; permit
+  only reviewed non-pattern static metadata otherwise; prohibit analytics and
+  telemetry for pattern data.
+- **Mitigation:** Compare a full browser network capture against the inventory
+  across import, render, toggle, reload, and representative error paths; block
+  deployment on an unexpected request or pattern-derived payload.
+- **Fallback:** Disable the offending connection or feature, tighten CSP,
+  rebuild the immutable artifact, repeat security review and smoke evidence,
+  and deploy only after the finding is cleared.
+- **Owner:** AU-AGENT-001 for the contract; AU-AGENT-006 for client evidence;
+  AU-AGENT-003 for independent reverification

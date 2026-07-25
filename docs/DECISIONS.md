@@ -278,9 +278,10 @@ library and are not duplicated here:
 - [ADR-TS001-004](architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md):
   portable TypeScript workspace and immutable GitHub-to-Cloudflare delivery.
 
-None of these records authorizes implementation. The architecture-review
-component is complete, but AU-AGENT-003 security review and the recorded
-pre-code evidence gates remain open.
+None of these records authorizes implementation. The architecture review and
+AU-AGENT-003 design-only security review are complete; TD-GATE-004 is closed.
+The ADRs remain `[PROPOSED]` behind their recorded fixture, implementation,
+runtime, performance, and deployment evidence gates.
 
 ## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
 

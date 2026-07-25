@@ -8,8 +8,8 @@
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
-| Security Review | AU-AGENT-003 `[OPEN]` |
-| Version | 1.1.0 |
+| Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
+| Version | 1.1.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-009, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -116,4 +116,8 @@ source-byte recovery, and architecture review.
 - 2026-07-25: Claude Cowork independent architecture review
   `AU-EX-20260725-005` dispositioned this ADR `ACCEPTED_WITH_GATES`; R-2 and
   R-6 are integrated in version 1.1.0. TD-GATE-001, TD-GATE-002, and
-  AU-AGENT-003 security review remain open.
+  AU-AGENT-003 security review were open at that review stage.
+- 2026-07-25: AU-AGENT-003 report `AU-REVIEW-ENG-TS001-SEC-001` records
+  `VERIFIED WITH FINDINGS` for the design-only security scope and closes the
+  security-review component of TD-GATE-004. Fixture and implementation evidence
+  remain open.

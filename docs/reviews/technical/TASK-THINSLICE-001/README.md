@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -44,9 +44,10 @@ implementation or final implementation acceptance.
 The task is technically feasible. Its Technical Design Proposal and four
 task-scoped ADRs remain `[PROPOSED]` with independent disposition
 `ACCEPTED_WITH_GATES`. Mandatory document rework is integrated, but the task is
-**not ready for development**. AU-AGENT-003 security review and route-1
-coordinate/symbol evidence remain mandatory; production deployment also
-requires TD-GATE-003 and security-header evidence.
+**not ready for importer development**. AU-AGENT-003 security design review is
+complete with `VERIFIED WITH FINDINGS`; route-1 coordinate/symbol evidence
+remains mandatory. Production deployment also requires TD-GATE-003 and
+security-header/request-inventory/network-capture evidence.
 
 ## Owner
 

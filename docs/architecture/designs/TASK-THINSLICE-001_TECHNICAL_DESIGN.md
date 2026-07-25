@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TDP-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Thin-Slice Technical Design Proposal |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security review and evidence gates open |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security design review `VERIFIED WITH FINDINGS`; evidence gates open |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
-| Version | 1.2.0 |
+| Version | 1.2.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-010, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -44,6 +44,8 @@ acceptance or authorize implementation while the remaining gates are open.
 Version 1.2.0 records the AU-AGENT-003 design-review dispositions for opaque
 source staging and same-origin request inventory without changing architecture
 or product behavior.
+Version 1.2.1 registers the independent `VERIFIED WITH FINDINGS` design-only
+security result and closes TD-GATE-004 without changing technical meaning.
 
 ## 2. Scope and Non-Scope
 
@@ -103,10 +105,14 @@ it is not converted into hidden Phase 1 behavior.
 | TD-GATE-001 | Project-original non-square OXS fixture with four distinct corner symbol/palette pairs, one asymmetric interior stitch, and a full coordinate-convention record | AU-AGENT-004 | Blocks importer implementation until origin, axis directions, index base, and transposition behavior are proven |
 | TD-GATE-002 | Project-original symbol fixture plus lawful font/glyph mapping evidence | AU-AGENT-004 with AU-AGENT-006 | Blocks claims that rendered symbols match OXS source semantics |
 | TD-GATE-003 | Current Cloudflare Worker version ID, route ownership, and recoverable placeholder artifact recorded before first production deploy | AU-AGENT-001 | Blocks production deployment, not local implementation |
-| TD-GATE-004 | `AU-EX-20260725-005` architecture disposition integrated; R-1 through R-8 design amendments complete; AU-AGENT-003 reviews security-relevant sections before `[PROPOSED]` is lifted | AU-AGENT-001 and AU-AGENT-003 within their separate authorities | Blocks application implementation until the independent security review is recorded |
+| TD-GATE-004 | `AU-EX-20260725-005` architecture disposition integrated; R-1 through R-8 design amendments complete; AU-AGENT-003 report `AU-REVIEW-ENG-TS001-SEC-001` records `VERIFIED WITH FINDINGS` and no mandatory unresolved finding | AU-AGENT-001 and AU-AGENT-003 within their separate authorities | `[TESTED]`, closed at design level; implementation and release verification remain separate |
 
 No source coordinate offset or glyph meaning may be guessed to bypass these
 gates.
+
+TD-GATE-004 is closed at the independently reverified source
+`b4eaedc0233f1f785beff87968c300d54c449c28`. TD-GATE-001, TD-GATE-002, and
+TD-GATE-003 remain open within their recorded scopes.
 
 ## 4. Selected System Shape
 
@@ -934,7 +940,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [ ] Exact Task Package and product decisions are unchanged.
 - [x] `AU-EX-20260725-005` independent architecture review completed with
       `ACCEPTED_WITH_GATES`; R-1 through R-8 integrated in version 1.1.0.
-- [ ] AU-AGENT-003 security review of the revised security-relevant sections is
+- [x] AU-AGENT-003 security review of the revised security-relevant sections is
       recorded.
 - [ ] TD-GATE-001 coordinate evidence is accepted.
 - [ ] TD-GATE-002 symbol evidence is accepted or product limitation is
@@ -948,7 +954,8 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [ ] Storage and client rollback compatibility are explicit.
 - [ ] Deployment uses immutable source/version evidence and a recoverable prior
       production version.
-- [ ] ADR-TS001-001 through ADR-TS001-004 have dispositions.
+- [x] ADR-TS001-001 through ADR-TS001-004 have independent architecture
+      dispositions; they remain `[PROPOSED]` behind their evidence gates.
 - [ ] Documentation and traceability are complete.
 
 ## 17. References
@@ -961,6 +968,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [Threat Model](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
 - [Benchmark Plan](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)
 - [OXS Format Specification](https://www.ursasoftware.com/OXSFormat/)
 - [Cloudflare Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
 - [Cloudflare Workers versions and deployments](https://developers.cloudflare.com/workers/configuration/versions-and-deployments/)

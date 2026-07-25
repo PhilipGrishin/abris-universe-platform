@@ -34,10 +34,11 @@ ADRs, and RFCs when approved sources exist.
 - [Requests for Comments](rfc/README.md)
 
 The first task-scoped Technical Design Proposal remains `[PROPOSED]` with
-independent disposition `ACCEPTED_WITH_GATES`. Its architecture-review
-component is complete; AU-AGENT-003 security review and declared evidence gates
-remain open. It does not become implemented architecture or product acceptance
-through the review disposition.
+independent disposition `ACCEPTED_WITH_GATES`. Architecture and AU-AGENT-003
+design-only security review are complete, and TD-GATE-004 is closed. Declared
+fixture, implementation, runtime, performance, and deployment evidence gates
+remain open. The review dispositions are not implemented architecture or
+product acceptance.
 
 ## Owner
 

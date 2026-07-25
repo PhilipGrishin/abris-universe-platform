@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AU-CDX-TASK-001 independent security design gate
+**Current focus:** TASK-THINSLICE-001 revised-design confirmation handoff
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -137,10 +137,10 @@
 - `[IMPLEMENTED]` TASK-THINSLICE-001 v1.1 contains only the authorized
   editorial changes; the product-side architecture input contains only the
   authorized terminology correction.
-- `[OPEN]` Route-1 project-original fixture production and the AU-AGENT-003
-  security-review portion of DEP-TR-001. The architecture-review component is
-  complete with gates; the design package remains `[PROPOSED]` and development
-  remains blocked.
+- `[OPEN]` Route-1 project-original fixture production for DEP-001. The
+  architecture and AU-AGENT-003 security-design review components of DEP-TR-001
+  are complete with gates; the design package remains `[PROPOSED]` and
+  module-specific evidence gates remain enforced.
 - `[PROPOSED]` The TASK-THINSLICE-001 Technical Design defines the canonical
   Pattern/OXS boundary, tiled Canvas2D renderer, IndexedDB event persistence,
   XML security limits, benchmark method, and immutable
@@ -163,9 +163,19 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.1.0 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.2.1 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
+- `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
+  security design at exact source `07895e0`, issued `VERIFIED WITH FINDINGS`,
+  and reverified AU-AGENT-001 dispositions at exact source `b4eaedc`.
+- `[TESTED]` TS001-SEC-001 is resolved by Technical Design/Threat Model v1.2;
+  TS001-SEC-002 design action is complete and remains open only for future
+  runtime request inventory and network-capture evidence. No mandatory
+  security-design finding remains unresolved.
+- `[TESTED]` TD-GATE-004 is closed at design level. This does not close
+  TD-GATE-001, TD-GATE-002, TD-GATE-003, implementation verification, release
+  readiness, Claude acceptance, or project `[VERIFIED]`.
 - `[CONFIRMED]` PROD-DEC-010 records Abris Art as the launch, distribution, and
   anchor-catalog relationship; explicit grants remain mandatory for each
   concrete route-2 content transfer and Phase 0 scope is unchanged.
@@ -287,13 +297,18 @@
   `260bea570a070e74fc914ad9427a18ef5cfbe5be791c18b4eca87645da2651b0`.
 - `[TESTED]` The exchange archive records the canonical review reference and
   the committed outcome records no verified scope.
+- `[TESTED]` The AU-AGENT-003 Engineering Verification Report has complete
+  metadata, exact review/reverification commits, preserved finding history,
+  one allowed Engineering Verification Status, and resolvable local links.
 
 ## Blockers
 
 - `[OPEN]` Product implementation and its independent acceptance evidence; no
   product code exists yet.
-- `[OPEN]` AU-AGENT-003 security review and route-1 coordinate/symbol fixture
-  evidence for the proposed AU-CDX-TASK-001 v1.1 Technical Design.
+- `[OPEN]` Route-1 coordinate/symbol fixture evidence for the proposed
+  AU-CDX-TASK-001 v1.1 Technical Design.
+- `[OPEN]` Runtime request inventory and network-capture evidence before
+  deployment; TS001-SEC-002 is non-blocking for the current design gate.
 
 ## Active Risks
 
@@ -316,18 +331,20 @@
   lock-in, or rights exposure.
 - RISK-013: browser-local progress may be lost or misreported as saved.
 - RISK-014: first Cloudflare deployment may lack a recoverable rollback anchor.
+- RISK-015: same-origin runtime requests could expose pattern-derived data
+  until request-inventory and full network-capture evidence pass.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated, integrated, and archived the TASK-THINSLICE-001 independent
-pre-implementation architecture review; revised the design package to satisfy
-its documented findings without application, fixture, pipeline, or deployment
-implementation.
+Completed and reverified the independent AU-AGENT-003 pre-code security design
+review, resolved TS001-SEC-001, recorded the TS001-SEC-002 deployment-evidence
+gate, and closed TD-GATE-004 without application, fixture, pipeline, or
+deployment implementation.
 
 ## Next Step
 
-Perform the independent AU-AGENT-003 security design review. Do not begin
-application or fixture implementation before the remaining design gates
-authorize it.
+Prepare an exact-commit Collaboration Bridge package for Claude confirmation of
+the revised design and gate dispositions, then stop. Do not begin fixture or
+application implementation in this handoff stage.

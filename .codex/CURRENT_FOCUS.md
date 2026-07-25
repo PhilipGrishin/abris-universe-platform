@@ -1,15 +1,16 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-TECHNICAL-DESIGN
+## Focus ID: AU-CDX-TASK-001-DESIGN-REVISION-CONFIRMATION
 
 **Status:** Product clarification `[IMPLEMENTED]`, `[TESTED]`; Technical Design
 package `[PROPOSED]` with independent disposition `ACCEPTED_WITH_GATES`;
-mandatory review findings integrated; AU-AGENT-003 security review and evidence
-gates open; development blocked
+mandatory review findings integrated; AU-AGENT-003 security design review
+`VERIFIED WITH FINDINGS`; TD-GATE-004 closed; confirmation handoff in progress;
+implementation not started
 
-Complete the independent pre-code security gate for the revised
-TASK-THINSLICE-001 v1.1 Technical Design Proposal after canonical integration
-of the `AU-EX-20260725-005` architecture review.
+Prepare an exact-commit Collaboration Bridge package for Claude confirmation
+that the revised TASK-THINSLICE-001 Technical Design and internal security gate
+preserve the prior `ACCEPTED_WITH_GATES` disposition.
 
 ## Confirmed Inputs
 
@@ -37,8 +38,8 @@ of the `AU-EX-20260725-005` architecture review.
 - AU-AGENT-005 supplies storage and persistence interface analysis.
 - AU-AGENT-006 supplies client/viewer integration analysis.
 - AU-AGENT-002 maintains documentation structure and traceability.
-- AU-AGENT-003 remains independent and does not implement or self-verify this
-  work.
+- AU-AGENT-003 independently reviewed and reverified the security design; it
+  did not implement or modify the reviewed design.
 
 ## Boundaries
 
@@ -76,6 +77,12 @@ of the `AU-EX-20260725-005` architecture review.
   for R-1 through R-8 and N-1 through N-7/N-9 without changing product meaning.
 - Registered N-8 and the PROD-DEC-010 format survey as separate Phase 1 backlog
   records.
+- AU-AGENT-003 issued `AU-REVIEW-ENG-TS001-SEC-001` with `VERIFIED WITH
+  FINDINGS`, no mandatory unresolved finding, and a pass for the security-review
+  component of TD-GATE-004.
+- AU-AGENT-001 resolved TS001-SEC-001 and added the TS001-SEC-002 runtime
+  request-inventory/network-capture obligation; AU-AGENT-003 reverified the
+  dispositions at exact source `b4eaedc`.
 
 ## Open Design Gates
 
@@ -86,9 +93,11 @@ of the `AU-EX-20260725-005` architecture review.
   records an explicit acceptance limitation.
 - TD-GATE-003: current Cloudflare placeholder has a recoverable rollback anchor
   before production deployment.
-- TD-GATE-004: architecture-review component complete; AU-AGENT-003
-  security-relevant design review remains open before `[PROPOSED]` can be
-  lifted.
+- TS001-SEC-002: production request inventory and clean full-path network
+  capture remain required before deployment.
+
+TD-GATE-004 is closed at design level. Implementation, release, and product
+acceptance remain separate future gates.
 
 ## Completed Architecture Review Exchange
 
@@ -110,8 +119,8 @@ authority; the valid result is integrated and archived. Rejected predecessor
 
 ## Next Concrete Step
 
-Route the revised security-relevant design, threat model, and ADR sections to
-AU-AGENT-003 for an independent Engineering Verification Report. Do not begin
-route-1 fixture production, workspace scaffolding, application implementation,
-pipeline implementation, or deployment until the applicable recorded gates
-authorize that work.
+Register and export `AU-EX-20260725-006` from an immutable exact source commit
+for Claude design-revision confirmation, then stop on `Codex finished`. Do not
+begin route-1 fixture production, workspace scaffolding, application
+implementation, pipeline implementation, or deployment during this handoff
+stage.
