@@ -5,11 +5,12 @@
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
-`VERIFIED WITH FINDINGS`; bounded renderer implementation is next
+`VERIFIED WITH FINDINGS`; renderer-core candidate is `[IMPLEMENTED]`,
+`[TESTED]` and pending independent engineering verification
 
-Implement and measure the bounded tiled Canvas2D renderer core from Technical
-Design section 8 and ADR-TS001-002. Keep client UI, Worker integration, and
-TS001-PERSIST-006 outside this stage.
+Independently verify the exact tiled Canvas2D renderer-core candidate from
+Technical Design section 8 and ADR-TS001-002. Remediate mandatory findings.
+Keep client UI, Worker integration, and TS001-PERSIST-006 outside this stage.
 
 ## Confirmed Inputs
 
@@ -110,5 +111,5 @@ Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Implement the tiled renderer core and measured medium-fixture prototype. Stop
-before client UI and Worker integration.
+Commit the exact renderer-core candidate and assign AU-AGENT-003 independent
+review. Resolve mandatory findings before starting client integration.

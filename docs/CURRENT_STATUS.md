@@ -399,20 +399,24 @@
 - RISK-014: first Cloudflare deployment may lack a recoverable rollback anchor.
 - RISK-015: same-origin runtime requests could expose pattern-derived data
   until request-inventory and full network-capture evidence pass.
+- RISK-016: renderer-core evidence could be mistaken for browser, Worker,
+  accessibility, glyph-atlas, or performance readiness.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and tested IndexedDB schema version 1, opaque source retention,
-atomic accepted-import commit, failed/interrupted cleanup, stable metadata,
-append-only idempotent progress, single-writer Web Locks, persistence-capability
-reporting, and projection rebuild. Eleven focused persistence tests pass. Real
-browser/two-tab/power-loss/eviction and client save-state evidence, rendering,
-deployment, independent implementation verification, and project `[VERIFIED]`
-remain open. This internal stage requires no Claude return.
+Implemented and tested the bounded tiled renderer core: deterministic 32×32
+tiles, visible-plus-prefetch requests, stale-result rejection, separate
+static/progress layers, incremental budgets, readable/overview modes, contrast,
+progress marks, and canonical hit testing. Nine focused renderer tests pass,
+and the 100,000-stitch Node regression signal requests 12 of 128 tiles.
+Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
+independent renderer verification, deployment, and project `[VERIFIED]` remain
+open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Implement and measure the bounded tiled renderer core from Technical Design
-section 8. Keep TS001-PERSIST-006 open for later browser/client integration.
+Submit the exact renderer-core candidate to AU-AGENT-003, remediate mandatory
+findings, and keep browser/client evidence plus TS001-PERSIST-006 open for the
+later integration stage.

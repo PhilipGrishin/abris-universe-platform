@@ -343,3 +343,29 @@
   and deploy only after the finding is cleared.
 - **Owner:** AU-AGENT-001 for the contract; AU-AGENT-006 for client evidence;
   AU-AGENT-003 for independent reverification
+
+## RISK-016 — Renderer Core Evidence Is Mistaken for Browser Readiness
+
+- **Status:** `[OPEN]`; bounded core controls `[IMPLEMENTED]`, `[TESTED]`;
+  independent and browser evidence pending
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A Node Canvas-contract signal or capability selector is treated
+  as proof of browser pixels, OffscreenCanvas Worker operation, accessibility,
+  glyph-atlas behavior, device performance, or production readiness.
+- **Affected areas:** Rendering correctness, symbol readability,
+  accessibility, interaction, performance, memory, and release confidence.
+- **Prevention:** Keep core, browser adapter, Worker, client interaction,
+  accessibility, rendering-golden, and controlled benchmark evidence distinct.
+  Require exact-source AU-AGENT-003 review and the task benchmark plan before
+  release claims.
+- **Mitigation:** The renderer core bounds viewport work, rejects stale
+  requests, separates static/progress layers, and records its Node measurement
+  explicitly as a non-acceptance regression signal. Open browser evidence is
+  listed in the implementation review.
+- **Fallback:** Retain the stable renderer interface, disable a failing
+  execution path, use the incremental main-thread fallback, and do not promote
+  the release until mandatory findings and browser gates pass.
+- **Owner:** AU-AGENT-004 for renderer correctness and performance;
+  AU-AGENT-006 for browser/client/accessibility evidence; AU-AGENT-003 for
+  independent engineering verification

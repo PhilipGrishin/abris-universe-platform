@@ -44,7 +44,15 @@ importers:
         specifier: 6.2.5
         version: 6.2.5
 
-  packages/renderer: {}
+  packages/renderer:
+    dependencies:
+      '@abris-universe/domain-core':
+        specifier: workspace:*
+        version: link:../domain-core
+    devDependencies:
+      '@abris-universe/oxs-importer':
+        specifier: workspace:*
+        version: link:../importers/oxs
 
 packages:
 

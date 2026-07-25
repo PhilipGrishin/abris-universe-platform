@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.9.0 |
+| Version | 1.10.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -44,6 +44,7 @@ Verification Report or final product acceptance.
 - [Domain Core Implementation Review](DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
 - [OXS Importer Implementation Review](OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [Persistence Implementation Review](PERSISTENCE_IMPLEMENTATION_REVIEW.md)
+- [Renderer Core Implementation Review](RENDERER_IMPLEMENTATION_REVIEW.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
 ## Current Disposition
@@ -53,8 +54,9 @@ task-scoped ADRs remain `[PROPOSED]` with independent revision disposition
 `CONFIRMED_ACCEPTED_WITH_GATES`. TD-GATE-001 is `[TESTED]` and closed for the
 initial route-1 producer profile, so the registered sequence may proceed to
 the next registered stages. Canonical domain-core, the bounded route-1 importer
-core, and IndexedDB persistence/recovery are implemented and tested.
-TD-GATE-002 remains open for
+core, IndexedDB persistence/recovery, and the tiled renderer core are
+implemented and tested. The renderer result still requires AU-AGENT-003 review
+and later browser/Worker/client evidence. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

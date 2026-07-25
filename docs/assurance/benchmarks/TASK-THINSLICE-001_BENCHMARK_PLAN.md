@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Benchmark Plan |
-| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; no benchmark result exists |
+| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; no controlled browser benchmark result exists |
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.2.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
@@ -23,6 +23,16 @@
 Define reproducible Phase 0 measurements and provisional engineering budgets.
 This plan makes no performance claim; results require later implementation
 evidence.
+
+## Non-Gate Renderer-Core Signal
+
+`pnpm --filter @abris-universe/renderer measure:medium` provides a reproducible
+Node-only regression signal for importer, tile construction, visible-tile
+selection, and Canvas-contract operation count. It must record
+`performanceAcceptance: false`. It does not exercise browser pixels, frame
+scheduling, font metrics, Worker transport, GPU/Canvas memory, interaction,
+accessibility, or the controlled profiles below and therefore cannot satisfy a
+budget or Quality Gate Decision.
 
 ## Scope
 

@@ -309,6 +309,31 @@
 - **Next step:** Proceed to the bounded renderer implementation and measured
   medium-fixture prototype without claiming browser/client persistence.
 
+### AU-CDX-TASK-001-RENDERER — Bounded Tiled Renderer Core
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent AU-AGENT-003
+  verification pending; no project `[VERIFIED]`.
+- **Source:** Technical Design v1.5.0 section 8; ADR-TS001-002; task benchmark
+  plan.
+- **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
+  AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
+- **Documentation Impact:** Material.
+- **Result:** Implemented deterministic 32×32 tile construction, visible plus
+  one-tile-prefetch queries, cancellation and stale-result rejection, readonly
+  renderer/provider contracts, separate static/progress Canvas2D-contract
+  layers, incremental frame budgets, readable/overview modes, contrast
+  selection, non-color progress marks, and canonical-cell hit testing in
+  `packages/renderer`.
+- **Evidence:** Strict typecheck; 9 focused renderer tests; full workspace
+  checks; and a Node renderer-core medium-fixture signal with 100,000 stitches,
+  128 total tiles, and 12 requested tiles for the measured viewport.
+- **Boundary:** No browser Canvas adapter, bitmap glyph atlas,
+  OffscreenCanvas Worker transport, client gestures, companion accessible DOM,
+  rendering goldens, controlled browser benchmark, 500,000-stitch scale claim,
+  exact-symbol claim outside route 1, UI, deployment, or product acceptance.
+- **Next step:** Submit the exact renderer-core commit to AU-AGENT-003 and
+  remediate mandatory findings before client integration.
+
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status

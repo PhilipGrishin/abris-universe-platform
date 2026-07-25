@@ -986,3 +986,24 @@
 - **Next step:** AU-AGENT-001 performs engineering intake and Technical Review
   of AU-CDX-TASK-001 v1.0 in a separate task. Do not begin implementation in
   this registration task.
+
+## 2026-07-25 — Codex Internal Handoff — TASK-THINSLICE-001 Renderer Core
+
+- **Status:** Renderer-core candidate `[IMPLEMENTED]`, `[TESTED]`; independent
+  AU-AGENT-003 review pending; no project `[VERIFIED]`.
+- **Scope:** Deterministic tile construction, bounded visible queries,
+  stale-request rejection, separate pattern/progress draw contracts,
+  incremental budgets, readability/contrast behavior, progress visualization,
+  and canonical-cell hit testing.
+- **Evidence:** Strict renderer typecheck; 9 focused tests; full workspace
+  checks; Node v26.0.0 medium-fixture signal with 100,000 stitches, 128 total
+  tiles, and 12 requested tiles.
+- **Evidence boundary:** The Node signal is not browser performance acceptance.
+  Browser Canvas pixels, bitmap glyph atlas, Worker transport, client
+  interaction/accessibility, rendering goldens, and controlled benchmarks
+  remain open.
+- **Documentation Impact:** Material; package, implementation review, task,
+  traceability, risk, status, focus, changelog, and handoff records updated.
+- **Claude handoff:** Not required for this internal implementation candidate.
+- **Next step:** Commit the exact candidate and assign AU-AGENT-003 independent
+  engineering verification.

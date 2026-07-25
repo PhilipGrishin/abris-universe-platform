@@ -26,11 +26,13 @@ for (const [directory, expectedName] of expectedPackages) {
       "packages/domain-core",
       "packages/importers/oxs",
       "packages/persistence",
+      "packages/renderer",
     ].includes(directory)
       ? [
           "README.md",
           "node_modules",
           "package.json",
+          ...(directory === "packages/renderer" ? ["scripts"] : []),
           "src",
           "test",
           "tsconfig.json",
@@ -68,6 +70,15 @@ for (const requiredPath of [
   "packages/persistence/src/progress-repository.ts",
   "packages/persistence/test/persistence.test.ts",
   "packages/persistence/tsconfig.json",
+  "packages/renderer/src/contracts.ts",
+  "packages/renderer/src/contrast.ts",
+  "packages/renderer/src/index.ts",
+  "packages/renderer/src/renderer.ts",
+  "packages/renderer/src/tiles.ts",
+  "packages/renderer/src/viewport.ts",
+  "packages/renderer/scripts/measure-medium.ts",
+  "packages/renderer/test/renderer.test.ts",
+  "packages/renderer/tsconfig.json",
 ]) {
   if (!existsSync(requiredPath)) {
     throw new Error(`Approved workspace implementation is missing ${requiredPath}`);
@@ -82,5 +93,5 @@ for (const pattern of ["apps/*", "packages/*", "packages/*/*"]) {
 }
 
 process.stdout.write(
-  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer/persistence scope, and scaffold-only renderer/client packages.\n"
+  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer/persistence/renderer scope, and scaffold-only client package.\n"
 );

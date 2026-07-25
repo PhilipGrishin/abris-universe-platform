@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-RENDER-001 |
 | Title | Renderer Workspace |
-| Status | `[IMPLEMENTED]` scaffold; renderer implementation absent |
+| Status | Renderer core `[IMPLEMENTED]`, `[TESTED]`; browser integration and performance acceptance `[OPEN]` |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-002 |
@@ -17,21 +17,53 @@
 
 ## Purpose and Scope
 
-Reserve the platform-independent package boundary for tile addressing,
-visible-set calculation, deterministic Canvas2D drawing, and hit testing.
+Provide the platform-independent Phase 0 renderer core for tile construction,
+visible-set calculation, deterministic Canvas2D-contract drawing, progress
+overlay invalidation, and canonical-cell hit testing.
 
-## Current Boundary
+## Implemented Boundary
 
-This is a non-behavioral scaffold. It contains no renderer, Canvas, DOM, React,
-worker, symbol atlas, or performance claim. The future renderer consumes
-readonly domain queries and never mutates Pattern or Project.
+- Builds deterministic 32×32 tiles sorted by local cell index and omits empty
+  tiles.
+- Requests only the visible viewport plus one-tile prefetch through
+  `PatternTileProvider` and discards aborted or stale results.
+- Separates static-pattern and progress-overlay draw paths.
+- Uses readable and overview modes at the 16 CSS-pixel threshold.
+- Selects black or white symbol treatment with a calculated minimum 4.5:1
+  contrast ratio.
+- Converts screen points to canonical zero-based cells for tile-local hit
+  testing and disables hit testing in overview mode.
+- Provides an explicit OffscreenCanvas/Worker capability decision and an
+  incremental main-thread frame-budget fallback.
+- Uses no DOM node per stitch and does not mutate Pattern, PatternVersion,
+  Project, or Progress.
+
+## Evidence
+
+- `pnpm --filter @abris-universe/renderer typecheck`
+- `pnpm --filter @abris-universe/renderer test`
+- `pnpm --filter @abris-universe/renderer measure:medium`
+- `docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md`
+
+The medium-fixture command is a Node renderer-core regression signal. It is not
+a browser frame-time result or performance acceptance.
+
+## Explicit Non-Claims
+
+This package does not implement the browser Canvas adapter, glyph bitmap atlas,
+OffscreenCanvas Worker transport, React/client gesture arbitration, companion
+accessible DOM, rendering golden screenshots, or browser performance matrix.
+Those items remain mandatory later integration evidence. It makes no exact
+symbol-fidelity claim outside the registered route-1 literal-symbol profile.
 
 ## Lifecycle and Additions
 
-Implementation requires the applicable fixture and domain contracts. Additions
-must preserve tiling, UI separation, deterministic behavior, accessibility
-integration seams, measured performance evidence, Documentation Impact, and
-independent engineering review.
+Changes must preserve the approved tiling and readonly provider contracts,
+separation from UI and domain mutation, deterministic behavior, accessibility
+integration seams, bounded work, Documentation Impact, and independent
+engineering review. Public contract, tile encoding, readability threshold,
+progress-state rendering, or execution-path changes require Technical Design
+and ADR review.
 
 ## Related Sources
 
