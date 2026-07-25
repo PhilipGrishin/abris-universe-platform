@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** INIT-003-PD-001 — Product Decision package exported; awaiting Claude return
+**Current focus:** AU-CDX-TASK-001 Technical Review and OQ-005 spike intake
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -116,13 +116,18 @@
   HTTP 200 over HTTPS with a Cloudflare server response. The Worker name
   `abris-universe` and placeholder/static-asset state are owner-confirmed but
   are not independently exposed by the public response.
-- `[OPEN]` INIT-002-F2, INIT-002-F5, and canonical integration of Cowork
-  DEC-005 through DEC-008 remain follow-up work.
+- `[OPEN]` INIT-002-F2 and INIT-002-F5 remain follow-up work.
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-002` packages 27
   checksum-registered text sources and review evidence from exact source
-  `aec043a0796948c27b825907c929d783f6f8fca0`; its external Claude inbox is
-  byte-equivalent and reports `EXPORTED`, `CURRENT`, `NOT_RETURNED`, and
-  `NOT_INTEGRATED`.
+  `aec043a0796948c27b825907c929d783f6f8fca0`; the validated external inbox and
+  outbox are archived and the canonical outcome reports `INTEGRATED`.
+- `[IMPLEMENTED]`, `[TESTED]` The valid `AU-EX-20260725-002` return integrated
+  PROD-DEC-005 through PROD-DEC-008, resolved the owner criterion portion of
+  OQ-005, updated authorized product-source statuses, and was archived with
+  `COMPLETED / NO_DECISION`.
+- `[OPEN]` The concrete OQ-005 format recommendation and
+  TASK-THINSLICE-001 Technical Review disposition are the current engineering
+  work. Development remains blocked.
 
 ## Verification Performed
 
@@ -236,14 +241,12 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Prepared and synchronized `AU-EX-20260725-002` from immutable source
-`aec043a0796948c27b825907c929d783f6f8fca0` after implementing and testing the
-Project Owner dispositions. Cowork DEC-005 through DEC-008 remain exchange
-inputs only.
+Validated and integrated the `AU-EX-20260725-002` product-decision return,
+preserved canonical Cowork text, archived the exchange, and opened the
+Technical Review intake.
 
 ## Next Step
 
-Stop with `Codex finished` and await the `AU-EX-20260725-002` return. Do not
-begin TASK-THINSLICE-001 Technical Review, the OQ-005 spike, or product
-implementation until the validated Product Decision return is canonically
-integrated.
+Perform TASK-THINSLICE-001 Technical Review and the bounded OQ-005 format spike
+under the registered executor mapping. Do not implement product code or design
+the permanent deployment pipeline before the Technical Review disposition.

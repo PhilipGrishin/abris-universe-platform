@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.9.0 |
+| Version | 2.0.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — Cowork DEC-005 Through DEC-008 Integration
+
+- Validated the `AU-EX-20260725-002` `PRODUCT_DECISION` return against the
+  registered Bridge contract and product-authority boundary.
+- Integrated Claude-authored PROD-DEC-005 through PROD-DEC-008 and the OQ-005
+  register row without changing returned meaning.
+- Updated the approved status of the Product Vision/Roadmap and product-side
+  Architecture input while preserving the Technical Review boundary for stack
+  recommendations and proposed ADRs.
+- Archived the exchange with Product Decision Log provenance and registered
+  `COMPLETED / NO_DECISION`; no acceptance status was assigned.
+- Opened the gated TASK-THINSLICE-001 Technical Review and OQ-005 spike intake;
+  no development began.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`.
 
 ## 2026-07-25 — INIT-003 Owner Dispositions and Product Decision Exchange Intake
 

@@ -135,6 +135,36 @@
 - **Статус:** **Resolved (процессное решение).**
 - **Связанные документы:** `02_Architecture_and_Stack.md` §6–7; `04_Codex_Context_Pack.md` §6.
 
+### DEC-005 — Утверждение Product Vision, Roadmap и Architecture-input
+- **Дата:** 2026-07-21. **Тема:** Перевод стратегических документов из [DRAFT] в [APPROVED].
+- **Контекст:** `01_Product_Vision_and_Roadmap.md` и `02_Architecture_and_Stack.md` находились в статусе [DRAFT — к утверждению владельцем] (блокер B2 из 10_Project_Readiness_Validation.md); Task Package TASK-THINSLICE-001 ссылается на них.
+- **Выбранный вариант:** Владелец утвердил оба документа без правок («утверждаю», 2026-07-21).
+- **Последствия:** 01 (Vision + Roadmap, Части I–II) — [APPROVED] как продуктовые входы разработки. 02 — [APPROVED] как продуктовый архитектурный вход; при этом раздел 6 (стек) остаётся рекомендацией с обязательным Codex Technical Review, ADR-001…008 остаются Proposed до Architecture Review (DEC-004 не изменён). Блокер B2 снят. Канонические копии в репозитории получают статус через ближайший exchange.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+### DEC-006 — Критерий выбора первого формата импорта (закрытие OQ-005)
+- **Дата:** 2026-07-21. **Тема:** OQ-005, блокер B3.
+- **Контекст:** Для Phase 0 требовался владельческий критерий выбора одного простого формата импорта.
+- **Выбранный вариант:** Владелец подтвердил («подтверждаю», 2026-07-21): критерий — «минимальная сложность парсинга при репрезентативности реальных пользовательских файлов»; конкретный формат выбирает spike Codex на 2–3 структурированных кандидатах (класса XSD/PAT/SXP; не PDF, не растровое изображение) с обоснованием в составе Technical Review.
+- **Последствия:** OQ-005 закрыт на уровне критерия; DEP-001/DEP-003 Task Package разблокированы в части владельческого решения; остаётся технический spike на стороне Codex. Блокер B3 снят.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+*Примечание (F2):* с DEC-005 продуктовые решения при кросс-ссылках между контурами указывать как PROD-DEC-xxx во избежание коллизии с инженерными DEC-xxx в docs/DECISIONS.md.
+
+### DEC-007 — Тестовый поддомен abris.653915.com (Cloudflare static hosting)
+- **Дата:** 2026-07-25
+- **Контекст:** Владельцу нужна временная тестовая страница до начала реализации Phase 0. Домен `653915.com` находится в Cloudflare-аккаунте владельца; Infrastructure Plan (04_ARCHITECTURE/03) рекомендует Cloudflare static hosting как $0-вариант без запрета коммерческого использования.
+- **Выбранный вариант:** Тестовая среда живёт на поддомене **abris.653915.com**. Временная заглушка развёрнута владельцем 2026-07-25 как Cloudflare Worker `abris-universe` (static assets, Direct Upload) с кастомным доменом abris.653915.com в зоне 653915.com (первоначальный план «Cloudflare Pages» уточнён по факту: актуальный поток Cloudflare создаёт Worker со static assets; смысл решения не меняется — статический хостинг Cloudflare). Постоянный деплой-пайплайн (GitHub → CI → deploy) проектирует и настраивает Codex в рамках Phase 0 Technical Design Proposal; заглушка будет заменена первым деплоем тонкого среза.
+- **Последствия:** У проекта есть публичный тестовый URL с первого дня; DNS/SSL управляются автоматически внутри одного Cloudflare-аккаунта. Для Technical Review: target deployment Phase 0 — Cloudflare static hosting на abris.653915.com.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+### DEC-008 — Диспозиции владельца по итогам INIT-003
+- **Дата:** 2026-07-25
+- **Контекст:** Приёмка INIT-003 (AU-EX-20260725-001, VERIFIED) подтвердила неблокирующие находки OVR-001…005 и рекомендовала PRODUCT_DECISION-обмен.
+- **Выбранный вариант:** Владелец распорядился («одобряю нормализацию» + директива от 2026-07-25): (1) OVR-001/002/005 — формулировочная нормализация одобрена (поле provenance у AU-CODEX-PRIMARY; отдельные «Does not own» у AU-CODEX-PRIMARY и AU-AGENT-003; закрепление исключительно-мостовой коммуникации в каноническом governance-тексте); полномочия, границы и смысл ролей не меняются; исполнение — AU-CODEX-PRIMARY/AU-AGENT-002. (2) OVR-004 — одобрен как отдельная протестированная tooling-задача (archive-aware status reporting), сроки на усмотрение AU-CODEX-PRIMARY. (3) PD-001 — одобрено проведение PRODUCT_DECISION-обмена для канонической интеграции DEC-005…008. (4) Следующий гейт после интеграции — TASK-THINSLICE-001 Technical Review + ограниченный spike OQ-005; разработка остаётся заблокированной до прохождения Technical Review.
+- **Последствия:** Follow-up ID Codex INIT-003-OVR-001/002/004/005 и INIT-003-PD-001 разблокированы владельческим решением.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
 ---
 
 ## Часть C. Открытые вопросы (Open Questions Register)
@@ -145,7 +175,7 @@
 | OQ-002 | Планируется ли вовлекать несовершеннолетних учеников в Education (EP-22) на горизонте, требующем privacy-by-design (age assurance, parental consent) заранее? | Deep Research R4-03 | EP-22, Phase 3d | Quality, Security & Independent Acceptance Lead | Владелец проекта | До входа в Phase 3d | Open |
 | OQ-003 | Технологический стек команды: TypeScript/React(Native) или инвестиция в Kotlin Multiplatform? Organизационно-ресурсный вопрос, влияющий на рекомендацию ADR-004. | Deep Research R3-02/R3-03 | ADR-004, Phase 2 (mobile) | System Architecture, Data & AI Governance Lead + Codex (Technical Design Proposal) | Владелец проекта | До начала Phase 2 (mobile), не блокирует Phase 0 | Open |
 | OQ-004 | Кто ведёт continuous regulatory monitoring за EU Digital Omnibus (GDPR/ePrivacy/Data Act/NIS2/AI Act реформа) на 2026–2027? | Deep Research R4-02 | NFR-008, privacy-слой | Quality, Security & Independent Acceptance Lead (кандидат) | Владелец проекта (назначение ответственного) | Ближайший Project Status Report | Open |
-| OQ-005 | Критерий и конкретный выбор первого простого формата импорта для Phase 0. | Roadmap Phase 0; `02_Architecture_and_Stack.md` §9.5 | EP-02, TASK-THINSLICE-001 | System Architecture Lead + Codex (spike 9.5) | Владелец проекта подтверждает критерий; выбор конкретного формата делегирован spike | До старта реализации TASK-THINSLICE-001 | Open — см. также `07_TaskPackage_EP01_ThinSlice.md` |
+| OQ-005 | Критерий и конкретный выбор первого простого формата импорта для Phase 0. | Roadmap Phase 0; `02_Architecture_and_Stack.md` §9.5 | EP-02, TASK-THINSLICE-001 | System Architecture Lead + Codex (spike 9.5) | Критерий подтверждён владельцем 2026-07-21 (DEC-006); выбор конкретного формата делегирован spike Codex | Spike — до кодирования importer | **Resolved (критерий)** — открыт только технический spike |
 | OQ-006 | Конкретный SLA распознавания PDF (confidence %, доля успешного импорта) для EP-03. | C-01; Roadmap Phase 1.5 | EP-03, Phase 1.5 | System Architecture Lead + Codex (Prototype 9.2) | Владелец проекта | После Prototype 9.2 (20–30 файлов) | Open |
 | OQ-007 | Вводить ли Cloud Sync проактивно в Phase 1.5 (де-риск перед Phase 2) или оставить строго обязательным только с Phase 2 (mobile)? | C-04; Roadmap Phase 1.5/2 | EP-15 | Product Strategy & Requirements Lead + System Architecture Lead (рекомендация) | Владелец проекта | До планирования Phase 1.5 | Open |
 | OQ-008 | Переносить ли базовую QR-активацию набора Abris Art (часть EP-21) в Phase 1.5 (Web) ради быстрого канала роста, вместо ожидания Phase 2 (Mobile)? | Roadmap Phase 2 сводная таблица | EP-21 | Ecosystem, Community & Commercial Product Lead | Владелец проекта | До планирования Phase 1.5 | Open |

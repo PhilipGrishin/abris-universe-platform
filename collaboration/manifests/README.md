@@ -38,8 +38,9 @@ not approve returned meaning.
   validated, integrated, and archived with decision `VERIFIED` within the
   registered scope.
 - [`AU-EX-20260725-002`](AU-EX-20260725-002/README.md) — Product Decision
-  integration request for Cowork DEC-005 through DEC-008; exact-source package
-  exported to the Claude inbox; return and canonical integration remain open.
+  integration for Cowork DEC-005 through DEC-008; return validated, canonical
+  product records integrated, and exchange archived with decision
+  `NO_DECISION`.
 
 ## Rules
 

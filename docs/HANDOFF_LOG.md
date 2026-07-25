@@ -1,5 +1,29 @@
 # Handoff Log
 
+## 2026-07-25 — Claude Product Decision Return and Codex Integration — AU-EX-20260725-002
+
+- **Trigger:** `Claude finished`.
+- **Return:** `COMPLETED`; decision `NO_DECISION`, correctly indicating product
+  decision content rather than independent acceptance.
+- **Validation:** Exact source, role, result type, all required reviewed inputs,
+  output registration, paths, extension, size, checksum, authority statement,
+  and absence of extra files passed.
+- **Meaning review:** No blocking finding. Claude clarified canonical Cowork
+  numbering: PROD-DEC-005 covers both document approvals; PROD-DEC-006 covers
+  the OQ-005 criterion.
+- **Integration:** Appended Claude-authored DEC-005 through DEC-008 text
+  byte-for-byte to the Product Decision Log, replaced the OQ-005 row
+  byte-for-byte, and applied the specifically authorized document-status
+  annotations.
+- **Archive:** `claude/archive/AU-EX-20260725-002` at
+  `2026-07-25T13:52:36.832Z`, with
+  `product/decisions/05_Decision_Log.md` as the review reference.
+- **Not accepted:** No engineering result, architecture, implementation,
+  import-format choice, pipeline design, Cloudflare internals, or project
+  `[VERIFIED]` status.
+- **Next gate:** Begin TASK-THINSLICE-001 Technical Review plus the bounded
+  OQ-005 spike. Development remains blocked.
+
 ## 2026-07-25 — Codex Product Decision Handoff — AU-EX-20260725-002
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return

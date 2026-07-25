@@ -80,7 +80,7 @@
 ### INIT-003-PD-001 — Import Cowork DEC-005 Through DEC-008 Through Product Decision Exchange
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]` preparation; Bridge return and
-  canonical product integration `[OPEN]`
+  canonical product integration `[IMPLEMENTED]`, `[TESTED]`
 - **Source:** INIT-003 Independent Acceptance Report section 6 and Project Owner
   directive dated 2026-07-25.
 - **Owner:** Claude Cowork / Project Owner for product meaning;
@@ -95,9 +95,33 @@
   OWNER-DEC-INIT003-DISPOSITIONS-001).
 - **Prohibited interpretation:** The INIT-003 acceptance report alone does not
   authorize direct edits to `product/decisions/05_Decision_Log.md`.
-- **Next gate:** Complete and integrate exchange `AU-EX-20260725-002`, then
-  begin Technical Review plus the bounded OQ-005 import-format spike. No
-  development begins before the Technical Review.
+- **Next gate:** Technical Review plus the bounded OQ-005 import-format spike.
+  No development begins before the Technical Review.
+- **Outcome:** The Chief Project Orchestrator returned `COMPLETED /
+  NO_DECISION`; the contract-valid artifact was integrated under canonical
+  Cowork numbering as PROD-DEC-005 through PROD-DEC-008, the authorized source
+  statuses and OQ-005 criterion were updated, and the exchange was archived.
+- **Evidence:** `product/decisions/05_Decision_Log.md` and
+  `collaboration/manifests/AU-EX-20260725-002/outcome.json`.
+
+### AU-CDX-TASK-001-TECHNICAL-REVIEW — TASK-THINSLICE-001 Intake
+
+- **Status:** `[OPEN]`, intake authorized; development blocked
+- **Source:** TASK-THINSLICE-001 v1.0, PROD-DEC-005 through PROD-DEC-008.
+- **Owner:** AU-AGENT-001.
+- **Contributors:** AU-AGENT-004 for OQ-005 spike and Pattern/import/rendering
+  feasibility; AU-AGENT-005 for storage/persistence interfaces; AU-AGENT-006
+  for client/viewer integration; AU-AGENT-002 for documentation; AU-AGENT-003
+  is the independent engineering reviewer and must not implement.
+- **Documentation Impact:** Material.
+- **Required result:** Technical Review with confirmed facts, assumptions,
+  conflicts, feasibility, recommended architecture direction, deployment
+  constraints, executor mapping, risks, evidence plan, and disposition.
+- **Mandatory spike:** Compare two or three structured XSD/PAT/SXP-class
+  candidate formats against the PROD-DEC-006 criterion. Do not code the
+  importer.
+- **Gate:** No product development begins until the Technical Review disposition
+  explicitly authorizes the next design stage.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

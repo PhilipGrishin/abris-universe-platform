@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner / Claude Cowork |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md`, `collaboration/README.md` |
 | Supersedes | External-workspace physical navigation only |
 | Superseded By | None |
@@ -54,8 +54,10 @@ artifacts continue to follow the project English-language policy.
 - [Product Governance](governance/README.md) contains the imported Claude Cowork
   project instructions and the Codex context pack.
 
-Draft vision, product-side architecture recommendations, and research evidence
-remain subordinate to approved decisions and specifications.
+The Product Vision/Roadmap and product-side Architecture input are approved
+without content changes under PROD-DEC-005. Stack recommendations and proposed
+ADRs still require Codex Technical Review. Research evidence remains
+subordinate to approved decisions and specifications.
 
 ## Navigation
 

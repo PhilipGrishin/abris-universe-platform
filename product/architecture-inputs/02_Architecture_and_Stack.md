@@ -1,6 +1,7 @@
 # Архитектура, данные и масштабируемость + рекомендованный стек (Abris Universe)
 
-> **Repository authority note:** `[PROPOSED]` product-side architecture input.
+> **Repository authority note:** `[APPROVED — product-side architecture input]`
+> without content changes by the Project Owner on 2026-07-21 (PROD-DEC-005).
 > This document does not approve the engineering technology stack or runtime
 > architecture. Engineering decisions require Codex Technical Review and the
 > canonical engineering decision process registered in

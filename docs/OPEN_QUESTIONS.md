@@ -53,3 +53,19 @@
   establishes delivery and return provenance when the registered validation and
   integration workflow completes.
 - **Decision owner:** Project Owner / Claude Cowork / AU-CODEX-PRIMARY
+
+## OQ-005 — First Phase 0 Import Format
+
+- **Status:** `[CONFIRMED]` owner criterion; technical spike `[OPEN]`
+- **Answer:** Per PROD-DEC-006, the Project Owner confirmed the criterion on
+  2026-07-21: minimize parsing complexity while remaining representative of
+  real user files.
+- **Delegated choice:** The concrete format is selected by a bounded Codex spike
+  over two or three structured XSD/PAT/SXP-class candidates, excluding PDF and
+  raster inputs, with the recommendation justified inside the
+  TASK-THINSLICE-001 Technical Review.
+- **Result:** Only the technical spike remains open; importer coding cannot
+  begin before the spike recommendation and Technical Review disposition.
+- **Decision owner:** Project Owner for the criterion; AU-AGENT-004 prepares the
+  technical recommendation; AU-AGENT-001 approves the Technical Review
+  disposition.
