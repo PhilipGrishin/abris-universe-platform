@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 persistence finding remediation
+**Current focus:** TASK-THINSLICE-001 tiled renderer core
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -88,8 +88,11 @@
   exact-version stitch validation, Blob/hash binding, bounded ImportReport
   validation/cleanup, and fail-closed replay/rebuild checks. Ten domain,
   fifteen importer, and seventeen persistence tests pass. The independent
-  status remains `REWORK REQUIRED` until AU-AGENT-003 reverifies the exact new
-  source.
+  initial status was `REWORK REQUIRED` pending exact-source reverification.
+- `[IMPLEMENTED]` AU-AGENT-003 reverified exact remediation source `854073c`,
+  resolved TS001-PERSIST-001 through TS001-PERSIST-005, assigned
+  `VERIFIED WITH FINDINGS`, and passed the repository-level persistence gate.
+  TS001-PERSIST-006 remains open for real browser/client evidence.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -411,6 +414,5 @@ remain open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Commit the tested TS001-PERSIST-001 through TS001-PERSIST-005 remediation and
-obtain AU-AGENT-003 reverification on that exact source. Keep
-TS001-PERSIST-006 open for renderer/client integration.
+Implement and measure the bounded tiled renderer core from Technical Design
+section 8. Keep TS001-PERSIST-006 open for later browser/client integration.

@@ -267,8 +267,8 @@
 
 ## RISK-013 — Browser-Local Progress Is Lost or Misreported as Saved
 
-- **Status:** `[OPEN]`; repository controls `[IMPLEMENTED]`, `[TESTED]`;
-  client/browser/independent evidence pending
+- **Status:** `[OPEN]`; repository controls `[IMPLEMENTED]`, `[TESTED]`,
+  independently `VERIFIED WITH FINDINGS`; client/browser evidence pending
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
@@ -289,6 +289,9 @@
   simulated quota, persistence-denial, idempotency, lock-failure, reopen, and
   projection-rebuild tests. Real supported-browser, two-tab, power-loss,
   eviction, and client save-state evidence remains mandatory.
+  AU-AGENT-003 resolved repository findings TS001-PERSIST-001 through
+  TS001-PERSIST-005 at exact commit `854073c`; TS001-PERSIST-006 preserves the
+  runtime evidence obligation.
 - **Fallback:** Roll back the client without deleting IndexedDB and recover the
   projection from retained events. Manual backup remains out of approved Phase
   0 scope.

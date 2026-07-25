@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.3.0 |
+| Version | 3.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,21 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — Persistence Finding Reverification
+
+- Integrated AU-AGENT-003 reverification of exact remediation commit `854073c`
+  without changing independent review meaning.
+- Recorded TS001-PERSIST-001 through TS001-PERSIST-005 as resolved and the
+  repository-level persistence quality gate as passed.
+- Updated the task-scoped Engineering Verification Status from
+  `REWORK REQUIRED` to `VERIFIED WITH FINDINGS`.
+- Preserved TS001-PERSIST-006 as the mandatory real-browser/client evidence
+  gate and made no product, release, deployment, or project `[VERIFIED]` claim.
+- Advanced current focus to the bounded renderer-core stage.
+- Documentation Impact: Material.
+- Status: reverification `[IMPLEMENTED]`; repository persistence gate passed;
+  runtime finding open.
 
 ## 2026-07-25 — Persistence Verification Finding Remediation
 

@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-PERSIST-001 |
 | Title | TASK-THINSLICE-001 IndexedDB Persistence Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; findings remediated in candidate source; independent reverification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering Verification Status `VERIFIED WITH FINDINGS` |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 at the consolidated implementation gate |
@@ -129,9 +129,9 @@ production IndexedDB dependency was added.
   hashes, context, sequence, and stitch membership fail closed with typed
   integrity corruption.
 
-The candidate has 10 domain, 15 importer, and 17 persistence tests. These
-dispositions are implementation-owner claims until AU-AGENT-003 reverifies the
-exact remediation commit.
+The remediation has 10 domain, 15 importer, and 17 persistence tests.
+AU-AGENT-003 independently resolved TS001-PERSIST-001 through
+TS001-PERSIST-005 at exact commit `854073c`. TS001-PERSIST-006 remains open.
 
 ## Documentation Result
 
@@ -141,8 +141,8 @@ evidence. No Documentation Exception is required.
 
 ## Next Step
 
-Submit the exact remediation source for AU-AGENT-003 reverification. Do not
-close TS001-PERSIST-006 from fake IndexedDB evidence.
+Proceed to the renderer stage while preserving TS001-PERSIST-006 for the later
+browser/client integration. Do not close it from fake IndexedDB evidence.
 
 ## References
 

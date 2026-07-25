@@ -1,15 +1,15 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-PERSISTENCE
+## Focus ID: AU-CDX-TASK-001-RENDERER
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
-`[IMPLEMENTED]`, `[TESTED]`; findings 001–005 have a tested remediation
-candidate while the reviewed gate remains `REWORK REQUIRED`
+`[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
+`VERIFIED WITH FINDINGS`; bounded renderer implementation is next
 
-Obtain AU-AGENT-003 reverification of the exact tested remediation for
-TS001-PERSIST-001 through TS001-PERSIST-005. Do not start rendering or client
-integration before the mandatory findings close.
+Implement and measure the bounded tiled Canvas2D renderer core from Technical
+Design section 8 and ADR-TS001-002. Keep client UI, Worker integration, and
+TS001-PERSIST-006 outside this stage.
 
 ## Confirmed Inputs
 
@@ -46,6 +46,9 @@ integration before the mandatory findings close.
 - The remediation candidate adds final-event hashes, exact-version stitch
   validation, Blob/hash binding, bounded report validation/cleanup, and
   fail-closed replay/rebuild integrity with 17 focused persistence tests.
+- AU-AGENT-003 resolved TS001-PERSIST-001 through TS001-PERSIST-005 at exact
+  commit `854073c`; the repository-level persistence quality gate passes with
+  Engineering Verification Status `VERIFIED WITH FINDINGS`.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -71,11 +74,13 @@ integration before the mandatory findings close.
 
 ## Immediate Boundaries
 
-- Review only the implemented local IndexedDB contracts against Technical
-  Design v1.5.0 and their evidence.
+- Implement only renderer-core contracts from Technical Design section 8:
+  32×32 tile construction/query, visible range, transforms, hit testing,
+  deterministic draw-plan behavior, and measured medium-fixture evidence.
+- Do not implement client UI, navigation, Worker integration, CI/CD, or
+  deployment.
 - Do not close browser, real two-tab, power-loss, eviction, save-state, or
   migration evidence from fake IndexedDB API tests.
-- Do not start renderer, client flow, CI/CD, or deployment.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
 - Do not deploy to production before TD-GATE-003 and runtime security evidence
   close.
@@ -96,18 +101,14 @@ with checksum provenance and no verified scope.
 
 ## Completed Internal Stage
 
-The persistence package implements the registered schema-v1 repositories,
-transaction boundaries, retention lifecycle, progress journal, recovery, and
-capability failures and the five mandatory finding remediations. Strict
-typecheck and 17 focused tests pass, including atomic abort, tile integrity,
-Blob/hash mismatch, bounded report cleanup, phantom targets, final-event hash,
-blocked upgrade, simulated quota, persistence denial, idempotency/corruption,
-lock failure, close/reopen, and projection rebuild.
+The persistence repository-level result passes independent AU-AGENT-003
+reverification at exact commit `854073c`. Findings 001 through 005 are
+resolved. TS001-PERSIST-006 remains open for later real browser/client evidence.
 
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Commit and submit the exact remediation source to AU-AGENT-003. Keep
-TS001-PERSIST-006 open for browser/client integration.
+Implement the tiled renderer core and measured medium-fixture prototype. Stop
+before client UI and Worker integration.

@@ -276,10 +276,9 @@
 
 ### AU-CDX-TASK-001-PERSISTENCE — IndexedDB Persistence and Recovery
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status
-  remains `REWORK REQUIRED` at reviewed commit `776a149`; remediation candidate
-  `[IMPLEMENTED]`, `[TESTED]`, awaiting exact-source reverification; no project
-  `[VERIFIED]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering
+  Verification Status `VERIFIED WITH FINDINGS` at exact remediation commit
+  `854073c`; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.0 section 9; ADR-TS001-003; task threat
   model.
 - **Owner:** AU-AGENT-005; AU-AGENT-001 for technical integration;
@@ -304,8 +303,11 @@
   validation, Blob/hash binding, bounded report validation/cleanup, and
   fail-closed replay/rebuild integrity are implemented with focused negative
   tests for TS001-PERSIST-001 through TS001-PERSIST-005.
-- **Next step:** AU-AGENT-003 reverifies the exact remediation source. Preserve
-  TS001-PERSIST-006 for the browser/client integration stage.
+- **Reverification:** TS001-PERSIST-001 through TS001-PERSIST-005 are
+  `Resolved`; repository-level quality gate passes. TS001-PERSIST-006 remains
+  open for the browser/client integration stage.
+- **Next step:** Proceed to the bounded renderer implementation and measured
+  medium-fixture prototype without claiming browser/client persistence.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
