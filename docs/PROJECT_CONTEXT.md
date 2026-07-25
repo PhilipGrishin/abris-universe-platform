@@ -80,8 +80,12 @@ cannot change its hierarchy independently.
   Lead, owns the pattern-processing implementation domain inside AU-AGENT-001
   system architecture and approved product requirements. Its registration does
   not imply that a Pattern Engine implementation exists.
-- `[OPEN]` Backend/Data/Sync and Mobile/Web implementation-domain specialists
-  remain inactive; AU-AGENT-005 and AU-AGENT-006 require separate instructions.
+- `[CONFIRMED]` AU-AGENT-005, Backend, Data & Synchronization Lead, owns the
+  backend, persistence, database, API, storage, synchronization, migration, and
+  data-integrity domain inside AU-AGENT-001 system architecture and approved
+  requirements. Its registration does not imply backend implementation exists.
+- `[OPEN]` The Mobile/Web implementation-domain specialist remains inactive;
+  AU-AGENT-006 requires a separate complete instruction.
 
 These unknowns intentionally block product implementation but do not block the
 governance baseline.

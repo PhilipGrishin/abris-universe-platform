@@ -162,8 +162,8 @@
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 
-- **Status:** `[APPROVED]`; AU-AGENT-003 and AU-AGENT-004 activation
-  `[IMPLEMENTED]`; AU-AGENT-005–006 activation `[OPEN]`
+- **Status:** `[APPROVED]`; AU-AGENT-003 through AU-AGENT-005 activation
+  `[IMPLEMENTED]`; AU-AGENT-006 activation `[OPEN]`
 - **Date:** 2026-07-21
 - **Related records:** INIT-002-F1, INIT-002-F3, AU-CDX-TASK-001
 - **Context:** Independent Acceptance Finding F1 confirmed that the Task Package
@@ -191,9 +191,9 @@
 - **Prohibited interpretation:** The decision does not approve product
   implementation, stack, runtime architecture, or AU-CDX-TASK-001 execution.
 - **Owner:** Project Owner
-- **Review status:** AU-AGENT-003 and AU-AGENT-004 were registered from their
-  full owner instructions on 2026-07-25. AU-AGENT-005–006 remain deferred to
-  separate owner inputs.
+- **Review status:** AU-AGENT-003 through AU-AGENT-005 were registered from
+  their full owner instructions on 2026-07-25. AU-AGENT-006 remains deferred to
+  a separate owner input.
 
 ## OWNER-DEC-AGENT-MERGE-001 — Automatically Review and Merge Agent Registrations
 
@@ -226,7 +226,8 @@
   Existing merge commits and PR provenance remain preserved.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY
 - **Review status:** Exercised successfully by PR #1 for the prior linear
-  Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain.
+  Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain and by PR #2
+  for AU-AGENT-004.
 
 ## Decision Process
 

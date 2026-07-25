@@ -80,6 +80,14 @@ and recommendation. Do not implement a product-significant alternative silently.
   AU-AGENT-003 independently verifies the result.
 - Require supported-format, compatibility, benchmark, performance, algorithm,
   coverage, and known-limitation evidence for applicable AU-AGENT-004 work.
+- Route backend services, data models, persistence, database, API,
+  authentication integration, storage, synchronization, conflict mechanism,
+  migration, backup, recovery, and backend performance implementation to
+  AU-AGENT-005. AU-AGENT-001 retains system architecture and integration;
+  AU-AGENT-003 independently verifies the result.
+- Require schema, API, synchronization-flow, migration, performance, security,
+  automated-test, recovery, and known-limitation evidence for applicable
+  AU-AGENT-005 work. Never trade data integrity for performance.
 - Register accepted temporary limitations in `docs/TECHNICAL_DEBT.md`.
 
 ## 7. Verification

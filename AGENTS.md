@@ -231,6 +231,28 @@ No Pattern Engine implementation is implied by role registration. Compatibility,
 correctness, performance, memory, and no-data-loss claims require the registered
 format matrix, reports, benchmarks, tests, documentation, and known limitations.
 
+### Active Backend, Data, and Synchronization Specialist
+
+`AU-AGENT-005 — Backend, Data & Synchronization Lead` owns backend services,
+persistence, database and storage architecture, data integrity, APIs,
+authentication integration, synchronization, conflict-resolution mechanisms,
+migrations, backup, recovery, and backend performance inside approved
+requirements and AU-AGENT-001 system architecture.
+
+AU-AGENT-005 may design its domain architecture, schemas, versioned API
+contracts, storage and synchronization mechanisms, and backend ADRs. It must
+not change product or UX meaning, implement UI, change rendering algorithms,
+override AU-AGENT-001, or approve its own engineering quality.
+
+Shared Pattern Engine data contracts are coordinated with AU-AGENT-004 and
+AU-AGENT-001; neither domain agent may change them independently.
+AU-AGENT-003 independently verifies backend results. Data integrity takes
+priority over performance, and migration, synchronization, compatibility,
+security, backup, and recovery claims require reproducible evidence.
+
+No backend, schema, API, synchronization, migration, storage, or authentication
+implementation is implied by role registration.
+
 ## Documentation Governance
 
 `docs/SOURCE_OF_TRUTH.md` is the canonical registry for engineering source
