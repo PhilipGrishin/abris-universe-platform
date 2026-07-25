@@ -39,6 +39,7 @@ technical meaning, decisions   structure, navigation, traceability
          v                           |
 AU-AGENT-004 Pattern Engineering ---+
 AU-AGENT-005 Backend/Data/Sync -----+
+AU-AGENT-006 Mobile/Web Client -----+
 domain design, implementation, evidence
          |
          v
@@ -156,7 +157,10 @@ the named reviewers.
 ### ADR-P005 — Viewer Rendering and Performance Architecture
 
 - **Status:** `[PROPOSED]`, blocked by platform scope, interaction requirements,
-  benchmark datasets, and target budgets.
+  benchmark datasets, and target budgets. AU-AGENT-004 is available for
+  rendering-core and algorithm review; AU-AGENT-006 is available for client,
+  viewport, interaction, accessibility, responsiveness, and supported-platform
+  review.
 - **Question:** Which coordinate, layering, virtualization, caching,
   invalidation, threading, and memory strategy meets measured large-pattern
   goals?

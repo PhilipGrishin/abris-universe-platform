@@ -84,8 +84,17 @@ cannot change its hierarchy independently.
   backend, persistence, database, API, storage, synchronization, migration, and
   data-integrity domain inside AU-AGENT-001 system architecture and approved
   requirements. Its registration does not imply backend implementation exists.
-- `[OPEN]` The Mobile/Web implementation-domain specialist remains inactive;
-  AU-AGENT-006 requires a separate complete instruction.
+- `[CONFIRMED]` AU-AGENT-006, Mobile & Web Client Lead, owns mobile and web
+  client architecture and implementation, presentation, interaction, state,
+  navigation, public API and rendering integration, local cache and storage,
+  offline client behavior, accessibility, responsiveness, and client
+  performance inside AU-AGENT-001 system architecture and approved product and
+  UX requirements. Its registration does not imply client implementation
+  exists.
+- `[CONFIRMED]` The complete AU-AGENT-001 through AU-AGENT-006 specialist
+  organization is registered. Product implementation remains blocked by
+  engineering intake and unresolved executable architecture, not by missing
+  specialist instructions.
 
 These unknowns intentionally block product implementation but do not block the
 governance baseline.

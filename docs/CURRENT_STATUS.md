@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AGENT-005 — register backend/data/synchronization ownership
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–005 domain-role infrastructure
+**Current focus:** AGENT-006 — register mobile/web client ownership
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
 
 ## Confirmed Workspace State
@@ -10,7 +10,7 @@
 - `[CONFIRMED]` The selected workspace directory exists.
 - `[CONFIRMED]` It is the working tree for the private
   `PhilipGrishin/abris-universe-platform` repository, whose default branch is
-  `main`; current acceptance integration uses a dedicated review branch.
+  `main`; current agent registration uses a dedicated review branch.
 - `[CONFIRMED]` It was empty at the start of INIT-001.
 - `[CONFIRMED]` It was not a Git repository at the start of INIT-001.
 - `[CONFIRMED]` No source code, tests, schemas, configuration, dependencies,
@@ -28,6 +28,10 @@
 - `[IMPLEMENTED]` AU-AGENT-005, Backend, Data & Synchronization Lead, is
   registered as the backend/data/API/persistence/synchronization domain
   engineering specialist.
+- `[IMPLEMENTED]` AU-AGENT-006, Mobile & Web Client Lead, is registered as the
+  mobile/web client, presentation, interaction, integration, offline,
+  accessibility, responsiveness, and client-performance domain engineering
+  specialist.
 - `[IMPLEMENTED]` The Source of Truth Registry, documentation standard,
   navigation, metadata, glossary, traceability, Handbook shell, ADR/RFC,
   specification, standard, assurance, and documentation-review indexes exist.
@@ -48,6 +52,13 @@
   APIs, storage, synchronization, migrations, and integrity inside AU-AGENT-001
   architecture. It does not own UI/UX, rendering algorithms, product meaning,
   or quality acceptance.
+- `[CONFIRMED]` AU-AGENT-006 owns mobile/web client architecture and
+  implementation, presentation, interaction, state, navigation, public API and
+  rendering integration, local cache and storage, offline client behavior,
+  accessibility, responsiveness, and client performance inside AU-AGENT-001
+  architecture. It does not own product or UX meaning, rendering algorithms,
+  import, backend architecture, persistence, synchronization rules, or quality
+  acceptance.
 - `[CONFIRMED]` The initial Architecture & Repository Assessment found no
   application repository, source architecture, code, contracts, schemas,
   dependencies, tests, migrations, or deployment assets.
@@ -76,9 +87,9 @@
   authority boundaries, Source of Truth organization, and the Collaboration
   Bridge operating model exercised by the completed exchange.
 - `[CONFIRMED]` Application implementation, technology stack, runtime
-  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-006,
-  Engineering Handbook content, and unreviewed bridge tooling implementation
-  are not `[VERIFIED]`.
+  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 through
+  AU-AGENT-006 activation, Engineering Handbook content, and unreviewed bridge
+  tooling implementation are not `[VERIFIED]`.
 
 ## Verification Performed
 
@@ -127,11 +138,17 @@
   mission, responsibilities, authority, inputs, outputs, ownership, interfaces,
   design principles, required evidence, deliverables, rules, and Definition of
   Done.
+- `[TESTED]` AU-AGENT-006 registration was checked for the complete supplied
+  mission, responsibilities, authority, inputs, outputs, ownership, interfaces,
+  design principles, required evidence, deliverables, rules, and Definition of
+  Done.
 - `[TESTED]` PR #1 was mergeable and clean, reported no configured GitHub
   checks, and merged the prior linear branch chain into `main` without
   conflicts.
 - `[TESTED]` PR #2 was mergeable and clean, reported no configured GitHub
   checks, and merged AU-AGENT-004 into canonical `main` without conflicts.
+- `[TESTED]` PR #3 was mergeable and clean, reported no configured GitHub
+  checks, and merged AU-AGENT-005 into canonical `main` without conflicts.
 
 ## Blockers
 
@@ -139,8 +156,6 @@
   product code exists yet.
 - `[OPEN]` Engineering intake and Technical Review disposition for
   AU-CDX-TASK-001 v1.0.
-- `[OPEN]` AU-AGENT-006 remains inactive pending its complete owner
-  instruction.
 
 ## Active Risks
 
@@ -164,12 +179,14 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered AU-AGENT-005 from the complete owner instruction, including
-backend/data/API/synchronization boundaries and evidence obligations, without
-implementing product features or defining runtime architecture.
+Registered AU-AGENT-006 from the complete owner instruction, including
+mobile/web client, integration, offline, accessibility, responsiveness, and
+evidence boundaries, without implementing product features or defining runtime
+architecture.
 
 ## Next Step
 
-Receive the Project Owner's complete operating instruction for AU-AGENT-006 in a
-separate task. Do not activate AU-AGENT-006 from this task and do not begin
-product implementation.
+In a separate task, AU-AGENT-001 performs engineering intake and Technical
+Review of AU-CDX-TASK-001 v1.0. Do not begin product implementation before that
+review and its required clarifications, decisions, design, assignments, and
+evidence plan.

@@ -7,7 +7,7 @@
 | Status | `[CONFIRMED]`, `[IMPLEMENTED]` in the agent infrastructure, not project `[VERIFIED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `AGENTS.md`, `.codex/AGENT_REGISTRY.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -157,10 +157,11 @@ versioning, migration, tests, and integration.
 
 ### AU-AGENT-006
 
-When separately instructed and registered, AU-AGENT-006 will consume the
-rendering core for UI and viewport integration. AU-AGENT-004 owns deterministic
-rendering-core behavior and its technical contract, not screens, presentation,
-or user interaction. This statement does not activate or define AU-AGENT-006.
+AU-AGENT-006 consumes the rendering core for client presentation, pattern
+visualization, and viewport integration. AU-AGENT-004 owns deterministic
+rendering-core behavior and its technical contract; AU-AGENT-006 owns screens,
+presentation, and user interaction. Neither changes the shared contract
+independently.
 
 ### Claude Cowork
 

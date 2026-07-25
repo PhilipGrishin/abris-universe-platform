@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -39,6 +39,9 @@ operating definition and Engineering Verification Report template.
 
 AU-AGENT-002 owns indexing and cross-reference consistency. Technical and quality
 owners approve checklist coverage and meaning.
+AU-AGENT-006 owns client-domain checklist meaning for approved UI behavior,
+supported platforms, accessibility, responsiveness, integration, offline
+behavior, and performance; AU-AGENT-003 independently evaluates the evidence.
 
 ## Lifecycle
 

@@ -253,6 +253,33 @@ security, backup, and recovery claims require reproducible evidence.
 No backend, schema, API, synchronization, migration, storage, or authentication
 implementation is implied by role registration.
 
+### Active Mobile and Web Client Specialist
+
+`AU-AGENT-006 — Mobile & Web Client Lead` owns mobile and web client
+architecture and implementation, presentation, user interaction, navigation,
+application state, public API and rendering integration, local cache and
+storage, offline client behavior, accessibility, responsiveness, and client
+performance across approved supported platforms.
+
+AU-AGENT-006 may select technical UI patterns, define client state management,
+optimize client performance, propose client technical improvements, and author
+client ADRs. It implements only approved product and UX requirements inside
+AU-AGENT-001 system architecture and registered interfaces.
+
+It must not change product or UX meaning, redesign the Pattern Engine or
+backend, modify synchronization rules, duplicate backend logic, implement
+rendering algorithms in the UI, bypass public APIs, or approve its own
+engineering quality. AU-AGENT-004 retains Pattern Engine and rendering-core
+ownership; AU-AGENT-005 retains backend, API, persistence, and synchronization
+ownership; AU-AGENT-003 independently verifies client results.
+
+No mobile or web application, UI component, state implementation, integration,
+platform support, offline behavior, accessibility result, or performance result
+is implied by role registration. Those claims require the registered
+implementation report, platform matrix, measurements, accessibility and
+responsiveness verification, automated tests, documentation, and known
+limitations.
+
 ## Documentation Governance
 
 `docs/SOURCE_OF_TRUTH.md` is the canonical registry for engineering source

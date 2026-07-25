@@ -1,34 +1,34 @@
 # Current Focus
 
-## Focus ID: AGENT-005
+## Focus ID: AGENT-006
 
 **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
 
-Register AU-AGENT-005 — Backend, Data & Synchronization Lead from the complete
-Project Owner instruction without product implementation, architecture
-invention, or activation of AU-AGENT-006.
+Register AU-AGENT-006 — Mobile & Web Client Lead from the complete Project
+Owner instruction without product implementation, architecture invention,
+platform selection, or AU-CDX-TASK-001 execution.
 
 ## Completed in This Focus
 
-- Preserved AU-AGENT-005 mission, responsibilities, authority, ownership,
+- Preserved AU-AGENT-006 mission, responsibilities, authority, ownership,
   inputs, outputs, interfaces, principles, evidence, deliverables, rules, and
   Definition of Done.
-- Registered backend/data/API/synchronization ownership without creating
-  architecture, schemas, APIs, services, migrations, or implementation.
+- Registered mobile/web client ownership without creating client architecture,
+  applications, UI components, platform commitments, or implementation.
 - Preserved AU-AGENT-001 system architecture, AU-AGENT-002 documentation
-  lifecycle, AU-AGENT-003 independent verification, and AU-AGENT-004 Pattern
-  Engine ownership.
+  lifecycle, AU-AGENT-003 independent verification, AU-AGENT-004 Pattern Engine
+  and rendering-core ownership, and AU-AGENT-005 backend/API/synchronization
+  ownership.
+- Completed the Owner Decision F1 specialist-registration sequence.
 - Applied the checked automatic PR merge workflow for agent registration.
-- Kept AU-AGENT-006 inactive.
 
 ## Blocked or Awaiting Input
 
-- Full owner-provided operating instruction for AU-AGENT-006.
 - Engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
-- Registration of the remaining specialist roles named by Owner Decision F1.
+- Product architecture, stack, platform order, implementation, and evidence.
 
 ## Next Concrete Step
 
-Stop after AU-AGENT-005 activation and checked automatic merge. In a separate
-owner input, receive the full operating instruction for AU-AGENT-006. Do not
-activate AU-AGENT-006 or start AU-CDX-TASK-001 implementation in this focus.
+Stop after AU-AGENT-006 activation and checked automatic merge. In a separate
+task, AU-AGENT-001 should perform engineering intake and Technical Review of
+AU-CDX-TASK-001 v1.0. Do not begin product implementation in this focus.

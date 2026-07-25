@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -32,7 +32,9 @@ None.
 
 AU-AGENT-002 maintains indexing, terminology, references, traceability, and
 lifecycle. AU-AGENT-004 owns pattern supported-format and compatibility matrix
-meaning; AU-AGENT-003 independently reviews the supporting evidence.
+meaning; AU-AGENT-006 owns supported mobile/web platform, viewport,
+accessibility, offline-client, and client integration matrix meaning;
+AU-AGENT-003 independently reviews the supporting evidence.
 
 ## Lifecycle
 
