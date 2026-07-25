@@ -76,8 +76,12 @@ cannot change its hierarchy independently.
   the independent engineering quality-gate specialist. It reviews engineering
   results and evidence before Claude product acceptance but does not implement
   features, redesign architecture, or approve product acceptance.
-- `[OPEN]` No implementation-domain specialist has been supplied or registered;
-  AU-AGENT-004–006 remain inactive.
+- `[CONFIRMED]` AU-AGENT-004, Pattern Engine, Import, Rendering & Algorithms
+  Lead, owns the pattern-processing implementation domain inside AU-AGENT-001
+  system architecture and approved product requirements. Its registration does
+  not imply that a Pattern Engine implementation exists.
+- `[OPEN]` Backend/Data/Sync and Mobile/Web implementation-domain specialists
+  remain inactive; AU-AGENT-005 and AU-AGENT-006 require separate instructions.
 
 These unknowns intentionally block product implementation but do not block the
 governance baseline.

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Supported capability, limitation, platform, format, or evidence changes |
@@ -31,7 +31,8 @@ None.
 ## Owner
 
 AU-AGENT-002 maintains indexing, terminology, references, traceability, and
-lifecycle. Assigned domain owners approve capability meaning and evidence.
+lifecycle. AU-AGENT-004 owns pattern supported-format and compatibility matrix
+meaning; AU-AGENT-003 independently reviews the supporting evidence.
 
 ## Lifecycle
 

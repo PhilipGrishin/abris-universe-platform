@@ -37,8 +37,8 @@ AU-AGENT-001 Lead Architect    AU-AGENT-002 Documentation Manager
 technical meaning, decisions   structure, navigation, traceability
          |                           ^
          v                           |
-Registered engineering agents ------+
-domain meaning and evidence
+AU-AGENT-004 Pattern Engineering ---+
+domain design, implementation, evidence
          |
          v
        Consolidated Completion Report
@@ -128,7 +128,8 @@ the named reviewers.
 ### ADR-P002 — Core Entity Identity and Version Boundaries
 
 - **Status:** `[PROPOSED]`, blocked by the product domain source and relevant
-  Pattern and Backend agent reviews.
+  Pattern and Backend agent reviews. AU-AGENT-004 is available for the Pattern
+  Engine review; the Backend/Data/Sync role remains inactive.
 - **Question:** How are Pattern, User Project, Source File, Imported Pattern
   Version, internal-format version, Pattern Data, corrections, and Progress Data
   identified, owned, versioned, retained, and migrated?
@@ -143,7 +144,8 @@ the named reviewers.
 ### ADR-P004 — Internal Pattern Format and Import Boundary
 
 - **Status:** `[PROPOSED]`, blocked by supported-format scope and the future
-  Pattern Engine role.
+  Pattern Engine Technical Design and required evidence. AU-AGENT-004 is the
+  registered domain owner.
 - **Question:** Which versioned schema, extension mechanism, provenance model,
   validation, compatibility, and fixture strategy supports approved stitch and
   material capabilities without importer lock-in?

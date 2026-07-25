@@ -311,3 +311,55 @@
   AU-AGENT-004–006 activation.
 - **Next step:** Receive the complete Project Owner operating instruction for
   AU-AGENT-004 in a separate task.
+
+## 2026-07-25 — Project Owner to Codex — AGENT-004
+
+- **Direction received:** Automatically check and merge branches when new
+  agents are created, then create AU-AGENT-004 — Pattern Engine, Import,
+  Rendering & Algorithms Lead from the supplied complete instruction.
+- **Mission:** Own the engineering core and technical correctness for embroidery
+  pattern processing, import, rendering, algorithms, compatibility, performance,
+  and memory behavior.
+- **Authority:** May design and implement the Pattern Engine domain, define
+  deterministic import and rendering algorithms and pipelines, propose data
+  structures, optimize after correctness, and create ADRs.
+- **Boundary:** Must not change product or UX meaning, redefine business logic,
+  implement UI, own backend or synchronization, approve implementation quality,
+  or override AU-AGENT-001 architecture decisions.
+- **Required evidence:** Supported format matrix, compatibility report,
+  benchmarks, performance measurements, algorithm documentation, test coverage,
+  and known limitations.
+- **Documentation Impact:** Material.
+
+## 2026-07-25 — Codex Activation Handoff — AGENT-004
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- **Prior branch integration:** PR #1 was `MERGEABLE/CLEAN`, had no configured
+  GitHub checks, and merged the linear Collaboration Bridge, acceptance, and
+  AU-AGENT-003 branch chain into `main` as merge commit `e994517`.
+- **Registration:** AU-AGENT-004 is active in `.codex/AGENT_REGISTRY.md`,
+  `docs/CODEX_AGENTS.md`, `AGENTS.md`, and organization navigation.
+- **Operating definition:** The complete owner-supplied mission,
+  responsibilities, authority, inputs, outputs, ownership, interactions,
+  principles, evidence, deliverables, rules, and Definition of Done are
+  preserved in
+  `.codex/agents/definitions/au-agent-004-pattern-engine-import-rendering-algorithms-lead.md`.
+- **Ownership boundary:** AU-AGENT-004 owns pattern-domain design and
+  implementation inside AU-AGENT-001 system architecture. AU-AGENT-002 owns
+  documentation lifecycle; AU-AGENT-003 independently verifies quality; Claude
+  owns product clarification and acceptance.
+- **Evidence boundary:** Role registration creates no Pattern Engine,
+  importer, renderer, model, algorithm, benchmark, test, compatibility, or
+  performance claim.
+- **Automatic merge:** Owner Decision OWNER-DEC-AGENT-MERGE-001 now requires a
+  scoped branch, exact-diff validation, PR, mergeability and configured-check
+  review, and automatic merge only when every guardrail passes.
+- **Documentation result:** Updated agent infrastructure, governance,
+  architecture operating model, workflows, ADR/specification/benchmark/matrix
+  ownership, risks, decisions, traceability, status, and navigation.
+- **Documentation exception:** None.
+- **Not performed:** No product implementation, runtime architecture, UI,
+  backend, synchronization, supported-format decision, or AU-AGENT-005–006
+  activation.
+- **Next step:** Receive the complete Project Owner operating instruction for
+  AU-AGENT-005 in a separate task.

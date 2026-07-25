@@ -7,7 +7,7 @@
 | Status | `[CONFIRMED]`, `[IMPLEMENTED]` in the agent infrastructure, not project `[VERIFIED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `AGENTS.md`, `.codex/AGENT_REGISTRY.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -171,12 +171,18 @@ required documentation evidence is complete and consistent, reports gaps, and
 routes documentation findings to AU-AGENT-002 without changing technical or
 product meaning.
 
-### AU-AGENT-004, AU-AGENT-005, and AU-AGENT-006
+### AU-AGENT-004
+
+AU-AGENT-004 provides Pattern Engine, import, rendering-core, algorithm,
+compatibility, performance, and documentation evidence for independent
+engineering review and owns remediation in its registered domain.
+
+### AU-AGENT-005 and AU-AGENT-006
 
 When separately instructed and registered, these agents will provide their
 implementation and evidence for independent engineering review and will own
 remediation in their assigned domains. Mention here does not activate, define,
-or authorize any of these future roles.
+or authorize these future roles.
 
 ### Claude Cowork
 

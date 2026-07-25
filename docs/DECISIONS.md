@@ -162,8 +162,8 @@
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 
-- **Status:** `[APPROVED]`; AU-AGENT-003 activation `[IMPLEMENTED]`;
-  AU-AGENT-004–006 activation `[OPEN]`
+- **Status:** `[APPROVED]`; AU-AGENT-003 and AU-AGENT-004 activation
+  `[IMPLEMENTED]`; AU-AGENT-005–006 activation `[OPEN]`
 - **Date:** 2026-07-21
 - **Related records:** INIT-002-F1, INIT-002-F3, AU-CDX-TASK-001
 - **Context:** Independent Acceptance Finding F1 confirmed that the Task Package
@@ -191,8 +191,42 @@
 - **Prohibited interpretation:** The decision does not approve product
   implementation, stack, runtime architecture, or AU-CDX-TASK-001 execution.
 - **Owner:** Project Owner
-- **Review status:** AU-AGENT-003 was registered from its full owner instruction
-  on 2026-07-25. AU-AGENT-004–006 remain deferred to separate owner inputs.
+- **Review status:** AU-AGENT-003 and AU-AGENT-004 were registered from their
+  full owner instructions on 2026-07-25. AU-AGENT-005–006 remain deferred to
+  separate owner inputs.
+
+## OWNER-DEC-AGENT-MERGE-001 — Automatically Review and Merge Agent Registrations
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`
+- **Date:** 2026-07-25
+- **Related records:** AGENT-003, AGENT-004, RISK-011
+- **Context:** The Project Owner directed Codex to check and merge branches
+  automatically when new engineering agents are created.
+- **Decision:** For owner-supplied agent-registration tasks, Codex creates a
+  scoped branch from current `main`, validates the exact organizational and
+  documentation change, publishes a pull request, checks mergeability and
+  configured required checks, and merges automatically when all gates pass.
+- **Scope:** Agent registration and its necessary governance, documentation,
+  workflow, traceability, status, and navigation changes only.
+- **Guardrails:** Do not merge with conflicts, failed or pending required
+  checks, unmet branch protection or review requirements, unrelated work,
+  unresolved mandatory findings, secret or path-safety defects, or an unclear
+  target branch. No auto-merge rule authorizes product implementation or
+  destructive history changes.
+- **Alternatives:** Require a separate owner approval before every
+  agent-registration merge; commit directly to `main`; or leave registration
+  branches open.
+- **Reason:** Checked automatic merging keeps the canonical organization current
+  between sequential agent instructions while retaining review history and
+  avoiding direct-to-main changes.
+- **Consequence:** Codex records PR and validation evidence for each agent
+  registration and stops for owner input only when a guardrail blocks safe
+  merge.
+- **Reversibility:** The Project Owner may revoke or narrow the workflow.
+  Existing merge commits and PR provenance remain preserved.
+- **Owner:** Project Owner / AU-CODEX-PRIMARY
+- **Review status:** Exercised successfully by PR #1 for the prior linear
+  Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain.
 
 ## Decision Process
 

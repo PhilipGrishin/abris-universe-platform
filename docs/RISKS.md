@@ -187,3 +187,26 @@
   the canonical meaning before Codex integration.
 - **Owner:** Claude Cowork product coordination owner for local workflow;
   AU-CODEX-PRIMARY for repository exchange enforcement
+
+## RISK-011 — Agent Registration Auto-Merge Bypasses Review
+
+- **Status:** `[IMPLEMENTED]` controls; residual monitoring
+- **Probability:** Low when guardrails are enforced
+- **Impact:** High
+- **Trigger:** An agent-registration branch merges with conflicts, unrelated
+  changes, failed or pending required checks, unmet repository protection,
+  unresolved mandatory findings, unsafe content, or incomplete role coverage.
+- **Affected areas:** Engineering authority, source hierarchy, agent
+  independence, workflow gates, traceability, and repository history.
+- **Prevention:** Limit auto-merge to owner-supplied agent registration; branch
+  from current `main`; inspect the exact diff; validate role coverage, links,
+  metadata, terminology, traceability, inactive-role boundaries, safety, and
+  applicable regression tests; create a PR; confirm mergeability and configured
+  checks.
+- **Mitigation:** Stop automatic merge on any failed guardrail, preserve the
+  branch and PR evidence, remediate in the same scoped branch, and rerun all
+  affected checks.
+- **Fallback:** Leave the PR open and request Project Owner direction when a
+  conflict, required review, protection rule, unclear target, or mandatory
+  finding cannot be resolved safely.
+- **Owner:** AU-CODEX-PRIMARY

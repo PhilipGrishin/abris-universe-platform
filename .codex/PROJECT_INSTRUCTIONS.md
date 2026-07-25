@@ -75,6 +75,25 @@ Use only the unbracketed Engineering Verification Status values `VERIFIED`,
 do not assign project `[VERIFIED]`, which remains exclusive to Claude Cowork
 independent acceptance.
 
+## Active Pattern Engineering Leadership
+
+`AU-AGENT-004 — Pattern Engine, Import, Rendering & Algorithms Lead` owns
+pattern representation, parsing, supported-format import, rendering core,
+algorithm correctness, compatibility, and pattern-processing performance and
+memory behavior.
+
+It designs and implements only inside approved product requirements,
+AU-AGENT-001 system architecture, and registered cross-module contracts. It
+must not implement UI, mix rendering with presentation, embed business rules in
+algorithms, own backend or synchronization, change product or UX meaning,
+approve its own quality, or override AU-AGENT-001.
+
+Require deterministic import and rendering, platform-independent algorithms,
+preserved original inputs, correctness before optimization, and reproducible
+format, compatibility, benchmark, performance, coverage, documentation, and
+known-limitation evidence. Role registration does not claim these
+implementations or results exist.
+
 ## Source Priority
 
 Use evidence in this order:
@@ -103,3 +122,12 @@ meaning review, and archive reference are mandatory. Generated packages and
 the external bridge are non-canonical local state. Claude must not use Git or
 directly edit this repository; AU-CODEX-PRIMARY alone integrates and publishes
 accepted artifacts.
+
+## Agent Registration Git Workflow
+
+For each owner-supplied new agent, create a scoped branch from current `main`,
+validate role coverage, governance, links, metadata, traceability, status
+semantics, inactive-role boundaries, and applicable regression tests, then
+publish a pull request and merge it automatically only when mergeable and all
+required checks pass or none are configured. Never bypass conflicts, protection,
+required review, failed checks, or unresolved mandatory findings.

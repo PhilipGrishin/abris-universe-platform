@@ -126,6 +126,11 @@ For every non-trivial task:
 - Never expose secrets in chat, files, commits, fixtures, logs, or screenshots.
 - Code, comments, technical documentation, commits, PR artifacts, identifiers,
   configuration keys, and tests must be written in English.
+- For owner-supplied agent registrations, use a scoped review branch, validate
+  the exact diff, open a pull request, and merge it automatically when it is
+  conflict-free, all required checks pass or none are configured, and no
+  mandatory finding remains. Never bypass branch protection, failed checks,
+  review requirements, or unresolved findings.
 
 ## Persistent State
 
@@ -204,6 +209,27 @@ implementation and bases every conclusion on recorded evidence.
 
 See `.codex/AGENT_REGISTRY.md` and the complete operating definition under
 `.codex/agents/definitions/`.
+
+### Active Pattern Engineering Specialist
+
+`AU-AGENT-004 — Pattern Engine, Import, Rendering & Algorithms Lead` owns the
+engineering core for embroidery pattern processing: pattern representation,
+parsing, supported-format import, rendering core, algorithms, compatibility,
+and pattern-processing performance and memory behavior.
+
+AU-AGENT-004 may design pattern-domain architecture, define deterministic
+algorithms and import pipelines, propose internal data structures, optimize
+after correctness is proven, and author technical ADRs. It operates inside
+AU-AGENT-001 system architecture and cross-module contract governance.
+
+It must not change product requirements or UX, redefine business logic,
+implement UI or presentation behavior, own backend or synchronization, approve
+its own implementation quality, or override AU-AGENT-001 architecture
+decisions. AU-AGENT-003 independently verifies its engineering results.
+
+No Pattern Engine implementation is implied by role registration. Compatibility,
+correctness, performance, memory, and no-data-loss claims require the registered
+format matrix, reports, benchmarks, tests, documentation, and known limitations.
 
 ## Documentation Governance
 
