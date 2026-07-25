@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.2.1 |
+| Version | 1.2.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -80,7 +80,7 @@ no product-data network egress in Phase 0.
 | TM-004 | Source strings execute or inject markup | Treat all source values as text; no `innerHTML`; bounded diagnostics | Static review and malicious-string browser test | Browser/library defect |
 | TM-005 | Unsupported OXS data is silently lost or misrepresented | Preserve original bytes; explicit warning counts; no partial-success claim | Unsupported-content golden test and source-byte hash | User may overlook warnings |
 | TM-006 | OXS `marked` contaminates user progress | Never map source `marked`; emit stable warning | Golden test with marked source | None after correct enforcement |
-| TM-007 | Progress is reported saved before durable commit | Commit-driven UI state; atomic event/projection transaction; explicit failure | Quota/abort/reload tests | Browser storage eviction outside active transaction |
+| TM-007 | Progress is reported saved before durable commit | Commit-driven UI state; atomic event/projection transaction; explicit failure | Quota/abort/reload tests | Browser storage eviction outside active transaction; abrupt power loss where strict durability is unavailable or not honored |
 | TM-008 | Partial import creates orphan or inconsistent records | explicit importing attempt plus atomic success/failure transitions; no partial canonical commit | fault-injection tests at each put and interrupted-attempt recovery | Browser implementation defect |
 | TM-009 | Local data is evicted or unavailable | Request persistent storage; expose durability and quota state; never silently reset | Capability and denial tests | No manual backup in approved scope |
 | TM-010 | Worker or renderer denial of service blocks UI | Worker isolation, cancellation, visible-tile work, bounded cache | long-task and cancellation evidence | Main-thread fallback limitations |
@@ -153,4 +153,5 @@ no product-data network egress in Phase 0.
 - [Threat Model Index](README.md)
 - [Project Risks](../../RISKS.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
 - [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)

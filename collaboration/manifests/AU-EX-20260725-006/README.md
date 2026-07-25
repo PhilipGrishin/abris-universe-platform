@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260725-006 |
 | Title | TASK-THINSLICE-001 Design Revision Confirmation Exchange |
-| Status | `EXPORTED`; source `CURRENT`; return pending |
+| Status | `ARCHIVED`; source `CURRENT`; return `VALID_ARCHIVED`; integration `INTEGRATED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, `docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md` |
@@ -43,12 +43,14 @@ Task Package acceptance.
 - Registered files: 41
 - Registered payload bytes: 724,478
 - External inbox: exported and checksum-bound
-- Lifecycle: `EXPORTED`
+- Lifecycle: `ARCHIVED`
 - Source status: `CURRENT`
-- Return: pending
-- Integration: not started
+- Return: `COMPLETED / NO_DECISION`; contract-valid and archived
+- Integration: canonical confirmation integrated byte-for-byte with disposition
+  `CONFIRMED_ACCEPTED_WITH_GATES`
 - Project `[VERIFIED]`: not requested
-- Fixture and application implementation: not started
+- Fixture and application implementation: not started during this exchange;
+  route-1 fixture production and workspace scaffolding are permitted next
 
 ## Owner and Lifecycle
 
@@ -63,6 +65,11 @@ Do not edit the generated task manifest or reuse the Exchange ID. A return is
 non-canonical until contract validation, authorized meaning review, Codex
 integration, and archive complete.
 
+The return completed that lifecycle. Its canonical report SHA-256 is
+`0246546d29205dd16e7651fc11166cd196dc4b478e99ee94cc3ace637dfe32e8`.
+The report assigns no project `[VERIFIED]`, implementation, deployment,
+release, security, or product acceptance.
+
 ## Related Sources
 
 - [Request](request.json)
@@ -71,4 +78,5 @@ integration, and archive complete.
 - [Technical Design Proposal](../../../docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Engineering Verification Report](../../../docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)
 - [Prior Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [Canonical Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
 - [Source of Truth Registry](../../../docs/SOURCE_OF_TRUTH.md)

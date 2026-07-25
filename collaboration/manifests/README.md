@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -56,9 +56,9 @@ not approve returned meaning.
   archived with no project `[VERIFIED]` status; development remains blocked.
 - [`AU-EX-20260725-006`](AU-EX-20260725-006/README.md) —
   confirmation review of the exact TASK-THINSLICE-001 design revision and
-  AU-AGENT-003 security-design gate; immutable current-source package exported
-  to the registered Claude inbox with no implementation or project
-  `[VERIFIED]` request.
+  AU-AGENT-003 security-design gate; valid `COMPLETED / NO_DECISION` return
+  integrated as `CONFIRMED_ACCEPTED_WITH_GATES` and archived with no
+  implementation, deployment, product acceptance, or project `[VERIFIED]`.
 
 ## Rules
 

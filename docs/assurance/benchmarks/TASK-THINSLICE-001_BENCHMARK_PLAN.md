@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -114,7 +114,7 @@ change requires evidence and architecture review.
 | Autosave commit p95 | <= 100 ms | <= 150 ms | <= 300 ms |
 | Main-thread long tasks >50 ms | 0 during steady pan/zoom | 0 during steady pan/zoom | <= 1 per scripted gesture |
 | Retained memory delta after open | <= 40 MiB | <= 160 MiB | Record only |
-| Import-worker peak memory | <= 96 MiB | <= 256 MiB | <= 384 MiB hard preflight budget |
+| Import-worker peak memory | <= 96 MiB | <= 256 MiB | <= 384 MiB provisional hard preflight budget |
 | 10,000-event reload p95 | <= 1,000 ms | <= 1,000 ms | <= 2,000 ms |
 
 Meeting these budgets does not prove the 500,000-stitch requirement. Missing a
@@ -175,3 +175,4 @@ The later benchmark report must include:
 - [Benchmark Index](README.md)
 - [Technical Review](../../reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)

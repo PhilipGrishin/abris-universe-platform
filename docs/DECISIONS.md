@@ -281,7 +281,11 @@ library and are not duplicated here:
 None of these records authorizes implementation. The architecture review and
 AU-AGENT-003 design-only security review are complete; TD-GATE-004 is closed.
 The ADRs remain `[PROPOSED]` behind their recorded fixture, implementation,
-runtime, performance, and deployment evidence gates.
+runtime, performance, and deployment evidence gates. Independent revision
+confirmation `AU-EX-20260725-006` records
+`CONFIRMED_ACCEPTED_WITH_GATES`, confirms TD-GATE-004 closed, and permits
+route-1 fixture production and workspace scaffolding without authorizing
+importer implementation, deployment, or project `[VERIFIED]`.
 
 ## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
 

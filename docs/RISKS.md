@@ -247,7 +247,10 @@
   mapping and prohibit heuristic coordinate/symbol interpretation. Keep
   importer development blocked until route-1 coordinate and symbol fixtures
   exist, and require golden, malformed, size-limit, coordinate,
-  palette-reference, and unsupported-content tests.
+  palette-reference, and unsupported-content tests. PROD-DEC-011 keeps the four
+  owner-granted XSP binaries outside the Bridge and Git pending a separate
+  owner-controlled transfer and prioritizes licensed XSD export over reverse
+  engineering for Phase 1.
 - **Fallback:** Reject the affected format or fixture, preserve evidence,
   disable the importer, restore the last known-good static deployment, and
   return the choice through a Technical Alternative or Conflict Report.

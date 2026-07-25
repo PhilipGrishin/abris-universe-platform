@@ -158,11 +158,11 @@
 
 ### AU-CDX-TASK-001-TECHNICAL-DESIGN — Phase 0 Thin-Slice Design
 
-- **Status:** `[PROPOSED]`; independent architecture disposition
-  `ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003 security
+- **Status:** `[PROPOSED]`; independent revision disposition
+  `CONFIRMED_ACCEPTED_WITH_GATES`; review findings integrated; AU-AGENT-003 security
   design review `VERIFIED WITH FINDINGS`; TD-GATE-004 closed; remaining
   evidence gates open; not implementation
-- **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, and
+- **Source:** TASK-THINSLICE-001 v1.1, PROD-DEC-009, PROD-DEC-011, and
   `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`.
 - **Owner:** AU-AGENT-001 with domain inputs from AU-AGENT-004 through
   AU-AGENT-006; AU-AGENT-002 for documentation lifecycle.
@@ -190,12 +190,15 @@
 - **Gate:** AU-AGENT-003 completed the independent security design review.
   Coordinate/symbol route-1 fixture evidence blocks importer code, and
   TD-GATE-003 plus header/request-inventory/network-capture evidence blocks
-  production deployment. Fixture creation and application implementation have
-  not started.
+  production deployment. Route-1 fixture production and non-behavioral
+  workspace scaffolding may proceed; application implementation has not
+  started.
 - **Revision confirmation exchange:** `AU-EX-20260725-006`, exact source
   `395c5d62975ba0f52e0da69af256ef870bf02770`, immutable branch
   `codex/task-thinslice-001-design-revision-source`; 41 checksum-registered
-  sources exported to Claude for confirmation. Return pending.
+  sources exported to Claude for confirmation. The valid return is integrated
+  byte-for-byte with `CONFIRMED_ACCEPTED_WITH_GATES`; TD-GATE-004 is confirmed
+  closed, and no project `[VERIFIED]` status is assigned.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
@@ -240,17 +243,24 @@
 
 ### PHASE1-ABRIS-ART-FORMAT-SURVEY — Anchor-Catalog Source-Format Survey
 
-- **Status:** `[DEFERRED]`; Phase 1 discovery backlog.
-- **Source:** PROD-DEC-010 transmitted through `AU-EX-20260725-005`.
+- **Status:** Product input `[CONFIRMED]`; initial source-format survey
+  substantially complete; technical XSD importer spike `[DEFERRED]`.
+- **Source:** PROD-DEC-010 and PROD-DEC-011 transmitted through validated
+  exchanges `AU-EX-20260725-005` and `AU-EX-20260725-006`.
 - **Owner:** AU-AGENT-004 for future technical survey; Project Owner/Abris Art
   for access and explicit route-2 content grants.
 - **Documentation Impact:** Material.
-- **Scope:** Survey the actual Abris Art electronic-pattern source formats
-  (including XSD, PAT, PDF, and any other confirmed formats) to inform the
-  post-OXS importer roadmap.
+- **Result:** Four owner-granted production files are confirmed as XSPPLAT+ZIP
+  containers with encrypted `adesignfile.xsu`. Owner-supplied export evidence
+  shows XSD, PAT, Stitchcraft, XSPro2000, XSS viewer, and graphics/WMF, with no
+  direct OXS export. Phase 1 prioritizes licensed batch export to XSD and a
+  later XSD importer spike.
 - **Boundary:** Phase 0 remains OXS 1.0 only. The general resource commitment
   does not replace an explicit grant for each concrete route-2 content
-  transfer, and this record authorizes no file acquisition or implementation.
+  transfer. The four binaries remain in the Claude contour with checksums,
+  cannot travel through the Bridge, and require a separate owner action for
+  engineering transfer. This record authorizes no file acquisition or
+  implementation.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

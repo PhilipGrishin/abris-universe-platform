@@ -4,14 +4,15 @@
 | --- | --- |
 | Document ID | AU-TDP-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Thin-Slice Technical Design Proposal |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; AU-AGENT-003 security design review `VERIFIED WITH FINDINGS`; evidence gates open |
+| Status | `[PROPOSED]`; independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`; AU-AGENT-003 security design review `VERIFIED WITH FINDINGS`; evidence gates open |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
-| Version | 1.2.1 |
+| Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
+| Version | 1.2.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-010, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
+| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package change; architecture-review finding; OXS contract evidence change; canonical-format change; renderer benchmark result; browser-storage compatibility change; Cloudflare deployment contract change; security finding |
@@ -46,6 +47,8 @@ source staging and same-origin request inventory without changing architecture
 or product behavior.
 Version 1.2.1 registers the independent `VERIFIED WITH FINDINGS` design-only
 security result and closes TD-GATE-004 without changing technical meaning.
+Version 1.2.2 records the independent revision confirmation and reconciles
+documentation terminology without changing architecture or product meaning.
 
 ## 2. Scope and Non-Scope
 
@@ -113,6 +116,14 @@ gates.
 TD-GATE-004 is closed at the independently reverified source
 `b4eaedc0233f1f785beff87968c300d54c449c28`. TD-GATE-001, TD-GATE-002, and
 TD-GATE-003 remain open within their recorded scopes.
+
+Claude Cowork independently confirmed the complete revision at source
+`395c5d62975ba0f52e0da69af256ef870bf02770` through
+`AU-EX-20260725-006` with disposition `CONFIRMED_ACCEPTED_WITH_GATES`.
+Route-1 fixture production and workspace scaffolding may proceed. Importer
+implementation remains blocked by TD-GATE-001, exact-symbol claims by
+TD-GATE-002, and production deployment by TD-GATE-003 plus its runtime
+security evidence.
 
 ## 4. Selected System Shape
 
@@ -502,8 +513,8 @@ wall-clock timeout. If worker creation or initialization fails, import rejects
 with `IMPORT_WORKER_UNAVAILABLE`; it never silently parses on the UI thread. A
 preflight estimator rejects an import when source bytes plus decoded text,
 canonical buffers, tile buffers, and bounded parser overhead would exceed the
-provisional 384 MiB import-worker peak budget. No imported content leaves the
-browser.
+provisional hard preflight budget of 384 MiB for import-worker peak memory. No
+imported content leaves the browser.
 
 The task-scoped threat model is
 [TASK-THINSLICE-001 Threat Model](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md).
@@ -968,6 +979,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [Threat Model](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
 - [Benchmark Plan](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
+- [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
 - [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)
 - [OXS Format Specification](https://www.ursasoftware.com/OXSFormat/)
 - [Cloudflare Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)

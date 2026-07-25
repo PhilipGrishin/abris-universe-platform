@@ -1,0 +1,66 @@
+# TASK-THINSLICE-001 — Design Revision Confirmation (AU-EX-20260725-005 Findings)
+
+| Field | Value |
+| --- | --- |
+| Exchange ID | AU-EX-20260725-006 |
+| Task ID | AU-CDX-TASK-001-DESIGN-REVISION-CONFIRMATION |
+| Result type | REQUIREMENTS_REVIEW |
+| Reviewer | Claude Cowork — System Architecture, Data & AI Governance Lead (security-zone closures independently re-verified by the Quality, Security & Independent Acceptance Lead against the exact revision texts; all verdicts confirmed by the lead reviewer) |
+| Reviewed at source commit | `395c5d62975ba0f52e0da69af256ef870bf02770`, branch `codex/task-thinslice-001-design-revision-source`, range `d90de60f..395c5d62` (4 commits, 39 files, +1727/−176) |
+| Reviewed artifact versions | Technical Design v1.2.1; ADR-TS001-001…004 v1.1.1; Threat Model v1.2.1; Benchmark Plan v1.1.0; AU-REVIEW-ENG-TS001-SEC-001 |
+| Review date | 2026-07-25 |
+| Result status | COMPLETED; decision NO_DECISION |
+
+## 1. Revision Disposition
+
+**CONFIRMED_ACCEPTED_WITH_GATES.** The revision correctly integrates every mandatory AU-EX-20260725-005 finding at design level, preserves the prior architecture disposition without regression, changes no approved product meaning, and overstates no implementation evidence. **TD-GATE-004 is closed at design level.** Route-1 fixture production (under the strengthened TD-GATE-001 specification) and workspace scaffolding may proceed. Remaining gates before later stages are listed in §5.
+
+All 20 checksum-registered required inputs were reviewed; every closure verdict below was established from the revised canonical texts themselves (with the v1.0→v1.2.1 diff inspected), not from status records.
+
+## 2. R-Finding Crosswalk (verified against revision text)
+
+**R-1 `deviceId` — CLOSED at design.** `ProgressEvent` now carries `deviceId` (TD §5.2); it is defined as a stable installation identifier, stored in the `metadata` store (§9.1), and written in the progress transaction (§9.3). The Task Package v1.1 §18/§21 conformance defect is resolved; the accepted `targetStitchId` refinement is retained and documented.
+
+**R-2 TD-GATE-001 strengthening — CLOSED at design.** The gate now requires a project-original **non-square** fixture (`width != height`) with **four distinct corner symbol/palette pairs**, at least one **asymmetric interior stitch**, and a compatibility-matrix record of **origin corner, X/Y directions, index base, and axis ordering/transposition** (TD §3 gate table; §6.3). This detects mirroring, inversion, and transposition, not merely offset — exactly as required. The gate itself remains open pending the fixture evidence.
+
+**R-3 event-log contract — CLOSED at design.** §9.3 specifies exclusive Web Lock `au:project:<projectId>:progress-writer` single-writer semantics with a read-only second tab and a typed capability error when Web Locks is unavailable; in-transaction sequence allocation; canonical payload SHA-256 stored in the `progressEventIds` idempotency record (§9.1); TM-020 added; two-concurrent-contexts tests added to §11.2. ADR-TS001-003 v1.1.1 reflects all of it.
+
+**R-4 Blob lifecycle — CLOSED at design.** §9.2: byte-limit check precedes any Blob persistence; rejected imports delete the Blob in the same transaction, set `bytesRef: null` and `retentionStatus: "deleted-after-failure"` (field added to SourceFile §5.2); crash-interrupted attempts receive the same cleanup; TM-021 and orphan-absence tests added.
+
+**R-5 readability and state-visual contracts — CLOSED at design.** §8.4: readable symbol mode from 16 CSS px cell size; black/white glyph selection by background relative luminance with a mandatory ≥4.5:1 contrast; below threshold — non-interactive overview with toggles prevented and a resource-backed status; progress state never represented by hue alone, with all four states (unmarked/marked/saving/not-saved) distinguishable in grayscale and under reduced motion by automated and manual tests; **user-facing coordinates are one-based** counted-chart coordinates while canonical storage stays zero-based.
+
+**R-6 symbol identity and collision — CLOSED at design.** §6.4: Symbol identity key is `sourceCode` for a single palette index; on cross-palette reuse of one code, the lowest source palette index deterministically retains the validated visual and each later conflicting use receives a separately generated Symbol (identity derived from source hash + code + palette index) with the stable warning `OXS_SYMBOL_GLYPH_COLLISION`; palette index remains provenance, not a canonical uniqueness constraint — the Symbol≠PaletteItem invariant is preserved.
+
+**R-7 empty fixture — CLOSED at design.** §11.1 adds `empty-full-cross.oxs` (valid zero-stitch chart) with expected successful ImportReport message and a defined empty-viewer state, satisfying Task Package §17.
+
+**R-8 security headers — CLOSED at design (pre-deploy evidence still required, correctly).** TD §12.1 defines the Worker-served header set: CSP with `script-src 'self'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'none'`, `frame-ancestors 'none'`, `connect-src 'self'` tightened to `'none'` when no runtime connection exists; `X-Content-Type-Options: nosniff`; `Referrer-Policy: no-referrer`. §12.4 asserts the headers in both pre-promotion and production smoke; TM-019 records the threat; ADR-TS001-004 v1.1.1 embeds the assertion requirement. Actual header behavior on the live deploy remains a pre-deploy evidence item — correctly open.
+
+## 3. N-Finding Crosswalk
+
+N-1 CLOSED: 384 MiB import-worker peak budget in the Benchmark Plan budgets table, bound to a §7 preflight estimator that rejects imports exceeding it. N-2 CLOSED: typed `IMPORT_WORKER_UNAVAILABLE` rejection; silent main-thread parsing prohibited (§7). N-3 CLOSED: IndexedDB durability `strict` requested when supported (§9.4, ADR-003), with the abrupt-power-loss residual recorded (TM Security Requirement 9). N-4 CLOSED: gate reference device class pre-declared before results; reload-with-history metric (10,000-event Project) with budgets; ≥100 iterations for gate latency scenarios and ≥30 runs with confidence intervals for cold scenarios. N-5 CLOSED: TM-018 fixture-provenance/redistribution threat added. N-6 CLOSED: `Grid.width/height` declared authoritative; metadata values derived. N-7 CLOSED: tap-versus-pan discrimination fixed at ≤6 CSS px pointer movement with pan-recognition exclusion (§8.4). N-9 CLOSED: all four ADR Review Histories record the AU-EX-20260725-005 disposition and the AU-AGENT-003 security review as dated entries; the independent review preceded any lifting of `[PROPOSED]`. N-8 was a product disposition (bold-10 grid → Phase 1) and is correctly registered as PHASE1-VIEW-GRID-001.
+
+## 4. AU-AGENT-003 Security Design Review (AU-REVIEW-ENG-TS001-SEC-001)
+
+Independence is confirmed by the report's own evidence: the agent authored and modified nothing in the reviewed artifacts, produced only its Engineering Verification Report, and routed both of its findings to AU-AGENT-001/002 for resolution. The status vocabulary is correct: unbracketed task-scoped **VERIFIED WITH FINDINGS** with an explicit disclaimer that it is not project `[VERIFIED]`, product acceptance, or deployment authorization. The review performed its own checks (exact-commit diff inspection, tooling-based verification, line inspection) rather than restating claims, found two genuine defects of its own — TS001-SEC-001 (persistence-ordering contradiction between Security Requirement 2 and TD §9.2; now resolved with an unambiguous preflight→Blob-staging→validation→canonical-persistence ordering, re-verified at `b4eaedc0`) and TS001-SEC-002 (residual `connect-src 'self'` exfiltration channel; now addressed by the tightened-to-`'none'` rule, a mandatory runtime request inventory, the pattern-data egress prohibition across URL/body/header/log/telemetry, and the required full network-capture evidence, with THREAT-OPEN-006 honestly recording the missing runtime proof) — and preserved finding history. Both findings materially improved the design. Accepted.
+
+Minor report defects (non-blocking): the Verification Checks section cites "Technical Design v1.1.0/v1.2.0" while the current documents are v1.2.1 — the v1.2.1 delta is administrative per the design's own change note, so coverage is not impaired, but exact-version labels should match in future reports; TS001-SEC-002's severity value "Recommendation" is not a scale value.
+
+## 5. Gate Status and Remaining Evidence
+
+Closed: **TD-GATE-004** (architecture disposition integrated; R-1…R-8 amendments complete; independent security review recorded with no unresolved mandatory finding). Open, correctly blocking their stages: **TD-GATE-001** (strengthened coordinate fixture — blocks importer implementation), **TD-GATE-002** (lawful glyph evidence — blocks exact-symbol claims), **TD-GATE-003** (recoverable placeholder version — blocks first production deploy), plus pre-deploy runtime evidence (live header assertions, runtime request inventory match, THREAT-OPEN-006 network capture) and all implementation/performance/accessibility evidence, AU-AGENT-003 implementation verification, and the later implementation-based product architecture acceptance (Task Package criterion 8 — not granted here). **Permitted next steps: route-1 fixture production and workspace scaffolding (TD §15 steps 1–2).**
+
+## 6. Product-Meaning and Traceability Check
+
+The only product-tree changes in the range are: the faithful canonical integration of **Cowork DEC-010** into `product/decisions/05_Decision_Log.md` (meaning preserved against the transmitted §8 text, including the rights boundary that route-2 grants remain individually recorded; provenance correctly cites AU-EX-20260725-005), the canonical registration of my byte-identical architecture review under `product/reviews/` (sha256 `260bea…` verified), and navigation README updates. No approved product meaning was changed. Traceability, TASKS, CURRENT_STATUS, RISKS (new RISK-013/014/015 entries reflecting the design controls), and SOURCE_OF_TRUTH updates are consistent with the revision.
+
+## 7. Product-Side Update for Codex Awareness (reviewer-transmitted)
+
+**Cowork DEC-011 (Project Owner grant + Cowork expertise, 2026-07-25)** — substantially closes PHASE1-ABRIS-ART-FORMAT-SURVEY: (1) the owner granted four production Abris Art patterns (123.xsp, AH339.xsp, Камін.xsp, AH334.xsp) as working samples under PROD-DEC-009(3) route 2; they are stored with SHA-256 records in the Claude workspace (`05_SAMPLES/AbrisArt_XSP/`); binaries are not placed into Bridge exchanges — file transfer to the engineering contour, if needed, occurs by separate owner action. (2) Cowork expertise [CONFIRMED]: all four are `XSPPLAT`+ZIP containers with a single **encrypted** `adesignfile.xsu` payload, structurally identical to spike evidence OQ5-E03 — the Abris Art source format is XSP (Cross Stitch Professional Platinum). (3) Owner-supplied screenshot [CONFIRMED]: the authoring software's export menu offers **Pattern Maker (XSD)**, PCStitch (PAT), Stitchcraft, XSPro2000, XSS viewer formats, and graphics/WMF — **no direct OXS export**. Product conclusion for the Phase 1 ingestion track: the priority path is batch export of the catalog to **XSD via Abris Art's own licensed software** (no reverse engineering), making **XSD the priority candidate for the second importer**; an interim XSD→OXS conversion via OXS-specification-owner software remains possible for early experiments. Phase 0 (OXS, route-1 fixtures) is unchanged. Recommended: integrate DEC-011 into the canonical Product Decision Log through this exchange's validation flow or the next PRODUCT_DECISION exchange, and update PHASE1-ABRIS-ART-FORMAT-SURVEY accordingly.
+
+## 8. Non-Blocking Notes
+
+(a) TM-007's residual column still names only storage eviction; the power-loss residual lives in Security Requirement 9 — a one-line column addition would align them. (b) TD §7 calls the 384 MiB budget "provisional" while the Benchmark Plan calls it a "hard preflight budget"; the change-control rule covers the risk, but one term should win. (c) TD-GATE-004's `[TESTED]` label for a design-level closure is unusual; its meaning is explicitly defined in the text, so no action is required beyond consistency awareness. (d) Future AU-AGENT-003 reports should carry exact current version labels (§4).
+
+## 9. Limitations
+
+Review relied exclusively on the immutable exchange package; the live repository was not accessed; no Git was used; no canonical file was edited. Working copies were initially staged over colliding paths from the previous exchange and were found stale; all conclusions in this report were made only after complete re-staging with per-file SHA-256 verification against the task manifest — an internal Claude-side tooling incident, not a package defect (package integrity was 41/41 throughout). No implementation exists; nothing here claims runtime, performance, security, compatibility, or accessibility outcomes. The 199,611-byte range diff was reviewed via the full revised documents plus the v1.0→v1.2.1 comparison rather than hunk-by-hunk register reading. This confirmation assigns no project VERIFIED status and does not perform the later implementation-based acceptance.

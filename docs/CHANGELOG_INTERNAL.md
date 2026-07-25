@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.6.0 |
+| Version | 2.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,25 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Design Revision Confirmation Integration
+
+- Validated the `AU-EX-20260725-006` return against the registered Bridge
+  contract and exact source `395c5d6`.
+- Preserved the Claude-authored confirmation byte-for-byte under
+  `product/reviews/` and recorded `CONFIRMED_ACCEPTED_WITH_GATES`.
+- Confirmed all R-1 through R-8 and N-1 through N-7/N-9 closed at design level
+  and TD-GATE-004 closed, without assigning project `[VERIFIED]`.
+- Integrated PROD-DEC-011: four owner-granted XSP samples remain outside the
+  Bridge and Git; licensed XSD export is the Phase 1 importer priority; Phase 0
+  is unchanged.
+- Aligned TM-007 power-loss residual and the 384 MiB provisional hard
+  preflight-budget terminology without changing technical meaning.
+- Updated product/design indexes, task state, source hierarchy, traceability,
+  handoff, focus, and exchange lifecycle.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; route-1 fixture production and workspace
+  scaffolding permitted; importer and deployment gates remain open.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Security Design Verification
 

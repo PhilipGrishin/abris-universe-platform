@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Quality, Security & Independent Acceptance Lead |
 | Technical Approver | Project Owner |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md`, `collaboration/manifests/` |
@@ -38,6 +38,12 @@ without the authorized owner decision.
   ADR-TS001-004 dispositioned `ACCEPTED_WITH_GATES` at exact source
   `d90de60`; no project `[VERIFIED]`, implementation, security, release, or
   final product acceptance.
+- [TASK-THINSLICE-001 Design Revision Confirmation](TASK-THINSLICE-001_Design_Revision_Confirmation.md)
+  — `CONFIRMED_ACCEPTED_WITH_GATES` at exact source `395c5d6`; all R-1 through
+  R-8 and N-1 through N-7/N-9 are closed at design level and TD-GATE-004 is
+  closed. Route-1 fixture production and workspace scaffolding may proceed;
+  no implementation, deployment, release, security, product acceptance, or
+  project `[VERIFIED]` status is assigned.
 
 ## Acceptance Rules
 

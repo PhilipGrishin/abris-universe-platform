@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 revised-design confirmation handoff
+**Current focus:** TASK-THINSLICE-001 route-1 fixture evidence and workspace scaffolding
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -163,7 +163,7 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.2.1 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.2.2 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
@@ -178,15 +178,25 @@
   readiness, Claude acceptance, or project `[VERIFIED]`.
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-006` packages 41
   checksum-registered sources from exact current source `395c5d6` and revision
-  range `d90de60..395c5d6` for Claude design-revision confirmation. The
-  external inbox export is complete; return and canonical integration are
-  pending.
+  range `d90de60..395c5d6` for Claude design-revision confirmation. Its valid
+  `COMPLETED / NO_DECISION` return was meaning-reviewed, integrated
+  byte-for-byte, and archived with provenance.
+- `[CONFIRMED]` The exact design revision disposition is
+  `CONFIRMED_ACCEPTED_WITH_GATES`. All R-1 through R-8 and N-1 through
+  N-7/N-9 are closed at design level; TD-GATE-004 remains closed. Route-1
+  fixture production and workspace scaffolding may proceed.
+- `[CONFIRMED]` The confirmation assigns no project `[VERIFIED]`,
+  implementation, release, deployment, security, or product acceptance.
 - `[CONFIRMED]` PROD-DEC-010 records Abris Art as the launch, distribution, and
   anchor-catalog relationship; explicit grants remain mandatory for each
   concrete route-2 content transfer and Phase 0 scope is unchanged.
-- `[DEFERRED]` PHASE1-VIEW-GRID-001 and
-  PHASE1-ABRIS-ART-FORMAT-SURVEY preserve N-8 and the DEC-010 importer-roadmap
-  consequence outside Phase 0.
+- `[CONFIRMED]` PROD-DEC-011 records four owner-granted XSP production samples,
+  their encrypted XSPPLAT structure, the prohibition on Bridge binary transfer,
+  and licensed XSD export as the Phase 1 second-importer priority. Phase 0 is
+  unchanged and no file transfer or implementation is authorized.
+- `[DEFERRED]` PHASE1-VIEW-GRID-001 preserves N-8 outside Phase 0.
+  PHASE1-ABRIS-ART-FORMAT-SURVEY is substantially complete at product-input
+  level; its technical XSD importer spike remains deferred.
 - `[REJECTED]` Exchange preparation `AU-EX-20260725-003` was withdrawn before
   return after freshness reporting detected that its source branch advanced.
   Its manifests and withdrawal evidence remain registered; no Claude output or
@@ -343,12 +353,17 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Prepared and exported the exact-commit `AU-EX-20260725-006` confirmation package
-after completing and revalidating the AU-AGENT-003 security design gate. No
-application, fixture, pipeline, or deployment implementation was started.
+Validated, meaning-reviewed, integrated, and archived the
+`AU-EX-20260725-006` design revision confirmation. The canonical report is
+byte-identical to the Claude return, the disposition is
+`CONFIRMED_ACCEPTED_WITH_GATES`, and PROD-DEC-011 is registered within its
+product authority. No application, fixture, pipeline, or deployment
+implementation was started.
 
 ## Next Step
 
-Wait for the `AU-EX-20260725-006` return. On `Claude finished`, validate and
-meaning-review it before canonical integration. Do not begin fixture or
-application implementation in this handoff stage.
+Produce the project-original route-1 OXS fixture and compatibility record
+required by TD-GATE-001, and prepare the approved non-behavioral workspace
+scaffold. Do not begin importer implementation until TD-GATE-001 closes; do not
+make exact-symbol or production-deployment claims while their gates remain
+open.

@@ -1,9 +1,41 @@
 # Handoff Log
 
+## 2026-07-25 — Claude Design Revision Confirmation Integration — AU-EX-20260725-006
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; valid return integrated and
+  archived; no project `[VERIFIED]`.
+- **Validation:** The `REQUIREMENTS_REVIEW / COMPLETED / NO_DECISION` return
+  passed schema, requested-role, exact-source, reviewed-input, path, extension,
+  checksum, size, authority, and unregistered-file controls.
+- **Canonical review:** Claude-authored meaning is preserved byte-for-byte in
+  `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md`;
+  SHA-256 `0246546d29205dd16e7651fc11166cd196dc4b478e99ee94cc3ace637dfe32e8`.
+- **Disposition:** `CONFIRMED_ACCEPTED_WITH_GATES`; all R-1 through R-8 and
+  N-1 through N-7/N-9 are closed at design level, and TD-GATE-004 is closed.
+- **Permitted next work:** Route-1 fixture production and workspace scaffolding.
+  TD-GATE-001 still blocks importer implementation, TD-GATE-002 blocks
+  exact-symbol claims, and TD-GATE-003 plus runtime security evidence block
+  production deployment.
+- **Product input:** PROD-DEC-011 is integrated within the transmitted
+  owner/Cowork authority. Four named XSP binaries remain outside the Bridge and
+  Git; separate owner action is required for transfer. XSD is the Phase 1
+  second-importer priority; Phase 0 is unchanged.
+- **Documentation refinements:** TM-007 now names the abrupt-power-loss
+  residual, and the 384 MiB limit uses the consistent term “provisional hard
+  preflight budget.” No architecture or product meaning changed.
+- **Provenance:** External inbox and outbox are archived under
+  `claude/archive/AU-EX-20260725-006`; committed outcome records no verified
+  scope.
+- **Documentation Impact:** Material.
+- **Next gate:** Create the TD-GATE-001 route-1 fixture evidence and approved
+  workspace scaffold; stop before importer implementation unless the gate
+  closes.
+
 ## 2026-07-25 — Codex Design Revision Confirmation Handoff — AU-EX-20260725-006
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; exact-source package exported;
-  return pending; no implementation started.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; exact-source package exported and
+  subsequently completed by the integration entry above; no implementation
+  started at handoff.
 - **Requested review:** Confirm Technical Design v1.2.1, the R-1 through R-8
   and N-1 through N-7/N-9 dispositions, AU-AGENT-003 independence/status, and
   the exact remaining design and evidence gates.

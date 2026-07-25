@@ -69,10 +69,10 @@
   error for `XSP`, authorizes normalization, and registers the fixture rule.
 - **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
 - **Result:** OQ-005 is closed. The Technical Design mapping contract has
-  independent disposition `ACCEPTED_WITH_GATES`, and the AU-AGENT-003 security
-  design review is complete. Remaining engineering work is route-1 fixture
-  evidence for DEP-001. Development remains blocked within the applicable
-  module gates.
+  independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`, and the
+  AU-AGENT-003 security design review is complete. Route-1 fixture evidence for
+  DEP-001 may now be produced; importer implementation remains blocked until
+  TD-GATE-001 closes.
 - **Decision owner:** Project Owner for the criterion; Claude Cowork within
   PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
   evidence; AU-AGENT-001 for the Technical Review disposition.
