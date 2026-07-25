@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** AGENT-006 — register mobile/web client ownership
+**Current focus:** INIT-003 — full engineering-organization readiness validation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` only for the bounded INIT-002 scope at source commit `1ccaace`; all excluded areas remain unverified
 
@@ -90,6 +90,13 @@
   architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 through
   AU-AGENT-006 activation, Engineering Handbook content, and unreviewed bridge
   tooling implementation are not `[VERIFIED]`.
+- `[IMPLEMENTED]`, `[TESTED]` INIT-003 validated the complete seven-role
+  engineering organization, pairwise boundaries, documentation, Bridge,
+  completed-exchange synchronization, shared-folder safety, communication
+  contract, and TASK-THINSLICE-001 intake mapping.
+- `[OPEN]` INIT-003 findings require explicit provenance/exclusion fields for
+  AU-CODEX-PRIMARY and AU-AGENT-003, archive-aware Bridge status reporting, and
+  owner-approved normalization of exclusive future Bridge communication.
 
 ## Verification Performed
 
@@ -149,6 +156,16 @@
   checks, and merged AU-AGENT-004 into canonical `main` without conflicts.
 - `[TESTED]` PR #3 was mergeable and clean, reported no configured GitHub
   checks, and merged AU-AGENT-005 into canonical `main` without conflicts.
+- `[TESTED]` PR #4 was mergeable and clean, reported no configured GitHub
+  checks, and merged AU-AGENT-006 into canonical `main` as `20f979b`.
+- `[TESTED]` INIT-003 checked required role fields for all seven agents and
+  recorded missing explicit fields as OVR-001 and OVR-002 without silently
+  changing authority.
+- `[TESTED]` INIT-003 Bridge validation passed 14 of 14 unit tests; directly
+  validated 75 registered source files and one returned output for completed
+  exchange `AU-EX-20260721-001`; confirmed runtime/archive checksum agreement;
+  and found no orphan exchange ID, secret, binary, symlink, or machine-specific
+  path in 163 scanned exchange-area files.
 
 ## Blockers
 
@@ -179,14 +196,16 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered AU-AGENT-006 from the complete owner instruction, including
-mobile/web client, integration, offline, accessibility, responsiveness, and
-evidence boundaries, without implementing product features or defining runtime
-architecture.
+Completed the INIT-003 organizational validation and registered every finding,
+executor boundary, Bridge self-test result, synchronization result, and
+persistent-state correction without product implementation or authority
+rewrites.
 
 ## Next Step
 
-In a separate task, AU-AGENT-001 performs engineering intake and Technical
-Review of AU-CDX-TASK-001 v1.0. Do not begin product implementation before that
-review and its required clarifications, decisions, design, assignments, and
-evidence plan.
+Prepare and synchronize `AU-EX-20260725-001` for Claude Cowork independent
+acceptance of INIT-003. After the validated return is integrated, route open
+organizational findings to their owners. AU-AGENT-001 may then perform the
+separate engineering intake and Technical Review of AU-CDX-TASK-001 v1.0. Do
+not begin product implementation before that review and its required
+clarifications, decisions, design, assignments, and evidence plan.

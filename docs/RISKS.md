@@ -166,6 +166,12 @@
 - **Mitigation:** Reject invalid returns before staging, preserve evidence,
   regenerate stale packages, require authorized meaning review, and keep every
   state below `[VERIFIED]` until independent acceptance.
+- **Known limitation:** The current status reporter evaluates active source
+  freshness and live inbox/outbox presence. After a completed exchange is
+  archived and `main` advances, it can report `STALE_OR_UNAVAILABLE` and
+  `NOT_RETURNED` even when the archive, outcome, integrated review, and
+  checksums remain valid. INIT-003 finding OVR-004 requires archive-aware
+  reporting in a separate tested tooling task.
 - **Fallback:** Stop the exchange, quarantine the affected local package, issue
   a security or conflict report, rotate any exposed credential through its
   owner, and resume only from a new Exchange ID and clean source commit.

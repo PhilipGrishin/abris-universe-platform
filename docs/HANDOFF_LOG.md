@@ -1,5 +1,46 @@
 # Handoff Log
 
+## 2026-07-25 — Claude Cowork / Project Owner to Codex — INIT-003
+
+- **Direction received:** Perform full engineering-organization readiness
+  validation after AU-AGENT-003 through AU-AGENT-006 registration; do not
+  implement, refactor, change architecture, or silently repair missing
+  authority.
+- **Required evidence:** Seven-role registration and field checks, all pairwise
+  boundaries, documentation consistency, Bridge tests and archive integrity,
+  shared-folder safety, synchronization, TASK-THINSLICE-001 intake mapping, and
+  exclusive future Bridge communication.
+- **Documentation Impact:** Material.
+- **Required handoff:** Exact-source
+  `INDEPENDENT_ACCEPTANCE_REVIEW` exchange to the Claude Cowork Quality,
+  Security & Independent Acceptance Lead.
+
+## 2026-07-25 — Codex Organizational Validation Handoff — INIT-003
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent acceptance `[OPEN]`.
+- **Baseline:** Canonical `main` at `20f979b`, including checked merge PR #4
+  for AU-AGENT-006.
+- **Result:** All seven engineering roles exist and are active from
+  owner-instruction evidence. No material ownership collision, self-acceptance
+  path, damaged completed exchange, unsafe exchange file, or unauthorized
+  product/architecture change was found.
+- **Findings:** OVR-001 explicit PRIMARY provenance field `[OPEN]`; OVR-002
+  explicit exclusion fields `[OPEN]`; OVR-003 persistent-state lag
+  `[IMPLEMENTED]`, `[TESTED]`; OVR-004 archive-aware status reporting `[OPEN]`;
+  OVR-005 exclusive Bridge governance normalization `[OPEN]`.
+- **Bridge evidence:** 14/14 tests passed; 75 registered prior-package source
+  files and the archived return revalidated; runtime and external archive
+  checksums agree; 163 exchange-area files produced zero secret, binary,
+  symlink, or machine-path finding.
+- **Readiness:** The organization is ready for governed task intake. Product
+  implementation remains blocked by the AU-CDX-TASK-001 Technical Review and
+  task-level Definition of Ready; importer coding also remains blocked by the
+  product OQ-005 spike result.
+- **Report:**
+  `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`.
+- **Next step:** Commit the exact validation source, prepare and synchronize
+  `AU-EX-20260725-001`, then stop for independent review.
+
 ## 2026-07-20 — Project Owner to Codex — INIT-001
 
 - **Direction received:** Establish the primary technical governance role,

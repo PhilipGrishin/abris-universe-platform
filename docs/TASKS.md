@@ -2,6 +2,29 @@
 
 ## Active and Acceptance Follow-up Records
 
+### INIT-003-ORG-VALIDATION — Full Engineering Organization Readiness Validation
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent acceptance `[OPEN]`
+- **Owner:** AU-CODEX-PRIMARY
+- **Reviewers:** Project Owner for authority findings; AU-AGENT-001 for
+  technical boundaries; AU-AGENT-002 for documentation lifecycle; Claude
+  Cowork Quality, Security & Independent Acceptance Lead through
+  `AU-EX-20260725-001`
+- **Documentation Impact:** Material
+- **Outcome:** Validated all seven engineering roles, every pairwise boundary,
+  the acceptance and interaction model, documentation consistency, Bridge
+  contracts and tests, completed-exchange integrity, shared-folder safety,
+  synchronization, communication routing, and TASK-THINSLICE-001 intake
+  mapping without product implementation or silent authority changes.
+- **Report:** `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`
+- **Findings:** OVR-001 owner/provenance field normalization `[OPEN]`; OVR-002
+  standalone exclusion-field normalization `[OPEN]`; OVR-003 persistent-state
+  lag `[IMPLEMENTED]`, `[TESTED]`; OVR-004 archive-aware status reporting
+  `[OPEN]`; OVR-005 exclusive Bridge governance normalization `[OPEN]`.
+- **Next gate:** Prepare and synchronize the exact-source independent review
+  package. Do not begin product development before its disposition and the
+  separate AU-CDX-TASK-001 Technical Review.
+
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; exercised operating model
