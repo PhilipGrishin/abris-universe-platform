@@ -329,3 +329,31 @@ test("rejects out-of-order and cross-version progress", () => {
     ),
   );
 });
+
+test("rejects an invalid persisted progress event discriminant", () => {
+  const context = validContext();
+  assert.throws(
+    () =>
+      rebuildProgressState(
+        [
+          {
+            schemaVersion: 1,
+            id: "event-corrupt",
+            projectId: "project-1",
+            patternVersionId: context.patternVersion.id,
+            localSequence: 1,
+            type: "corrupt",
+            targetStitchId: context.stitches[0]!.id,
+            occurredAt: timestamp,
+            deviceId: "device-1",
+            source: "user",
+          } as unknown as ProgressEvent,
+        ],
+        "project-1",
+        context.patternVersion.id,
+      ),
+    (error: unknown) =>
+      error instanceof DomainValidationError &&
+      error.code === "INVALID_PROGRESS_EVENT",
+  );
+});

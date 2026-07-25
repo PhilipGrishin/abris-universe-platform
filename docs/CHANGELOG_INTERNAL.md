@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.2.0 |
+| Version | 3.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,28 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — Persistence Verification Finding Remediation
+
+- Implemented remediation candidates for TS001-PERSIST-001 through
+  TS001-PERSIST-005 without changing product behavior or the approved storage
+  architecture.
+- Hashes now bind the complete final ProgressEvent including allocated
+  `localSequence`; replay and rebuild recompute and compare the digest.
+- Progress append and rebuild now validate stitch membership against the exact
+  PatternVersion tiles.
+- Source Blob bytes are SHA-256 checked before staging.
+- Added bounded runtime ImportReport validation and cleanup that stores no
+  malformed report while deleting failed source bytes.
+- Added fail-closed persisted-event, ID-record, discriminant, hash, context,
+  sequence, and target-reference validation.
+- Expanded evidence to 10 domain, 15 importer, and 17 persistence tests; strict
+  typecheck and the full workspace suite pass.
+- Preserved the AU-AGENT-003 `REWORK REQUIRED` status until exact-source
+  reverification and kept TS001-PERSIST-006 open for browser/client evidence.
+- Documentation Impact: Material.
+- Status: remediation candidate `[IMPLEMENTED]`, `[TESTED]`; no project
+  `[VERIFIED]`.
 
 ## 2026-07-25 — Independent Persistence Verification
 

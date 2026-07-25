@@ -14,6 +14,8 @@ import {
   type ProgressAppendResult,
   type ProgressEventIdRecord,
   type ProgressProjectionRecord,
+  type PatternTileRecord,
+  type TileSetMetadata,
 } from "./contracts.ts";
 import {
   requestResult,
@@ -33,22 +35,83 @@ function projectionRange(projectId: string): IDBKeyRange {
   return IDBKeyRange.bound([projectId, ""], [projectId, "\uffff"]);
 }
 
-function canonicalPayloadHash(
-  request: ProgressAppendRequest,
-  deviceId: string,
-): string {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function canonicalEventHash(event: ProgressEvent): string {
   const canonicalPayload = JSON.stringify({
-    schemaVersion: 1,
-    id: request.id,
-    projectId: request.projectId,
-    patternVersionId: request.patternVersionId,
-    type: request.type,
-    targetStitchId: request.targetStitchId,
-    occurredAt: request.occurredAt,
-    deviceId,
-    source: "user",
+    schemaVersion: event.schemaVersion,
+    id: event.id,
+    projectId: event.projectId,
+    patternVersionId: event.patternVersionId,
+    localSequence: event.localSequence,
+    type: event.type,
+    targetStitchId: event.targetStitchId,
+    occurredAt: event.occurredAt,
+    deviceId: event.deviceId,
+    source: event.source,
   });
   return bytesToHex(sha256(new TextEncoder().encode(canonicalPayload)));
+}
+
+function integrityFailure(message: string, cause?: unknown): never {
+  throw new PersistenceError("PERSISTENCE_INTEGRITY_CORRUPTION", message, {
+    cause,
+  });
+}
+
+function validateStoredEvent(
+  value: unknown,
+  projectId: string,
+  patternVersionId: string,
+): ProgressEvent {
+  if (!isRecord(value)) {
+    return integrityFailure("Stored progress event is not an object.");
+  }
+  const event = value as unknown as ProgressEvent;
+  try {
+    rebuildProgressState([event], projectId, patternVersionId);
+  } catch (error) {
+    return integrityFailure("Stored progress event is malformed.", error);
+  }
+  return event;
+}
+
+function validateIdRecord(
+  value: unknown,
+  expectedId: string,
+): ProgressEventIdRecord {
+  if (
+    !isRecord(value) ||
+    value.id !== expectedId ||
+    typeof value.projectId !== "string" ||
+    value.projectId.length === 0 ||
+    typeof value.localSequence !== "number" ||
+    !Number.isSafeInteger(value.localSequence) ||
+    value.localSequence <= 0 ||
+    typeof value.payloadSha256 !== "string" ||
+    !/^[a-f0-9]{64}$/u.test(value.payloadSha256)
+  ) {
+    return integrityFailure("Stored progress idempotency record is malformed.");
+  }
+  return value as unknown as ProgressEventIdRecord;
+}
+
+function validateTileSetMetadata(
+  value: unknown,
+  patternVersionId: string,
+): TileSetMetadata {
+  if (
+    !isRecord(value) ||
+    value.patternVersionId !== patternVersionId ||
+    typeof value.tileSize !== "number" ||
+    !Number.isSafeInteger(value.tileSize) ||
+    value.tileSize <= 0
+  ) {
+    return integrityFailure("Stored tile-set metadata is malformed.");
+  }
+  return value as unknown as TileSetMetadata;
 }
 
 function assertProgressRequest(request: ProgressAppendRequest): void {
@@ -62,6 +125,17 @@ function assertProgressRequest(request: ProgressAppendRequest): void {
     throw new PersistenceError(
       "PERSISTENCE_STATE_CONFLICT",
       "Progress identifiers must be non-empty.",
+    );
+  }
+  if (
+    !Number.isSafeInteger(request.targetX) ||
+    request.targetX < 0 ||
+    !Number.isSafeInteger(request.targetY) ||
+    request.targetY < 0
+  ) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "Progress target coordinates must be non-negative safe integers.",
     );
   }
   for (const timestamp of [request.occurredAt, request.updatedAt]) {
@@ -117,7 +191,6 @@ export async function appendProgressEvent(
       "Web Locks are required for safe progress writes.",
     );
   }
-  const payloadSha256 = canonicalPayloadHash(request, database.deviceId);
   return locks.request(
     `au:project:${request.projectId}:progress-writer`,
     { mode: "exclusive", ifAvailable: true },
@@ -137,6 +210,7 @@ export async function appendProgressEvent(
           STORE_NAMES.progressEventIds,
           STORE_NAMES.progressProjections,
           STORE_NAMES.metadata,
+          STORE_NAMES.patternTiles,
         ],
         async (transaction) => {
           const projectStore = transaction.objectStore(STORE_NAMES.projects);
@@ -146,29 +220,78 @@ export async function appendProgressEvent(
             STORE_NAMES.progressProjections,
           );
           const metadataStore = transaction.objectStore(STORE_NAMES.metadata);
-          const existing = (await requestResult(
+          const tileStore = transaction.objectStore(STORE_NAMES.patternTiles);
+          const existingValue = await requestResult(
             idStore.get(request.id),
-          )) as ProgressEventIdRecord | undefined;
-          if (existing !== undefined) {
+          );
+          if (existingValue !== undefined) {
+            const existing = validateIdRecord(existingValue, request.id);
+            const eventValue = await requestResult(
+              eventStore.get([existing.projectId, existing.localSequence]),
+            );
+            if (eventValue === undefined) {
+              return integrityFailure(
+                `Idempotency record ${request.id} has no matching event.`,
+              );
+            }
+            const event = validateStoredEvent(
+              eventValue,
+              request.projectId,
+              request.patternVersionId,
+            );
             if (
-              existing.payloadSha256 !== payloadSha256 ||
-              existing.projectId !== request.projectId
+              existing.projectId !== event.projectId ||
+              existing.localSequence !== event.localSequence ||
+              existing.payloadSha256 !== canonicalEventHash(event)
+            ) {
+              return integrityFailure(
+                `Progress event ${request.id} does not match its idempotency record.`,
+              );
+            }
+            if (
+              event.id !== request.id ||
+              event.projectId !== request.projectId ||
+              event.patternVersionId !== request.patternVersionId ||
+              event.type !== request.type ||
+              event.targetStitchId !== request.targetStitchId ||
+              event.occurredAt !== request.occurredAt ||
+              event.deviceId !== database.deviceId ||
+              event.source !== "user"
             ) {
               throw new PersistenceError(
                 "PERSISTENCE_IDEMPOTENCY_CONFLICT",
                 `Progress event ID ${request.id} was reused with different content.`,
               );
             }
-            const event = (await requestResult(
-              eventStore.get([existing.projectId, existing.localSequence]),
-            )) as ProgressEvent | undefined;
-            if (event === undefined) {
-              throw new PersistenceError(
-                "PERSISTENCE_SCHEMA_INVALID",
-                `Idempotency record ${request.id} has no matching event.`,
-              );
-            }
             return { event, idempotentReplay: true };
+          }
+          const tileMetadataRecord = (await requestResult(
+            metadataStore.get(`tileSet:${request.patternVersionId}`),
+          )) as MetadataRecord | undefined;
+          const tileMetadata = validateTileSetMetadata(
+            tileMetadataRecord?.value,
+            request.patternVersionId,
+          );
+          const targetTile = (await requestResult(
+            tileStore.get([
+              request.patternVersionId,
+              Math.floor(request.targetY / tileMetadata.tileSize),
+              Math.floor(request.targetX / tileMetadata.tileSize),
+            ]),
+          )) as PatternTileRecord | undefined;
+          if (
+            targetTile === undefined ||
+            !targetTile.stitches.some(
+              (stitch) =>
+                stitch.id === request.targetStitchId &&
+                stitch.x === request.targetX &&
+                stitch.y === request.targetY,
+            )
+          ) {
+            throw new PersistenceError(
+              "PERSISTENCE_STATE_CONFLICT",
+              "Progress target does not exist in the requested PatternVersion.",
+            );
           }
 
           const project = (await requestResult(
@@ -223,6 +346,7 @@ export async function appendProgressEvent(
             deviceId: database.deviceId,
             source: "user",
           };
+          const payloadSha256 = canonicalEventHash(event);
           eventStore.add(event);
           idStore.add({
             id: request.id,
@@ -288,7 +412,9 @@ export async function rebuildProgressProjection(
     [
       STORE_NAMES.projects,
       STORE_NAMES.progressEvents,
+      STORE_NAMES.progressEventIds,
       STORE_NAMES.progressProjections,
+      STORE_NAMES.patternTiles,
     ],
     async (transaction) => {
       const project = (await requestResult(
@@ -300,16 +426,66 @@ export async function rebuildProgressProjection(
           "Only a ready Project can rebuild progress.",
         );
       }
-      const events = (await requestResult(
+      const eventValues = await requestResult(
         transaction
           .objectStore(STORE_NAMES.progressEvents)
           .getAll(progressRange(projectId)),
-      )) as ProgressEvent[];
-      const state = rebuildProgressState(
-        events,
-        project.id,
-        project.patternVersionId,
       );
+      const tiles = (await requestResult(
+        transaction.objectStore(STORE_NAMES.patternTiles).getAll(
+          IDBKeyRange.bound(
+            [project.patternVersionId, 0, 0],
+            [
+              project.patternVersionId,
+              Number.MAX_SAFE_INTEGER,
+              Number.MAX_SAFE_INTEGER,
+            ],
+          ),
+        ),
+      )) as PatternTileRecord[];
+      const stitchIds = new Set(
+        tiles.flatMap((tile) => tile.stitches.map((stitch) => stitch.id)),
+      );
+      const idStore = transaction.objectStore(STORE_NAMES.progressEventIds);
+      const events: ProgressEvent[] = [];
+      for (const eventValue of eventValues) {
+        const event = validateStoredEvent(
+          eventValue,
+          project.id,
+          project.patternVersionId,
+        );
+        const idRecordValue = await requestResult(idStore.get(event.id));
+        if (idRecordValue === undefined) {
+          return integrityFailure(
+            `Progress event ${event.id} has no idempotency record.`,
+          );
+        }
+        const idRecord = validateIdRecord(idRecordValue, event.id);
+        if (
+          idRecord.projectId !== event.projectId ||
+          idRecord.localSequence !== event.localSequence ||
+          idRecord.payloadSha256 !== canonicalEventHash(event) ||
+          !stitchIds.has(event.targetStitchId)
+        ) {
+          return integrityFailure(
+            `Progress event ${event.id} failed rebuild integrity checks.`,
+          );
+        }
+        events.push(event);
+      }
+      let state;
+      try {
+        state = rebuildProgressState(
+          events,
+          project.id,
+          project.patternVersionId,
+        );
+      } catch (error) {
+        return integrityFailure(
+          "Progress event log cannot be rebuilt safely.",
+          error,
+        );
+      }
       const projectionStore = transaction.objectStore(
         STORE_NAMES.progressProjections,
       );

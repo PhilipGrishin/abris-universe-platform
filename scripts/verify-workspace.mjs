@@ -57,6 +57,7 @@ for (const requiredPath of [
   "packages/importers/oxs/src/index.ts",
   "packages/importers/oxs/src/limits.ts",
   "packages/importers/oxs/src/parser.ts",
+  "packages/importers/oxs/src/report-validation.ts",
   "packages/importers/oxs/test/oxs-importer.test.ts",
   "packages/importers/oxs/tsconfig.json",
   "packages/persistence/src/capability.ts",

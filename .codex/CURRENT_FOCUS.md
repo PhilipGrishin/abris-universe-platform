@@ -4,12 +4,12 @@
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
-`[IMPLEMENTED]`, `[TESTED]`; persistence gate is `REWORK REQUIRED`
+`[IMPLEMENTED]`, `[TESTED]`; findings 001–005 have a tested remediation
+candidate while the reviewed gate remains `REWORK REQUIRED`
 
-Remediate TS001-PERSIST-001 through TS001-PERSIST-005 from the independent
-report at exact source `776a149`, then obtain AU-AGENT-003 reverification.
-Do not start rendering or client integration before the mandatory findings
-close.
+Obtain AU-AGENT-003 reverification of the exact tested remediation for
+TS001-PERSIST-001 through TS001-PERSIST-005. Do not start rendering or client
+integration before the mandatory findings close.
 
 ## Confirmed Inputs
 
@@ -43,6 +43,9 @@ close.
   failed/interrupted cleanup, metadata, idempotent progress, Web Locks,
   capability failures, reopen, and projection rebuild are `[IMPLEMENTED]`,
   `[TESTED]` at the repository API boundary.
+- The remediation candidate adds final-event hashes, exact-version stitch
+  validation, Blob/hash binding, bounded report validation/cleanup, and
+  fail-closed replay/rebuild integrity with 17 focused persistence tests.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -95,15 +98,16 @@ with checksum provenance and no verified scope.
 
 The persistence package implements the registered schema-v1 repositories,
 transaction boundaries, retention lifecycle, progress journal, recovery, and
-capability failures. Strict typecheck and 11 focused tests pass, including
-atomic abort, tile integrity, blocked upgrade, simulated quota, persistence denial,
-idempotency/corruption, lock failure, close/reopen, and projection rebuild.
+capability failures and the five mandatory finding remediations. Strict
+typecheck and 17 focused tests pass, including atomic abort, tile integrity,
+Blob/hash mismatch, bounded report cleanup, phantom targets, final-event hash,
+blocked upgrade, simulated quota, persistence denial, idempotency/corruption,
+lock failure, close/reopen, and projection rebuild.
 
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Implement the five mandatory persistence findings, add focused negative
-evidence, update lifecycle records, and submit the exact remediation source to
-AU-AGENT-003. Keep TS001-PERSIST-006 open for browser/client integration.
+Commit and submit the exact remediation source to AU-AGENT-003. Keep
+TS001-PERSIST-006 open for browser/client integration.

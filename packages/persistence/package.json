@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@abris-universe/domain-core": "workspace:*",
+    "@abris-universe/oxs-importer": "workspace:*",
     "@noble/hashes": "2.2.0"
   },
   "devDependencies": {

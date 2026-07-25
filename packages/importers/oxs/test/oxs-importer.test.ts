@@ -12,6 +12,7 @@ import {
   assertOxsSourcePreflight,
   estimateOxsParsedPeakBytes,
   importOxsRoute1,
+  validateOxsImportReport,
   type OxsImportRequest,
 } from "../src/index.ts";
 import {
@@ -369,6 +370,24 @@ test("enforces source and parsed-memory preflight boundaries", () => {
       OXS_LIMITS.maxFullCrossStitches,
       OXS_LIMITS.maxUnsupportedObjects,
     ) > OXS_LIMITS.maxPreflightPeakBytes,
+  );
+});
+
+test("runtime-validates bounded accepted and rejected ImportReports", () => {
+  const accepted = importOxsRoute1(request("minimal-full-cross.oxs"));
+  const rejected = importOxsRoute1(request("corrupt-truncated.oxs"));
+  assert.doesNotThrow(() => validateOxsImportReport(accepted.report));
+  assert.doesNotThrow(() => validateOxsImportReport(rejected.report));
+  assert.throws(() =>
+    validateOxsImportReport({
+      ...rejected.report,
+      errors: [
+        {
+          ...rejected.report.errors[0],
+          details: { raw: "x".repeat(513) },
+        },
+      ],
+    }),
   );
 });
 

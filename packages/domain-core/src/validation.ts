@@ -31,6 +31,7 @@ export type DomainValidationCode =
   | "BROKEN_REFERENCE"
   | "CLOTH_STITCH_REFERENCE"
   | "PROGRESS_CONTEXT_MISMATCH"
+  | "INVALID_PROGRESS_EVENT"
   | "PROGRESS_SEQUENCE_INVALID";
 
 export class DomainValidationError extends Error {
@@ -443,11 +444,14 @@ export function rebuildProgressState(
     if (
       event.schemaVersion !== 1 ||
       event.source !== "user" ||
+      !["mark", "unmark"].includes(event.type) ||
       event.projectId !== projectId ||
       event.patternVersionId !== patternVersionId
     ) {
       fail(
-        "PROGRESS_CONTEXT_MISMATCH",
+        !["mark", "unmark"].includes(event.type)
+          ? "INVALID_PROGRESS_EVENT"
+          : "PROGRESS_CONTEXT_MISMATCH",
         path,
         "Progress event does not belong to the requested project version.",
       );

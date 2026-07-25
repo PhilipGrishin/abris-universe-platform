@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]` bounded route-1 importer core |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-001, `tests/fixtures/oxs/README.md` |
@@ -36,7 +36,9 @@ The package implements:
   content hashing;
 - unsupported-content and source-progress warnings without converting source
   `marked` state into ProgressEvent;
-- bounded user-safe ImportReport diagnostics that contain no raw XML; and
+- bounded user-safe ImportReport diagnostics that contain no raw XML;
+- a runtime ImportReport validator with explicit total, issue, field, detail,
+  scalar, count, and hash bounds for the persistence boundary; and
 - deterministic generated-symbol fallback for source-code collisions.
 
 Runtime dependencies are pinned to `saxes` 6.0.0 (ISC) and
@@ -65,7 +67,8 @@ The focused suite covers golden minimal/medium/empty cases, exactly 100,000
 stitches, deterministic IDs/hashes, registered rejection fixtures, unsupported
 content, `marked` isolation, structural and reference failures, symbol
 collision fallback, unknown producer rejection, invalid UTF-8, and reduced
-adversarial parser budgets.
+adversarial parser budgets. Accepted, rejected, and malformed ImportReport
+validation is covered explicitly.
 
 ## Lifecycle and Additions
 

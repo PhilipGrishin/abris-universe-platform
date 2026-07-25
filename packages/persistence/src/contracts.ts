@@ -7,6 +7,7 @@ import type {
   Project,
   SourceFile,
 } from "@abris-universe/domain-core";
+import type { OxsImportReport } from "@abris-universe/oxs-importer";
 
 export const ABRIS_DATABASE_NAME = "abris-universe" as const;
 export const ABRIS_DATABASE_VERSION = 1 as const;
@@ -35,6 +36,7 @@ export type PersistenceErrorCode =
   | "PERSISTENCE_RECORD_NOT_FOUND"
   | "PERSISTENCE_STATE_CONFLICT"
   | "PERSISTENCE_IDEMPOTENCY_CONFLICT"
+  | "PERSISTENCE_INTEGRITY_CORRUPTION"
   | "PERSISTENCE_WEB_LOCKS_UNAVAILABLE"
   | "PERSISTENCE_PROGRESS_LOCK_UNAVAILABLE";
 
@@ -59,7 +61,7 @@ export interface StoredSourceFile extends SourceFile {
 }
 
 export interface StoredImportJob extends ImportJob {
-  readonly report: unknown | null;
+  readonly report: OxsImportReport | null;
 }
 
 export interface PatternTileRecord {
@@ -113,14 +115,14 @@ export interface ImportCommitInput {
   readonly tiles: readonly PatternTileRecord[];
   readonly tileSize: number;
   readonly project: Project;
-  readonly report: unknown;
+  readonly report: OxsImportReport;
 }
 
 export interface ImportRejectionInput {
   readonly sourceFileId: string;
   readonly importJob: ImportJob;
   readonly project: Project;
-  readonly report: unknown;
+  readonly report: OxsImportReport;
 }
 
 export interface ProgressAppendRequest {
@@ -129,6 +131,8 @@ export interface ProgressAppendRequest {
   readonly patternVersionId: string;
   readonly type: "mark" | "unmark";
   readonly targetStitchId: string;
+  readonly targetX: number;
+  readonly targetY: number;
   readonly occurredAt: string;
   readonly updatedAt: string;
 }

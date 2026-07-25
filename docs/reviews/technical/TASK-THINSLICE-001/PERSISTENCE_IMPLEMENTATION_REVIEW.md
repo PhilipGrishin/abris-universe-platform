@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-PERSIST-001 |
 | Title | TASK-THINSLICE-001 IndexedDB Persistence Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification `REWORK REQUIRED` at `776a149` |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; findings remediated in candidate source; independent reverification pending |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 at the consolidated implementation gate |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | Technical Design v1.5.0; ADR-TS001-003; domain-core and OXS importer implementation reviews |
@@ -67,7 +67,7 @@ from Technical Design section 9.
 | Check | Result |
 | --- | --- |
 | `pnpm typecheck` | `[TESTED]`; strict TypeScript 7.0.2 passes for domain, importer, and persistence packages |
-| Persistence focused suite | `[TESTED]`; 11 passed, 0 failed |
+| Persistence focused suite | `[TESTED]`; 17 passed, 0 failed after finding remediation |
 | Full workspace suite | `[TESTED]`; fixture, workspace-boundary, domain, importer, and persistence suites pass |
 | Schema/reopen | `[TESTED]`; exact stores and stable `deviceId` survive close/reopen |
 | Atomic import | `[TESTED]`; success persists all records; a constraint failure aborts every attempted canonical write; divergent tile data is rejected |
@@ -111,6 +111,28 @@ production IndexedDB dependency was added.
 - TS001-PERSIST-006 preserves real-browser, two-tab, power-loss, eviction, and
   client save-state evidence as a later mandatory gate.
 
+## Finding Remediation Candidate
+
+- TS001-PERSIST-001: the stored digest is now calculated from the complete
+  final ProgressEvent after `localSequence` allocation and is recomputed during
+  replay/rebuild integrity checks.
+- TS001-PERSIST-002: append validates the requested stitch ID and canonical
+  coordinates against the exact PatternVersion tile; rebuild validates every
+  event target against that version's retained tiles.
+- TS001-PERSIST-003: staging hashes the Blob and rejects a mismatch before any
+  record is written.
+- TS001-PERSIST-004: the importer exports a bounded runtime ImportReport
+  validator; persistence validates lifecycle/hash agreement, and malformed
+  rejected reports trigger byte cleanup plus an interrupted record without
+  storing malformed diagnostics.
+- TS001-PERSIST-005: stored event discriminants, identity records, final-event
+  hashes, context, sequence, and stitch membership fail closed with typed
+  integrity corruption.
+
+The candidate has 10 domain, 15 importer, and 17 persistence tests. These
+dispositions are implementation-owner claims until AU-AGENT-003 reverifies the
+exact remediation commit.
+
 ## Documentation Result
 
 Package, task, status, risk, traceability, changelog, and handoff records now
@@ -119,9 +141,8 @@ evidence. No Documentation Exception is required.
 
 ## Next Step
 
-Remediate TS001-PERSIST-001 through TS001-PERSIST-005 and submit the exact new
-source for AU-AGENT-003 reverification. Do not close TS001-PERSIST-006 from
-fake IndexedDB evidence.
+Submit the exact remediation source for AU-AGENT-003 reverification. Do not
+close TS001-PERSIST-006 from fake IndexedDB evidence.
 
 ## References
 

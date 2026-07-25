@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import "fake-indexeddb/auto";
+import { sha256 } from "@noble/hashes/sha2.js";
+import { bytesToHex } from "@noble/hashes/utils.js";
 import type {
   FullCrossStitch,
   ImportJob,
@@ -9,6 +11,7 @@ import type {
   Project,
   SourceFile,
 } from "@abris-universe/domain-core";
+import type { OxsImportReport } from "@abris-universe/oxs-importer";
 import {
   PersistenceError,
   STORE_NAMES,
@@ -38,7 +41,8 @@ import {
 const ISO_1 = "2026-07-25T10:00:00.000Z";
 const ISO_2 = "2026-07-25T10:01:00.000Z";
 const ISO_3 = "2026-07-25T10:02:00.000Z";
-const HASH_A = "a".repeat(64);
+const HASH_A =
+  "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f";
 const HASH_B = "b".repeat(64);
 const openDatabases: AbrisDatabase[] = [];
 const databaseNames: string[] = [];
@@ -199,6 +203,61 @@ function records(suffix = "") {
   };
 }
 
+function importReport(
+  data: ReturnType<typeof records>,
+  status: "completed" | "rejected" = "completed",
+): OxsImportReport {
+  return {
+    schemaVersion: 1,
+    importJobId: data.importingJob.id,
+    status,
+    errors:
+      status === "rejected"
+        ? [
+            {
+              code: "OXS_ROOT_INVALID",
+              severity: "error",
+              messageKey: "import.oxs.oxs_root_invalid",
+              location: null,
+              details: {},
+            },
+          ]
+        : [],
+    warnings: [],
+    counts: {
+      paletteItems: status === "completed" ? 1 : 0,
+      symbols: status === "completed" ? 1 : 0,
+      fullCrossStitches: status === "completed" ? 1 : 0,
+      unsupportedByKind: {},
+    },
+    sourceSha256: data.sourceFile.sha256,
+    ...(status === "completed"
+      ? { canonicalContentHash: data.patternVersion.canonicalContentHash }
+      : {}),
+  };
+}
+
+function progressEventHash(event: Record<string, unknown>): string {
+  return bytesToHex(
+    sha256(
+      new TextEncoder().encode(
+        JSON.stringify({
+          schemaVersion: event.schemaVersion,
+          id: event.id,
+          projectId: event.projectId,
+          patternVersionId: event.patternVersionId,
+          localSequence: event.localSequence,
+          type: event.type,
+          targetStitchId: event.targetStitchId,
+          occurredAt: event.occurredAt,
+          deviceId: event.deviceId,
+          source: event.source,
+        }),
+      ),
+    ),
+  );
+}
+
 async function stage(
   database: AbrisDatabase,
   data = records(),
@@ -232,7 +291,7 @@ async function complete(
     ],
     tileSize: 32,
     project: data.readyProject,
-    report: { outcome: "completed", warnings: [] },
+    report: importReport(data),
   });
 }
 
@@ -358,6 +417,27 @@ test("commits retained source, canonical records, tiles, and ready Project atomi
   );
 });
 
+test("rejects a staged Blob whose bytes do not match SourceFile.sha256", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await assert.rejects(
+    startImportAttempt(database, {
+      sourceFile: { ...data.sourceFile, sha256: "a".repeat(64) },
+      sourceBlob: new Blob(["12345678"], { type: "application/xml" }),
+      importJob: data.importingJob,
+      project: data.importingProject,
+      maxSourceBytes: 64 * 1024 * 1024,
+    }),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_INTEGRITY_CORRUPTION",
+  );
+  assert.equal(
+    await getStoredSourceFile(database, data.sourceFile.id),
+    undefined,
+  );
+});
+
 test("aborts the complete-import transaction without partial canonical records", async () => {
   const database = await openDatabase();
   const first = records("-first");
@@ -419,7 +499,7 @@ test("rejects tile data that diverges from canonical stitches", async () => {
       ],
       tileSize: 32,
       project: data.readyProject,
-      report: { outcome: "completed", warnings: [] },
+      report: importReport(data),
     }),
     (error: unknown) =>
       error instanceof PersistenceError &&
@@ -452,7 +532,7 @@ test("deletes failed source bytes while retaining bounded provenance and diagnos
       status: "import_failed",
       updatedAt: ISO_2,
     },
-    report: { outcome: "rejected", errors: ["UNSUPPORTED_FORMAT"] },
+    report: importReport(data, "rejected"),
   });
 
   const source = await getStoredSourceFile(database, data.sourceFile.id);
@@ -461,8 +541,53 @@ test("deletes failed source bytes while retaining bounded provenance and diagnos
   assert.equal(source?.retentionStatus, "deleted-after-failure");
   assert.deepEqual(
     (await getStoredImportJob(database, data.importingJob.id))?.report,
-    { outcome: "rejected", errors: ["UNSUPPORTED_FORMAT"] },
+    importReport(data, "rejected"),
   );
+});
+
+test("cleans source bytes and records interruption when a rejected report is malformed", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await stage(database, data);
+  const malformed = {
+    ...importReport(data, "rejected"),
+    errors: [
+      {
+        code: "OXS_ROOT_INVALID",
+        severity: "error",
+        messageKey: "import.oxs.oxs_root_invalid",
+        location: null,
+        details: { value: "x".repeat(513) },
+      },
+    ],
+  } as unknown as OxsImportReport;
+  await assert.rejects(
+    rejectImportAttempt(database, {
+      sourceFileId: data.sourceFile.id,
+      importJob: {
+        ...data.importingJob,
+        status: "rejected",
+        completedAt: ISO_2,
+        reportRef: "idb:importJobs:job:report",
+      },
+      project: {
+        ...data.importingProject,
+        status: "import_failed",
+        updatedAt: ISO_2,
+      },
+      report: malformed,
+    }),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_STATE_CONFLICT",
+  );
+  assert.equal(
+    (await getStoredSourceFile(database, data.sourceFile.id))?.bytes,
+    null,
+  );
+  const job = await getStoredImportJob(database, data.importingJob.id);
+  assert.equal(job?.status, "interrupted");
+  assert.equal(job?.report, null);
 });
 
 test("recovers interrupted imports without preserving opaque source bytes", async () => {
@@ -497,6 +622,8 @@ test("appends ordered progress events, makes identical retries no-ops, and detec
     patternVersionId: data.patternVersion.id,
     type: "mark" as const,
     targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
     occurredAt: ISO_2,
     updatedAt: ISO_2,
   };
@@ -514,6 +641,16 @@ test("appends ordered progress events, makes identical retries no-ops, and detec
   assert.equal(retry.idempotentReplay, true);
   assert.equal(retry.event.localSequence, 1);
   assert.equal(unmark.event.localSequence, 2);
+  const idRecord = await requestResult(
+    database.connection
+      .transaction(STORE_NAMES.progressEventIds)
+      .objectStore(STORE_NAMES.progressEventIds)
+      .get(mark.id),
+  );
+  assert.equal(
+    idRecord.payloadSha256,
+    progressEventHash(first.event as unknown as Record<string, unknown>),
+  );
   assert.equal((await listProgressEvents(database, data.readyProject.id)).length, 2);
   assert.deepEqual(
     await getProgressProjection(database, data.readyProject.id),
@@ -536,6 +673,30 @@ test("appends ordered progress events, makes identical retries no-ops, and detec
   );
 });
 
+test("rejects a progress target that is absent from the exact PatternVersion", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await stage(database, data);
+  await complete(database, data);
+  await assert.rejects(
+    appendProgressEvent(database, locks, {
+      id: "event-phantom",
+      projectId: data.readyProject.id,
+      patternVersionId: data.patternVersion.id,
+      type: "mark",
+      targetStitchId: "missing-stitch",
+      targetX: 1,
+      targetY: 1,
+      occurredAt: ISO_2,
+      updatedAt: ISO_2,
+    }),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_STATE_CONFLICT",
+  );
+  assert.deepEqual(await listProgressEvents(database, data.readyProject.id), []);
+});
+
 test("rejects unsafe writers and stale toggle commands", async () => {
   const database = await openDatabase();
   const data = records();
@@ -547,6 +708,8 @@ test("rejects unsafe writers and stale toggle commands", async () => {
     patternVersionId: data.patternVersion.id,
     type: "mark" as const,
     targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
     occurredAt: ISO_2,
     updatedAt: ISO_2,
   };
@@ -592,6 +755,8 @@ test("rebuilds the progress projection from immutable events after reopen", asyn
     patternVersionId: data.patternVersion.id,
     type: "mark",
     targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
     occurredAt: ISO_2,
     updatedAt: ISO_2,
   });
@@ -626,5 +791,127 @@ test("rebuilds the progress projection from immutable events after reopen", asyn
         state: "marked",
       },
     ],
+  );
+});
+
+test("fails closed when replay event and idempotency digest diverge", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await stage(database, data);
+  await complete(database, data);
+  const request = {
+    id: "event-corrupt-digest",
+    projectId: data.readyProject.id,
+    patternVersionId: data.patternVersion.id,
+    type: "mark" as const,
+    targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
+    occurredAt: ISO_2,
+    updatedAt: ISO_2,
+  };
+  await appendProgressEvent(database, locks, request);
+  const transaction = database.connection.transaction(
+    STORE_NAMES.progressEventIds,
+    "readwrite",
+  );
+  transaction.objectStore(STORE_NAMES.progressEventIds).put({
+    id: request.id,
+    projectId: request.projectId,
+    localSequence: 1,
+    payloadSha256: "c".repeat(64),
+  });
+  await new Promise<void>((resolve, reject) => {
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+  await assert.rejects(
+    appendProgressEvent(database, locks, request),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_INTEGRITY_CORRUPTION",
+  );
+});
+
+test("fails closed when rebuild encounters an invalid event discriminant", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await stage(database, data);
+  await complete(database, data);
+  const request = {
+    id: "event-corrupt-type",
+    projectId: data.readyProject.id,
+    patternVersionId: data.patternVersion.id,
+    type: "mark" as const,
+    targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
+    occurredAt: ISO_2,
+    updatedAt: ISO_2,
+  };
+  const appended = await appendProgressEvent(database, locks, request);
+  const transaction = database.connection.transaction(
+    STORE_NAMES.progressEvents,
+    "readwrite",
+  );
+  transaction.objectStore(STORE_NAMES.progressEvents).put({
+    ...appended.event,
+    type: "corrupt",
+  });
+  await new Promise<void>((resolve, reject) => {
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+  await assert.rejects(
+    rebuildProgressProjection(database, data.readyProject.id),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_INTEGRITY_CORRUPTION",
+  );
+});
+
+test("fails closed when rebuild encounters an internally hashed phantom stitch", async () => {
+  const database = await openDatabase();
+  const data = records();
+  await stage(database, data);
+  await complete(database, data);
+  const request = {
+    id: "event-corrupt-target",
+    projectId: data.readyProject.id,
+    patternVersionId: data.patternVersion.id,
+    type: "mark" as const,
+    targetStitchId: data.stitch.id,
+    targetX: data.stitch.x,
+    targetY: data.stitch.y,
+    occurredAt: ISO_2,
+    updatedAt: ISO_2,
+  };
+  const appended = await appendProgressEvent(database, locks, request);
+  const corruptEvent = {
+    ...appended.event,
+    targetStitchId: "phantom-stitch",
+  };
+  const transaction = database.connection.transaction(
+    [STORE_NAMES.progressEvents, STORE_NAMES.progressEventIds],
+    "readwrite",
+  );
+  transaction.objectStore(STORE_NAMES.progressEvents).put(corruptEvent);
+  transaction.objectStore(STORE_NAMES.progressEventIds).put({
+    id: corruptEvent.id,
+    projectId: corruptEvent.projectId,
+    localSequence: corruptEvent.localSequence,
+    payloadSha256: progressEventHash(
+      corruptEvent as unknown as Record<string, unknown>,
+    ),
+  });
+  await new Promise<void>((resolve, reject) => {
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+  await assert.rejects(
+    rebuildProgressProjection(database, data.readyProject.id),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_INTEGRITY_CORRUPTION",
   );
 });

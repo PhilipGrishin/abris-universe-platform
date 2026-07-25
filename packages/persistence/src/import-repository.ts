@@ -1,9 +1,15 @@
+import { sha256 } from "@noble/hashes/sha2.js";
+import { bytesToHex } from "@noble/hashes/utils.js";
 import {
   validateCanonicalPatternVersion,
   validateProject,
   type ImportJob,
   type Project,
 } from "@abris-universe/domain-core";
+import {
+  validateOxsImportReport,
+  type OxsImportReport,
+} from "@abris-universe/oxs-importer";
 import {
   PersistenceError,
   STORE_NAMES,
@@ -60,11 +66,21 @@ function assertImportAttempt(input: ImportAttemptInput): void {
   validateProject(input.project);
 }
 
+async function hashBlob(blob: Blob): Promise<string> {
+  return bytesToHex(sha256(new Uint8Array(await blob.arrayBuffer())));
+}
+
 export async function startImportAttempt(
   database: AbrisDatabase,
   input: ImportAttemptInput,
 ): Promise<void> {
   assertImportAttempt(input);
+  if ((await hashBlob(input.sourceBlob)) !== input.sourceFile.sha256) {
+    throw new PersistenceError(
+      "PERSISTENCE_INTEGRITY_CORRUPTION",
+      "Source Blob bytes do not match SourceFile.sha256.",
+    );
+  }
   await runReadwrite(
     database,
     [
@@ -84,6 +100,34 @@ export async function startImportAttempt(
       transaction.objectStore(STORE_NAMES.projects).add(input.project);
     },
   );
+}
+
+function assertReportMatches(
+  report: unknown,
+  importJob: ImportJob,
+  sourceSha256: string,
+  canonicalContentHash?: string,
+): asserts report is OxsImportReport {
+  try {
+    validateOxsImportReport(report);
+  } catch (error) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "ImportReport is malformed or exceeds its approved bound.",
+      { cause: error },
+    );
+  }
+  if (
+    report.importJobId !== importJob.id ||
+    report.status !== importJob.status ||
+    report.sourceSha256 !== sourceSha256 ||
+    report.canonicalContentHash !== canonicalContentHash
+  ) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "ImportReport does not match its import lifecycle and content hashes.",
+    );
+  }
 }
 
 function assertSuccessfulCommit(input: ImportCommitInput): void {
@@ -106,6 +150,12 @@ function assertSuccessfulCommit(input: ImportCommitInput): void {
       "Successful import records do not form a completed lifecycle.",
     );
   }
+  assertReportMatches(
+    input.report,
+    input.importJob,
+    input.sourceFile.sha256,
+    input.patternVersion.canonicalContentHash,
+  );
 
   if (!Number.isSafeInteger(input.tileSize) || input.tileSize <= 0) {
     throw new PersistenceError(
@@ -286,6 +336,7 @@ export async function rejectImportAttempt(
   validateProject(input.project);
   if (
     input.importJob.status !== "rejected" ||
+    input.importJob.completedAt === null ||
     input.project.status !== "import_failed" ||
     input.project.importJobId !== input.importJob.id ||
     input.importJob.sourceFileId !== input.sourceFileId
@@ -294,6 +345,26 @@ export async function rejectImportAttempt(
       "PERSISTENCE_STATE_CONFLICT",
       "Rejected import records do not form a failed lifecycle.",
     );
+  }
+
+  let invalidReport: PersistenceError | undefined;
+  try {
+    assertReportMatches(
+      input.report,
+      input.importJob,
+      (
+        await getStoredSourceFile(database, input.sourceFileId)
+      )?.sha256 ?? "",
+    );
+  } catch (error) {
+    invalidReport =
+      error instanceof PersistenceError
+        ? error
+        : new PersistenceError(
+            "PERSISTENCE_STATE_CONFLICT",
+            "Rejected ImportReport failed validation.",
+            { cause: error },
+          );
   }
 
   await runReadwrite(
@@ -338,13 +409,31 @@ export async function rejectImportAttempt(
         retentionStatus: "deleted-after-failure",
         bytes: null,
       } satisfies StoredSourceFile);
-      importStore.put({
-        ...input.importJob,
-        report: structuredClone(input.report),
-      } satisfies StoredImportJob);
+      if (invalidReport === undefined) {
+        importStore.put({
+          ...input.importJob,
+          report: structuredClone(input.report),
+        } satisfies StoredImportJob);
+      } else {
+        importStore.put({
+          ...job,
+          status: "interrupted",
+          completedAt: input.importJob.completedAt,
+          reportRef: null,
+          warningCodes: [],
+          report: null,
+        } satisfies StoredImportJob);
+      }
       projectStore.put(input.project);
     },
   );
+  if (invalidReport !== undefined) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "Rejected ImportReport was invalid; source bytes were deleted and the attempt was recorded as interrupted.",
+      { cause: invalidReport },
+    );
+  }
 }
 
 export async function recoverInterruptedImports(

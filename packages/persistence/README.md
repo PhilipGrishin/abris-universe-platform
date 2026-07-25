@@ -27,12 +27,15 @@ projections, transactions, and schema upgrades.
   Technical Design.
 - Stable installation `deviceId` and schema/capability metadata.
 - Short atomic import staging with opaque source Blob retention.
+- Pre-staging SHA-256 verification binds retained Blob bytes to SourceFile
+  provenance.
 - One atomic accepted-import commit across reports, canonical records, tiles,
   and Project readiness.
 - Rejected/interrupted import cleanup that deletes source bytes but preserves
   bounded provenance and diagnostics.
 - Append-only, per-project sequenced ProgressEvents with stable event IDs,
-  canonical idempotency hashes, same-transaction projections, and Project
+  final-event idempotency hashes including `localSequence`, exact-version
+  stitch-reference validation, same-transaction projections, and Project
   timestamps.
 - Mandatory exclusive Web Lock for progress writes; no unsafe fallback.
 - Projection rebuild, reopen recovery, strict-durability request where
@@ -51,8 +54,9 @@ pnpm --filter @abris-universe/persistence test
 The focused suite uses `fake-indexeddb` only as a test dependency. It covers
 schema/reopen compatibility, atomic commit and rollback, failed/interrupted
 cleanup, canonical tile integrity, quota and blocked-upgrade paths, persistence
-denial, progress idempotency/conflict, lock capability, stale toggles, reload,
-and projection rebuild.
+denial, bounded/malformed ImportReport cleanup, progress
+idempotency/conflict/corruption, phantom-stitch rejection, lock capability,
+stale toggles, reload, and fail-closed projection rebuild.
 
 ## Limits
 

@@ -1,5 +1,25 @@
 # Handoff Log
 
+## 2026-07-25 — Persistence Finding Remediation Candidate
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; independent status remains
+  `REWORK REQUIRED` until exact-source reverification.
+- **Scope:** Remediated TS001-PERSIST-001 through TS001-PERSIST-005 with
+  final-event hashing, exact-version stitch validation, pre-staging Blob/hash
+  binding, bounded ImportReport validation and safe invalid-report cleanup, and
+  fail-closed replay/rebuild integrity.
+- **Evidence:** Strict typecheck; 10 domain, 15 importer, and 17 persistence
+  tests; full workspace checks; focused mismatch, malformed-report,
+  phantom-stitch, digest-corruption, discriminant-corruption, and rebuild
+  integrity cases.
+- **Boundary:** This is implementation-owner evidence, not an AU-AGENT-003
+  finding closure. TS001-PERSIST-006 remains open for real browser/client
+  evidence.
+- **Bridge disposition:** Internal remediation requires no Claude return.
+- **Documentation Impact:** Material.
+- **Next gate:** Commit the exact candidate and submit it to AU-AGENT-003 for
+  reverification.
+
 ## 2026-07-25 — Independent Persistence Verification at `776a149`
 
 - **Engineering Verification Status:** `REWORK REQUIRED`.

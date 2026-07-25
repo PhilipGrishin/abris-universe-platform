@@ -83,6 +83,13 @@
   `776a149` and assigned Engineering Verification Status `REWORK REQUIRED`.
   TS001-PERSIST-001 through TS001-PERSIST-005 are mandatory code/evidence
   findings; TS001-PERSIST-006 remains the later real-browser/client gate.
+- `[IMPLEMENTED]`, `[TESTED]` The remediation candidate for
+  TS001-PERSIST-001 through TS001-PERSIST-005 adds final-event hashing,
+  exact-version stitch validation, Blob/hash binding, bounded ImportReport
+  validation/cleanup, and fail-closed replay/rebuild checks. Ten domain,
+  fifteen importer, and seventeen persistence tests pass. The independent
+  status remains `REWORK REQUIRED` until AU-AGENT-003 reverifies the exact new
+  source.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -349,7 +356,7 @@
   isolation, and bounded rejection cases.
 - `[TESTED]` `pnpm typecheck` passes with TypeScript 7.0.2, and all 9 focused
   domain-core tests pass without failures.
-- `[TESTED]` All 14 focused importer tests pass, including the 100,000-stitch
+- `[TESTED]` All 15 focused importer tests pass, including the 100,000-stitch
   golden mapping, deterministic IDs/hash, registered rejection codes, DTD and
   processing-instruction rejection, unknown producer rejection, unsupported
   reporting, source-progress isolation, symbol collision fallback, and reduced
@@ -404,6 +411,6 @@ remain open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Remediate TS001-PERSIST-001 through TS001-PERSIST-005 and obtain AU-AGENT-003
-reverification on an exact new commit. Keep TS001-PERSIST-006 open for
-renderer/client integration.
+Commit the tested TS001-PERSIST-001 through TS001-PERSIST-005 remediation and
+obtain AU-AGENT-003 reverification on that exact source. Keep
+TS001-PERSIST-006 open for renderer/client integration.
