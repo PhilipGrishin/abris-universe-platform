@@ -42,14 +42,13 @@
 
 ## OQ-004 — Independent Handoff Channel
 
-- **Status:** `[OPEN]`
-- **Question:** What persistent mechanism should Codex use to deliver Technical
-  Reviews and Completion Reports to Claude Cowork and receive `[VERIFIED]`
-  outcomes?
-- **Why it matters:** A file-only record captures evidence but does not itself
-  establish delivery or independent acceptance.
-- **Recommended option:** Use a versioned handoff file plus the owner's chosen
-  Claude Cowork channel, then record the returned decision and evidence link.
-- **Can continue without answer:** Technical preparation and file-based handoffs.
-- **Blocked:** Confirmed independent `[VERIFIED]` status.
-- **Decision owner:** Project owner / Claude Cowork
+- **Status:** `[CONFIRMED]`
+- **Answer:** Use the registered local Collaboration Bridge with exact-source
+  task manifests, controlled Claude inbox/outbox, Codex validation and staging,
+  canonical integration, provenance archive, and traceability updates.
+- **Evidence:** Completed exchange `AU-EX-20260721-001`, its validated outcome,
+  canonical Independent Acceptance Report, and external archive record.
+- **Result:** Direct Claude GitHub access remains unavailable but is non-blocking.
+  The file-based channel now establishes delivery and return provenance when the
+  registered validation and integration workflow completes.
+- **Decision owner:** Project Owner / Claude Cowork / AU-CODEX-PRIMARY

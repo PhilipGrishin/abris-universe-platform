@@ -22,6 +22,8 @@ authoritative full instruction set for this workspace.
 10. Treat `[IMPLEMENTED]`, `[TESTED]`, and `[VERIFIED]` as distinct states.
 11. Write all project artifacts in English.
 12. Do not register speculative specialist agents.
+13. Use the controlled local bridge for Claude exchanges when direct repository
+    access is unavailable; AU-CODEX-PRIMARY remains the sole Git writer.
 
 ## Active Specialist Leadership
 
@@ -33,8 +35,8 @@ governance rules, source hierarchy, agent registration, and owner-level
 escalation framework.
 
 The Lead Architect cannot independently review or accept its own work. Until an
-Engineering Quality reviewer is registered, record RISK-005 on substantial
-implementation and do not describe internal review as independent.
+engineering result passes the separately assigned AU-AGENT-003 quality gate, do
+not describe AU-AGENT-001 self-review as independent.
 
 ## Active Documentation Leadership
 
@@ -55,6 +57,24 @@ Tasks must declare Documentation Impact as `None`, `Minor`, `Material`, or
 Completion Report. Non-`None` impact requires a documentation result and
 AU-AGENT-002 review, or an approved registered Documentation Exception.
 
+## Active Engineering Quality Leadership
+
+`AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead` independently
+reviews Codex engineering results before Claude Cowork product acceptance. It
+reviews quality, evidence, testing, regressions, security, reliability,
+documentation, traceability, CI/CD, and release readiness and issues an
+Engineering Verification Report.
+
+AU-AGENT-003 may block the Completion Report and require remediation but does
+not implement features or fixes, modify implementation, redesign architecture,
+change product requirements, approve product acceptance, or override the
+Project Owner. Missing evidence is missing implementation.
+
+Use only the unbracketed Engineering Verification Status values `VERIFIED`,
+`VERIFIED WITH FINDINGS`, `REWORK REQUIRED`, and `BLOCKED` in its reports. They
+do not assign project `[VERIFIED]`, which remains exclusive to Claude Cowork
+independent acceptance.
+
 ## Source Priority
 
 Use evidence in this order:
@@ -74,3 +94,12 @@ work until the proper owner decides.
 The Claude Cowork organization is registered separately in
 `product/agents/README.md`; `AI_ORGANIZATION.md` links the product and
 engineering registries without merging role activation or authority.
+
+## Local Collaboration Bridge
+
+Follow `collaboration/README.md` for the canonical twelve-step exchange. Exact
+source identity, checksums, path confinement, safety validation, staging,
+meaning review, and archive reference are mandatory. Generated packages and
+the external bridge are non-canonical local state. Claude must not use Git or
+directly edit this repository; AU-CODEX-PRIMARY alone integrates and publishes
+accepted artifacts.

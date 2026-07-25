@@ -6,11 +6,12 @@
 | Title | Threat Model Index |
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
-| Technical Approver | AU-AGENT-001 until a registered security owner exists |
-| Version | 1.0.0 |
+| Technical Approver | AU-AGENT-001 |
+| Security Reviewer | AU-AGENT-003 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Trust boundary or data-flow change; new integration; security incident; control change |
@@ -31,8 +32,10 @@ an assigned security reviewer.
 
 ## Owner
 
-AU-AGENT-002 maintains the index and lifecycle. The assigned security and
-technical owners approve model meaning and controls.
+AU-AGENT-002 maintains the index and lifecycle. AU-AGENT-001 and assigned
+technical owners approve model meaning and controls. AU-AGENT-003 independently
+reviews security evidence and findings without redesigning architecture or
+implementing controls.
 
 ## Lifecycle
 

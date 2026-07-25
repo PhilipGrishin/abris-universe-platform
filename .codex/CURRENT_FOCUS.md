@@ -1,33 +1,36 @@
 # Current Focus
 
-## Focus ID: INIT-002
+## Focus ID: AGENT-003
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`
+**Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
 
-Establish the private shared platform repository, integrate the controlled
-Claude Cowork product contour, preserve product and engineering authority, and
-publish a portable source hierarchy without implementing product features.
+Register AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead from the
+complete Project Owner instruction and integrate its independent engineering
+quality gate without product implementation or activation of AU-AGENT-004–006.
 
 ## Completed in This Focus
 
-- Initialized `main` and created the private canonical GitHub repository.
-- Preserved the existing Codex governance baseline in a separate initial commit.
-- Audited every external Claude source file and excluded local-only metadata.
-- Integrated approved product sources, role definitions, indexes, shared
-  navigation, workflow, source hierarchy, and traceability.
-- Preserved product/engineering/documentation authority boundaries and made no
-  product implementation or system architecture decision.
+- Preserved the complete supplied mission, responsibilities, authority,
+  prohibitions, inputs, outputs, verification scope, evidence rules, statuses,
+  severities, relationships, independence rules, and Definition of Done.
+- Registered AU-AGENT-003 in the authoritative and readable agent registries.
+- Created the complete operating definition, agent index, Engineering
+  Verification Report library, and report template.
+- Integrated the engineering quality gate before Claude Cowork product
+  acceptance.
+- Distinguished unbracketed Engineering Verification Status from project
+  `[VERIFIED]`.
+- Kept AU-AGENT-004–006 inactive and made no product or runtime-architecture
+  change.
 
 ## Blocked or Awaiting Input
 
-- Independent review of the repository integration.
+- Full owner-provided operating instruction for AU-AGENT-004.
 - Engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
-- Registration or reassignment of specialist roles named by the Task Package.
-- A registered independent Engineering Quality reviewer before substantial
-  implementation can receive independent engineering acceptance.
+- Registration of the remaining specialist roles named by Owner Decision F1.
 
 ## Next Concrete Step
 
-Route AU-CDX-TASK-001 v1.0 to AU-AGENT-001 for source-aware Technical Review.
-Do not begin implementation until role assignments and blocking task questions
-are resolved.
+Stop after AU-AGENT-003 activation. In a separate owner input, receive the full
+operating instruction for AU-AGENT-004. Do not activate AU-AGENT-004–006 or
+start AU-CDX-TASK-001 implementation in this focus.

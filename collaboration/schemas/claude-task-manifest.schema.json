@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abris-universe.local/schemas/claude-task-manifest.schema.json",
+  "title": "Abris Universe Claude Task Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "exchange_id",
+    "task_id",
+    "task_type",
+    "requested_claude_role",
+    "source_commit_sha",
+    "source_branch",
+    "prepared_at",
+    "prepared_by",
+    "purpose",
+    "scope",
+    "out_of_scope",
+    "required_inputs",
+    "included_files",
+    "expected_outputs",
+    "acceptance_criteria",
+    "authority_boundaries",
+    "documentation_impact",
+    "return_location",
+    "integrity_checksums"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "exchange_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{5,127}$"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "task_type": {
+      "enum": [
+        "PRODUCT_TASK_PACKAGE",
+        "PRODUCT_CLARIFICATION",
+        "PRODUCT_DECISION",
+        "INDEPENDENT_ACCEPTANCE_REVIEW",
+        "REQUIREMENTS_REVIEW",
+        "RESEARCH_REQUEST",
+        "DOCUMENTATION_REVIEW"
+      ]
+    },
+    "requested_claude_role": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "source_commit_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_branch": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$"
+    },
+    "review_commit_range": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}\\.\\.[0-9a-f]{7,40}$"
+    },
+    "prepared_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "prepared_by": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "$ref": "#/$defs/nonEmptyStringArray"
+    },
+    "out_of_scope": {
+      "$ref": "#/$defs/nonEmptyStringArray"
+    },
+    "required_inputs": {
+      "$ref": "#/$defs/nonEmptyStringArray"
+    },
+    "included_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/fileRecord"
+      }
+    },
+    "expected_outputs": {
+      "$ref": "#/$defs/nonEmptyStringArray"
+    },
+    "acceptance_criteria": {
+      "$ref": "#/$defs/nonEmptyStringArray"
+    },
+    "authority_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_authority",
+        "engineering_authority",
+        "documentation_authority",
+        "git_authority"
+      ],
+      "properties": {
+        "product_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "engineering_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "documentation_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "git_authority": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "documentation_impact": {
+      "enum": [
+        "None",
+        "Minor",
+        "Material",
+        "Breaking"
+      ]
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "return_location": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "allowed_output_extensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^\\.[a-z0-9]+$"
+      }
+    },
+    "integrity_checksums": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -37,7 +37,8 @@ threat model, capability, benchmark, checklist, or migration has been completed.
 
 AU-AGENT-002 owns navigation, metadata, traceability, consistency, and lifecycle.
 Named technical and assurance owners approve the meaning and evidence of each
-document.
+document. AU-AGENT-003 independently reviews applicable assurance evidence
+without authoring implementation or changing technical meaning.
 
 ## Lifecycle
 
@@ -56,3 +57,4 @@ traceability, and complete documentation review.
 - [Source of Truth Registry](../SOURCE_OF_TRUTH.md)
 - [Documentation Standard](../standards/DOCUMENTATION_STANDARD.md)
 - [Risks](../RISKS.md)
+- [Engineering Verification Reports](../reviews/engineering/README.md)

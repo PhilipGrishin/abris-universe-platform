@@ -1,0 +1,69 @@
+{
+  "exchange_id": "AU-EX-20260721-001",
+  "task_id": "INIT-002-INDEPENDENT-REVIEW",
+  "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
+  "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
+  "source_commit_sha": "1ccaace4aa6c5a441dca52bcbbab3fd26017f908",
+  "source_branch": "main",
+  "review_commit_range": "9c85d3d..1ccaace",
+  "prepared_at": "2026-07-21T19:58:53Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Independently review Platform Repository Initialization and Product/Engineering Governance Integration.",
+  "scope": [
+    "Review repository initialization and governance integration in the exact commit range.",
+    "Check product-versus-engineering authority boundaries and agent interactions.",
+    "Check source hierarchy, traceability, documentation lifecycle, security hygiene, and Git governance.",
+    "Return an evidence-based independent acceptance decision."
+  ],
+  "out_of_scope": [
+    "Changing product requirements, product behavior, or approved terminology.",
+    "Changing technical or product architecture.",
+    "Reviewing the substantive product content of the binary master specification.",
+    "Using Git, committing, pushing, or editing the canonical repository.",
+    "Implementing software product features."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/PROJECT_MANIFEST.md",
+    "sources/repository/AGENTS.md",
+    "sources/repository/AI_ORGANIZATION.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/docs/DEVELOPMENT_WORKFLOW.md",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/product/governance/SOURCE_INTEGRATION_MAP.md"
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema.",
+    "outputs/acceptance-report.md containing evidence, findings, limitations, and the acceptance rationale."
+  ],
+  "acceptance_criteria": [
+    "The exact range 9c85d3d..1ccaace and registered source checksums are reviewed.",
+    "The repository and source-of-truth hierarchy are coherent and contain no competing canonical definitions.",
+    "Product authority remains with Claude Cowork and engineering authority remains with Codex.",
+    "AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.",
+    "Security, privacy, documentation lifecycle, and traceability controls are assessed from evidence.",
+    "No product or technical meaning is invented or changed by the reviewer.",
+    "The result returns exactly VERIFIED or REWORK_REQUIRED and does not claim evidence that was not reviewed."
+  ],
+  "authority_boundaries": {
+    "product_authority": "Claude Cowork may review and decide within approved product authority but may not modify engineering artifacts directly.",
+    "engineering_authority": "AU-CODEX-PRIMARY and AU-AGENT-001 own engineering governance, technical meaning, implementation, and integration.",
+    "documentation_authority": "AU-AGENT-002 owns documentation structure, navigation, consistency, terminology, traceability, and lifecycle without changing technical or product meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260721-001",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "include_paths": [
+    "."
+  ],
+  "exclude_paths": [
+    "product/specifications/Abris_Universe_Master_Product_Specification_RU.docx"
+  ]
+}

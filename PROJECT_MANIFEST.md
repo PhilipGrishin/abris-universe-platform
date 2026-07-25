@@ -9,10 +9,10 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md` |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Repository topology; authority hierarchy; organization; canonical source; platform scope; implementation-state change |
@@ -76,6 +76,9 @@ AU-AGENT-001 and assigned technical owners within AU-CODEX-PRIMARY governance.
 - Documentation: AU-AGENT-002 owns structure, navigation, terminology
   consistency, traceability, and lifecycle, but not product or technical
   meaning.
+- Engineering quality: AU-AGENT-003 independently reviews implementation
+  quality and evidence before product acceptance, but does not implement
+  features, redesign architecture, or approve product acceptance.
 - Final authority: Project Owner decisions and approved versioned Task Packages
   retain the highest applicable authority.
 
@@ -95,14 +98,14 @@ explained in `docs/CODEX_AGENTS.md`. The two registries remain separate; use
 
 - Claude Cowork: Chief Project Orchestrator plus the seven specialized roles in
   `product/agents/README.md`.
-- Codex: AU-CODEX-PRIMARY, AU-AGENT-001, and AU-AGENT-002.
+- Codex: AU-CODEX-PRIMARY, AU-AGENT-001, AU-AGENT-002, and AU-AGENT-003.
 
 ## 12. Planned Agents
 
 The following Codex directions are `[PLANNED]`, not active: Pattern Engine and
-Import; Mobile and Web; Backend, Data, and Synchronization; Engineering Quality,
-DevOps, and Security. Activation requires owner-provided role instructions and
-registration. Names in a Task Package do not activate a role.
+Import; Mobile and Web; and Backend, Data, and Synchronization. AU-AGENT-004–006
+require separate owner-provided role instructions and registration. Names or
+relationships in a Task Package or active role do not activate another role.
 
 ## 13. Source of Truth Hierarchy
 
@@ -113,10 +116,15 @@ documents never override their canonical sources.
 
 ## 14. Shared Product-to-Engineering Workflow
 
-The lifecycle from discovery through `VERIFIED` or `REWORK REQUIRED` is defined
-in `docs/SHARED_WORKFLOW.md`. Product hands off a versioned Task Package; Codex
-performs technical review, design, implementation, tests, and reporting; Claude
-Cowork independently reviews the result.
+The lifecycle from discovery through project `[VERIFIED]` or a product rework
+decision is defined in `docs/SHARED_WORKFLOW.md`. Product hands off a versioned
+Task Package; Codex performs technical review, design, implementation, tests,
+and reporting; AU-AGENT-003 performs independent engineering verification;
+Claude Cowork independently reviews the result for product acceptance.
+
+When direct repository access is unavailable, artifacts cross the local
+boundary only through the controlled bridge in `collaboration/`. GitHub remains
+canonical and AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.
 
 ## 15. Documentation System
 
@@ -134,7 +142,8 @@ terminology consistency, traceability, and lifecycle.
 |-- AGENTS.md                 engineering operating instructions
 |-- .codex/                   Codex governance and agent registry
 |-- docs/                     engineering knowledge and evidence
-`-- product/                  product knowledge, governance, and acceptance
+|-- product/                  product knowledge, governance, and acceptance
+`-- collaboration/           governed local Claude-Codex exchange contracts
 ```
 
 No application source tree exists yet. Its structure is `[TBD]` and requires an
@@ -146,8 +155,18 @@ approved Technical Design.
 - `[IMPLEMENTED]` Engineering governance and documentation infrastructure.
 - `[IMPLEMENTED]` Controlled import of the initial Claude product contour.
 - `[IMPLEMENTED]` Separate Claude and Codex role registries and shared workflow.
+- `[IMPLEMENTED]`, `[TESTED]` Controlled Option B local collaboration bridge.
+- `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independent engineering
+  quality-gate role and report infrastructure.
+- `[VERIFIED]` INIT-002 platform repository initialization, product and
+  engineering contour integration, governance boundaries, Source of Truth
+  organization, and the Collaboration Bridge operating model exercised by
+  exchange `AU-EX-20260721-001`, subject to the report's limitations.
 - `[OPEN]` Product implementation and executable architecture.
-- Not `[VERIFIED]` pending independent review.
+- The verified status does not cover application implementation, stack, runtime
+  architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 activation,
+  remaining planned Codex agents,
+  Engineering Handbook content, or unreviewed bridge tooling changes.
 
 ## 18. Confirmed Capabilities
 
@@ -184,6 +203,10 @@ technical evidence. Independent Claude Cowork reviewers evaluate product,
 domain, architecture, quality, security, and acceptance criteria. No agent
 independently accepts its own work.
 
+The bounded INIT-002 decision is recorded in
+`product/reviews/INIT-002_Independent_Acceptance_Report.md` and must not be
+generalized beyond its commit, scope, evidence, or limitations.
+
 ## 23. Security and Confidentiality Baseline
 
 The repository is private. Secrets must never be committed; use environment
@@ -201,9 +224,11 @@ requiring explicit controls and evidence.
 - `product/agents/README.md`
 - `AI_ORGANIZATION.md`
 - `docs/SHARED_WORKFLOW.md`
+- `collaboration/README.md`
 - `docs/ARCHITECTURE.md`
 - `docs/DECISIONS.md`
 - `docs/CURRENT_STATUS.md`
+- `product/reviews/INIT-002_Independent_Acceptance_Report.md`
 
 ## 25. Manifest Maintenance Rules
 

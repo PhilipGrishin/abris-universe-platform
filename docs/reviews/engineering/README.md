@@ -1,0 +1,86 @@
+# Engineering Verification Report Library
+
+| Field | Value |
+| --- | --- |
+| Document ID | AU-REVIEW-ENG-INDEX-001 |
+| Title | Engineering Verification Report Library |
+| Status | `[IMPLEMENTED]` |
+| Owner | AU-AGENT-003 |
+| Technical Approver | AU-CODEX-PRIMARY |
+| Version | 1.0.0 |
+| Created | 2026-07-25 |
+| Last Updated | 2026-07-25 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
+| Supersedes | None |
+| Superseded By | None |
+| Review Triggers | Engineering verification report added; report status change; quality-gate contract change; broken navigation; orphan report |
+
+## Purpose
+
+Provide the canonical location, structure, and lifecycle for independent Codex
+Engineering Verification Reports issued by AU-AGENT-003.
+
+## Scope
+
+This library contains task-scoped engineering quality-gate reports, findings,
+risk assessments, evidence references, and reverification history. It does not
+contain Claude Cowork product acceptance reports and does not grant project
+`[VERIFIED]` status.
+
+## Reports
+
+No Engineering Verification Report exists yet. Add the first report only for a
+real engineering result with exact source identity and review evidence.
+
+## Owner
+
+AU-AGENT-003 owns report conclusions, findings, severity, risk assessment, and
+the Engineering Verification Status. AU-AGENT-002 maintains structure,
+navigation, metadata, references, terminology, traceability, and lifecycle
+without changing review meaning. AU-CODEX-PRIMARY enforces governance and
+escalation.
+
+## Lifecycle
+
+1. Register the reviewed Task Package, source, scope, implementation owner, and
+   applicable standards.
+2. Confirm reviewer independence and inventory all required evidence.
+3. Perform every applicable quality, test, regression, security, documentation,
+   CI/CD, release, architecture-compliance, and traceability check.
+4. Record findings with severity, evidence, owner, required disposition, and
+   reverification condition.
+5. Assign one Engineering Verification Status.
+6. Route mandatory findings for remediation without directly changing
+   implementation.
+7. Reverify resolved findings and append disposition evidence without erasing
+   history.
+8. Update this index, traceability, task status, Completion Report, and handoff.
+
+## Adding Reports
+
+Copy [the report template](TEMPLATE.md) into this directory using a stable
+task-scoped filename. Complete all required metadata and sections; remove
+instructional text rather than leaving empty claims. Register the report in this
+index and `docs/TRACEABILITY_MATRIX.md`. A report must identify exact reviewed
+source and limitations and must not use an unqualified project `[VERIFIED]`
+label.
+
+## Status and Severity
+
+Engineering Verification Status is exactly `VERIFIED`, `VERIFIED WITH
+FINDINGS`, `REWORK REQUIRED`, or `BLOCKED`. These unbracketed values are scoped
+to the engineering quality gate.
+
+Finding severity is exactly `Critical`, `High`, `Medium`, `Low`, or
+`Recommendation`. Critical findings block completion. Any downgrade requires
+new evidence and a preserved disposition record.
+
+## Related Sources
+
+- `docs/SOURCE_OF_TRUTH.md`
+- `.codex/AGENT_REGISTRY.md`
+- `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`
+- `docs/DEVELOPMENT_WORKFLOW.md`
+- `docs/SHARED_WORKFLOW.md`
+- `docs/TRACEABILITY_MATRIX.md`
+- `product/reviews/`

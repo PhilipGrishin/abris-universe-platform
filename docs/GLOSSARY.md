@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -56,6 +56,14 @@ without content-owner approval.
 An explanatory and navigational layer built only from approved engineering
 knowledge. It links to canonical ADRs, RFCs, specifications, architecture, and
 standards instead of duplicating their technical facts.
+
+### Engineering Verification Status
+
+The task-scoped quality-gate decision assigned by AU-AGENT-003 after independent
+engineering review. Allowed values are `VERIFIED`, `VERIFIED WITH FINDINGS`,
+`REWORK REQUIRED`, and `BLOCKED`. These values are written without project
+status brackets and do not assign `[VERIFIED]` product acceptance, which remains
+with Claude Cowork.
 
 ### Owner
 

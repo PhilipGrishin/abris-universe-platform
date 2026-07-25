@@ -90,7 +90,10 @@ For every non-trivial task:
 7. Add and run proportionate automated and manual checks.
 8. Update technical documentation and persistent project state.
 9. Produce a Completion Report with evidence and rollback information.
-10. Hand the result to Claude Cowork for independent verification.
+10. Route the result through AU-AGENT-003 for independent engineering
+    verification.
+11. Hand the engineering-reviewed result to Claude Cowork for independent
+    product acceptance.
 
 ## Engineering Rules
 
@@ -179,6 +182,29 @@ invent implementation or architecture, silently delete documentation, create a
 parallel source of truth, rewrite approved terminology, or assign its own work
 `[VERIFIED]`.
 
+### Active Engineering Quality Specialist
+
+`AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead` is the
+independent engineering quality-gate specialist. It reviews implementation
+quality, evidence, tests, regression risk, security, reliability,
+documentation completeness, traceability, CI/CD readiness, and release
+readiness before a Codex engineering result is sent to Claude Cowork.
+
+AU-AGENT-003 may reject incomplete results, require evidence and remediation,
+and block a Completion Report while mandatory findings remain. It must not
+implement features or fixes, modify implementation directly, redesign
+architecture, change product requirements, approve product acceptance, or
+override the Project Owner.
+
+Its report assigns one unbracketed, task-scoped Engineering Verification Status:
+`VERIFIED`, `VERIFIED WITH FINDINGS`, `REWORK REQUIRED`, or `BLOCKED`. These
+values are not the project status `[VERIFIED]`; only Claude Cowork independent
+acceptance assigns that project status. AU-AGENT-003 never verifies its own
+implementation and bases every conclusion on recorded evidence.
+
+See `.codex/AGENT_REGISTRY.md` and the complete operating definition under
+`.codex/agents/definitions/`.
+
 ## Documentation Governance
 
 `docs/SOURCE_OF_TRUTH.md` is the canonical registry for engineering source
@@ -196,3 +222,17 @@ The Engineering Handbook is an explanatory and navigational layer. It must use
 references and must not duplicate ADRs, RFCs, specifications, architecture
 documents, or product decisions. Handbook content can be created only from
 approved engineering knowledge.
+
+## Local Claude-Codex Collaboration
+
+Use `collaboration/README.md` and its registered schemas when Claude lacks
+reliable access to the canonical repository. GitHub remains canonical.
+AU-CODEX-PRIMARY is the sole Git writer and GitHub operator. Claude may read
+only prepared inbox packages and write only registered return artifacts to its
+outbox; it must not commit, push, merge, or directly mutate repository files.
+
+Every exchange must use a unique Exchange ID, exact source commit, checksums,
+portable paths, explicit authority boundaries, and Documentation Impact. Codex
+must reject unsafe or stale packages before staging. A valid return is not an
+approved or canonical result until the authorized meaning review and Codex
+integration are complete. No bridge participant may self-assign `[VERIFIED]`.

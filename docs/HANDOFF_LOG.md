@@ -168,3 +168,146 @@
 - **Independent review:** Awaiting; no result is marked `[VERIFIED]`.
 - **Next step:** Independent review of the repository foundation, followed by
   AU-AGENT-001 engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
+
+## 2026-07-21 — Project Owner to Codex — BRIDGE-001
+
+- **Direction received:** Implement a permanent local Claude-Codex
+  collaboration bridge while GitHub remains canonical and Codex remains the
+  sole Git operator and repository writer.
+- **Topology requirement:** Discover whether an in-repository or synchronized
+  external bridge fits current access; keep machine paths local-only; do not
+  change existing Claude source files.
+- **Safety requirement:** Use exact source identity, machine-readable manifests,
+  checksums, path and file controls, dry-run-first writes, validation before
+  staging, and no automatic commit or push.
+- **First exchange:** Prepare independent review titled “Platform Repository
+  Initialization and Product/Engineering Governance Integration” for the
+  Quality, Security & Independent Acceptance Lead over
+  `9c85d3d..1ccaace`.
+- **Documentation Impact:** Material.
+
+## 2026-07-21 — Codex Technical Handoff — BRIDGE-001
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
+- **Topology:** Option B, synchronized external bridge. Reliable direct Claude
+  repository access is unconfirmed; Claude's established local workspace is
+  available. The external absolute path exists only in ignored local config.
+- **Implemented:** Committed portable documentation, schemas, exchange
+  manifests, and dependency-free Node.js tools for prepare, sync, validate,
+  stage, archive, and status. All write-capable operations default to dry-run
+  and require `--apply`; none performs Git operations.
+- **Safety:** Validation covers traversal, symlinks, hidden and temporary output,
+  binaries, secret-like material, machine paths, file/package size, extensions,
+  duplicate IDs, stale source, required-source registration, checksums,
+  unsupported statuses, and ambiguous independent acceptance.
+- **First exchange:** `AU-EX-20260721-001` was prepared from full SHA
+  `1ccaace4aa6c5a441dca52bcbbab3fd26017f908`, exact review range
+  `9c85d3d..1ccaace`, 75 text artifacts, and 1,462,321 registered bytes. The
+  approved binary Master Product Specification was explicitly out of scope for
+  substantive content review and was not copied.
+- **External integrity:** External bridge creation and package export changed
+  none of the 19 pre-existing Claude workspace files; all before/after SHA-256
+  values matched.
+- **Authority:** Claude reads its inbox and writes its outbox. AU-CODEX-PRIMARY
+  validates, stages, integrates, and alone operates Git/GitHub. AU-AGENT-001
+  reviews technical meaning; AU-AGENT-002 maintains documentation placement,
+  navigation, terminology, traceability, and lifecycle without changing meaning.
+- **Documentation result:** `collaboration/`, DEC-007, RISK-009, updated Source
+  of Truth, organization, workflows, registries, status, tasks, traceability,
+  navigation, and current focus.
+- **Documentation exception:** None.
+- **Independent review:** Package delivered; no Claude return exists. Status
+  remains not `[VERIFIED]`.
+- **Rollback:** The committed branch can be reviewed or reverted normally. The
+  external bridge is an additive isolated directory; do not remove it while the
+  active exchange is open. No pre-existing external file requires rollback.
+- **Next step:** The named Claude reviewer writes a schema-valid return only to
+  `claude/outbox/AU-EX-20260721-001`; Codex then validates and stages it.
+
+## 2026-07-21 — Claude Cowork to Codex — ACCEPT-INIT-002
+
+- **Exchange:** `AU-EX-20260721-001`; source task
+  `INIT-002-INDEPENDENT-REVIEW`.
+- **Reviewer:** Claude Cowork — Quality, Security & Independent Acceptance Lead.
+- **Source:** Commit `1ccaace4aa6c5a441dca52bcbbab3fd26017f908`, range
+  `9c85d3d..1ccaace`.
+- **Result:** `COMPLETED`; decision `VERIFIED`; no blocking findings; F1–F5
+  returned as non-blocking follow-ups.
+- **Authority limit:** Product and governance acceptance only. The result does
+  not verify engineering implementation, stack, runtime architecture, planned
+  agents, AU-CDX-TASK-001 implementation, or Engineering Handbook content.
+
+## 2026-07-21 — Codex Acceptance Integration — ACCEPT-INIT-002
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the exact
+  independent scope and limitations.
+- **Validation:** Exchange ID, task ID, Claude role, result type/status,
+  decision, source commit/range, reviewed sources, allowed output, path, size,
+  SHA-256, authority statement, limitations, source freshness, and absence of
+  unregistered files passed the registered contract.
+- **Meaning preservation:** The canonical report is byte-identical to the
+  validated Claude output; SHA-256
+  `fb0325185ff3da68eee01ce90ee00c0af88387a94c390abca9be7845b135b0c7`.
+- **Canonical evidence:**
+  `product/reviews/INIT-002_Independent_Acceptance_Report.md` and
+  `collaboration/manifests/AU-EX-20260721-001/outcome.json`.
+- **Follow-ups:** INIT-002-F1 through INIT-002-F5 are separately registered. F1
+  records the owner decision to activate specialist agents but does not activate
+  them.
+- **Archive:** External inbox and outbox moved to
+  `claude/archive/AU-EX-20260721-001` with the canonical report as review
+  reference.
+- **Documentation Impact:** Material; result completed without exception.
+- **Not performed:** No product implementation, stack/runtime decision, Handbook
+  content, or AU-AGENT-003–006 activation.
+- **Next step:** Receive the full AU-AGENT-003 operating instruction in a
+  separate owner task.
+
+## 2026-07-25 — Project Owner to Codex — AGENT-003
+
+- **Direction received:** Create and activate AU-AGENT-003 — Engineering
+  Quality, DevSecOps & Security Lead from the supplied complete operating
+  instruction.
+- **Mission:** Ensure every Codex engineering result meets approved engineering
+  standards before completion by independently validating quality, evidence,
+  security, reliability, testing, and operational readiness.
+- **Authority:** May reject incomplete implementation, require evidence,
+  clarification, tests, documentation, security fixes, or performance
+  measurements, and block a Completion Report while mandatory findings remain.
+- **Boundary:** Must not implement features, modify implementation, redesign
+  architecture, change product requirements, approve product acceptance, or
+  override the Project Owner.
+- **Required outputs:** Engineering Verification Report, findings, Risk
+  Assessment, Quality Gate Decision, and one of the four supplied Engineering
+  Verification Status values.
+- **Documentation Impact:** Material.
+
+## 2026-07-25 — Codex Activation Handoff — AGENT-003
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- **Registration:** AU-AGENT-003 is active in `.codex/AGENT_REGISTRY.md`,
+  `docs/CODEX_AGENTS.md`, `AGENTS.md`, and the shared organization navigation.
+- **Operating definition:** The owner-supplied mission, responsibilities,
+  authority, prohibitions, inputs, outputs, verification scope, evidence rule,
+  relationships, statuses, severities, rules, and Definition of Done are
+  preserved in
+  `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`.
+- **Quality gate:** AU-AGENT-003 reviews the consolidated engineering result
+  before Claude Cowork product acceptance and may block the Completion Report
+  until mandatory findings are resolved. Implementation owners perform fixes.
+- **Status boundary:** `VERIFIED`, `VERIFIED WITH FINDINGS`, `REWORK REQUIRED`,
+  and `BLOCKED` are unbracketed, task-scoped Engineering Verification Status
+  values. Only Claude Cowork may assign project `[VERIFIED]`.
+- **Documentation result:** Added the agent-definition index, canonical
+  Engineering Verification Report library and template, Source of Truth entries,
+  workflow gate, glossary term, traceability mappings, and persistent state.
+- **Validation:** Required role clauses, metadata, navigation, local links,
+  terminology, inactive-role boundaries, Markdown whitespace, and repository
+  diff consistency were checked. Existing bridge unit tests remained passing.
+- **Documentation exception:** None.
+- **Not performed:** No feature or fix implementation, architecture redesign,
+  CI/CD implementation, product acceptance, product-source modification,
+  Engineering Verification Report for nonexistent product code, or
+  AU-AGENT-004–006 activation.
+- **Next step:** Receive the complete Project Owner operating instruction for
+  AU-AGENT-004 in a separate task.

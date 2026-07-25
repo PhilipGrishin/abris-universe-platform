@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner / Claude Cowork |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
-| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md` |
+| Last Updated | 2026-07-21 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md`, `collaboration/README.md` |
 | Supersedes | External-workspace physical navigation only |
 | Superseded By | None |
 | Review Triggers | Product authority change; product source import; Task Package lifecycle change; repository topology change |
@@ -86,11 +86,21 @@ review, design, implementation, tests, evidence, and Completion Reports. Claude
 Cowork independently returns `VERIFIED` or `REWORK REQUIRED`; no author accepts
 its own work.
 
+When Claude cannot access GitHub directly, use the controlled route in
+`collaboration/README.md`. Claude reads the prepared inbox and writes only to
+its outbox. Codex validates and is the sole Git writer; transport does not make
+a returned artifact canonical or accepted.
+
 ## Acceptance Records
 
 Product and independent acceptance reports belong under `product/reviews/` and
 must reference the exact Task Package version, engineering commit or release,
 evidence reviewed, reviewer, decision, defects, and required rework.
+
+The first completed record is the
+[INIT-002 Independent Acceptance Report](reviews/INIT-002_Independent_Acceptance_Report.md).
+Its `VERIFIED` decision is limited to the repository initialization and
+governance-integration scope stated by the report and exchange outcome.
 
 ## Lifecycle
 
@@ -111,3 +121,4 @@ navigation documents.
 - `docs/SOURCE_OF_TRUTH.md`
 - `AI_ORGANIZATION.md`
 - `docs/SHARED_WORKFLOW.md`
+- `collaboration/README.md`

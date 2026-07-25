@@ -1,0 +1,518 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260721-001",
+  "task_id": "INIT-002-INDEPENDENT-REVIEW",
+  "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
+  "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
+  "source_commit_sha": "1ccaace4aa6c5a441dca52bcbbab3fd26017f908",
+  "source_branch": "main",
+  "review_commit_range": "9c85d3d..1ccaace",
+  "prepared_at": "2026-07-21T19:58:53Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Independently review Platform Repository Initialization and Product/Engineering Governance Integration.",
+  "scope": [
+    "Review repository initialization and governance integration in the exact commit range.",
+    "Check product-versus-engineering authority boundaries and agent interactions.",
+    "Check source hierarchy, traceability, documentation lifecycle, security hygiene, and Git governance.",
+    "Return an evidence-based independent acceptance decision."
+  ],
+  "out_of_scope": [
+    "Changing product requirements, product behavior, or approved terminology.",
+    "Changing technical or product architecture.",
+    "Reviewing the substantive product content of the binary master specification.",
+    "Using Git, committing, pushing, or editing the canonical repository.",
+    "Implementing software product features."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/PROJECT_MANIFEST.md",
+    "sources/repository/AGENTS.md",
+    "sources/repository/AI_ORGANIZATION.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/docs/DEVELOPMENT_WORKFLOW.md",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/product/governance/SOURCE_INTEGRATION_MAP.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/AGENT_REGISTRY.md",
+      "sha256": "cf897b45f1a7c8bb0cfa9a11ce1b4189fb3cf3f5ee6e31c277a837c04ae035ce",
+      "size_bytes": 14841
+    },
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "a88a55d7adaaf5940bad1e1a9c8f26f0e4aad8cdac6d99c29f06f350d3c8931a",
+      "size_bytes": 1423
+    },
+    {
+      "path": "sources/repository/.codex/PROJECT_INSTRUCTIONS.md",
+      "sha256": "2e906a930c0990eb15f4294b6cd750003bd1037f8b8b61a8d966a34ea701036a",
+      "size_bytes": 3685
+    },
+    {
+      "path": "sources/repository/.codex/SESSION_BOOTSTRAP.md",
+      "sha256": "5d3e2a86609508a57a35e1d8e21dfb9f89e61bbc76a124c8b62c0d18bcd59c81",
+      "size_bytes": 1868
+    },
+    {
+      "path": "sources/repository/.gitignore",
+      "sha256": "888085b411b7995c8f5ed2a81efdf3cee4852a3c9d3688b559ea421f6940c98a",
+      "size_bytes": 63
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "ce0e7dffabefe083c5d6480e29538d415c4486e9b104372eb81ba149397872e1",
+      "size_bytes": 9259
+    },
+    {
+      "path": "sources/repository/AI_ORGANIZATION.md",
+      "sha256": "02b29a44a457162441578e2f82c9669957299bd89bf7255de045714160866fb8",
+      "size_bytes": 2140
+    },
+    {
+      "path": "sources/repository/PROJECT_MANIFEST.md",
+      "sha256": "a6d4f74e662a8fb2a8ec4019025f75d084483b81033707734b1a8a8bae123c8f",
+      "size_bytes": 9010
+    },
+    {
+      "path": "sources/repository/README.md",
+      "sha256": "b5d5d11118f25cb9d53f60fd3847a4942d727baca7767e782c77757e2edf1b32",
+      "size_bytes": 2944
+    },
+    {
+      "path": "sources/repository/docs/ARCHITECTURE.md",
+      "sha256": "b391449dde370c0922ce63b9db8969b47bcacd445dd796a8eba2644013de4d8b",
+      "size_bytes": 7441
+    },
+    {
+      "path": "sources/repository/docs/CHANGELOG_INTERNAL.md",
+      "sha256": "7a0dea8a53390cc5310e09d182a2afa76a08481416a8c9cee4e5a3d1138f37c8",
+      "size_bytes": 3286
+    },
+    {
+      "path": "sources/repository/docs/CODEX_AGENTS.md",
+      "sha256": "12de08694bb328bfeb0e2d5161ff32f56c80cffc9578c26e16ea18d552568d6e",
+      "size_bytes": 7526
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "19a0a2be9f9659b002506e92a41ae9fe8698ef0a88d0dc6f6a0da6b505c1c94e",
+      "size_bytes": 5050
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "ad1026f066cc8ebbea26615e6137406165748eee38c8dea12f17351650caa788",
+      "size_bytes": 7295
+    },
+    {
+      "path": "sources/repository/docs/DEVELOPMENT_WORKFLOW.md",
+      "sha256": "3fc257f36570439ffe607e114f8d85b103d20feaad9853a1663221a8a4eed211",
+      "size_bytes": 6239
+    },
+    {
+      "path": "sources/repository/docs/GITHUB_COLLABORATION_RECOMMENDATIONS.md",
+      "sha256": "9dc37e7b4463daa8cbc85e3fbec390dea7283ebccf2bc48a3fb193a14f01bafc",
+      "size_bytes": 3305
+    },
+    {
+      "path": "sources/repository/docs/GLOSSARY.md",
+      "sha256": "3b7703bfe25923aab3c1d83a1008f59bdc79f16bc64c0bb5c05ae0e19bebb8af",
+      "size_bytes": 4124
+    },
+    {
+      "path": "sources/repository/docs/HANDOFF_LOG.md",
+      "sha256": "d94f18be58c5e223e48713ca846387c5635e57fbe467ffe649f45a89750940f7",
+      "size_bytes": 10046
+    },
+    {
+      "path": "sources/repository/docs/OPEN_QUESTIONS.md",
+      "sha256": "08cc03e32e131af9b827737839056648636eff73ed0e46938be2f23c1764e679",
+      "size_bytes": 2637
+    },
+    {
+      "path": "sources/repository/docs/PROJECT_CONTEXT.md",
+      "sha256": "78de488aee6a873f7d3326073bada95d3359abf4da44a248313fc39e8d140aa6",
+      "size_bytes": 4019
+    },
+    {
+      "path": "sources/repository/docs/README.md",
+      "sha256": "a80495690776458f48938de7d7bbfdb2dd4a749d547c842cb0c514be28457f71",
+      "size_bytes": 3523
+    },
+    {
+      "path": "sources/repository/docs/RISKS.md",
+      "sha256": "15c67ab9747a563d582af337209e953d3a8762907e94dbe155552a3bdfad88b3",
+      "size_bytes": 7156
+    },
+    {
+      "path": "sources/repository/docs/SHARED_WORKFLOW.md",
+      "sha256": "3bb7d6cb1ecb72b80c6d337b2f9251bd7806d03daebf86ac8d22cdbc9830e7a3",
+      "size_bytes": 4092
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "605a6f9612287a75e940d816745fa0f96a5467c0191d82d5efd7a0cc757b2e82",
+      "size_bytes": 9338
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "3169221461fd65115f06b5b4a5d12aa11b46a0fd30d15f2c76a12a5e5eaec7a6",
+      "size_bytes": 4079
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "7f1c23a067da3294ca4b9c0e9288de8ba896f49b42a5bddede82439501a7da44",
+      "size_bytes": 4290
+    },
+    {
+      "path": "sources/repository/docs/WORKSPACE_AUDIT.md",
+      "sha256": "22e9b06e2399913fabb457f51415dd34e26f305ce8a738c151e02a807dc52494",
+      "size_bytes": 4334
+    },
+    {
+      "path": "sources/repository/docs/architecture/README.md",
+      "sha256": "479e87cd28d8e570b3d0b660f41ce013c68a634c22f514e92fed8208159beef3",
+      "size_bytes": 1881
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/README.md",
+      "sha256": "e79903dc6517463ae4019df9792a23df66a157690e25d678f2b0c201a3ea885c",
+      "size_bytes": 1939
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/TEMPLATE.md",
+      "sha256": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+      "size_bytes": 1985
+    },
+    {
+      "path": "sources/repository/docs/architecture/rfc/README.md",
+      "sha256": "c128d3b6b045f8282e06032b8175729d859aa0366d216aa8f27caa184ceb09cc",
+      "size_bytes": 1753
+    },
+    {
+      "path": "sources/repository/docs/architecture/rfc/TEMPLATE.md",
+      "sha256": "e7e46a478498abf9c8e8944ee8eae79264a806be58e2148727a72a9e7a1dc155",
+      "size_bytes": 2064
+    },
+    {
+      "path": "sources/repository/docs/assurance/README.md",
+      "sha256": "6ac3132959240ffe6aaebda1a78787b006a91f33347aece291d541796bc1b72a",
+      "size_bytes": 1949
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/README.md",
+      "sha256": "c64fd820e62d37b97bbcb47ff4ba076b153e9d46d6ecc73e4b8ea4a27a34cb0d",
+      "size_bytes": 1542
+    },
+    {
+      "path": "sources/repository/docs/assurance/capability-matrices/README.md",
+      "sha256": "214da822269108f3c57e7bc6d2100ba839f03ed87d3e3afda91af3c78c620280",
+      "size_bytes": 1435
+    },
+    {
+      "path": "sources/repository/docs/assurance/migrations/README.md",
+      "sha256": "d1ca3a110f9b3d925eb731c5aa5151dacd69409f9d49ded6a135958978c080d1",
+      "size_bytes": 1639
+    },
+    {
+      "path": "sources/repository/docs/assurance/review-checklists/README.md",
+      "sha256": "4bc9267c29871cce16d987fff885c22433aad106d93429e4c3ac40c852f502eb",
+      "size_bytes": 1678
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/README.md",
+      "sha256": "dda4bbf9dbe89d4b0303d7c85cc0cba81b71f62b72684673b3646414a120b781",
+      "size_bytes": 1623
+    },
+    {
+      "path": "sources/repository/docs/handbook/CHAPTER_TEMPLATE.md",
+      "sha256": "88ed3b4bdaa3727b8b49fb85e764ebe782cdf593cc6365dbbaa4edc9c4eb3be8",
+      "size_bytes": 2755
+    },
+    {
+      "path": "sources/repository/docs/handbook/README.md",
+      "sha256": "1460e0f2a57dbcec6374b4eddcf304038f1d732d9dd1c345575dc219380b26e8",
+      "size_bytes": 2698
+    },
+    {
+      "path": "sources/repository/docs/reviews/documentation/README.md",
+      "sha256": "75103327ba906940f2275590171a1dc18a5e334a0e7ed33438276f90ef087ad0",
+      "size_bytes": 2033
+    },
+    {
+      "path": "sources/repository/docs/reviews/documentation/TEMPLATE.md",
+      "sha256": "0f6ebd899ae3c5e3d4d67246e7f2a61e9ba2b2891c4b0c6c7073119435e9e78a",
+      "size_bytes": 2573
+    },
+    {
+      "path": "sources/repository/docs/specifications/README.md",
+      "sha256": "39383f9ac5b959e13626509a3a3bd934b130904bd52033c148c51a814db07330",
+      "size_bytes": 1901
+    },
+    {
+      "path": "sources/repository/docs/standards/DOCUMENTATION_STANDARD.md",
+      "sha256": "eb81407c7a7b3dfeca54738934ed3c91c55c243d371c92e2414e5c5ea26b3239",
+      "size_bytes": 7354
+    },
+    {
+      "path": "sources/repository/docs/standards/README.md",
+      "sha256": "81f2418c9f3f5254ea439b66bbf00b6960aa7ed19a27edaf55d2e6407abea5c3",
+      "size_bytes": 1724
+    },
+    {
+      "path": "sources/repository/product/README.md",
+      "sha256": "026765d7064a961acc43ee4c5f9472bc2c4aef5f118bc7a9fa711e12e95b886f",
+      "size_bytes": 4582
+    },
+    {
+      "path": "sources/repository/product/agents/README.md",
+      "sha256": "12729ad40735c8408a335897a0e79effc24c9256cf52b7b637f54dec1a575364",
+      "size_bytes": 3489
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/delivery-documentation-codex-coordination-lead.md",
+      "sha256": "febf52cfe0a53a17f370439bcea81b6b37113e2fc476281119417d681e1a8352",
+      "size_bytes": 59237
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/ecosystem-community-commercial-product-lead.md",
+      "sha256": "80b21fed1bdf7cfc04da9db52db63462ddde39a4af39077eda197979927e9024",
+      "size_bytes": 49516
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/embroidery-domain-ux-lead.md",
+      "sha256": "ce3df9cbb20d791c75be7364dae88da20012a2b69a1f0f30b97e7d13c0b7fbd5",
+      "size_bytes": 40355
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/product-strategy-requirements-lead.md",
+      "sha256": "ee81fd1ec14f7a6f631d629aff5afb230c6a583e290fe820f3266b3ad43a3bf0",
+      "size_bytes": 39137
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md",
+      "sha256": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+      "size_bytes": 52062
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/research-product-analytics-lead.md",
+      "sha256": "92f93d6c8be199d17bde08958f760f31838828b83e08daf91c9e8bcd53fe1c84",
+      "size_bytes": 56601
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/system-architecture-data-ai-governance-lead.md",
+      "sha256": "367e242f907f3fc34d9278f4ca44d7310bc79b9aacafc9fda8fa38d1c5da5e01",
+      "size_bytes": 51534
+    },
+    {
+      "path": "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+      "sha256": "2fabaa266687a1e473b1714efec4bb9254bd9b6e5a3677e4b12a7c64ee3e051a",
+      "size_bytes": 25935
+    },
+    {
+      "path": "sources/repository/product/architecture-inputs/README.md",
+      "sha256": "8d7d7ce1ee6b2743d4f9f99d253c982989a90363f1c2c04d441b61da8756626d",
+      "size_bytes": 1483
+    },
+    {
+      "path": "sources/repository/product/archive/06_Documentation_Structure.md",
+      "sha256": "4761eb4bfc1c5e4e6c6411de3baabb234b8f8ab26478db1f873ff7d60c5b4721",
+      "size_bytes": 10502
+    },
+    {
+      "path": "sources/repository/product/archive/README.md",
+      "sha256": "a261c0022b1253605ced9d53f84c512a02585143efad244d2359da0839a2d10a",
+      "size_bytes": 1263
+    },
+    {
+      "path": "sources/repository/product/decisions/05_Decision_Log.md",
+      "sha256": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+      "size_bytes": 23601
+    },
+    {
+      "path": "sources/repository/product/decisions/README.md",
+      "sha256": "03dcae0f5c0717b011e2265ad7441556116b9c0cb1b5505d35b5e3be4e8d06b0",
+      "size_bytes": 1359
+    },
+    {
+      "path": "sources/repository/product/governance/04_Codex_Context_Pack.md",
+      "sha256": "ad6c9e23ed82a6a1da22b1e964ec88e73e7f8fb34d3345249da19ee21287dcb9",
+      "size_bytes": 25471
+    },
+    {
+      "path": "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+      "sha256": "299c70eca5cd80983310767afccc7a52669f040818298de92464f4edfca2bd72",
+      "size_bytes": 11466
+    },
+    {
+      "path": "sources/repository/product/governance/README.md",
+      "sha256": "a508aa144a746200c965b4f35d9cada9b098a126c7ad485bc6af561f9a5d3303",
+      "size_bytes": 1517
+    },
+    {
+      "path": "sources/repository/product/governance/SOURCE_INTEGRATION_MAP.md",
+      "sha256": "973397a34cc60c007c897d5446355060676d4993f1c9f7fd93f6fd52b2fc1f25",
+      "size_bytes": 7366
+    },
+    {
+      "path": "sources/repository/product/research/03_Deep_Research_Standards.md",
+      "sha256": "60d8cbf68d019851f0bf8950411c16ec47cd612d1ca92a9cb287c870c622e146",
+      "size_bytes": 39680
+    },
+    {
+      "path": "sources/repository/product/research/README.md",
+      "sha256": "222346f5c2b98812f9aace912db41723c4be1d7b47d80caf6460ba3788b15d4e",
+      "size_bytes": 1180
+    },
+    {
+      "path": "sources/repository/product/reviews/08_Critical_Review_Report.md",
+      "sha256": "60b56cb99f30020731426f2f223a0bfc0e2d2889c2effd75d6ebd04a45f7794c",
+      "size_bytes": 8233
+    },
+    {
+      "path": "sources/repository/product/reviews/README.md",
+      "sha256": "882f900b5a5ce8bdaa91d336a06721bb84a71b80efc5c182ce336b0c27d670ea",
+      "size_bytes": 1587
+    },
+    {
+      "path": "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md",
+      "sha256": "f91638dd5e960d23b983ca62b9c151e4970f2d96c46b311281e4139194f44a3e",
+      "size_bytes": 30053
+    },
+    {
+      "path": "sources/repository/product/specifications/README.md",
+      "sha256": "4e5650d44ed543d838393ce5fd42d60c48ffdc63b77dbaab3f8f32558bf55306",
+      "size_bytes": 1407
+    },
+    {
+      "path": "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+      "sha256": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+      "size_bytes": 45081
+    },
+    {
+      "path": "sources/repository/product/task-packages/README.md",
+      "sha256": "3be55f3935efd5d62c39aa2812f910fe3119bda2dd03a83ecf1f5eba08723ee4",
+      "size_bytes": 1650
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "a0195063479f0af95031752c112862ed9272a20493deab8deb21db4b4be08137",
+      "size_bytes": 679825
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "edf655d1cdfa57fe6713795f91fd8ba82f3290bb8a196e12f9b5f29ea3bd7048",
+      "size_bytes": 3446
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "8ba8ab97bbd362668a3d434ed2c2bfb2c41dbcb9e3d57ea5727c1de759de5eb5",
+      "size_bytes": 164
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema.",
+    "outputs/acceptance-report.md containing evidence, findings, limitations, and the acceptance rationale."
+  ],
+  "acceptance_criteria": [
+    "The exact range 9c85d3d..1ccaace and registered source checksums are reviewed.",
+    "The repository and source-of-truth hierarchy are coherent and contain no competing canonical definitions.",
+    "Product authority remains with Claude Cowork and engineering authority remains with Codex.",
+    "AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.",
+    "Security, privacy, documentation lifecycle, and traceability controls are assessed from evidence.",
+    "No product or technical meaning is invented or changed by the reviewer.",
+    "The result returns exactly VERIFIED or REWORK_REQUIRED and does not claim evidence that was not reviewed."
+  ],
+  "authority_boundaries": {
+    "product_authority": "Claude Cowork may review and decide within approved product authority but may not modify engineering artifacts directly.",
+    "engineering_authority": "AU-CODEX-PRIMARY and AU-AGENT-001 own engineering governance, technical meaning, implementation, and integration.",
+    "documentation_authority": "AU-AGENT-002 owns documentation structure, navigation, consistency, terminology, traceability, and lifecycle without changing technical or product meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260721-001",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/AGENT_REGISTRY.md": "cf897b45f1a7c8bb0cfa9a11ce1b4189fb3cf3f5ee6e31c277a837c04ae035ce",
+    "sources/repository/.codex/CURRENT_FOCUS.md": "a88a55d7adaaf5940bad1e1a9c8f26f0e4aad8cdac6d99c29f06f350d3c8931a",
+    "sources/repository/.codex/PROJECT_INSTRUCTIONS.md": "2e906a930c0990eb15f4294b6cd750003bd1037f8b8b61a8d966a34ea701036a",
+    "sources/repository/.codex/SESSION_BOOTSTRAP.md": "5d3e2a86609508a57a35e1d8e21dfb9f89e61bbc76a124c8b62c0d18bcd59c81",
+    "sources/repository/.gitignore": "888085b411b7995c8f5ed2a81efdf3cee4852a3c9d3688b559ea421f6940c98a",
+    "sources/repository/AGENTS.md": "ce0e7dffabefe083c5d6480e29538d415c4486e9b104372eb81ba149397872e1",
+    "sources/repository/AI_ORGANIZATION.md": "02b29a44a457162441578e2f82c9669957299bd89bf7255de045714160866fb8",
+    "sources/repository/PROJECT_MANIFEST.md": "a6d4f74e662a8fb2a8ec4019025f75d084483b81033707734b1a8a8bae123c8f",
+    "sources/repository/README.md": "b5d5d11118f25cb9d53f60fd3847a4942d727baca7767e782c77757e2edf1b32",
+    "sources/repository/docs/ARCHITECTURE.md": "b391449dde370c0922ce63b9db8969b47bcacd445dd796a8eba2644013de4d8b",
+    "sources/repository/docs/CHANGELOG_INTERNAL.md": "7a0dea8a53390cc5310e09d182a2afa76a08481416a8c9cee4e5a3d1138f37c8",
+    "sources/repository/docs/CODEX_AGENTS.md": "12de08694bb328bfeb0e2d5161ff32f56c80cffc9578c26e16ea18d552568d6e",
+    "sources/repository/docs/CURRENT_STATUS.md": "19a0a2be9f9659b002506e92a41ae9fe8698ef0a88d0dc6f6a0da6b505c1c94e",
+    "sources/repository/docs/DECISIONS.md": "ad1026f066cc8ebbea26615e6137406165748eee38c8dea12f17351650caa788",
+    "sources/repository/docs/DEVELOPMENT_WORKFLOW.md": "3fc257f36570439ffe607e114f8d85b103d20feaad9853a1663221a8a4eed211",
+    "sources/repository/docs/GITHUB_COLLABORATION_RECOMMENDATIONS.md": "9dc37e7b4463daa8cbc85e3fbec390dea7283ebccf2bc48a3fb193a14f01bafc",
+    "sources/repository/docs/GLOSSARY.md": "3b7703bfe25923aab3c1d83a1008f59bdc79f16bc64c0bb5c05ae0e19bebb8af",
+    "sources/repository/docs/HANDOFF_LOG.md": "d94f18be58c5e223e48713ca846387c5635e57fbe467ffe649f45a89750940f7",
+    "sources/repository/docs/OPEN_QUESTIONS.md": "08cc03e32e131af9b827737839056648636eff73ed0e46938be2f23c1764e679",
+    "sources/repository/docs/PROJECT_CONTEXT.md": "78de488aee6a873f7d3326073bada95d3359abf4da44a248313fc39e8d140aa6",
+    "sources/repository/docs/README.md": "a80495690776458f48938de7d7bbfdb2dd4a749d547c842cb0c514be28457f71",
+    "sources/repository/docs/RISKS.md": "15c67ab9747a563d582af337209e953d3a8762907e94dbe155552a3bdfad88b3",
+    "sources/repository/docs/SHARED_WORKFLOW.md": "3bb7d6cb1ecb72b80c6d337b2f9251bd7806d03daebf86ac8d22cdbc9830e7a3",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "605a6f9612287a75e940d816745fa0f96a5467c0191d82d5efd7a0cc757b2e82",
+    "sources/repository/docs/TASKS.md": "3169221461fd65115f06b5b4a5d12aa11b46a0fd30d15f2c76a12a5e5eaec7a6",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "7f1c23a067da3294ca4b9c0e9288de8ba896f49b42a5bddede82439501a7da44",
+    "sources/repository/docs/WORKSPACE_AUDIT.md": "22e9b06e2399913fabb457f51415dd34e26f305ce8a738c151e02a807dc52494",
+    "sources/repository/docs/architecture/README.md": "479e87cd28d8e570b3d0b660f41ce013c68a634c22f514e92fed8208159beef3",
+    "sources/repository/docs/architecture/adr/README.md": "e79903dc6517463ae4019df9792a23df66a157690e25d678f2b0c201a3ea885c",
+    "sources/repository/docs/architecture/adr/TEMPLATE.md": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+    "sources/repository/docs/architecture/rfc/README.md": "c128d3b6b045f8282e06032b8175729d859aa0366d216aa8f27caa184ceb09cc",
+    "sources/repository/docs/architecture/rfc/TEMPLATE.md": "e7e46a478498abf9c8e8944ee8eae79264a806be58e2148727a72a9e7a1dc155",
+    "sources/repository/docs/assurance/README.md": "6ac3132959240ffe6aaebda1a78787b006a91f33347aece291d541796bc1b72a",
+    "sources/repository/docs/assurance/benchmarks/README.md": "c64fd820e62d37b97bbcb47ff4ba076b153e9d46d6ecc73e4b8ea4a27a34cb0d",
+    "sources/repository/docs/assurance/capability-matrices/README.md": "214da822269108f3c57e7bc6d2100ba839f03ed87d3e3afda91af3c78c620280",
+    "sources/repository/docs/assurance/migrations/README.md": "d1ca3a110f9b3d925eb731c5aa5151dacd69409f9d49ded6a135958978c080d1",
+    "sources/repository/docs/assurance/review-checklists/README.md": "4bc9267c29871cce16d987fff885c22433aad106d93429e4c3ac40c852f502eb",
+    "sources/repository/docs/assurance/threat-models/README.md": "dda4bbf9dbe89d4b0303d7c85cc0cba81b71f62b72684673b3646414a120b781",
+    "sources/repository/docs/handbook/CHAPTER_TEMPLATE.md": "88ed3b4bdaa3727b8b49fb85e764ebe782cdf593cc6365dbbaa4edc9c4eb3be8",
+    "sources/repository/docs/handbook/README.md": "1460e0f2a57dbcec6374b4eddcf304038f1d732d9dd1c345575dc219380b26e8",
+    "sources/repository/docs/reviews/documentation/README.md": "75103327ba906940f2275590171a1dc18a5e334a0e7ed33438276f90ef087ad0",
+    "sources/repository/docs/reviews/documentation/TEMPLATE.md": "0f6ebd899ae3c5e3d4d67246e7f2a61e9ba2b2891c4b0c6c7073119435e9e78a",
+    "sources/repository/docs/specifications/README.md": "39383f9ac5b959e13626509a3a3bd934b130904bd52033c148c51a814db07330",
+    "sources/repository/docs/standards/DOCUMENTATION_STANDARD.md": "eb81407c7a7b3dfeca54738934ed3c91c55c243d371c92e2414e5c5ea26b3239",
+    "sources/repository/docs/standards/README.md": "81f2418c9f3f5254ea439b66bbf00b6960aa7ed19a27edaf55d2e6407abea5c3",
+    "sources/repository/product/README.md": "026765d7064a961acc43ee4c5f9472bc2c4aef5f118bc7a9fa711e12e95b886f",
+    "sources/repository/product/agents/README.md": "12729ad40735c8408a335897a0e79effc24c9256cf52b7b637f54dec1a575364",
+    "sources/repository/product/agents/definitions/delivery-documentation-codex-coordination-lead.md": "febf52cfe0a53a17f370439bcea81b6b37113e2fc476281119417d681e1a8352",
+    "sources/repository/product/agents/definitions/ecosystem-community-commercial-product-lead.md": "80b21fed1bdf7cfc04da9db52db63462ddde39a4af39077eda197979927e9024",
+    "sources/repository/product/agents/definitions/embroidery-domain-ux-lead.md": "ce3df9cbb20d791c75be7364dae88da20012a2b69a1f0f30b97e7d13c0b7fbd5",
+    "sources/repository/product/agents/definitions/product-strategy-requirements-lead.md": "ee81fd1ec14f7a6f631d629aff5afb230c6a583e290fe820f3266b3ad43a3bf0",
+    "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+    "sources/repository/product/agents/definitions/research-product-analytics-lead.md": "92f93d6c8be199d17bde08958f760f31838828b83e08daf91c9e8bcd53fe1c84",
+    "sources/repository/product/agents/definitions/system-architecture-data-ai-governance-lead.md": "367e242f907f3fc34d9278f4ca44d7310bc79b9aacafc9fda8fa38d1c5da5e01",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md": "2fabaa266687a1e473b1714efec4bb9254bd9b6e5a3677e4b12a7c64ee3e051a",
+    "sources/repository/product/architecture-inputs/README.md": "8d7d7ce1ee6b2743d4f9f99d253c982989a90363f1c2c04d441b61da8756626d",
+    "sources/repository/product/archive/06_Documentation_Structure.md": "4761eb4bfc1c5e4e6c6411de3baabb234b8f8ab26478db1f873ff7d60c5b4721",
+    "sources/repository/product/archive/README.md": "a261c0022b1253605ced9d53f84c512a02585143efad244d2359da0839a2d10a",
+    "sources/repository/product/decisions/05_Decision_Log.md": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+    "sources/repository/product/decisions/README.md": "03dcae0f5c0717b011e2265ad7441556116b9c0cb1b5505d35b5e3be4e8d06b0",
+    "sources/repository/product/governance/04_Codex_Context_Pack.md": "ad6c9e23ed82a6a1da22b1e964ec88e73e7f8fb34d3345249da19ee21287dcb9",
+    "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md": "299c70eca5cd80983310767afccc7a52669f040818298de92464f4edfca2bd72",
+    "sources/repository/product/governance/README.md": "a508aa144a746200c965b4f35d9cada9b098a126c7ad485bc6af561f9a5d3303",
+    "sources/repository/product/governance/SOURCE_INTEGRATION_MAP.md": "973397a34cc60c007c897d5446355060676d4993f1c9f7fd93f6fd52b2fc1f25",
+    "sources/repository/product/research/03_Deep_Research_Standards.md": "60d8cbf68d019851f0bf8950411c16ec47cd612d1ca92a9cb287c870c622e146",
+    "sources/repository/product/research/README.md": "222346f5c2b98812f9aace912db41723c4be1d7b47d80caf6460ba3788b15d4e",
+    "sources/repository/product/reviews/08_Critical_Review_Report.md": "60b56cb99f30020731426f2f223a0bfc0e2d2889c2effd75d6ebd04a45f7794c",
+    "sources/repository/product/reviews/README.md": "882f900b5a5ce8bdaa91d336a06721bb84a71b80efc5c182ce336b0c27d670ea",
+    "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md": "f91638dd5e960d23b983ca62b9c151e4970f2d96c46b311281e4139194f44a3e",
+    "sources/repository/product/specifications/README.md": "4e5650d44ed543d838393ce5fd42d60c48ffdc63b77dbaab3f8f32558bf55306",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+    "sources/repository/product/task-packages/README.md": "3be55f3935efd5d62c39aa2812f910fe3119bda2dd03a83ecf1f5eba08723ee4",
+    "sources/review/review-range.diff": "a0195063479f0af95031752c112862ed9272a20493deab8deb21db4b4be08137",
+    "sources/review/review-range.stat.txt": "edf655d1cdfa57fe6713795f91fd8ba82f3290bb8a196e12f9b5f29ea3bd7048",
+    "sources/review/review-range.commits.txt": "8ba8ab97bbd362668a3d434ed2c2bfb2c41dbcb9e3d57ea5727c1de759de5eb5"
+  }
+}

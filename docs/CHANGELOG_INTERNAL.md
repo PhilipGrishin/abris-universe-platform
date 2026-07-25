@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.0.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -57,6 +57,58 @@ material defect.
 - Status: `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
 - Evidence: `product/governance/SOURCE_INTEGRATION_MAP.md`, DEC-006,
   `docs/TRACEABILITY_MATRIX.md`, and repository history.
+
+## 2026-07-21 — BRIDGE-001 Local Claude-Codex Collaboration
+
+- Selected and implemented the synchronized external Option B bridge while
+  preserving GitHub as canonical and AU-CODEX-PRIMARY as sole Git writer.
+- Added versioned task and return schemas, canonical exchange manifests,
+  dry-run-first local tooling, ignored runtime boundaries, and safety tests.
+- Integrated bridge authority, lifecycle, traceability, risk, status, and
+  navigation into project governance without changing product or system
+  architecture.
+- Prepared and exported independent review exchange `AU-EX-20260721-001` for
+  exact range `9c85d3d..1ccaace`; no result has been fabricated or received.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]`.
+- Evidence: `collaboration/`, DEC-007, RISK-009, and the BRIDGE-001 handoff.
+
+## 2026-07-21 — ACCEPT-INIT-002 Independent Acceptance Integration
+
+- Validated the reissued Claude return manifest against the registered bridge
+  contract and preserved the Acceptance Report byte-for-byte.
+- Registered `VERIFIED` only for the exact repository initialization,
+  contour-integration, governance, Source of Truth, and exercised bridge
+  operating-model scope; preserved all stated exclusions and limitations.
+- Registered F1–F5 as separate follow-up records and the owner's F1 activation
+  resolution without activating AU-AGENT-003–006.
+- Archived exchange `AU-EX-20260721-001` with provenance and a canonical review
+  reference.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the independent
+  report's bounded scope.
+- Evidence: canonical Acceptance Report, exchange outcome, Traceability Matrix,
+  and ACCEPT-INIT-002 handoff.
+
+## 2026-07-25 — AGENT-003 Engineering Quality Gate Activation
+
+- Registered AU-AGENT-003 — Engineering Quality, DevSecOps & Security Lead from
+  the complete Project Owner instruction.
+- Preserved the role's independent review authority and its prohibitions on
+  implementation, architecture redesign, product changes, and product
+  acceptance.
+- Added the canonical agent definition and Engineering Verification Report
+  library and template.
+- Integrated engineering verification between the consolidated Completion
+  Report and Claude Cowork independent product acceptance.
+- Defined unbracketed Engineering Verification Status values separately from
+  project `[VERIFIED]`.
+- Kept AU-AGENT-004–006 inactive and changed no product or runtime architecture.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-003 operating definition,
+  `docs/reviews/engineering/`, `docs/TRACEABILITY_MATRIX.md`, and the AGENT-003
+  handoff.
 
 ## Owner
 
