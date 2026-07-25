@@ -162,8 +162,8 @@
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 
-- **Status:** `[APPROVED]`; AU-AGENT-003 through AU-AGENT-005 activation
-  `[IMPLEMENTED]`; AU-AGENT-006 activation `[OPEN]`
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`; AU-AGENT-003 through AU-AGENT-006
+  activation complete
 - **Date:** 2026-07-21
 - **Related records:** INIT-002-F1, INIT-002-F3, AU-CDX-TASK-001
 - **Context:** Independent Acceptance Finding F1 confirmed that the Task Package
@@ -180,26 +180,26 @@
   roles as inactive plans; or activate them without full operating instructions.
 - **Reason:** Specialized execution preserves separation between architecture,
   implementation, independent engineering quality, and product acceptance.
-- **Consequence:** Product implementation remains blocked until the required
-  roles are individually instructed and registered in the approved order.
+- **Consequence:** The required specialist roles are individually instructed
+  and registered. Product implementation remains subject to engineering intake,
+  Technical Review, approved architecture, task assignment, and verification.
 - **Reversibility:** A later owner decision may change role scope or assignment,
   but existing registration and task provenance must remain preserved.
-- **Activation gate:** Names and order do not activate roles. Each role requires
-  its full owner-provided operating instruction, overlap analysis, registration,
-  and the approved activation workflow. AU-AGENT-003–006 remain inactive in
-  this acceptance-integration task.
+- **Activation gate:** Names and order did not activate roles. Each role
+  required its full owner-provided operating instruction, overlap analysis,
+  registration, and the approved activation workflow.
 - **Prohibited interpretation:** The decision does not approve product
   implementation, stack, runtime architecture, or AU-CDX-TASK-001 execution.
 - **Owner:** Project Owner
-- **Review status:** AU-AGENT-003 through AU-AGENT-005 were registered from
-  their full owner instructions on 2026-07-25. AU-AGENT-006 remains deferred to
-  a separate owner input.
+- **Review status:** AU-AGENT-003 through AU-AGENT-006 were registered from
+  their full owner instructions on 2026-07-25. Finding F1 is implemented; this
+  status does not approve product implementation.
 
 ## OWNER-DEC-AGENT-MERGE-001 — Automatically Review and Merge Agent Registrations
 
 - **Status:** `[APPROVED]`, `[IMPLEMENTED]`
 - **Date:** 2026-07-25
-- **Related records:** AGENT-003, AGENT-004, RISK-011
+- **Related records:** AGENT-003, AGENT-004, AGENT-005, AGENT-006, RISK-011
 - **Context:** The Project Owner directed Codex to check and merge branches
   automatically when new engineering agents are created.
 - **Decision:** For owner-supplied agent-registration tasks, Codex creates a
@@ -226,8 +226,8 @@
   Existing merge commits and PR provenance remain preserved.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY
 - **Review status:** Exercised successfully by PR #1 for the prior linear
-  Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain and by PR #2
-  for AU-AGENT-004.
+  Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain, by PR #2 for
+  AU-AGENT-004, and by PR #3 for AU-AGENT-005. AU-AGENT-006 uses the same gate.
 
 ## Decision Process
 

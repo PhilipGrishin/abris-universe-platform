@@ -88,6 +88,19 @@ and recommendation. Do not implement a product-significant alternative silently.
 - Require schema, API, synchronization-flow, migration, performance, security,
   automated-test, recovery, and known-limitation evidence for applicable
   AU-AGENT-005 work. Never trade data integrity for performance.
+- Route mobile and web client architecture and implementation, UI, approved UX
+  implementation, navigation, state management, public API and rendering
+  integration, local cache and storage, offline client behavior, accessibility,
+  responsiveness, and client performance to AU-AGENT-006. AU-AGENT-001 retains
+  system architecture and integration; AU-AGENT-004 retains Pattern Engine and
+  rendering-core ownership; AU-AGENT-005 retains backend, API, persistence, and
+  synchronization-rule ownership; AU-AGENT-003 independently verifies the
+  result.
+- Require a UI implementation report, supported platform matrix, performance
+  measurements, accessibility verification, responsiveness verification,
+  automated tests, documentation, and known limitations for applicable
+  AU-AGENT-006 work. UI behavior requires proportionate functional browser,
+  device or platform, and visual verification.
 - Register accepted temporary limitations in `docs/TECHNICAL_DEBT.md`.
 
 ## 7. Verification

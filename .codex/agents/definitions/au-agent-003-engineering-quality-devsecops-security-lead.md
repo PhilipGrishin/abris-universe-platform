@@ -7,7 +7,7 @@
 | Status | `[CONFIRMED]`, `[IMPLEMENTED]` in the agent infrastructure, not project `[VERIFIED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `AGENTS.md`, `.codex/AGENT_REGISTRY.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -185,10 +185,10 @@ independent engineering review and owns remediation in its registered domain.
 
 ### AU-AGENT-006
 
-When separately instructed and registered, this agent will provide its
-implementation and evidence for independent engineering review and will own
-remediation in its assigned domain. Mention here does not activate, define, or
-authorize this future role.
+AU-AGENT-006 provides mobile and web client implementation, UI, integration,
+offline, accessibility, responsiveness, platform, performance, test, and
+documentation evidence for independent engineering review and owns remediation
+in its registered domain.
 
 ### Claude Cowork
 

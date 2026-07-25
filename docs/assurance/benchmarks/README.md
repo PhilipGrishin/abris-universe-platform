@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -33,8 +33,10 @@ None.
 AU-AGENT-002 maintains indexing, metadata, references, traceability, and result
 lifecycle. AU-AGENT-004 owns pattern-processing benchmark method and technical
 meaning; AU-AGENT-005 owns backend, database, storage, API, and synchronization
-benchmark method and technical meaning; AU-AGENT-003 independently reviews
-evidence and conclusions.
+benchmark method and technical meaning; AU-AGENT-006 owns client, UI,
+responsiveness, rendering-integration, offline, and supported-platform
+performance benchmark method and technical meaning; AU-AGENT-003 independently
+reviews evidence and conclusions.
 
 ## Lifecycle
 

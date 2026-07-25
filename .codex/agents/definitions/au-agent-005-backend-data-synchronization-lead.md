@@ -7,7 +7,7 @@
 | Status | `[CONFIRMED]`, `[IMPLEMENTED]` in the agent infrastructure, not project `[VERIFIED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `AGENTS.md`, `.codex/AGENT_REGISTRY.md`, `docs/SOURCE_OF_TRUTH.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -156,10 +156,11 @@ compatibility, migration, tests, and integration.
 
 ### AU-AGENT-006
 
-When separately instructed and registered, AU-AGENT-006 will consume APIs and
-coordinate offline cache and synchronization behavior with AU-AGENT-005.
-AU-AGENT-005 owns backend and protocol behavior, not client UI, UX, or
-presentation. This statement does not activate or define AU-AGENT-006.
+AU-AGENT-006 consumes public APIs and coordinates client authentication,
+offline cache, local storage, and offline behavior with AU-AGENT-005.
+AU-AGENT-005 owns backend and protocol behavior and synchronization rules;
+AU-AGENT-006 owns client UI, UX implementation, and presentation. Neither
+changes the shared contract independently.
 
 ### Claude Cowork
 

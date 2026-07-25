@@ -65,6 +65,8 @@
   task-specific plan.
 - **Owner:** AU-AGENT-004 for Pattern Engine/import/rendering evidence;
   AU-AGENT-005 for backend/data/sync/migration/backup/recovery evidence;
+  AU-AGENT-006 for client integration/offline/accessibility/responsiveness/
+  supported-platform/performance evidence;
   AU-AGENT-003 for independent engineering verification; task-specific owners
   for remaining areas
 

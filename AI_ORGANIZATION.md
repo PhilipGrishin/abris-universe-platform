@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md`, `collaboration/README.md` |
@@ -38,7 +38,10 @@ without implementing features or approving product acceptance; AU-AGENT-004
 owns Pattern Engine, import, rendering-core, and algorithm implementation inside
 approved architecture and product requirements; AU-AGENT-005 owns backend,
 data, API, persistence, storage, synchronization, migration, and integrity
-inside the same governance envelope.
+inside the same governance envelope; AU-AGENT-006 owns mobile and web client
+architecture, presentation, user interaction, state, navigation, integration,
+offline client behavior, accessibility, and client performance without owning
+product or UX meaning.
 
 ## Shared Boundary
 

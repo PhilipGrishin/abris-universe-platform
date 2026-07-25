@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
@@ -37,7 +37,10 @@ technical owners approve model meaning and controls. AU-AGENT-003 independently
 reviews security evidence and findings without redesigning architecture or
 implementing controls. AU-AGENT-005 owns backend, data, API, authentication,
 storage, synchronization, backup, and recovery threat-model inputs and
-implementation evidence in its domain.
+implementation evidence in its domain. AU-AGENT-006 owns client-side threat
+inputs and implementation evidence for public API consumption, authentication
+integration, local storage and cache, offline behavior, and client platform
+boundaries without redefining backend controls.
 
 ## Lifecycle
 

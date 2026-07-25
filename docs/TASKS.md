@@ -22,18 +22,21 @@ available for engineering intake and Technical Review only.
 
 ### INIT-002-F1 — Activate Specialized Codex Agents
 
-- **Status:** Owner resolution `[APPROVED]`; AU-AGENT-003 through AU-AGENT-005
-  `[IMPLEMENTED]`; AU-AGENT-006 `[OPEN]`
+- **Status:** Owner resolution `[APPROVED]`; AU-AGENT-003 through AU-AGENT-006
+  `[IMPLEMENTED]`, `[TESTED]`; follow-up complete
 - **Source:** Independent Acceptance Report F1 and Owner Decision F1.
 - **Resolution:** `ACTIVATE SPECIALIZED CODEX AGENTS`; do not remap the whole
   AU-CDX-TASK-001 implementation to AU-AGENT-001.
 - **Owner:** Project Owner / AU-CODEX-PRIMARY for governed registration.
-- **Dependencies:** Full owner-provided operating instruction for each remaining
-  role and the registration approval gate.
-- **Progress:** AU-AGENT-003 through AU-AGENT-005 were registered from their
+- **Dependencies:** Satisfied. Each role received a complete owner-provided
+  operating instruction and passed the registration approval gate.
+- **Result:** AU-AGENT-003 through AU-AGENT-006 were registered from their
   complete owner instructions on 2026-07-25. Independent quality, Pattern
-  Engine, and Backend/Data/Sync ownership prerequisites are now available.
-- **Prohibited:** This record does not activate AU-AGENT-006.
+  Engine, Backend/Data/Sync, and Mobile/Web Client ownership prerequisites are
+  available.
+- **Prohibited interpretation:** This completion does not approve product
+  implementation, runtime architecture, technology selection, platform scope,
+  or AU-CDX-TASK-001 execution.
 
 ### INIT-002-F2 — Resolve Decision-ID Namespace Collision
 
@@ -74,13 +77,46 @@ available for engineering intake and Technical Review only.
 
 ## Completed
 
+### AGENT-006 — Register Mobile & Web Client Lead
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
+- **Owner:** AU-CODEX-PRIMARY
+- **Reviewer:** Project Owner for supplied role meaning; AU-AGENT-001 for
+  architecture boundary; AU-AGENT-002 for documentation consistency;
+  AU-AGENT-003 is the independent reviewer of future client implementation, not
+  of its own registration; AU-AGENT-004 for Pattern Engine and rendering-core
+  contracts; AU-AGENT-005 for API, authentication, persistence, and
+  synchronization contracts.
+- **Documentation Impact:** Material
+- **Outcome:** Registered AU-AGENT-006; preserved mobile, web, client
+  architecture, presentation, interaction, UI and approved UX implementation,
+  navigation, state, integration, local cache and storage, offline client,
+  accessibility, responsiveness, performance, evidence, and documentation
+  responsibilities; defined interfaces and prohibitions; and kept product and
+  UX meaning, rendering algorithms, import, backend architecture, persistence,
+  synchronization rules, system architecture, independent quality, and product
+  acceptance outside its authority.
+- **Documentation result:** Complete operating definition, agent registries,
+  organization navigation, workflow routing, architecture governance,
+  specification/ADR/benchmark/capability/checklist/threat-model ownership,
+  traceability, and persistent project state.
+- **Documentation exception:** None.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`,
+  `.codex/agents/definitions/au-agent-006-mobile-web-client-lead.md`,
+  `docs/CODEX_AGENTS.md`, relevant documentation indexes, and the AGENT-006
+  handoff entry.
+- **Not included:** Mobile or web application or product implementation,
+  client architecture or technology selection, UI components, platform
+  approval, UX changes, API or rendering implementation, synchronization-rule
+  changes, accessibility or performance claims, or AU-CDX-TASK-001 execution.
+
 ### AGENT-005 — Register Backend, Data & Synchronization Lead
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
 - **Owner:** AU-CODEX-PRIMARY
 - **Reviewer:** Project Owner for supplied role meaning; AU-AGENT-001 for
   architecture boundary; AU-AGENT-002 for documentation consistency;
-  AU-AGENT-003 is the future independent reviewer of domain implementation, not
+  AU-AGENT-003 is the independent reviewer of future domain implementation, not
   of its own registration; AU-AGENT-004 for shared Pattern Engine contracts.
 - **Documentation Impact:** Material
 - **Outcome:** Registered AU-AGENT-005; preserved backend, data, persistence,
@@ -100,8 +136,8 @@ available for engineering intake and Technical Review only.
   handoff entry.
 - **Not included:** Backend or product implementation, physical schema or API
   design, synchronization or conflict policy, authentication provider,
-  technology selection, runtime architecture, migration execution,
-  compatibility or performance claims, or AU-AGENT-006 activation.
+  technology selection, runtime architecture, migration execution, or
+  compatibility or performance claims.
 
 ### AGENT-004 — Register Pattern Engine, Import, Rendering & Algorithms Lead
 
@@ -109,7 +145,7 @@ available for engineering intake and Technical Review only.
 - **Owner:** AU-CODEX-PRIMARY
 - **Reviewer:** Project Owner for supplied role meaning; AU-AGENT-001 for
   architecture boundary; AU-AGENT-002 for documentation consistency;
-  AU-AGENT-003 is the future independent reviewer of domain implementation, not
+  AU-AGENT-003 is the independent reviewer of future domain implementation, not
   of its own registration.
 - **Documentation Impact:** Material
 - **Outcome:** Registered AU-AGENT-004; preserved Pattern Engine, import,
@@ -128,8 +164,7 @@ available for engineering intake and Technical Review only.
   handoff entry.
 - **Not included:** Pattern Engine or product implementation, internal model or
   algorithm design, supported-format approval, runtime architecture, UI,
-  backend, synchronization, benchmarks, compatibility claims, or
-  AU-AGENT-005–006 activation.
+  backend, synchronization, benchmarks, or compatibility claims.
 
 ### AGENT-003 — Register Engineering Quality, DevSecOps & Security Lead
 
@@ -220,8 +255,8 @@ available for engineering intake and Technical Review only.
 - `[DEFERRED]` Product architecture, system map, data model, internal pattern
   format, API contracts, security design, privacy design, testing strategy,
   performance targets, release plan, runbooks, fixtures, and application code.
-- `[DEFERRED]` Further specialist registration until each owner-provided
-  instruction is received.
+- `[DEFERRED]` Any future specialist registration until a separate complete
+  owner-provided instruction is received.
 
 ## Required Fields for New Technical Tasks
 

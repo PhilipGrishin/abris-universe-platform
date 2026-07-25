@@ -413,3 +413,58 @@
   AU-AGENT-006 activation.
 - **Next step:** Receive the complete Project Owner operating instruction for
   AU-AGENT-006 in a separate task.
+
+## 2026-07-25 — Project Owner to Codex — AGENT-006
+
+- **Direction received:** Create AU-AGENT-006 — Mobile & Web Client Lead under
+  all registered agent-activation and checked auto-merge rules.
+- **Mission:** Design, implement, and maintain mobile and web client
+  applications while owning presentation, interaction, and client-side
+  architecture across approved supported platforms.
+- **Authority:** May design client architecture, select technical UI patterns,
+  define client state management, optimize client performance, propose
+  client-side improvements, and author client ADRs.
+- **Boundary:** Must not change product requirements or approved UX meaning,
+  redesign the Pattern Engine or backend, modify synchronization rules, bypass
+  public APIs, duplicate backend or rendering algorithms, or approve engineering
+  quality.
+- **Required evidence:** UI implementation report, supported platform matrix,
+  performance measurements, accessibility verification, responsiveness
+  verification, automated tests, and known limitations.
+- **Documentation Impact:** Material.
+
+## 2026-07-25 — Codex Activation Handoff — AGENT-006
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- **Prior branch integration:** PR #3 was `MERGEABLE/CLEAN`, had no configured
+  GitHub checks, and merged AU-AGENT-005 into `main` as merge commit
+  `cb57398`.
+- **Registration:** AU-AGENT-006 is active in `.codex/AGENT_REGISTRY.md`,
+  `docs/CODEX_AGENTS.md`, `AGENTS.md`, and organization navigation.
+- **Operating definition:** The complete owner-supplied mission,
+  responsibilities, authority, inputs, outputs, ownership, interactions,
+  principles, evidence, deliverables, rules, and Definition of Done are
+  preserved in
+  `.codex/agents/definitions/au-agent-006-mobile-web-client-lead.md`.
+- **Ownership boundary:** AU-AGENT-006 owns mobile/web client-domain design and
+  implementation inside AU-AGENT-001 system architecture and approved product
+  and UX requirements. AU-AGENT-002 owns documentation lifecycle;
+  AU-AGENT-003 independently verifies quality; AU-AGENT-004 owns Pattern Engine
+  and rendering algorithms; AU-AGENT-005 owns backend, APIs, persistence, and
+  synchronization rules; Claude owns product/UX clarification and acceptance.
+- **Evidence boundary:** Role registration creates no client application, UI,
+  state, navigation, API or rendering integration, local-storage, offline,
+  platform-support, accessibility, responsiveness, test, compatibility, or
+  performance claim.
+- **Documentation result:** Updated agent infrastructure, governance,
+  architecture operating model, workflows, ADR/specification/benchmark/
+  capability/checklist/threat-model ownership, risks, decisions, traceability,
+  status, and navigation.
+- **Documentation exception:** None.
+- **Not performed:** No product implementation, runtime or client architecture,
+  technology or platform selection, UI or UX design, API or rendering
+  implementation, synchronization-rule change, accessibility or performance
+  claim, or AU-CDX-TASK-001 execution.
+- **Next step:** AU-AGENT-001 performs engineering intake and Technical Review
+  of AU-CDX-TASK-001 v1.0 in a separate task. Do not begin implementation in
+  this registration task.

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -152,6 +152,30 @@ material defect.
 - Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
 - Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-005 operating definition,
   `docs/TRACEABILITY_MATRIX.md`, and the AGENT-005 handoff.
+
+## 2026-07-25 — AGENT-006 Mobile and Web Client Role Activation
+
+- Confirmed PR #3 merged AU-AGENT-005 into canonical `main` before starting the
+  final specialist from the synchronized branch.
+- Registered AU-AGENT-006 — Mobile & Web Client Lead from the complete Project
+  Owner instruction.
+- Preserved AU-AGENT-006 ownership of mobile and web client architecture and
+  implementation, presentation, interaction, navigation, state, public API and
+  rendering integration, local cache and storage, offline client behavior,
+  accessibility, responsiveness, performance, and domain documentation without
+  creating implementation or runtime architecture.
+- Preserved AU-AGENT-001 system architecture, AU-AGENT-002 documentation
+  lifecycle, AU-AGENT-003 independent quality review, AU-AGENT-004 Pattern
+  Engine and rendering-core ownership, AU-AGENT-005 backend/API/synchronization
+  ownership, Claude product and UX authority, and the Project Owner override.
+- Completed the Owner Decision F1 specialist-registration sequence while
+  leaving product implementation and AU-CDX-TASK-001 execution open.
+- Updated client-related workflow and specification/ADR/benchmark/capability/
+  checklist/threat-model documentation ownership.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
+- Evidence: `.codex/AGENT_REGISTRY.md`, the AU-AGENT-006 operating definition,
+  `docs/TRACEABILITY_MATRIX.md`, and the AGENT-006 handoff.
 
 ## Owner
 
