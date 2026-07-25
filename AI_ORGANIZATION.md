@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/agents/README.md`, `.codex/AGENT_REGISTRY.md`, `collaboration/README.md` |
@@ -53,9 +53,13 @@ Project Owner resolves authority conflicts through
 
 ## Local Collaboration Interface
 
-The controlled bridge in [`collaboration/`](collaboration/README.md) transports
-versioned task packages and returned review artifacts when Claude cannot access
-GitHub directly. It does not merge the organizations or transfer authority.
+The controlled bridge in [`collaboration/`](collaboration/README.md) is the
+exclusive route for substantive Claude–Codex communication and artifact
+transfer, regardless of direct repository availability. It does not merge the
+organizations or transfer authority. Chat history is not evidence; Project
+Owner manual input is limited to the registered trigger phrases `Codex
+finished` and `Claude finished` unless a later explicit owner governance
+decision changes the route.
 Claude reads its inbox and writes its outbox; AU-CODEX-PRIMARY validates,
 integrates, and is the sole Git writer and GitHub operator. AU-AGENT-001 reviews
 technical meaning and AU-AGENT-002 maintains documentation placement,

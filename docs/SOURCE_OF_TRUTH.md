@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -108,6 +108,12 @@ GitHub and the committed repository remain canonical. Generated packages under
 external `Collaboration-Bridge` are local transport or staging state and are
 not sources of truth. Their machine-specific location is held only in the
 Git-ignored local configuration.
+
+All substantive Claude–Codex communication and artifact transfer uses the
+registered Collaboration Bridge, regardless of direct repository availability.
+Chat history is not evidence. Project Owner manual input is limited to the
+registered trigger phrases `Codex finished` and `Claude finished` unless a
+later explicit owner governance decision changes the route.
 
 A Claude return becomes a candidate for canonical integration only after
 schema, path, safety, freshness, registration, and checksum validation. It

@@ -360,6 +360,79 @@ export function validateReturnManifest(manifest) {
   return manifest;
 }
 
+export function validateArchiveRecord(record, { exchangeId, returnManifest }) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) {
+    fail("Archive record must be an object.", "ARCHIVE_RECORD_SCHEMA");
+  }
+  rejectUnknownKeys(record, new Set([
+    "schema_version", "exchange_id", "archived_at", "archived_by",
+    "review_reference", "result_status", "decision",
+  ]), "Archive record");
+  if (record.schema_version !== "1.0.0") {
+    fail("Unsupported archive record schema version.", "ARCHIVE_RECORD_SCHEMA");
+  }
+  if (record.exchange_id !== exchangeId) {
+    fail("Archive record exchange_id does not match the exchange.", "EXCHANGE_ID_MISMATCH");
+  }
+  if (Number.isNaN(Date.parse(record.archived_at))) {
+    fail("Archive record archived_at must be an ISO date-time.", "ARCHIVE_RECORD_SCHEMA");
+  }
+  requireString(record.archived_by, "archived_by");
+  requireString(record.review_reference, "review_reference");
+  assertPortableRelativePath(record.review_reference, { allowHidden: false });
+  if (!RESULT_STATUSES.has(record.result_status)) {
+    fail("Archive record has an unsupported result_status.", "ARCHIVE_RECORD_SCHEMA");
+  }
+  if (!DECISIONS.has(record.decision)) {
+    fail("Archive record has an unsupported decision.", "ARCHIVE_RECORD_SCHEMA");
+  }
+  if (record.result_status !== returnManifest.result_status || record.decision !== returnManifest.decision) {
+    fail("Archive record does not match the validated return manifest.", "ARCHIVE_RETURN_MISMATCH");
+  }
+  return record;
+}
+
+export function validateExchangeOutcome(outcome, { taskManifest, returnManifest, archiveRecord }) {
+  if (!outcome || typeof outcome !== "object" || Array.isArray(outcome)) {
+    fail("Exchange outcome must be an object.", "OUTCOME_SCHEMA");
+  }
+  rejectUnknownKeys(outcome, new Set([
+    "schema_version", "exchange_id", "source_task_id", "result_status",
+    "validation_status", "decision", "source_commit_sha", "review_commit_range",
+    "reviewer", "canonical_report", "report_sha256", "return_manifest_sha256",
+    "verified_scope", "excluded_scope", "follow_up_ids", "archive_location",
+    "archive_review_reference", "archived_at", "integrated_by",
+  ]), "Exchange outcome");
+  if (outcome.schema_version !== "1.0.0") fail("Unsupported outcome schema version.", "OUTCOME_SCHEMA");
+  if (outcome.exchange_id !== taskManifest.exchange_id) fail("Outcome exchange_id does not match the task.", "EXCHANGE_ID_MISMATCH");
+  if (outcome.source_task_id !== taskManifest.task_id) fail("Outcome source_task_id does not match the task.", "TASK_ID_MISMATCH");
+  if (outcome.source_commit_sha !== taskManifest.source_commit_sha) fail("Outcome source commit does not match the task.", "OUTCOME_SOURCE_MISMATCH");
+  if ((outcome.review_commit_range ?? null) !== (taskManifest.review_commit_range ?? null)) {
+    fail("Outcome review commit range does not match the task.", "OUTCOME_SOURCE_MISMATCH");
+  }
+  if (outcome.validation_status !== "VALID") fail("Outcome validation_status must be VALID.", "OUTCOME_SCHEMA");
+  if (outcome.result_status !== returnManifest.result_status || outcome.decision !== returnManifest.decision) {
+    fail("Outcome does not match the validated return manifest.", "OUTCOME_RETURN_MISMATCH");
+  }
+  for (const key of ["reviewer", "canonical_report", "archive_location", "archive_review_reference", "integrated_by"]) {
+    requireString(outcome[key], key);
+  }
+  for (const key of ["canonical_report", "archive_location", "archive_review_reference"]) {
+    assertPortableRelativePath(outcome[key], { allowHidden: false });
+  }
+  for (const key of ["report_sha256", "return_manifest_sha256"]) {
+    if (!/^[0-9a-f]{64}$/.test(outcome[key] ?? "")) fail(`${key} must be a SHA-256.`, "OUTCOME_SCHEMA");
+  }
+  for (const key of ["verified_scope", "excluded_scope", "follow_up_ids"]) {
+    requireStringArray(outcome[key], key, true);
+  }
+  if (outcome.archived_at !== archiveRecord.archived_at
+      || outcome.archive_review_reference !== archiveRecord.review_reference) {
+    fail("Outcome archive provenance does not match the archive record.", "OUTCOME_ARCHIVE_MISMATCH");
+  }
+  return outcome;
+}
+
 export function loadBridgeConfig(repo) {
   const localPath = join(repo, ".collaboration-bridge.local.json");
   if (!existsSync(localPath)) fail(`Missing local bridge configuration: ${localPath}`, "MISSING_LOCAL_CONFIG");

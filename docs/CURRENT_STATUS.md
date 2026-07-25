@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** ACCEPT-INIT-003 — independent acceptance integration complete
+**Current focus:** INIT-003-PD-001 — owner dispositions implemented; Product Decision exchange preparation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, and AU-AGENT-004–006 domain-role infrastructure
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -94,9 +94,9 @@
   engineering organization, pairwise boundaries, documentation, Bridge,
   completed-exchange synchronization, shared-folder safety, communication
   contract, and TASK-THINSLICE-001 intake mapping.
-- `[OPEN]` INIT-003 findings require explicit provenance/exclusion fields for
-  AU-CODEX-PRIMARY and AU-AGENT-003, archive-aware Bridge status reporting, and
-  owner-approved normalization of exclusive future Bridge communication.
+- `[IMPLEMENTED]`, `[TESTED]` OVR-001, OVR-002, and OVR-005 wording
+  normalization is complete without authority changes; OVR-004 archive-aware
+  status reporting is implemented and tested but not project `[VERIFIED]`.
 - `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-001` contains 48
   checksum-registered text sources for exact commit `f748c95` and range
   `1ccaace..f748c95`; its external Claude inbox copy is byte-equivalent.
@@ -107,10 +107,17 @@
   implementation, runtime architecture, technology stack, production
   readiness, TASK-THINSLICE-001 implementation, Engineering Handbook content,
   post-package merge state, or formal integration of transmitted Cowork
-  DEC-005/DEC-006.
-- `[OPEN]` OVR-001, OVR-002, OVR-004, OVR-005, INIT-002-F2,
-  INIT-002-F5, and the dedicated PRODUCT_DECISION exchange for transmitted
-  Cowork DEC-005/DEC-006 remain follow-up work.
+  DEC-005 through DEC-008.
+- `[CONFIRMED]` The Project Owner supplied Cowork DEC-007 as a Technical Review
+  input: Phase 0 targets Cloudflare static hosting at
+  `https://abris.653915.com`; the permanent GitHub-to-CI-to-deploy pipeline must
+  be designed later in the Technical Design Proposal.
+- `[TESTED]` `abris.653915.com` resolved to Cloudflare addresses and returned
+  HTTP 200 over HTTPS with a Cloudflare server response. The Worker name
+  `abris-universe` and placeholder/static-asset state are owner-confirmed but
+  are not independently exposed by the public response.
+- `[OPEN]` INIT-002-F2, INIT-002-F5, and canonical integration of Cowork
+  DEC-005 through DEC-008 remain follow-up work.
 
 ## Verification Performed
 
@@ -132,9 +139,10 @@
   product-source checksum preservation, secret and temporary-file absence, the
   single intended Master Specification binary, required metadata, and Markdown
   link resolution.
-- `[TESTED]` Bridge unit tests reject traversal, hidden outputs, symlinks,
+- `[TESTED]` 18 Bridge unit tests reject traversal, hidden outputs, symlinks,
   secret-like material, machine paths, unexpected extensions, ambiguous
-  independent acceptance, unregistered output, and checksum mismatch.
+  independent acceptance, unregistered output, checksum mismatch, archive
+  record mismatch, and canonical-outcome provenance mismatch.
 - `[TESTED]` The first package dry-run and apply produced 75 registered text
   files with checksums; its source branch and commit are current.
 - `[TESTED]` External synchronization changed no pre-existing Claude workspace
@@ -188,6 +196,10 @@
   `9a08e5566c2099839b75ef555ab367c89679bd0b52001ef9aeb93b39ff1e5f2d`;
   the archived outbox revalidated and its archive record identifies the
   canonical review.
+- `[TESTED]` Archive-aware reporting classifies both completed exchanges as
+  `ARCHIVED`, validates their archived task/return records and canonical
+  outcomes, reports each as `INTEGRATED`, and correctly labels the older
+  advanced-branch exchange `HISTORICAL_ARCHIVED`.
 
 ## Blockers
 
@@ -218,16 +230,13 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated, integrated, and archived the independent INIT-003 acceptance result
-without changing Claude-authored meaning. Registered `[VERIFIED]` only for its
-exact organizational-validation scope and preserved every exclusion and
-follow-up.
+Implemented and tested the Project Owner dispositions for OVR-001, OVR-002,
+OVR-004, and OVR-005 without changing product or role meaning. Registered Cowork
+DEC-005 through DEC-008 as Product Decision exchange inputs only.
 
 ## Next Step
 
-Stop and notify the Project Owner with “Codex finished.” Await owner direction
-for OVR-001/002/005 wording and the next bridge trigger. The recommended next
-bridge task is `INIT-003-PD-001`, a `PRODUCT_DECISION` exchange for Cowork
-DEC-005/DEC-006. Do not begin product implementation; AU-AGENT-001 performs the
-separate AU-CDX-TASK-001 Technical Review only after the applicable inputs are
-canonical and the owner selects that next task.
+Prepare and synchronize `AU-EX-20260725-002`, a `PRODUCT_DECISION` exchange for
+Cowork DEC-005 through DEC-008, then stop with `Codex finished`. Do not begin
+TASK-THINSLICE-001 Technical Review, the OQ-005 spike, or product implementation
+until the validated Product Decision return is canonically integrated.

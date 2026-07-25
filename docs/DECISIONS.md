@@ -151,7 +151,12 @@
 - **Consequence:** Exchange payloads are non-canonical until validation,
   authorized meaning review, and Codex integration. All write-capable bridge
   commands default to dry-run. No bridge script commits, pushes, merges, or
-  grants Claude repository write authority.
+  grants Claude repository write authority. Following the Project Owner
+  disposition dated 2026-07-25, the registered Bridge is the exclusive route
+  for all substantive Claude–Codex communication and artifact transfer,
+  regardless of direct repository availability. Chat history is not evidence,
+  and manual owner input is limited to the registered trigger phrases unless a
+  later explicit owner governance decision changes the route.
 - **Reversibility:** A later approved decision may adopt Option A or another
   transport. Existing manifests and archives remain traceable; no source
   history needs destructive migration.
@@ -159,6 +164,31 @@
 - **Review status:** Exchange `AU-EX-20260721-001` completed a validated full
   round-trip. The exercised operating model is independently accepted; this does
   not verify every tooling implementation change or future exchange.
+
+## OWNER-DEC-INIT003-DISPOSITIONS-001 — Resolve INIT-003 Governance Findings
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`
+- **Date:** 2026-07-25
+- **Source:** Explicit Project Owner directive dated 2026-07-25.
+- **Related records:** INIT-003-OVR-001, INIT-003-OVR-002,
+  INIT-003-OVR-004, INIT-003-OVR-005, and INIT-003-PD-001.
+- **Decision:** Authorize wording-only normalization for explicit
+  AU-CODEX-PRIMARY instruction provenance, standalone `Does not own` fields for
+  AU-CODEX-PRIMARY and AU-AGENT-003, and the exclusive Collaboration Bridge
+  communication rule. Separately authorize tested archive-aware exchange status
+  reporting. Open a `PRODUCT_DECISION` exchange for Cowork DEC-005 through
+  DEC-008 before TASK-THINSLICE-001 Technical Review and OQ-005 spike intake.
+- **Meaning boundary:** The normalization changes no role authority, ownership,
+  product decision, architecture, or implementation meaning. Cowork DEC-005
+  through DEC-008 remain product inputs pending their validated Bridge return
+  and canonical integration.
+- **Consequence:** OVR-001, OVR-002, OVR-004, and OVR-005 are implemented.
+  Development remains gated behind the Technical Review, which cannot start
+  until the product-decision exchange is integrated.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`, `docs/CODEX_AGENTS.md`,
+  `collaboration/README.md`, the canonical governance indexes,
+  `collaboration/scripts/report-exchange-status.mjs`, and 18 passing Bridge
+  unit tests.
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 

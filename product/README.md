@@ -86,10 +86,14 @@ review, design, implementation, tests, evidence, and Completion Reports. Claude
 Cowork independently returns `VERIFIED` or `REWORK REQUIRED`; no author accepts
 its own work.
 
-When Claude cannot access GitHub directly, use the controlled route in
-`collaboration/README.md`. Claude reads the prepared inbox and writes only to
-its outbox. Codex validates and is the sole Git writer; transport does not make
-a returned artifact canonical or accepted.
+Use the controlled route in `collaboration/README.md` for every substantive
+Claude–Codex communication and artifact transfer, regardless of direct
+repository availability. Claude reads the prepared inbox and writes only to its
+outbox. Codex validates and is the sole Git writer; transport does not make a
+returned artifact canonical or accepted. Chat history is not evidence. Project
+Owner manual input is limited to the registered trigger phrases `Codex
+finished` and `Claude finished` unless a later explicit owner governance
+decision changes the route.
 
 ## Acceptance Records
 

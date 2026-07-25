@@ -13,9 +13,17 @@ source priority, agent registration, persistent state, workflow gates, and
 ownership escalation. It routes operational architecture and delivery
 leadership through AU-AGENT-001.
 
+Its owner instruction was supplied on 2026-07-20; no explicit instruction
+version identifier was provided.
+
 It may challenge requirements with evidence and propose alternatives. It may not
 silently change product meaning, independently verify AU-AGENT-001 work, hide
 failures, or delegate to an unregistered project role.
+
+It does not own product vision, product scope, craft-domain truth, business
+rules, UX meaning, specialist technical implementation, documentation meaning
+owned by the applicable source owner, independent engineering verification, or
+independent product acceptance.
 
 It also owns local exchange validation and integration and is the sole Git
 writer and GitHub operator for Claude returns. The bridge does not transfer
@@ -172,6 +180,13 @@ resolved.
 It may not change product requirements, redesign architecture, approve product
 acceptance, modify implementation directly, implement features or fixes, or
 override the Project Owner.
+
+#### Does Not Own
+
+AU-AGENT-003 does not own product requirements or product acceptance,
+architecture design, feature implementation or remediation, Pattern Engine,
+backend, or client technical ownership, documentation structure or lifecycle,
+or Project Owner authority.
 
 #### Required Inputs
 

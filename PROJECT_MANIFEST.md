@@ -9,7 +9,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
@@ -133,9 +133,13 @@ Task Package; Codex performs technical review, design, implementation, tests,
 and reporting; AU-AGENT-003 performs independent engineering verification;
 Claude Cowork independently reviews the result for product acceptance.
 
-When direct repository access is unavailable, artifacts cross the local
-boundary only through the controlled bridge in `collaboration/`. GitHub remains
-canonical and AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.
+All substantive Claude–Codex communication and artifact transfer crosses the
+organizational boundary exclusively through the controlled bridge in
+`collaboration/`, regardless of direct repository availability. Chat history is
+not evidence. Project Owner manual input is limited to the registered trigger
+phrases `Codex finished` and `Claude finished` unless a later explicit owner
+governance decision changes the route. GitHub remains canonical and
+AU-CODEX-PRIMARY remains the sole Git writer and GitHub operator.
 
 ## 15. Documentation System
 

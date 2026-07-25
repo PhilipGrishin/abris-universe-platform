@@ -1,53 +1,51 @@
 # Current Focus
 
-## Focus ID: ACCEPT-INIT-003
+## Focus ID: INIT-003-PD-001
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` only within the exact
-INIT-003 independent acceptance scope
+**Status:** Owner dispositions `[IMPLEMENTED]`, `[TESTED]`; Product Decision
+Bridge return and canonical integration `[OPEN]`
 
-Validate, integrate, register, and archive the Claude Cowork independent
-acceptance return for `AU-EX-20260725-001` without changing authored meaning,
-broadening acceptance, starting product work, or directly integrating product
-decisions transmitted only for planning awareness.
+Resolve the approved INIT-003 governance follow-ups and prepare the controlled
+`PRODUCT_DECISION` exchange for Cowork DEC-005 through DEC-008. Preserve those
+decisions as product inputs only until a validated Claude return is integrated.
 
 ## Completed in This Focus
 
-- Confirmed source branch `codex/init-003-org-validation` remains at exact
-  reviewed commit `f748c95`.
-- Validated the return manifest, 23 reviewed-source records, one output file,
-  role, result type, decision, paths, sizes, checksums, and authority statement.
-- Preserved the acceptance report byte-for-byte at
-  `product/reviews/INIT-003_Independent_Acceptance_Report.md`.
-- Registered bounded `VERIFIED`, every limitation, and five non-blocking
-  follow-up records.
-- Preserved Cowork DEC-005/DEC-006 as non-canonical planning awareness pending a
-  separate `PRODUCT_DECISION` exchange.
-- Archived the validated external inbox and outbox with the canonical report as
-  review reference.
-- Updated exchange outcome, navigation, traceability, status, task, review,
-  changelog, and handoff records.
+- Added explicit Project Owner instruction provenance to AU-CODEX-PRIMARY.
+- Added standalone `Does not own` fields to AU-CODEX-PRIMARY and AU-AGENT-003
+  without changing authority or role meaning.
+- Normalized the Collaboration Bridge as the exclusive route for all
+  substantive Claude–Codex communication and artifact transfer.
+- Implemented archive-aware exchange status reporting and passed all 18 Bridge
+  unit tests.
+- Revalidated both completed external archives, their canonical outcomes,
+  reports, checksums, and lifecycle states.
+- Confirmed that `https://abris.653915.com` resolves and returns HTTP 200
+  through Cloudflare. The Worker name and current placeholder/static-asset
+  deployment remain Project Owner-confirmed inputs.
+- Registered Cowork DEC-005 through DEC-008 for a controlled Product Decision
+  exchange without directly changing the canonical product decision log.
 
-## Open Follow-ups
+## Current Gate
 
-- INIT-003-OVR-001: owner-approved PRIMARY provenance wording.
-- INIT-003-OVR-002: standalone exclusion-field normalization.
-- INIT-003-OVR-004: archive-aware status tooling.
-- INIT-003-OVR-005: owner-approved exclusive Bridge governance wording.
-- INIT-003-PD-001: formal `PRODUCT_DECISION` exchange for transmitted Cowork
-  DEC-005/DEC-006.
-- INIT-002-F2 and INIT-002-F5 remain open.
+Prepare and synchronize exchange `AU-EX-20260725-002` from an immutable source
+commit, then stop for Claude Cowork. Do not begin TASK-THINSLICE-001 Technical
+Review, the OQ-005 spike, or product development before the returned Product
+Decision artifact is validated and canonically integrated.
 
 ## Boundaries
 
-- No application implementation, architecture, stack, platform, production,
-  Handbook, or TASK-THINSLICE-001 implementation status is `[VERIFIED]`.
-- No product decision was changed or integrated from acceptance-report prose.
-- Product development remains gated by canonical inputs and the mandatory
-  Technical Review.
+- No product decision has been changed from owner-directive or acceptance-report
+  prose.
+- No application architecture, stack, CI/CD design, implementation, or
+  deployment configuration has been created.
+- Cloudflare static hosting on `abris.653915.com` is a Technical Review input;
+  the permanent GitHub-to-CI-to-deploy pipeline remains a future Technical
+  Design responsibility.
+- OVR-004 tooling is `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`.
 
 ## Next Concrete Step
 
-Stop and notify the Project Owner with the allowed trigger phrase “Codex
-finished.” Await the next owner/Bridge trigger. The recommended next exchange is
-INIT-003-PD-001; do not start it or product development without the next
-authorized task.
+Create the exact-source Product Decision package, synchronize it to the
+exclusive Collaboration Bridge, and stop with the registered `Codex finished`
+trigger.

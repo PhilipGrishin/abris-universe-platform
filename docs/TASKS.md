@@ -18,10 +18,10 @@
   synchronization, communication routing, and TASK-THINSLICE-001 intake
   mapping without product implementation or silent authority changes.
 - **Report:** `docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md`
-- **Findings:** OVR-001 owner/provenance field normalization `[OPEN]`; OVR-002
-  standalone exclusion-field normalization `[OPEN]`; OVR-003 persistent-state
-  lag `[IMPLEMENTED]`, `[TESTED]`; OVR-004 archive-aware status reporting
-  `[OPEN]`; OVR-005 exclusive Bridge governance normalization `[OPEN]`.
+- **Findings:** OVR-001 owner/provenance field normalization, OVR-002
+  standalone exclusion-field normalization, OVR-003 persistent-state lag,
+  OVR-004 archive-aware status reporting, and OVR-005 exclusive Bridge
+  governance normalization are `[IMPLEMENTED]`, `[TESTED]`.
 - **Acceptance:** `AU-EX-20260725-001` returned `COMPLETED` / `VERIFIED`; the
   report was validated, preserved byte-for-byte, integrated, and archived.
   Verification applies only to source `f748c95` and the recorded organizational
@@ -32,53 +32,72 @@
 
 ### INIT-003-OVR-001 — Normalize AU-CODEX-PRIMARY Instruction Provenance
 
-- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; wording-only normalization complete
 - **Source:** INIT-003 OVR-001; independent acceptance report section 5.
 - **Owner:** Project Owner for exact wording; AU-CODEX-PRIMARY and
   AU-AGENT-002 for approved normalization.
 - **Required result:** Add explicit owner-instruction provenance and date to the
   canonical PRIMARY entry without changing authority.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`, `docs/CODEX_AGENTS.md`, and
+  OWNER-DEC-INIT003-DISPOSITIONS-001.
 
 ### INIT-003-OVR-002 — Add Standalone Does-Not-Own Fields
 
-- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; wording-only normalization complete
 - **Source:** INIT-003 OVR-002; independent acceptance report section 5.
 - **Owner:** AU-CODEX-PRIMARY for governance; AU-AGENT-002 for structure;
   Project Owner for any wording that changes meaning.
 - **Required result:** Add explicit `Does not own` fields for
   AU-CODEX-PRIMARY and AU-AGENT-003 while preserving their existing substantive
   exclusions.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`, `docs/CODEX_AGENTS.md`, deterministic
+  heading/field checks, and OWNER-DEC-INIT003-DISPOSITIONS-001.
 
 ### INIT-003-OVR-004 — Make Exchange Status Reporting Archive-Aware
 
-- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]`
 - **Source:** INIT-003 OVR-004; RISK-009.
 - **Owner:** AU-CODEX-PRIMARY.
 - **Required result:** In a separate tooling task, make status reporting
   distinguish active, returned, integrated, and archived states; add tests and
   preserve current validation safety.
+- **Evidence:** 18/18 Bridge unit tests and live reports for archived exchanges
+  `AU-EX-20260721-001` and `AU-EX-20260725-001`.
 
 ### INIT-003-OVR-005 — Normalize Exclusive Bridge Communication Governance
 
-- **Status:** `[OPEN]`; independently accepted as valid and non-blocking
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; wording-only normalization complete
 - **Source:** INIT-003 OVR-005; owner-directed INIT-003 communication rule.
 - **Owner:** Project Owner for exact canonical wording; AU-CODEX-PRIMARY and
   AU-AGENT-002 for approved integration.
 - **Required result:** Normalize canonical governance so substantive future
   Claude–Codex communication uses the Collaboration Bridge and owner manual
   input is limited to registered trigger phrases.
+- **Evidence:** `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`,
+  `PROJECT_MANIFEST.md`, `AI_ORGANIZATION.md`, `docs/SHARED_WORKFLOW.md`,
+  `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, and `product/README.md`.
 
-### INIT-003-PD-001 — Import Cowork DEC-005 and DEC-006 Through Product Decision Exchange
+### INIT-003-PD-001 — Import Cowork DEC-005 Through DEC-008 Through Product Decision Exchange
 
-- **Status:** `[OPEN]`; transmitted for planning awareness, not yet canonical
-- **Source:** INIT-003 Independent Acceptance Report section 6.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]` preparation; Bridge return and
+  canonical product integration `[OPEN]`
+- **Source:** INIT-003 Independent Acceptance Report section 6 and Project Owner
+  directive dated 2026-07-25.
 - **Owner:** Claude Cowork / Project Owner for product meaning;
   AU-CODEX-PRIMARY for exchange preparation and validation.
 - **Required result:** Open a new `PRODUCT_DECISION` exchange, receive the
   authoritative decision artifacts, validate them, and integrate them into the
   product decision source without changing meaning.
+- **Included owner input:** Cowork DEC-005, DEC-006, DEC-007 (Phase 0 target
+  deployment at `https://abris.653915.com` on Cloudflare static hosting, with
+  permanent GitHub-to-CI-to-deploy pipeline deferred to Technical Design), and
+  DEC-008 (the owner dispositions in
+  OWNER-DEC-INIT003-DISPOSITIONS-001).
 - **Prohibited interpretation:** The INIT-003 acceptance report alone does not
   authorize direct edits to `product/decisions/05_Decision_Log.md`.
+- **Next gate:** Complete and integrate exchange `AU-EX-20260725-002`, then
+  begin Technical Review plus the bounded OQ-005 import-format spike. No
+  development begins before the Technical Review.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 

@@ -53,10 +53,13 @@ domain design, implementation, evidence
        Claude Cowork independent acceptance
 ```
 
-Task packages and review results cross the Claude-Codex boundary through the
-controlled local bridge when direct repository access is unavailable. Claude
-uses only its assigned inbox and outbox; AU-CODEX-PRIMARY performs validation,
-integration, and all Git/GitHub operations.
+All substantive Claude–Codex communication and artifact transfer crosses the
+organizational boundary exclusively through the controlled local bridge,
+regardless of direct repository availability. Claude uses only its assigned
+inbox and outbox; AU-CODEX-PRIMARY performs validation, integration, and all
+Git/GitHub operations. Chat history is not evidence; Project Owner manual input
+is limited to the registered trigger phrases unless a later explicit owner
+governance decision changes the route.
 
 This is an operating model, not the Abris Universe runtime architecture.
 

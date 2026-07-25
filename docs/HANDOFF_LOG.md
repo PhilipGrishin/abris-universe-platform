@@ -1,5 +1,28 @@
 # Handoff Log
 
+## 2026-07-25 — Project Owner to Codex — INIT-003 Dispositions and PD-001
+
+- **Authority:** Explicit Project Owner directive dated 2026-07-25.
+- **Dispositions:** OVR-001, OVR-002, and OVR-005 wording-only normalization
+  approved; OVR-004 approved as a separate tested archive-aware tooling task.
+- **Product Decision route:** Open a controlled `PRODUCT_DECISION` exchange for
+  Cowork DEC-005 and DEC-006 from the INIT-003 acceptance report, Cowork
+  DEC-007 from this directive, and Cowork DEC-008 representing these
+  dispositions.
+- **DEC-007 input:** The owner reports the live test environment at
+  `https://abris.653915.com`, Cloudflare zone `653915.com`, currently a
+  temporary placeholder deployed as Worker `abris-universe` with static assets.
+  Phase 0 targets Cloudflare static hosting on this domain; the permanent
+  GitHub-to-CI-to-deploy pipeline belongs in a later Codex Technical Design
+  Proposal.
+- **Codex verification:** DNS resolves through Cloudflare and the HTTPS endpoint
+  returned HTTP 200 with a Cloudflare server response. Worker identity and
+  deployment internals remain owner-confirmed rather than publicly verified.
+- **Gate:** After canonical Product Decision integration, proceed to
+  TASK-THINSLICE-001 Technical Review plus the OQ-005 import-format spike.
+  Development remains blocked behind Technical Review.
+- **Documentation Impact:** Material.
+
 ## 2026-07-25 — Claude Cowork to Codex — ACCEPT-INIT-003
 
 - **Trigger:** “Claude finished.”

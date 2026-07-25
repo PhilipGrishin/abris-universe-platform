@@ -48,7 +48,8 @@
   canonical integration, provenance archive, and traceability updates.
 - **Evidence:** Completed exchange `AU-EX-20260721-001`, its validated outcome,
   canonical Independent Acceptance Report, and external archive record.
-- **Result:** Direct Claude GitHub access remains unavailable but is non-blocking.
-  The file-based channel now establishes delivery and return provenance when the
-  registered validation and integration workflow completes.
+- **Result:** The file-based channel is the exclusive route for substantive
+  Claude–Codex communication regardless of direct repository availability and
+  establishes delivery and return provenance when the registered validation and
+  integration workflow completes.
 - **Decision owner:** Project Owner / Claude Cowork / AU-CODEX-PRIMARY

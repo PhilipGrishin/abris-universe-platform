@@ -7,7 +7,7 @@
 | Status | `[APPROVED]` |
 | Owner | AU-CODEX-PRIMARY / Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `docs/DEVELOPMENT_WORKFLOW.md`, `collaboration/README.md` |
@@ -96,14 +96,19 @@ canonical repository.
 
 ## Local Bridge Route
 
-When Claude lacks reliable repository access, use the canonical twelve-step
-exchange lifecycle in `collaboration/README.md`. It covers task identification,
+Use the canonical twelve-step exchange lifecycle in `collaboration/README.md`
+for every substantive Claude–Codex communication and artifact transfer,
+regardless of direct repository availability. It covers task identification,
 versioned exact-commit packaging, bounded Claude read/write access, return
 validation, authorized meaning review, AU-AGENT-002 placement, Codex-only branch
 and Git integration, provenance archive, and traceability/status updates.
 Generated and external bridge copies are non-canonical transport state. Invalid
 output never enters staging, and valid staging never implies integration or
 acceptance.
+
+Chat history is not evidence. Project Owner manual input is limited to the
+registered trigger phrases `Codex finished` and `Claude finished` unless a
+later explicit owner governance decision changes the route.
 
 ## Owner, Lifecycle, and Additions
 
