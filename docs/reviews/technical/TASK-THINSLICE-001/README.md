@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.6.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -24,9 +24,10 @@ OQ-005 import-format evidence.
 ## Scope
 
 The record covers pre-development feasibility, repository readiness, technical
-risks, the bounded format-selection spike, product clarifications, and the
-current Technical Design review disposition. It contains no application
-implementation or final implementation acceptance.
+risks, the bounded format-selection spike, product clarifications, the current
+Technical Design review disposition, and non-independent implementation
+evidence for completed internal stages. It contains no AU-AGENT-003 Engineering
+Verification Report or final product acceptance.
 
 ## Artifacts
 
@@ -41,6 +42,7 @@ implementation or final implementation acceptance.
 - [Independent Design Revision Confirmation](../../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)
 - [Route-1 Fixture and Workspace Scaffold Review](ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md)
 - [Domain Core Implementation Review](DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
+- [OXS Importer Implementation Review](OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
 ## Current Disposition
@@ -49,8 +51,8 @@ The task is technically feasible. Its Technical Design Proposal and four
 task-scoped ADRs remain `[PROPOSED]` with independent revision disposition
 `CONFIRMED_ACCEPTED_WITH_GATES`. TD-GATE-001 is `[TESTED]` and closed for the
 initial route-1 producer profile, so the registered sequence may proceed to
-bounded importer implementation after the canonical domain-core contracts were
-implemented and tested. TD-GATE-002 remains open for
+the next registered stages. Canonical domain-core and the bounded
+route-1 importer core are implemented and tested. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

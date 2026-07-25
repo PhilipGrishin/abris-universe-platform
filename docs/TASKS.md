@@ -249,6 +249,31 @@
 - **Next step:** Implement the bounded route-1 OXS adapter and golden/security
   tests without extending exact-symbol claims beyond the tested profile.
 
+### AU-CDX-TASK-001-OXS-IMPORTER — Bounded Route-1 OXS Importer Core
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; worker/persistence integration and
+  consolidated AU-AGENT-003 verification pending; no project `[VERIFIED]`.
+- **Source:** Technical Design v1.5.0 sections 6, 7, 11, and 15;
+  ADR-TS001-001; TD-GATE-001 route-1 profile; route-1 symbol evidence.
+- **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
+  AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
+- **Documentation Impact:** Material.
+- **Result:** Implemented strict UTF-8/OXS detection, chunk-fed SAX parsing,
+  hard resource limits, explicit producer-profile rejection, deterministic
+  imported IDs/content hash, canonical full-cross mapping, ImportReport,
+  unsupported-content warnings, and source-progress isolation in
+  `packages/importers/oxs`.
+- **Evidence:** Strict typecheck; 14 focused importer tests; 100,000-stitch
+  golden mapping; exact registered rejection codes; full `pnpm test`; dependency
+  integrity lock; and `OXS_IMPORTER_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** No Web Worker/client integration, SourceFile Blob persistence,
+  atomic commit, tile construction, renderer, UI, CI/CD, deployment, general
+  producer compatibility, other-producer exact-symbol claim, or product
+  acceptance.
+- **Next step:** Implement IndexedDB repositories and recovery tests. Worker
+  integration remains assigned to the later client stage with no UI-thread
+  fallback.
+
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status

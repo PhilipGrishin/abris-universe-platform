@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.2.2 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Data flow, parser, persistence, dependency, hosting, analytics, or deployment credential change; security finding or incident |
@@ -118,8 +118,11 @@ no product-data network egress in Phase 0.
 
 ## Open Findings
 
-- `THREAT-OPEN-001`: exact parser dependency and configuration require
-  implementation-time review.
+- `THREAT-OPEN-001`: `[IMPLEMENTED]`, `[TESTED]` for importer core. Exact
+  dependencies are `saxes` 6.0.0 and `@noble/hashes` 2.2.0; non-DOM parsing,
+  DTD/processing-instruction rejection, bounded diagnostics, and hard limits
+  have focused tests. Dedicated Worker integration/cancellation and
+  AU-AGENT-003 implementation review remain open.
 - `THREAT-OPEN-002`: current Cloudflare token scope and recoverable placeholder
   version are external-state unknowns.
 - `THREAT-OPEN-003`: public preview access control is not approved; previews
@@ -132,6 +135,24 @@ no product-data network egress in Phase 0.
   remains separate.
 - `THREAT-OPEN-006`: the production runtime request inventory and clean
   full-path network capture do not exist before implementation.
+
+## Importer-Core Evidence Update
+
+- TM-001 and TM-003 importer-core controls are `[IMPLEMENTED]`, `[TESTED]`.
+- TM-002 hard byte/structure/allocation controls are `[IMPLEMENTED]`,
+  `[TESTED]`; controlled memory measurements and Worker cancellation remain
+  open.
+- TM-005 unsupported reporting is `[TESTED]`; durable source-byte persistence
+  remains open.
+- TM-006 is `[IMPLEMENTED]`, `[TESTED]`: source `marked` emits a warning and
+  never enters Pattern or Progress.
+- TM-011 now has exact dependency versions, lockfile integrity, MIT/ISC
+  production-license inventory, and an advisory audit with no known
+  vulnerabilities at audit time. AU-AGENT-003 implementation review remains
+  open.
+
+This update assigns no Engineering Verification Status, security acceptance, or
+project `[VERIFIED]`.
 
 ## Verification Checklist
 

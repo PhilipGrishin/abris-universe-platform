@@ -228,9 +228,10 @@
 
 ## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
 
-- **Status:** `[OPEN]`, format and rights rule resolved; route-1 coordinate and
-  literal-symbol evidence `[TESTED]`; other producers and implementation
-  evidence pending
+- **Status:** `[OPEN]`, format and rights rule resolved; route-1 coordinate,
+  literal-symbol, bounded importer-core, and security-limit evidence
+  `[TESTED]`; other producers, Worker/persistence integration, and independent
+  implementation verification pending
 - **Probability:** High without the OQ-005 and fixture gates
 - **Impact:** High
 - **Trigger:** Importer development starts from an undocumented/proprietary
@@ -247,7 +248,11 @@
   acquisition rule. The Technical Design and ADR-TS001-001 define the bounded
   mapping and prohibit heuristic coordinate/symbol interpretation. The
   route-1 profile has deterministic golden, malformed, size-limit, coordinate,
-  palette-reference, and unsupported-content fixtures. Keep unregistered
+  palette-reference, and unsupported-content fixtures. The importer core now
+  uses a non-DOM SAX parser, rejects DTD/processing instructions and unknown
+  producer profiles, enforces the registered hard limits, keeps source progress
+  out of canonical Progress, and produces bounded reports. Dedicated Worker
+  integration and source-byte persistence remain open. Keep unregistered
   producer profiles blocked or rejected. PROD-DEC-011 keeps the four
   owner-granted XSP binaries outside the Bridge and Git pending a separate
   owner-controlled transfer and prioritizes licensed XSD export over reverse

@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 bounded OXS route-1 importer
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, and canonical domain-core
+**Current focus:** TASK-THINSLICE-001 IndexedDB persistence and recovery
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, and bounded route-1 importer core
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
@@ -68,6 +68,11 @@
   strict types, invariant validation, immutable snapshot construction, Project
   lifecycle validation, and ordered progress projection. No executable
   application or user-facing product feature exists.
+- `[IMPLEMENTED]`, `[TESTED]` The bounded OXS route-1 importer core now exists
+  with non-DOM SAX parsing, hard resource limits, explicit producer-profile
+  rejection, deterministic imported IDs/content hash, canonical full-cross
+  mapping, bounded ImportReport diagnostics, unsupported-content reporting, and
+  source-progress isolation.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -171,7 +176,7 @@
   Design and ADR-TS001-001 through ADR-TS001-004 is
   `ACCEPTED_WITH_GATES`. No project `[VERIFIED]` status, implementation
   acceptance, security verification, or deployment approval was assigned.
-- `[IMPLEMENTED]` Technical Design v1.4.0 and its ADR, threat-model, benchmark,
+- `[IMPLEMENTED]` Technical Design v1.5.0 and its ADR, threat-model, benchmark,
   persistence, rendering, import, test, and delivery contracts integrate
   mandatory R-1 through R-8 and N-1 through N-7/N-9.
 - `[IMPLEMENTED]`, `[TESTED]` AU-AGENT-003 independently reviewed the pre-code
@@ -334,12 +339,19 @@
   isolation, and bounded rejection cases.
 - `[TESTED]` `pnpm typecheck` passes with TypeScript 7.0.2, and all 9 focused
   domain-core tests pass without failures.
+- `[TESTED]` All 14 focused importer tests pass, including the 100,000-stitch
+  golden mapping, deterministic IDs/hash, registered rejection codes, DTD and
+  processing-instruction rejection, unknown producer rejection, unsupported
+  reporting, source-progress isolation, symbol collision fallback, and reduced
+  adversarial parser budgets.
+- `[TESTED]` The pinned importer dependency graph reports no known
+  vulnerabilities at audit time; production licenses are MIT and ISC only.
 
 ## Blockers
 
-- `[OPEN]` Product implementation and its independent acceptance evidence; no
-  product code exists yet.
-- `[OPEN]` Importer, renderer, persistence, and client implementation and their
+- `[OPEN]` Complete product implementation and its independent acceptance
+  evidence; no executable application or user-facing flow exists yet.
+- `[OPEN]` Renderer, persistence, client, Worker integration, and their
   independent engineering evidence.
 - `[OPEN]` Runtime request inventory and network-capture evidence before
   deployment; TS001-SEC-002 is non-blocking for the current design gate.
@@ -372,18 +384,17 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and tested the canonical `domain-core` contracts, runtime
-cross-record invariants, detached immutable snapshot boundary, Project
-lifecycle validation, and ordered progress projection. Strict TypeScript
-typecheck and 9 focused tests pass. No importer, renderer, persistence, client,
-pipeline, deployment, or user-facing application was implemented, and this
+Implemented and tested the bounded OXS route-1 importer core: strict UTF-8/OXS
+detection, SAX parsing, hard limits, explicit producer-profile rejection,
+deterministic IDs/content hash, canonical mapping, ImportReport,
+unsupported-content visibility, and source-progress isolation. Fourteen focused
+tests pass. Worker/client integration, SourceFile Blob persistence, atomic
+commit, rendering, deployment, and project `[VERIFIED]` remain open. This
 internal stage requires no Claude return.
 
 ## Next Step
 
-Implement and test the bounded OXS 1.0 route-1 adapter defined by Technical
-Design v1.3.0, including deterministic identities/content hash, golden mapping,
-ImportReport, unsupported/malformed/security limits, source-byte preservation
-contract, and source-progress-ignore evidence. Stop before persistence; do not
-make exact-symbol or production-deployment claims while their gates remain
-open.
+Implement and test IndexedDB schema version 1 repositories, atomic accepted
+import, failed/interrupted cleanup, append-only idempotent progress
+transactions, projection rebuild, reload/recovery, and typed capability
+failures from Technical Design v1.5.0. Stop before rendering and client UI.

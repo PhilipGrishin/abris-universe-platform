@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 2.1.0 |
+| Version | 2.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -81,7 +81,7 @@ project-owner approval.
 | Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
 | Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |
 | Shared delivery lifecycle | `docs/SHARED_WORKFLOW.md` | Project Owner / AU-CODEX-PRIMARY | Artifact routing and status flow, not product or technical meaning. |
-| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Canonical domain-core and test tooling exist; executable application behavior does not. |
+| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Canonical domain-core, bounded route-1 importer core, and test tooling exist; executable application behavior does not. |
 | Project-original test fixtures and expected results | `tests/fixtures/`, with task-scoped registries and checksum manifests | Assigned domain owner; AU-AGENT-003 reviews implementation evidence | Fixture evidence does not itself prove importer, renderer, persistence, security, performance, or product behavior. |
 | Technical decisions | `docs/DECISIONS.md` and approved files under `docs/architecture/adr/` | AU-AGENT-001 | ADR indexes must not restate decision content. |
 | Architecture overview | `docs/ARCHITECTURE.md` | AU-AGENT-001 | Detailed architecture documents may be indexed under `docs/architecture/`. |
@@ -97,7 +97,7 @@ project-owner approval.
 | Engineering Handbook | `docs/handbook/` | AU-AGENT-002 | Explanatory navigation and synthesis; never a parallel source of technical truth. |
 | Risks | `docs/RISKS.md` | AU-CODEX-PRIMARY / named risk owner | Risk status does not approve a technical change. |
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
-| Pre-development Technical Reviews | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, and alternative evidence; a review disposition is not implementation or product acceptance. |
+| Technical reviews and non-independent implementation evidence | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, alternative, and implementing-contour evidence; never substitutes for AU-AGENT-003 verification or product acceptance. |
 | Engineering verification evidence | `docs/reviews/engineering/` | AU-AGENT-003 | Engineering Verification Status is a task-scoped quality gate, not project `[VERIFIED]` or product acceptance. |
 | Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
 | Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |

@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
@@ -30,7 +30,7 @@ its controls are implemented or tested.
 
 | Task | Threat model | Status | Security review |
 | --- | --- | --- | --- |
-| TASK-THINSLICE-001 | [Phase 0 Threat Model](TASK-THINSLICE-001_THREAT_MODEL.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES` | AU-AGENT-003 design review `VERIFIED WITH FINDINGS`; runtime evidence `[OPEN]` |
+| TASK-THINSLICE-001 | [Phase 0 Threat Model](TASK-THINSLICE-001_THREAT_MODEL.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES`; importer-core controls `[TESTED]` | AU-AGENT-003 design review `VERIFIED WITH FINDINGS`; Worker, persistence, remaining runtime, and implementation-verification evidence `[OPEN]` |
 
 ## Owner
 

@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.1.2 |
+| Version | 1.1.3 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-009, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -125,3 +125,7 @@ source-byte recovery, and architecture review.
   registered producer profile. The canonical domain records and cross-record
   invariants are `[IMPLEMENTED]`, `[TESTED]`; importer, persistence, remaining
   evidence, and ADR approval remain open.
+- 2026-07-25: The bounded route-1 importer core, deterministic IDs/hash,
+  ImportReport, unsupported/source-progress handling, and parser limits are
+  `[IMPLEMENTED]`, `[TESTED]`. Worker integration, persistence, other producer
+  profiles, consolidated verification, and ADR approval remain open.

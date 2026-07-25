@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-25 — Internal Bounded OXS Importer-Core Stage
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; no Engineering Verification Status
+  or project `[VERIFIED]`.
+- **Scope:** Added the explicit route-1 OXS 1.0 importer core with strict
+  detection, non-DOM SAX parsing, hard limits, deterministic canonical mapping,
+  imported IDs/hash, ImportReport, unsupported warnings, and source-progress
+  isolation.
+- **Evidence:** Strict typecheck, 14 focused importer tests, exact registered
+  negative-fixture codes, 100,000-stitch golden mapping, full `pnpm test`,
+  dependency lock/audit, and `OXS_IMPORTER_IMPLEMENTATION_REVIEW.md`.
+- **Boundary:** Only the registered route-1 producer is accepted. No Worker
+  integration, SourceFile Blob persistence, atomic commit, tile construction,
+  renderer, client, CI/CD, deployment, or other-producer exact-symbol claim.
+- **Bridge disposition:** This is an internal engineering implementation stage
+  under the confirmed design and requires no Claude return. No Exchange ID was
+  registered after `AU-EX-20260725-006`.
+- **Documentation Impact:** Material.
+- **Next gate:** Implement IndexedDB persistence and recovery; stop before
+  rendering.
+
 ## 2026-07-25 — Internal Canonical Domain-Core Stage
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; no Engineering Verification Status

@@ -22,8 +22,15 @@ for (const [directory, expectedName] of expectedPackages) {
     throw new Error(`${packagePath} must remain private ESM scaffolding`);
   }
   const allowedEntries =
-    directory === "packages/domain-core"
-      ? ["README.md", "package.json", "src", "test", "tsconfig.json"]
+    ["packages/domain-core", "packages/importers/oxs"].includes(directory)
+      ? [
+          "README.md",
+          "node_modules",
+          "package.json",
+          "src",
+          "test",
+          "tsconfig.json",
+        ]
       : ["README.md", "package.json"];
   const unexpectedRuntimeFiles = readdirSync(directory).filter(
     (entry) => !allowedEntries.includes(entry)
@@ -41,6 +48,13 @@ for (const requiredPath of [
   "packages/domain-core/src/validation.ts",
   "packages/domain-core/test/domain-core.test.ts",
   "packages/domain-core/tsconfig.json",
+  "packages/importers/oxs/src/contracts.ts",
+  "packages/importers/oxs/src/import-oxs.ts",
+  "packages/importers/oxs/src/index.ts",
+  "packages/importers/oxs/src/limits.ts",
+  "packages/importers/oxs/src/parser.ts",
+  "packages/importers/oxs/test/oxs-importer.test.ts",
+  "packages/importers/oxs/tsconfig.json",
 ]) {
   if (!existsSync(requiredPath)) {
     throw new Error(`Domain-core implementation is missing ${requiredPath}`);
@@ -55,5 +69,5 @@ for (const pattern of ["apps/*", "packages/*", "packages/*/*"]) {
 }
 
 process.stdout.write(
-  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain-core scope, and scaffold-only sibling packages.\n"
+  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer scope, and scaffold-only renderer/persistence/client packages.\n"
 );

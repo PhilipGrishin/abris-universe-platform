@@ -34,11 +34,13 @@ that assessment:
   for the registered producer profile; and
 - the framework-independent canonical `domain-core` records and invariant
   validation are `[IMPLEMENTED]`, `[TESTED]`.
+- the explicit route-1 OXS importer core, deterministic mapping, ImportReport,
+  and untrusted-XML limits are `[IMPLEMENTED]`, `[TESTED]`.
 
-No executable web application, OXS importer, renderer, persistence layer,
-backend, API, CI/CD pipeline, deployment, or user-facing product capability
-exists. This evidence update does not approve the proposed architecture or
-assign project `[VERIFIED]`.
+No executable web application, Worker integration, renderer, persistence
+layer, backend, API, CI/CD pipeline, deployment, or user-facing product
+capability exists. This evidence update does not approve the proposed
+architecture or assign project `[VERIFIED]`.
 
 ## Current Non-Product Governance Architecture
 
@@ -122,8 +124,8 @@ frameworks, or deployment topology.
 
 The repository is confirmed as `PhilipGrishin/abris-universe-platform` on
 `main`. Its current contents include governance and product sources, the
-registered fixture evidence and workspace, and the bounded canonical domain
-library. The product-side architecture document under
+registered fixture evidence and workspace, the bounded canonical domain
+library, and the bounded route-1 importer core. The product-side architecture document under
 `product/architecture-inputs/` remains a `[PROPOSED]` input.
 
 The following cannot yet be assessed beyond the explicit Technical Design and
@@ -208,8 +210,8 @@ the substantiated documents among `SYSTEM_MAP.md`, `DATA_MODEL.md`,
 ## Next Assessment Gate
 
 Continue TASK-THINSLICE-001 only in the registered implementation order and
-evidence gates. The next technical step is the bounded route-1 OXS adapter
-against the tested canonical domain and fixtures. Persistence, rendering,
-client integration, CI/CD, deployment, and consolidated AU-AGENT-003
-verification remain later gates. Missing schema, migration, environment,
-service, deployment, observability, and runtime evidence must remain explicit.
+evidence gates. The next technical step is IndexedDB persistence and recovery
+against the tested canonical domain and importer core. Worker/client
+integration, rendering, CI/CD, deployment, and consolidated AU-AGENT-003
+verification remain later gates. Missing migration, environment, service,
+deployment, observability, and runtime evidence must remain explicit.

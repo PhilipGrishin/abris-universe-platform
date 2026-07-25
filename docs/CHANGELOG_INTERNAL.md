@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.9.0 |
+| Version | 3.0.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,31 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-25 — TASK-THINSLICE-001 Bounded OXS Importer Core
+
+- Implemented `@abris-universe/oxs-importer` 0.1.0 for the explicit route-1 OXS
+  1.0 producer profile.
+- Added fatal UTF-8/OXS detection, chunk-fed non-DOM SAX parsing, DTD and
+  processing-instruction rejection, and every registered hard parser,
+  structure, allocation, grid, palette, stitch, unsupported-object, and memory
+  boundary.
+- Added collision-safe SHA-256-derived imported IDs, deterministic canonical
+  content hashing, canonical full-cross mapping, ImportReport, unsupported
+  category warnings, and source `marked` isolation from Progress.
+- Added 14 focused tests covering minimal, empty, unsupported, invalid,
+  adversarial, deterministic, collision, and 100,000-stitch medium cases.
+- Pinned `saxes` 6.0.0 and `@noble/hashes` 2.2.0 with lockfile integrity and
+  documented their licenses and boundaries; the advisory audit reports no
+  known vulnerabilities and the production inventory is MIT/ISC only.
+- Corrected the Technical Design mapping label from `title` to the official OXS
+  `charttitle` attribute without changing architecture or product meaning.
+- Preserved Web Worker integration, Blob persistence, atomic commit, tiling,
+  rendering, client behavior, and independent verification as open later
+  gates.
+- Recorded that this internal stage requires no Claude return.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, `[TESTED]`; no project `[VERIFIED]`.
 
 ## 2026-07-25 — TASK-THINSLICE-001 Canonical Domain Core
 

@@ -30,6 +30,9 @@ scaffold and project-original OXS route-1 fixture suite are present.
 `[IMPLEMENTED]`, `[TESTED]` The framework-independent canonical `domain-core`
 contracts and invariant tests are present.
 
+`[IMPLEMENTED]`, `[TESTED]` The bounded OXS route-1 importer core, deterministic
+mapping, ImportReport, and parser/security-limit tests are present.
+
 `[OPEN]` No executable application or user-facing product capability is
 present. The current Technical Design remains `[PROPOSED]` with registered
 evidence gates.
@@ -50,7 +53,8 @@ evidence gates.
 ## Running and Testing
 
 There is no executable application yet. The current checks validate fixture
-determinism, workspace boundaries, and canonical-domain contracts:
+determinism, workspace boundaries, canonical-domain contracts, and the bounded
+OXS importer:
 
 ```bash
 pnpm test

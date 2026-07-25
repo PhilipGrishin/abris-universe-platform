@@ -9,7 +9,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.9.0 |
+| Version | 2.0.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `product/README.md`, `AGENTS.md`, `collaboration/README.md` |
@@ -166,8 +166,9 @@ terminology consistency, traceability, and lifecycle.
 
 The package tree is an `[IMPLEMENTED]`, `[TESTED]` workspace from the
 independently confirmed Technical Design. `packages/domain-core` now contains
-the bounded canonical model and invariant validation; every sibling package
-remains a non-behavioral scaffold.
+the bounded canonical model and invariant validation;
+`packages/importers/oxs` contains the bounded route-1 importer core; renderer,
+persistence, and client packages remain non-behavioral scaffolds.
 
 ## 17. Current Project State
 
@@ -190,6 +191,9 @@ remains a non-behavioral scaffold.
   records, version constants, cross-record invariants, immutable snapshot
   validation, Project lifecycle validation, and progress projection with strict
   typecheck and 9 focused tests.
+- `[IMPLEMENTED]`, `[TESTED]` `packages/importers/oxs` implements the explicit
+  route-1 OXS 1.0 mapping, deterministic IDs/hash, bounded ImportReport, and
+  untrusted-XML controls with 14 focused tests.
 - `[IMPLEMENTED]`, `[TESTED]` Ten project-original OXS route-1 fixtures,
   deterministic generation, checksums, expected results, provenance,
   compatibility evidence, and local verification exist.
@@ -197,8 +201,8 @@ remains a non-behavioral scaffold.
   engineering contour integration, governance boundaries, Source of Truth
   organization, and the Collaboration Bridge operating model exercised by
   exchange `AU-EX-20260721-001`, subject to the report's limitations.
-- `[OPEN]` User-facing product runtime, importer, renderer, persistence, client,
-  CI/CD, and deployment implementation.
+- `[OPEN]` User-facing product runtime, Worker integration, renderer,
+  persistence, client, CI/CD, and deployment implementation.
 - The verified status does not cover application implementation, stack, runtime
   architecture, AU-CDX-TASK-001 implementation, AU-AGENT-003 through
   AU-AGENT-006 activation, Engineering Handbook content, or unreviewed bridge
@@ -216,8 +220,9 @@ release scope.
 
 No executable application, database, API, CI/CD implementation, deployment,
 migration, or user-facing product feature exists. The canonical domain library,
-test-only fixture generation, and workspace checks are executable engineering
-components and must not be misrepresented as a completed product capability.
+bounded importer core, test-only fixture generation, and workspace checks are
+executable engineering components and must not be misrepresented as a completed
+product capability.
 
 ## 20. Open Product Questions
 

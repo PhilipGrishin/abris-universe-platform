@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/ARCHITECTURE.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -37,10 +37,11 @@ The first task-scoped Technical Design Proposal remains `[PROPOSED]` with
 independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`. Architecture
 and AU-AGENT-003 design-only security review are complete. TD-GATE-001 is
 `[TESTED]` and closed for the initial route-1 producer profile; TD-GATE-004 is
-closed. Canonical domain-core implementation is `[IMPLEMENTED]`, `[TESTED]`.
-Exact-symbol claims for other producers, remaining implementation, runtime,
-performance, and deployment evidence remain open. These dispositions are not
-product or project `[VERIFIED]` acceptance.
+closed. Canonical domain-core and the bounded route-1 importer core are
+`[IMPLEMENTED]`, `[TESTED]`. Exact-symbol claims for other producers, worker
+integration, persistence, remaining implementation, runtime, performance, and
+deployment evidence remain open. These dispositions are not product or project
+`[VERIFIED]` acceptance.
 
 ## Owner
 

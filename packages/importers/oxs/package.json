@@ -1,6 +1,18 @@
 {
   "name": "@abris-universe/oxs-importer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@abris-universe/domain-core": "workspace:*",
+    "@noble/hashes": "2.2.0",
+    "saxes": "6.0.0"
+  }
 }

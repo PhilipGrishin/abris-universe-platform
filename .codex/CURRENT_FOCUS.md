@@ -1,14 +1,14 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-OXS-IMPORTER
+## Focus ID: AU-CDX-TASK-001-PERSISTENCE
 
-**Status:** Route-1 evidence, workspace scaffold, and canonical domain-core
-`[IMPLEMENTED]`, `[TESTED]`; bounded OXS route-1 importer is the next internal
-step
+**Status:** Route-1 evidence, workspace scaffold, canonical domain-core, and
+bounded OXS route-1 importer core `[IMPLEMENTED]`, `[TESTED]`; IndexedDB
+persistence and recovery are the next internal step
 
-Implement the bounded OXS 1.0 route-1 adapter and its golden/security tests
-against the registered canonical contracts and fixture evidence. Preserve the
-source, coordinate, symbol, progress, and resource-limit boundaries.
+Implement the smallest IndexedDB repositories, atomic import commit, failed
+import cleanup, append-only progress transactions, recovery, and capability
+errors required by Technical Design v1.5.0. Do not start rendering or client UI.
 
 ## Confirmed Inputs
 
@@ -27,7 +27,7 @@ source, coordinate, symbol, progress, and resource-limit boundaries.
 
 ## Current Design State
 
-- Technical Design v1.4.0 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.0 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -35,6 +35,9 @@ source, coordinate, symbol, progress, and resource-limit boundaries.
   scaffold are `[IMPLEMENTED]`, `[TESTED]`.
 - Canonical `domain-core` records, validation, immutable snapshot boundary,
   Project lifecycle, and progress projection are `[IMPLEMENTED]`, `[TESTED]`.
+- The route-1 importer core, deterministic IDs/hash, ImportReport, unsupported
+  handling, source-progress isolation, and parser limits are `[IMPLEMENTED]`,
+  `[TESTED]`.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -48,8 +51,10 @@ source, coordinate, symbol, progress, and resource-limit boundaries.
 ## Assigned Roles
 
 - AU-AGENT-001 owns the consolidated technical result and gate discipline.
-- AU-AGENT-004 owns the bounded OXS importer and compatibility evidence.
-- AU-AGENT-005 owns persistence contract implementation only after its gates.
+- AU-AGENT-004 owns importer compatibility and any importer finding
+  remediation.
+- AU-AGENT-005 owns IndexedDB repositories, transactions, recovery, and data
+  integrity.
 - AU-AGENT-006 owns client workspace and integration boundaries without
   implementing product behavior at the scaffolding stage.
 - AU-AGENT-003 independently verifies later implementation evidence.
@@ -58,14 +63,16 @@ source, coordinate, symbol, progress, and resource-limit boundaries.
 
 ## Immediate Boundaries
 
-- Implement only the supported OXS 1.0 full-cross route-1 mapping required by
-  Technical Design v1.4.0.
-- Do not mix OXS source representation into the canonical domain model.
-- Reject unknown coordinate profiles rather than guessing.
-- Treat input as untrusted, prohibit DTD/entity processing, and enforce the
-  recorded preflight and parsed-structure limits.
-- Preserve unsupported-content reporting and never map source `marked` state to
-  ProgressEvent.
+- Implement only the local IndexedDB contracts required by Technical Design
+  v1.5.0.
+- Preserve original SourceFile Blob separately from canonical Pattern data.
+- Commit accepted canonical results atomically; no partial PatternVersion or
+  tile state may survive failure.
+- Keep progress append-only and idempotent; save success requires transaction
+  commit.
+- Treat missing Web Locks as a typed capability failure; do not introduce an
+  unsafe multi-tab fallback.
+- Do not start renderer, client flow, CI/CD, or deployment.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
 - Do not deploy to production before TD-GATE-003 and runtime security evidence
   close.
@@ -90,13 +97,17 @@ The route-1 fixture set contains minimal, medium, empty, unsupported, corrupt,
 and bounded-security cases with deterministic manifests and expected outcomes.
 The workspace establishes the approved package boundaries. `domain-core`
 implements the approved canonical records and cross-record invariants with
-strict typecheck and 9 focused tests.
+strict typecheck and 9 focused tests. The OXS importer core passes 14 focused
+tests, including the 100,000-stitch golden case, exact rejection codes,
+determinism, progress isolation, symbol collision fallback, and adversarial
+parser limits.
 
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
 
 ## Next Concrete Step
 
-Implement the bounded OXS route-1 adapter, deterministic imported identities and
-canonical content hash, ImportReport, golden mapping, malformed/unsupported,
-resource-limit, and source-progress-ignore tests. Stop before persistence.
+Implement IndexedDB schema version 1 repositories and focused tests for atomic
+accepted import, rejected/interrupted cleanup, event idempotency/corruption,
+sequence allocation, projection rebuild, reload, and capability failure. Stop
+before renderer implementation.

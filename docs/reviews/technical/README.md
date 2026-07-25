@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
@@ -18,13 +18,15 @@
 ## Purpose
 
 Index task-scoped engineering intake reviews, feasibility findings, bounded
-technical spikes, Clarification Reports, Conflict Reports, and Technical
-Alternative Proposals without duplicating their conclusions.
+technical spikes, non-independent implementation evidence, Clarification
+Reports, Conflict Reports, and Technical Alternative Proposals without
+duplicating their conclusions.
 
 ## Scope
 
-This library contains pre-development technical review evidence. It does not
-contain implementation verification, which belongs under
+This library contains technical review and implementation evidence authored by
+the implementing technical contour. It does not contain independent
+implementation verification, which belongs under
 `docs/reviews/engineering/`, or independent product acceptance, which belongs
 under `product/reviews/`.
 

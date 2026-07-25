@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -35,9 +35,9 @@ OXS 1.0 bytes
 ```
 
 This proposal selects technical mechanisms inside approved product constraints.
-It does not change product behavior, claim runtime implementation or
-performance, or assign project `[VERIFIED]`. Fixture and scaffold evidence is
-maintained in separately reviewed artifacts.
+It does not change product behavior, claim complete product implementation or
+performance, or assign project `[VERIFIED]`. Implemented package stages and
+their limitations are maintained in separately reviewed evidence artifacts.
 
 Version 1.1.0 integrates the mandatory R-1 through R-8 design findings from
 `AU-EX-20260725-005` without changing the returned review meaning. The review
@@ -56,6 +56,10 @@ gate evidence, not product meaning or the selected architecture.
 Version 1.4.0 records the tested canonical domain-core implementation and its
 focused evidence. It does not change the selected architecture or product
 meaning.
+Version 1.5.0 records the tested bounded route-1 importer core and corrects the
+OXS title attribute label to the official `charttitle`. It does not broaden the
+accepted producer profile, change product meaning, or close persistence,
+worker, performance, deployment, or independent-verification gates.
 
 ## 2. Scope and Non-Scope
 
@@ -130,8 +134,9 @@ Claude Cowork independently confirmed the complete revision at source
 `AU-EX-20260725-006` with disposition `CONFIRMED_ACCEPTED_WITH_GATES`.
 Route-1 fixture production and workspace scaffolding were completed after that
 confirmation. The registered implementation sequence may proceed to
-domain-core and then bounded importer implementation for the explicit route-1
-profile. Exact-symbol claims for other producers remain blocked by TD-GATE-002,
+domain-core and bounded importer implementation for the explicit route-1
+profile; both package stages are now `[IMPLEMENTED]`, `[TESTED]`. Exact-symbol
+claims for other producers remain blocked by TD-GATE-002,
 and production deployment remains blocked by TD-GATE-003 plus runtime security
 evidence.
 
@@ -410,7 +415,7 @@ HTML insertion, and script execution are absent by construction.
 | --- | --- | --- |
 | `chart/properties/@chartwidth` | `Pattern.grid.width` and metadata width | Strict positive base-10 integer |
 | `chart/properties/@chartheight` | `Pattern.grid.height` and metadata height | Strict positive base-10 integer |
-| `chart/properties/@title` | `Pattern.metadata.name` | Trim outer whitespace; preserve original in import provenance |
+| `chart/properties/@charttitle` | `Pattern.metadata.name` | Trim outer whitespace; preserve original in import provenance |
 | `@stitchesperinch`, `@stitchesperinch_y` | optional fabric count X/Y | Strict finite positive decimal; absence remains `null` |
 | `chart/palette/palette_item/@index` | `PaletteItem.sourceIndex` | Unique non-negative integer |
 | palette index `0` | cloth PaletteItem | Never referenced by a supported stitch |
@@ -945,7 +950,9 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 2. `[IMPLEMENTED]`, `[TESTED]`: produce and review the route-1 coordinate and symbol fixtures.
 3. `[IMPLEMENTED]`, `[TESTED]`: scaffold the strict workspace and dependency boundaries.
 4. `[IMPLEMENTED]`, `[TESTED]`: implement and test `domain-core`.
-5. Implement the bounded OXS importer and golden/security tests.
+5. `[IMPLEMENTED]`, `[TESTED]`: implement the bounded OXS route-1 importer
+   core and golden/security tests. Dedicated Web Worker integration remains in
+   the client stage.
 6. Implement IndexedDB repositories and recovery tests.
 7. Implement tiled renderer and measured medium-fixture prototype.
 8. Integrate the accessible web flow and end-to-end persistence.
@@ -958,7 +965,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 
 ## 16. Architecture Review Checklist
 
-- [ ] Exact Task Package and product decisions are unchanged.
+- [x] Exact Task Package and product decisions are unchanged.
 - [x] `AU-EX-20260725-005` independent architecture review completed with
       `ACCEPTED_WITH_GATES`; R-1 through R-8 integrated in version 1.1.0.
 - [x] AU-AGENT-003 security review of the revised security-relevant sections is
@@ -971,8 +978,10 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
       section 5 contract; importer/persistence integration remains open.
 - [x] Symbol/Palette and Pattern/Progress independence are enforced by
       domain validation and focused tests.
-- [ ] Unsupported OXS data is visible and source-preserved.
-- [ ] Security limits are justified and testable.
+- [ ] Unsupported OXS data is visible in tested ImportReports; durable original
+      source-byte preservation remains a persistence gate.
+- [ ] Importer-core security limits are tested; dedicated Web Worker creation,
+      cancellation, and runtime evidence remain open.
 - [ ] Renderer never requires whole-pattern per-frame work or per-stitch DOM.
 - [ ] Save success maps to a committed transaction.
 - [ ] Storage and client rollback compatibility are explicit.
@@ -996,6 +1005,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 - [AU-AGENT-003 Pre-Code Security Design Verification](../../reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md)
 - [Route-1 Fixture and Workspace Scaffold Review](../../reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md)
 - [Domain Core Implementation Review](../../reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md)
+- [OXS Importer Implementation Review](../../reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [OXS Route-1 Fixture Registry](../../../tests/fixtures/oxs/README.md)
 - [OXS Format Specification](https://www.ursasoftware.com/OXSFormat/)
 - [Cloudflare Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
