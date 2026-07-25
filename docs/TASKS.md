@@ -130,6 +130,25 @@
 - **Gate:** Not ready for development. After Claude disposition, prepare the
   Technical Design Proposal and required architecture review.
 
+### AU-CDX-TASK-001-CLARIFICATION — OQ-005 Product Disposition
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]` package preparation; Claude return
+  `[OPEN]`; development blocked
+- **Source:** TASK-THINSLICE-001 Technical Review and OQ-005 spike at
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
+- **Owner:** Claude Cowork / Project Owner for product meaning;
+  AU-CODEX-PRIMARY for Bridge preparation and validation.
+- **Documentation Impact:** Material.
+- **Required result:** Disposition `SXP` versus `XSP`, accept or reject OXS 1.0
+  under the confirmed criterion, establish fixture authority, provide exact
+  product-source integration text when authorized, and state whether the Task
+  Package requires versioning.
+- **Exchange:** `AU-EX-20260725-003`, lifecycle `EXPORTED`, source `CURRENT`,
+  output `NOT_RETURNED`.
+- **Prohibited work:** No Technical Design, importer, Pattern Engine, viewer,
+  persistence, client, pipeline, deployment, fixture commitment, or product
+  `[VERIFIED]` status.
+
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; exercised operating model

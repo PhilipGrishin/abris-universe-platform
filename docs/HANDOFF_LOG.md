@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-25 — Codex Product Clarification Handoff — AU-EX-20260725-003
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return
+  `[OPEN]`.
+- **Task:** `PRODUCT_CLARIFICATION` for
+  AU-CDX-TASK-001-CLARIFICATION.
+- **Requested role:** Chief Project Orchestrator.
+- **Exact source:** branch `codex/task-thinslice-001-technical-review`, commit
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`, review range
+  `1319f4746565be9ed962b8150365e1abacf08fb7..e53794b51e0ed753e9d1b7b39ac455df23e4b5bf`.
+- **Package evidence:** 28 checksum-registered sources, 394,832 payload bytes,
+  current source, valid required inputs, and external inbox export.
+- **Requested result:** Dispositions for `SXP`/`XSP`, OXS 1.0, fixture
+  authority, product-source text, and Task Package versioning.
+- **Authority:** Claude owns product clarification only. AU-CODEX-PRIMARY
+  remains sole Git writer; AU-AGENT-001 retains Technical Design;
+  AU-AGENT-002 retains documentation lifecycle.
+- **Gate:** Stop with `Codex finished`. Development and Technical Design remain
+  unstarted until a valid return is reviewed and integrated.
+- **Documentation Impact:** Material.
+
 ## 2026-07-25 — Codex Technical Review Handoff — TASK-THINSLICE-001
 
 - **Authority:** PROD-DEC-008 authorizes the Technical Review and bounded

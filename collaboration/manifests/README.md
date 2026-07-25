@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -41,6 +41,9 @@ not approve returned meaning.
   integration for Cowork DEC-005 through DEC-008; return validated, canonical
   product records integrated, and exchange archived with decision
   `NO_DECISION`.
+- [`AU-EX-20260725-003`](AU-EX-20260725-003/README.md) — TASK-THINSLICE-001
+  product clarification for `SXP`/`XSP`, the OXS recommendation, and fixture
+  authority; exact-source package exported, return open.
 
 ## Rules
 

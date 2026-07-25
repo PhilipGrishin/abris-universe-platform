@@ -137,6 +137,10 @@
 - `[OPEN]` Claude disposition of the OXS recommendation and `SXP`/`XSP`,
   plus fixture redistribution/derivative authority. Development remains
   blocked, and Technical Design has not begun.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-003` packages 28
+  checksum-registered sources from exact commit
+  `e53794b51e0ed753e9d1b7b39ac455df23e4b5bf` and was exported to the external
+  Claude inbox. Status is `EXPORTED / CURRENT / NOT_RETURNED / NOT_INTEGRATED`.
 
 ## Verification Performed
 
