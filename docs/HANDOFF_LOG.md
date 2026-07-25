@@ -41,6 +41,25 @@
 - **Next step:** Commit the exact validation source, prepare and synchronize
   `AU-EX-20260725-001`, then stop for independent review.
 
+## 2026-07-25 — Codex Bridge Handoff — AU-EX-20260725-001
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; external inbox synchronized; return
+  and independent decision `[OPEN]`.
+- **Task:** `INDEPENDENT_ACCEPTANCE_REVIEW` for
+  INIT-003-ORG-VALIDATION.
+- **Requested role:** Quality, Security & Independent Acceptance Lead.
+- **Exact source:** branch `codex/init-003-org-validation`, commit
+  `f748c9551175d24b22106b826354c8fc5878e0c6`, review range
+  `1ccaace4aa6c5a441dca52bcbbab3fd26017f908..f748c9551175d24b22106b826354c8fc5878e0c6`.
+- **Package evidence:** 48 registered text sources, 925,939 payload bytes,
+  generated diff/stat/commits, valid task manifest, and zero checksum
+  difference between runtime and external inbox copies.
+- **Authority:** Claude reads only the immutable inbox and writes only a
+  registered outbox return. AU-CODEX-PRIMARY remains sole Git writer. Transport
+  does not assign `[VERIFIED]`.
+- **Next step:** Stop, issue only the “Codex finished” owner trigger, and await
+  the Claude return. No product development begins.
+
 ## 2026-07-20 — Project Owner to Codex — INIT-001
 
 - **Direction received:** Establish the primary technical governance role,

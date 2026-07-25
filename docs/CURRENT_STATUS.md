@@ -97,6 +97,10 @@
 - `[OPEN]` INIT-003 findings require explicit provenance/exclusion fields for
   AU-CODEX-PRIMARY and AU-AGENT-003, archive-aware Bridge status reporting, and
   owner-approved normalization of exclusive future Bridge communication.
+- `[IMPLEMENTED]`, `[TESTED]` Exchange `AU-EX-20260725-001` contains 48
+  checksum-registered text sources for exact commit `f748c95` and range
+  `1ccaace..f748c95`; its external Claude inbox copy is byte-equivalent.
+- `[OPEN]` No Claude return or independent INIT-003 decision exists yet.
 
 ## Verification Performed
 
@@ -203,9 +207,9 @@ rewrites.
 
 ## Next Step
 
-Prepare and synchronize `AU-EX-20260725-001` for Claude Cowork independent
-acceptance of INIT-003. After the validated return is integrated, route open
-organizational findings to their owners. AU-AGENT-001 may then perform the
-separate engineering intake and Technical Review of AU-CDX-TASK-001 v1.0. Do
-not begin product implementation before that review and its required
-clarifications, decisions, design, assignments, and evidence plan.
+Stop and notify the Project Owner with “Codex finished.” Await the Claude Cowork
+return for `AU-EX-20260725-001`, validate it through the Bridge, and integrate
+only the authorized meaning. Do not begin product implementation. After
+independent disposition and owner routing of open findings, AU-AGENT-001 may
+perform the separate engineering intake and Technical Review of
+AU-CDX-TASK-001 v1.0.

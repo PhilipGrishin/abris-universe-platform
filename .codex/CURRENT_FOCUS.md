@@ -39,13 +39,13 @@ changes, product changes, or silent authority repair.
 
 ## Blocked or Awaiting Input
 
-- Claude Cowork independent review of INIT-003 through the new exchange.
+- Claude Cowork independent review and return for `AU-EX-20260725-001`.
 - Project Owner dispositions for authority and communication findings.
 - Engineering intake and mandatory Technical Review of AU-CDX-TASK-001 v1.0.
 - Product OQ-005 format-spike result before importer coding.
 
 ## Next Concrete Step
 
-Commit this exact validation source, prepare and synchronize
-`AU-EX-20260725-001`, and stop for Claude Cowork independent review. Do not
-begin product development in this focus.
+Stop and notify the Project Owner with the allowed trigger phrase “Codex
+finished.” Await a Claude return in the registered outbox. Do not begin product
+development or integrate any result before Bridge validation.

@@ -21,9 +21,12 @@
   standalone exclusion-field normalization `[OPEN]`; OVR-003 persistent-state
   lag `[IMPLEMENTED]`, `[TESTED]`; OVR-004 archive-aware status reporting
   `[OPEN]`; OVR-005 exclusive Bridge governance normalization `[OPEN]`.
-- **Next gate:** Prepare and synchronize the exact-source independent review
-  package. Do not begin product development before its disposition and the
-  separate AU-CDX-TASK-001 Technical Review.
+- **Exchange state:** `AU-EX-20260725-001` prepared from exact commit
+  `f748c95`, validated, and synchronized with 48 registered text sources;
+  return `[OPEN]`.
+- **Next gate:** Await and validate the independent review return. Do not begin
+  product development before its disposition and the separate AU-CDX-TASK-001
+  Technical Review.
 
 ### BRIDGE-001 — Local Claude-Codex Collaboration Bridge
 
