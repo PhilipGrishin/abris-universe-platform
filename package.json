@@ -6,11 +6,13 @@
   "packageManager": "pnpm@11.9.0",
   "scripts": {
     "build": "pnpm --filter @abris-universe/web build && pnpm run verify:build",
+    "deploy:production": "node scripts/deploy-production.mjs",
     "rehearse:deploy": "pnpm --filter @abris-universe/web deploy:dry-run && node scripts/verify-deploy-rehearsal.mjs",
-    "test": "pnpm run verify:fixtures && pnpm run verify:workspace && pnpm --filter @abris-universe/domain-core test && pnpm --filter @abris-universe/oxs-importer test && pnpm --filter @abris-universe/persistence test && pnpm --filter @abris-universe/renderer test && pnpm --filter @abris-universe/web test",
+    "test": "pnpm run verify:fixtures && pnpm run verify:workspace && node --test scripts/*.test.mjs && pnpm --filter @abris-universe/domain-core test && pnpm --filter @abris-universe/oxs-importer test && pnpm --filter @abris-universe/persistence test && pnpm --filter @abris-universe/renderer test && pnpm --filter @abris-universe/web test",
     "typecheck": "pnpm --filter @abris-universe/domain-core typecheck && pnpm --filter @abris-universe/oxs-importer typecheck && pnpm --filter @abris-universe/persistence typecheck && pnpm --filter @abris-universe/renderer typecheck && pnpm --filter @abris-universe/web typecheck",
     "verify:build": "node scripts/verify-static-build.mjs",
     "verify:fixtures": "node tests/fixtures/oxs/verify-fixtures.mjs",
+    "verify:production": "node scripts/verify-production-deployment.mjs",
     "verify:workspace": "node scripts/verify-workspace.mjs"
   },
   "devDependencies": {

@@ -192,6 +192,67 @@
 - **Граница прав и передачи:** Этот grant относится к четырём названным XSP-образцам и не разрешает их помещение в Bridge или Git. Он не заменяет отдельную владельческую передачу файлов в инженерный контур и не расширяет права на другие материалы.
 - **Статус:** **Resolved.** **Автор/утверждающий:** Project Owner + Claude Cowork expertise. **Источник интеграции:** валидированный `AU-EX-20260725-006`, раздел 7 подтверждения ревизии дизайна.
 
+### PROD-DEC-012 — Sanctioned Preserve-Only `strandCount` Exception
+
+- **Date:** 2026-07-26.
+- **Context:** TASK-THINSLICE-001 section 10 excludes strand-count behavior,
+  while section 14 requires the optional field to exist and the approved
+  Technical Design preserves valid OXS `@strands` values without using them to
+  drive Phase 0 behavior. Independent acceptance finding F-02 required an
+  explicit product disposition.
+- **Decision:** Preserve valid source `strandCount` as an optional canonical
+  value. This is a sanctioned preserve-only exception for Phase 0.
+- **Behavior boundary:** Phase 0 must not interpret, edit, display as a
+  supported feature, validate against stitching technique, or use
+  `strandCount` to drive rendering, progress, material calculation, business
+  rules, or UX behavior.
+- **Rationale:** Lossless preservation supports future compatible expansion
+  without silently introducing the excluded strand-count feature.
+- **Consequences:** TS001-ACCEPT-F-02 is resolved. Existing importer and
+  canonical-model behavior remains unchanged. Any behavioral use requires a
+  future approved Task Package and review.
+- **Status:** **Resolved / owner-approved.**
+- **Author and approver:** Project Owner.
+
+### PROD-DEC-013 — First Phase 0 Production Deployment Authorization
+
+- **Date:** 2026-07-26.
+- **Context:** TASK-THINSLICE-001 received bounded independent
+  `[VERIFIED]` at immutable source `1a683ab`. Production deployment remained
+  separately blocked on explicit owner authorization, rollback-anchor capture,
+  approved credentials, and production smoke evidence.
+- **Decision:** Authorize the first production deployment of the accepted
+  Phase 0 thin slice to `https://abris.653915.com`.
+- **Conditions:** Use the accepted executable source, the protected
+  GitHub-to-CI-to-Cloudflare pipeline, a main-only `production` environment,
+  least-privilege environment secrets, an immutable previous Worker version,
+  pre-promotion smoke, production smoke, automatic rollback, and retained
+  provenance. Do not change DNS or broaden the accepted product scope.
+- **Consequences:** Explicit authorization gate is closed. TD-GATE-003 and
+  credential availability remain factual pre-deployment gates until the
+  Cloudflare account exposes the current version and the GitHub environment
+  contains the required secrets.
+- **Status:** **Approved; implementation in progress.**
+- **Author and approver:** Project Owner.
+
+### PROD-DEC-014 — Phase 0 Import-Worker Memory Evidence Limitation
+
+- **Date:** 2026-07-26.
+- **Context:** Actual import-Worker peak memory was not observable in the Phase
+  0 browser evidence. The Project Owner previously approved the documented
+  limitation under two mandatory controls.
+- **Decision:** Accept the missing observed import-Worker peak-memory result
+  only as a Phase 0 evidence limitation. Keep the exact 384 MiB preflight
+  estimator enforced and unit-tested. Require actual import-Worker memory
+  measurement in Prototype 9.1 before any 500,000-stitch scale claim.
+- **Boundary:** The estimator is admission control, not measured memory
+  evidence or a scale claim.
+- **Consequences:** This entry mirrors
+  `OWNER-DEC-TS001-WORKER-MEMORY-001` into the canonical product Decision Log
+  without changing its meaning and resolves TS001-ACCEPT-F-16.
+- **Status:** **Resolved / owner-approved.**
+- **Author and approver:** Project Owner.
+
 ---
 
 ## Часть C. Открытые вопросы (Open Questions Register)

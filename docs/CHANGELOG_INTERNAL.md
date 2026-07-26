@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.13.0 |
+| Version | 4.14.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,21 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Owner-Authorized Production Pipeline Candidate
+
+- Integrated PROD-DEC-012 through PROD-DEC-014.
+- Resolved acceptance findings F-02 and F-16 and registered the Phase 1 rework
+  package for F-01 and F-03 through F-09.
+- Created the GitHub `production` environment with a main-only deployment
+  branch policy.
+- Implemented a manual protected production workflow with frozen checks,
+  immutable Cloudflare upload, zero-traffic smoke, promotion, automatic
+  rollback, and retained sanitized evidence.
+- Added a production smoke verifier with focused tests.
+- Recorded the public placeholder baseline while preserving credentials and
+  the immutable rollback anchor as open gates.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — TASK-THINSLICE-001 Independent Acceptance Integration
 

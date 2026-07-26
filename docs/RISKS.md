@@ -307,7 +307,8 @@
 
 ## RISK-014 — First Cloudflare Deployment Has No Recoverable Rollback Anchor
 
-- **Status:** `[OPEN]`; blocks production deployment
+- **Status:** `[OPEN]`; protected pipeline `[IMPLEMENTED]`, locally `[TESTED]`;
+  blocks production deployment until credentials expose the rollback anchor
 - **Probability:** Unknown
 - **Impact:** High
 - **Trigger:** The current `abris-universe` placeholder is replaced before its
@@ -322,6 +323,12 @@
 - **Mitigation:** Smoke the uploaded version before promotion, record prior and
   new version IDs, serialize production deployments, and automatically roll
   back on failed production smoke.
+- **Current evidence:** The main-only GitHub `production` environment and
+  versioned upload/zero-traffic smoke/promotion/rollback workflow are
+  implemented. Placeholder HTTPS `200` body hash
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`
+  is recorded. Cloudflare authentication and the immutable prior version
+  remain open.
 - **Fallback:** If no prior version is recoverable, do not deploy until the
   Project Owner approves a specific replacement rollback artifact.
 - **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence

@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; underlying implementation `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 gate `REWORK REQUIRED`; production deployment `[OPEN]` |
+| Status | No-deploy rehearsal `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; production deployment `[BLOCKED]` on credentials and TD-GATE-003 |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
@@ -110,10 +110,17 @@ Production remains blocked by:
 
 - TD-GATE-003: capture the current Worker version/route and recoverable
   placeholder artifact;
-- Completion Report remediation and AU-AGENT-003 report reverification;
+- GitHub `production` environment credentials;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
-- explicit production-deployment authorization.
+- production workflow engineering verification.
+
+PROD-DEC-013 closes the explicit authorization item. The main-only GitHub
+environment and versioned deployment workflow are now implemented. The
+workflow captures the current immutable version, stages the candidate at zero
+traffic, verifies it with a version override, promotes it, repeats production
+smoke, and rolls back automatically on failure. No Cloudflare mutation has
+occurred because the required environment secrets are absent.
 
 ## Rollback
 
@@ -131,6 +138,9 @@ implementation findings; the current underlying implementation status is
 `REWORK REQUIRED` for report/documentation completeness. Production remains
 blocked by its explicit deployment gates regardless of either internal status.
 The implementation owner cannot change AU-AGENT-003 status.
+
+The new production workflow and smoke scripts require a separate exact-source
+AU-AGENT-003 review before merge and dispatch.
 
 ## References
 

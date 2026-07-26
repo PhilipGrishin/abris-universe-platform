@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.23.0 |
+| Version | 1.24.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -48,6 +48,7 @@ acceptance remains canonical under `product/reviews/`.
 - [Renderer Core Implementation Review](RENDERER_IMPLEMENTATION_REVIEW.md)
 - [Client Integration Implementation Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
+- [Production Deployment Record](PRODUCTION_DEPLOYMENT.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
 - [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
@@ -100,8 +101,10 @@ zero blocking and sixteen non-blocking findings. Completion Report v1.1.1
 records that lifecycle result without changing implementation or product
 meaning.
 TD-GATE-002 remains open for exact-symbol claims about other producers.
-Production deployment also requires TD-GATE-003 and authorized production
-security assertions.
+PROD-DEC-013 supplies owner authorization for the first production deployment.
+The protected main-only workflow is implemented and locally tested.
+Production remains factually blocked until GitHub environment credentials
+allow TD-GATE-003 rollback-anchor capture and production security assertions.
 
 ## Owner
 

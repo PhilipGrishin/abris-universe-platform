@@ -1,6 +1,6 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION
+## Focus ID: TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
@@ -18,8 +18,11 @@ independent acceptance is `[VERIFIED]` at immutable source `1a683ab`
 Collaboration Bridge exchange `AU-EX-20260726-001` returned
 `COMPLETED / VERIFIED`, passed contract validation, and is integrated
 byte-for-byte. Preserve all unsupported performance, accessibility, platform,
-release, and deployment limitations. TS001-ACCEPT-F-01 through F-16 are
-registered separately. Production deployment remains unauthorized.
+release, and deployment limitations. PROD-DEC-012 sanctions preserve-only
+`strandCount`; PROD-DEC-013 authorizes the first production deployment;
+PROD-DEC-014 mirrors the Worker-memory limitation. The protected deployment
+workflow is implemented, but production mutation remains blocked on GitHub
+environment secrets and TD-GATE-003.
 
 ## Confirmed Inputs
 
@@ -33,12 +36,18 @@ registered separately. Production deployment remains unauthorized.
 - PROD-DEC-011 confirms the four owner-granted XSP samples, prohibits their
   transfer through the Bridge, identifies XSD as the Phase 1 second-importer
   priority, and leaves Phase 0 unchanged.
+- PROD-DEC-012 resolves TS001-ACCEPT-F-02 as preserve-only with no Phase 0
+  behavior.
+- PROD-DEC-013 authorizes the first controlled deployment to
+  `abris.653915.com`.
+- PROD-DEC-014 mirrors the owner-approved Worker-memory limitation and resolves
+  TS001-ACCEPT-F-16.
 - `AU-EX-20260725-006` independently confirms Technical Design v1.2.1 and the
   R-1 through R-8 and N-1 through N-7/N-9 closures at design level.
 
 ## Current Design State
 
-- Technical Design v1.5.2 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.3 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -151,13 +160,14 @@ registered separately. Production deployment remains unauthorized.
 - Exact implementation source `1c2bd5d` passes GitHub Actions run
   `30195542862`, including frozen install, typecheck, 67 tests, static build,
   production dependency audit, and no-deploy Cloudflare rehearsal.
-- TD-GATE-003, production headers/smoke, and explicit authorization block
-  production deployment. The measured-profile implementation runtime inventory
-  is complete; production assertion remains open.
+- TD-GATE-003 and production headers/smoke block production deployment.
+  Explicit owner authorization is closed by PROD-DEC-013. The measured-profile
+  implementation runtime inventory is complete; production assertion remains
+  open.
 - Bounded TASK-THINSLICE-001 `[VERIFIED]` exists only at source `1a683ab` and
   only within the independent report's declared scope. Release readiness,
-  production verification, deployment authorization, and excluded scope do
-  not exist.
+  production verification and excluded scope do not exist. Production
+  authorization exists separately through PROD-DEC-013.
 
 ## Assigned Roles
 
@@ -182,9 +192,9 @@ registered separately. Production deployment remains unauthorized.
 - Do not claim power-loss, eviction, supported-browser, performance,
   accessibility, or pixel-golden completion without exact evidence.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
-- Do not deploy to production before TD-GATE-003, AU-AGENT-003 disposition of
-  the measured runtime inventory, production smoke/assertions, and explicit
-  authorization close.
+- Do not promote production before TD-GATE-003, AU-AGENT-003 deployment
+  disposition, and the workflow's production smoke/assertions close. Explicit
+  owner authorization is already recorded in PROD-DEC-013.
 - Do not transfer the four PROD-DEC-011 XSP binaries through the Collaboration
   Bridge or commit them without the separate owner-controlled transfer path.
 - Do not broaden the bounded project `[VERIFIED]` result beyond the independent
@@ -245,7 +255,7 @@ remains open.
 
 ## Next Concrete Step
 
-Complete repository validation, then stop for the Project Owner's explicit
-next-stage authorization. Do not deploy. Route
-TS001-ACCEPT-F-02 through a future product-decision exchange before changing
-`strandCount` behavior.
+Commit and independently review the deployment workflow. Production then
+requires two GitHub `production` environment secrets, TD-GATE-003 capture,
+main-branch workflow dispatch, and production/browser evidence. Never place
+secret values in chat or the repository.

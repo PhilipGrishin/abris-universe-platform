@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -24,10 +24,11 @@ Index product and owner decisions without merging them with engineering ADRs or
 
 - [Abris Universe Product Decision Log](05_Decision_Log.md)
   now includes owner-approved Cowork DEC-005 through DEC-008 and delegated
-  PROD-DEC-009 plus owner decisions PROD-DEC-010 and PROD-DEC-011 transmitted
-  through validated architecture-review exchanges. PROD-DEC-011 records the
-  four-file XSP grant boundary and Phase 1 XSD priority without changing Phase
-  0 or authorizing binary transfer through the Bridge. Use
+  PROD-DEC-009 plus owner decisions PROD-DEC-010 through PROD-DEC-014.
+  PROD-DEC-012 sanctions preserve-only `strandCount` retention without Phase 0
+  behavior. PROD-DEC-013 authorizes the gated first production deployment.
+  PROD-DEC-014 mirrors the owner-approved Worker-memory evidence limitation
+  without creating a scale claim. Use
   `PROD-DEC-xxx` for cross-contour references from DEC-005 onward.
 
 Each decision retains its own status. Recommendations and derived resolutions

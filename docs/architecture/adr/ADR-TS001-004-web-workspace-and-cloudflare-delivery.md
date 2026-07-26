@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; production credentials and TD-GATE-003 `[OPEN]` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.1.1 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -125,3 +125,8 @@ production smoke, rollback rehearsal, and local-data compatibility.
   `VERIFIED WITH FINDINGS` for the design-only security scope. TS001-SEC-002
   design action is complete; runtime request-inventory/network-capture evidence
   and TD-GATE-003 remain open before deployment.
+- 2026-07-26: PROD-DEC-013 authorizes the first production deployment.
+  Version 1.2.0 records the main-only GitHub `production` environment,
+  immutable upload/zero-traffic smoke/promotion/automatic-rollback workflow,
+  and retained evidence contract. No production mutation occurred; credentials
+  and TD-GATE-003 remain open.

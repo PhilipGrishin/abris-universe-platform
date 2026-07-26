@@ -18,6 +18,7 @@ coverage/
 *.tsbuildinfo
 .wrangler/
 .deploy-dry-run/
+.production-deployment/
 apps/web/public/version.json
 
 # Local Claude-Codex bridge state. Canonical contracts and exchange manifests

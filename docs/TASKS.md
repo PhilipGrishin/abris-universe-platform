@@ -32,7 +32,7 @@ authorized disposition.
 | Record ID | Status | Owner | Required result |
 | --- | --- | --- | --- |
 | TS001-ACCEPT-F-01 | `[OPEN]` | AU-AGENT-004 | Make golden expected JSON instantiate the canonical ImportReport shape and machine-compare every registered stitch-sequence hash, with regression tests. |
-| TS001-ACCEPT-F-02 | `[OPEN]`; product decision required | Product Strategy Lead and Delivery Lead | Decide whether preserve-only `strandCount` retention is an authorized section-10 exception or must be stripped; record the decision in the product Decision Log. |
+| TS001-ACCEPT-F-02 | `Resolved` by PROD-DEC-012 | Product Strategy Lead and Delivery Lead | Preserve-only `strandCount` retention is sanctioned; no Phase 0 behavior may depend on it. |
 | TS001-ACCEPT-F-03 | `[OPEN]`; required before Phase 1 progress extension | AU-AGENT-005 | Detect non-contiguous progress sequences with a persisted head/count invariant and add a deletion regression test. |
 | TS001-ACCEPT-F-04 | `[OPEN]` | AU-AGENT-005 | Include `targetX` and `targetY` in idempotent replay comparison and test conflicting same-ID requests. |
 | TS001-ACCEPT-F-05 | `[OPEN]` | AU-AGENT-006 | Surface `PERSISTENCE_INTEGRITY_CORRUPTION` instead of silently clearing the active project and presenting an empty import state. |
@@ -46,13 +46,53 @@ authorized disposition.
 | TS001-ACCEPT-F-13 | `Resolved` | AU-AGENT-002 | Browser Evidence index now states the completed AU-AGENT-003 sufficiency disposition. |
 | TS001-ACCEPT-F-14 | `[OPEN]`; next applicable exchange | AU-CODEX-PRIMARY | Include the root `scripts/` verification chain in the next relevant review package so aggregate build/test behavior is independently reproducible. |
 | TS001-ACCEPT-F-15 | `Resolved` | AU-AGENT-002 | TRACE-TASK-001 and related lifecycle records now describe completed remediation and bounded acceptance consistently. |
-| TS001-ACCEPT-F-16 | `[OPEN]`; cross-contour action | Delivery Lead and AU-AGENT-001 | Mirror the Worker-memory owner decision in the canonical product Decision Log and cross-reference the engineering decision without changing its meaning. |
+| TS001-ACCEPT-F-16 | `Resolved` by PROD-DEC-014 | Delivery Lead and AU-AGENT-001 | Worker-memory limitation is mirrored in the canonical product Decision Log and cross-references the unchanged engineering decision. |
 
 - **Finding source:** Independent Acceptance Report sections 7 and 8 and the
   validated return manifest for `AU-EX-20260726-001`.
 - **Completion rule:** Non-blocking acceptance findings do not revoke the
   bounded result, but any later task whose scope touches a finding must either
   close it with evidence or explicitly carry it forward.
+
+### PHASE1-TS001-ACCEPTANCE-REWORK — Deferred Acceptance Finding Package
+
+- **Status:** `[DEFERRED]`; mandatory Phase 1 intake gate.
+- **Source:** TS001-ACCEPT-F-01 and F-03 through F-09.
+- **Owner:** AU-AGENT-001 coordinates; AU-AGENT-004 owns F-01;
+  AU-AGENT-005 owns F-03/F-04; AU-AGENT-006 owns F-05 through F-09;
+  AU-AGENT-003 independently reverifies.
+- **Documentation Impact:** Material.
+- **Decision:** Do not modify the independently accepted Phase 0 executable
+  before its first production deployment. Carry the non-blocking code findings
+  into one Phase 1 rework package instead of creating an immediate competing
+  acceptance source.
+- **Required entry scope:** ImportReport golden completeness and stitch-hash
+  drift; contiguous progress-sequence integrity; coordinate-aware idempotency;
+  visible corruption/error semantics; truthful tile-read state; resource-backed
+  overview messaging; automated six-CSS-pixel gesture coverage; and
+  contrast-safe pending/error outlines.
+- **Gate:** Any Phase 1 task touching importer, progress, persistence, client
+  error handling, gestures, or mark-state presentation must close its
+  applicable finding with tests and AU-AGENT-003 evidence before completion.
+- **Boundary:** This deferral does not erase findings, broaden Phase 0
+  acceptance, or authorize unreviewed code changes during deployment.
+
+### TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT — First Controlled Deployment
+
+- **Status:** Owner authorization `[APPROVED]`; pipeline implementation in
+  progress; production mutation blocked on credentials and TD-GATE-003
+  external-state capture.
+- **Source:** PROD-DEC-013; Technical Design sections 12.2 through 12.4;
+  ADR-TS001-004.
+- **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;
+  AU-AGENT-003 for independent engineering verification.
+- **Documentation Impact:** Material.
+- **Required result:** Protected main-only GitHub environment; frozen verified
+  build; current immutable Worker rollback anchor; zero-traffic version smoke;
+  controlled promotion; production provenance/header/method/SPA/browser checks;
+  automatic rollback; retained evidence.
+- **Boundary:** No local-machine deployment, DNS mutation, secret commitment,
+  or deployment of code differing from the bounded accepted executable source.
 
 ### INIT-003-ORG-VALIDATION — Full Engineering Organization Readiness Validation
 

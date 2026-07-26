@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 2.4.0 |
+| Version | 2.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
@@ -99,6 +99,7 @@ project-owner approval.
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
 | Technical reviews, Completion Reports, and non-independent implementation evidence | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, alternative, implementing-contour evidence, and consolidated delivery reports; never substitutes for AU-AGENT-003 verification or product acceptance. |
 | Engineering verification evidence | `docs/reviews/engineering/` | AU-AGENT-003 | Engineering Verification Status is a task-scoped quality gate, not project `[VERIFIED]` or product acceptance. |
+| Production deployment contract and evidence | `.github/workflows/deploy-production.yml`, `scripts/deploy-production.mjs`, and task records under `docs/reviews/technical/` | AU-CODEX-PRIMARY; AU-AGENT-001 approves technical meaning; AU-AGENT-003 verifies evidence | GitHub environment secrets and Cloudflare runtime state remain external; commit names and evidence, never secret values. |
 | Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
 | Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |
 | Registered exchange provenance | `collaboration/manifests/` | AU-CODEX-PRIMARY | Committed request and exact-source manifest records; transported content is not canonical by transport alone. |

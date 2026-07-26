@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 bounded independent acceptance integration and follow-up routing
+**Current focus:** TASK-THINSLICE-001 owner-authorized production deployment preparation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace`, the bounded INIT-003 organizational-validation scope at `f748c95`, and the bounded TASK-THINSLICE-001 Phase 0 result at immutable source `1a683ab`; every recorded exclusion remains unverified
 
@@ -485,12 +485,22 @@
   assistive-technology profiles, safe real quota/eviction, and production
   response assertions remain explicit limitations pending completion or their
   applicable governance disposition.
-- `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
-  before any production deployment.
+- `[APPROVED]` PROD-DEC-013 supplies explicit Project Owner authorization for
+  the first deployment to `abris.653915.com`.
+- `[IMPLEMENTED]`, locally `[TESTED]` The protected main-only GitHub
+  `production` environment, immutable-version deployment workflow, pre-
+  promotion smoke, production smoke, automatic rollback, and evidence scripts
+  are implemented. Production mutation has not started.
+- `[OPEN]` TD-GATE-003 placeholder rollback anchor and GitHub environment
+  secrets block the production workflow. Cloudflare CLI authentication is
+  absent; current placeholder HTTPS `200` body hash is recorded.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
-- `[OPEN]` TS001-ACCEPT-F-01 through F-10, F-12, F-14, and F-16 remain routed
-  non-blocking follow-ups. F-02 requires a product decision.
+- `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
+  PROD-DEC-014.
+- `[DEFERRED]` TS001-ACCEPT-F-01 and F-03 through F-09 are the mandatory
+  Phase 1 rework intake package. F-10, F-12, and F-14 remain lifecycle/tooling
+  actions.
 
 ## Active Risks
 
@@ -525,12 +535,13 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Validated and integrated the `AU-EX-20260726-001` `COMPLETED / VERIFIED`
-return without changing Claude-authored meaning. The canonical report is
-checksum-identical to the returned artifact, and all sixteen non-blocking
-findings are registered as separate follow-up records.
+Registered PROD-DEC-012 through PROD-DEC-014, routed accepted code findings to
+the Phase 1 rework gate, created the main-only GitHub `production` environment,
+and implemented the versioned Cloudflare deployment/rollback workflow without
+mutating Cloudflare.
 
 ## Next Step
 
-Validate repository consistency and stop for the Project Owner's explicit
-next-stage authorization. Do not deploy.
+Obtain `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as GitHub
+`production` environment secrets, capture TD-GATE-003, then run the reviewed
+main-branch workflow and production/browser smoke.

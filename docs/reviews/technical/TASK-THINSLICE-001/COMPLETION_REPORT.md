@@ -4,15 +4,15 @@
 | --- | --- |
 | Document ID | AU-COMP-TS001-001 |
 | Title | TASK-THINSLICE-001 Completion Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; production deployment owner-authorized but not performed |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.1.1 |
+| Version | 1.1.2 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; CI runs listed below |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.3; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package, implementation source, test, evidence, finding, limitation, deployment, acceptance, or documentation-result change |
@@ -150,7 +150,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
 | Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
-| Production deployment | Not performed because TD-GATE-003, production assertions, rollback-anchor capture, credentials, and explicit deployment authorization remain separate gates. |
+| Production deployment | Not performed. PROD-DEC-013 closes explicit authorization; TD-GATE-003, production assertions, rollback-anchor capture, credentials, and deployment-workflow verification remain factual gates. |
 
 These dispositions do not change product requirements.
 
@@ -471,15 +471,16 @@ not an assumed pass.
 
 ## 18. Deployment Instructions and Status
 
-Production deployment is not authorized and was not performed. The current
-repository supplies only a no-deploy rehearsal.
+Production deployment is authorized by PROD-DEC-013 and has not yet been
+performed. The repository now supplies both the no-deploy rehearsal and a
+protected main-only production workflow candidate.
 
 Before the first production deployment:
 
 1. close TD-GATE-003 by capturing the current
    `https://abris.653915.com` placeholder version, route, and recoverable
    artifact;
-2. obtain explicit Project Owner deployment authorization;
+2. preserve the explicit PROD-DEC-013 Project Owner authorization;
 3. configure approved Cloudflare and GitHub environment credentials without
    committing or printing them;
 4. deploy only the accepted exact static artifact;
@@ -529,10 +530,10 @@ internal result is distinct from the later bounded independent acceptance.
 
 ## 22. Recommended Next Step
 
-Obtain the Project Owner's explicit next-stage authorization. Do not deploy.
-Route TS001-ACCEPT-F-02 through the product decision process, and require every
-later task that touches TS001-ACCEPT-F-01 through F-16 to close or explicitly
-carry its applicable records.
+Complete independent engineering review of the production workflow, configure
+the two GitHub environment secrets, capture TD-GATE-003, merge the reviewed
+accepted source to `main`, and dispatch the exact commit. Then retain
+production and browser smoke evidence or automatically roll back.
 
 ## 23. Version History
 
@@ -542,6 +543,9 @@ carry its applicable records.
   validated `AU-EX-20260726-001` bounded independent acceptance and preserves
   all excluded scopes, limitations, findings, and deployment gates. No
   implementation or product meaning changed.
+- **1.1.2, 2026-07-26:** Records PROD-DEC-012 through PROD-DEC-014, including
+  the explicit production authorization and preserve-only `strandCount`
+  disposition. Production is not claimed; external deployment gates remain.
 
 ## References
 

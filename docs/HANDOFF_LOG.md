@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-26 — Production Authorization and Pipeline Candidate
+
+- **Owner decisions:** PROD-DEC-012 sanctions preserve-only `strandCount`;
+  PROD-DEC-013 authorizes the first production deployment; PROD-DEC-014 mirrors
+  the Phase 0 Worker-memory limitation.
+- **Finding routing:** F-02 and F-16 are resolved. F-01 and F-03 through F-09
+  are deferred to a mandatory Phase 1 rework package so the first deploy
+  remains executable-equivalent to the independently accepted source.
+- **GitHub:** `production` environment created with a custom `main`-only branch
+  policy.
+- **Pipeline:** Immutable version upload, zero-traffic version-override smoke,
+  promotion, production smoke, automatic rollback, and sanitized evidence are
+  implemented locally.
+- **External state:** Placeholder returns HTTPS `200`; body SHA-256 is
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`.
+- **Blocker:** Cloudflare CLI is unauthenticated and the GitHub environment has
+  no `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID`.
+- **Documentation Impact:** Material; no exception.
+- **Next gate:** Exact-source AU-AGENT-003 review, then credentials,
+  TD-GATE-003 capture, main merge, dispatch, and production/browser smoke.
+
 ## 2026-07-26 — TASK-THINSLICE-001 Independent Acceptance Integrated
 
 - **Exchange:** `AU-EX-20260726-001`.

@@ -9,10 +9,10 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.2 |
+| Version | 1.5.3 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
-| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-011, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
+| Last Updated | 2026-07-26 |
+| Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package change; architecture-review finding; OXS contract evidence change; canonical-format change; renderer benchmark result; browser-storage compatibility change; Cloudflare deployment contract change; security finding |
@@ -60,6 +60,10 @@ Version 1.5.0 records the tested bounded route-1 importer core and corrects the
 OXS title attribute label to the official `charttitle`. It does not broaden the
 accepted producer profile, change product meaning, or close persistence,
 worker, performance, deployment, or independent-verification gates.
+Version 1.5.3 records the owner-authorized, protected main-only production
+workflow implementation and preserves TD-GATE-003 as a factual external-state
+gate until authenticated Cloudflare access captures the current rollback
+version. It does not change product behavior or the accepted executable scope.
 
 ## 2. Scope and Non-Scope
 
@@ -137,8 +141,9 @@ confirmation. The registered implementation sequence may proceed to
 domain-core and bounded importer implementation for the explicit route-1
 profile; both package stages are now `[IMPLEMENTED]`, `[TESTED]`. Exact-symbol
 claims for other producers remain blocked by TD-GATE-002,
-and production deployment remains blocked by TD-GATE-003 plus runtime security
-evidence.
+and production deployment remains blocked by TD-GATE-003, credential
+availability, and production runtime evidence. PROD-DEC-013 closes only the
+explicit owner-authorization component.
 
 ## 4. Selected System Shape
 
