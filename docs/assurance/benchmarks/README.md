@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -28,8 +28,9 @@ may define reproducible targets and methods but creates no performance claim.
 
 | Task | Record | Status | Result |
 | --- | --- | --- | --- |
-| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES` | Controlled result remains open |
+| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES` | Measured-profile result exists; reference and constrained profiles remain open |
 | TASK-THINSLICE-001 | [Client Browser Signal](TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md) | `[IMPLEMENTED]`, `[TESTED]`; non-gate | Minimal and 100,000-stitch single-run integration signal; no performance acceptance |
+| TASK-THINSLICE-001 | [Browser Benchmark Report](TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md) | `[TESTED]`; AU-AGENT-003 review pending | Measured profile passes listed budgets; exact reference, constrained, and Worker-memory gates remain open |
 
 ## Owner
 

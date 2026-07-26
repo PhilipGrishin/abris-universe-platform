@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "37e657eb6571c525154e07ed225d6b877358fb99",
+  "sourceDirty": false,
+  "capturedAt": "2026-07-26T08:52:33.440Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "hardwareConcurrency": 8,
+    "deviceMemoryGiB": 8,
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "devicePixelRatio": 2
+    }
+  },
+  "method": {
+    "build": "production-benchmark",
+    "coldImportIterations": 30,
+    "historyEventCount": 10000,
+    "historyReloadIterations": 30,
+    "storageResetBetweenColdImports": true,
+    "corruptImportIterations": 1
+  },
+  "coldImport": {
+    "minimal": [
+      {
+        "iteration": 1,
+        "durationMs": 58.6
+      },
+      {
+        "iteration": 2,
+        "durationMs": 16.3
+      },
+      {
+        "iteration": 3,
+        "durationMs": 16.8
+      },
+      {
+        "iteration": 4,
+        "durationMs": 14.9
+      },
+      {
+        "iteration": 5,
+        "durationMs": 14.3
+      },
+      {
+        "iteration": 6,
+        "durationMs": 14.6
+      },
+      {
+        "iteration": 7,
+        "durationMs": 17.5
+      },
+      {
+        "iteration": 8,
+        "durationMs": 26.4
+      },
+      {
+        "iteration": 9,
+        "durationMs": 16.4
+      },
+      {
+        "iteration": 10,
+        "durationMs": 14.2
+      },
+      {
+        "iteration": 11,
+        "durationMs": 14.4
+      },
+      {
+        "iteration": 12,
+        "durationMs": 18.9
+      },
+      {
+        "iteration": 13,
+        "durationMs": 13.9
+      },
+      {
+        "iteration": 14,
+        "durationMs": 13.7
+      },
+      {
+        "iteration": 15,
+        "durationMs": 14.3
+      },
+      {
+        "iteration": 16,
+        "durationMs": 13.8
+      },
+      {
+        "iteration": 17,
+        "durationMs": 13.4
+      },
+      {
+        "iteration": 18,
+        "durationMs": 14.6
+      },
+      {
+        "iteration": 19,
+        "durationMs": 12.9
+      },
+      {
+        "iteration": 20,
+        "durationMs": 13.6
+      },
+      {
+        "iteration": 21,
+        "durationMs": 15.6
+      },
+      {
+        "iteration": 22,
+        "durationMs": 12.7
+      },
+      {
+        "iteration": 23,
+        "durationMs": 12.9
+      },
+      {
+        "iteration": 24,
+        "durationMs": 13
+      },
+      {
+        "iteration": 25,
+        "durationMs": 13.6
+      },
+      {
+        "iteration": 26,
+        "durationMs": 14.7
+      },
+      {
+        "iteration": 27,
+        "durationMs": 13.1
+      },
+      {
+        "iteration": 28,
+        "durationMs": 13.7
+      },
+      {
+        "iteration": 29,
+        "durationMs": 13.2
+      },
+      {
+        "iteration": 30,
+        "durationMs": 16.8
+      }
+    ],
+    "medium": [
+      {
+        "iteration": 1,
+        "durationMs": 1798.4
+      },
+      {
+        "iteration": 2,
+        "durationMs": 1671.6
+      },
+      {
+        "iteration": 3,
+        "durationMs": 1594.2
+      },
+      {
+        "iteration": 4,
+        "durationMs": 1619.4
+      },
+      {
+        "iteration": 5,
+        "durationMs": 1758.1
+      },
+      {
+        "iteration": 6,
+        "durationMs": 1646.2
+      },
+      {
+        "iteration": 7,
+        "durationMs": 1631.4
+      },
+      {
+        "iteration": 8,
+        "durationMs": 1637
+      },
+      {
+        "iteration": 9,
+        "durationMs": 1619.1
+      },
+      {
+        "iteration": 10,
+        "durationMs": 1611.3
+      },
+      {
+        "iteration": 11,
+        "durationMs": 1614.1
+      },
+      {
+        "iteration": 12,
+        "durationMs": 1605.7
+      },
+      {
+        "iteration": 13,
+        "durationMs": 1634.8
+      },
+      {
+        "iteration": 14,
+        "durationMs": 1656.6
+      },
+      {
+        "iteration": 15,
+        "durationMs": 1656.9
+      },
+      {
+        "iteration": 16,
+        "durationMs": 1653.1
+      },
+      {
+        "iteration": 17,
+        "durationMs": 1624.9
+      },
+      {
+        "iteration": 18,
+        "durationMs": 1638.9
+      },
+      {
+        "iteration": 19,
+        "durationMs": 1624.8
+      },
+      {
+        "iteration": 20,
+        "durationMs": 1651.3
+      },
+      {
+        "iteration": 21,
+        "durationMs": 1743.2
+      },
+      {
+        "iteration": 22,
+        "durationMs": 1688.9
+      },
+      {
+        "iteration": 23,
+        "durationMs": 1628.7
+      },
+      {
+        "iteration": 24,
+        "durationMs": 1667.2
+      },
+      {
+        "iteration": 25,
+        "durationMs": 1667.6
+      },
+      {
+        "iteration": 26,
+        "durationMs": 1673.7
+      },
+      {
+        "iteration": 27,
+        "durationMs": 1638.8
+      },
+      {
+        "iteration": 28,
+        "durationMs": 1599.6
+      },
+      {
+        "iteration": 29,
+        "durationMs": 1616.2
+      },
+      {
+        "iteration": 30,
+        "durationMs": 1618.3
+      }
+    ]
+  },
+  "corruptImport": {
+    "durationMs": 10.9,
+    "errorCode": "OXS_XML_MALFORMED"
+  },
+  "historyReload": [
+    {
+      "iteration": 1,
+      "durationMs": 502.9
+    },
+    {
+      "iteration": 2,
+      "durationMs": 529.5
+    },
+    {
+      "iteration": 3,
+      "durationMs": 412
+    },
+    {
+      "iteration": 4,
+      "durationMs": 400.2
+    },
+    {
+      "iteration": 5,
+      "durationMs": 401.5
+    },
+    {
+      "iteration": 6,
+      "durationMs": 402.9
+    },
+    {
+      "iteration": 7,
+      "durationMs": 391.8
+    },
+    {
+      "iteration": 8,
+      "durationMs": 427.9
+    },
+    {
+      "iteration": 9,
+      "durationMs": 397.8
+    },
+    {
+      "iteration": 10,
+      "durationMs": 432.5
+    },
+    {
+      "iteration": 11,
+      "durationMs": 397.6
+    },
+    {
+      "iteration": 12,
+      "durationMs": 404.8
+    },
+    {
+      "iteration": 13,
+      "durationMs": 858.1
+    },
+    {
+      "iteration": 14,
+      "durationMs": 413.3
+    },
+    {
+      "iteration": 15,
+      "durationMs": 365
+    },
+    {
+      "iteration": 16,
+      "durationMs": 402.6
+    },
+    {
+      "iteration": 17,
+      "durationMs": 388.9
+    },
+    {
+      "iteration": 18,
+      "durationMs": 403.7
+    },
+    {
+      "iteration": 19,
+      "durationMs": 397.6
+    },
+    {
+      "iteration": 20,
+      "durationMs": 405.2
+    },
+    {
+      "iteration": 21,
+      "durationMs": 385.8
+    },
+    {
+      "iteration": 22,
+      "durationMs": 398
+    },
+    {
+      "iteration": 23,
+      "durationMs": 386.7
+    },
+    {
+      "iteration": 24,
+      "durationMs": 740.6
+    },
+    {
+      "iteration": 25,
+      "durationMs": 395.6
+    },
+    {
+      "iteration": 26,
+      "durationMs": 393.7
+    },
+    {
+      "iteration": 27,
+      "durationMs": 393.5
+    },
+    {
+      "iteration": 28,
+      "durationMs": 402.4
+    },
+    {
+      "iteration": 29,
+      "durationMs": 399.4
+    },
+    {
+      "iteration": 30,
+      "durationMs": 395.2
+    }
+  ],
+  "resources": [
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4174/assets/import.worker-BeDPphMA.js",
+      "occurrences": 62
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4174/assets/project-service-CiBP4X2w.js",
+      "occurrences": 1
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4174/assets/src-Ee-tkyr4.js",
+      "occurrences": 1
+    },
+    {
+      "initiatorType": "script",
+      "name": "http://127.0.0.1:4174/assets/benchmark-DkJtWqyT.js",
+      "occurrences": 1
+    }
+  ]
+}

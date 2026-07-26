@@ -410,32 +410,38 @@
 
 ### AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION — Consolidated Engineering Gate
 
-- **Status:** `[IMPLEMENTED]`; Engineering Verification Status
-  `REWORK REQUIRED`.
-- **Source:** Exact commit
+- **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification
+  Status remains `REWORK REQUIRED` pending exact-source reverification.
+- **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
+- **Remediation implementation source:** Exact commit
+  `1c2bd5d7e83de32471ebe29d50809f42b0244039`; GitHub Actions run
+  `30195542862`.
 - **Owner:** AU-AGENT-003 for independent findings and status; AU-AGENT-001
   coordinates remediation; domain owners retain their implementation scopes;
   AU-AGENT-002 integrates lifecycle records without changing review meaning.
 - **Documentation Impact:** Material.
-- **Passed scope:** Exact local/remote identity, frozen install, strict
+- **Initial passed scope:** Exact local/remote identity, frozen install, strict
   typecheck, 64 tests, static build, production dependency audit, CI,
   no-deploy rehearsal, and retained artifact.
-- **Mandatory findings:** TS001-IMPL-001 approved glyph-atlas/Offscreen Worker
-  paths; TS001-IMPL-002 controlled performance evidence; TS001-IMPL-003
-  accessibility/supported-browser evidence; remaining TS001-PERSIST-006
-  exact-browser/contention/failure/lifecycle evidence.
-- **Non-blocking current-scope finding:** TS001-SEC-002 is partially resolved;
-  full network capture remains open, with production assertions deferred to
-  the authorized deployment gate.
+- **Remediation evidence:** The approved OffscreenCanvas Worker, bounded glyph
+  atlas and tile-raster cache, incremental fallback, measured-profile browser
+  benchmark, accessibility/platform matrix, real persistence failure and
+  contention scenarios, and same-origin runtime inventory are retained.
+- **Explicit limitations:** Registered reference/constrained benchmark
+  profiles, Worker peak memory, manual screen-reader and incomplete contrast
+  review, non-Chromium/mobile profiles, safe real quota/eviction, and
+  production assertions were not inferred or represented as passes.
+- **Finding disposition:** TS001-IMPL-001/002/003, TS001-PERSIST-006, and
+  TS001-SEC-002 remain assigned to AU-AGENT-003 until reverification.
 - **Documentation finding:** TS001-DOC-001 requires lifecycle integration of
   this report and exact CI result.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Complete the four mandatory remediation/evidence packages and
-  request exact-source AU-AGENT-003 reverification.
+- **Next step:** Publish the evidence/lifecycle package, pass exact-head CI,
+  and request AU-AGENT-003 reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

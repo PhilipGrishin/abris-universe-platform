@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -33,6 +33,10 @@ scope, version, evidence, and an assigned technical approver.
 - [OXS Route-1 Symbol Mapping Evidence](../../../tests/fixtures/oxs/SYMBOL_MAPPING.md)
   — `[TESTED]` for project-original literal `A`–`Z` and `a`–`f` route-1 source
   codes; no general producer exact-symbol claim.
+- [TASK-THINSLICE-001 Client Accessibility and Platform Matrix](TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
+  — `[TESTED]` only for Chromium/Chrome 150 on the recorded macOS profile;
+  manual screen-reader, contrast-completion, non-Chromium, and mobile rows
+  remain open.
 
 ## Owner
 

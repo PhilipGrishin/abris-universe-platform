@@ -288,12 +288,13 @@
   projection, retain the live session, expose `not saved`, and stop release on
   failed two-context, idempotency, reload, or recovery evidence. Record the
   relaxed-durability residual on browsers that do not support strict mode.
-  The schema-v1 repository now has focused atomic rollback, blocked-upgrade,
+  The schema-v1 repository has focused atomic rollback, blocked-upgrade,
   simulated quota, persistence-denial, idempotency, lock-failure, reopen, and
-  projection-rebuild tests. The in-app browser flow passed save/reload,
-  not-saved stale-tab rejection, and projection recovery. Supported-browser,
-  power-loss, eviction, strict-durability, and controlled failure matrices
-  remain mandatory.
+  projection-rebuild tests. The exact Chromium/macOS browser flow observed a
+  real transaction abort, exact Web Locks contention with visible `Read-only`,
+  blocked IndexedDB upgrade, persistent-storage denial, save/reload, and
+  10,000-event rebuild. Safe real quota/eviction, power loss, strict-durability,
+  and broader-browser evidence remain open.
   AU-AGENT-003 resolved repository findings TS001-PERSIST-001 through
   TS001-PERSIST-005 at exact commit `854073c`; TS001-PERSIST-006 preserves the
   runtime evidence obligation.
@@ -326,10 +327,11 @@
 
 ## RISK-015 — Same-Origin Requests Expose Pattern-Derived Data
 
-- **Status:** `[OPEN]`; inventory, static check, CSP, and local header controls
-  `[IMPLEMENTED]`, `[TESTED]`; full capture and production assertion pending
+- **Status:** `[OPEN]`; inventory, static check, CSP, local header controls, and
+  measured-profile Resource Timing capture `[IMPLEMENTED]`, `[TESTED]`;
+  independent disposition and production assertion pending
 - **Probability:** Low with the implemented local controls; unknown in
-  production until capture
+  production until assertion
 - **Impact:** High
 - **Trigger:** Production code makes an unregistered same-origin connection,
   keeps `connect-src 'self'` without a justified runtime need, or places
@@ -341,11 +343,13 @@
   `connect-src 'none'` when no script-initiated connection is required; permit
   only reviewed non-pattern static metadata otherwise; prohibit analytics and
   telemetry for pattern data.
-- **Mitigation:** Compare a full browser network capture against the inventory
-  across import, render, toggle, reload, and representative error paths; block
+- **Mitigation:** Compare a browser runtime capture against the inventory across
+  import, render, toggle, reload, and representative error paths; block
   deployment on an unexpected request or pattern-derived payload. Exact source
   `35bbb34` has no client connection API, uses `connect-src 'none'`, and passed
-  local workerd header/method smoke.
+  local workerd header/method smoke. The measured Chromium/macOS Resource
+  Timing inventory contains only registered same-origin assets; AU-AGENT-003
+  must decide its finding sufficiency. Production assertions remain mandatory.
 - **Fallback:** Disable the offending connection or feature, tighten CSP,
   rebuild the immutable artifact, repeat security review and smoke evidence,
   and deploy only after the finding is cleared.
@@ -373,13 +377,14 @@
   changed overlays, restores committed state after save failure, and records
   its Node measurement explicitly as a non-acceptance regression signal.
   AU-AGENT-003 resolved all mandatory renderer-core findings at exact
-  `930cad2`. Final client source `3a73748` adds browser Canvas integration,
-  dedicated import Worker, IndexedDB recovery, stale-tab fail-closed behavior,
-  accessible state, and a resize regression. The exact `fc50d66` browser signal
-  remains non-gate and does not prove the controlled browser, accessibility,
-  golden, performance, or 500,000-stitch matrices.
-  Consolidated review `43782195` registers mandatory TS001-IMPL-001/002/003
-  and remaining TS001-PERSIST-006 before a Completion Report.
+  `930cad2`. Exact remediation source `1c2bd5d` adds the approved
+  OffscreenCanvas Worker, bounded glyph atlas and tile-raster cache,
+  incremental main-thread fallback, accessible browser integration, and
+  source-qualified measured-profile evidence. Listed budgets pass on the
+  recorded Chromium/macOS profile. Reference/constrained profiles, Worker peak
+  memory, manual accessibility, and broader-browser evidence remain open and
+  cannot be generalized. AU-AGENT-003 reverification remains mandatory before
+  a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

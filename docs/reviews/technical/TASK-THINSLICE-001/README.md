@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.15.0 |
+| Version | 1.16.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -49,6 +49,9 @@ final product acceptance.
 - [Client Integration Implementation Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
+- [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [Client Accessibility and Platform Matrix](../../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
+- [Browser Persistence and Runtime Review](BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md)
 - [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
 - [Independent Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
@@ -74,7 +77,12 @@ contract, static Worker boundary, restrictive headers, clean-source
 `[TESTED]` at exact implementation commit `35bbb34`; exact-head remote CI run
 `30191845477` passed at `43782195`. AU-AGENT-003 assigned the consolidated
 implementation `REWORK REQUIRED` for TS001-IMPL-001/002/003 and remaining
-TS001-PERSIST-006 evidence. TD-GATE-002 remains open for
+TS001-PERSIST-006 evidence. Subsequent source implements the Worker, glyph
+atlas, and bounded tile-raster paths and retains measured browser,
+accessibility, persistence-failure, and runtime-resource evidence.
+AU-AGENT-003 reverification is pending; reference/constrained performance,
+manual assistive-technology, broader browser, and safe quota/eviction evidence
+remain open. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

@@ -1,8 +1,8 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 consolidated finding remediation
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, accessible local-first web flow, and no-deploy CI/Cloudflare rehearsal
+**Current focus:** TASK-THINSLICE-001 exact-source remediation reverification
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
@@ -120,6 +120,30 @@
   remaining exact-browser/contention/failure/lifecycle portion of
   TS001-PERSIST-006. TS001-SEC-002 is partially resolved and non-blocking for
   the current no-deploy scope.
+- `[IMPLEMENTED]`, `[TESTED]` Subsequent remediation implements the approved
+  OffscreenCanvas Worker, bounded glyph atlas, forced incremental fallback,
+  and bounded Worker tile-raster cache. Both paths render and persist
+  interaction in the exact browser flow.
+- `[TESTED]` Source-qualified evidence records 30 cold imports per fixture, 30
+  10,000-event reloads, 120 scripted frame intervals, and at least 100
+  mark/save samples per fixture. The measured 1280×720 DPR 2 profile passes
+  listed budgets; registered reference/constrained profiles and Worker peak
+  memory remain open.
+- `[TESTED]` Pinned axe-core reports zero violations after remediation;
+  Chromium/macOS accessibility tree, grayscale and reduced-motion evidence
+  state, and keyboard Canvas behavior are recorded. Manual screen-reader,
+  incomplete contrast review, additional browsers, and mobile remain open.
+- `[TESTED]` Real browser transaction abort, Web Locks contention with visible
+  `Read-only`, blocked upgrade, persistent-storage denial, corrupt import,
+  10,000-event lifecycle, and same-origin runtime resources are recorded.
+  Safe real quota/eviction and production assertions remain open.
+- `[TESTED]` Exact implementation source `1c2bd5d` passes GitHub Actions run
+  `30195542862`: frozen install, strict typecheck, 67 tests, clean static build,
+  production dependency audit, and no-deploy Cloudflare rehearsal.
+- `[OPEN]` AU-AGENT-003 reverification of the remediation sources and evidence
+  is the current internal gate. No Completion Report, project `[VERIFIED]`,
+  product acceptance, release readiness, or deployment authorization is
+  claimed.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -396,10 +420,12 @@
 
 ## Blockers
 
-- `[OPEN]` Resolution and AU-AGENT-003 reverification of
-  TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006.
-- `[OPEN]` Controlled performance, exact supported-browser/accessibility
-  matrices, full runtime network capture, and production response assertions.
+- `[OPEN]` AU-AGENT-003 finding-by-finding reverification of
+  TS001-IMPL-001/002/003, remaining TS001-PERSIST-006, and TS001-SEC-002.
+- `[OPEN]` Registered reference/constrained benchmark profiles, Worker peak
+  memory, manual accessibility/contrast, broader browsers, safe real
+  quota/eviction, and production response assertions remain explicit evidence
+  limitations pending independent disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -435,18 +461,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated the independent consolidated implementation review for exact source
-`43782195`. AU-AGENT-003 confirmed the successful 64-test local and remote CI
-evidence, static build, production dependency audit, no-deploy rehearsal, and
-retained artifact, then assigned `REWORK REQUIRED`. No Critical or High defect
-was observed. Four mandatory Medium findings block the Completion Report;
-TS001-SEC-002 remains partially resolved and non-blocking for the current
-no-deploy scope. No project `[VERIFIED]`, product acceptance, release approval,
-or deployment permission was assigned.
+Implemented and source-qualified the consolidated remediation candidate through
+exact commit `1c2bd5d`. The approved OffscreenCanvas Worker, glyph atlas,
+bounded render cache, and main-thread fallback are present; measured-profile
+performance, accessibility, persistence-failure, and runtime-request evidence
+is retained with every untested profile and unsafe scenario explicit. GitHub
+Actions run `30195542862` passed all exact-source checks. No finding status,
+project `[VERIFIED]`, product acceptance, release approval, or deployment
+permission was assigned by the implementation owners.
 
 ## Next Step
 
-Commit the unchanged independent report and synchronized lifecycle state, then
-remediate TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006. Request
-exact-source AU-AGENT-003 reverification before a Completion Report or Claude
-acceptance exchange.
+Publish the remediation evidence and synchronized lifecycle state, confirm
+exact-head CI, then request AU-AGENT-003 reverification. Prepare no Completion
+Report or Claude acceptance exchange until the independent reviewer assigns
+every finding disposition.

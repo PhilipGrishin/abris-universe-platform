@@ -1,5 +1,31 @@
 # Handoff Log
 
+## 2026-07-26 — Consolidated Finding Remediation Candidate
+
+- **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; independent Engineering
+  Verification Status remains `REWORK REQUIRED` pending reverification.
+- **Implementation source:** `1c2bd5d7e83de32471ebe29d50809f42b0244039`.
+- **CI evidence:** GitHub Actions run `30195542862` passed frozen install,
+  strict typecheck, 67 tests, clean static build, production dependency audit,
+  no-deploy rehearsal, and retained evidence.
+- **Renderer:** Approved OffscreenCanvas Worker, bounded glyph atlas,
+  eight-entry/128 MiB tile-raster cache, and forced incremental main-thread
+  fallback are implemented and exercised.
+- **Browser evidence:** Controlled measured-profile performance, pinned
+  axe-core audit, accessibility/platform matrix, real persistence
+  failure/contention/lifecycle scenarios, and same-origin runtime resource
+  inventory are retained with exact source and checksums.
+- **Limitations:** Reference/constrained profiles, Worker peak memory, manual
+  screen-reader and incomplete contrast review, additional browsers/mobile,
+  safe real quota/eviction, and production assertions remain open.
+- **Boundary:** Implementation owners assign no finding closure, Completion
+  Report, project `[VERIFIED]`, product acceptance, release approval, or
+  deployment permission.
+- **Bridge disposition:** Internal AU-AGENT-003 reverification requires no
+  Claude return and no new Exchange ID.
+- **Next gate:** Commit and push the evidence/lifecycle package, confirm
+  exact-head CI, then request AU-AGENT-003 finding-by-finding reverification.
+
 ## 2026-07-26 — Consolidated Implementation Quality Gate
 
 - **Exact source:** `43782195c2db734bc16e7401dcad4becbe3e0d4f`,

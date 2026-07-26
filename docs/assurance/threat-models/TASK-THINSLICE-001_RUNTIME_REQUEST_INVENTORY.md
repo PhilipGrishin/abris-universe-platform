@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-SEC-TS001-RUNTIME-001 |
 | Title | TASK-THINSLICE-001 Runtime Request Inventory |
-| Status | `[IMPLEMENTED]`, `[TESTED]` locally; full browser network capture and production assertion `[OPEN]` |
+| Status | `[IMPLEMENTED]`, `[TESTED]` locally and in measured browser profile; production assertion `[OPEN]` |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Technical Design v1.5.2 section 12; Threat Model v1.3.0 TM-017 and TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | Technical Design v1.5.2 section 12; Threat Model v1.3.0 TM-017 and TM-019; static control commit `35bbb34bdeb5c4133de88e4edea36762281a65ca`; measured browser source `37e657eb6571c525154e07ed225d6b877358fb99` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Client network API, asset, Worker, analytics, telemetry, CSP, hosting, or error-reporting change |
@@ -21,8 +21,8 @@
 ## Purpose
 
 Define the minimum permitted Phase 0 runtime request surface and preserve the
-local-only pattern-data boundary. This inventory does not replace the required
-full browser network capture or production response verification.
+local-only pattern-data boundary. The measured browser resource inventory does
+not replace production response verification.
 
 ## Runtime Request Surface
 
@@ -80,15 +80,20 @@ technical and security review before merge.
   application shell, SPA fallback, and `version.json`; returned `405` for
   `POST`; and served the reviewed CSP, `nosniff`, and no-referrer headers.
 - Unit tests assert the Worker header and method boundary.
+- The source-qualified browser benchmark exercised minimal and medium import,
+  corrupt rejection, history creation, and reload. Its complete Resource Timing
+  surface contained only the registered same-origin benchmark, shared
+  application chunks, and import Worker; no external origin appeared.
+- The interactive application surface contained only its same-origin hashed
+  script, stylesheet, and render Worker.
 
 ## Remaining Evidence
 
-TS001-SEC-002 is not fully closed by this inventory. Before production
-promotion, capture the complete browser network surface across import, render,
-mark, unmark, reload, corrupt-file rejection, and representative persistence
-failure. Compare every request and payload class against this record. Assert
-the same headers against the production URL and block promotion on any
-unexpected request or pattern-derived value.
+The implementation-runtime portion of TS001-SEC-002 is tested for the measured
+Chromium/macOS profile. Before production promotion, assert this inventory and
+the reviewed headers against the authorized production URL, and block
+promotion on any unexpected request or pattern-derived value. Broader browser
+coverage remains coupled to the client platform matrix.
 
 ## Lifecycle
 
@@ -103,4 +108,5 @@ the inventory meaning.
 - [Threat Model Index](README.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [CI and Deployment Rehearsal](../../reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md)
+- [Browser Persistence and Runtime Review](../../reviews/technical/TASK-THINSLICE-001/BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md)
 - [Source of Truth Registry](../../SOURCE_OF_TRUTH.md)

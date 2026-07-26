@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.6.0 |
+| Version | 3.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,27 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Consolidated Finding Remediation Evidence
+
+- Implemented the approved OffscreenCanvas rendering Worker, bounded glyph
+  atlas, bounded tile-raster cache, and incremental main-thread fallback.
+- Added isolated benchmark-only harnesses for reproducible cold import,
+  interaction, 10,000-event history, persistence-failure, runtime-resource,
+  grayscale/reduced-motion, and pinned axe-core evidence.
+- Corrected the page-heading, toolbar-semantics, and viewer-label contrast
+  defects discovered by the audit.
+- Retained source-qualified benchmark, accessibility/platform, persistence,
+  runtime, raw JSON, and visual records without promoting untested profiles.
+- Recorded exact implementation commit `1c2bd5d` and successful GitHub Actions
+  run `30195542862` with 67 tests.
+- Preserved the registered reference/constrained profiles, Worker peak memory,
+  manual accessibility/contrast, broader browsers, safe quota/eviction, and
+  production assertions as explicit limitations awaiting AU-AGENT-003
+  disposition.
+- Documentation Impact: Material.
+- Status: remediation `[IMPLEMENTED]`, `[TESTED]`; independent Engineering
+  Verification Status remains `REWORK REQUIRED`; no project `[VERIFIED]`.
 
 ## 2026-07-26 — Consolidated Implementation Verification
 

@@ -7,11 +7,14 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
 `VERIFIED WITH FINDINGS`; renderer core is `[IMPLEMENTED]`, `[TESTED]` with
 repository-level Engineering Verification Status `VERIFIED`; client
-integration and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
-consolidated Engineering Verification Status `REWORK REQUIRED`
+integration, renderer capability remediation, measured-profile browser
+evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
+consolidated Engineering Verification Status remains `REWORK REQUIRED` pending
+AU-AGENT-003 reverification
 
-Remediate the four mandatory consolidated implementation findings, retain the
-passed exact-source CI evidence, and request AU-AGENT-003 reverification. Keep
+Reverify the remediation evidence and assign finding dispositions while
+preserving the registered reference/constrained performance, manual
+accessibility, broader-browser, and safe quota/eviction limitations. Keep
 production deployment, product acceptance, and project `[VERIFIED]` outside
 this internal stage.
 
@@ -69,14 +72,33 @@ this internal stage.
   TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 are mandatory.
   TS001-SEC-002 is partially resolved and non-blocking for the current
   no-deploy scope.
+- The approved OffscreenCanvas Worker, bounded glyph atlas, incremental
+  main-thread fallback, and eight-entry/128 MiB bounded Worker tile-raster
+  cache are implemented and tested.
+- Measured Chromium/macOS evidence records 30 cold imports per fixture, 30
+  10,000-event reloads, at least 100 mark/save samples per fixture, and 120
+  scripted frame intervals per fixture. Listed budgets pass on the measured
+  1280×720 DPR 2 profile; the registered reference/constrained profiles and
+  Worker peak memory remain open.
+- Pinned axe-core reports zero violations after exact-source remediation.
+  Manual screen-reader, incomplete contrast review, non-Chromium, and mobile
+  evidence remain open.
+- Real-browser evidence observes transaction abort, exact Web Locks contention
+  with visible `Read-only`, blocked IndexedDB upgrade, persistent-storage
+  denial, and a same-origin runtime resource inventory. Safe real quota/
+  eviction and production assertions remain open.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
 - TD-GATE-004 is closed at design level.
 - TD-GATE-002 remains open for exact-symbol claims outside the lawful route-1
   literal-symbol profile.
-- TD-GATE-003, full runtime network capture, remote CI evidence, production
-  headers/smoke, and explicit authorization block production deployment.
+- Exact implementation source `1c2bd5d` passes GitHub Actions run
+  `30195542862`, including frozen install, typecheck, 67 tests, static build,
+  production dependency audit, and no-deploy Cloudflare rehearsal.
+- TD-GATE-003, production headers/smoke, and explicit authorization block
+  production deployment. The measured-profile implementation runtime inventory
+  is complete; production assertion remains open.
 - No project `[VERIFIED]`, implementation acceptance, security acceptance,
   release readiness, deployment authorization, or product acceptance exists.
 
@@ -103,8 +125,9 @@ this internal stage.
 - Do not claim power-loss, eviction, supported-browser, performance,
   accessibility, or pixel-golden completion without exact evidence.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
-- Do not deploy to production before TD-GATE-003, full runtime capture,
-  production smoke, and explicit authorization close.
+- Do not deploy to production before TD-GATE-003, AU-AGENT-003 disposition of
+  the measured runtime inventory, production smoke/assertions, and explicit
+  authorization close.
 - Do not transfer the four PROD-DEC-011 XSP binaries through the Collaboration
   Bridge or commit them without the separate owner-controlled transfer path.
 - Do not assign project `[VERIFIED]`.
@@ -123,17 +146,17 @@ with checksum provenance and no verified scope.
 ## Current Quality Gate
 
 Client integration and the CI/no-deploy rehearsal are implemented and tested.
-Exact-source `35bbb34` passes frozen install, strict typecheck, 64 tests,
-verified clean-source static build, production dependency audit, Wrangler
-dry-run, and local workerd root/fallback/provenance/method/header smoke.
-TD-GATE-003 and the full runtime capture remain open.
+Exact implementation source `1c2bd5d` passes frozen install, strict typecheck,
+67 tests, verified clean-source static build, production dependency audit, and
+the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
+TD-GATE-003 and production assertions remain open.
 
-AU-AGENT-003 reports no Critical or High defect, but the consolidated
-Completion Report is blocked until renderer capability paths, controlled
-performance, accessibility/supported-browser evidence, and remaining
-persistence browser scenarios are remediated and reverified. This internal
-stage requires no Claude return and therefore no new Collaboration Bridge
-Exchange ID.
+AU-AGENT-003 reports no Critical or High defect. TS001-IMPL-001 has a concrete
+remediation candidate; TS001-IMPL-002/003 and TS001-PERSIST-006 have material
+new evidence with explicit remaining limitations. The Completion Report
+remains blocked until AU-AGENT-003 reverifies and assigns dispositions. This
+internal stage requires no Claude return and therefore no new Collaboration
+Bridge Exchange ID.
 
 ## Current Renderer Gate
 
@@ -160,8 +183,8 @@ remains open.
 
 ## Next Concrete Step
 
-Integrate the independent report without changing its meaning, then implement
-TS001-IMPL-001 and build the exact-source performance,
-accessibility/supported-browser, persistence, and network-capture evidence
-required for findings 002/003/006. Request AU-AGENT-003 reverification before
-preparing any Completion Report or Claude acceptance exchange.
+Publish this source-qualified remediation evidence and synchronized lifecycle
+state, confirm exact-head CI, and request AU-AGENT-003 reverification of
+TS001-IMPL-001/002/003, TS001-PERSIST-006, and TS001-SEC-002. Do not prepare a
+Completion Report or Claude acceptance exchange before that independent finding
+disposition.
