@@ -42,13 +42,17 @@ export interface EngineeringResourceRecord {
 }
 
 export interface EngineeringEvidenceSnapshot {
-  readonly schemaVersion: 1;
+  readonly schemaVersion: 2;
   readonly runId: string;
   readonly capturedAt: string;
   readonly environment: EngineeringEvidenceEnvironment;
   readonly executionPath: string | null;
   readonly glyphAtlas: string | null;
+  readonly baselineUsedJsHeapBytes: number | null;
+  readonly currentUsedJsHeapBytes: number | null;
   readonly peakUsedJsHeapBytes: number | null;
+  readonly retainedUsedJsHeapDeltaBytes: number | null;
+  readonly usedJsHeapSampleCount: number;
   readonly resources: readonly EngineeringResourceRecord[];
   readonly records: readonly EngineeringEvidenceRecord[];
 }
@@ -58,7 +62,6 @@ const CHANGE_EVENT = "abris-universe:engineering-evidence";
 const MAX_RECORDS = 4_096;
 let rendererFrameSamples = 0;
 let sequence = 0;
-let peakUsedJsHeapBytes: number | null = null;
 let longTaskObserver: PerformanceObserver | null = null;
 
 interface ChromePerformance extends Performance {
@@ -70,6 +73,24 @@ interface ChromePerformance extends Performance {
 interface NavigatorWithDeviceMemory extends Navigator {
   readonly deviceMemory?: number;
 }
+
+function readUsedJsHeapBytes(): number | null {
+  const used = (performance as ChromePerformance).memory?.usedJSHeapSize;
+  return typeof used === "number" && Number.isFinite(used) ? used : null;
+}
+
+export function retainedUsedJsHeapDelta(
+  baselineBytes: number | null,
+  currentBytes: number | null,
+): number | null {
+  if (baselineBytes === null || currentBytes === null) return null;
+  return currentBytes - baselineBytes;
+}
+
+let baselineUsedJsHeapBytes = readUsedJsHeapBytes();
+let currentUsedJsHeapBytes = baselineUsedJsHeapBytes;
+let peakUsedJsHeapBytes = baselineUsedJsHeapBytes;
+let usedJsHeapSampleCount = baselineUsedJsHeapBytes === null ? 0 : 1;
 
 function evidenceRunId(): string {
   const candidate =
@@ -127,10 +148,11 @@ function writeRecord(record: EngineeringEvidenceRecord): void {
 }
 
 function sampleHeap(): void {
-  const used = (performance as ChromePerformance).memory?.usedJSHeapSize;
-  if (typeof used === "number" && Number.isFinite(used)) {
-    peakUsedJsHeapBytes = Math.max(peakUsedJsHeapBytes ?? 0, used);
-  }
+  const used = readUsedJsHeapBytes();
+  if (used === null) return;
+  currentUsedJsHeapBytes = used;
+  peakUsedJsHeapBytes = Math.max(peakUsedJsHeapBytes ?? used, used);
+  usedJsHeapSampleCount += 1;
 }
 
 export function startEngineeringEvidenceCollection(): () => void {
@@ -170,7 +192,10 @@ export function subscribeEngineeringEvidence(
 export function clearEngineeringEvidence(): void {
   rendererFrameSamples = 0;
   sequence = 0;
-  peakUsedJsHeapBytes = null;
+  baselineUsedJsHeapBytes = readUsedJsHeapBytes();
+  currentUsedJsHeapBytes = baselineUsedJsHeapBytes;
+  peakUsedJsHeapBytes = baselineUsedJsHeapBytes;
+  usedJsHeapSampleCount = baselineUsedJsHeapBytes === null ? 0 : 1;
   try {
     sessionStorage.removeItem(evidenceStorageKey());
   } catch {
@@ -196,7 +221,7 @@ export function captureEngineeringEvidence(): EngineeringEvidenceSnapshot {
     );
   const panel = document.querySelector<HTMLElement>(".viewer-panel");
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     runId: evidenceRunId(),
     capturedAt: new Date().toISOString(),
     environment: {
@@ -218,7 +243,14 @@ export function captureEngineeringEvidence(): EngineeringEvidenceSnapshot {
     },
     executionPath: panel?.dataset.rendererPath ?? null,
     glyphAtlas: panel?.dataset.glyphAtlas ?? null,
+    baselineUsedJsHeapBytes,
+    currentUsedJsHeapBytes,
     peakUsedJsHeapBytes,
+    retainedUsedJsHeapDeltaBytes: retainedUsedJsHeapDelta(
+      baselineUsedJsHeapBytes,
+      currentUsedJsHeapBytes,
+    ),
+    usedJsHeapSampleCount,
     resources,
     records: readStoredRecords(),
   };

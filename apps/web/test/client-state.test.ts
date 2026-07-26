@@ -17,6 +17,7 @@ import {
   tileRasterEdgeDevicePx,
   tileRasterKey,
 } from "../src/render-worker-cache.ts";
+import { retainedUsedJsHeapDelta } from "../src/engineering-evidence.ts";
 
 test("zoom preserves the canonical point under its anchor and clamps scale", () => {
   const viewport = {
@@ -127,4 +128,11 @@ test("worker tile-raster cache has deterministic identities and memory ceilings"
   assert.equal(tileRasterCacheable(edge), true);
   assert.ok(tileRasterBytes(edge) < TILE_RASTER_CACHE_BYTE_LIMIT);
   assert.equal(tileRasterCacheable(4_096), false);
+});
+
+test("engineering evidence preserves signed retained heap deltas", () => {
+  assert.equal(retainedUsedJsHeapDelta(1_000, 1_640), 640);
+  assert.equal(retainedUsedJsHeapDelta(1_000, 900), -100);
+  assert.equal(retainedUsedJsHeapDelta(null, 900), null);
+  assert.equal(retainedUsedJsHeapDelta(1_000, null), null);
 });
