@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-002 |
 | Title | TASK-THINSLICE-001 Browser Benchmark Report |
-| Status | `[TESTED]`; measured profile passes listed budgets; registered reference and constrained profiles remain `[OPEN]` |
+| Status | `[TESTED]`; measured, registered reference, and registered constrained profiles pass their listed budgets; independent disposition pending |
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, and `d69b5c564cf17a042d2bf36ef1a864031e802676`; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, and exact evidence source `40099443d156bcc2497e57e06528772be57e601b`; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -21,9 +21,8 @@
 ## Purpose
 
 Record reproducible browser measurements for the Phase 0 route-1 importer,
-viewer, renderer, progress persistence, and 10,000-event reload. This report
-does not silently promote the measured environment to the registered reference
-or constrained profile.
+viewer, renderer, progress persistence, and 10,000-event reload. Profile
+results remain separate and are compared only with their registered budgets.
 
 ## Scope and Environment
 
@@ -33,10 +32,14 @@ Chromium/Chrome 150.0.0.0, `MacIntel`, 1280×720 viewport, and DPR 2. The browse
 reported eight logical cores, 8 GiB device memory, OffscreenCanvas, module
 Worker, Web Locks, and IndexedDB support.
 
-The registered reference viewport is 1365×768 at DPR 1, and the registered
-constrained profile requires 4× CPU slowdown. Those two profiles were not
-available through the controlled browser surface and remain open. Results
-below are valid only for the recorded measured profile.
+Later exact-source evidence uses the same hardware and browser with an explicit
+1365×768 viewport override at DPR 1. The reference profile used no CPU
+throttling. The constrained profile used Chrome DevTools 4× CPU slowdown,
+confirmed by the Project Owner before capture, on one preserved inspected tab
+across the gesture and cold-import/reload navigation. The browser evidence API
+does not expose the active multiplier, so the owner confirmation and target
+continuity are retained in the profile manifest. DevTools throttling remains a
+host-relative proxy, not a claim about a specific mobile architecture.
 
 ## Method
 
@@ -50,6 +53,13 @@ below are valid only for the recorded measured profile.
 - Mark-to-paint and IndexedDB autosave used at least 100 samples per fixture.
 - The corrupt fixture ran once through the real import Worker and returned the
   registered bounded error.
+- Reference and constrained interaction captures retained at least 100
+  mark-to-paint and autosave samples.
+- Reference and constrained isolated gestures clear task-owned evidence
+  immediately before their 120-frame scenario.
+- For each 30-run cold-import and reload distribution, the report retains
+  median, p95, maximum, arithmetic mean, and a two-sided 95% Student-t
+  confidence interval for the mean (`n = 30`, `df = 29`, `t = 2.045`).
 - Raw values are retained without outlier deletion.
 
 ## Results
@@ -65,6 +75,60 @@ below are valid only for the recorded measured profile.
 | Autosave commit p95 | 7.1 ms | 7.5 ms | Passes 100 / 150 ms budgets |
 | 10,000-event reload p95 | 740.6 ms | Same seeded project | Passes 1,000 ms budget |
 | Corrupt import | 10.9 ms, `OXS_XML_MALFORMED` | N/A | Rejected and contained |
+
+### Registered Reference Profile
+
+| Metric | Result | Reference budget | Disposition |
+| --- | ---: | ---: | --- |
+| Minimal cold import p95, 30 runs | 124.3 ms | <= 750 ms | Pass |
+| Medium cold import p95, 30 runs | 1,751.6 ms | <= 3,000 ms | Pass |
+| Medium scripted-pan frame p95, 120 frames | 9.1 ms | <= 18.2 ms | Pass |
+| Frames over 18.2 ms | 0 / 120, 0% | < 5% | Pass |
+| Steady-gesture long tasks | 0 | 0 | Pass |
+| Medium mark-to-paint p95, 115 samples | 7.9 ms | <= 50 ms | Pass |
+| Medium autosave p95, 141 samples | 18.4 ms | <= 150 ms | Pass |
+| 10,000-event reload p95, 30 runs | 542.1 ms | <= 1,000 ms | Pass |
+| Corrupt import | 14.7 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
+
+Reference Worker renderer work during the isolated gesture retained 98 samples:
+p95 1.7 ms and maximum 2.8 ms. The combined reference interaction capture
+contains four long tasks outside the isolated gesture. They are retained, not
+deleted, and are not represented as steady-gesture events.
+
+### Registered 4× Constrained Profile
+
+| Metric | Result | Constrained budget | Disposition |
+| --- | ---: | ---: | --- |
+| Medium cold import p95, 30 runs | 2,648.6 ms | <= 6,000 ms | Pass |
+| Medium scripted-pan frame p95, 120 frames | 24.1 ms | <= 33.3 ms | Pass |
+| Frames over 18.2 ms | 7 / 120, 5.83% | < 10% | Pass |
+| Steady-gesture long tasks | 0 | <= 1 | Pass |
+| Medium mark-to-paint p95, 111 samples | 9.3 ms | <= 100 ms | Pass |
+| Medium autosave p95, 111 samples | 34.0 ms | <= 300 ms | Pass |
+| 10,000-event reload p95, 30 runs | 1,866.6 ms | <= 2,000 ms | Pass |
+| Corrupt import | 29.8 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
+
+The constrained isolated gesture retained one completed Worker-render sample
+at 2.3 ms because viewport updates cancelled stale intermediate Worker
+responses; the 120 main-thread frame intervals remain the registered gesture
+metric. The combined constrained interaction capture contains four long tasks
+outside the isolated gesture. The constrained cold import remained within its
+profile budget; the raw Worker timings are retained without claiming that
+DevTools applies an identical multiplier to every Worker execution context.
+
+### Registered Distribution Statistics
+
+| Profile and scenario | Median | p95 | Maximum | Mean and 95% CI |
+| --- | ---: | ---: | ---: | ---: |
+| Reference minimal cold import | 31.4 ms | 124.3 ms | 135.4 ms | 41.1 ms [30.9, 51.3] |
+| Reference medium cold import | 1,618.4 ms | 1,751.6 ms | 1,803.5 ms | 1,621.9 ms [1,599.1, 1,644.6] |
+| Reference 10,000-event reload | 390.4 ms | 542.1 ms | 606.7 ms | 406.5 ms [387.9, 425.1] |
+| Constrained minimal cold import | 29.7 ms | 71.8 ms | 85.1 ms | 35.5 ms [30.2, 40.8] |
+| Constrained medium cold import | 2,367.3 ms | 2,648.6 ms | 2,741.2 ms | 2,402.8 ms [2,353.8, 2,451.9] |
+| Constrained 10,000-event reload | 1,679.7 ms | 1,866.6 ms | 1,911.8 ms | 1,700.4 ms [1,675.5, 1,725.3] |
+
+Confidence intervals are descriptive uncertainty for the observed host-relative
+distributions. Budget disposition continues to use the registered p95 metric.
 
 The medium Worker render-work p95 during the scripted gesture was 2.0 ms
 after bounded tile-raster caching. The pre-remediation browser run recorded
@@ -103,22 +167,20 @@ approved limitation is registered.
 
 ## Budget Disposition
 
-The listed latency and frame budgets pass on the measured profile. Full
-TS001-IMPL-002 closure is not claimed because:
-
-- the exact reference viewport/DPR profile was not run;
-- the 4× constrained profile was not run;
-- import-Worker peak memory was not available from the browser measurement;
-- heap evidence is an observational upper signal, not a forced-GC retained
-  allocation result.
+The listed budgets pass on the measured, reference, and constrained profiles.
+Full TS001-IMPL-002 closure is not claimed because import-Worker peak memory was
+not available from the browser measurement, and the heap evidence is an
+observational main-thread signal rather than a forced-GC retained allocation
+result.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
-accepted the isolated steady-gesture long-task disposition for the measured
-profile. It also confirmed the estimator as valid enforced admission-control
-evidence, but not as observed Worker peak memory. TS001-IMPL-002 remains
-mandatory for the missing registered profiles and measured Worker peak memory
-or an owner-approved documented limitation.
+accepted the isolated steady-gesture long-task disposition for the earlier
+measured profile. It also confirmed the estimator as valid enforced
+admission-control evidence, but not as observed Worker peak memory. The later
+registered profile evidence remains a candidate until narrow independent
+reverification. Measured Worker peak memory or an owner-approved documented
+limitation remains mandatory.
 
 ## Common Mistakes
 
@@ -138,11 +200,11 @@ or an owner-approved documented limitation.
 - [x] 120 actual animation-frame intervals retained per fixture.
 - [x] 10,000-event history and 30 reload samples retained.
 - [x] Corrupt import result retained.
-- [ ] Registered reference viewport and DPR run.
-- [ ] Registered constrained profile run.
+- [x] Registered reference viewport and DPR run.
+- [x] Registered constrained profile run.
 - [ ] Import-Worker peak memory measured.
 - [x] Long-task evidence isolated and dispositioned for the scripted gesture.
-- [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
+- [ ] AU-AGENT-003 independently reverifies the registered profile evidence.
 
 ## References
 

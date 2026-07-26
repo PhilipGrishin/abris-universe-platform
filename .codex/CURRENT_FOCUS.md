@@ -77,8 +77,14 @@ this internal stage.
 - Measured Chromium/macOS evidence records 30 cold imports per fixture, 30
   10,000-event reloads, at least 100 mark/save samples per fixture, and 120
   scripted frame intervals per fixture. Listed budgets pass on the measured
-  1280×720 DPR 2 profile; the registered reference/constrained profiles and
-  Worker peak memory remain open.
+  1280×720 DPR 2 profile.
+- Exact clean source `4009944` now has separate registered 1365×768 DPR1
+  reference and owner-confirmed Chrome DevTools 4× constrained raw evidence.
+  Both retain 30 cold imports, 30 10,000-event reloads, isolated 120-frame
+  medium gestures, and at least 100 medium mark/save samples. Every applicable
+  provisional profile budget passes. The constrained multiplier is supported
+  by owner confirmation and preserved inspected-target continuity because the
+  browser evidence API does not expose the active multiplier.
 - Pinned axe-core reports zero violations after exact-source remediation.
   Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
   five toolbar controls, and manual calculations disposition those controls at
@@ -98,11 +104,12 @@ this internal stage.
   AU-AGENT-003 changes their dispositions. Exact source `d69b5c5` isolates the
   medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
   2.3 ms Worker-render p95; the earlier combined-session artifact with 31
-  unattributed long tasks remains historical evidence. Registered reference/
-  constrained profiles and browser-reported Worker peak memory are absent.
-  The enforced medium import estimate is about 95.7 MiB against 256 MiB but is
-  not actual Worker telemetry. Manual screen-reader and reliable physical
-  focus traversal remain absent.
+  unattributed long tasks remains historical evidence. Registered profile
+  evidence is now a tested candidate awaiting independent review;
+  browser-reported Worker peak memory remains absent. The enforced medium
+  import estimate is about 95.7 MiB against 256 MiB but is not actual Worker
+  telemetry. Manual screen-reader and reliable physical focus traversal remain
+  absent.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -203,8 +210,8 @@ remains open.
 
 ## Next Concrete Step
 
-Obtain the registered 1365×768 DPR1 and 4× constrained profiles plus measured
-Worker peak memory or an owner-approved documented limitation. Complete a
-manual screen-reader session and reliable physical Tab/focus traversal on the
-declared profile, then request narrow AU-AGENT-003 reverification. No
+Commit and push the registered-profile evidence package, confirm exact-head
+CI, and request narrow AU-AGENT-003 disposition. Then obtain measured Worker
+peak memory or an owner-approved documented limitation and complete a manual
+screen-reader session plus reliable physical Tab/focus traversal. No
 Completion Report or Claude acceptance exchange is permitted before closure.

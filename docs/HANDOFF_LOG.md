@@ -1,5 +1,32 @@
 # Handoff Log
 
+## 2026-07-26 — Registered Performance Profile Evidence
+
+- **Exact evidence source:** `40099443d156bcc2497e57e06528772be57e601b`,
+  clean production-benchmark build.
+- **Reference profile:** Chrome 150/macOS, 1365×768 DPR1, no CPU throttling.
+  Medium import p95 1,751.6 ms, gesture frame p95 9.1 ms, zero dropped-frame
+  proxy and steady-gesture long tasks, mark-to-paint p95 7.9 ms, autosave p95
+  18.4 ms, and 10,000-event reload p95 542.1 ms all pass their budgets.
+- **Constrained profile:** Same browser/hardware/viewport with Project
+  Owner-confirmed Chrome DevTools 4× CPU slowdown and preserved inspected-tab
+  continuity. Medium import p95 2,648.6 ms, gesture frame p95 24.1 ms,
+  5.83% dropped-frame proxy, zero steady-gesture long tasks, mark-to-paint p95
+  9.3 ms, autosave p95 34.0 ms, and reload p95 1,866.6 ms all pass constrained
+  budgets.
+- **Evidence integrity:** Seven new JSON artifacts retain raw samples, profile
+  configuration, target continuity, checksums, and limitations. Combined-run
+  long tasks and the single completed constrained Worker-render response were
+  retained without reinterpretation or deletion.
+- **Open limitation:** Main-thread heap signals do not measure import-Worker
+  peak memory. The enforced estimator remains admission-control evidence only.
+- **Status boundary:** Registered profiles are `[TESTED]` candidates pending
+  narrow AU-AGENT-003 disposition. TS001-IMPL-002 remains mandatory and the
+  Engineering Verification Status remains `REWORK REQUIRED`.
+- **Bridge disposition:** Internal evidence work; no Claude return or Exchange
+  ID is required.
+- **Next gate:** Commit/push, exact-head CI, then AU-AGENT-003 narrow review.
+
 ## 2026-07-26 — Targeted Assurance Reverification
 
 - **Exact source:** `40099443d156bcc2497e57e06528772be57e601b`,

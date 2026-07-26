@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "40099443d156bcc2497e57e06528772be57e601b",
+  "sourceDirty": false,
+  "recordedAt": "2026-07-26",
+  "owner": "AU-AGENT-006",
+  "technicalApprover": "AU-AGENT-001",
+  "qualityReviewer": "AU-AGENT-003",
+  "documentationImpact": "Material",
+  "environment": {
+    "browser": "Chrome 150.0.0.0",
+    "platform": "macOS",
+    "hardware": "MacBook Pro Mac15,3, Apple M3, 8 CPU cores, 8 GiB reported device memory",
+    "power": "AC power"
+  },
+  "profiles": [
+    {
+      "id": "reference-1365x768-dpr1",
+      "viewport": {
+        "width": 1365,
+        "height": 768,
+        "devicePixelRatio": 1
+      },
+      "cpuThrottling": "none",
+      "artifacts": [
+        {
+          "path": "reference-browser-benchmark-4009944.json",
+          "sha256": "a02b66823b7c4586a01c9ddc8c8989c96dd962849f5f257835a431451275d1c4"
+        },
+        {
+          "path": "reference-medium-gesture-4009944.json",
+          "sha256": "23ef1182d6e4bab6e77575a48119e2bc4d1e7355cc8bb3fd7ff6d35908186aaa"
+        },
+        {
+          "path": "reference-interaction-4009944.json",
+          "sha256": "25bf4f0ad610227ebb71f31edadb5ff3b3335f8ac14d59d3245da6cc2c8fb7f4"
+        }
+      ]
+    },
+    {
+      "id": "constrained-1365x768-dpr1-4x",
+      "viewport": {
+        "width": 1365,
+        "height": 768,
+        "devicePixelRatio": 1
+      },
+      "cpuThrottling": "4x slowdown",
+      "configurationEvidence": {
+        "source": "Project Owner confirmation in the controlled Chrome session",
+        "confirmation": "4x slowdown enabled",
+        "method": "Chrome DevTools Performance panel, Capture settings, CPU 4x slowdown",
+        "targetContinuity": "The same inspected Chrome tab was retained for the constrained gesture and then navigated to the constrained cold-import/reload benchmark."
+      },
+      "artifacts": [
+        {
+          "path": "constrained-4x-browser-benchmark-4009944.json",
+          "sha256": "754da8713dcb77f8b2f18a307b5717da1675ea612a8555746260d96fd094ba42"
+        },
+        {
+          "path": "constrained-4x-medium-gesture-4009944.json",
+          "sha256": "2f2172d0a991d1d95b1be368ab7511101076a6d4e62456154953fbacc6b0694b"
+        },
+        {
+          "path": "constrained-4x-interaction-4009944.json",
+          "sha256": "1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The browser evidence API does not expose the active DevTools CPU multiplier; the constrained setting is supported by the Project Owner confirmation and preserved target continuity.",
+    "DevTools CPU throttling is relative to the host and is not a claim about a specific mobile CPU architecture.",
+    "The constrained cold importer runs in a dedicated Worker. Its observed timings are retained as measured and are not represented as proof that DevTools applies an identical multiplier to every Worker execution context.",
+    "Main-thread heap signals exclude Worker, Canvas, and GPU allocations."
+  ]
+}

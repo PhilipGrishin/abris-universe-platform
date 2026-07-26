@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; source-qualified gate-candidate and historical non-gate evidence |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, implementation commits named by each artifact |
@@ -43,6 +43,20 @@ acceptance or assign `[VERIFIED]`.
 - `accessibility-d69b5c5.json`: exact-source axe-core rerun, manual contrast
   calculations, and rendered focus-order inspection after contrast
   remediation.
+- `reference-browser-benchmark-4009944.json`: registered 1365×768 DPR 1
+  reference cold-import, corrupt-import, and 10,000-event reload samples.
+- `reference-medium-gesture-4009944.json`: isolated registered-reference
+  120-frame medium gesture.
+- `reference-interaction-4009944.json`: registered-reference medium import,
+  viewer, mark-to-paint, autosave, heap-signal, and combined-session samples.
+- `constrained-4x-browser-benchmark-4009944.json`: owner-confirmed 4× CPU
+  constrained cold-import, corrupt-import, and 10,000-event reload samples.
+- `constrained-4x-medium-gesture-4009944.json`: isolated owner-confirmed 4× CPU
+  constrained 120-frame medium gesture.
+- `constrained-4x-interaction-4009944.json`: constrained medium import, viewer,
+  mark-to-paint, autosave, heap-signal, and combined-session samples.
+- `performance-profile-manifest-4009944.json`: profile identities, owner
+  confirmation, target continuity, artifact hashes, and limitations.
 
 SHA-256:
 
@@ -62,6 +76,20 @@ SHA-256:
   `eb7f60bcc9895033bfcb36e1b08d1c09d4747d27c0278b1fe9685e942fa708be`
 - `accessibility-d69b5c5.json`:
   `0dd1827829b37dd4c354a4ed6f85bea3163202dd1743c22165f6e00248eff57d`
+- `reference-browser-benchmark-4009944.json`:
+  `a02b66823b7c4586a01c9ddc8c8989c96dd962849f5f257835a431451275d1c4`
+- `reference-medium-gesture-4009944.json`:
+  `23ef1182d6e4bab6e77575a48119e2bc4d1e7355cc8bb3fd7ff6d35908186aaa`
+- `reference-interaction-4009944.json`:
+  `25bf4f0ad610227ebb71f31edadb5ff3b3335f8ac14d59d3245da6cc2c8fb7f4`
+- `constrained-4x-browser-benchmark-4009944.json`:
+  `754da8713dcb77f8b2f18a307b5717da1675ea612a8555746260d96fd094ba42`
+- `constrained-4x-medium-gesture-4009944.json`:
+  `2f2172d0a991d1d95b1be368ab7511101076a6d4e62456154953fbacc6b0694b`
+- `constrained-4x-interaction-4009944.json`:
+  `1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b`
+- `performance-profile-manifest-4009944.json`:
+  `306e46e618ac5b7a4e974fd6365b672a501998f424e622811b1e24fe36a26083`
 
 ## Owner and Lifecycle
 

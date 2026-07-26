@@ -1,0 +1,659 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "40099443d156bcc2497e57e06528772be57e601b",
+  "sourceDirty": false,
+  "capturedAt": "2026-07-26T16:38:46.271Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "hardwareConcurrency": 8,
+    "deviceMemoryGiB": 8,
+    "viewport": {
+      "width": 1365,
+      "height": 768,
+      "devicePixelRatio": 1
+    }
+  },
+  "method": {
+    "build": "production-benchmark",
+    "coldImportIterations": 30,
+    "historyEventCount": 10000,
+    "historyReloadIterations": 30,
+    "storageResetBetweenColdImports": true,
+    "corruptImportIterations": 1
+  },
+  "coldImport": {
+    "minimal": [
+      {
+        "iteration": 1,
+        "durationMs": 85.1
+      },
+      {
+        "iteration": 2,
+        "durationMs": 48.3
+      },
+      {
+        "iteration": 3,
+        "durationMs": 71.8
+      },
+      {
+        "iteration": 4,
+        "durationMs": 31.7
+      },
+      {
+        "iteration": 5,
+        "durationMs": 32
+      },
+      {
+        "iteration": 6,
+        "durationMs": 32.6
+      },
+      {
+        "iteration": 7,
+        "durationMs": 32.4
+      },
+      {
+        "iteration": 8,
+        "durationMs": 34.8
+      },
+      {
+        "iteration": 9,
+        "durationMs": 28.3
+      },
+      {
+        "iteration": 10,
+        "durationMs": 46.8
+      },
+      {
+        "iteration": 11,
+        "durationMs": 37.9
+      },
+      {
+        "iteration": 12,
+        "durationMs": 27.8
+      },
+      {
+        "iteration": 13,
+        "durationMs": 28.1
+      },
+      {
+        "iteration": 14,
+        "durationMs": 29.8
+      },
+      {
+        "iteration": 15,
+        "durationMs": 30.5
+      },
+      {
+        "iteration": 16,
+        "durationMs": 28.9
+      },
+      {
+        "iteration": 17,
+        "durationMs": 28
+      },
+      {
+        "iteration": 18,
+        "durationMs": 57.3
+      },
+      {
+        "iteration": 19,
+        "durationMs": 29.5
+      },
+      {
+        "iteration": 20,
+        "durationMs": 26.2
+      },
+      {
+        "iteration": 21,
+        "durationMs": 29.2
+      },
+      {
+        "iteration": 22,
+        "durationMs": 49
+      },
+      {
+        "iteration": 23,
+        "durationMs": 27.4
+      },
+      {
+        "iteration": 24,
+        "durationMs": 26.4
+      },
+      {
+        "iteration": 25,
+        "durationMs": 27.1
+      },
+      {
+        "iteration": 26,
+        "durationMs": 29.8
+      },
+      {
+        "iteration": 27,
+        "durationMs": 26.5
+      },
+      {
+        "iteration": 28,
+        "durationMs": 25.5
+      },
+      {
+        "iteration": 29,
+        "durationMs": 27.3
+      },
+      {
+        "iteration": 30,
+        "durationMs": 28.4
+      }
+    ],
+    "medium": [
+      {
+        "iteration": 1,
+        "durationMs": 2615.3
+      },
+      {
+        "iteration": 2,
+        "durationMs": 2548
+      },
+      {
+        "iteration": 3,
+        "durationMs": 2507.8
+      },
+      {
+        "iteration": 4,
+        "durationMs": 2369.4
+      },
+      {
+        "iteration": 5,
+        "durationMs": 2317.1
+      },
+      {
+        "iteration": 6,
+        "durationMs": 2278.3
+      },
+      {
+        "iteration": 7,
+        "durationMs": 2486.8
+      },
+      {
+        "iteration": 8,
+        "durationMs": 2291.3
+      },
+      {
+        "iteration": 9,
+        "durationMs": 2389.4
+      },
+      {
+        "iteration": 10,
+        "durationMs": 2741.2
+      },
+      {
+        "iteration": 11,
+        "durationMs": 2283.1
+      },
+      {
+        "iteration": 12,
+        "durationMs": 2367.6
+      },
+      {
+        "iteration": 13,
+        "durationMs": 2308.3
+      },
+      {
+        "iteration": 14,
+        "durationMs": 2275.7
+      },
+      {
+        "iteration": 15,
+        "durationMs": 2278
+      },
+      {
+        "iteration": 16,
+        "durationMs": 2308.2
+      },
+      {
+        "iteration": 17,
+        "durationMs": 2340.1
+      },
+      {
+        "iteration": 18,
+        "durationMs": 2262.5
+      },
+      {
+        "iteration": 19,
+        "durationMs": 2378.6
+      },
+      {
+        "iteration": 20,
+        "durationMs": 2254.9
+      },
+      {
+        "iteration": 21,
+        "durationMs": 2274.1
+      },
+      {
+        "iteration": 22,
+        "durationMs": 2498.7
+      },
+      {
+        "iteration": 23,
+        "durationMs": 2648.6
+      },
+      {
+        "iteration": 24,
+        "durationMs": 2596.9
+      },
+      {
+        "iteration": 25,
+        "durationMs": 2427.7
+      },
+      {
+        "iteration": 26,
+        "durationMs": 2350.4
+      },
+      {
+        "iteration": 27,
+        "durationMs": 2557
+      },
+      {
+        "iteration": 28,
+        "durationMs": 2398.1
+      },
+      {
+        "iteration": 29,
+        "durationMs": 2367
+      },
+      {
+        "iteration": 30,
+        "durationMs": 2364.6
+      }
+    ]
+  },
+  "corruptImport": {
+    "durationMs": 29.8,
+    "errorCode": "OXS_XML_MALFORMED"
+  },
+  "historyReload": [
+    {
+      "iteration": 1,
+      "durationMs": 1717
+    },
+    {
+      "iteration": 2,
+      "durationMs": 1684.6
+    },
+    {
+      "iteration": 3,
+      "durationMs": 1700.2
+    },
+    {
+      "iteration": 4,
+      "durationMs": 1866.6
+    },
+    {
+      "iteration": 5,
+      "durationMs": 1693.9
+    },
+    {
+      "iteration": 6,
+      "durationMs": 1652.1
+    },
+    {
+      "iteration": 7,
+      "durationMs": 1770.8
+    },
+    {
+      "iteration": 8,
+      "durationMs": 1649.5
+    },
+    {
+      "iteration": 9,
+      "durationMs": 1704.3
+    },
+    {
+      "iteration": 10,
+      "durationMs": 1674.8
+    },
+    {
+      "iteration": 11,
+      "durationMs": 1723.4
+    },
+    {
+      "iteration": 12,
+      "durationMs": 1658.2
+    },
+    {
+      "iteration": 13,
+      "durationMs": 1645.2
+    },
+    {
+      "iteration": 14,
+      "durationMs": 1660.9
+    },
+    {
+      "iteration": 15,
+      "durationMs": 1669.7
+    },
+    {
+      "iteration": 16,
+      "durationMs": 1911.8
+    },
+    {
+      "iteration": 17,
+      "durationMs": 1662.9
+    },
+    {
+      "iteration": 18,
+      "durationMs": 1759.8
+    },
+    {
+      "iteration": 19,
+      "durationMs": 1647.7
+    },
+    {
+      "iteration": 20,
+      "durationMs": 1664.6
+    },
+    {
+      "iteration": 21,
+      "durationMs": 1720.5
+    },
+    {
+      "iteration": 22,
+      "durationMs": 1695.5
+    },
+    {
+      "iteration": 23,
+      "durationMs": 1621.2
+    },
+    {
+      "iteration": 24,
+      "durationMs": 1813.9
+    },
+    {
+      "iteration": 25,
+      "durationMs": 1642.8
+    },
+    {
+      "iteration": 26,
+      "durationMs": 1672.1
+    },
+    {
+      "iteration": 27,
+      "durationMs": 1727.1
+    },
+    {
+      "iteration": 28,
+      "durationMs": 1643.2
+    },
+    {
+      "iteration": 29,
+      "durationMs": 1666.3
+    },
+    {
+      "iteration": 30,
+      "durationMs": 1691.9
+    }
+  ],
+  "resources": [
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/project-service-CiBP4X2w.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/src-Ee-tkyr4.js"
+    },
+    {
+      "initiatorType": "script",
+      "name": "http://127.0.0.1:4173/assets/benchmark-T4z9cT0V.js"
+    }
+  ]
+}

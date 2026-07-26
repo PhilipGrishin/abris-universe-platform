@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.0.0 |
+| Version | 4.1.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,25 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Registered Performance Profile Evidence
+
+- Connected the owner-enabled Chrome control surface and captured the
+  registered 1365×768 DPR1 reference profile at exact clean source `4009944`.
+- Captured the Project Owner-confirmed Chrome DevTools 4× CPU constrained
+  profile on one preserved inspected tab.
+- Retained 30 minimal/medium cold imports, corrupt containment, 30
+  10,000-event reloads, isolated 120-frame medium gestures, and more than 100
+  medium mark/save samples per profile.
+- Confirmed that every applicable reference and constrained provisional budget
+  passes while retaining combined-run long tasks and incomplete Worker-render
+  response counts without deletion or inference.
+- Registered raw artifacts, checksums, configuration provenance, target
+  continuity, and memory/throttling limitations.
+- Preserved measured import-Worker peak memory or owner-approved limitation as
+  an open requirement and assigned no finding closure before AU-AGENT-003
+  review.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Targeted Assurance Reverification
 

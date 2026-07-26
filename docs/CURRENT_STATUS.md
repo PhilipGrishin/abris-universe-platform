@@ -159,6 +159,11 @@
   measured-profile steady-gesture long-task and normal-color contrast
   subconditions, accepted the deterministic memory estimator only as enforced
   admission-control evidence, and kept TS001-IMPL-002/003 mandatory.
+- `[TESTED]` Exact clean source `4009944` now has registered 1365×768 DPR1
+  reference and owner-confirmed 4× constrained profile captures with 30 cold
+  imports, 30 10,000-event reloads, isolated 120-frame medium gestures, and
+  more than 100 medium mark/save samples per profile. Every applicable
+  provisional profile budget passes; independent disposition remains pending.
 - `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
@@ -438,16 +443,17 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles and
-  measured Worker peak memory or an owner-approved documented limitation. The
+- `[OPEN]` TS001-IMPL-002: registered reference/constrained evidence is a
+  tested candidate awaiting independent disposition; measured Worker peak
+  memory or an owner-approved documented limitation remains absent. The
   measured-profile steady-gesture long-task subcondition is resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
-- `[OPEN]` Registered reference/constrained benchmark profiles, Worker peak
-  memory or accepted limitation, manual assistive-technology traversal,
-  broader browsers, safe real quota/eviction, and production response
-  assertions remain explicit evidence limitations pending completion or their
-  applicable governance disposition.
+- `[OPEN]` Independent disposition of registered profiles, Worker peak memory
+  or accepted limitation, manual assistive-technology traversal, broader
+  browsers, safe real quota/eviction, and production response assertions remain
+  explicit evidence limitations pending completion or their applicable
+  governance disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -483,19 +489,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated AU-AGENT-003 narrow reverification of exact source `4009944` and
-successful GitHub Actions run `30197035083`. The reviewer resolved the
-measured-profile steady-gesture long-task and normal-color contrast
-subconditions. Engineering Verification Status remains `REWORK REQUIRED`
-because registered performance profiles, Worker peak evidence or approved
-limitation, manual screen-reader, and physical Tab/focus traversal are still
-mandatory. No project `[VERIFIED]`, product acceptance, release approval, or
-deployment permission was assigned.
+Captured registered 1365×768 DPR1 reference and owner-confirmed 4× constrained
+profiles at exact clean source `4009944`. Both profiles retain complete raw
+cold-import/reload, isolated gesture, and medium interaction distributions and
+pass every applicable provisional budget. This is a tested candidate pending
+AU-AGENT-003 disposition; Engineering Verification Status remains
+`REWORK REQUIRED`. No project `[VERIFIED]`, product acceptance, release
+approval, or deployment permission was assigned.
 
 ## Next Step
 
-Obtain the registered 1365×768 DPR1 and 4× constrained profiles plus measured
-Worker peak evidence or an owner-approved documented limitation. Complete the
-manual screen-reader and reliable physical Tab/focus traversal evidence, then
-request narrow AU-AGENT-003 reverification. Preserve unsupported profiles and
-modes before any Completion Report or Claude acceptance exchange.
+Commit and push the registered-profile evidence, confirm exact-head CI, and
+request narrow AU-AGENT-003 disposition. Then address measured Worker peak
+evidence or an owner-approved documented limitation and complete manual
+screen-reader plus reliable physical Tab/focus traversal. Preserve unsupported
+profiles and modes before any Completion Report or Claude acceptance exchange.

@@ -444,17 +444,25 @@
   Exact-source contrast remediation reduces axe incomplete targets from 15 to
   five toolbar controls, and manual calculations disposition all five at
   8.37:1 or better. Rendered focus order is recorded as supporting structure.
-- **Explicit limitations:** Registered reference/constrained benchmark
-  profiles, browser-reported Worker peak memory or reviewer-accepted estimator
-  limitation, manual screen-reader and physical Tab traversal,
+- **Registered-profile candidate:** Exact clean source `4009944` now has
+  separate 1365×768 DPR1 reference and owner-confirmed 4× constrained raw
+  captures: 30 cold imports per fixture, 30 10,000-event reloads, isolated
+  120-frame gestures, and more than 100 medium mark/save samples per profile.
+  Every applicable provisional profile budget passes; no outlier or
+  combined-session long task was deleted.
+- **Explicit limitations:** Browser-reported Worker peak memory or an
+  owner-approved documented limitation, manual screen-reader and physical Tab
+  traversal,
   non-Chromium/mobile profiles, safe real quota/eviction, and production
   assertions were not inferred or represented as passes.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
-- **Mandatory findings:** TS001-IMPL-002 remains partially resolved for missing
-  registered profiles and Worker peak-memory evidence or accepted limitation.
-  The measured-profile long-task scenario is resolved. TS001-IMPL-003
+- **Mandatory findings:** TS001-IMPL-002 remains partially resolved. Registered
+  profile evidence is a tested candidate awaiting independent disposition;
+  Worker peak-memory evidence or an owner-approved documented limitation
+  remains absent. The measured-profile long-task scenario is resolved.
+  TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
   physical focus-traversal evidence; the normal-color contrast subcondition is
   resolved.
@@ -464,10 +472,10 @@
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Obtain the registered performance profiles and measured Worker
-  peak or an owner-approved documented limitation; complete manual
-  screen-reader and reliable physical Tab/focus traversal; then request narrow
-  exact-source AU-AGENT-003 reverification before any Completion Report.
+- **Next step:** Commit and push the registered-profile evidence, confirm
+  exact-head CI, and request narrow AU-AGENT-003 disposition. Then address
+  Worker peak evidence or an owner-approved limitation and the manual
+  accessibility remainder before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
