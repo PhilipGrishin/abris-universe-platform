@@ -1,0 +1,71 @@
+# TASK-THINSLICE-001 Independent Acceptance Exchange
+
+| Field | Value |
+| --- | --- |
+| Document ID | AU-COLLAB-EX-20260726-001 |
+| Title | TASK-THINSLICE-001 Independent Acceptance Exchange |
+| Status | `REGISTERED`; package preparation pending |
+| Owner | AU-CODEX-PRIMARY |
+| Technical Approver | AU-AGENT-001 |
+| Independent Reviewer | Claude Cowork — Quality, Security & Independent Acceptance Lead |
+| Version | 1.0.0 |
+| Created | 2026-07-26 |
+| Last Updated | 2026-07-26 |
+| Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, TASK-THINSLICE-001 v1.1, Completion Report v1.1.0, Engineering Verification Report v1.9.0 |
+| Supersedes | None |
+| Superseded By | None |
+| Review Triggers | Package preparation; return arrival; source freshness; validation failure; acceptance finding; integration or archive |
+| Documentation Impact | Material |
+
+## Purpose
+
+Register the controlled `INDEPENDENT_ACCEPTANCE_REVIEW` exchange for the
+completed TASK-THINSLICE-001 Phase 0 thin slice after the internal engineering
+quality gate passed with findings.
+
+## Scope
+
+Claude Cowork independently reviews the approved Task Package, exact
+implementation range, code, tests, retained evidence, Completion Report, and
+Engineering Verification Report. The requested review must disposition AC-01
+through AC-09 without relying solely on Codex conclusions.
+
+The exchange does not authorize source edits, remediation, production
+deployment, release, broader platform or format claims, Phase 1 features, or
+project `[VERIFIED]` outside the exact returned scope.
+
+## Package State
+
+- Task type: `INDEPENDENT_ACCEPTANCE_REVIEW`
+- Requested role: Quality, Security & Independent Acceptance Lead
+- Source branch: `codex/task-thinslice-001-acceptance-source`
+- Source commit: `1a683abd9a8294de5a36888e997e65aba7b7a167`
+- Review range:
+  `395c5d62975ba0f52e0da69af256ef870bf02770..1a683abd9a8294de5a36888e997e65aba7b7a167`
+- Internal Completion Report gate: `VERIFIED WITH FINDINGS`
+- External inbox: not exported
+- Return: pending
+- Project `[VERIFIED]`: not assigned
+- Production deployment: not authorized
+
+## Owner and Lifecycle
+
+AU-CODEX-PRIMARY registers and exports the checksum-bound package and remains
+the sole Git writer. Claude Cowork owns the returned independent-acceptance
+meaning within the requested scope. AU-AGENT-001 owns technical dispositions;
+AU-AGENT-003 retains the internal verification meaning; AU-AGENT-002 maintains
+placement, navigation, metadata, and traceability after validation.
+
+Do not edit a generated task manifest or reuse this Exchange ID. A future
+return is non-canonical until contract validation, authorized meaning review,
+Codex integration, and archival complete.
+
+## Related Sources
+
+- [Request](request.json)
+- [Exchange Manifest Registry](../README.md)
+- [Collaboration Bridge](../../README.md)
+- [Completion Report](../../../docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md)
+- [Engineering Verification Report](../../../docs/reviews/engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)
+- [Task Package v1.1](../../../product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md)
+- [Source of Truth Registry](../../../docs/SOURCE_OF_TRUTH.md)

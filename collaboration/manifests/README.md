@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.9.0 |
+| Version | 1.10.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -59,6 +59,11 @@ not approve returned meaning.
   AU-AGENT-003 security-design gate; valid `COMPLETED / NO_DECISION` return
   integrated as `CONFIRMED_ACCEPTED_WITH_GATES` and archived with no
   implementation, deployment, product acceptance, or project `[VERIFIED]`.
+- [`AU-EX-20260726-001`](AU-EX-20260726-001/README.md) —
+  independent acceptance review of the exact TASK-THINSLICE-001 Phase 0
+  implementation, Completion Report v1.1.0, Engineering Verification Report
+  v1.9.0, and retained evidence; registered for Claude Cowork with return
+  pending and no project `[VERIFIED]` or deployment authority assigned.
 
 ## Rules
 
