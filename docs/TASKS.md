@@ -353,7 +353,8 @@
 ### AU-CDX-TASK-001-CLIENT-INTEGRATION — Accessible Local-First Web Flow
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
-  implementation verification pending; no project `[VERIFIED]`.
+  reverification completed with mandatory findings TS001-IMPL-002/003; no
+  project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.2 sections 4 and 8–11;
   TASK-THINSLICE-001 v1.1.
 - **Owner:** AU-AGENT-006; AU-AGENT-001 for technical integration;
@@ -374,8 +375,8 @@
   assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
   production deployment, product acceptance, and project `[VERIFIED]` remain
   open.
-- **Next step:** Remediate TS001-IMPL-001/002/003 and remaining
-  TS001-PERSIST-006 evidence, then request exact-source AU-AGENT-003
+- **Next step:** Complete performance finding TS001-IMPL-002 and accessibility
+  finding TS001-IMPL-003, then request narrow exact-source AU-AGENT-003
   reverification.
 
 ### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
@@ -410,14 +411,18 @@
 
 ### AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION — Consolidated Engineering Gate
 
-- **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification
-  Status remains `REWORK REQUIRED` pending exact-source reverification.
+- **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
+  reverification `[IMPLEMENTED]`; Engineering Verification Status remains
+  `REWORK REQUIRED`.
 - **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
 - **Remediation implementation source:** Exact commit
   `1c2bd5d7e83de32471ebe29d50809f42b0244039`; GitHub Actions run
   `30195542862`.
+- **Reverification source:** Exact commit
+  `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; GitHub Actions run
+  `30195963832`.
 - **Owner:** AU-AGENT-003 for independent findings and status; AU-AGENT-001
   coordinates remediation; domain owners retain their implementation scopes;
   AU-AGENT-002 integrates lifecycle records without changing review meaning.
@@ -433,15 +438,23 @@
   profiles, Worker peak memory, manual screen-reader and incomplete contrast
   review, non-Chromium/mobile profiles, safe real quota/eviction, and
   production assertions were not inferred or represented as passes.
-- **Finding disposition:** TS001-IMPL-001/002/003, TS001-PERSIST-006, and
-  TS001-SEC-002 remain assigned to AU-AGENT-003 until reverification.
-- **Documentation finding:** TS001-DOC-001 requires lifecycle integration of
-  this report and exact CI result.
+- **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
+  Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
+  portion for that profile.
+- **Mandatory findings:** TS001-IMPL-002 remains partially resolved for missing
+  registered profiles, Worker peak-memory evidence, and long-task scenario
+  disposition. TS001-IMPL-003 remains partially resolved for missing manual
+  screen-reader/focus-traversal evidence and manual disposition of axe's
+  incomplete contrast targets.
+- **Documentation finding:** TS001-DOC-001 is partially resolved and
+  non-blocking; version 1.1.0 of the independent report and current
+  dispositions require this lifecycle integration.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Publish the evidence/lifecycle package, pass exact-head CI,
-  and request AU-AGENT-003 reverification before any Completion Report.
+- **Next step:** Complete TS001-IMPL-002 and TS001-IMPL-003 without inferring
+  unsupported profiles, then request narrow exact-source AU-AGENT-003
+  reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 exact-source remediation reverification
+**Current focus:** TASK-THINSLICE-001 performance and accessibility finding remediation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -111,10 +111,10 @@
 - `[IMPLEMENTED]`, `[TESTED]` The minimum runtime request inventory records no
   client connection API and enforces `connect-src 'none'`. Full browser network
   capture and production assertions remain open under TS001-SEC-002.
-- `[IMPLEMENTED]` AU-AGENT-003 reviewed exact consolidated source `43782195`,
+- `[IMPLEMENTED]` AU-AGENT-003 initially reviewed exact consolidated source `43782195`,
   confirmed successful GitHub Actions run `30191845477`, and assigned
   Engineering Verification Status `REWORK REQUIRED`.
-- `[OPEN]` Mandatory findings are TS001-IMPL-001 for approved renderer
+- `[IMPLEMENTED]` Initial mandatory findings were TS001-IMPL-001 for approved renderer
   capability paths, TS001-IMPL-002 for controlled performance evidence,
   TS001-IMPL-003 for accessibility/supported-browser evidence, and the
   remaining exact-browser/contention/failure/lifecycle portion of
@@ -140,10 +140,14 @@
 - `[TESTED]` Exact implementation source `1c2bd5d` passes GitHub Actions run
   `30195542862`: frozen install, strict typecheck, 67 tests, clean static build,
   production dependency audit, and no-deploy Cloudflare rehearsal.
-- `[OPEN]` AU-AGENT-003 reverification of the remediation sources and evidence
-  is the current internal gate. No Completion Report, project `[VERIFIED]`,
-  product acceptance, release readiness, or deployment authorization is
-  claimed.
+- `[IMPLEMENTED]` AU-AGENT-003 reverified exact source `6da2f9e`, successful
+  GitHub Actions run `30195963832`, 67 tests, and the retained evidence.
+  TS001-IMPL-001 is resolved. TS001-PERSIST-006 is resolved only for the
+  declared Chromium/macOS Phase 0 scope, and the implementation-runtime part of
+  TS001-SEC-002 is resolved for that profile.
+- `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
+  Completion Report, project `[VERIFIED]`, product acceptance, release
+  readiness, and deployment authorization remain absent.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -420,8 +424,11 @@
 
 ## Blockers
 
-- `[OPEN]` AU-AGENT-003 finding-by-finding reverification of
-  TS001-IMPL-001/002/003, remaining TS001-PERSIST-006, and TS001-SEC-002.
+- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles, Worker
+  peak memory or approved limitation, and scenario-attributed long-task
+  disposition.
+- `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable focus traversal and
+  manual disposition of axe's 15 incomplete contrast targets.
 - `[OPEN]` Registered reference/constrained benchmark profiles, Worker peak
   memory, manual accessibility/contrast, broader browsers, safe real
   quota/eviction, and production response assertions remain explicit evidence
@@ -461,18 +468,17 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and source-qualified the consolidated remediation candidate through
-exact commit `1c2bd5d`. The approved OffscreenCanvas Worker, glyph atlas,
-bounded render cache, and main-thread fallback are present; measured-profile
-performance, accessibility, persistence-failure, and runtime-request evidence
-is retained with every untested profile and unsafe scenario explicit. GitHub
-Actions run `30195542862` passed all exact-source checks. No finding status,
-project `[VERIFIED]`, product acceptance, release approval, or deployment
-permission was assigned by the implementation owners.
+Integrated AU-AGENT-003 reverification of exact source `6da2f9e` and successful
+GitHub Actions run `30195963832`. The reviewer resolved TS001-IMPL-001, bounded
+TS001-PERSIST-006, and the measured-profile implementation-runtime part of
+TS001-SEC-002. Engineering Verification Status remains `REWORK REQUIRED`
+because TS001-IMPL-002 and TS001-IMPL-003 are mandatory. No project
+`[VERIFIED]`, product acceptance, release approval, or deployment permission
+was assigned.
 
 ## Next Step
 
-Publish the remediation evidence and synchronized lifecycle state, confirm
-exact-head CI, then request AU-AGENT-003 reverification. Prepare no Completion
-Report or Claude acceptance exchange until the independent reviewer assigns
-every finding disposition.
+Complete safe local remediation for TS001-IMPL-002 and TS001-IMPL-003,
+preserving any profile or manual-assistive-technology limitation that cannot be
+verified. Request narrow AU-AGENT-003 reverification before a Completion Report
+or Claude acceptance exchange.

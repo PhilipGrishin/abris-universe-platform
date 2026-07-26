@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.7.0 |
+| Version | 3.8.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,21 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Consolidated Remediation Reverification
+
+- Integrated AU-AGENT-003 version 1.1.0 reverification for exact source
+  `6da2f9e` and successful GitHub Actions run `30195963832` without changing
+  independent review meaning.
+- Recorded TS001-IMPL-001 as resolved and bounded Chromium/macOS dispositions
+  for TS001-PERSIST-006 and the implementation-runtime part of TS001-SEC-002.
+- Preserved TS001-IMPL-002 and TS001-IMPL-003 as mandatory Medium findings and
+  the consolidated Engineering Verification Status as `REWORK REQUIRED`.
+- Registered the previously omitted raw medium long-task observations without
+  inferring whether the steady-gesture budget passed or failed.
+- Kept Completion Report, production promotion, product acceptance, and project
+  `[VERIFIED]` blocked by their respective gates.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Consolidated Finding Remediation Evidence
 

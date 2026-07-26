@@ -1,5 +1,27 @@
 # Handoff Log
 
+## 2026-07-26 — Consolidated Remediation Reverification
+
+- **Exact source:** `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`,
+  matching local, remote, and successful GitHub Actions run `30195963832`.
+- **Engineering Verification Status:** `REWORK REQUIRED`.
+- **Resolved:** TS001-IMPL-001; TS001-PERSIST-006 only for the declared
+  Chromium/macOS Phase 0 scope; TS001-SEC-002 implementation-runtime portion
+  for that profile.
+- **Mandatory:** TS001-IMPL-002 and TS001-IMPL-003 remain Medium and partially
+  resolved. The Completion Report remains blocked.
+- **Performance gaps:** Registered reference/constrained profiles, Worker peak
+  memory, and attribution of 31 raw medium long-task entries.
+- **Accessibility gaps:** Manual screen-reader and reliable focus traversal,
+  plus manual disposition of 15 serious-impact axe incomplete contrast targets.
+- **Boundaries:** Untested platforms, quota/eviction/power loss, production
+  assertions, release, deployment, product acceptance, and project
+  `[VERIFIED]` remain unclaimed.
+- **Bridge disposition:** The next action remains internal Codex remediation;
+  no Claude return or Exchange ID is required.
+- **Next gate:** Complete findings 002 and 003, then request narrow
+  exact-source AU-AGENT-003 reverification.
+
 ## 2026-07-26 — Consolidated Finding Remediation Candidate
 
 - **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; independent Engineering

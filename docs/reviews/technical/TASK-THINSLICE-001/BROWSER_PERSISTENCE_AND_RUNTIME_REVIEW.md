@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-005 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | ADR-TS001-003; Threat Model; Runtime Request Inventory; commits `f17d0d3b465af88b82c78c7f66abe0cbc0ade66c` and `37e657eb6571c525154e07ed225d6b877358fb99` |
@@ -83,6 +83,12 @@ deployment.
 TS001-PERSIST-006 is materially advanced but not declared fully closed because
 real quota/eviction and the broader supported-browser matrix remain open.
 
+AU-AGENT-003 reverified the evidence at exact source `6da2f9e` and resolved
+TS001-PERSIST-006 only for the declared Chromium/macOS Phase 0 scope. Quota,
+eviction, power loss, and non-Chromium behavior remain unverified and must not
+be claimed. The implementation-runtime part of TS001-SEC-002 is resolved for
+the same profile; production assertions remain a separate deployment gate.
+
 ## Common Mistakes
 
 - A deliberate transaction abort is not the same scenario as quota exhaustion.
@@ -104,7 +110,7 @@ real quota/eviction and the broader supported-browser matrix remain open.
 - [ ] Safe real quota/eviction evidence obtained.
 - [ ] Broader supported-browser matrix exercised.
 - [ ] Production headers and network assertion completed after authorization.
-- [ ] AU-AGENT-003 independent review completed.
+- [x] AU-AGENT-003 independent review completed with bounded dispositions.
 
 ## References
 

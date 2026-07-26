@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.16.0 |
+| Version | 1.17.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -75,16 +75,15 @@ browser/accessibility matrices and deployment remain open. The SHA-pinned CI
 contract, static Worker boundary, restrictive headers, clean-source
 `version.json`, and no-deploy Wrangler rehearsal are `[IMPLEMENTED]`,
 `[TESTED]` at exact implementation commit `35bbb34`; exact-head remote CI run
-`30191845477` passed at `43782195`. AU-AGENT-003 assigned the consolidated
-implementation `REWORK REQUIRED` for TS001-IMPL-001/002/003 and remaining
-TS001-PERSIST-006 evidence. Subsequent source implements the Worker, glyph
-atlas, and bounded tile-raster paths and retains measured browser,
-accessibility, persistence-failure, and runtime-resource evidence.
-AU-AGENT-003 reverification is pending; reference/constrained performance,
-manual assistive-technology, broader browser, and safe quota/eviction evidence
-remain open. TD-GATE-002 remains open for
-exact-symbol claims about other producers. Production deployment also requires
-TD-GATE-003 and security-header/request-inventory/network-capture evidence.
+`30191845477` passed at `43782195`. AU-AGENT-003 initially assigned
+`REWORK REQUIRED`. Reverification at exact source `6da2f9e` and successful run
+`30195963832` resolves TS001-IMPL-001, bounded Chromium/macOS
+TS001-PERSIST-006, and the measured-profile implementation-runtime part of
+TS001-SEC-002. TS001-IMPL-002 and TS001-IMPL-003 remain mandatory for the
+registered performance profiles/Worker memory/long-task disposition and manual
+accessibility/contrast evidence. TD-GATE-002 remains open for exact-symbol
+claims about other producers. Production deployment also requires TD-GATE-003
+and authorized production security assertions.
 
 ## Owner
 

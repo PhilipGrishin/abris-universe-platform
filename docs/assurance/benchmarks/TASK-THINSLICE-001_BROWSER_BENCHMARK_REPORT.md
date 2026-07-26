@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b` and `37e657eb6571c525154e07ed225d6b877358fb99`; registered route-1 fixtures |
@@ -71,6 +71,14 @@ after bounded tile-raster caching. The pre-remediation browser run recorded
 about 40 ms p95 Worker work and triggered the optimization; the failed result
 was not discarded or represented as a pass.
 
+The raw medium interaction artifact also contains 31 `long-task` entries:
+one at 50 ms and 30 above 50 ms, with a maximum of 93 ms. The original capture
+did not label which scenario phase produced each entry. They therefore cannot
+be attributed to or excluded from the steady pan/zoom window, and this report
+does not assign a pass or failure to the long-task budget. A targeted rerun
+must reset and label long-task observations per scenario before that metric can
+be dispositioned.
+
 The recorded main-thread heap signal rose from 50,468,280 bytes after the
 scripted interaction to a 189,160,737-byte observed peak after the combined
 interaction and 30 reload sequence. The 138,692,457-byte delta is about
@@ -86,11 +94,14 @@ TS001-IMPL-002 closure is not claimed because:
 - the exact reference viewport/DPR profile was not run;
 - the 4× constrained profile was not run;
 - import-Worker peak memory was not available from the browser measurement;
+- retained medium long-task observations are not attributed to scenario phase;
 - heap evidence is an observational upper signal, not a forced-GC retained
   allocation result.
 
-These are evidence limitations, not assumed passes. The result requires
-AU-AGENT-003 review.
+These are evidence limitations, not assumed passes. AU-AGENT-003 reverified the
+evidence at exact source `6da2f9e`, accepted the measured values within their
+declared profile, and kept TS001-IMPL-002 mandatory for the missing profiles,
+Worker memory, and long-task disposition.
 
 ## Common Mistakes
 
@@ -113,7 +124,8 @@ AU-AGENT-003 review.
 - [ ] Registered reference viewport and DPR run.
 - [ ] Registered constrained profile run.
 - [ ] Import-Worker peak memory measured.
-- [ ] AU-AGENT-003 independent review completed.
+- [ ] Long-task evidence isolated and dispositioned by scenario phase.
+- [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
 
 ## References
 

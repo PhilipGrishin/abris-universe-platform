@@ -270,8 +270,8 @@
 
 - **Status:** `[OPEN]`; repository and client functional controls
   `[IMPLEMENTED]`, `[TESTED]`; repository independently
-  `VERIFIED WITH FINDINGS`; consolidated finding TS001-PERSIST-006 remains
-  mandatory
+  `VERIFIED WITH FINDINGS`; consolidated TS001-PERSIST-006 resolved only for
+  the declared Chromium/macOS Phase 0 scope
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
@@ -296,8 +296,9 @@
   10,000-event rebuild. Safe real quota/eviction, power loss, strict-durability,
   and broader-browser evidence remain open.
   AU-AGENT-003 resolved repository findings TS001-PERSIST-001 through
-  TS001-PERSIST-005 at exact commit `854073c`; TS001-PERSIST-006 preserves the
-  runtime evidence obligation.
+  TS001-PERSIST-005 at exact commit `854073c`; consolidated reverification at
+  `6da2f9e` resolves TS001-PERSIST-006 only for the declared profile. Safe
+  quota/eviction, power loss, and additional-platform claims remain prohibited.
 - **Fallback:** Roll back the client without deleting IndexedDB and recover the
   projection from retained events. Manual backup remains out of approved Phase
   0 scope.
@@ -383,8 +384,9 @@
   source-qualified measured-profile evidence. Listed budgets pass on the
   recorded Chromium/macOS profile. Reference/constrained profiles, Worker peak
   memory, manual accessibility, and broader-browser evidence remain open and
-  cannot be generalized. AU-AGENT-003 reverification remains mandatory before
-  a Completion Report.
+  cannot be generalized. AU-AGENT-003 reverified exact source `6da2f9e`,
+  resolved TS001-IMPL-001, and retained performance/accessibility findings 002
+  and 003 as mandatory before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

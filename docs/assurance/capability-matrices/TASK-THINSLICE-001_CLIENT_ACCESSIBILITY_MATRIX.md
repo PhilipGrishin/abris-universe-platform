@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commit `1c2bd5d7e83de32471ebe29d50809f42b0244039` |
@@ -72,6 +72,8 @@ source-qualified row and evidence.
   accessibility behavior remain unverified.
 
 TS001-IMPL-003 is therefore materially advanced but not declared closed.
+AU-AGENT-003 independently reverified this bounded evidence at exact source
+`6da2f9e` and retained TS001-IMPL-003 as a mandatory Medium finding.
 
 ## Common Mistakes
 
@@ -92,7 +94,7 @@ TS001-IMPL-003 is therefore materially advanced but not declared closed.
 - [ ] Manual screen-reader session completed.
 - [ ] Incomplete contrast targets manually resolved.
 - [ ] Additional supported browser/platform rows exercised.
-- [ ] AU-AGENT-003 independent review completed.
+- [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
 
 ## References
 

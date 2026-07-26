@@ -9,12 +9,11 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
-consolidated Engineering Verification Status remains `REWORK REQUIRED` pending
-AU-AGENT-003 reverification
+consolidated Engineering Verification Status remains `REWORK REQUIRED` after
+AU-AGENT-003 reverification at `6da2f9e`
 
-Reverify the remediation evidence and assign finding dispositions while
-preserving the registered reference/constrained performance, manual
-accessibility, broader-browser, and safe quota/eviction limitations. Keep
+Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
+all unsupported performance, accessibility, and platform limitations. Keep
 production deployment, product acceptance, and project `[VERIFIED]` outside
 this internal stage.
 
@@ -67,11 +66,11 @@ this internal stage.
 - The runtime request inventory uses `connect-src 'none'`; application source
   has no script-initiated connection API. Full browser capture and production
   assertion remain open.
-- AU-AGENT-003 reviewed exact consolidated source `43782195`, confirmed
+- AU-AGENT-003 initially reviewed exact consolidated source `43782195`, confirmed
   successful GitHub Actions run `30191845477`, and assigned `REWORK REQUIRED`.
-  TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 are mandatory.
-  TS001-SEC-002 is partially resolved and non-blocking for the current
-  no-deploy scope.
+  At that source, TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 were
+  mandatory, while TS001-SEC-002 was partially resolved and non-blocking for
+  the no-deploy scope.
 - The approved OffscreenCanvas Worker, bounded glyph atlas, incremental
   main-thread fallback, and eight-entry/128 MiB bounded Worker tile-raster
   cache are implemented and tested.
@@ -87,6 +86,16 @@ this internal stage.
   with visible `Read-only`, blocked IndexedDB upgrade, persistent-storage
   denial, and a same-origin runtime resource inventory. Safe real quota/
   eviction and production assertions remain open.
+- AU-AGENT-003 reverified exact remediation source `6da2f9e`, successful
+  GitHub Actions run `30195963832`, 67 tests, checksums, and evidence.
+  TS001-IMPL-001 is resolved. TS001-PERSIST-006 is resolved only for the
+  declared Chromium/macOS Phase 0 scope. The implementation-runtime part of
+  TS001-SEC-002 is resolved for that profile; production assertions remain
+  open.
+- TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings. Raw
+  medium evidence has 31 unattributed long-task entries; registered reference/
+  constrained profiles and Worker peak memory are absent. Manual screen-reader,
+  reliable focus traversal, and manual contrast disposition remain absent.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -151,12 +160,11 @@ Exact implementation source `1c2bd5d` passes frozen install, strict typecheck,
 the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
 TD-GATE-003 and production assertions remain open.
 
-AU-AGENT-003 reports no Critical or High defect. TS001-IMPL-001 has a concrete
-remediation candidate; TS001-IMPL-002/003 and TS001-PERSIST-006 have material
-new evidence with explicit remaining limitations. The Completion Report
-remains blocked until AU-AGENT-003 reverifies and assigns dispositions. This
-internal stage requires no Claude return and therefore no new Collaboration
-Bridge Exchange ID.
+AU-AGENT-003 reports no Critical or High defect and has resolved
+TS001-IMPL-001 plus the bounded persistence/runtime-security scopes.
+TS001-IMPL-002 and TS001-IMPL-003 remain mandatory; the Completion Report
+remains blocked. This internal remediation requires no Claude return and
+therefore no new Collaboration Bridge Exchange ID.
 
 ## Current Renderer Gate
 
@@ -183,8 +191,8 @@ remains open.
 
 ## Next Concrete Step
 
-Publish this source-qualified remediation evidence and synchronized lifecycle
-state, confirm exact-head CI, and request AU-AGENT-003 reverification of
-TS001-IMPL-001/002/003, TS001-PERSIST-006, and TS001-SEC-002. Do not prepare a
-Completion Report or Claude acceptance exchange before that independent finding
-disposition.
+Integrate the independent version 1.1.0 report, then complete the measurable
+parts of TS001-IMPL-002 and TS001-IMPL-003 without inferring unsupported
+profiles or assistive-technology results. Request narrow exact-source
+AU-AGENT-003 reverification before preparing any Completion Report or Claude
+acceptance exchange.
