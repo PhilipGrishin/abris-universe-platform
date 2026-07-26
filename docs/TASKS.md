@@ -240,7 +240,7 @@
   constants, cross-record invariant validation, immutable snapshot boundary,
   Project lifecycle validation, and ordered ProgressState rebuilding in
   `packages/domain-core`.
-- **Evidence:** Strict TypeScript 7.0.2 `pnpm typecheck`; 9 focused domain tests;
+- **Evidence:** Strict TypeScript 7.0.2 `pnpm typecheck`; 10 focused domain tests;
   full `pnpm test`; workspace-boundary verification; and
   `DOMAIN_CORE_IMPLEMENTATION_REVIEW.md`.
 - **Boundary:** No OXS parsing/mapping, canonical serialization/hash algorithm,
@@ -251,8 +251,9 @@
 
 ### AU-CDX-TASK-001-OXS-IMPORTER — Bounded Route-1 OXS Importer Core
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; worker integration and
-  consolidated AU-AGENT-003 verification pending; no project `[VERIFIED]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; dedicated Worker integration
+  implemented and bounded consolidated AU-AGENT-003 review complete; no
+  project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.0 sections 6, 7, 11, and 15;
   ADR-TS001-001; TD-GATE-001 route-1 profile; route-1 symbol evidence.
 - **Owner:** AU-AGENT-004; AU-AGENT-001 for technical integration;
@@ -267,12 +268,13 @@
   golden mapping; exact registered rejection codes; full `pnpm test`; dependency
   integrity lock; bounded runtime ImportReport validation; and
   `OXS_IMPORTER_IMPLEMENTATION_REVIEW.md`.
-- **Boundary:** No Web Worker/client integration, tile construction, renderer,
-  UI, CI/CD, deployment, general
-  producer compatibility, other-producer exact-symbol claim, or product
-  acceptance.
-- **Next step:** Integrate the importer into the later client-owned Worker with
-  no UI-thread fallback.
+- **Boundary:** The package remains platform-independent and contains no
+  Worker, storage, renderer, or UI dependency. Its client-owned Worker
+  integration is separately implemented and evidenced. General producer
+  compatibility, other-producer exact-symbol claims, production deployment,
+  and product acceptance remain outside this package.
+- **Next step:** Preserve route-1 boundaries and require a separately
+  registered producer profile before expanding compatibility.
 
 ### AU-CDX-TASK-001-PERSISTENCE — IndexedDB Persistence and Recovery
 
@@ -289,25 +291,27 @@
   append-only idempotent progress events, single-writer Web Locks, rebuildable
   projections, persistence capability recording, and typed storage failures in
   `packages/persistence`.
-- **Evidence:** Strict typecheck; 17 focused persistence tests; atomic rollback,
+- **Evidence:** Strict typecheck; 18 focused persistence tests; atomic rollback,
   reopen/rebuild, idempotency/corruption, quota, blocked upgrade, persistence
   denial, lock capability, and full workspace checks; and
   `PERSISTENCE_IMPLEMENTATION_REVIEW.md`.
-- **Boundary:** No client save-state behavior, real two-tab/browser matrix,
-  power-loss/eviction test, Worker integration, tile construction, renderer,
-  UI, synchronization, backup, CI/CD, deployment, or product acceptance.
-- **Independent result:** AU-REVIEW-ENG-TS001-PERSIST-001 records High
+- **Boundary:** Client-owned save-state and declared-profile real-browser
+  integration are separately implemented and evidenced. Safe real quota,
+  power-loss/eviction, broader browsers, synchronization, backup, production
+  deployment, and product acceptance remain open or out of scope.
+- **Historical independent result:** AU-REVIEW-ENG-TS001-PERSIST-001 records High
   TS001-PERSIST-001/002, Medium TS001-PERSIST-003/004/005, and runtime-evidence
-  gate TS001-PERSIST-006. The Completion Report is blocked.
+  gate TS001-PERSIST-006 at that source-qualified stage.
 - **Remediation candidate:** Final-event hashing, exact-version stitch
   validation, Blob/hash binding, bounded report validation/cleanup, and
   fail-closed replay/rebuild integrity are implemented with focused negative
   tests for TS001-PERSIST-001 through TS001-PERSIST-005.
 - **Reverification:** TS001-PERSIST-001 through TS001-PERSIST-005 are
-  `Resolved`; repository-level quality gate passes. TS001-PERSIST-006 remains
-  open for the browser/client integration stage.
-- **Next step:** Proceed to the bounded renderer implementation and measured
-  medium-fixture prototype without claiming browser/client persistence.
+  `Resolved`; TS001-PERSIST-006 is resolved only for the declared
+  Chrome/macOS Phase 0 scope. Safe real quota/eviction/power-loss and broader
+  platform claims remain prohibited.
+- **Next step:** Preserve the bounded persistence evidence and limitations in
+  the Completion Report.
 
 ### AU-CDX-TASK-001-RENDERER — Bounded Tiled Renderer Core
 
@@ -325,14 +329,15 @@
   layers, incremental frame budgets, readable/overview modes, contrast
   selection, non-color progress marks, and canonical-cell hit testing in
   `packages/renderer`.
-- **Evidence:** Strict typecheck; 15 focused renderer tests after final
+- **Evidence:** Strict typecheck; 16 focused renderer tests after final
   remediation; full workspace checks; and a Node renderer-core medium-fixture
   signal with 100,000 stitches, 128 total tiles, and 12 requested tiles for the
   measured viewport.
-- **Boundary:** No browser Canvas adapter, bitmap glyph atlas,
-  OffscreenCanvas Worker transport, client gestures, companion accessible DOM,
-  rendering goldens, controlled browser benchmark, 500,000-stitch scale claim,
-  exact-symbol claim outside route 1, UI, deployment, or product acceptance.
+- **Boundary:** Browser Canvas, glyph-atlas, OffscreenCanvas Worker, gestures,
+  accessible DOM, and controlled benchmark evidence are separately
+  implemented by the client integration. Pixel goldens, 500,000-stitch scale,
+  exact-symbol claims outside route 1, production deployment, and product
+  acceptance remain open or out of scope.
 - **Initial findings:** Exact commit `cb34a48` received High
   TS001-RENDER-001/002/003 and Medium TS001-RENDER-004 for progress-state
   semantics, unbounded overlay work, missing tile-provider integrity checks,
@@ -368,16 +373,20 @@
   engineering signals.
 - **Exact source:** Final client commit `3a73748`; non-gate browser signal
   remains attributable to exact earlier commit `fc50d66`.
-- **Evidence:** Strict typecheck; 62 tests at the final client commit; local
+- **Evidence:** Historical final-client source passed 62 tests; the current
+  exact-source suite passes 68 tests. Registered local
   Worker/Canvas/IndexedDB browser flow; minimal and 100,000-stitch fixtures;
-  corrupt-file containment; reload and stale-tab recovery; implementation
-  review and raw signal.
-- **Boundary:** Controlled performance distributions, exact browser and
-  assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
-  production deployment, product acceptance, and project `[VERIFIED]` remain
-  open.
-- **Next step:** Preserve the bounded accessibility limitations in the
-  consolidated Completion Report; do not generalize support.
+  corrupt-file containment; pointer click; strict `> 6 CSS px` pan-only
+  gesture; glyph-free/non-interactive overview; reload plus close-tab/new-tab
+  recovery; visual rollback on real Web Locks failure; implementation review
+  and raw evidence.
+- **Boundary:** Registered performance distributions and Chrome 150/macOS
+  26.5.2 accessibility/browser evidence pass only within their declared
+  profiles. Rendering goldens, broader browsers/platforms, mobile/touch,
+  500,000-stitch Prototype 9.1, production deployment, product acceptance, and
+  project `[VERIFIED]` remain open.
+- **Next step:** Preserve these bounded limitations in the Completion Report;
+  do not generalize support.
 
 ### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
 
@@ -403,18 +412,18 @@
   run `30191845477` and retained artifact passed.
 - **Boundary:** No Cloudflare account ID, token, route, custom domain, DNS
   change, upload, production smoke, or deployment occurred. TD-GATE-003, full
-  runtime network capture, production headers, remote CI evidence, and
+  production runtime network capture, production headers, and
   explicit deployment authorization remain mandatory.
-- **Next step:** Preserve the passed CI result while remediating the mandatory
-  consolidated findings. Do not deploy or prepare a Claude return before
-  AU-AGENT-003 reverification.
+- **Next step:** Preserve the passed CI result while remediating the separate
+  Completion Report findings. Do not deploy or prepare a Claude return before
+  AU-AGENT-003 report reverification.
 
 ### AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION — Consolidated Engineering Gate
 
 - **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
   reverification `[IMPLEMENTED]`; Engineering Verification Status
-  `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 prepared and pending
-  exact-source AU-AGENT-003 review.
+  `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 received `REWORK
+  REQUIRED`; v1.1.0 remediation is in progress.
 - **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
@@ -477,14 +486,17 @@
   remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is
   resolved only for the declared Chrome 150/macOS 26.5.2 profile. No mandatory
   implementation finding remains in that bounded Phase 0 scope.
-- **Documentation finding:** TS001-DOC-001 is partially resolved and
-  non-blocking; version 1.1.0 of the independent report and current
-  dispositions require this lifecycle integration.
+- **Completion Report findings:** TS001-COMP-001, TS001-COMP-002, and
+  TS001-COMP-003 are mandatory; TS001-COMP-004 is a non-blocking Node-action
+  runtime maintenance recommendation. The remediation adds the required
+  repeat-import limitation, reproducible manual procedures, interaction
+  contract evidence, and current lifecycle normalization.
 - **Boundary:** No Critical or High defect was observed. `VERIFIED WITH
   FINDINGS` is a task-scoped engineering status, not product acceptance or
   project `[VERIFIED]`.
-- **Next step:** Commit the consolidated Completion Report and request
-  exact-source AU-AGENT-003 review without expanding the accepted scope.
+- **Next step:** Complete and validate the v1.1.0 documentation remediation,
+  then request narrow exact-source AU-AGENT-003 reverification without
+  expanding the accepted scope.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

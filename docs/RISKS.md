@@ -409,3 +409,23 @@
 - **Owner:** AU-AGENT-004 for renderer correctness and performance;
   AU-AGENT-006 for browser/client/accessibility evidence; AU-AGENT-003 for
   independent engineering verification
+
+## RISK-017 — Pinned GitHub Actions Lag the Hosted Node Runtime
+
+- **Status:** `[OPEN]`; non-blocking maintenance recommendation
+- **Probability:** Medium
+- **Impact:** Medium
+- **Trigger:** A SHA-pinned JavaScript action that still declares Node 20
+  stops working when GitHub removes its compatibility override or changes the
+  hosted runtime.
+- **Affected areas:** CI availability, build provenance, dependency audit,
+  static-artifact retention, and delivery lead time.
+- **Prevention:** Keep actions pinned to immutable full commits. Periodically
+  review upstream Node 24-native releases, provenance, changelogs, permissions,
+  and compatibility without replacing pins with mutable tags.
+- **Mitigation:** Update each action through a separate tested dependency/CI
+  task with exact-head GitHub Actions evidence and no permission expansion.
+- **Fallback:** Retain the last passing pins while the compatibility override
+  remains available; if a pin fails, block promotion and use a reviewed
+  replacement commit rather than bypassing CI.
+- **Owner:** AU-CODEX-PRIMARY; AU-AGENT-003 reviews the resulting CI evidence

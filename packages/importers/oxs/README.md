@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-OXS-001 |
 | Title | OXS Importer Workspace |
-| Status | `[IMPLEMENTED]`, `[TESTED]` bounded route-1 importer core |
+| Status | `[IMPLEMENTED]`, `[TESTED]` bounded route-1 importer core; integrated through the client-owned Worker within the declared Phase 0 profile |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-001, `tests/fixtures/oxs/README.md` |
@@ -51,10 +51,12 @@ Only the project-original route-1 producer profile is accepted. Other producer
 coordinates are rejected rather than guessed. Exact symbol evidence is limited
 to the route-1 generator's literal project-original Unicode source codes.
 
-The pure importer core must be invoked by a later client-owned Web Worker
-boundary. Worker creation/cancellation, transferable-byte messaging,
-SourceFile Blob persistence, atomic canonical commit, tile construction, and UI
-errors are not implemented here and must not be claimed.
+The pure importer package deliberately contains no Worker, storage, renderer,
+or UI dependency. The current web client invokes it through a dedicated module
+Worker and separately owns cancellation, transferable-byte messaging,
+SourceFile Blob persistence, atomic canonical commit, tile construction, and
+user-safe errors. Those integration behaviors are not package-internal
+capabilities and must be evidenced through the client and persistence records.
 
 ## Verification
 

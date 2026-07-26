@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; production deployment `[OPEN]`; consolidated quality gate `REWORK REQUIRED` |
+| Status | `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; underlying implementation `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 gate `REWORK REQUIRED`; production deployment `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
@@ -110,8 +110,7 @@ Production remains blocked by:
 
 - TD-GATE-003: capture the current Worker version/route and recoverable
   placeholder artifact;
-- remediation and AU-AGENT-003 reverification of mandatory consolidated
-  implementation findings;
+- Completion Report remediation and AU-AGENT-003 report reverification;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - explicit production-deployment authorization.
@@ -124,12 +123,14 @@ rollback because no deployment occurred.
 
 ## Quality Gate
 
-AU-AGENT-003 reviewed exact consolidated source `43782195` and assigned
-Engineering Verification Status `REWORK REQUIRED`. CI and the no-deploy
-rehearsal passed, but mandatory renderer capability, performance,
-accessibility/browser, and persistence evidence findings block the
-consolidated Completion Report. The implementation owner cannot change that
-status without exact-source AU-AGENT-003 reverification.
+AU-AGENT-003 initially assigned `REWORK REQUIRED` at exact consolidated source
+`43782195`. Later source-qualified implementation, benchmark, persistence,
+accessibility, and manual evidence remediated the mandatory bounded Phase 0
+implementation findings; the current underlying implementation status is
+`VERIFIED WITH FINDINGS`. Completion Report v1.0.0 separately received
+`REWORK REQUIRED` for report/documentation completeness. Production remains
+blocked by its explicit deployment gates regardless of either internal status.
+The implementation owner cannot change AU-AGENT-003 status.
 
 ## References
 

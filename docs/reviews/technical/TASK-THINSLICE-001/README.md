@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.21.0 |
+| Version | 1.22.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -50,6 +50,7 @@ final product acceptance.
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
 - [Client Accessibility and Platform Matrix](../../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
 - [Browser Persistence and Runtime Review](BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md)
 - [Completion Report](COMPLETION_REPORT.md)
@@ -71,8 +72,10 @@ all renderer-core findings with Engineering Verification Status `VERIFIED`.
 The accessible browser flow, dedicated import Worker, real IndexedDB reload,
 two-tab stale-write rejection, and bounded Canvas integration are now
 `[IMPLEMENTED]`, `[TESTED]` at final client commit `3a73748`; the non-gate
-browser signal remains tied to exact earlier commit `fc50d66`. Controlled performance,
-browser/accessibility matrices and deployment remain open. The SHA-pinned CI
+browser signal remains tied to exact earlier commit `fc50d66`. Registered
+performance and the declared Chrome/macOS accessibility/browser matrix later
+passed within their recorded boundaries. Broader platforms, mobile/touch,
+Prototype 9.1, and deployment remain open. The SHA-pinned CI
 contract, static Worker boundary, restrictive headers, clean-source
 `version.json`, and no-deploy Wrangler rehearsal are `[IMPLEMENTED]`,
 `[TESTED]` at exact implementation commit `35bbb34`; exact-head remote CI run
@@ -86,8 +89,11 @@ limitation. AU-AGENT-003 accepted the Project Owner-confirmed physical Tab and
 VoiceOver evidence at exact source `470a30a` and package `58d5832f`, resolving
 TS001-IMPL-003 only for the declared Chrome 150/macOS 26.5.2 profile. The
 consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS`;
-the consolidated Completion Report is prepared and awaits exact-source
-AU-AGENT-003 review before any Claude Cowork acceptance exchange.
+Completion Report v1.0.0 received `REWORK REQUIRED` for TS001-COMP-001/002/003
+and non-blocking TS001-COMP-004. Version 1.1.0 remediation adds the required
+limitation, reproducible procedures, lifecycle normalization, and supplemental
+pointer/pan/overview/rollback/close-tab evidence. It awaits narrow exact-source
+AU-AGENT-003 rereview before any Claude Cowork acceptance exchange.
 TD-GATE-002 remains open for exact-symbol claims about other producers.
 Production deployment also requires TD-GATE-003 and authorized production
 security assertions.

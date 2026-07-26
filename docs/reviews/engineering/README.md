@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.4.0 |
+| Version | 2.5.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -34,7 +34,7 @@ contain Claude Cowork product acceptance reports and does not grant project
 | TASK-THINSLICE-001 | [Pre-Code Security Design Verification](TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Design-only security review; not implementation, release, product acceptance, or project `[VERIFIED]` |
 | TASK-THINSLICE-001 | [Persistence Verification](TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Exact remediation commit `854073c`; findings 001–005 resolved; finding 006 remains the browser/client evidence gate |
 | TASK-THINSLICE-001 | [Renderer Verification](TASK-THINSLICE-001_RENDERER_VERIFICATION.md) | `VERIFIED` | Exact commit `930cad2`; findings TS001-RENDER-001 through 004 resolved; repository-core scope only |
-| TASK-THINSLICE-001 | [Consolidated Implementation Verification](TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | TS001-IMPL-002 and TS001-IMPL-003 resolved for their bounded Phase 0 scopes; preserved memory, accessibility, platform, release, and deployment limitations remain |
+| TASK-THINSLICE-001 | [Consolidated Implementation Verification](TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md) | Underlying implementation `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 `REWORK REQUIRED` | TS001-IMPL-002 and TS001-IMPL-003 resolved for their bounded Phase 0 scopes; TS001-COMP-001/002/003 require report/documentation remediation; TS001-COMP-004 is a recommendation |
 
 The report closes the independent security-review component of TD-GATE-004.
 TS001-SEC-001 is resolved. TS001-SEC-002 retains its future runtime request
@@ -61,6 +61,12 @@ scale claim. TS001-IMPL-003 is resolved only for the declared Chrome
 150/macOS 26.5.2 profile; unrecorded session details and broader accessibility
 profiles remain limitations. Production-only security assertions remain a
 separate deployment gate.
+
+Completion Report v1.0.0 was separately reviewed at exact source `6bbf6915`.
+The report gate is `REWORK REQUIRED` for three mandatory completeness and
+documentation-lifecycle findings. The v1.1.0 remediation and supplemental
+interaction evidence remain implementation-owner inputs until AU-AGENT-003
+performs the registered narrow rereview.
 
 ## Owner
 

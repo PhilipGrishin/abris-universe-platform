@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-WEB-001 |
 | Title | Web Client Workspace |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering Verification Status `REWORK REQUIRED`; renderer capability remediation candidate pending reverification |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; underlying implementation Engineering Verification Status `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 quality gate `REWORK REQUIRED` |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -70,10 +70,13 @@ pnpm build
 pnpm rehearse:deploy
 ```
 
-The client tests cover viewport zoom invariants, bounded user messages, one-based
-coordinates, and progress save/failure transitions. Browser verification is
-required for Worker creation, Canvas pixels, IndexedDB reload recovery,
-multi-tab stale-write behavior, responsive layout, and accessibility state.
+The client tests cover viewport zoom invariants, bounded user messages,
+one-based coordinates, and progress save/failure transitions. Registered
+Chrome/macOS evidence covers Worker creation, Canvas pixels, IndexedDB reload
+and close-tab/new-tab recovery, multi-tab stale-write behavior, the strict
+click-versus-pan boundary, unreadable overview behavior, responsive layout,
+and bounded accessibility state. Broader browsers, mobile/touch, safe real
+quota exhaustion, eviction, and operating-system power loss remain unverified.
 
 `build:benchmark` writes a separate production-mode harness to
 `dist-benchmark`. It embeds only the project-original registered fixtures,
@@ -93,8 +96,9 @@ import, undo/redo, production deployment, or a 500,000-stitch performance
 claim. `pnpm rehearse:deploy` only compiles and inspects a local Worker bundle;
 it has no production route or deploy command. OffscreenCanvas capability
 changes only the static rendering execution path; the incremental main-thread
-fallback preserves symbols and interaction. Controlled browser benchmark and
-assistive-technology matrices remain independent evidence gates.
+fallback preserves symbols and interaction. The registered Chrome 150/macOS
+26.5.2 evidence does not establish cross-browser, mobile, touch, production,
+or project `[VERIFIED]` status.
 
 ## Lifecycle and Additions
 

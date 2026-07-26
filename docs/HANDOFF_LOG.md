@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-26 — Completion Report Rework and Interaction Evidence
+
+- **Quality gate:** AU-AGENT-003 reviewed Completion Report v1.0.0 at exact
+  source `6bbf6915` and assigned `REWORK REQUIRED`. The underlying
+  implementation remains task-scoped `VERIFIED WITH FINDINGS`.
+- **Mandatory findings:** TS001-COMP-001 repeat-import limitation,
+  TS001-COMP-002 reproducible manual steps, and TS001-COMP-003 current
+  documentation lifecycle.
+- **Recommendation:** TS001-COMP-004 preserves the GitHub Actions Node-runtime
+  maintenance warning as a separate non-blocking follow-up.
+- **Supplemental evidence:** Chrome 150/macOS 26.5.2 passed explicit pointer
+  click, 10 CSS px drag as pan-only, glyph-free/non-interactive 54% overview,
+  close-tab/new-tab committed-mark recovery, and visual rollback under a real
+  Web Locks save failure. The record is
+  `manual-interaction-contracts-6bbf691.json`.
+- **Boundary:** Touch/mobile and broader platforms remain unverified. No
+  production, product acceptance, project `[VERIFIED]`, or Claude return is
+  assigned.
+- **Next gate:** Commit and validate Completion Report v1.1.0 remediation,
+  obtain exact-head CI, and request narrow AU-AGENT-003 rereview.
+
 ## 2026-07-26 — TASK-THINSLICE-001 Completion Report Candidate
 
 - **Report:** `docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md`

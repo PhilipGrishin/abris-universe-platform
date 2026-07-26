@@ -11,14 +11,15 @@ integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
 AU-AGENT-003 manual-accessibility reverification at evidence package
-`58d5832f`
+`58d5832f`; Completion Report v1.0.0 quality-gate status is `REWORK REQUIRED`,
+and v1.1.0 remediation is in progress
 
-Submit the prepared consolidated Completion Report to AU-AGENT-003 for its
-exact-source final internal review while preserving all unsupported
-performance, accessibility, platform, release, and deployment limitations.
-TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their bounded Phase 0
-scopes. Keep production deployment, product acceptance, and project
-`[VERIFIED]` outside this internal stage.
+Complete the v1.1.0 Completion Report/documentation remediation and submit its
+exact source to AU-AGENT-003 for narrow internal rereview. Preserve all
+unsupported performance, accessibility, platform, release, and deployment
+limitations. TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their
+bounded Phase 0 scopes. Keep production deployment, product acceptance, and
+project `[VERIFIED]` outside this internal stage.
 
 ## Confirmed Inputs
 
@@ -210,9 +211,13 @@ TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
 scopes, plus the bounded persistence/runtime-security scopes. The current
 Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
 implementation finding remains in that declared scope. A consolidated
-Completion Report is prepared, but has not yet been reviewed or accepted.
-Its preparation requires no Claude return and therefore no new Collaboration
-Bridge Exchange ID.
+Completion Report v1.0.0 was independently reviewed and received `REWORK
+REQUIRED` for TS001-COMP-001, TS001-COMP-002, and TS001-COMP-003, plus
+non-blocking recommendation TS001-COMP-004. The v1.1.0 remediation includes a
+supplemental Chrome interaction session for pointer click, the strict pan
+threshold, unreadable overview, failed-save visual rollback, and explicit
+close-tab/new-tab persistence. This internal remediation requires no Claude
+return and therefore no new Collaboration Bridge Exchange ID.
 
 ## Current Renderer Gate
 

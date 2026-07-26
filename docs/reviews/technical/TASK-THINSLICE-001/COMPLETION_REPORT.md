@@ -4,15 +4,15 @@
 | --- | --- |
 | Document ID | AU-COMP-TS001-001 |
 | Title | TASK-THINSLICE-001 Completion Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; pending AU-AGENT-003 review and Claude Cowork independent acceptance |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; v1.0.0 received `REWORK REQUIRED`; v1.1.0 remediation pending AU-AGENT-003 reverification |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.6.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; lifecycle source `2a8999e424b471d2a27f65d2ae60a79187a8e0e3`; CI runs listed below |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.7.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; lifecycle source `2a8999e424b471d2a27f65d2ae60a79187a8e0e3`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package, implementation source, test, evidence, finding, limitation, deployment, acceptance, or documentation-result change |
@@ -33,9 +33,10 @@ AU-AGENT-003 assigns the underlying implementation the task-scoped Engineering
 Verification Status `VERIFIED WITH FINDINGS`. TS001-IMPL-001,
 TS001-PERSIST-006, the implementation-runtime portion of TS001-SEC-002,
 TS001-IMPL-002, and TS001-IMPL-003 are resolved only within their recorded
-Phase 0 boundaries. This Completion Report has not yet been independently
-reviewed. Claude Cowork product acceptance, project `[VERIFIED]`, release
-readiness, production deployment, and production smoke are not assigned.
+Phase 0 boundaries. AU-AGENT-003 assigned Completion Report v1.0.0 `REWORK
+REQUIRED`; this v1.1.0 remediation is pending narrow reverification. Claude
+Cowork product acceptance, project `[VERIFIED]`, release readiness, production
+deployment, and production smoke are not assigned.
 
 ## 2. Exact Delivery Identity
 
@@ -145,6 +146,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | 500,000-stitch Prototype 9.1 | Deferred as explicitly allowed by the Task Package; the 100,000-stitch medium fixture is the early signal. |
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
+| Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
 | Production deployment | Not performed because TD-GATE-003, production assertions, rollback-anchor capture, credentials, and explicit deployment authorization remain separate gates. |
 
 These dispositions do not change product requirements.
@@ -287,12 +289,98 @@ The registered 100,000-stitch medium estimate is 100,374,296 bytes, about
 
 ## 13. Manual Verification
 
+### Reproduction Preparation
+
+Use only a disposable local origin and the exact source named by the evidence
+being reproduced. The retained Phase 0 session used executable source
+`470a30a7ea04860c9dacab5ae6edace960ca7d6d`.
+
+1. Check out the exact source without modifying it and confirm
+   `git status --short` is empty.
+2. Run `pnpm install --frozen-lockfile`.
+3. Run `pnpm --filter @abris-universe/web build:benchmark`.
+4. Run `pnpm --filter @abris-universe/web preview:benchmark`.
+5. Use the printed loopback URL. Do not expose or deploy `dist-benchmark`.
+
+### Import, Interaction, Save, and Reload Procedure
+
+1. Open the benchmark build's application entry on the disposable origin.
+2. Import the registered minimal OXS fixture and confirm that the Project
+   summary and symbol Canvas appear without a console error.
+3. Repeat with the registered 512×256, 100,000-stitch, 32-color medium fixture.
+4. Use the toolbar and keyboard to zoom and pan. Select a visible stitch and
+   toggle it by pointer, then by `Enter` or `Space` while the Canvas is focused.
+5. Confirm the visible state transitions through `Saving…` to `Saved locally`.
+6. Reload the page and confirm the same Project reopens with the committed
+   mark state.
+7. Close the application tab, open a new tab at the same entry URL, and
+   confirm that the committed mark is visibly restored without another
+   interaction.
+8. Open a second browser context on the same origin, hold the registered
+   project progress-writer lock, and confirm the application fails closed to
+   visible `Read-only` rather than reporting a save. Confirm that the
+   optimistic mark change is visually rolled back to the last committed
+   state, then release the lock and reload to confirm the same committed state.
+9. At readable zoom, use a pointer click with no drag to mark/unmark a stitch.
+   Then drag more than 6 CSS px and confirm the gesture pans without toggling
+   any stitch.
+10. Zoom below the readable-symbol threshold. Confirm that glyph symbols are
+    absent, the UI asks the user to zoom in, and pointer interaction cannot
+    select or mark a stitch.
+
+The exact outcomes, profile, and retained evidence are indexed by the
+[Client Browser Signal](../../../assurance/benchmarks/TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md)
+and
+[Browser Persistence and Runtime Review](BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md).
+
+### Negative and Persistence-Failure Procedure
+
+1. Open `benchmark.html` on the disposable benchmark origin and run the
+   registered cold-import, corrupt-import, 10,000-event reload, interaction,
+   and resource-inventory scenarios.
+2. Confirm the corrupt fixture returns `OXS_XML_MALFORMED`, the application
+   remains responsive, and no partial accepted Project is presented.
+3. Open `browser-failure.html` only on the disposable origin.
+4. Run the transaction-abort, Web Locks contention, and blocked-upgrade
+   scenarios.
+5. Confirm the duplicate-key transaction aborts, the competing writer becomes
+   read-only, and the held version-1 connection produces the registered
+   blocked-upgrade result.
+6. Compare the produced machine-readable records with the source-qualified
+   artifacts in the
+   [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md);
+   do not overwrite historical evidence.
+
+Safe real quota exhaustion, eviction, and operating-system power loss are not
+part of this procedure and must not be simulated against owner data.
+
+### Physical Keyboard and VoiceOver Procedure
+
+1. Open `accessibility.html` on the clean production-mode benchmark origin and
+   wait for the persisted medium Project to render.
+2. Reload the page and do not click any page content before traversal.
+3. Press physical `Tab` and confirm the exact order: Abris Universe home,
+   Import OXS, Zoom out, Zoom in, Pan left, Pan up, Pan down, Pan right, and
+   the pattern Canvas.
+4. Enable macOS VoiceOver and confirm names and roles for the link, import
+   control, six viewer controls, and Canvas.
+5. With the Canvas focused, confirm that VoiceOver announces the pattern name,
+   512×256 grid, 100,000-stitch count, and keyboard instructions.
+6. Press `ArrowRight` and `Plus`, then select a visible stitch and toggle its
+   progress. Confirm the coordinate, symbol, color, marked state,
+   `Saving…`, and `Saved locally` announcements.
+7. Preserve any mismatch as a finding. Do not use a click-anchored traversal
+   as a full-document pass.
+
 Retained browser evidence covers:
 
 - minimal and 100,000-stitch OXS import;
 - corrupt import containment;
 - symbol Canvas, zoom, pan, pointer and keyboard selection;
 - mark/unmark, visible save state, reload recovery, stale-tab rejection;
+- pointer-click AC-05 modality, strict `> 6 CSS px` pan-only behavior,
+  glyph-free/non-interactive unreadable overview, close-tab/new-tab recovery,
+  and visual committed-state rollback during a real Web Locks save failure;
 - responsive semantic checks and grayscale/reduced-motion inspection;
 - real IndexedDB abort, blocked upgrade, Web Locks contention, and persistent
   storage denial;
@@ -305,6 +393,11 @@ method reloaded the page, made no content click, and traversed from the
 document start. No audio/video or session-specific screenshot was captured;
 the VoiceOver version and exact manual viewport were not recorded.
 
+The supplemental interaction-contract session is retained as
+[`manual-interaction-contracts-6bbf691.json`](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-interaction-contracts-6bbf691.json).
+It is limited to pointer input in Chrome 150 on macOS 26.5.2. Touch/mobile tap
+remains unverified.
+
 ## 14. Acceptance-Criteria Mapping
 
 | Acceptance criterion | Engineering disposition | Evidence boundary |
@@ -313,9 +406,9 @@ the VoiceOver version and exact manual viewport were not recorded.
 | AC-02 safe unsupported/corrupt error | `[IMPLEMENTED]`, `[TESTED]` | Negative fixtures, bounded error mapping, real corrupt Worker import |
 | AC-03 Viewer opens without UI blocking | `[IMPLEMENTED]`, `[TESTED]` | Dedicated import/render Workers, measured Viewer TTI on registered profiles |
 | AC-04 smooth tiled zoom/pan | `[IMPLEMENTED]`, `[TESTED]` | Bounded tiled renderer, Worker/fallback paths, retained 120-frame distributions |
-| AC-05 immediate mark/unmark | `[IMPLEMENTED]`, `[TESTED]` | Pointer/keyboard browser flows and registered mark-to-paint distributions |
+| AC-05 immediate mark/unmark | `[IMPLEMENTED]`, `[TESTED]` | Explicit no-drag pointer click, keyboard flow, strict `> 6 CSS px` pan-only check, unreadable-overview interaction block, and registered mark-to-paint distributions |
 | AC-06 automatic save | `[IMPLEMENTED]`, `[TESTED]` | Commit-driven status, IndexedDB transactions, autosave distributions |
-| AC-07 reload preserves marks | `[IMPLEMENTED]`, `[TESTED]` | Browser reload/reopen, verified replay, 10,000-event lifecycle |
+| AC-07 reload preserves marks | `[IMPLEMENTED]`, `[TESTED]` | Browser reload plus explicit close-tab/new-tab reopen, verified replay, 10,000-event lifecycle |
 | AC-08 Phase 1 foundation independently accepted | `[OPEN]` | Requires Claude Cowork architecture acceptance of exact code and this Completion Report |
 | AC-09 no out-of-scope feature | `[TESTED]` engineering review | No known section-10 feature implemented; Claude Cowork retains independent acceptance authority |
 
@@ -346,6 +439,10 @@ independently review this report before Claude handoff.
 - Exact literal-symbol fidelity is claimed only for project-original route-1
   fixtures.
 - The optional legend is absent.
+- Repeat import of the same file is not required to be idempotent in Phase 0.
+  No identity-reuse, duplicate-project, or new-PatternVersion behavior is
+  guaranteed by this task; the later versioning rule requires separate design
+  and evidence.
 - Safe real quota exhaustion, eviction, operating-system power loss, and
   backup/restore are not exercised.
 - Firefox, Safari/WebKit, other Chromium versions, other operating systems,
@@ -419,22 +516,24 @@ provenance, header, route, and network assertions.
 
 ## 21. Independent Engineering Verification
 
-Engineering Verification Report v1.6.0 assigns the underlying implementation
-`VERIFIED WITH FINDINGS`. No Critical or High defect was observed, and no
-mandatory implementation finding remains in the explicitly bounded Phase 0
-scope. The report preserves every limitation above and does not approve this
-Completion Report, release, deployment, product acceptance, or project
-`[VERIFIED]`.
+Engineering Verification Report v1.7.0 preserves the underlying implementation
+status `VERIFIED WITH FINDINGS` and assigns Completion Report v1.0.0 `REWORK
+REQUIRED`. No Critical or High defect was observed, and no mandatory
+implementation finding remains in the explicitly bounded Phase 0 scope.
+TS001-COMP-001 through TS001-COMP-003 are mandatory report/documentation
+findings; TS001-COMP-004 is a non-blocking maintenance recommendation. This
+v1.1.0 package remediates those inputs without changing the reviewer-authored
+finding dispositions.
 
-AU-AGENT-003 must now review the exact source containing this Completion Report
-and either confirm that it faithfully represents the implementation and
-evidence or issue findings. The implementation owner cannot self-approve this
-report.
+AU-AGENT-003 must narrowly reverify the exact source containing this
+remediation and either resolve or retain each finding. The implementation owner
+cannot self-approve this report.
 
 ## 22. Recommended Next Step
 
-Submit the exact Completion Report source to AU-AGENT-003 for the final
-internal engineering quality gate. If no mandatory finding remains, register a
+Validate and commit the v1.1.0 remediation, obtain exact-head CI, and submit it
+to AU-AGENT-003 for narrow finding reverification. If no mandatory finding
+remains, register a
 new `INDEPENDENT_ACCEPTANCE_REVIEW` Collaboration Bridge exchange containing
 only the necessary exact-source Task Package, Completion Report, Engineering
 Verification Report, design/ADR references, and evidence indexes. Then stop

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.9.0 |
+| Version | 4.10.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Completion Report Rework and Interaction Evidence
+
+- Integrated AU-AGENT-003 Completion Report v1.0.0 gate `REWORK REQUIRED`
+  without changing reviewer-authored meaning.
+- Added the required repeat-import limitation and reproducible manual
+  procedures to Completion Report v1.1.0.
+- Registered a source-qualified Chrome record for pointer-click AC-05
+  modality, strict `> 6 CSS px` pan-only behavior, glyph-free/non-interactive
+  unreadable overview, close-tab/new-tab AC-07 persistence, and failed-save
+  visual rollback.
+- Normalized package, threat-model, task, traceability, status, focus, review,
+  and evidence navigation to distinguish completed bounded Phase 0 evidence
+  from production, scale, cross-platform, and acceptance gates.
+- Preserved touch/mobile, broader browser/platform, real quota/eviction,
+  Prototype 9.1 Worker-memory, production, and project `[VERIFIED]`
+  limitations.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — TASK-THINSLICE-001 Completion Report Candidate
 

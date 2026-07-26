@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CLIENT-001 |
 | Title | TASK-THINSLICE-001 Client Integration Implementation Review |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; underlying implementation Engineering Verification Status `VERIFIED WITH FINDINGS` |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design v1.5.2 sections 4 and 8–11; TASK-THINSLICE-001 v1.1; final client implementation commit `3a737484e0084e26d9576b4ef1d43b384adf873a`; browser signal commit `fc50d664b97f51118f5dd88f7d9eb0a28fa771a4` |
@@ -96,18 +96,34 @@ reattributed to the follow-up commit.
 
 ## Limitations and Open Evidence
 
-- The current Canvas renderer does not implement the proposed glyph atlas or
-  OffscreenCanvas rendering Worker.
-- Pixel golden tests, exact browser matrix, manual screen-reader review,
-  accessibility audit tooling, and controlled benchmark distributions remain
-  open.
+- Pixel golden tests and broader browser, operating-system, mobile, touch,
+  forced-colors, and browser-zoom matrices remain open.
 - The optional read-only legend is not implemented.
-- The progress-history-10k fixture and 500,000-stitch Prototype 9.1 remain
-  open.
+- The 500,000-stitch Prototype 9.1 remains open and must include actual
+  import-Worker peak-memory measurement before any scale claim.
 - Persistent-storage denial is surfaced; backup is not provided or claimed.
+- Safe real quota exhaustion, eviction, and operating-system power loss remain
+  unverified.
 - Undo/redo, synchronization, accounts, multiple formats, and viewport restore
   are not tested because they are outside TASK-THINSLICE-001 scope.
-- CI/CD and deployment are separate registered stages.
+- Production deployment, response headers, network assertion, smoke, and
+  rollback remain separate registered gates.
+
+## Later Consolidated Disposition
+
+After this source-qualified implementation stage, the approved
+OffscreenCanvas Worker, bounded glyph atlas, bounded tile-raster cache,
+incremental fallback, registered benchmark distributions, 10,000-event
+history, accessibility evidence, and declared-profile browser persistence
+evidence were implemented and independently reviewed. AU-AGENT-003 assigns
+the underlying consolidated implementation `VERIFIED WITH FINDINGS` within the
+recorded Phase 0 boundaries. The supplemental interaction session explicitly
+covers pointer click, drag movement greater than 6 CSS px as pan-only,
+glyph-free/non-interactive unreadable overview, close-tab/new-tab persistence,
+and visual committed-state rollback on a real Web Locks failure.
+
+This later disposition does not rewrite the historical counts above, broaden
+platform support, approve production, or assign project `[VERIFIED]`.
 
 ## Documentation Result
 
@@ -118,18 +134,21 @@ Documentation Exception is requested.
 
 ## Quality Gate
 
-AU-AGENT-003 review is required after the CI/rehearsal stage. AU-AGENT-006
-cannot verify its own implementation.
+AU-AGENT-003 completed the underlying implementation review. The separate
+Completion Report v1.0.0 gate is `REWORK REQUIRED` pending documentation/report
+remediation and narrow reverification. AU-AGENT-006 cannot verify its own
+implementation.
 
 ## Next Step
 
-Implement the reviewed CI pipeline and non-production deployment rehearsal,
-then submit the exact source and evidence to AU-AGENT-003.
+Complete the registered Completion Report remediation, exact-head validation,
+and narrow AU-AGENT-003 report reverification before any Claude handoff.
 
 ## References
 
 - [Technical Design](../../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Client Browser Signal](../../../assurance/benchmarks/TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md)
+- [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
 - [Web Client Package](../../../../apps/web/README.md)
 - [Persistence Package](../../../../packages/persistence/README.md)
 - [Task Review Index](README.md)

@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
@@ -121,8 +121,10 @@ no product-data network egress in Phase 0.
 - `THREAT-OPEN-001`: `[IMPLEMENTED]`, `[TESTED]` for importer core. Exact
   dependencies are `saxes` 6.0.0 and `@noble/hashes` 2.2.0; non-DOM parsing,
   DTD/processing-instruction rejection, bounded diagnostics, and hard limits
-  have focused tests. Dedicated Worker integration/cancellation and
-  AU-AGENT-003 implementation review remain open.
+  have focused tests. Dedicated Worker integration, cancellation, and bounded
+  Phase 0 AU-AGENT-003 implementation review are complete. Actual
+  import-Worker peak memory remains mandatory in Prototype 9.1 before any
+  500,000-stitch scale claim.
 - `THREAT-OPEN-002`: current Cloudflare token scope and recoverable placeholder
   version are external-state unknowns.
 - `THREAT-OPEN-003`: public preview access control is not approved; previews
@@ -133,38 +135,68 @@ no product-data network egress in Phase 0.
   reviewed the revised CSP, persistence, multi-tab, parser-worker, and fixture
   controls through `AU-REVIEW-ENG-TS001-SEC-001`; implementation evidence
   remains separate.
-- `THREAT-OPEN-006`: the production runtime request inventory and clean
-  full-path network capture do not exist before implementation.
+- `THREAT-OPEN-006`: the measured Chrome runtime request inventory is
+  `[IMPLEMENTED]`, `[TESTED]` for the declared local profile. Production
+  header/request assertions and broader-platform capture remain open.
 
 ## Importer-Core Evidence Update
 
 - TM-001 and TM-003 importer-core controls are `[IMPLEMENTED]`, `[TESTED]`.
 - TM-002 hard byte/structure/allocation controls are `[IMPLEMENTED]`,
-  `[TESTED]`; controlled memory measurements and Worker cancellation remain
-  open.
-- TM-005 unsupported reporting is `[TESTED]`; durable source-byte persistence
-  remains open.
+  `[TESTED]`; Worker cancellation is tested. Actual import-Worker peak memory
+  is an owner-approved Phase 0 evidence limitation under the tested 384 MiB
+  preflight control and mandatory Prototype 9.1 measurement.
+- TM-005 unsupported reporting and durable original-source persistence are
+  `[IMPLEMENTED]`, `[TESTED]` for the registered route-1 profile.
 - TM-006 is `[IMPLEMENTED]`, `[TESTED]`: source `marked` emits a warning and
   never enters Pattern or Progress.
 - TM-011 now has exact dependency versions, lockfile integrity, MIT/ISC
   production-license inventory, and an advisory audit with no known
-  vulnerabilities at audit time. AU-AGENT-003 implementation review remains
-  open.
+  vulnerabilities at audit time. AU-AGENT-003 implementation review is
+  complete within its documented bounded disposition.
+
+## Consolidated Implementation Evidence Update
+
+- TM-007 committed-save behavior, optimistic visual rollback, reload, and
+  close-tab/new-tab recovery are `[IMPLEMENTED]`, `[TESTED]` on Chrome 150 /
+  macOS 26.5.2. Safe real quota exhaustion, eviction, and abrupt power loss
+  remain unverified.
+- TM-010 dedicated import/render Worker paths, cancellation, bounded tile and
+  glyph caches, incremental fallback, and measured-profile long-task evidence
+  are `[IMPLEMENTED]`, `[TESTED]`. Cross-browser and 500,000-stitch scale
+  claims remain open.
+- TM-017 the registered local runtime request inventory and `connect-src
+  'none'` policy are `[IMPLEMENTED]`, `[TESTED]`; production assertion remains
+  a deployment gate.
+- TM-019 local Worker-header/CSP rehearsal is `[IMPLEMENTED]`, `[TESTED]`;
+  production response assertions remain open.
+- TM-020 real Web Locks contention fails closed and visually restores the
+  committed progress state on the declared profile.
+
+The underlying consolidated implementation has task-scoped Engineering
+Verification Status `VERIFIED WITH FINDINGS`. The Completion Report remains
+under its separate internal quality gate. This update does not assign product
+acceptance, release readiness, deployment authorization, or project
+`[VERIFIED]`.
 
 This update assigns no Engineering Verification Status, security acceptance, or
 project `[VERIFIED]`.
 
 ## Verification Checklist
 
-- [ ] Every TM control has executable or inspectable evidence.
-- [ ] Limits match the Technical Design and tests.
-- [ ] No unexpected network request occurs during import, render, toggle, or
+- [x] Every implemented Phase 0 TM control has executable or inspectable
+      evidence; production-only and deferred controls remain explicitly open.
+- [x] Limits match the Technical Design and tests.
+- [x] No unexpected network request occurs on the declared local Chrome
+      profile during import, render, toggle, or
       reload.
-- [ ] Dependency and action inventories are reviewed.
-- [ ] CI permission and secret boundaries are tested.
+- [x] Dependency and action inventories are reviewed.
+- [x] CI permission and secret boundaries are tested for the no-deploy
+      workflow.
 - [ ] Rollback rehearsal restores the prior Cloudflare version.
 - [ ] CSP and required HTTP headers pass pre-promotion and production checks.
-- [ ] Two-context progress and failed-import Blob-lifecycle tests pass.
+- [x] Two-context progress and failed-import Blob-lifecycle tests pass on the
+      declared repository/browser evidence boundaries.
 - [x] AU-AGENT-003 records design findings and a Quality Gate Decision.
 
 ## References

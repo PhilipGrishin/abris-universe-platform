@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-PERSIST-001 |
 | Title | Persistence Workspace |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; browser integration implemented, independent client verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; browser integration accepted within the declared Chrome/macOS Phase 0 profile; broader durability/platform evidence remains open |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-003 |
@@ -67,8 +67,12 @@ stale toggles, reload, and fail-closed projection rebuild.
 
 This package does not implement UI save-state behavior, Web Worker import,
 canonical tile construction, rendering, synchronization, or backup. Browser
-runtime evidence is owned by the client integration stage. Initial schema
-version 1 has no historical production migration.
+runtime evidence is owned by the client integration stage and currently covers
+commit-driven save/reload, close-tab/new-tab recovery, real Web Locks
+contention, transaction abort, and blocked upgrade on the declared profile.
+Safe real quota exhaustion, eviction, operating-system power loss, other
+browsers, synchronization, and backup remain outside the verified boundary.
+Initial schema version 1 has no historical production migration.
 
 ## Lifecycle and Additions
 

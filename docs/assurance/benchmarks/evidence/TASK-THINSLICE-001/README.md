@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; source-qualified evidence with independent dispositions recorded in the Engineering Verification Report |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, `../../TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md`, implementation commits named by each artifact |
@@ -68,6 +68,10 @@ acceptance or assign `[VERIFIED]`.
 - `manual-accessibility-470a30a.json`: Project Owner-confirmed corrected
   physical Tab traversal and macOS VoiceOver session, rejected initial method,
   exact source, declared environment, outcomes, and limitations.
+- `manual-interaction-contracts-6bbf691.json`: source-qualified Chrome session
+  for pointer-click modality, the strict six-CSS-pixel click-versus-pan
+  boundary, unreadable overview behavior, close-tab/new-tab persistence, and
+  visual rollback under a real Web Locks save failure.
 
 SHA-256:
 
@@ -109,6 +113,8 @@ SHA-256:
   `9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e`
 - `manual-accessibility-470a30a.json`:
   `8d8f7ccacf71b4b3e90abadd8ca281e7a6f5008954f8ac7f99fe6adbf067e430`
+- `manual-interaction-contracts-6bbf691.json`:
+  `1212debc85c000280115377195867e0ea043f532b584fa7fb2104119fa4c4620`
 
 ## Owner and Lifecycle
 
@@ -131,6 +137,10 @@ resolved TS001-IMPL-003 only for the declared Chrome 150/macOS 26.5.2 Phase 0
 profile. The missing VoiceOver version, exact viewport, session recording, and
 all broader browser, operating-system, mobile, touch, forced-colors, and
 browser-zoom profiles remain explicit limitations.
+
+The supplemental interaction-contract session is implementation-owner
+evidence pending AU-AGENT-003 sufficiency review. It does not broaden the
+supported platform matrix or assign project `[VERIFIED]`.
 
 ## Adding Evidence
 

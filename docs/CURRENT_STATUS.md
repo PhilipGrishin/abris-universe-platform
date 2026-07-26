@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 Completion Report exact-source engineering review
+**Current focus:** TASK-THINSLICE-001 Completion Report v1.1.0 remediation and narrow AU-AGENT-003 rereview
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -457,7 +457,7 @@
   intentionally truncated corrupt fixture; the fixture verifier also checks
   coordinate corners, asymmetric identity, 100,000-stitch medium scale, DTD
   isolation, and bounded rejection cases.
-- `[TESTED]` `pnpm typecheck` passes with TypeScript 7.0.2, and all 9 focused
+- `[TESTED]` `pnpm typecheck` passes with TypeScript 7.0.2, and all 10 focused
   domain-core tests pass without failures.
 - `[TESTED]` All 15 focused importer tests pass, including the 100,000-stitch
   golden mapping, deterministic IDs/hash, registered rejection codes, DTD and
@@ -485,6 +485,8 @@
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
   internally verified Completion Report.
+- `[OPEN]` Completion Report v1.1.0 exact-source AU-AGENT-003 reverification
+  after TS001-COMP-001/002/003 remediation; v1.0.0 remains `REWORK REQUIRED`.
 
 ## Active Risks
 
@@ -511,19 +513,24 @@
   until request-inventory and full network-capture evidence pass.
 - RISK-016: renderer-core evidence could be mistaken for browser, Worker,
   accessibility, glyph-atlas, or performance readiness.
+- RISK-017: SHA-pinned GitHub Actions may lag the hosted Node runtime.
 
 See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Prepared TASK-THINSLICE-001 Completion Report v1.0.0 against exact executable
-source `470a30a`, evidence package `58d5832f`, Engineering Verification Report
-v1.6.0, and successful lifecycle CI run `30214866997`. The report preserves
-the bounded `VERIFIED WITH FINDINGS` disposition and all evidence,
-accessibility, platform, production, and acceptance limitations.
+AU-AGENT-003 reviewed Completion Report v1.0.0 at exact source `6bbf6915` and
+assigned the report gate `REWORK REQUIRED` while preserving the underlying
+implementation status `VERIFIED WITH FINDINGS`. Remediation now records the
+required repeat-import limitation, reproducible manual procedures, current
+documentation lifecycle, and a supplemental Chrome session covering pointer
+click, strict `> 6 CSS px` pan-only behavior, unreadable overview suppression,
+close-tab/new-tab persistence, and failed-save visual rollback. No Claude
+exchange has been registered.
 
 ## Next Step
 
-Validate and commit the Completion Report package, then request exact-source
-AU-AGENT-003 review of the report. Only after that internal gate passes may a
-new Collaboration Bridge independent-acceptance exchange be registered.
+Complete link/status/checksum validation, commit the v1.1.0 remediation
+package, run exact-head CI, and request narrow AU-AGENT-003 reverification of
+TS001-COMP-001 through TS001-COMP-004. Only after that internal gate passes
+may a new Collaboration Bridge independent-acceptance exchange be registered.
