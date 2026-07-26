@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.22.0 |
+| Version | 1.23.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -27,8 +27,8 @@ The record covers pre-development feasibility, repository readiness, technical
 risks, the bounded format-selection spike, product clarifications, the current
 Technical Design review disposition, and non-independent implementation
 evidence for completed internal stages. AU-AGENT-003 reports remain canonical
-in the engineering-review library and are linked here; this record contains no
-final product acceptance.
+in the engineering-review library and are linked here; independent product
+acceptance remains canonical under `product/reviews/`.
 
 ## Artifacts
 
@@ -54,6 +54,7 @@ final product acceptance.
 - [Client Accessibility and Platform Matrix](../../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
 - [Browser Persistence and Runtime Review](BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md)
 - [Completion Report](COMPLETION_REPORT.md)
+- [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)
 - [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
 - [Independent Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
@@ -90,10 +91,14 @@ VoiceOver evidence at exact source `470a30a` and package `58d5832f`, resolving
 TS001-IMPL-003 only for the declared Chrome 150/macOS 26.5.2 profile. The
 consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS`;
 Completion Report v1.0.0 received `REWORK REQUIRED` for TS001-COMP-001/002/003
-and non-blocking TS001-COMP-004. Version 1.1.0 remediation adds the required
+and non-blocking TS001-COMP-004. Version 1.1.0 remediation added the required
 limitation, reproducible procedures, lifecycle normalization, and supplemental
-pointer/pan/overview/rollback/close-tab evidence. It awaits narrow exact-source
-AU-AGENT-003 rereview before any Claude Cowork acceptance exchange.
+pointer/pan/overview/rollback/close-tab evidence and passed narrow exact-source
+AU-AGENT-003 rereview. Claude Cowork then independently assigned bounded
+`[VERIFIED]` at immutable source `1a683ab` through `AU-EX-20260726-001`, with
+zero blocking and sixteen non-blocking findings. Completion Report v1.1.1
+records that lifecycle result without changing implementation or product
+meaning.
 TD-GATE-002 remains open for exact-symbol claims about other producers.
 Production deployment also requires TD-GATE-003 and authorized production
 security assertions.

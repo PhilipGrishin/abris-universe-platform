@@ -12,14 +12,14 @@ evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
 AU-AGENT-003 manual-accessibility reverification at evidence package
 `58d5832f`; Completion Report v1.1.0 Engineering Verification Status is
-`VERIFIED WITH FINDINGS` after final source `c6314a9c`
+`VERIFIED WITH FINDINGS` after final source `c6314a9c`; Claude Cowork bounded
+independent acceptance is `[VERIFIED]` at immutable source `1a683ab`
 
-Collaboration Bridge exchange `AU-EX-20260726-001` is exported for Claude
-Cowork independent acceptance against immutable source `1a683ab`. Preserve all
-unsupported performance, accessibility, platform, release, and deployment
-limitations. TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their
-bounded Phase 0 scopes. Keep production deployment, product acceptance, and
-project `[VERIFIED]` outside this internal stage.
+Collaboration Bridge exchange `AU-EX-20260726-001` returned
+`COMPLETED / VERIFIED`, passed contract validation, and is integrated
+byte-for-byte. Preserve all unsupported performance, accessibility, platform,
+release, and deployment limitations. TS001-ACCEPT-F-01 through F-16 are
+registered separately. Production deployment remains unauthorized.
 
 ## Confirmed Inputs
 
@@ -154,8 +154,10 @@ project `[VERIFIED]` outside this internal stage.
 - TD-GATE-003, production headers/smoke, and explicit authorization block
   production deployment. The measured-profile implementation runtime inventory
   is complete; production assertion remains open.
-- No project `[VERIFIED]`, implementation acceptance, security acceptance,
-  release readiness, deployment authorization, or product acceptance exists.
+- Bounded TASK-THINSLICE-001 `[VERIFIED]` exists only at source `1a683ab` and
+  only within the independent report's declared scope. Release readiness,
+  production verification, deployment authorization, and excluded scope do
+  not exist.
 
 ## Assigned Roles
 
@@ -185,7 +187,8 @@ project `[VERIFIED]` outside this internal stage.
   authorization close.
 - Do not transfer the four PROD-DEC-011 XSP binaries through the Collaboration
   Bridge or commit them without the separate owner-controlled transfer path.
-- Do not assign project `[VERIFIED]`.
+- Do not broaden the bounded project `[VERIFIED]` result beyond the independent
+  report's explicit scope and limitations.
 
 ## Completed Exchange
 
@@ -215,7 +218,7 @@ Completion Report v1.1.0 passed final narrow AU-AGENT-003 reverification.
 TS001-COMP-001 through TS001-COMP-003 are resolved; TS001-COMP-004 remains a
 non-blocking recommendation. The supplemental Chrome interaction evidence is
 accepted only within its declared profile. Exchange `AU-EX-20260726-001` is
-exported and its return is pending.
+valid, integrated, and archived with provenance.
 
 ## Current Renderer Gate
 
@@ -242,6 +245,7 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and validate the exact-source manual accessibility evidence, then
-request narrow AU-AGENT-003 reverification of TS001-IMPL-003. No Completion
-Report or Claude acceptance exchange is permitted before closure.
+Complete repository validation, then stop for the Project Owner's explicit
+next-stage authorization. Do not deploy. Route
+TS001-ACCEPT-F-02 through a future product-decision exchange before changing
+`strandCount` behavior.

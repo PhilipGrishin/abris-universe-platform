@@ -2,6 +2,58 @@
 
 ## Active and Acceptance Follow-up Records
 
+### TASK-THINSLICE-001 Independent Acceptance
+
+- **Status:** `[VERIFIED]` only within the bounded scope and limitations of the
+  independent acceptance report at source `1a683ab`; not release readiness,
+  production verification, deployment authorization, or excluded scope.
+- **Source:** TASK-THINSLICE-001 v1.1 and exchange
+  `AU-EX-20260726-001`.
+- **Owner:** Claude Cowork Quality, Security & Independent Acceptance Lead for
+  the returned acceptance meaning; AU-CODEX-PRIMARY for integration;
+  AU-AGENT-002 for lifecycle and traceability.
+- **Documentation Impact:** Material.
+- **Outcome:** Contract validation passed with `COMPLETED / VERIFIED`, zero
+  blocking findings, sixteen separately registered non-blocking follow-ups,
+  and one product question.
+- **Canonical report:**
+  `product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md`.
+- **Boundary:** The result accepts AC-01 through AC-09 only as described in the
+  report. It does not authorize deployment or broaden format, platform,
+  accessibility, memory, scale, touch, mobile, or production claims.
+
+### TASK-THINSLICE-001 Acceptance Follow-up Records
+
+Each row is a separate lifecycle record derived from the immutable Claude
+return. A `Resolved` row records documentation integration only; all other
+findings remain open until their named owner supplies the required evidence or
+authorized disposition.
+
+| Record ID | Status | Owner | Required result |
+| --- | --- | --- | --- |
+| TS001-ACCEPT-F-01 | `[OPEN]` | AU-AGENT-004 | Make golden expected JSON instantiate the canonical ImportReport shape and machine-compare every registered stitch-sequence hash, with regression tests. |
+| TS001-ACCEPT-F-02 | `[OPEN]`; product decision required | Product Strategy Lead and Delivery Lead | Decide whether preserve-only `strandCount` retention is an authorized section-10 exception or must be stripped; record the decision in the product Decision Log. |
+| TS001-ACCEPT-F-03 | `[OPEN]`; required before Phase 1 progress extension | AU-AGENT-005 | Detect non-contiguous progress sequences with a persisted head/count invariant and add a deletion regression test. |
+| TS001-ACCEPT-F-04 | `[OPEN]` | AU-AGENT-005 | Include `targetX` and `targetY` in idempotent replay comparison and test conflicting same-ID requests. |
+| TS001-ACCEPT-F-05 | `[OPEN]` | AU-AGENT-006 | Surface `PERSISTENCE_INTEGRITY_CORRUPTION` instead of silently clearing the active project and presenting an empty import state. |
+| TS001-ACCEPT-F-06 | `[OPEN]` | AU-AGENT-006 | Give visible-tile read failures a truthful error state instead of the save-specific `not-saved` indicator. |
+| TS001-ACCEPT-F-07 | `[OPEN]` | AU-AGENT-006 | Move the unreadable-overview status text into the registered message-resource contract. |
+| TS001-ACCEPT-F-08 | `[OPEN]` | AU-AGENT-006 | Extract and unit-test the strict `> 6 CSS px` gesture decision while retaining the accepted manual evidence. |
+| TS001-ACCEPT-F-09 | `[OPEN]` | AU-AGENT-006 and Product Design & Brand Lead | Define and verify a contrast-safe saving/not-saved outline treatment for arbitrary palette cells. |
+| TS001-ACCEPT-F-10 | `[OPEN]` | AU-AGENT-003 | Append an owner-authored final disposition for TS001-DOC-001 to the Engineering Verification Report without changing prior review history. |
+| TS001-ACCEPT-F-11 | `Resolved` | AU-AGENT-002 | Completion Report lifecycle corrected to v1.1.1 with acceptance integration recorded. |
+| TS001-ACCEPT-F-12 | `[OPEN]`; next applicable exchange | AU-CODEX-PRIMARY | Deliver the indexed PNG/JPG evidence outside the binary-prohibited Bridge payload with recorded hashes and provenance. |
+| TS001-ACCEPT-F-13 | `Resolved` | AU-AGENT-002 | Browser Evidence index now states the completed AU-AGENT-003 sufficiency disposition. |
+| TS001-ACCEPT-F-14 | `[OPEN]`; next applicable exchange | AU-CODEX-PRIMARY | Include the root `scripts/` verification chain in the next relevant review package so aggregate build/test behavior is independently reproducible. |
+| TS001-ACCEPT-F-15 | `Resolved` | AU-AGENT-002 | TRACE-TASK-001 and related lifecycle records now describe completed remediation and bounded acceptance consistently. |
+| TS001-ACCEPT-F-16 | `[OPEN]`; cross-contour action | Delivery Lead and AU-AGENT-001 | Mirror the Worker-memory owner decision in the canonical product Decision Log and cross-reference the engineering decision without changing its meaning. |
+
+- **Finding source:** Independent Acceptance Report sections 7 and 8 and the
+  validated return manifest for `AU-EX-20260726-001`.
+- **Completion rule:** Non-blocking acceptance findings do not revoke the
+  bounded result, but any later task whose scope touches a finding must either
+  close it with evidence or explicitly carry it forward.
+
 ### INIT-003-ORG-VALIDATION — Full Engineering Organization Readiness Validation
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within the exact
@@ -439,7 +491,8 @@
 - **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
   reverification `[IMPLEMENTED]`; Engineering Verification Status
   `VERIFIED WITH FINDINGS`; Completion Report v1.1.0 Engineering Verification
-  Status `VERIFIED WITH FINDINGS`; independent Claude acceptance `[OPEN]`.
+  Status `VERIFIED WITH FINDINGS`; independent Claude acceptance `[VERIFIED]`
+  only within the returned bounded scope.
 - **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
@@ -513,10 +566,12 @@
 - **Completion Report disposition:** TS001-COMP-001 through TS001-COMP-003 are
   resolved at final exact-source rereview `c6314a9c`; TS001-COMP-004 remains an
   open non-blocking recommendation.
-- **Acceptance exchange:** `AU-EX-20260726-001` is exported against immutable
-  source `1a683ab`; return pending.
-- **Next step:** Stop for Claude Cowork and validate the registered return
-  before any canonical integration.
+- **Acceptance exchange:** `AU-EX-20260726-001` returned
+  `COMPLETED / VERIFIED` against immutable source `1a683ab`; the valid report
+  is integrated byte-for-byte and sixteen non-blocking follow-ups are
+  registered.
+- **Next step:** Preserve the bounded acceptance and route applicable
+  TS001-ACCEPT findings. Do not deploy without explicit owner authorization.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

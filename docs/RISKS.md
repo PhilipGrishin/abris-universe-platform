@@ -429,3 +429,25 @@
   remains available; if a pin fails, block promotion and use a reviewed
   replacement commit rather than bypassing CI.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-003 reviews the resulting CI evidence
+
+## RISK-018 — Non-Blocking Acceptance Findings Lose Lifecycle Ownership
+
+- **Status:** `[OPEN]`; controlled by separate follow-up records
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A later task touches an accepted finding but neither closes it
+  with evidence nor explicitly carries it forward.
+- **Affected areas:** Import compatibility, product scope, progress integrity,
+  client error semantics, accessibility, evidence portability, traceability,
+  and future review reproducibility.
+- **Prevention:** Treat TS001-ACCEPT-F-01 through F-16 as independent records
+  in `docs/TASKS.md`; every later Task Package and Technical Review must check
+  applicable records.
+- **Mitigation:** Block completion of an affected later task until the finding
+  is resolved, deferred by authorized disposition, or explicitly inherited
+  with unchanged risk.
+- **Fallback:** Preserve the bounded TASK-THINSLICE-001 acceptance while
+  withholding broader compatibility, scale, release, production, or
+  deployment claims.
+- **Owner:** AU-CODEX-PRIMARY for routing; named finding owners for closure;
+  AU-AGENT-003 for engineering reverification where applicable

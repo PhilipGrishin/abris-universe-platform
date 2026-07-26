@@ -321,6 +321,10 @@ exact-symbol fidelity, runtime implementation, or deployment.
   test, documentation, and approval work.
 - **Owner:** Project Owner
 - **Implementation record:** [AU-BENCH-TS001-LIM-001](assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
+- **Product-source cross-reference:** `[OPEN]` as
+  `TS001-ACCEPT-F-16`; the authorized Cowork contour must mirror this owner
+  decision in `product/decisions/05_Decision_Log.md` without changing its
+  meaning.
 
 ## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
 

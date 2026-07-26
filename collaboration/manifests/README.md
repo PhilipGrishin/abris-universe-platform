@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.10.0 |
+| Version | 1.11.0 |
 | Created | 2026-07-21 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
@@ -62,9 +62,10 @@ not approve returned meaning.
 - [`AU-EX-20260726-001`](AU-EX-20260726-001/README.md) —
   independent acceptance review of the exact TASK-THINSLICE-001 Phase 0
   implementation, Completion Report v1.1.0, Engineering Verification Report
-  v1.9.0, and retained evidence; checksum-bound package exported to Claude
-  Cowork with return pending and no project `[VERIFIED]` or deployment
-  authority assigned.
+  v1.9.0, and retained evidence; valid `COMPLETED / VERIFIED` return integrated
+  byte-for-byte with zero blocking and sixteen non-blocking findings. The
+  bounded result grants no release, production, or deployment authority;
+  exchange is archived with canonical outcome provenance.
 
 ## Rules
 
