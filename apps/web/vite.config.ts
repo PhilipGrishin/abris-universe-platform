@@ -30,6 +30,7 @@ export default defineConfig(({ mode }) => {
             outDir: "dist-benchmark",
             rollupOptions: {
               input: {
+                accessibility: "accessibility.html",
                 app: "index.html",
                 benchmark: "benchmark.html",
                 browserFailure: "browser-failure.html",

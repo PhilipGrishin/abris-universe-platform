@@ -79,6 +79,9 @@ reload scenario, one corrupt-import containment path, a complete resource-entry
 inventory, the same-origin app for exact-fixture interaction, and
 disposable-origin transaction, Web Locks, and blocked-upgrade checks.
 The complete benchmark output must never be deployed with the product SPA.
+Its separate `accessibility.html` entry renders the real application with
+grayscale and reduced-motion evidence modes and runs pinned axe-core against
+the resulting browser document; axe-core is not imported by the product entry.
 
 ## Limits
 

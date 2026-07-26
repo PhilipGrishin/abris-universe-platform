@@ -524,3 +524,16 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+html[data-engineering-grayscale="true"] {
+  filter: grayscale(1);
+}
+
+html[data-engineering-reduced-motion="true"] *,
+html[data-engineering-reduced-motion="true"] *::before,
+html[data-engineering-reduced-motion="true"] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
