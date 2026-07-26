@@ -10,6 +10,13 @@ import {
 import { glyphAtlasKey } from "../src/glyph-atlas.ts";
 import { countedCoordinate, issueMessage } from "../src/messages.ts";
 import { supportsOffscreenWorkerRendering } from "../src/render-worker-client.ts";
+import {
+  TILE_RASTER_CACHE_BYTE_LIMIT,
+  tileRasterBytes,
+  tileRasterCacheable,
+  tileRasterEdgeDevicePx,
+  tileRasterKey,
+} from "../src/render-worker-cache.ts";
 
 test("zoom preserves the canonical point under its anchor and clamps scale", () => {
   const viewport = {
@@ -98,4 +105,26 @@ test("glyph atlas keys include zoom bucket, DPR, glyph, font, and color", () => 
   );
   assert.equal(typeof supportsOffscreenWorkerRendering(), "boolean");
   assert.equal(supportsOffscreenWorkerRendering(true), false);
+});
+
+test("worker tile-raster cache has deterministic identities and memory ceilings", () => {
+  const identity = {
+    patternVersionId: "pattern-version:1",
+    tileX: 2,
+    tileY: 3,
+    tileSize: 32,
+    cellSize: 28,
+    devicePixelRatio: 2,
+    readable: true,
+  };
+  assert.equal(tileRasterKey(identity), tileRasterKey({ ...identity }));
+  assert.notEqual(
+    tileRasterKey(identity),
+    tileRasterKey({ ...identity, tileX: 4 }),
+  );
+  const edge = tileRasterEdgeDevicePx(32, 28, 2);
+  assert.equal(edge, 1_792);
+  assert.equal(tileRasterCacheable(edge), true);
+  assert.ok(tileRasterBytes(edge) < TILE_RASTER_CACHE_BYTE_LIMIT);
+  assert.equal(tileRasterCacheable(4_096), false);
 });

@@ -35,6 +35,8 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
 - Bounded glyph bitmap atlas keyed by glyph, font, color, zoom bucket, and
   device-pixel-ratio; a forced engineering-evidence main-thread mode exercises
   the incremental fallback.
+- Bounded Worker tile-raster reuse for warm viewport movement, with an
+  eight-entry and 128 MiB ceiling plus an absolute 2,048-device-pixel tile edge.
 - Pointer drag pan, toolbar and keyboard pan/zoom, 6-pixel click-versus-pan
   threshold, and non-interactive overview below the readable symbol threshold.
 - Serialized mark/unmark commands with visible `saving`, `saved`, `not saved`,
