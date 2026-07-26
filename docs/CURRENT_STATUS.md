@@ -1,8 +1,8 @@
 # Current Status
 
-**Status date:** 2026-07-25
-**Current focus:** TASK-THINSLICE-001 tiled renderer core
-**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, and IndexedDB schema-v1 persistence/recovery
+**Status date:** 2026-07-26
+**Current focus:** TASK-THINSLICE-001 consolidated implementation verification
+**Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, accessible local-first web flow, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
 ## Confirmed Workspace State
@@ -93,6 +93,24 @@
   resolved TS001-PERSIST-001 through TS001-PERSIST-005, assigned
   `VERIFIED WITH FINDINGS`, and passed the repository-level persistence gate.
   TS001-PERSIST-006 remains open for real browser/client evidence.
+- `[IMPLEMENTED]`, `[TESTED]` The local-first web flow imports route-1 OXS in a
+  dedicated Worker, retains the original source and canonical Project in real
+  IndexedDB, renders bounded Canvas tiles, supports zoom/pan and durable
+  mark/unmark, recovers after reload, fails stale-tab writes closed, and exposes
+  accessible controls and state. Final client source is `3a73748`; the
+  non-gate numerical browser signal remains tied to `fc50d66`.
+- `[IMPLEMENTED]`, `[TESTED]` Exact CI/rehearsal source `35bbb34` adds
+  full-SHA-pinned read-only GitHub Actions, frozen installation, strict
+  typecheck/test/build/audit gates, clean-source `version.json`, static and
+  credential-marker verification, restrictive Cloudflare Worker headers, and
+  a Wrangler dry-run with no production route or deploy job.
+- `[TESTED]` Exact source `35bbb34` passes all 64 tests, strict typecheck,
+  static build verification, production dependency audit, three-file
+  no-deploy Worker rehearsal, and local workerd root/SPA/provenance/POST/header
+  smoke. No Cloudflare or DNS state changed.
+- `[IMPLEMENTED]`, `[TESTED]` The minimum runtime request inventory records no
+  client connection API and enforces `connect-src 'none'`. Full browser network
+  capture and production assertions remain open under TS001-SEC-002.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -369,12 +387,14 @@
 
 ## Blockers
 
-- `[OPEN]` Complete product implementation and its independent acceptance
-  evidence; no executable application or user-facing flow exists yet.
-- `[OPEN]` Renderer, persistence, client, Worker integration, and their
-  independent engineering evidence.
-- `[OPEN]` Runtime request inventory and network-capture evidence before
-  deployment; TS001-SEC-002 is non-blocking for the current design gate.
+- `[OPEN]` Consolidated AU-AGENT-003 implementation verification and resolution
+  of any mandatory findings.
+- `[OPEN]` Controlled performance, exact supported-browser/accessibility
+  matrices, full runtime network capture, and production response assertions.
+- `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
+  before any production deployment.
+- `[OPEN]` Independent Claude Cowork product acceptance after a complete,
+  internally verified Completion Report.
 
 ## Active Risks
 
@@ -406,28 +426,19 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Implemented and tested the bounded tiled renderer core: deterministic 32×32
-tiles, visible-plus-prefetch requests, stale-result rejection, separate
-static/progress layers, incremental budgets, readable/overview modes, contrast,
-progress marks, and canonical hit testing. AU-AGENT-003 assigned initial status
-`REWORK REQUIRED` at `cb34a48`. The remediation candidate addresses
-TS001-RENDER-001 through 004 with committed/pending/error state, bounded
-changed-overlay work, fail-closed tile validation, and corrected viewport
-boundaries. Reverification at `bdaf3ed` resolved 001, 002, and 004 while
-retaining High finding 003 for incomplete symbol validation and missing
-absolute ceilings. The second candidate closes both gaps with declared stitch
-counts and 500,000 tile/stitch limits. Fourteen focused renderer tests pass,
-but reverification at `f3e2fdc` retained the single oversized
-`patternVersionId` portion of finding 003. The final narrow candidate bounds
-that identity and records the empty-tile case; 15 renderer tests pass. The
-100,000-stitch Node regression signal requests 12 of 128 tiles.
-AU-AGENT-003 resolved all four findings at exact commit `930cad2` and assigned
-repository-level Engineering Verification Status `VERIFIED`.
-Browser/Worker/glyph-atlas/golden/accessibility/performance evidence,
-deployment, and project `[VERIFIED]` remain open. This internal stage requires
-no Claude return.
+Implemented and tested the accessible local-first client plus the static
+delivery CI/no-deploy rehearsal. The browser flow exercises dedicated Worker
+import, Canvas integration, real IndexedDB reload, stale-tab failure and
+recovery, and bounded user-facing errors. The delivery boundary uses pinned
+actions, frozen dependencies, verified source provenance, `connect-src
+'none'`, GET/HEAD-only static serving, SPA fallback, and mandatory response
+headers. Exact source `35bbb34` passes 64 tests and local workerd smoke without
+mutating Cloudflare. Numerical browser results remain a non-gate signal;
+production deployment, controlled matrices, and project `[VERIFIED]` remain
+open. This internal stage requires no Claude return.
 
 ## Next Step
 
-Implement the accessible web flow and end-to-end browser persistence while
-keeping deployment and project `[VERIFIED]` gated.
+Commit the exact evidence/state package and run AU-AGENT-003 independent
+consolidated implementation verification. Resolve mandatory findings before a
+Completion Report or Claude acceptance exchange.

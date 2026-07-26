@@ -350,6 +350,61 @@
 - **Next step:** Proceed to the accessible web-flow and end-to-end browser
   persistence integration.
 
+### AU-CDX-TASK-001-CLIENT-INTEGRATION — Accessible Local-First Web Flow
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
+  implementation verification pending; no project `[VERIFIED]`.
+- **Source:** Technical Design v1.5.2 sections 4 and 8–11;
+  TASK-THINSLICE-001 v1.1.
+- **Owner:** AU-AGENT-006; AU-AGENT-001 for technical integration;
+  AU-AGENT-002 for documentation lifecycle; AU-AGENT-003 remains independent.
+- **Documentation Impact:** Material.
+- **Result:** Implemented a React/Vite local-first flow with dedicated OXS
+  import Worker, retained-source IndexedDB lifecycle, bounded tiled Canvas
+  rendering, zoom/pan, mark/unmark, durable save states, reload recovery,
+  stale-tab fail-closed behavior, accessible controls/status, and local-only
+  engineering signals.
+- **Exact source:** Final client commit `3a73748`; non-gate browser signal
+  remains attributable to exact earlier commit `fc50d66`.
+- **Evidence:** Strict typecheck; 62 tests at the final client commit; local
+  Worker/Canvas/IndexedDB browser flow; minimal and 100,000-stitch fixtures;
+  corrupt-file containment; reload and stale-tab recovery; implementation
+  review and raw signal.
+- **Boundary:** Controlled performance distributions, exact browser and
+  assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
+  production deployment, product acceptance, and project `[VERIFIED]` remain
+  open.
+- **Next step:** Include the client result in the consolidated AU-AGENT-003
+  implementation quality gate.
+
+### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
+
+- **Status:** `[IMPLEMENTED]`, `[TESTED]` locally; remote CI execution,
+  AU-AGENT-003 verification, and production deployment `[OPEN]`.
+- **Source:** Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model
+  TM-011 through TM-019.
+- **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical integration;
+  AU-AGENT-006 for client/static runtime inputs; AU-AGENT-002 for
+  documentation lifecycle; AU-AGENT-003 remains independent.
+- **Documentation Impact:** Material.
+- **Exact source:** `35bbb34bdeb5c4133de88e4edea36762281a65ca`.
+- **Result:** Added SHA-pinned read-only GitHub Actions CI, frozen installation,
+  typecheck/test/build/audit gates, verified clean-source `version.json`,
+  static-artifact and credential-marker checks, a GET/HEAD-only Cloudflare
+  Worker with SPA fallback and restrictive headers, and a Wrangler dry-run
+  that contains no production route or deploy job.
+- **Evidence:** 64 tests; strict typecheck; no known production dependency
+  vulnerability reported; seven-file static build; three-file/4,189-byte
+  dry-run bundle; local workerd `200` root/fallback/provenance, `405` POST,
+  exact CSP, `nosniff`, and no-referrer assertions.
+- **Boundary:** No Cloudflare account ID, token, route, custom domain, DNS
+  change, upload, production smoke, or deployment occurred. TD-GATE-003, full
+  runtime network capture, production headers, remote CI evidence, and
+  explicit deployment authorization remain mandatory.
+- **Next step:** Submit the exact consolidated source and documentation to
+  AU-AGENT-003. Do not deploy or prepare a Claude return before that internal
+  quality gate.
+
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; Engineering Verification Status

@@ -1,16 +1,17 @@
 # Current Focus
 
-## Focus ID: AU-CDX-TASK-001-CLIENT-INTEGRATION
+## Focus ID: AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION
 
 **Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
 bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
 `VERIFIED WITH FINDINGS`; renderer core is `[IMPLEMENTED]`, `[TESTED]` with
-repository-level Engineering Verification Status `VERIFIED`
+repository-level Engineering Verification Status `VERIFIED`; client
+integration and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`
 
-Implement the approved accessible Phase 0 web flow, dedicated importer Worker,
-browser Canvas adapter, and end-to-end IndexedDB progress behavior. Keep
-production deployment outside this stage.
+Independently verify the consolidated Phase 0 implementation and evidence with
+AU-AGENT-003. Keep production deployment, product acceptance, and project
+`[VERIFIED]` outside this internal stage.
 
 ## Confirmed Inputs
 
@@ -50,13 +51,25 @@ production deployment outside this stage.
 - AU-AGENT-003 resolved TS001-PERSIST-001 through TS001-PERSIST-005 at exact
   commit `854073c`; the repository-level persistence quality gate passes with
   Engineering Verification Status `VERIFIED WITH FINDINGS`.
+- The accessible React/Vite browser flow, dedicated importer Worker, bounded
+  Canvas integration, real IndexedDB reload, stale-tab fail-closed behavior,
+  and local-only evidence path are `[IMPLEMENTED]`, `[TESTED]` at final client
+  commit `3a73748`. Its numerical browser signal remains attributable only to
+  exact earlier source `fc50d66`.
+- SHA-pinned read-only CI, frozen dependency installation, verified build
+  provenance, restrictive Cloudflare Worker headers, and a no-deploy Wrangler
+  rehearsal are `[IMPLEMENTED]`, `[TESTED]` at `35bbb34`.
+- The runtime request inventory uses `connect-src 'none'`; application source
+  has no script-initiated connection API. Full browser capture and production
+  assertion remain open.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
 - TD-GATE-004 is closed at design level.
 - TD-GATE-002 remains open for exact-symbol claims outside the lawful route-1
   literal-symbol profile.
-- TD-GATE-003 and runtime security evidence block production deployment.
+- TD-GATE-003, full runtime network capture, remote CI evidence, production
+  headers/smoke, and explicit authorization block production deployment.
 - No project `[VERIFIED]`, implementation acceptance, security acceptance,
   release readiness, deployment authorization, or product acceptance exists.
 
@@ -75,23 +88,16 @@ production deployment outside this stage.
 
 ## Immediate Boundaries
 
-- Implement only the approved Phase 0 web flow from Technical Design sections
-  4, 8, 9, 10, and 11: OXS selection/import, project open, zoom/pan, readable
-  symbol view, mark/unmark, explicit saving/not-saved state, reload recovery,
-  and required accessible controls/status.
-- Run untrusted OXS parsing only in a dedicated Worker with no UI-thread
-  fallback.
-- Integrate existing renderer and persistence public contracts; do not
-  duplicate their algorithms or bypass their validation.
-- Add browser-level functional evidence for Canvas, IndexedDB, reload,
-  two-context locking, interaction, accessibility, and runtime requests where
-  the approved harness can verify them.
+- Review the exact consolidated source, tests, implementation reviews, runtime
+  request inventory, benchmark limitations, and deployment rehearsal.
+- AU-AGENT-003 must not implement fixes, redesign architecture, change product
+  meaning, or self-assign project `[VERIFIED]`.
+- Register every finding with severity, evidence, owner, and disposition.
 - Do not claim power-loss, eviction, supported-browser, performance,
   accessibility, or pixel-golden completion without exact evidence.
-- Do not implement CI/CD or deploy in this stage.
 - Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
-- Do not deploy to production before TD-GATE-003 and runtime security evidence
-  close.
+- Do not deploy to production before TD-GATE-003, full runtime capture,
+  production smoke, and explicit authorization close.
 - Do not transfer the four PROD-DEC-011 XSP binaries through the Collaboration
   Bridge or commit them without the separate owner-controlled transfer path.
 - Do not assign project `[VERIFIED]`.
@@ -109,9 +115,11 @@ with checksum provenance and no verified scope.
 
 ## Completed Internal Stage
 
-The persistence repository-level result passes independent AU-AGENT-003
-reverification at exact commit `854073c`. Findings 001 through 005 are
-resolved. TS001-PERSIST-006 remains open for later real browser/client evidence.
+Client integration and the CI/no-deploy rehearsal are implemented and tested.
+Exact-source `35bbb34` passes frozen install, strict typecheck, 64 tests,
+verified clean-source static build, production dependency audit, Wrangler
+dry-run, and local workerd root/fallback/provenance/method/header smoke.
+TD-GATE-003 and the full runtime capture remain open.
 
 This internal stage requires no Claude return and therefore no new
 Collaboration Bridge Exchange ID.
@@ -141,6 +149,7 @@ remains open.
 
 ## Next Concrete Step
 
-Inspect the web scaffold and approved UX/client contracts, then implement the
-smallest end-to-end browser flow with dedicated Worker import, renderer Canvas
-integration, IndexedDB persistence, and focused browser evidence.
+Commit the evidence and persistent-state update, then assign AU-AGENT-003 an
+independent exact-source consolidated implementation review. Resolve mandatory
+findings inside Codex before preparing any Completion Report or Claude
+acceptance exchange.

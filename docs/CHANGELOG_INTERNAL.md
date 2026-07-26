@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.4.0 |
+| Version | 3.5.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -26,6 +26,31 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Client Integration and Static Delivery Rehearsal
+
+- Implemented the approved local-first React/Vite flow with dedicated OXS
+  import Worker, retained-source IndexedDB lifecycle, bounded Canvas rendering,
+  durable mark/unmark states, reload recovery, stale-tab rejection, and
+  accessible controls/status.
+- Recorded exact-source non-gate browser functional and timing evidence with
+  its unsupported claims and limitations.
+- Added full-SHA-pinned, read-only GitHub Actions CI with frozen installation,
+  strict typecheck, 64 tests, verified static build, production dependency
+  audit, and non-production artifact retention.
+- Added a Cloudflare Worker static-assets boundary with SPA fallback,
+  GET/HEAD-only handling, `connect-src 'none'`, CSP, `nosniff`, and no-referrer
+  headers.
+- Verified exact clean source `35bbb34` through build provenance, Wrangler
+  dry-run, secret-marker checks, and local workerd root/fallback/version/method
+  and header smoke.
+- Registered the minimum runtime request inventory and preserved full browser
+  capture, TD-GATE-003, remote CI, production smoke/deploy, independent
+  AU-AGENT-003 verification, product acceptance, and project `[VERIFIED]` as
+  open.
+- Documentation Impact: Material.
+- Status: client and no-deploy rehearsal `[IMPLEMENTED]`, `[TESTED]`; no
+  production mutation.
 
 ## 2026-07-25 — Persistence Finding Reverification
 

@@ -252,9 +252,10 @@
   uses a non-DOM SAX parser, rejects DTD/processing instructions and unknown
   producer profiles, enforces the registered hard limits, keeps source progress
   out of canonical Progress, and produces bounded reports. Dedicated Worker
-  integration remains open; source Blob retention and atomic canonical
-  persistence are now tested at the repository boundary. Keep unregistered
-  producer profiles blocked or rejected. PROD-DEC-011 keeps the four
+  integration, source Blob retention, and atomic canonical persistence are
+  now tested through the browser flow. Consolidated independent verification
+  remains open. Keep unregistered producer profiles blocked or rejected.
+  PROD-DEC-011 keeps the four
   owner-granted XSP binaries outside the Bridge and Git pending a separate
   owner-controlled transfer and prioritizes licensed XSD export over reverse
   engineering for Phase 1.
@@ -267,8 +268,9 @@
 
 ## RISK-013 — Browser-Local Progress Is Lost or Misreported as Saved
 
-- **Status:** `[OPEN]`; repository controls `[IMPLEMENTED]`, `[TESTED]`,
-  independently `VERIFIED WITH FINDINGS`; client/browser evidence pending
+- **Status:** `[OPEN]`; repository and client functional controls
+  `[IMPLEMENTED]`, `[TESTED]`; repository independently
+  `VERIFIED WITH FINDINGS`; consolidated and durability-matrix evidence pending
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
@@ -287,8 +289,10 @@
   relaxed-durability residual on browsers that do not support strict mode.
   The schema-v1 repository now has focused atomic rollback, blocked-upgrade,
   simulated quota, persistence-denial, idempotency, lock-failure, reopen, and
-  projection-rebuild tests. Real supported-browser, two-tab, power-loss,
-  eviction, and client save-state evidence remains mandatory.
+  projection-rebuild tests. The in-app browser flow passed save/reload,
+  not-saved stale-tab rejection, and projection recovery. Supported-browser,
+  power-loss, eviction, strict-durability, and controlled failure matrices
+  remain mandatory.
   AU-AGENT-003 resolved repository findings TS001-PERSIST-001 through
   TS001-PERSIST-005 at exact commit `854073c`; TS001-PERSIST-006 preserves the
   runtime evidence obligation.
@@ -321,9 +325,10 @@
 
 ## RISK-015 — Same-Origin Requests Expose Pattern-Derived Data
 
-- **Status:** `[OPEN]`; design control `[PROPOSED]`; blocks deployment evidence,
-  not the current design gate
-- **Probability:** Low with the reviewed controls; unknown until implementation
+- **Status:** `[OPEN]`; inventory, static check, CSP, and local header controls
+  `[IMPLEMENTED]`, `[TESTED]`; full capture and production assertion pending
+- **Probability:** Low with the implemented local controls; unknown in
+  production until capture
 - **Impact:** High
 - **Trigger:** Production code makes an unregistered same-origin connection,
   keeps `connect-src 'self'` without a justified runtime need, or places
@@ -337,7 +342,9 @@
   telemetry for pattern data.
 - **Mitigation:** Compare a full browser network capture against the inventory
   across import, render, toggle, reload, and representative error paths; block
-  deployment on an unexpected request or pattern-derived payload.
+  deployment on an unexpected request or pattern-derived payload. Exact source
+  `35bbb34` has no client connection API, uses `connect-src 'none'`, and passed
+  local workerd header/method smoke.
 - **Fallback:** Disable the offending connection or feature, tighten CSP,
   rebuild the immutable artifact, repeat security review and smoke evidence,
   and deploy only after the finding is cleared.
@@ -346,8 +353,9 @@
 
 ## RISK-016 — Renderer Core Evidence Is Mistaken for Browser Readiness
 
-- **Status:** `[OPEN]`; bounded core controls `[IMPLEMENTED]`, `[TESTED]`;
-  independent and browser evidence pending
+- **Status:** `[OPEN]`; bounded core and browser functional controls
+  `[IMPLEMENTED]`, `[TESTED]`; consolidated independent and controlled
+  browser evidence pending
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** A Node Canvas-contract signal or capability selector is treated
@@ -363,13 +371,12 @@
   requests, separates static/progress layers, validates provider data, budgets
   changed overlays, restores committed state after save failure, and records
   its Node measurement explicitly as a non-acceptance regression signal.
-  AU-AGENT-003 initial status is `REWORK REQUIRED`; remediation awaits
-  reverification. The second candidate adds full renderer-consumed summary
-  validation and absolute Phase 0 request/response limits after finding 003
-  remained partially resolved at `bdaf3ed`. Reverification at `f3e2fdc` left
-  only the bounded version-identity gap. AU-AGENT-003 resolved all mandatory
-  renderer-core findings at exact `930cad2`. Open browser evidence is listed in
-  the implementation review.
+  AU-AGENT-003 resolved all mandatory renderer-core findings at exact
+  `930cad2`. Final client source `3a73748` adds browser Canvas integration,
+  dedicated import Worker, IndexedDB recovery, stale-tab fail-closed behavior,
+  accessible state, and a resize regression. The exact `fc50d66` browser signal
+  remains non-gate and does not prove the controlled browser, accessibility,
+  golden, performance, or 500,000-stitch matrices.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

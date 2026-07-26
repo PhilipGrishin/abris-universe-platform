@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Version | 1.6.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |

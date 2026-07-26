@@ -1,5 +1,30 @@
 # Handoff Log
 
+## 2026-07-26 — Client Integration and No-Deploy Delivery Rehearsal
+
+- **Status:** Client and delivery-rehearsal stages `[IMPLEMENTED]`, `[TESTED]`;
+  consolidated AU-AGENT-003 verification pending.
+- **Client source:** Final client commit `3a73748`; browser measurements remain
+  attributable to exact earlier signal source `fc50d66`.
+- **Delivery source:** `35bbb34bdeb5c4133de88e4edea36762281a65ca`.
+- **Evidence:** Frozen install, strict typecheck, 64 tests, verified static
+  build, no known production dependency vulnerabilities reported, clean
+  `version.json`, Wrangler dry-run, and local workerd root/SPA/provenance,
+  `405` POST, CSP, `nosniff`, and no-referrer assertions.
+- **Privacy boundary:** Runtime inventory contains no client connection API and
+  implements `connect-src 'none'`; full browser capture remains open.
+- **Deployment boundary:** No Cloudflare account, route, domain, DNS, token,
+  upload, production smoke, or deployment was changed. TD-GATE-003 remains
+  open.
+- **Documentation Impact:** Material; implementation reviews, request
+  inventory, task, traceability, risk, status, focus, changelog, and navigation
+  updated.
+- **Bridge disposition:** No Claude return is required for this internal
+  implementation stage.
+- **Next gate:** Commit the evidence/state package and submit the exact
+  consolidated source to AU-AGENT-003. Resolve mandatory findings before any
+  Completion Report or Claude exchange.
+
 ## 2026-07-25 — Persistence Finding Reverification at `854073c`
 
 - **Engineering Verification Status:** `VERIFIED WITH FINDINGS`.
