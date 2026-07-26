@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; source-qualified gate-candidate and historical non-gate evidence |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, implementation commits named by each artifact |
@@ -57,6 +57,14 @@ acceptance or assign `[VERIFIED]`.
   mark-to-paint, autosave, heap-signal, and combined-session samples.
 - `performance-profile-manifest-4009944.json`: profile identities, owner
   confirmation, target continuity, artifact hashes, and limitations.
+- `reference-tti-memory-d36a827.json`: 100 reference minimal and 100 reference
+  medium Viewer TTI reload samples plus baseline/current/peak heap signals and
+  signed retained deltas.
+- `constrained-4x-tti-memory-d36a827.json`: 100 owner-confirmed 4× constrained
+  medium Viewer TTI reload samples plus the corresponding heap signals.
+- `performance-tti-memory-manifest-d36a827.json`: schema-v2 instrumentation
+  method, exact-source binding, owner confirmation, target continuity,
+  artifact hashes, and limitations for the supplemental TTI/memory evidence.
 
 SHA-256:
 
@@ -90,6 +98,12 @@ SHA-256:
   `1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b`
 - `performance-profile-manifest-4009944.json`:
   `306e46e618ac5b7a4e974fd6365b672a501998f424e622811b1e24fe36a26083`
+- `reference-tti-memory-d36a827.json`:
+  `c1725f9ef599f82fa31adb5c374d7d5d6688c99771a6fb5942bee9b49bf67c0d`
+- `constrained-4x-tti-memory-d36a827.json`:
+  `a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b`
+- `performance-tti-memory-manifest-d36a827.json`:
+  `9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e`
 
 ## Owner and Lifecycle
 

@@ -1,5 +1,33 @@
 # Handoff Log
 
+## 2026-07-26 — Supplemental Profile TTI and Heap Evidence
+
+- **Exact source:** `d36a8272b808f862ad6aa5d4a774a71b337432f4`,
+  clean production-benchmark build.
+- **Instrumentation:** Opt-in engineering evidence schema v2 records
+  baseline/current/peak Chromium `usedJSHeapSize`, signed retained delta, and
+  sample count without changing product behavior.
+- **Reference profile:** 1365×768 DPR1, no throttling, 100 warm Project reloads
+  per fixture. Minimal Viewer TTI median/p95/maximum:
+  12.05/20.8/311.0 ms. Medium: 74.95/119.7/361.7 ms.
+- **Constrained profile:** Same retained Chrome tab and source with
+  Project Owner-confirmed 4× CPU slowdown, 100 medium reloads, Viewer TTI
+  median/p95/maximum 101.65/130.5/151.0 ms.
+- **Heap signals:** Reference minimal/medium signed deltas are -45,690,440 and
+  -2,704,563 bytes; constrained medium is 48,271,971 bytes. Baseline, current,
+  peak, and sample counts are retained. No forced GC was available; Worker,
+  Canvas, and GPU allocations are excluded.
+- **Integrity:** Three new JSON artifacts preserve exact source, raw ordered
+  samples, environment, owner confirmation, target continuity, hashes, and
+  limitations.
+- **Status boundary:** `[TESTED]` remediation candidate pending narrow
+  AU-AGENT-003 disposition. It does not measure import-Worker peak memory,
+  close TS001-IMPL-002, change `REWORK REQUIRED`, or authorize a Completion
+  Report.
+- **Bridge disposition:** Internal evidence work; no Claude return or Exchange
+  ID is required.
+- **Next gate:** Commit/push, exact-head CI, then AU-AGENT-003 narrow review.
+
 ## 2026-07-26 — Registered Performance Profile Reverification
 
 - **Evidence package:** `043023999558f7d76f95b8552fe0e8b1923133f0`;

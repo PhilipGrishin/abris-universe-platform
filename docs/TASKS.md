@@ -452,20 +452,26 @@
   combined-session long task was deleted. AU-AGENT-003 accepted the 4×
   configuration provenance but did not close either complete profile
   remainder because Viewer TTI and retained-memory evidence are incomplete.
+- **Supplemental profile candidate:** Exact clean source `d36a827` retains 100
+  Viewer TTI reloads for reference minimal, reference medium, and
+  owner-confirmed 4× constrained medium with p95 values 20.8, 119.7, and
+  130.5 ms. Schema-v2 evidence records baseline/current/peak main-thread heap,
+  sample counts, and signed retained deltas without forced-GC or total-memory
+  claims. Independent disposition is pending.
 - **Explicit limitations:** Browser-reported Worker peak memory or an
-  owner-approved documented limitation, reference minimal/medium and
-  constrained medium Viewer TTI distributions, registered retained-memory
-  deltas, manual screen-reader and physical Tab traversal,
-  non-Chromium/mobile profiles, safe real quota/eviction, and production
-  assertions were not inferred or represented as passes.
+  owner-approved documented limitation, independent acceptance of the
+  supplemental main-thread heap method, manual screen-reader and physical Tab
+  traversal, non-Chromium/mobile profiles, safe real quota/eviction, and
+  production assertions were not inferred or represented as passes.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 remains partially resolved. Registered
   profile configuration and captured metric subsets passed independent review,
-  but Viewer TTI and retained-memory evidence plus Worker peak-memory evidence
-  or an owner-approved documented limitation remain absent. The
-  measured-profile long-task scenario is resolved.
+  and supplemental Viewer TTI/main-thread heap evidence now awaits independent
+  disposition. Worker peak-memory evidence or an owner-approved documented
+  limitation remains absent. The measured-profile long-task scenario is
+  resolved.
   TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
   physical focus-traversal evidence; the normal-color contrast subcondition is
@@ -476,10 +482,10 @@
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Capture method-conforming registered-profile Viewer TTI and
-  retained-memory evidence. Then address Worker peak evidence or an
-  owner-approved limitation and the manual accessibility remainder before any
-  Completion Report.
+- **Next step:** Commit/push the supplemental evidence, confirm exact-head CI,
+  and request narrow AU-AGENT-003 disposition. Then address Worker peak
+  evidence or an owner-approved limitation and the manual accessibility
+  remainder before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

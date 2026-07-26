@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d36a8272b808f862ad6aa5d4a774a71b337432f4",
+  "sourceDirty": false,
+  "recordedAt": "2026-07-26",
+  "owner": "AU-AGENT-006",
+  "technicalApprover": "AU-AGENT-001",
+  "qualityReviewer": "AU-AGENT-003",
+  "documentationImpact": "Material",
+  "instrumentation": {
+    "engineeringEvidenceSchemaVersion": 2,
+    "baseline": "usedJSHeapSize sampled before the application opens the retained Project",
+    "current": "usedJSHeapSize sampled at evidence capture after viewer completion",
+    "peak": "maximum usedJSHeapSize observed by 250 ms interval and evidence-triggered samples",
+    "retainedDelta": "current minus baseline; signed value preserved"
+  },
+  "profiles": [
+    {
+      "id": "reference-1365x768-dpr1",
+      "viewport": {
+        "width": 1365,
+        "height": 768,
+        "devicePixelRatio": 1
+      },
+      "cpuThrottling": "none",
+      "artifact": {
+        "path": "reference-tti-memory-d36a827.json",
+        "sha256": "c1725f9ef599f82fa31adb5c374d7d5d6688c99771a6fb5942bee9b49bf67c0d"
+      }
+    },
+    {
+      "id": "constrained-1365x768-dpr1-4x",
+      "viewport": {
+        "width": 1365,
+        "height": 768,
+        "devicePixelRatio": 1
+      },
+      "cpuThrottling": "4x slowdown",
+      "configurationEvidence": {
+        "source": "Project Owner confirmation in the controlled Chrome session",
+        "confirmation": "4x slowdown enabled",
+        "method": "Chrome DevTools Performance panel, Capture settings, CPU 4x slowdown",
+        "targetContinuity": "The reference medium tab was retained, claimed unchanged after owner confirmation, and navigated only to a new evidence-run identifier for the constrained capture."
+      },
+      "artifact": {
+        "path": "constrained-4x-tti-memory-d36a827.json",
+        "sha256": "a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b"
+      }
+    }
+  ],
+  "limitations": [
+    "The browser evidence API does not expose the active DevTools CPU multiplier; constrained configuration depends on Project Owner confirmation and preserved target continuity.",
+    "DevTools CPU throttling is relative to the host and is not a claim about a specific mobile CPU architecture.",
+    "Chromium usedJSHeapSize is a process main-thread signal and excludes Worker, Canvas, and GPU allocation.",
+    "No forced garbage collection was available; signed retained deltas are preserved without clamping or reinterpretation.",
+    "These artifacts do not measure import-Worker peak memory."
+  ]
+}

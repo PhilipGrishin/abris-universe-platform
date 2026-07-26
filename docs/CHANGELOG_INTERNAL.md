@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.2.0 |
+| Version | 4.3.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Supplemental Viewer TTI and Heap Evidence
+
+- Added schema-v2 opt-in engineering evidence for baseline/current/peak
+  Chromium main-thread heap, signed retained delta, and sample count.
+- Added a focused unit test proving signed delta and unavailable-signal
+  handling; the repository now has 68 deterministic tests.
+- Captured 100 reference minimal, 100 reference medium, and 100
+  owner-confirmed 4× constrained medium Viewer TTI reload samples at exact
+  clean source `d36a827`.
+- Registered raw ordered samples, memory signals, artifact hashes, owner
+  confirmation, target continuity, and explicit no-forced-GC/Worker/Canvas/GPU
+  limitations.
+- Preserved measured import-Worker peak memory or an owner-approved limitation
+  and AU-AGENT-003 disposition as mandatory before finding closure.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Registered Profile Reverification Integration
 

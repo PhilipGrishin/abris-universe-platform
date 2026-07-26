@@ -169,6 +169,12 @@
   owner-confirmed 4× configuration provenance and passing captured metrics, but
   kept both complete profile remainders open because Viewer TTI
   sampling/fixture coverage and retained-memory deltas are incomplete.
+- `[TESTED]` Exact clean source `d36a827` now retains 100 Viewer TTI reload
+  samples for reference minimal, reference medium, and owner-confirmed 4×
+  constrained medium. Their p95 values are 20.8, 119.7, and 130.5 ms.
+  Schema-v2 evidence also records baseline/current/peak main-thread heap and
+  signed retained deltas. All values and limitations await independent
+  disposition.
 - `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
@@ -448,18 +454,18 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: method-conforming registered-profile captures pass,
-  but reference minimal/medium and constrained medium Viewer TTI distributions
-  plus registered retained-memory deltas remain incomplete. Measured Worker
-  peak memory or an owner-approved documented limitation remains absent. The
-  measured-profile steady-gesture long-task subcondition is resolved.
+- `[OPEN]` TS001-IMPL-002: supplemental registered-profile Viewer TTI and
+  main-thread heap evidence is a tested candidate awaiting independent
+  disposition. Measured Worker peak memory or an owner-approved documented
+  limitation remains absent. The measured-profile steady-gesture long-task
+  subcondition is resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
-- `[OPEN]` Registered-profile Viewer TTI and retained-memory evidence, Worker
-  peak memory or accepted limitation, manual assistive-technology traversal,
-  broader browsers, safe real quota/eviction, and production response
-  assertions remain explicit evidence limitations pending completion or their
-  applicable governance disposition.
+- `[OPEN]` Independent disposition of registered-profile Viewer TTI and
+  main-thread heap evidence, Worker peak memory or accepted limitation, manual
+  assistive-technology traversal, broader browsers, safe real quota/eviction,
+  and production response assertions remain explicit limitations pending
+  completion or their applicable governance disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -495,19 +501,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated AU-AGENT-003 v1.3.0 registered-profile reverification of evidence
-package `04302399` and successful GitHub Actions run `30211416975`.
-Method-conforming captured metrics and owner-confirmed 4× provenance pass, but
-Viewer TTI sampling/fixture coverage and registered retained-memory deltas are
-incomplete. Engineering Verification Status remains `REWORK REQUIRED`. No
-project `[VERIFIED]`, product acceptance, release approval, or deployment
-permission was assigned.
+Captured supplemental schema-v2 evidence at exact clean source `d36a827`: 100
+Viewer TTI reloads each for reference minimal/medium and owner-confirmed 4×
+constrained medium, plus baseline/current/peak heap signals and signed retained
+deltas. This is a tested candidate pending AU-AGENT-003 disposition.
+Engineering Verification Status remains `REWORK REQUIRED`. No project
+`[VERIFIED]`, product acceptance, release approval, or deployment permission
+was assigned.
 
 ## Next Step
 
-Capture method-conforming reference minimal/medium and constrained medium
-Viewer TTI distributions plus registered retained-memory evidence. Then
-address measured Worker peak evidence or an owner-approved documented
-limitation and complete manual screen-reader plus reliable physical Tab/focus
-traversal. Preserve unsupported profiles and modes before any Completion Report
-or Claude acceptance exchange.
+Commit and push the supplemental TTI/heap evidence, confirm exact-head CI, and
+request narrow AU-AGENT-003 disposition. Then address measured Worker peak
+evidence or an owner-approved documented limitation and complete manual
+screen-reader plus reliable physical Tab/focus traversal. Preserve unsupported
+profiles and modes before any Completion Report or Claude acceptance exchange.

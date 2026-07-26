@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-002 |
 | Title | TASK-THINSLICE-001 Browser Benchmark Report |
-| Status | `[TESTED]`; captured registered-profile metrics pass, but Viewer TTI sampling and retained-memory evidence are incomplete |
+| Status | `[TESTED]`; registered-profile TTI and heap evidence captured; independent disposition pending |
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence source `40099443d156bcc2497e57e06528772be57e601b`, evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`, and Engineering Verification Report v1.3.0; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.2; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`, and Engineering Verification Report v1.3.0; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -82,14 +82,15 @@ host-relative proxy, not a claim about a specific mobile architecture.
 | --- | ---: | ---: | --- |
 | Minimal cold import p95, 30 runs | 124.3 ms | <= 750 ms | Pass |
 | Medium cold import p95, 30 runs | 1,751.6 ms | <= 3,000 ms | Pass |
-| Minimal Viewer TTI | No sample | <= 750 ms | Incomplete |
-| Medium Viewer TTI p95, 2 samples | 95.6 ms | <= 2,000 ms | Incomplete: fewer than 100 iterations |
+| Minimal Viewer TTI p95, 100 reloads | 20.8 ms | <= 750 ms | Pass candidate |
+| Medium Viewer TTI p95, 100 reloads | 119.7 ms | <= 2,000 ms | Pass candidate |
 | Medium scripted-pan frame p95, 120 frames | 9.1 ms | <= 18.2 ms | Pass |
 | Frames over 18.2 ms | 0 / 120, 0% | < 5% | Pass |
 | Steady-gesture long tasks | 0 | 0 | Pass |
 | Medium mark-to-paint p95, 115 samples | 7.9 ms | <= 50 ms | Pass |
 | Medium autosave p95, 141 samples | 18.4 ms | <= 150 ms | Pass |
-| Retained memory delta after open | No baseline/delta | <= 160 MiB | Incomplete |
+| Minimal retained main-thread heap delta | -45,690,440 bytes | <= 40 MiB | Recorded; signed/no forced GC |
+| Medium retained main-thread heap delta | -2,704,563 bytes | <= 160 MiB | Recorded; signed/no forced GC |
 | 10,000-event reload p95, 30 runs | 542.1 ms | <= 1,000 ms | Pass |
 | Corrupt import | 14.7 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
 
@@ -103,13 +104,13 @@ deleted, and are not represented as steady-gesture events.
 | Metric | Result | Constrained budget | Disposition |
 | --- | ---: | ---: | --- |
 | Medium cold import p95, 30 runs | 2,648.6 ms | <= 6,000 ms | Pass |
-| Medium Viewer TTI, 1 sample | 124.9 ms | <= 4,000 ms | Incomplete: fewer than 100 iterations |
+| Medium Viewer TTI p95, 100 reloads | 130.5 ms | <= 4,000 ms | Pass candidate |
 | Medium scripted-pan frame p95, 120 frames | 24.1 ms | <= 33.3 ms | Pass |
 | Frames over 18.2 ms | 7 / 120, 5.83% | < 10% | Pass |
 | Steady-gesture long tasks | 0 | <= 1 | Pass |
 | Medium mark-to-paint p95, 111 samples | 9.3 ms | <= 100 ms | Pass |
 | Medium autosave p95, 111 samples | 34.0 ms | <= 300 ms | Pass |
-| Retained memory delta after open | No baseline/delta | Record only | Incomplete |
+| Medium retained main-thread heap delta | 48,271,971 bytes | Record only | Recorded; signed/no forced GC |
 | 10,000-event reload p95, 30 runs | 1,866.6 ms | <= 2,000 ms | Pass |
 | Corrupt import | 29.8 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
 
@@ -134,6 +135,31 @@ DevTools applies an identical multiplier to every Worker execution context.
 
 Confidence intervals are descriptive uncertainty for the observed host-relative
 distributions. Budget disposition continues to use the registered p95 metric.
+
+### Supplemental Viewer TTI and Heap Evidence
+
+Exact clean source `d36a827` adds schema-v2 opt-in evidence fields for
+baseline, current, peak, signed retained heap delta, and heap sample count. It
+does not change product behavior or production network activity.
+
+The reference profile retains 100 minimal and 100 medium warm local-Project
+reloads. Minimal Viewer TTI median/p95/maximum are 12.05/20.8/311.0 ms.
+Medium values are 74.95/119.7/361.7 ms. Both p95 values are below their
+registered 750 ms and 2,000 ms budgets.
+
+The owner-confirmed 4× constrained profile retains 100 medium reloads with
+Viewer TTI median/p95/maximum of 101.65/130.5/151.0 ms, below the 4,000 ms
+budget. The same retained Chrome tab and source were used; only the evidence
+run identifier changed after owner confirmation.
+
+Reference minimal and medium signed main-thread retained deltas are
+-45,690,440 and -2,704,563 bytes. The constrained medium delta is 48,271,971
+bytes, about 46.0 MiB. Baseline, current, peak, sample count, and signed delta
+are retained in the raw artifacts. Negative values are not clamped: they expose
+garbage-collection/process noise instead of manufacturing a zero. Chromium
+`usedJSHeapSize` excludes Worker, Canvas, and GPU allocation, and no forced
+garbage collection was available. These are registered main-thread heap
+signals, not import-Worker peak-memory evidence.
 
 The medium Worker render-work p95 during the scripted gesture was 2.0 ms
 after bounded tile-raster caching. The pre-remediation browser run recorded
@@ -173,13 +199,13 @@ approved limitation is registered.
 ## Budget Disposition
 
 The listed measured-profile budgets pass. For the registered reference and
-constrained profiles, every method-conforming captured import, gesture,
-mark-to-paint, autosave, reload, and corrupt-input condition passes. Complete
-profile passes are not assigned because Viewer TTI lacks the registered sample
-count and reference minimal-fixture coverage, and neither profile records the
-required before-scenario baseline and retained-memory delta. Import-Worker peak
-memory is also unavailable; the heap evidence is an observational main-thread
-signal rather than a forced-GC retained allocation result.
+constrained profiles, every method-conforming captured import, Viewer TTI,
+gesture, mark-to-paint, autosave, reload, and corrupt-input condition passes.
+Baseline/current/peak main-thread heap signals and signed retained deltas are
+now recorded. Complete profile closure remains pending independent disposition
+of the heap method and evidence package. Import-Worker peak memory remains
+unavailable; the heap evidence is a Chromium main-thread process signal rather
+than Worker telemetry or a forced-GC retained-allocation result.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
@@ -189,8 +215,10 @@ admission-control evidence, but not as observed Worker peak memory.
 AU-AGENT-003 then independently reverified evidence package `04302399` and
 accepted the owner-confirmed 4× configuration provenance and all
 method-conforming captured metrics. It kept both complete profile remainders
-open for Viewer TTI and retained-memory evidence. Measured Worker peak memory
-or an owner-approved documented limitation remains mandatory.
+open for Viewer TTI and retained-memory evidence. Exact source `d36a827` now
+supplies those missing samples and signals as a remediation candidate requiring
+another narrow independent review. Measured Worker peak memory or an
+owner-approved documented limitation remains mandatory.
 
 ## Common Mistakes
 
@@ -207,18 +235,21 @@ or an owner-approved documented limitation remains mandatory.
 - [x] Hardware, OS, power, browser, viewport, DPR, and capability path recorded.
 - [x] Minimal and medium cold import samples retained.
 - [x] At least 100 mark-to-paint and autosave samples retained where reported.
-- [ ] At least 100 Viewer TTI samples retained for reference minimal,
+- [x] At least 100 Viewer TTI samples retained for reference minimal,
       reference medium, and constrained medium.
 - [x] 120 actual animation-frame intervals retained per fixture.
 - [x] 10,000-event history and 30 reload samples retained.
 - [x] Corrupt import result retained.
 - [x] Registered reference viewport and DPR run.
 - [x] Registered constrained profile run.
-- [ ] Registered retained-memory baseline, peak, and delta recorded.
+- [x] Registered main-thread heap baseline, current, peak, sample count, and
+      signed retained delta recorded.
 - [ ] Import-Worker peak memory measured.
 - [x] Long-task evidence isolated and dispositioned for the scripted gesture.
 - [x] AU-AGENT-003 independently reverified the registered profile evidence;
       complete profile remainders remain open.
+- [ ] AU-AGENT-003 independently reverifies the supplemental TTI/heap
+      remediation candidate.
 
 ## References
 

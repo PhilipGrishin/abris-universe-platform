@@ -87,6 +87,12 @@ this internal stage.
   retained-memory deltas are incomplete. The constrained multiplier is
   supported by owner confirmation and preserved inspected-target continuity
   because the browser evidence API does not expose the active multiplier.
+- Exact clean source `d36a827` adds schema-v2 opt-in heap instrumentation and
+  retains 100 Viewer TTI reloads for reference minimal, reference medium, and
+  owner-confirmed 4× constrained medium. Their p95 values are 20.8, 119.7, and
+  130.5 ms and pass the applicable budgets. Baseline/current/peak main-thread
+  heap signals and signed retained deltas are recorded with the no-forced-GC
+  and Worker/Canvas/GPU exclusions. Independent disposition is pending.
 - Pinned axe-core reports zero violations after exact-source remediation.
   Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
   five toolbar controls, and manual calculations disposition those controls at
@@ -110,10 +116,11 @@ this internal stage.
   independently accepted the registered profile configuration and passing
   captured metrics at evidence package `04302399`, but kept both complete
   profile remainders open for Viewer TTI and retained-memory evidence.
-  Browser-reported Worker peak memory remains absent. The enforced medium
-  import estimate is about 95.7 MiB against 256 MiB but is not actual Worker
-  telemetry. Manual screen-reader and reliable physical focus traversal remain
-  absent.
+  Exact source `d36a827` supplies those missing profile samples/signals as a
+  tested remediation candidate. Browser-reported Worker peak memory remains
+  absent. The enforced medium import estimate is about 95.7 MiB against
+  256 MiB but is not actual Worker telemetry. Manual screen-reader and reliable
+  physical focus traversal remain absent.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -214,9 +221,8 @@ remains open.
 
 ## Next Concrete Step
 
-Capture method-conforming reference minimal/medium and constrained medium
-Viewer TTI distributions plus registered retained-memory evidence. Then obtain
-measured Worker peak memory or an owner-approved documented limitation and
-complete a manual screen-reader session plus reliable physical Tab/focus
-traversal. No Completion Report or Claude acceptance exchange is permitted
-before closure.
+Commit and push the supplemental TTI/heap evidence, confirm exact-head CI, and
+request narrow AU-AGENT-003 disposition. Then obtain measured Worker peak
+memory or an owner-approved documented limitation and complete a manual
+screen-reader session plus reliable physical Tab/focus traversal. No
+Completion Report or Claude acceptance exchange is permitted before closure.

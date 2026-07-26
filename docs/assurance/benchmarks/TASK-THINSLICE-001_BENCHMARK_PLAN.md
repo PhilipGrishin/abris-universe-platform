@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-001 |
 | Title | TASK-THINSLICE-001 Phase 0 Benchmark Plan |
-| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; no controlled browser benchmark result exists |
+| Status | `[PROPOSED]`; architecture disposition `ACCEPTED_WITH_GATES`; controlled results are registered separately and remain subject to quality-gate disposition |
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.1 |
+| Version | 1.2.2 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
@@ -171,13 +171,15 @@ The later benchmark report must include:
 
 - [x] Minimal and medium OXS fixtures are project-original and
       checksum-registered; the progress-history fixture remains open.
-- [ ] Hardware, browser, build, and capability path are recorded.
-- [ ] Raw samples are retained.
-- [ ] Cold and warm states are not mixed.
-- [ ] UI responsiveness and persistence are measured independently.
-- [ ] Import-worker and 10,000-event reload budgets are measured.
+- [x] Hardware, browser, build, and capability path are recorded.
+- [x] Raw samples are retained.
+- [x] Cold and warm states are not mixed.
+- [x] UI responsiveness and persistence are measured independently.
+- [ ] Import-Worker peak memory remains unmeasured; 10,000-event reload is
+      measured.
 - [ ] No target is changed after observing a failure without review.
-- [ ] AU-AGENT-003 independently reviews evidence.
+- [x] AU-AGENT-003 independently reviewed the initial registered evidence;
+      supplemental TTI/heap remediation awaits narrow re-review.
 
 ## References
 
