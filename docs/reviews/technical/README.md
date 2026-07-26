@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md`, `docs/standards/DOCUMENTATION_STANDARD.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -19,8 +19,8 @@
 
 Index task-scoped engineering intake reviews, feasibility findings, bounded
 technical spikes, non-independent implementation evidence, Clarification
-Reports, Conflict Reports, and Technical Alternative Proposals without
-duplicating their conclusions.
+Reports, Conflict Reports, Technical Alternative Proposals, and implementing-
+contour Completion Reports without duplicating their conclusions.
 
 ## Scope
 

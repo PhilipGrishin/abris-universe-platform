@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 2.3.0 |
+| Version | 2.4.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -97,7 +97,7 @@ project-owner approval.
 | Engineering Handbook | `docs/handbook/` | AU-AGENT-002 | Explanatory navigation and synthesis; never a parallel source of technical truth. |
 | Risks | `docs/RISKS.md` | AU-CODEX-PRIMARY / named risk owner | Risk status does not approve a technical change. |
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
-| Technical reviews and non-independent implementation evidence | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, alternative, and implementing-contour evidence; never substitutes for AU-AGENT-003 verification or product acceptance. |
+| Technical reviews, Completion Reports, and non-independent implementation evidence | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, alternative, implementing-contour evidence, and consolidated delivery reports; never substitutes for AU-AGENT-003 verification or product acceptance. |
 | Engineering verification evidence | `docs/reviews/engineering/` | AU-AGENT-003 | Engineering Verification Status is a task-scoped quality gate, not project `[VERIFIED]` or product acceptance. |
 | Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
 | Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |

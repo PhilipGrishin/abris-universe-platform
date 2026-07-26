@@ -13,12 +13,12 @@ consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
 AU-AGENT-003 manual-accessibility reverification at evidence package
 `58d5832f`
 
-Integrate the independent finding dispositions and prepare the consolidated
-Completion Report while preserving all unsupported performance,
-accessibility, platform, release, and deployment limitations. TS001-IMPL-002
-and TS001-IMPL-003 are resolved only for their bounded Phase 0 scopes. Keep
-production deployment, product acceptance, and project `[VERIFIED]` outside
-this internal stage.
+Submit the prepared consolidated Completion Report to AU-AGENT-003 for its
+exact-source final internal review while preserving all unsupported
+performance, accessibility, platform, release, and deployment limitations.
+TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their bounded Phase 0
+scopes. Keep production deployment, product acceptance, and project
+`[VERIFIED]` outside this internal stage.
 
 ## Confirmed Inputs
 
@@ -210,9 +210,9 @@ TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
 scopes, plus the bounded persistence/runtime-security scopes. The current
 Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
 implementation finding remains in that declared scope. A consolidated
-Completion Report may now be prepared, but has not yet been reviewed or
-accepted. This lifecycle integration requires no Claude return and therefore
-no new Collaboration Bridge Exchange ID.
+Completion Report is prepared, but has not yet been reviewed or accepted.
+Its preparation requires no Claude return and therefore no new Collaboration
+Bridge Exchange ID.
 
 ## Current Renderer Gate
 
