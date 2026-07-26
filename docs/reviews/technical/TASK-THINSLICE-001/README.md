@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.14.0 |
+| Version | 1.15.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -50,6 +50,7 @@ final product acceptance.
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
+- [Independent Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
 ## Current Disposition
@@ -67,11 +68,13 @@ The accessible browser flow, dedicated import Worker, real IndexedDB reload,
 two-tab stale-write rejection, and bounded Canvas integration are now
 `[IMPLEMENTED]`, `[TESTED]` at final client commit `3a73748`; the non-gate
 browser signal remains tied to exact earlier commit `fc50d66`. Controlled performance,
-browser/accessibility matrices, remote CI execution, deployment, and
-consolidated AU-AGENT-003 verification remain open. The SHA-pinned CI
+browser/accessibility matrices and deployment remain open. The SHA-pinned CI
 contract, static Worker boundary, restrictive headers, clean-source
 `version.json`, and no-deploy Wrangler rehearsal are `[IMPLEMENTED]`,
-`[TESTED]` at exact commit `35bbb34`. TD-GATE-002 remains open for
+`[TESTED]` at exact implementation commit `35bbb34`; exact-head remote CI run
+`30191845477` passed at `43782195`. AU-AGENT-003 assigned the consolidated
+implementation `REWORK REQUIRED` for TS001-IMPL-001/002/003 and remaining
+TS001-PERSIST-006 evidence. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 

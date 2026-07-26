@@ -230,8 +230,8 @@
 
 ### AU-CDX-TASK-001-DOMAIN-CORE — Canonical Domain Contracts
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
-  implementation verification pending; no project `[VERIFIED]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering
+  Verification Status `REWORK REQUIRED`; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.3.0 section 5 and ADR-TS001-001.
 - **Owner:** AU-AGENT-001 with AU-AGENT-004 domain input; AU-AGENT-002 for
   documentation lifecycle; AU-AGENT-003 remains the independent reviewer.
@@ -374,13 +374,15 @@
   assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
   production deployment, product acceptance, and project `[VERIFIED]` remain
   open.
-- **Next step:** Include the client result in the consolidated AU-AGENT-003
-  implementation quality gate.
+- **Next step:** Remediate TS001-IMPL-001/002/003 and remaining
+  TS001-PERSIST-006 evidence, then request exact-source AU-AGENT-003
+  reverification.
 
 ### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
 
-- **Status:** `[IMPLEMENTED]`, `[TESTED]` locally; remote CI execution,
-  AU-AGENT-003 verification, and production deployment `[OPEN]`.
+- **Status:** `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI;
+  consolidated Engineering Verification Status `REWORK REQUIRED`; production
+  deployment `[OPEN]`.
 - **Source:** Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model
   TM-011 through TM-019.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical integration;
@@ -396,14 +398,44 @@
 - **Evidence:** 64 tests; strict typecheck; no known production dependency
   vulnerability reported; seven-file static build; three-file/4,189-byte
   dry-run bundle; local workerd `200` root/fallback/provenance, `405` POST,
-  exact CSP, `nosniff`, and no-referrer assertions.
+  exact CSP, `nosniff`, and no-referrer assertions; exact-head GitHub Actions
+  run `30191845477` and retained artifact passed.
 - **Boundary:** No Cloudflare account ID, token, route, custom domain, DNS
   change, upload, production smoke, or deployment occurred. TD-GATE-003, full
   runtime network capture, production headers, remote CI evidence, and
   explicit deployment authorization remain mandatory.
-- **Next step:** Submit the exact consolidated source and documentation to
-  AU-AGENT-003. Do not deploy or prepare a Claude return before that internal
-  quality gate.
+- **Next step:** Preserve the passed CI result while remediating the mandatory
+  consolidated findings. Do not deploy or prepare a Claude return before
+  AU-AGENT-003 reverification.
+
+### AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION — Consolidated Engineering Gate
+
+- **Status:** `[IMPLEMENTED]`; Engineering Verification Status
+  `REWORK REQUIRED`.
+- **Source:** Exact commit
+  `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
+  `30191845477`.
+- **Owner:** AU-AGENT-003 for independent findings and status; AU-AGENT-001
+  coordinates remediation; domain owners retain their implementation scopes;
+  AU-AGENT-002 integrates lifecycle records without changing review meaning.
+- **Documentation Impact:** Material.
+- **Passed scope:** Exact local/remote identity, frozen install, strict
+  typecheck, 64 tests, static build, production dependency audit, CI,
+  no-deploy rehearsal, and retained artifact.
+- **Mandatory findings:** TS001-IMPL-001 approved glyph-atlas/Offscreen Worker
+  paths; TS001-IMPL-002 controlled performance evidence; TS001-IMPL-003
+  accessibility/supported-browser evidence; remaining TS001-PERSIST-006
+  exact-browser/contention/failure/lifecycle evidence.
+- **Non-blocking current-scope finding:** TS001-SEC-002 is partially resolved;
+  full network capture remains open, with production assertions deferred to
+  the authorized deployment gate.
+- **Documentation finding:** TS001-DOC-001 requires lifecycle integration of
+  this report and exact CI result.
+- **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
+  task-scoped engineering status, not product acceptance or project
+  `[VERIFIED]`.
+- **Next step:** Complete the four mandatory remediation/evidence packages and
+  request exact-source AU-AGENT-003 reverification.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

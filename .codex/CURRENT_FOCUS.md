@@ -7,11 +7,13 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 `[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
 `VERIFIED WITH FINDINGS`; renderer core is `[IMPLEMENTED]`, `[TESTED]` with
 repository-level Engineering Verification Status `VERIFIED`; client
-integration and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`
+integration and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
+consolidated Engineering Verification Status `REWORK REQUIRED`
 
-Independently verify the consolidated Phase 0 implementation and evidence with
-AU-AGENT-003. Keep production deployment, product acceptance, and project
-`[VERIFIED]` outside this internal stage.
+Remediate the four mandatory consolidated implementation findings, retain the
+passed exact-source CI evidence, and request AU-AGENT-003 reverification. Keep
+production deployment, product acceptance, and project `[VERIFIED]` outside
+this internal stage.
 
 ## Confirmed Inputs
 
@@ -62,6 +64,11 @@ AU-AGENT-003. Keep production deployment, product acceptance, and project
 - The runtime request inventory uses `connect-src 'none'`; application source
   has no script-initiated connection API. Full browser capture and production
   assertion remain open.
+- AU-AGENT-003 reviewed exact consolidated source `43782195`, confirmed
+  successful GitHub Actions run `30191845477`, and assigned `REWORK REQUIRED`.
+  TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 are mandatory.
+  TS001-SEC-002 is partially resolved and non-blocking for the current
+  no-deploy scope.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -113,7 +120,7 @@ integrated byte-for-byte as
 The disposition is `CONFIRMED_ACCEPTED_WITH_GATES`; the exchange is archived
 with checksum provenance and no verified scope.
 
-## Completed Internal Stage
+## Current Quality Gate
 
 Client integration and the CI/no-deploy rehearsal are implemented and tested.
 Exact-source `35bbb34` passes frozen install, strict typecheck, 64 tests,
@@ -121,8 +128,12 @@ verified clean-source static build, production dependency audit, Wrangler
 dry-run, and local workerd root/fallback/provenance/method/header smoke.
 TD-GATE-003 and the full runtime capture remain open.
 
-This internal stage requires no Claude return and therefore no new
-Collaboration Bridge Exchange ID.
+AU-AGENT-003 reports no Critical or High defect, but the consolidated
+Completion Report is blocked until renderer capability paths, controlled
+performance, accessibility/supported-browser evidence, and remaining
+persistence browser scenarios are remediated and reverified. This internal
+stage requires no Claude return and therefore no new Collaboration Bridge
+Exchange ID.
 
 ## Current Renderer Gate
 
@@ -149,7 +160,8 @@ remains open.
 
 ## Next Concrete Step
 
-Commit the evidence and persistent-state update, then assign AU-AGENT-003 an
-independent exact-source consolidated implementation review. Resolve mandatory
-findings inside Codex before preparing any Completion Report or Claude
-acceptance exchange.
+Integrate the independent report without changing its meaning, then implement
+TS001-IMPL-001 and build the exact-source performance,
+accessibility/supported-browser, persistence, and network-capture evidence
+required for findings 002/003/006. Request AU-AGENT-003 reverification before
+preparing any Completion Report or Claude acceptance exchange.

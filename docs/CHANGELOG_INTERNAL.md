@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.5.0 |
+| Version | 3.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Consolidated Implementation Verification
+
+- Integrated the unchanged AU-AGENT-003 Engineering Verification Report for
+  exact source `43782195`.
+- Recorded successful exact-source GitHub Actions run `30191845477`, including
+  frozen install, typecheck, 64 tests, build, production dependency audit,
+  no-deploy rehearsal, and retained artifact.
+- Registered Engineering Verification Status `REWORK REQUIRED`.
+- Routed mandatory TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 to
+  their implementation/evidence owners.
+- Preserved partially resolved TS001-SEC-002 as non-blocking for the current
+  no-deploy scope and production-only checks as separate deployment gates.
+- Updated engineering review navigation, task, traceability, risk, status,
+  focus, technical review, CI evidence, and handoff lifecycle.
+- Documentation Impact: Material.
+- Status: independent report `[IMPLEMENTED]`; Completion Report blocked; no
+  project `[VERIFIED]`.
 
 ## 2026-07-26 — Client Integration and Static Delivery Rehearsal
 

@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | `[IMPLEMENTED]`, `[TESTED]` locally; remote CI execution and production deployment `[OPEN]` |
+| Status | `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; production deployment `[OPEN]`; consolidated quality gate `REWORK REQUIRED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
@@ -75,6 +75,8 @@ Exact implementation commit:
 | Local workerd provenance | `[TESTED]`; `version.json` returned the exact clean commit |
 | Local workerd method boundary | `[TESTED]`; `POST /` returned `405 Method Not Allowed` |
 | Local workerd response security | `[TESTED]`; reviewed CSP, `X-Content-Type-Options: nosniff`, and `Referrer-Policy: no-referrer` |
+| GitHub Actions run `30191845477` | `[TESTED]`; exact head `43782195`; every CI step passed |
+| Retained remote artifact | `[TESTED]`; `abris-static-43782195c2db734bc16e7401dcad4becbe3e0d4f`, 429,389 bytes, expires 2026-08-09 |
 
 ## Security Header Contract
 
@@ -108,8 +110,8 @@ Production remains blocked by:
 
 - TD-GATE-003: capture the current Worker version/route and recoverable
   placeholder artifact;
-- independent AU-AGENT-003 implementation verification;
-- remote GitHub Actions evidence;
+- remediation and AU-AGENT-003 reverification of mandatory consolidated
+  implementation findings;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - explicit production-deployment authorization.
@@ -122,9 +124,12 @@ rollback because no deployment occurred.
 
 ## Quality Gate
 
-AU-AGENT-003 must independently review the exact implementation and evidence.
-The implementation owner cannot assign its own Engineering Verification
-Status. Any mandatory finding blocks the consolidated Completion Report.
+AU-AGENT-003 reviewed exact consolidated source `43782195` and assigned
+Engineering Verification Status `REWORK REQUIRED`. CI and the no-deploy
+rehearsal passed, but mandatory renderer capability, performance,
+accessibility/browser, and persistence evidence findings block the
+consolidated Completion Report. The implementation owner cannot change that
+status without exact-source AU-AGENT-003 reverification.
 
 ## References
 
@@ -134,3 +139,4 @@ Status. Any mandatory finding blocks the consolidated Completion Report.
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Client Integration Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [Task Review Index](README.md)
+- [Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)
