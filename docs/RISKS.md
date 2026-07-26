@@ -361,7 +361,7 @@
 
 - **Status:** `[OPEN]`; bounded core and browser functional controls
   `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering Verification Status
-  `REWORK REQUIRED`
+  `VERIFIED WITH FINDINGS`
 - **Probability:** Medium
 - **Impact:** High
 - **Trigger:** A Node Canvas-contract signal or capability selector is treated
@@ -399,9 +399,10 @@
   before any 500,000-stitch scale claim. AU-AGENT-003 independently confirmed
   the limitation and resolved TS001-IMPL-002 for bounded Phase 0. Exact source
   `470a30a` adds Project Owner-confirmed corrected physical Tab and VoiceOver
-  evidence; its AU-AGENT-003 disposition and broader-browser evidence remain
-  open and cannot be generalized. Accessibility finding TS001-IMPL-003 remains
-  mandatory before a Completion Report.
+  evidence. AU-AGENT-003 accepted it at package `58d5832f` and resolved
+  TS001-IMPL-003 only for Chrome 150/macOS 26.5.2. The missing VoiceOver
+  version, exact viewport, session recording, and broader-browser evidence
+  remain open and cannot be generalized.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

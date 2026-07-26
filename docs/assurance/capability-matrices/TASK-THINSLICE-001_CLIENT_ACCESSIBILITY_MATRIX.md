@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-CAP-TS001-CLIENT-001 |
 | Title | TASK-THINSLICE-001 Client Accessibility and Platform Matrix |
-| Status | `[TESTED]` for the listed Chromium/macOS profile; other profiles `[OPEN]` |
+| Status | `[TESTED]`; independently accepted for the listed Chromium/macOS profile; other profiles `[OPEN]` |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676`; manual evidence source `470a30a7ea04860c9dacab5ae6edace960ca7d6d` |
+| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676`; manual evidence source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; Engineering Verification Report v1.6.0 |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Browser, OS, viewport, assistive technology, interaction, semantics, color, motion, or source change |
@@ -100,8 +100,10 @@ starting point after the header. The valid pass-candidate used page reload and
 no content click before physical Tab traversal. The correction is not hidden
 or represented as an implementation fix.
 
-The manual evidence is `[TESTED]` and remains a pass-candidate until
-AU-AGENT-003 independently reviews its sufficiency and finding disposition.
+AU-AGENT-003 independently accepted the manual evidence at package `58d5832f`
+and resolved TS001-IMPL-003 for the declared Chrome 150/macOS 26.5.2 Phase 0
+profile. The historical Medium severity is preserved; no broader support is
+inferred.
 
 ## Remaining Accessibility Limitations
 
@@ -112,8 +114,8 @@ AU-AGENT-003 independently reviews its sufficiency and finding disposition.
 - Mobile viewport, touch target, browser zoom, forced-colors, and non-Chromium
   accessibility behavior remain unverified.
 
-TS001-IMPL-003 now has the requested manual evidence but is not self-declared
-closed. AU-AGENT-003 retains authority over its exact-source disposition.
+TS001-IMPL-003 is resolved only for the declared profile. AU-AGENT-003 retains
+authority over future finding dispositions and any expanded evidence scope.
 
 ## Common Mistakes
 
@@ -135,7 +137,7 @@ closed. AU-AGENT-003 retains authority over its exact-source disposition.
 - [x] Reliable corrected physical Tab/focus traversal completed.
 - [x] Incomplete contrast targets manually dispositioned with exact ratios.
 - [ ] Additional supported browser/platform rows exercised.
-- [ ] AU-AGENT-003 independent review of the new manual evidence completed.
+- [x] AU-AGENT-003 independent review of the new manual evidence completed.
 
 ## References
 

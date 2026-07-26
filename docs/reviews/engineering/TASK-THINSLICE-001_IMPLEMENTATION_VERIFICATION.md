@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.3; AU-BENCH-TS001-LIM-001; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, and `c64d3ec8ab390269121c651d8c78695d9b4946f5`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, and `30213355972` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.3; AU-BENCH-TS001-LIM-001; Client Accessibility Matrix v1.4.0; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, `c64d3ec8ab390269121c651d8c78695d9b4946f5`, and `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0`, `15ea8f9304d787aff604598f69e2e8551f5761cb`, and `58d5832fd248b085774aadd417b4c0a54855ed10`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, `30213355972`, `30213649361`, and `30214387294` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -1296,9 +1296,9 @@ preserve:
 Those updates are outside this review's write authority. This report does not
 alter the owner decision or create a second limitation.
 
-### Current Quality Gate Decision
+### Quality Gate Decision at `c64d3ec8`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Decision rationale:** TS001-IMPL-002 is resolved for the bounded Phase 0
   scope through the exact owner-approved limitation and its verified mandatory
   controls. The unchanged mandatory TS001-IMPL-003 disposition prevents a
@@ -1345,3 +1345,223 @@ authorization, or project `[VERIFIED]`.
   remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-002 is
   resolved for bounded Phase 0. TS001-IMPL-003 is unchanged, so the Engineering
   Verification Status remains `REWORK REQUIRED`.
+
+## Manual Accessibility Reverification at `58d5832f`
+
+### Identity and Scope
+
+- **Finding under review:** TS001-IMPL-003 only.
+- **Exact executable and manual-session source:**
+  `470a30a7ea04860c9dacab5ae6edace960ca7d6d`, with parent
+  `c64d3ec8ab390269121c651d8c78695d9b4946f5`.
+- **Exact evidence package:**
+  `58d5832fd248b085774aadd417b4c0a54855ed10`, with parent
+  `470a30a7ea04860c9dacab5ae6edace960ca7d6d`.
+- **Exact-source CI:** GitHub Actions run `30213649361`, job
+  `89823969121`, succeeded.
+- **Evidence-package CI:** GitHub Actions run `30214387294`, job
+  `89825859979`, succeeded.
+- **Reviewer:** AU-AGENT-003, independently of the implementation owner.
+- **Documentation Impact:** `Material`.
+
+This is a narrow exact-source re-review of the manual screen-reader and
+physical-keyboard evidence required by TS001-IMPL-003. It does not re-review
+TS001-IMPL-002, implementation outside the recorded source, a Completion
+Report, product acceptance, release readiness, or deployment readiness.
+
+### Evidence Reviewed
+
+- `manual-accessibility-470a30a.json`, captured from the exact executable
+  source above on 2026-07-26, with SHA-256
+  `8d8f7ccacf71b4b3e90abadd8ca281e7a6f5008954f8ac7f99fe6adbf067e430`;
+- Client Accessibility Matrix v1.4.0;
+- the prior automated accessibility artifacts
+  `accessibility-d69b5c5.json` and `accessibility-1c2bd5d.json`;
+- the exact-source client implementation that defines DOM order, focus
+  behavior, Canvas semantics, selected-stitch details, and save announcements;
+- the applicable documentation-lifecycle, traceability, task, status, handoff,
+  and risk records.
+
+The manual artifact records a Project Owner-operated session on a MacBook Pro
+Mac15,3 with Apple M3 and 8 GB memory, macOS 26.5.2, Chrome 150, a physical
+keyboard, and macOS VoiceOver. It records a clean production-mode local
+accessibility harness and the registered 512-by-256, 100,000-stitch,
+32-color medium fixture. The VoiceOver version and exact manual-session
+viewport were not recorded, no audio or video was captured, and no
+session-specific screenshot is registered with the manual artifact.
+
+### Integrity, Source, CI, and Test Verification
+
+- The manual evidence SHA-256 recomputes to the registered value above.
+- The evidence package changes documentation and evidence only; it does not
+  change the executable source used in the manual session.
+- Exact-source CI run `30213649361` and evidence-package CI run `30214387294`
+  both completed successfully at their registered commits.
+- The evidence-package CI retained artifact
+  `abris-static-58d5832fd248b085774aadd417b4c0a54855ed10`, size 447,055
+  bytes, with expiry recorded as 2026-08-09 18:17:35 UTC.
+- A local `pnpm test` run at the evidence-package source passed 68 tests with
+  zero failures: 10 domain, 15 importer, 18 persistence, 16 renderer, and
+  9 web tests.
+
+### Manual Method Correction
+
+The artifact preserves the rejected first attempt rather than replacing its
+history:
+
+1. The operator clicked inside the `Stitches 100,000` summary before starting
+   keyboard traversal.
+2. Both `Tab` and `Option+Tab` then began at `Zoom out`.
+3. That attempt was rejected because the click established the sequential
+   focus starting point after the header. It is neither a full-document
+   traversal pass nor an implementation failure.
+4. The accepted procedure reloaded the harness, waited for the persisted
+   project, did not click page content, and began traversal with the physical
+   `Tab` key.
+
+This correction is explicit, reproducible at the level recorded by the manual
+artifact, and does not use the rejected attempt as passing evidence.
+
+### Physical Keyboard Traversal
+
+The accepted owner-confirmed traversal records the following physical order:
+
+1. home link;
+2. `Import OXS` button;
+3. `Zoom out`;
+4. `Zoom in`;
+5. `Pan left`;
+6. `Pan up`;
+7. `Pan down`;
+8. `Pan right`;
+9. Canvas exposed with role `img` and the accessible name
+   `Route-1 Medium Deterministic Pattern`.
+
+The operator confirmed visible focus at each stop and reported no mismatch.
+The recorded order agrees with the inspected source DOM and the prior
+automated accessibility-tree evidence. The latter is supporting evidence only;
+it is not used as a substitute for the physical traversal. Because no visual
+capture was retained, the visible-focus result remains owner-confirmed manual
+evidence rather than independently replayable visual evidence.
+
+### VoiceOver and Interaction Semantics
+
+The owner-confirmed VoiceOver session reported the expected names and roles for
+the home link, import control, zoom controls, pan controls, and Canvas. It also
+confirmed:
+
+- the Canvas summary, grid and stitch counts, and keyboard instructions;
+- `ArrowRight` panning and `Plus` zooming while the Canvas held focus;
+- selected-stitch coordinate, symbol, color, and marked-state detail after
+  selecting a visible stitch;
+- the `Saving` and `Saved locally` announcements after the state change.
+
+No mismatch was recorded. Source inspection confirms corresponding accessible
+names, Canvas `role="img"` and focusability, keyboard handlers, selected-stitch
+live-region content, and polite save-status announcements. The manual evidence
+therefore corroborates the implemented semantics instead of asking the
+reviewer to infer behavior from markup alone.
+
+### Prior Automated Evidence Boundary
+
+The earlier exact artifacts remain supporting evidence:
+
+- axe-core 4.10.3 reported zero violations and 37 passes for the registered
+  Chrome/macOS profile;
+- the five axe-incomplete toolbar contrast targets were covered by registered
+  manual ratios, including the minimum reported toolbar ratio of 8.37:1;
+- the automated accessibility tree and source structure support the recorded
+  names, roles, order, and live regions;
+- grayscale differentiation and reduced-motion evidence remain as previously
+  reviewed.
+
+None of these automated checks is represented as a screen-reader session or a
+physical-keyboard traversal.
+
+### TS001-IMPL-003 Disposition
+
+| Finding | Historical severity | Previous mandatory remainder | Exact-source disposition | Preserved boundary |
+| --- | --- | --- | --- | --- |
+| TS001-IMPL-003 | Medium | Reliable physical `Tab` traversal and screen-reader confirmation on the registered accessibility profile | **Resolved for the declared TASK-THINSLICE-001 Phase 0 Chrome 150/macOS 26.5.2 profile.** The corrected owner-operated session supplies the required manual evidence and agrees with source and prior automated evidence | VoiceOver version, exact manual viewport, visual/audio capture, other browsers, mobile, touch, forced colors, and browser zoom remain unverified |
+
+The finding is resolved rather than downgraded; its historical `Medium`
+severity remains recorded. The resolution is bounded to the declared profile
+and evidence method. It must not be generalized to unsupported platforms,
+input modes, display modes, or browser configurations.
+
+### Documentation Lifecycle
+
+After this disposition is integrated, AU-AGENT-002 must update the registered
+status, task, traceability, handoff, risk, and accessibility-matrix records to
+preserve:
+
+- exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`;
+- exact evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`;
+- both successful CI run identifiers;
+- the retained rejected click-anchored attempt and the accepted
+  reload-without-content-click procedure;
+- TS001-IMPL-003 resolved only for the declared Chrome/macOS profile;
+- all limitations below without silently backfilling the missing values.
+
+Those updates are outside this independent review's write authority.
+
+### Current Quality Gate Decision
+
+- **Engineering Verification Status:** VERIFIED WITH FINDINGS
+- **Decision rationale:** TS001-IMPL-002 and TS001-IMPL-003 are both resolved
+  for their explicitly bounded TASK-THINSLICE-001 Phase 0 scopes. No mandatory
+  implementation finding remains unresolved in that bounded scope. The
+  preserved manual-evidence limitations, unsupported accessibility profiles,
+  future import-Worker measurement obligation, and pending documentation
+  lifecycle integration justify retaining findings rather than assigning an
+  unqualified task-scoped `VERIFIED`.
+- **Completion Report:** not approved or reviewed by this narrow re-review.
+- **Release, deployment, product acceptance, and project `[VERIFIED]`:** not
+  assigned.
+- **Required next action:** AU-AGENT-002 integrates the exact finding
+  disposition and bounded limitations into the registered lifecycle records.
+
+This unbracketed Engineering Verification Status is task-scoped. It is not
+Claude Cowork independent product acceptance, Completion Report approval,
+release readiness, deployment authorization, or project `[VERIFIED]`.
+
+### Residual Risks and Limitations
+
+- The VoiceOver version and exact manual-session viewport were not recorded.
+- The screen-reader and visible-focus results are owner-confirmed manual
+  observations without audio or video capture; the manual artifact has no
+  registered session-specific screenshot.
+- Firefox, Safari/WebKit, other Chromium versions, other operating systems,
+  mobile, touch, forced-colors mode, and browser zoom are not verified or
+  claimed.
+- The prior TS001-IMPL-002 import-Worker memory limitation remains in force:
+  actual Worker peak measurement is still mandatory before any
+  500,000-stitch scale claim.
+- The documentation lifecycle updates described above remain pending and must
+  not change the evidence meaning or expand the verified scope.
+- This review does not approve a Completion Report, release, deployment,
+  product acceptance, or project status.
+
+### References
+
+- [Client Accessibility Matrix v1.4.0](../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
+- [Manual accessibility evidence](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-accessibility-470a30a.json)
+- [Prior automated accessibility evidence at d69b5c5](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-d69b5c5.json)
+- [Prior automated accessibility evidence at 1c2bd5d](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-1c2bd5d.json)
+- [Traceability Matrix](../../TRACEABILITY_MATRIX.md)
+- [Task Register](../../TASKS.md)
+- [Risk Register](../../RISKS.md)
+- [GitHub Actions run 30213649361](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30213649361)
+- [GitHub Actions run 30214387294](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30214387294)
+
+### Review History Update
+
+- 2026-07-26, version 1.6.0: AU-AGENT-003 independently re-reviewed
+  TS001-IMPL-003 against executable source `470a30a7` and evidence package
+  `58d5832f`. The retained rejected click-anchored attempt was not counted as
+  evidence; the accepted reload/no-content-click physical traversal and
+  owner-confirmed VoiceOver session resolve TS001-IMPL-003 for the declared
+  Chrome 150/macOS 26.5.2 profile. With both mandatory implementation findings
+  resolved in their bounded Phase 0 scopes, the task-scoped Engineering
+  Verification Status is `VERIFIED WITH FINDINGS`. All recorded accessibility,
+  memory, acceptance, release, and deployment boundaries remain in force.

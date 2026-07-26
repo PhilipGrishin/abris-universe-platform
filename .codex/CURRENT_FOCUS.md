@@ -9,13 +9,14 @@ bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
 repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
-consolidated Engineering Verification Status remains `REWORK REQUIRED` after
-AU-AGENT-003 supplemental-profile reverification at evidence package
-`15ea8f93`
+consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
+AU-AGENT-003 manual-accessibility reverification at evidence package
+`58d5832f`
 
-Complete TS001-IMPL-003 while preserving all unsupported performance,
-accessibility, and platform limitations. TS001-IMPL-002 is resolved for bounded
-Phase 0 under the independently confirmed owner-approved limitation. Keep
+Integrate the independent finding dispositions and prepare the consolidated
+Completion Report while preserving all unsupported performance,
+accessibility, platform, release, and deployment limitations. TS001-IMPL-002
+and TS001-IMPL-003 are resolved only for their bounded Phase 0 scopes. Keep
 production deployment, product acceptance, and project `[VERIFIED]` outside
 this internal stage.
 
@@ -100,8 +101,9 @@ this internal stage.
 - Pinned axe-core reports zero violations after exact-source remediation.
   Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
   five toolbar controls, and manual calculations disposition those controls at
-  8.37:1 or better. Manual screen-reader, reliable physical Tab traversal,
-  non-Chromium, and mobile evidence remain open.
+  8.37:1 or better. Exact source `470a30a` adds the corrected physical Tab
+  traversal and Project Owner-confirmed VoiceOver session. Non-Chromium,
+  mobile, touch, forced-colors, and browser-zoom evidence remain open.
 - Real-browser evidence observes transaction abort, exact Web Locks contention
   with visible `Read-only`, blocked IndexedDB upgrade, persistent-storage
   denial, and a same-origin runtime resource inventory. Safe real quota/
@@ -112,8 +114,8 @@ this internal stage.
   declared Chromium/macOS Phase 0 scope. The implementation-runtime part of
   TS001-SEC-002 is resolved for that profile; production assertions remain
   open.
-- TS001-IMPL-003 remains the sole mandatory Medium implementation finding.
-  TS001-IMPL-002 was resolved for bounded Phase 0 at exact source `c64d3ec8`.
+- TS001-IMPL-002 and TS001-IMPL-003 are resolved for their bounded Phase 0
+  scopes. TS001-IMPL-002 was resolved at exact source `c64d3ec8`.
   Exact source `d69b5c5` isolates the
   medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
   2.3 ms Worker-render p95; the earlier combined-session artifact with 31
@@ -129,9 +131,11 @@ this internal stage.
   500,000-stitch scale claim. AU-AGENT-003 confirmed exact source `c64d3ec8`
   and resolved TS001-IMPL-002 for bounded Phase 0. The medium estimate remains
   about 95.7 MiB against 256 MiB and is not actual Worker telemetry. Exact
-  source `470a30a` now has Project Owner-confirmed corrected physical Tab
-  traversal and macOS VoiceOver evidence; AU-AGENT-003 disposition remains
-  pending.
+  source `470a30a` has Project Owner-confirmed corrected physical Tab traversal
+  and macOS VoiceOver evidence. AU-AGENT-003 independently accepted it at
+  evidence package `58d5832f`, resolving TS001-IMPL-003 only for Chrome
+  150/macOS 26.5.2. The VoiceOver version, exact viewport, session recording,
+  and broader profiles remain unverified.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -202,12 +206,13 @@ the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
 TD-GATE-003 and production assertions remain open.
 
 AU-AGENT-003 reports no Critical or High defect and has resolved
-TS001-IMPL-001, TS001-IMPL-002 for bounded Phase 0, and the bounded
-persistence/runtime-security scopes. TS001-IMPL-003 now has corrected physical
-Tab and VoiceOver evidence but remains the sole mandatory implementation
-finding until AU-AGENT-003 exact-source review; the Completion Report remains
-blocked. This internal remediation requires no Claude return and therefore no
-new Collaboration Bridge Exchange ID.
+TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
+scopes, plus the bounded persistence/runtime-security scopes. The current
+Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
+implementation finding remains in that declared scope. A consolidated
+Completion Report may now be prepared, but has not yet been reviewed or
+accepted. This lifecycle integration requires no Claude return and therefore
+no new Collaboration Bridge Exchange ID.
 
 ## Current Renderer Gate
 

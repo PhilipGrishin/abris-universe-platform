@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.7.0 |
+| Version | 4.8.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Manual Accessibility Reverification Integration
+
+- Integrated AU-AGENT-003 Engineering Verification Report v1.6.0 for exact
+  executable source `470a30a`, evidence package `58d5832f`, and successful CI
+  runs `30213649361` and `30214387294`.
+- Registered TS001-IMPL-003 as resolved only for the declared Chrome
+  150/macOS 26.5.2 Phase 0 profile.
+- Updated the consolidated Engineering Verification Status to `VERIFIED WITH
+  FINDINGS`; no mandatory implementation finding remains in the bounded
+  TASK-THINSLICE-001 scope.
+- Preserved the missing VoiceOver version, exact viewport, session recording,
+  unsupported browsers and platforms, future Prototype 9.1 Worker-memory
+  obligation, production assertions, release, deployment, and product
+  acceptance as explicit limitations or later gates.
+- Updated review navigation, evidence lifecycle, capability matrix,
+  traceability, tasks, risks, status, focus, and handoff records.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Manual Physical-Keyboard and VoiceOver Evidence
 

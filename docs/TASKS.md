@@ -231,7 +231,7 @@
 ### AU-CDX-TASK-001-DOMAIN-CORE — Canonical Domain Contracts
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering
-  Verification Status `REWORK REQUIRED`; no project `[VERIFIED]`.
+  Verification Status `VERIFIED WITH FINDINGS`; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.3.0 section 5 and ADR-TS001-001.
 - **Owner:** AU-AGENT-001 with AU-AGENT-004 domain input; AU-AGENT-002 for
   documentation lifecycle; AU-AGENT-003 remains the independent reviewer.
@@ -353,8 +353,9 @@
 ### AU-CDX-TASK-001-CLIENT-INTEGRATION — Accessible Local-First Web Flow
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
-  reverification resolved TS001-IMPL-002 for bounded Phase 0; TS001-IMPL-003
-  remains mandatory; no project `[VERIFIED]`.
+  reverification resolved TS001-IMPL-002 and TS001-IMPL-003 for their bounded
+  Phase 0 scopes; Engineering Verification Status `VERIFIED WITH FINDINGS`;
+  no project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.2 sections 4 and 8–11;
   TASK-THINSLICE-001 v1.1.
 - **Owner:** AU-AGENT-006; AU-AGENT-001 for technical integration;
@@ -375,14 +376,14 @@
   assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
   production deployment, product acceptance, and project `[VERIFIED]` remain
   open.
-- **Next step:** Complete accessibility finding TS001-IMPL-003, then request
-  narrow exact-source AU-AGENT-003 reverification.
+- **Next step:** Preserve the bounded accessibility limitations in the
+  consolidated Completion Report; do not generalize support.
 
 ### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI;
-  consolidated Engineering Verification Status `REWORK REQUIRED`; production
-  deployment `[OPEN]`.
+  consolidated Engineering Verification Status `VERIFIED WITH FINDINGS`;
+  production deployment `[OPEN]`.
 - **Source:** Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model
   TM-011 through TM-019.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical integration;
@@ -411,8 +412,8 @@
 ### AU-CDX-TASK-001-IMPLEMENTATION-VERIFICATION — Consolidated Engineering Gate
 
 - **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
-  reverification `[IMPLEMENTED]`; Engineering Verification Status remains
-  `REWORK REQUIRED`.
+  reverification `[IMPLEMENTED]`; Engineering Verification Status
+  `VERIFIED WITH FINDINGS`.
 - **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
@@ -462,27 +463,27 @@
   import-Worker peak memory as a Phase 0 limitation under the tested 384 MiB
   admission control and mandatory Prototype 9.1 actual measurement before any
   scale claim. Project Owner-confirmed corrected physical Tab and VoiceOver
-  evidence now exists at exact source `470a30a`; non-Chromium/mobile profiles,
-  safe real quota/eviction, and production assertions were not inferred or
-  represented as passes. Accepted heap evidence remains Chromium main-thread
-  observational evidence only.
+  evidence exists at exact source `470a30a` and was independently accepted at
+  package `58d5832f`; non-Chromium/mobile profiles, the VoiceOver version,
+  exact manual viewport, session recording, safe real quota/eviction, and
+  production assertions were not inferred or represented as passes. Accepted
+  heap evidence remains Chromium main-thread observational evidence only.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 is resolved for bounded Phase 0 at
   exact source `c64d3ec8`; Prototype 9.1 actual Worker-memory measurement
   remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is
-  the sole mandatory implementation finding. The normal-color contrast
-  subcondition is resolved, and Project Owner-confirmed corrected physical Tab
-  plus VoiceOver evidence now awaits exact-source AU-AGENT-003 disposition.
+  resolved only for the declared Chrome 150/macOS 26.5.2 profile. No mandatory
+  implementation finding remains in that bounded Phase 0 scope.
 - **Documentation finding:** TS001-DOC-001 is partially resolved and
   non-blocking; version 1.1.0 of the independent report and current
   dispositions require this lifecycle integration.
-- **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
-  task-scoped engineering status, not product acceptance or project
-  `[VERIFIED]`.
-- **Next step:** Commit and validate the manual accessibility evidence, then
-  request narrow AU-AGENT-003 reverification before any Completion Report.
+- **Boundary:** No Critical or High defect was observed. `VERIFIED WITH
+  FINDINGS` is a task-scoped engineering status, not product acceptance or
+  project `[VERIFIED]`.
+- **Next step:** Complete documentation lifecycle integration, then prepare the
+  consolidated Completion Report without expanding the accepted scope.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

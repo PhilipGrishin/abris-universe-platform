@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 performance and accessibility finding remediation
+**Current focus:** TASK-THINSLICE-001 engineering-verification integration and Completion Report preparation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -144,10 +144,12 @@
   384 MiB control and mandatory Prototype 9.1 actual measurement before any
   500,000-stitch scale claim. AU-AGENT-003 independently confirmed exact source
   `c64d3ec8` and resolved TS001-IMPL-002 for bounded Phase 0.
-- `[TESTED]` Exact source `470a30a` now has Project Owner-confirmed corrected
+- `[TESTED]` Exact source `470a30a` has Project Owner-confirmed corrected
   physical Tab traversal and macOS VoiceOver evidence. The rejected
-  click-anchored method is retained. AU-AGENT-003 disposition remains open;
-  additional browsers and mobile remain outside the evidence.
+  click-anchored method is retained. AU-AGENT-003 accepted the evidence at
+  package `58d5832f` and resolved TS001-IMPL-003 only for the declared Chrome
+  150/macOS 26.5.2 profile; additional browsers and mobile remain outside the
+  evidence.
 - `[TESTED]` Real browser transaction abort, Web Locks contention with visible
   `Read-only`, blocked upgrade, persistent-storage denial, corrupt import,
   10,000-event lifecycle, and same-origin runtime resources are recorded.
@@ -185,11 +187,12 @@
   `30212305750`/`30212621771`. It resolved the Viewer TTI and registered
   Chromium main-thread retained-memory remainders within the documented
   observational boundaries.
-- `[IMPLEMENTED]` AU-AGENT-003 independently resolved TS001-IMPL-002 for
-  bounded Phase 0 under the approved limitation. TS001-IMPL-003 remains the
-  sole mandatory implementation finding pending independent review of the new
-  manual evidence. Completion Report, project `[VERIFIED]`, product acceptance,
-  release readiness, and deployment authorization remain absent.
+- `[IMPLEMENTED]` AU-AGENT-003 independently resolved TS001-IMPL-002 and
+  TS001-IMPL-003 for their explicitly bounded Phase 0 scopes. The consolidated
+  Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
+  implementation finding remains in that scope. Completion Report review,
+  project `[VERIFIED]`, product acceptance, release readiness, and deployment
+  authorization remain absent.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -471,13 +474,13 @@
   control, Viewer TTI, registered main-thread retained memory, and
   steady-gesture long-task subconditions passed exact-source independent
   review.
-- `[OPEN]` TS001-IMPL-003: the normal-color contrast subcondition is resolved,
-  and corrected physical Tab plus VoiceOver evidence now exists at exact source
-  `470a30a`; AU-AGENT-003 exact-source disposition remains pending.
-- `[OPEN]` Prototype 9.1 actual Worker-memory measurement, manual
-  assistive-technology traversal, broader browsers, safe real quota/eviction,
-  and production response assertions remain explicit limitations pending
-  completion or their applicable governance disposition.
+- `[IMPLEMENTED]` TS001-IMPL-003 is resolved only for the declared Chrome
+  150/macOS 26.5.2 profile after independent review of the corrected physical
+  Tab and VoiceOver evidence at source `470a30a` and package `58d5832f`.
+- `[OPEN]` Prototype 9.1 actual Worker-memory measurement, broader browsers and
+  assistive-technology profiles, safe real quota/eviction, and production
+  response assertions remain explicit limitations pending completion or their
+  applicable governance disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -513,15 +516,16 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered Project Owner-confirmed corrected physical Tab traversal and macOS
-VoiceOver evidence against exact clean source `470a30a`, including the rejected
-click-anchored method and remaining platform/capture limitations.
-TS001-IMPL-003 awaits AU-AGENT-003 exact-source disposition. Engineering
-Verification Status remains `REWORK REQUIRED`. No project `[VERIFIED]`,
+Integrated AU-AGENT-003 Engineering Verification Report v1.6.0 for exact
+executable source `470a30a` and evidence package `58d5832f`.
+TS001-IMPL-003 is resolved for the declared Chrome 150/macOS 26.5.2 Phase 0
+profile, and the consolidated Engineering Verification Status is
+`VERIFIED WITH FINDINGS`. No project `[VERIFIED]`, Completion Report approval,
 product acceptance, release approval, or deployment permission was assigned.
 
 ## Next Step
 
-Commit and validate the manual accessibility evidence, then request narrow
-AU-AGENT-003 reverification of TS001-IMPL-003. Preserve unsupported profiles
-and modes before any Completion Report or Claude acceptance exchange.
+Validate and commit the documentation-lifecycle integration, then prepare the
+consolidated TASK-THINSLICE-001 Completion Report against the exact accepted
+source and evidence boundaries. Route any required independent product
+acceptance through a new registered Collaboration Bridge exchange.
