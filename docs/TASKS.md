@@ -444,7 +444,7 @@
   Exact-source contrast remediation reduces axe incomplete targets from 15 to
   five toolbar controls, and manual calculations disposition all five at
   8.37:1 or better. Rendered focus order is recorded as supporting structure.
-- **Registered-profile candidate:** Exact clean source `4009944` now has
+- **Registered-profile evidence:** Exact clean source `4009944` now has
   separate 1365×768 DPR1 reference and owner-confirmed 4× constrained raw
   captures: 30 cold imports per fixture, 30 10,000-event reloads, isolated
   120-frame gestures, and more than 100 medium mark/save samples per profile.
@@ -452,26 +452,26 @@
   combined-session long task was deleted. AU-AGENT-003 accepted the 4×
   configuration provenance but did not close either complete profile
   remainder because Viewer TTI and retained-memory evidence are incomplete.
-- **Supplemental profile candidate:** Exact clean source `d36a827` retains 100
+- **Supplemental profile evidence:** Exact clean source `d36a827` retains 100
   Viewer TTI reloads for reference minimal, reference medium, and
   owner-confirmed 4× constrained medium with p95 values 20.8, 119.7, and
   130.5 ms. Schema-v2 evidence records baseline/current/peak main-thread heap,
   sample counts, and signed retained deltas without forced-GC or total-memory
-  claims. Independent disposition is pending.
+  claims. AU-AGENT-003 independently resolved the Viewer TTI and registered
+  main-thread retained-memory remainders at package `15ea8f93`.
 - **Explicit limitations:** Browser-reported Worker peak memory or an
-  owner-approved documented limitation, independent acceptance of the
-  supplemental main-thread heap method, manual screen-reader and physical Tab
+  owner-approved documented limitation, manual screen-reader and physical Tab
   traversal, non-Chromium/mobile profiles, safe real quota/eviction, and
-  production assertions were not inferred or represented as passes.
+  production assertions were not inferred or represented as passes. Accepted
+  heap evidence remains Chromium main-thread observational evidence only.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 remains partially resolved. Registered
   profile configuration and captured metric subsets passed independent review,
-  and supplemental Viewer TTI/main-thread heap evidence now awaits independent
-  disposition. Worker peak-memory evidence or an owner-approved documented
-  limitation remains absent. The measured-profile long-task scenario is
-  resolved.
+  and supplemental Viewer TTI/main-thread heap evidence passed independent
+  review. Worker peak-memory evidence or a Project Owner-approved documented
+  limitation is the sole remaining TS001-IMPL-002 condition.
   TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
   physical focus-traversal evidence; the normal-color contrast subcondition is
@@ -482,10 +482,9 @@
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Commit/push the supplemental evidence, confirm exact-head CI,
-  and request narrow AU-AGENT-003 disposition. Then address Worker peak
-  evidence or an owner-approved limitation and the manual accessibility
-  remainder before any Completion Report.
+- **Next step:** Address Worker peak evidence or a Project Owner-approved
+  documented limitation and the manual accessibility remainder, then request
+  narrow AU-AGENT-003 reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

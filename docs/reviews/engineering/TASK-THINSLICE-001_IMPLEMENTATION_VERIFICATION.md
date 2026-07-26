@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.1; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence source `40099443d156bcc2497e57e06528772be57e601b`; registered-profile evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, and `30211416975` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.2; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, and `30212621771` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -884,9 +884,9 @@ distinguish:
 Those changes are outside this review's write authority. No Documentation
 Exception or evidence limitation is registered here.
 
-### Current Quality Gate Decision
+### Quality Gate Decision at `04302399`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Decision rationale:** The exact profile artifacts are intact, the reported
   distribution statistics are reproducible, the method-conforming captured
   distributions and gesture metrics pass their budgets, and the
@@ -940,4 +940,224 @@ authorization.
   sampling/fixture coverage and retained-memory delta evidence are incomplete.
   Measured import-Worker peak memory or an owner-approved documented
   limitation remains mandatory. The Engineering Verification Status remains
+  `REWORK REQUIRED`.
+
+## Supplemental TTI and Retained-Memory Reverification at `15ea8f93`
+
+### Identity and Scope
+
+- **Exact evidence-package source:** commit
+  `15ea8f9304d787aff604598f69e2e8551f5761cb`, parent
+  `d36a8272b808f862ad6aa5d4a774a71b337432f4`, branch
+  `codex/task-thinslice-001-client-integration`.
+- **Exact executable and instrumentation source:** clean commit
+  `d36a8272b808f862ad6aa5d4a774a71b337432f4`, parent
+  `8903816d52c45f9b4e3dc07606a64eca0706dd45`.
+- **CI identity:** GitHub Actions run `30212305750` passed at exact
+  instrumentation source and run `30212621771` passed at exact package source.
+- **Review scope:** only the supplemental Viewer TTI and registered
+  main-thread retained-memory remainders of TS001-IMPL-002.
+- **Preserved outside scope:** import-Worker peak memory, TS001-IMPL-003 and
+  every other finding, product acceptance, release readiness, deployment
+  authorization, Completion Report readiness, and project `[VERIFIED]`.
+- **Reviewer independence:** AU-AGENT-003 did not implement the instrumentation
+  or create the evidence. It modified only this report.
+- **Documentation Impact:** Material.
+
+### Evidence Reviewed
+
+- schema-v2 `EngineeringEvidenceSnapshot` implementation and
+  `retainedUsedJsHeapDelta`;
+- focused signed-delta test in `apps/web/test/client-state.test.ts`;
+- [Benchmark Plan v1.2.2](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md);
+- [Browser Benchmark Report v1.6.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md);
+- [Browser Evidence Index v1.4.0](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md);
+- `reference-tti-memory-d36a827.json`;
+- `constrained-4x-tti-memory-d36a827.json`;
+- `performance-tti-memory-manifest-d36a827.json`;
+- exact source and package diffs, local focused test, both exact-source CI runs,
+  and the package-run artifact.
+
+### Implementation and Integrity Checks
+
+The schema-v2 implementation:
+
+- samples Chromium `performance.memory.usedJSHeapSize` only when it is finite;
+- records baseline, current, running peak, signed `current - baseline`, and
+  sample count;
+- initializes the baseline before application Project opening and resets all
+  heap fields together when evidence is explicitly cleared;
+- samples every 250 ms while evidence collection is enabled and once at
+  capture;
+- keeps the evidence path opt-in and local;
+- does not clamp a negative retained delta.
+
+The focused test independently passes positive, negative, and null arithmetic
+cases. The full web package test command passed locally with 9/9 tests.
+Instrumentation source `d36a827` is byte-identical at package source
+`15ea8f93`; the intervening package commit changes documentation and evidence,
+not implementation.
+
+All three SHA-256 values were independently recomputed over repository bytes
+and match the evidence index and manifest:
+
+| Artifact | Independently recomputed SHA-256 |
+| --- | --- |
+| `reference-tti-memory-d36a827.json` | `c1725f9ef599f82fa31adb5c374d7d5d6688c99771a6fb5942bee9b49bf67c0d` |
+| `constrained-4x-tti-memory-d36a827.json` | `a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b` |
+| `performance-tti-memory-manifest-d36a827.json` | `9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e` |
+
+The manifest artifact references resolve with no checksum mismatch. Both raw
+artifacts record clean source `d36a827`, Chrome 150 on the same MacBook Pro
+`Mac15,3`, 1365×768 viewport, DPR 1, eight logical cores, 8 GiB reported
+device memory, and the OffscreenCanvas Worker path. Reference is unthrottled.
+The constrained record preserves Project Owner confirmation of Chrome DevTools
+4× slowdown and continuity of the retained reference-medium tab; only the
+evidence-run identifier changed.
+
+GitHub Actions runs `30212305750` and `30212621771` passed hygiene, typecheck,
+tests, static build/provenance, production dependency audit, no-deploy
+rehearsal, and artifact upload. The package run's 446,951-byte artifact is not
+expired and is bound to exact head `15ea8f93`.
+
+### Independent Viewer TTI Recalculation
+
+Nearest-rank p95 uses ordered sample `ceil(0.95 × n)`. Because `n = 100`, the
+median is the arithmetic mean of ordered samples 50 and 51. Every raw value is
+finite, non-negative, retained in iteration order, and no outlier is removed.
+
+| Profile and fixture | n | Even-sample median | Nearest-rank p95 | Maximum | Budget | Disposition |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Reference minimal | 100 | 12.05 ms | 20.8 ms | 311.0 ms | p95 <= 750 ms | Pass |
+| Reference medium | 100 | 74.95 ms | 119.7 ms | 361.7 ms | p95 <= 2,000 ms | Pass |
+| Owner-confirmed 4× constrained medium | 100 | 101.65 ms | 130.5 ms | 151.0 ms | p95 <= 4,000 ms | Pass |
+
+The scenario is the registered warm local-Project reopen to first visible
+symbols painted and responsive controls after one fixture warm-up. Reference
+minimal and medium fixture coverage and constrained medium coverage now meet
+the Benchmark Plan's 100-iteration gate-latency method.
+
+The owner-confirmed 4× configuration plus preserved target continuity remains
+sufficient configuration provenance under the prior independent disposition.
+The browser API still cannot expose the active multiplier, and the slowdown is
+host-relative; neither limitation invalidates the recorded profile, but
+neither permits a claim about a specific mobile or low-end CPU.
+
+**Viewer TTI disposition:** the reference minimal, reference medium, and
+constrained medium Viewer TTI remainders of TS001-IMPL-002 are resolved.
+
+### Registered Main-Thread Retained-Memory Assessment
+
+Signed deltas were independently recomputed as `current - baseline`; none was
+clamped:
+
+| Profile and fixture | Heap samples | Baseline | Current | Peak | Signed retained delta | Registered condition | Disposition |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| Reference minimal | 134 | 52,135,120 B | 6,444,680 B | 52,135,120 B | -45,690,440 B | <= 40 MiB | Pass as registered signal |
+| Reference medium | 51 | 16,371,538 B | 13,666,975 B | 52,773,889 B | -2,704,563 B | <= 160 MiB | Pass as registered signal |
+| Owner-confirmed 4× constrained medium | 70 | 114,299,493 B | 162,571,464 B | 162,571,464 B | 48,271,971 B, about 46.0 MiB | Record only | Recorded |
+
+For every scenario, the peak is at least the baseline and current value, the
+sample count is positive, and the stored signed delta equals the independently
+recomputed value. The Benchmark Plan defines baseline at scenario start,
+current at scenario completion, peak, and retained delta; it does not require
+forced garbage collection or repeated heap trials. The schema-v2 capture
+therefore satisfies the registered main-thread evidence method.
+
+The negative reference values are not interpreted as negative allocation,
+freed project memory, or proof of a stable post-GC heap. They expose ordinary
+Chromium process and garbage-collection noise and remain numerically below the
+registered upper bounds. The constrained result has no numeric pass threshold
+and is recorded without converting it into one.
+
+This is a bounded Chromium main-thread `usedJSHeapSize` disposition only.
+Without forced GC, it is not a precise retained-object measurement. It excludes
+Worker, Canvas, GPU, browser-process, and total-system allocation. It must not
+be used to claim total application memory, import-Worker peak memory, or
+memory behavior on an unsupported browser or device.
+
+**Retained-memory disposition:** the registered reference and constrained
+main-thread retained-memory remainders of TS001-IMPL-002 are resolved for the
+declared Chromium profile and method, with the limitations above.
+
+### Narrow Finding Disposition
+
+| Finding | Severity | Supplemental subcondition | Independent disposition | Mandatory remainder |
+| --- | --- | --- | --- | --- |
+| TS001-IMPL-002 | Medium | Reference minimal/medium and constrained medium Viewer TTI | Resolved; 100 samples each, independently reproduced p95 values pass | None for Viewer TTI |
+| TS001-IMPL-002 | Medium | Registered main-thread retained-memory signal | Resolved for the declared Chromium method; signed deltas preserved, reference bounds pass, constrained value recorded | Does not close total or Worker memory |
+| TS001-IMPL-002 | Medium | Import-Worker peak memory | Not re-evidenced; deterministic estimator remains admission control only | Measured import-Worker peak memory or Project Owner-approved documented limitation |
+
+The reference and constrained profile-performance remainders identified by
+version 1.3.0 are now resolved. TS001-IMPL-002 remains `Medium`, mandatory, and
+open only for import-Worker peak memory or its approved documented limitation.
+TS001-IMPL-003 is preserved unchanged and was not re-reviewed.
+
+### Documentation Lifecycle
+
+Benchmark Plan v1.2.2, Browser Benchmark Report v1.6.0, Evidence Index v1.4.0,
+and the current status, task, focus, risk, traceability, changelog, and handoff
+records register this remediation as pending independent review. After this
+report is integrated, AU-AGENT-002 must update those records to preserve:
+
+- exact instrumentation source `d36a827` and package source `15ea8f93`;
+- exact successful CI runs `30212305750` and `30212621771`;
+- resolved Viewer TTI and registered main-thread retained-memory remainders;
+- the observational, no-forced-GC, Chromium-main-thread-only memory boundary;
+- import-Worker peak memory or an owner-approved documented limitation as the
+  sole remaining TS001-IMPL-002 condition;
+- unchanged TS001-IMPL-003 and current quality-gate status.
+
+Those updates remain outside this review's write authority. No Documentation
+Exception or Worker-memory limitation is registered here.
+
+### Current Quality Gate Decision
+
+- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision rationale:** Supplemental evidence closes the registered Viewer
+  TTI and Chromium main-thread retained-memory remainders. TS001-IMPL-002 still
+  lacks measured import-Worker peak memory or a Project Owner-approved
+  documented limitation. TS001-IMPL-003 remains unchanged and mandatory.
+- **Mandatory unresolved findings:** TS001-IMPL-002 for Worker peak memory or
+  approved limitation, and unchanged TS001-IMPL-003.
+- **Completion Report readiness:** Not assigned and remains blocked by the
+  mandatory findings.
+- **Required next action:** provide measured import-Worker peak-memory evidence
+  or route a documented limitation for Project Owner approval; separately
+  resolve TS001-IMPL-003. AU-AGENT-002 then integrates this report, and
+  AU-AGENT-003 performs only the resulting exact-source re-review.
+
+This unbracketed Engineering Verification Status is task-scoped. It is not
+project `[VERIFIED]`, product acceptance, release readiness, deployment
+authorization, or Completion Report approval.
+
+### Residual Risks and Limitations
+
+- Main-thread retained-memory results are observational Chromium
+  `usedJSHeapSize` signals without forced GC and include process/GC noise.
+- Worker, Canvas, GPU, browser-process, and total-system memory are excluded.
+- The constrained multiplier is owner-confirmed because the browser API cannot
+  expose it; DevTools throttling remains host-relative.
+- TTI maxima are retained but the registered gate compares p95.
+- AU-AGENT-003 did not rerun captures, change implementation, approve a
+  Worker-memory limitation, or review TS001-IMPL-003.
+
+### References
+
+- [Benchmark Plan v1.2.2](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Browser Benchmark Report v1.6.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [Browser Evidence Index v1.4.0](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
+- [GitHub Actions source run 30212305750](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30212305750)
+- [GitHub Actions package run 30212621771](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30212621771)
+
+### Review History Update
+
+- 2026-07-26, version 1.4.0: AU-AGENT-003 independently reverified exact
+  package `15ea8f93` and instrumentation `d36a827`. Three 100-sample Viewer TTI
+  distributions pass their registered p95 budgets. Schema-v2 baseline,
+  current, peak, sample count, and signed delta satisfy the registered
+  Chromium main-thread retained-memory method without clamping negative
+  values. Those profile remainders are resolved. Import-Worker peak memory or
+  a Project Owner-approved documented limitation and unchanged TS001-IMPL-003
+  remain mandatory, so Engineering Verification Status remains
   `REWORK REQUIRED`.

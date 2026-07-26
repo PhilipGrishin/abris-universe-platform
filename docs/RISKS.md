@@ -390,12 +390,13 @@
   owner-confirmed 4× provenance and passing method-conforming metric subsets,
   but kept both complete profiles open for Viewer TTI and retained-memory
   evidence. Exact source `d36a827` adds 100-sample profile TTI distributions
-  and signed baseline/current/peak main-thread heap signals as a tested
-  remediation candidate. Browser-reported Worker peak memory, independent
-  disposition of the heap method, manual screen-reader and physical Tab
-  traversal, and broader-browser evidence remain open and cannot be
-  generalized. Performance/accessibility findings 002 and 003 remain mandatory
-  before a Completion Report.
+  and signed baseline/current/peak main-thread heap signals. AU-AGENT-003
+  reverified package `15ea8f93` and resolved the Viewer TTI and registered
+  main-thread retained-memory remainders for the documented observational
+  method. Browser-reported Worker peak memory, manual screen-reader and
+  physical Tab traversal, and broader-browser evidence remain open and cannot
+  be generalized. Performance/accessibility findings 002 and 003 remain
+  mandatory before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

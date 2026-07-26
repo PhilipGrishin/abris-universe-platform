@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-BENCH-EVIDENCE-TS001-001 |
 | Title | TASK-THINSLICE-001 Browser Evidence |
-| Status | `[IMPLEMENTED]`; source-qualified gate-candidate and historical non-gate evidence |
+| Status | `[IMPLEMENTED]`; source-qualified evidence with independent dispositions recorded in the Engineering Verification Report |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, implementation commits named by each artifact |
@@ -111,6 +111,10 @@ AU-AGENT-006 owns measurement meaning. AU-AGENT-002 maintains paths,
 navigation, and lifecycle. AU-AGENT-003 reviews sufficiency and limitations.
 Artifacts are append-only by source commit; do not overwrite historical
 evidence when implementation or method changes.
+
+AU-AGENT-003 independently accepted the registered Viewer TTI and Chromium
+main-thread retained-memory remainders at package `15ea8f93`. Import-Worker
+peak memory remains outside these artifacts and mandatory under TS001-IMPL-002.
 
 ## Adding Evidence
 

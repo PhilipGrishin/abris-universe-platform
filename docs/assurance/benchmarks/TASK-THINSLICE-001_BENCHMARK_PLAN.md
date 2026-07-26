@@ -10,7 +10,7 @@
 | Quality Reviewer | AU-AGENT-003 |
 | Version | 1.2.2 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
 | Supersedes | None |
 | Superseded By | None |
@@ -178,8 +178,8 @@ The later benchmark report must include:
 - [ ] Import-Worker peak memory remains unmeasured; 10,000-event reload is
       measured.
 - [ ] No target is changed after observing a failure without review.
-- [x] AU-AGENT-003 independently reviewed the initial registered evidence;
-      supplemental TTI/heap remediation awaits narrow re-review.
+- [x] AU-AGENT-003 independently reviewed the initial and supplemental
+      registered-profile evidence; Worker peak memory remains separate.
 
 ## References
 

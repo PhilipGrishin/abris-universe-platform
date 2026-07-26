@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.3.0 |
+| Version | 4.4.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Supplemental Profile Reverification Integration
+
+- Integrated AU-AGENT-003 Engineering Verification Report v1.4.0 for exact
+  package `15ea8f93`, instrumentation source `d36a827`, and successful CI runs
+  `30212305750`/`30212621771`.
+- Registered closure of reference minimal/medium and owner-confirmed 4×
+  constrained medium Viewer TTI remainders.
+- Registered closure of Chromium main-thread retained-memory remainders only
+  for the documented observational method without forced GC and excluding
+  Worker/Canvas/GPU/total memory.
+- Preserved measured import-Worker peak memory or a Project Owner-approved
+  documented limitation as the sole remaining TS001-IMPL-002 condition.
+- Preserved unchanged TS001-IMPL-003, `REWORK REQUIRED`, and the Completion
+  Report block.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Supplemental Viewer TTI and Heap Evidence
 

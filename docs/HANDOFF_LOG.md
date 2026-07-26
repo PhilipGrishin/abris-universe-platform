@@ -1,5 +1,27 @@
 # Handoff Log
 
+## 2026-07-26 — Supplemental Profile Reverification
+
+- **Exact package/source:** evidence package `15ea8f93`; instrumentation source
+  `d36a827`; successful CI runs `30212621771` and `30212305750`.
+- **Independent result:** AU-AGENT-003 verified all three artifact hashes, the
+  schema-v2 implementation/test, and all 300 ordered Viewer TTI samples.
+- **TTI disposition:** Reference minimal/medium and owner-confirmed 4×
+  constrained medium p95 values 20.8/119.7/130.5 ms pass; all Viewer TTI
+  remainders are resolved.
+- **Memory disposition:** Signed heap arithmetic and sample counts reproduce.
+  Registered Chromium main-thread retained-memory remainders are resolved for
+  the observational method without forced GC and excluding Worker, Canvas,
+  GPU, browser-process, and total-system memory.
+- **Mandatory remainder:** TS001-IMPL-002 remains open only for measured
+  import-Worker peak memory or a Project Owner-approved documented limitation.
+  TS001-IMPL-003 is unchanged.
+- **Quality gate:** `REWORK REQUIRED`; Completion Report remains blocked.
+- **Bridge disposition:** Internal quality-gate work; no Claude return or
+  Exchange ID is required.
+- **Next gate:** Resolve Worker peak/limitation and manual accessibility
+  evidence, then request narrow AU-AGENT-003 re-review.
+
 ## 2026-07-26 — Supplemental Profile TTI and Heap Evidence
 
 - **Exact source:** `d36a8272b808f862ad6aa5d4a774a71b337432f4`,
@@ -20,13 +42,13 @@
 - **Integrity:** Three new JSON artifacts preserve exact source, raw ordered
   samples, environment, owner confirmation, target continuity, hashes, and
   limitations.
-- **Status boundary:** `[TESTED]` remediation candidate pending narrow
-  AU-AGENT-003 disposition. It does not measure import-Worker peak memory,
-  close TS001-IMPL-002, change `REWORK REQUIRED`, or authorize a Completion
-  Report.
+- **Status boundary:** `[TESTED]` evidence later accepted for its Viewer TTI and
+  registered main-thread memory scope. It does not measure import-Worker peak
+  memory, close TS001-IMPL-002, change `REWORK REQUIRED`, or authorize a
+  Completion Report.
 - **Bridge disposition:** Internal evidence work; no Claude return or Exchange
   ID is required.
-- **Next gate:** Commit/push, exact-head CI, then AU-AGENT-003 narrow review.
+- **Next gate:** AU-AGENT-003 narrow review, recorded above.
 
 ## 2026-07-26 — Registered Performance Profile Reverification
 

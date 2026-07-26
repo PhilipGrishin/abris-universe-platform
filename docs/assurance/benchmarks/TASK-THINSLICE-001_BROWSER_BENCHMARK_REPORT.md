@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-002 |
 | Title | TASK-THINSLICE-001 Browser Benchmark Report |
-| Status | `[TESTED]`; registered-profile TTI and heap evidence captured; independent disposition pending |
+| Status | `[TESTED]`; registered profile performance evidence independently accepted within documented boundaries |
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.2; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`, and Engineering Verification Report v1.3.0; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.2; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`, and Engineering Verification Report v1.4.0; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -202,10 +202,11 @@ The listed measured-profile budgets pass. For the registered reference and
 constrained profiles, every method-conforming captured import, Viewer TTI,
 gesture, mark-to-paint, autosave, reload, and corrupt-input condition passes.
 Baseline/current/peak main-thread heap signals and signed retained deltas are
-now recorded. Complete profile closure remains pending independent disposition
-of the heap method and evidence package. Import-Worker peak memory remains
-unavailable; the heap evidence is a Chromium main-thread process signal rather
-than Worker telemetry or a forced-GC retained-allocation result.
+recorded. AU-AGENT-003 independently accepted the Viewer TTI and registered
+main-thread retained-memory remainders for the declared Chromium method.
+Import-Worker peak memory remains unavailable; the heap evidence is a Chromium
+main-thread process signal rather than Worker telemetry or a forced-GC
+retained-allocation result.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
@@ -215,10 +216,11 @@ admission-control evidence, but not as observed Worker peak memory.
 AU-AGENT-003 then independently reverified evidence package `04302399` and
 accepted the owner-confirmed 4× configuration provenance and all
 method-conforming captured metrics. It kept both complete profile remainders
-open for Viewer TTI and retained-memory evidence. Exact source `d36a827` now
-supplies those missing samples and signals as a remediation candidate requiring
-another narrow independent review. Measured Worker peak memory or an
-owner-approved documented limitation remains mandatory.
+open for Viewer TTI and retained-memory evidence. AU-AGENT-003 then reverified
+exact package `15ea8f93`, resolved those two profile remainders, and retained
+the observational boundaries above. Measured Worker peak memory or an
+owner-approved documented limitation remains the sole TS001-IMPL-002
+remainder.
 
 ## Common Mistakes
 
@@ -248,8 +250,8 @@ owner-approved documented limitation remains mandatory.
 - [x] Long-task evidence isolated and dispositioned for the scripted gesture.
 - [x] AU-AGENT-003 independently reverified the registered profile evidence;
       complete profile remainders remain open.
-- [ ] AU-AGENT-003 independently reverifies the supplemental TTI/heap
-      remediation candidate.
+- [x] AU-AGENT-003 independently reverified the supplemental TTI/heap
+      remediation candidate; Worker peak memory remains separate.
 
 ## References
 

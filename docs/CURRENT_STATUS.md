@@ -173,8 +173,12 @@
   samples for reference minimal, reference medium, and owner-confirmed 4×
   constrained medium. Their p95 values are 20.8, 119.7, and 130.5 ms.
   Schema-v2 evidence also records baseline/current/peak main-thread heap and
-  signed retained deltas. All values and limitations await independent
-  disposition.
+  signed retained deltas.
+- `[IMPLEMENTED]` AU-AGENT-003 independently reverified exact package
+  `15ea8f93`, instrumentation source `d36a827`, and successful CI runs
+  `30212305750`/`30212621771`. It resolved the Viewer TTI and registered
+  Chromium main-thread retained-memory remainders within the documented
+  observational boundaries.
 - `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
@@ -454,15 +458,13 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: supplemental registered-profile Viewer TTI and
-  main-thread heap evidence is a tested candidate awaiting independent
-  disposition. Measured Worker peak memory or an owner-approved documented
-  limitation remains absent. The measured-profile steady-gesture long-task
-  subcondition is resolved.
+- `[OPEN]` TS001-IMPL-002: measured import-Worker peak memory or a Project
+  Owner-approved documented limitation remains the sole unresolved condition.
+  Viewer TTI, registered main-thread retained memory, and steady-gesture
+  long-task subconditions are resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
-- `[OPEN]` Independent disposition of registered-profile Viewer TTI and
-  main-thread heap evidence, Worker peak memory or accepted limitation, manual
+- `[OPEN]` Worker peak memory or accepted limitation, manual
   assistive-technology traversal, broader browsers, safe real quota/eviction,
   and production response assertions remain explicit limitations pending
   completion or their applicable governance disposition.
@@ -501,18 +503,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Captured supplemental schema-v2 evidence at exact clean source `d36a827`: 100
-Viewer TTI reloads each for reference minimal/medium and owner-confirmed 4×
-constrained medium, plus baseline/current/peak heap signals and signed retained
-deltas. This is a tested candidate pending AU-AGENT-003 disposition.
-Engineering Verification Status remains `REWORK REQUIRED`. No project
-`[VERIFIED]`, product acceptance, release approval, or deployment permission
-was assigned.
+Integrated AU-AGENT-003 v1.4.0 supplemental-profile reverification at exact
+package `15ea8f93`. Viewer TTI and registered Chromium main-thread
+retained-memory remainders are resolved. TS001-IMPL-002 remains open only for
+import-Worker peak memory or a Project Owner-approved documented limitation;
+TS001-IMPL-003 is unchanged. Engineering Verification Status remains
+`REWORK REQUIRED`. No project `[VERIFIED]`, product acceptance, release
+approval, or deployment permission was assigned.
 
 ## Next Step
 
-Commit and push the supplemental TTI/heap evidence, confirm exact-head CI, and
-request narrow AU-AGENT-003 disposition. Then address measured Worker peak
-evidence or an owner-approved documented limitation and complete manual
-screen-reader plus reliable physical Tab/focus traversal. Preserve unsupported
-profiles and modes before any Completion Report or Claude acceptance exchange.
+Address measured import-Worker peak memory or a Project Owner-approved
+documented limitation and complete manual screen-reader plus reliable physical
+Tab/focus traversal. Then request narrow AU-AGENT-003 reverification. Preserve
+unsupported profiles and modes before any Completion Report or Claude
+acceptance exchange.

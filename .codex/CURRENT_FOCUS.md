@@ -10,7 +10,8 @@ repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status remains `REWORK REQUIRED` after
-AU-AGENT-003 registered-profile reverification at evidence package `04302399`
+AU-AGENT-003 supplemental-profile reverification at evidence package
+`15ea8f93`
 
 Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
 all unsupported performance, accessibility, and platform limitations. Keep
@@ -92,7 +93,9 @@ this internal stage.
   owner-confirmed 4× constrained medium. Their p95 values are 20.8, 119.7, and
   130.5 ms and pass the applicable budgets. Baseline/current/peak main-thread
   heap signals and signed retained deltas are recorded with the no-forced-GC
-  and Worker/Canvas/GPU exclusions. Independent disposition is pending.
+  and Worker/Canvas/GPU exclusions. AU-AGENT-003 independently resolved the
+  Viewer TTI and registered main-thread retained-memory remainders at exact
+  package `15ea8f93`.
 - Pinned axe-core reports zero violations after exact-source remediation.
   Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
   five toolbar controls, and manual calculations disposition those controls at
@@ -116,11 +119,12 @@ this internal stage.
   independently accepted the registered profile configuration and passing
   captured metrics at evidence package `04302399`, but kept both complete
   profile remainders open for Viewer TTI and retained-memory evidence.
-  Exact source `d36a827` supplies those missing profile samples/signals as a
-  tested remediation candidate. Browser-reported Worker peak memory remains
-  absent. The enforced medium import estimate is about 95.7 MiB against
-  256 MiB but is not actual Worker telemetry. Manual screen-reader and reliable
-  physical focus traversal remain absent.
+  Exact source `d36a827` supplies those profile samples/signals, and independent
+  review at `15ea8f93` resolves their remainders for the documented Chromium
+  method. Browser-reported Worker peak memory remains absent. The enforced
+  medium import estimate is about 95.7 MiB against 256 MiB but is not actual
+  Worker telemetry. Manual screen-reader and reliable physical focus traversal
+  remain absent.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -221,8 +225,7 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and push the supplemental TTI/heap evidence, confirm exact-head CI, and
-request narrow AU-AGENT-003 disposition. Then obtain measured Worker peak
-memory or an owner-approved documented limitation and complete a manual
-screen-reader session plus reliable physical Tab/focus traversal. No
+Obtain measured import-Worker peak memory or an owner-approved documented
+limitation and complete a manual screen-reader session plus reliable physical
+Tab/focus traversal. Then request narrow AU-AGENT-003 reverification. No
 Completion Report or Claude acceptance exchange is permitted before closure.
