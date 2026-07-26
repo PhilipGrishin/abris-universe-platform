@@ -2,12 +2,16 @@
 
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import {
-  mkdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
+import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
+import {
+  currentVersion,
+  deploymentList,
+  readVersionUpload,
+  validateProductionPreflight,
+  writeJsonEvidence,
+} from "./production-deployment-evidence.mjs";
+import { executeProductionDeployment } from "./production-deployment-state.mjs";
 import { inspectProductionDeployment } from "./verify-production-deployment.mjs";
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
@@ -47,70 +51,21 @@ const parseJsonOutput = (value, label) => {
   }
 };
 
-const deploymentList = (value) => {
-  if (Array.isArray(value)) return value;
-  for (const key of ["deployments", "result", "items"]) {
-    if (Array.isArray(value?.[key])) return value[key];
-  }
-  throw new Error("Cloudflare deployments output has an unknown shape.");
-};
-
-const deploymentVersions = (deployment) => {
-  const candidates = deployment?.versions ?? deployment?.version_traffic;
-  if (!Array.isArray(candidates)) return [];
-  return candidates
-    .map((entry) => ({
-      versionId:
-        entry.version_id ?? entry.versionId ?? entry.id ?? entry.version?.id,
-      percentage: Number(
-        entry.percentage ?? entry.traffic_percentage ?? entry.weight ?? 0,
-      ),
-    }))
-    .filter(
-      (entry) =>
-        typeof entry.versionId === "string" &&
-        Number.isFinite(entry.percentage),
-    );
-};
-
-const currentVersion = (deployments) => {
-  for (const deployment of deployments) {
-    const versions = deploymentVersions(deployment).sort(
-      (left, right) => right.percentage - left.percentage,
-    );
-    if (versions.length > 0) {
-      return {
-        deploymentId: deployment.id ?? deployment.deployment_id ?? null,
-        createdOn: deployment.created_on ?? deployment.createdAt ?? null,
-        ...versions[0],
-      };
-    }
-  }
-  throw new Error("No recoverable active Cloudflare Worker version was found.");
-};
-
-const readVersionUpload = (outputPath) => {
-  const entries = readFileSync(outputPath, "utf8")
-    .split(/\r?\n/u)
-    .filter(Boolean)
-    .map((line) => JSON.parse(line));
-  const upload = [...entries]
-    .reverse()
-    .find((entry) => entry.type === "version-upload");
-  const versionId = upload?.version_id ?? upload?.versionId;
-  assert(typeof versionId === "string", "Wrangler did not report a version ID.");
-  return { versionId };
-};
-
 const publicSnapshot = async () => {
-  const response = await fetch(`${productionUrl}/`, {
-    cache: "no-store",
-    redirect: "error",
-  });
+  const request = (method) =>
+    fetch(`${productionUrl}/`, {
+      method,
+      cache: "no-store",
+      redirect: "error",
+    });
+  const response = await request("GET");
   const body = await response.text();
+  const head = await request("HEAD");
   assert(response.status === 200, "Current production root is not recoverable.");
+  assert(head.status === 200, "Current production HEAD baseline is not healthy.");
   return {
     status: response.status,
+    headStatus: head.status,
     bodySha256: sha256(body),
     contentType: response.headers.get("content-type"),
     server: response.headers.get("server"),
@@ -144,106 +99,139 @@ const rawDeployments = runWrangler(
   ["deployments", "list", "--name", workerName, "--json"],
   { capture: true },
 );
-const prior = currentVersion(
-  deploymentList(parseJsonOutput(rawDeployments, "Cloudflare deployments list")),
-);
-assert(
-  prior.percentage === 100,
-  "First production promotion requires one prior version at 100% traffic.",
-);
-writeFileSync(
+const { prior } = validateProductionPreflight({
+  deployments: parseJsonOutput(
+    rawDeployments,
+    "Cloudflare deployments list",
+  ),
+  publicSnapshot: preDeploySnapshot,
+});
+writeJsonEvidence(
   resolve(evidenceRoot, "production-preflight-evidence.json"),
-  `${JSON.stringify(
-    {
-      schemaVersion: 1,
-      workerName,
-      productionUrl,
-      sourceCommit,
-      workflowRunId: process.env.GITHUB_RUN_ID ?? null,
-      workflowRunAttempt: process.env.GITHUB_RUN_ATTEMPT ?? null,
-      actor: process.env.GITHUB_ACTOR ?? null,
-      capturedAt: new Date().toISOString(),
-      prior,
-      preDeploySnapshot,
-    },
-    null,
-    2,
-  )}\n`,
-  "utf8",
+  {
+    schemaVersion: 1,
+    workerName,
+    productionUrl,
+    sourceCommit,
+    workflowRunId: process.env.GITHUB_RUN_ID ?? null,
+    workflowRunAttempt: process.env.GITHUB_RUN_ATTEMPT ?? null,
+    actor: process.env.GITHUB_ACTOR ?? null,
+    capturedAt: new Date().toISOString(),
+    prior,
+    preDeploySnapshot,
+  },
 );
 
 const uploadOutput = resolve(evidenceRoot, "wrangler-version-upload.ndjson");
-runWrangler(
-  [
-    "versions",
-    "upload",
-    "--name",
-    workerName,
-    "--strict",
-    "--tag",
-    `git-${sourceCommit.slice(0, 12)}`,
-    "--message",
-    `Abris Universe ${sourceCommit}`,
-  ],
-  {
-    env: { WRANGLER_OUTPUT_FILE_PATH: uploadOutput },
-  },
-);
-const uploaded = readVersionUpload(uploadOutput);
-
-let promoted = false;
-let rollbackPerformed = false;
-let prePromotionSmoke;
-let productionSmoke;
+let lifecycle;
+let failure;
 try {
-  runWrangler([
-    "versions",
-    "deploy",
-    `${uploaded.versionId}@0%`,
-    `${prior.versionId}@100%`,
-    "--name",
-    workerName,
-    "--message",
-    `Pre-promotion smoke for ${sourceCommit}`,
-    "--yes",
-  ]);
-  prePromotionSmoke = await inspectProductionDeployment({
-    baseUrl: productionUrl,
-    expectedCommit: sourceCommit,
-    versionId: uploaded.versionId,
-  });
-
-  runWrangler([
-    "versions",
-    "deploy",
-    `${uploaded.versionId}@100%`,
-    "--name",
-    workerName,
-    "--message",
-    `Promote ${sourceCommit}`,
-    "--yes",
-  ]);
-  promoted = true;
-  productionSmoke = await inspectProductionDeployment({
-    baseUrl: productionUrl,
-    expectedCommit: sourceCommit,
+  lifecycle = await executeProductionDeployment({
+    priorVersionId: prior.versionId,
+    uploadVersion: async () => {
+      runWrangler(
+        [
+          "versions",
+          "upload",
+          "--name",
+          workerName,
+          "--strict",
+          "--tag",
+          `git-${sourceCommit.slice(0, 12)}`,
+          "--message",
+          `Abris Universe ${sourceCommit}`,
+        ],
+        {
+          env: { WRANGLER_OUTPUT_FILE_PATH: uploadOutput },
+        },
+      );
+      return readVersionUpload(uploadOutput).versionId;
+    },
+    deployPrePromotion: async (uploadedVersionId, priorVersionId) => {
+      runWrangler([
+        "versions",
+        "deploy",
+        `${uploadedVersionId}@0%`,
+        `${priorVersionId}@100%`,
+        "--name",
+        workerName,
+        "--message",
+        `Pre-promotion smoke for ${sourceCommit}`,
+        "--yes",
+      ]);
+    },
+    smokePrePromotion: async (uploadedVersionId) =>
+      inspectProductionDeployment({
+        baseUrl: productionUrl,
+        expectedCommit: sourceCommit,
+        versionId: uploadedVersionId,
+      }),
+    promote: async (uploadedVersionId) => {
+      runWrangler([
+        "versions",
+        "deploy",
+        `${uploadedVersionId}@100%`,
+        "--name",
+        workerName,
+        "--message",
+        `Promote ${sourceCommit}`,
+        "--yes",
+      ]);
+    },
+    smokeProduction: async () =>
+      inspectProductionDeployment({
+        baseUrl: productionUrl,
+        expectedCommit: sourceCommit,
+      }),
+    rollback: async (priorVersionId) => {
+      runWrangler([
+        "rollback",
+        priorVersionId,
+        "--name",
+        workerName,
+        "--message",
+        `Automatic rollback after failed deployment of ${sourceCommit}`,
+        "--yes",
+      ]);
+    },
+    confirmRollbackActive: async (priorVersionId) => {
+      const currentDeployments = runWrangler(
+        ["deployments", "list", "--name", workerName, "--json"],
+        { capture: true },
+      );
+      const restored = currentVersion(
+        deploymentList(
+          parseJsonOutput(
+            currentDeployments,
+            "Post-rollback Cloudflare deployments list",
+          ),
+        ),
+      );
+      assert(
+        restored.versionId === priorVersionId && restored.percentage === 100,
+        "Rollback did not restore the prior version at 100% traffic.",
+      );
+      return restored;
+    },
+    verifyRollbackBaseline: async () => {
+      const restored = await publicSnapshot();
+      assert(
+        restored.status === preDeploySnapshot.status &&
+          restored.headStatus === preDeploySnapshot.headStatus &&
+          restored.bodySha256 === preDeploySnapshot.bodySha256 &&
+          restored.contentType === preDeploySnapshot.contentType,
+        "Rollback did not restore the recorded public baseline.",
+      );
+      return restored;
+    },
   });
 } catch (error) {
-  runWrangler([
-    "rollback",
-    prior.versionId,
-    "--name",
-    workerName,
-    "--message",
-    `Automatic rollback after failed deployment of ${sourceCommit}`,
-    "--yes",
-  ]);
-  rollbackPerformed = true;
-  const restored = await publicSnapshot();
-  assert(
-    restored.bodySha256 === preDeploySnapshot.bodySha256,
-    "Rollback completed but the placeholder body hash was not restored.",
-  );
+  lifecycle = error.state ?? null;
+  failure = {
+    name: error.name,
+    failureStage: error.state?.failureStage ?? null,
+    rollbackFailureStage: error.state?.rollbackFailureStage ?? null,
+  };
   throw error;
 } finally {
   const evidence = {
@@ -257,20 +245,16 @@ try {
     startedAt,
     completedAt: new Date().toISOString(),
     prior,
-    uploadedVersionId: uploaded.versionId,
-    promoted,
-    rollbackPerformed,
     preDeploySnapshot,
-    prePromotionSmoke: prePromotionSmoke ?? null,
-    productionSmoke: productionSmoke ?? null,
+    lifecycle: lifecycle ?? null,
+    failure: failure ?? null,
   };
-  writeFileSync(
+  writeJsonEvidence(
     resolve(evidenceRoot, "production-deployment-evidence.json"),
-    `${JSON.stringify(evidence, null, 2)}\n`,
-    "utf8",
+    evidence,
   );
 }
 
 process.stdout.write(
-  `Production deployment completed for ${sourceCommit}; previous version ${prior.versionId}, current version ${uploaded.versionId}.\n`,
+  `Production deployment completed for ${sourceCommit}; previous version ${prior.versionId}, current version ${lifecycle.uploadedVersionId}.\n`,
 );

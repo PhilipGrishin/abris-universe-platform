@@ -79,9 +79,11 @@ authorized disposition.
 
 ### TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT — First Controlled Deployment
 
-- **Status:** Owner authorization `[APPROVED]`; pipeline implementation in
-  progress; production mutation blocked on credentials and TD-GATE-003
-  external-state capture.
+- **Status:** Owner authorization `[APPROVED]`; AU-AGENT-003 exact-source
+  review returned `REWORK REQUIRED`; findings TS001-DEPLOY-001 through
+  TS001-DEPLOY-004 are remediated locally and await exact-source reverification.
+  Production mutation remains blocked on reverification, credentials, and
+  TD-GATE-003 external-state capture.
 - **Source:** PROD-DEC-013; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;

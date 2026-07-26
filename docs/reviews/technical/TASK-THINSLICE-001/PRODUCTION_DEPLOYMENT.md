@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Owner authorization `[APPROVED]`; pipeline `[IMPLEMENTED]`, locally `[TESTED]`; production deployment `[BLOCKED]` on credentials and TD-GATE-003 external-state capture |
+| Status | Owner authorization `[APPROVED]`; pipeline remediation `[IMPLEMENTED]`, locally `[TESTED]`; AU-AGENT-003 reverification, credentials, and TD-GATE-003 remain blocking |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | PROD-DEC-013; Technical Design v1.5.3; ADR-TS001-004 v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
@@ -52,16 +52,18 @@ the factual rollback, credential, source, CI, smoke, or evidence gates.
 
 The workflow `.github/workflows/deploy-production.yml`:
 
-1. is manual and main-only;
-2. uses the GitHub `production` environment;
+1. is manual and uses an authorization job without environment or secret
+   access to reject non-main or mismatched-commit dispatches explicitly;
+2. allows the deployment job to enter the GitHub `production` environment only
+   after authorization passes;
 3. requires the operator to supply the exact full main commit;
 4. uses read-only repository permissions and SHA-pinned actions;
 5. verifies that the application, packages, accepted OXS fixtures, lockfile,
    workspace manifest, and shared TypeScript configuration are unchanged from
    independently accepted executable source
    `1a683abd9a8294de5a36888e997e65aba7b7a167`;
-6. fails before installation when either required Cloudflare credential is
-   absent;
+6. keeps both Cloudflare values out of job scope and exposes them only to the
+   credential-presence check and the final deployment step;
 7. installs from the frozen lockfile;
 8. runs typecheck, the full test suite, build verification, dependency audit,
    and the no-deploy rehearsal;
@@ -73,10 +75,21 @@ The workflow `.github/workflows/deploy-production.yml`:
 12. smokes the new version through a production-domain version override;
 13. promotes the new version to 100 percent;
 14. repeats production smoke and automatically rolls back on failure;
-15. retains sanitized preflight and deployment-evidence artifacts for 90 days.
+15. confirms after rollback that the prior immutable version owns 100 percent
+   of traffic and that the recorded GET/HEAD/content/hash baseline is restored;
+16. retains sanitized preflight and deployment-evidence artifacts for 90 days.
 
-The production environment exists and accepts deployments only from `main`.
+The production environment exists and accepts deployments only from protected
+`main`. Strict `verify`, pull-request flow, conversation resolution, and
+force-push/deletion prevention are active on `main`.
 No Cloudflare secret value is present in the repository or chat.
+
+Fourteen focused deployment tests cover explicit dispatch rejection, registered
+Cloudflare output shapes, preflight health and the 100-percent rollback anchor,
+upload provenance, success order, failure before mutation, failure before and
+after promotion, exact-version rollback confirmation, rollback-baseline
+verification, rollback failure reporting, sanitized evidence persistence, and
+the HTTP smoke contract.
 
 ## Smoke Contract
 
@@ -113,9 +126,11 @@ script-initiated network requests or pattern-derived egress.
 
 The workflow refuses first promotion unless the current deployment exposes one
 version at 100 percent traffic. That version becomes the immutable rollback
-anchor. Any pre-promotion or post-promotion failure invokes
-`wrangler rollback` to the recorded prior version. After rollback, the public
-root body must match the pre-deployment SHA-256.
+anchor. Any post-upload, pre-promotion, or post-promotion failure invokes
+`wrangler rollback` to the recorded prior version. After rollback, an
+authenticated deployment query must show that exact version at 100 percent,
+and the public GET status, HEAD status, content type, and body SHA-256 must
+match the recorded pre-deployment baseline.
 
 No DNS mutation is permitted. Static rollback does not alter browser-local
 IndexedDB.

@@ -491,6 +491,11 @@
   `production` environment, immutable-version deployment workflow, pre-
   promotion smoke, production smoke, automatic rollback, and evidence scripts
   are implemented. Production mutation has not started.
+- `[IMPLEMENTED]`, locally `[TESTED]` AU-AGENT-003 findings
+  TS001-DEPLOY-001 through TS001-DEPLOY-004 are remediated by step-scoped
+  secrets, explicit pre-environment authorization failure, deterministic
+  orchestration/rollback tests, exact restored-version confirmation, and
+  expanded rollback-baseline evidence. Exact-source reverification is open.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and GitHub environment
   secrets block the production workflow. Cloudflare CLI authentication is
   absent; current placeholder HTTPS `200` body hash is recorded.

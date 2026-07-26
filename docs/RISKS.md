@@ -325,7 +325,9 @@
   back on failed production smoke.
 - **Current evidence:** The main-only GitHub `production` environment and
   versioned upload/zero-traffic smoke/promotion/rollback workflow are
-  implemented. Placeholder HTTPS `200` body hash
+  implemented. Deterministic tests cover failure before and after promotion,
+  confirm the exact prior version at 100 percent, and verify the recorded
+  public rollback baseline. Placeholder HTTPS `200` body hash
   `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`
   is recorded. Cloudflare authentication and the immutable prior version
   remain open.

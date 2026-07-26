@@ -21,8 +21,10 @@ byte-for-byte. Preserve all unsupported performance, accessibility, platform,
 release, and deployment limitations. PROD-DEC-012 sanctions preserve-only
 `strandCount`; PROD-DEC-013 authorizes the first production deployment;
 PROD-DEC-014 mirrors the Worker-memory limitation. The protected deployment
-workflow is implemented, but production mutation remains blocked on GitHub
-environment secrets and TD-GATE-003.
+workflow is implemented; AU-AGENT-003's first exact-source review returned
+`REWORK REQUIRED`, and all four findings are locally remediated. Production
+mutation remains blocked on exact-source reverification, GitHub environment
+secrets, and TD-GATE-003.
 
 ## Confirmed Inputs
 
