@@ -222,11 +222,17 @@
   `Abris Universe Route-1 Fixture Generator 1.0.0`. TD-GATE-002 route-1 literal
   symbol evidence is `[TESTED]`, but exact-symbol claims for other producers
   remain `[OPEN]`.
-- **Boundary:** No runtime domain, importer, renderer, persistence, client,
-  pipeline, or deployment implementation exists. Unknown OXS coordinate or
-  glyph conventions require a registered profile or rejection.
-- **Next step:** Implement and test `domain-core` from the confirmed Technical
-  Design before implementing the bounded OXS importer.
+- **Historical stage boundary:** At the scaffold source, no runtime domain,
+  importer, renderer, persistence, client, pipeline, or deployment
+  implementation existed. Those later stages are now separately implemented
+  and evidenced. Unknown OXS coordinate or glyph conventions still require a
+  registered profile or rejection.
+- **Historical next step, completed:** Implement and test `domain-core` from
+  the confirmed Technical Design before implementing the bounded OXS
+  importer.
+- **Current lifecycle:** Preserve fixture/profile provenance and use this
+  stage as input evidence; do not treat its historical boundary as current
+  implementation status.
 
 ### AU-CDX-TASK-001-DOMAIN-CORE — Canonical Domain Contracts
 
@@ -243,11 +249,18 @@
 - **Evidence:** Strict TypeScript 7.0.2 `pnpm typecheck`; 10 focused domain tests;
   full `pnpm test`; workspace-boundary verification; and
   `DOMAIN_CORE_IMPLEMENTATION_REVIEW.md`.
-- **Boundary:** No OXS parsing/mapping, canonical serialization/hash algorithm,
-  deterministic imported-ID generation, IndexedDB, rendering, client behavior,
-  CI/CD, deployment, or product acceptance.
-- **Next step:** Implement the bounded route-1 OXS adapter and golden/security
-  tests without extending exact-symbol claims beyond the tested profile.
+- **Historical stage boundary:** At the domain-core source, OXS
+  parsing/mapping, canonical serialization/hash, deterministic imported IDs,
+  IndexedDB, rendering, client behavior, CI/CD, deployment, and product
+  acceptance were outside this package stage. Later importer, persistence,
+  renderer, client, and CI stages are now separately implemented and
+  evidenced.
+- **Historical next step, completed:** Implement the bounded route-1 OXS
+  adapter and golden/security tests without extending exact-symbol claims
+  beyond the tested profile.
+- **Current lifecycle:** Preserve domain independence and the recorded
+  Pattern/Progress boundary while the Completion Report proceeds through its
+  separate gate.
 
 ### AU-CDX-TASK-001-OXS-IMPORTER — Bounded Route-1 OXS Importer Core
 
@@ -352,8 +365,11 @@
   empty-tile regression.
 - **Final verification:** AU-AGENT-003 resolved TS001-RENDER-001 through 004 at
   exact commit `930cad2`. Browser/client evidence remains out of this gate.
-- **Next step:** Proceed to the accessible web-flow and end-to-end browser
-  persistence integration.
+- **Historical next step, completed:** Proceed to the accessible web flow and
+  end-to-end browser persistence integration.
+- **Current lifecycle:** Preserve renderer-core independence and its verified
+  contracts while using the separately registered client/browser evidence for
+  integrated claims.
 
 ### AU-CDX-TASK-001-CLIENT-INTEGRATION — Accessible Local-First Web Flow
 

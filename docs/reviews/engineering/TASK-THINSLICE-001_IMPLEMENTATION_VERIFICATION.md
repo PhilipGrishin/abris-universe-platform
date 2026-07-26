@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.4; AU-BENCH-TS001-LIM-001; Client Accessibility Matrix v1.5.0; Completion Report v1.0.0; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, `c64d3ec8ab390269121c651d8c78695d9b4946f5`, and `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0`, `15ea8f9304d787aff604598f69e2e8551f5761cb`, and `58d5832fd248b085774aadd417b4c0a54855ed10`; Completion Report source `6bbf6915fd6bf618022c2f781ecb22cda6e001e0`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, `30213355972`, `30213649361`, `30214387294`, and `30215102272` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.4.0; Benchmark Plan v1.2.4; AU-BENCH-TS001-LIM-001; Client Accessibility Matrix v1.5.0; Completion Report v1.1.0; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, `c64d3ec8ab390269121c651d8c78695d9b4946f5`, and `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0`, `15ea8f9304d787aff604598f69e2e8551f5761cb`, `58d5832fd248b085774aadd417b4c0a54855ed10`, and `manual-interaction-contracts-6bbf691.json`; Completion Report sources `6bbf6915fd6bf618022c2f781ecb22cda6e001e0` and `d9a6896fbc0e2b89efff1759843d950e64dfa951`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, `30213355972`, `30213649361`, `30214387294`, `30215102272`, and `30215995535` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -1788,9 +1788,9 @@ control and must remain a maintenance trigger; see TS001-COMP-004.
 - **Owner:** AU-CODEX-PRIMARY.
 - **Disposition:** Open recommendation; does not independently block handoff.
 
-### Completion Report Quality Gate Decision
+### Completion Report Quality Gate Decision at `6bbf6915`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Underlying implementation status:** remains task-scoped
   `VERIFIED WITH FINDINGS` at the prior exact sources and boundaries. This
   Completion Report review does not reopen TS001-IMPL-001 through
@@ -1838,3 +1838,179 @@ readiness, production readiness, or deployment authorization.
   retained as a non-blocking recommendation. Completion Report quality-gate
   status is `REWORK REQUIRED`; the underlying implementation remains
   task-scoped `VERIFIED WITH FINDINGS`.
+
+## Completion Report Remediation Reverification at `d9a6896f`
+
+### Identity and Scope
+
+- **Exact remediation source:**
+  `d9a6896fbc0e2b89efff1759843d950e64dfa951`, with parent
+  `6bbf6915fd6bf618022c2f781ecb22cda6e001e0`.
+- **Completion Report:** v1.1.0.
+- **Exact executable baseline:** unchanged
+  `470a30a7ea04860c9dacab5ae6edace960ca7d6d`.
+- **Exact-head CI:** GitHub Actions run `30215995535`, job `89830179689`,
+  succeeded on branch `codex/task-thinslice-001-client-integration`.
+- **Supplemental record:**
+  `manual-interaction-contracts-6bbf691.json`, SHA-256
+  `1212debc85c000280115377195867e0ea043f532b584fa7fb2104119fa4c4620`.
+- **Findings re-reviewed:** TS001-COMP-001 through TS001-COMP-004 only.
+- **Reviewer:** AU-AGENT-003, independently of the report, implementation, and
+  documentation owners.
+- **Documentation Impact:** `Material`.
+
+The remediation changes documentation and one append-only manual evidence
+record. It does not change application, package, build-script, dependency,
+fixture, or CI-workflow source after the independently reviewed executable
+baseline.
+
+### Verification Performed
+
+- Exact-head CI identity, branch, job, steps, and conclusion were checked
+  independently.
+- Local `pnpm test` passed 68 tests with zero failures: 10 domain, 15 importer,
+  18 persistence, 16 renderer, and 9 web.
+- Local `pnpm typecheck` passed every workspace package.
+- `git diff --check` passes for the remediation range.
+- All local Markdown links in the 18 modified Markdown documents resolve.
+- All 20 checksums in the current browser evidence index recompute without a
+  mismatch.
+- The Completion Report's Task Package identity, status boundaries, all 22
+  required fields, and all nine acceptance mappings were re-read against
+  TASK-THINSLICE-001 v1.1.
+
+### Supplemental Interaction Record Assessment
+
+The supplemental record is accepted as bounded implementation-owner evidence
+for the declared Chrome 150/macOS 26.5.2 profile:
+
+| Contract | Recorded result | Independent corroboration |
+| --- | --- | --- |
+| AC-05 pointer-click modality | No-drag physical pointer click selected and marked row 1, column 1; save returned to `Saved locally` | `pointerUp` performs hit-test/toggle only when the gesture was not classified as moved |
+| Strict pan threshold | A 10 CSS px drag was pan-only and caused no toggle/save transition | `pointerMove` changes to moved only when total movement is strictly greater than 6 CSS px; `pointerUp` returns without hit-testing after movement |
+| Unreadable overview | At 54%, no glyph was claimed, the zoom-in notice appeared, and pointer input could not select or mark | 54% corresponds to a cell size below the 16 CSS px readability threshold; renderer hit testing returns `null`, glyph drawing is disabled, and `queueToggle` also fails closed |
+| Failed-save rollback | A Web Locks failure produced `Read-only` and restored the committed marked state visually and after reload | `ClientProgressState.fail` retains committed state; progress rendering uses committed state for `not-saved`; lock-unavailable maps to visible `Read-only` |
+| AC-07 close-tab/new-tab persistence | A committed mark reopened visibly in a new tab without another toggle | active Project identity and committed IndexedDB progress are reloaded by `ProjectService.loadActiveProject` and projection hydration |
+
+The record accurately declares that its capture occurred while two
+documentation files were dirty and that no executable path differed from the
+clean baseline. It retains no repository screenshot, and the machine-readable
+record is implementation-owner evidence rather than independent product
+acceptance. These facts limit replayability but do not contradict the
+corroborating exact source and automated tests.
+
+Touch/mobile tap, other browsers, other operating systems, browser zoom, safe
+real quota exhaustion, eviction, and operating-system power loss remain
+unverified. No result is generalized beyond pointer input on the declared
+Chrome/macOS profile.
+
+### Finding Dispositions
+
+#### TS001-COMP-001 — Required repeat-import limitation
+
+- **Historical severity:** Medium.
+- **Remediation:** Completion Report sections 5 and 16 now state that repeat
+  import of the same file is not required to be idempotent in Phase 0 and make
+  no identity-reuse, duplicate-project, or PatternVersion behavior guarantee.
+- **Disposition:** **Resolved.** The Task Package meaning is preserved and no
+  current behavior is invented.
+
+#### TS001-COMP-002 — Reproducible manual-verification steps
+
+- **Historical severity:** Medium.
+- **Remediation:** Completion Report section 13 now provides preparation,
+  import/interaction/save/reload, negative/persistence-failure, and physical
+  keyboard/VoiceOver procedures with exact source rules, commands, fixtures,
+  actions, expected results, evidence references, and safety boundaries.
+- **Supplement:** The new interaction record supplies explicit evidence for
+  pointer click, strict pan-only movement, unreadable overview, close-tab/new-
+  tab persistence, and failed-save visual rollback.
+- **Disposition:** **Resolved.** The procedures are reproducible within their
+  recorded environment and do not fabricate missing accessibility details.
+
+#### TS001-COMP-003 — Documentation lifecycle consistency
+
+- **Historical severity:** Medium.
+- **Remediation accepted:** The web, importer, and persistence package
+  boundaries; Threat Model evidence dispositions; test counts; dedicated
+  Worker/runtime traceability; production-only gates; task status; risks; and
+  Completion Report navigation are materially normalized. The prior broad
+  contradictions are removed.
+- **Mandatory remainder:** The lifecycle is not yet fully consistent:
+  - `packages/importers/oxs/README.md`,
+    `packages/persistence/README.md`, and Threat Model v1.4.0 were modified in
+    this 2026-07-26 remediation but retain `Last Updated` as 2026-07-25;
+  - the active `docs/TASKS.md` register still presents source-stage next
+    actions as current for `AU-CDX-TASK-001-ROUTE1-SCAFFOLD`,
+    `AU-CDX-TASK-001-DOMAIN-CORE`, and `AU-CDX-TASK-001-RENDERER`, instructing
+    work that is already complete;
+  - the route-1 scaffold boundary still says no runtime domain, importer,
+    renderer, persistence, client, or pipeline implementation exists without
+    labeling that statement as the historical boundary of the scaffold
+    source.
+- **Risk:** A current task register still directs already completed work and
+  modified documents carry inaccurate lifecycle metadata. This violates the
+  required distinction between source-qualified history and current next
+  actions.
+- **Required remediation:** Correct the three `Last Updated` values and
+  meaning-preservingly label the affected task-stage boundaries/next steps as
+  historical, or replace their next steps with current source-qualified
+  lifecycle actions. Do not rewrite historical technical evidence.
+- **Disposition:** **Partially resolved; remains open and mandatory.**
+
+#### TS001-COMP-004 — GitHub Actions Node-runtime maintenance warning
+
+- **Historical severity:** Recommendation.
+- **Remediation:** The warning remains accurately disclosed and is registered
+  as a separate risk/follow-up. Exact-head job `89830179689` again passed while
+  GitHub reported that the four SHA-pinned Node 20-declaring actions were
+  forced onto Node 24.
+- **Disposition:** **Accepted as an open, non-blocking recommendation.** No
+  mutable tag, permission expansion, or silent warning suppression was
+  introduced.
+
+### Current Completion Report Quality Gate Decision
+
+- **Engineering Verification Status:** REWORK REQUIRED
+- **Resolved findings:** TS001-COMP-001 and TS001-COMP-002.
+- **Partially resolved mandatory finding:** TS001-COMP-003.
+- **Accepted non-blocking recommendation:** TS001-COMP-004.
+- **Underlying implementation:** remains task-scoped
+  `VERIFIED WITH FINDINGS`; no implementation finding is reopened.
+- **Claude handoff:** remains blocked until the narrow TS001-COMP-003
+  remainder is corrected and independently reverified.
+- **Required next action:** AU-AGENT-002 performs the metadata and task-stage
+  lifecycle correction with AU-AGENT-001/domain-owner meaning review, validates
+  the exact diff and links, and returns only TS001-COMP-003 for narrow
+  AU-AGENT-003 reverification.
+
+This decision does not assign product acceptance, project `[VERIFIED]`,
+release readiness, production readiness, deployment authority, or broader
+platform support.
+
+### References
+
+- [Completion Report v1.1.0](../technical/TASK-THINSLICE-001/COMPLETION_REPORT.md)
+- [Task Package v1.1](../../../product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md)
+- [Supplemental interaction record](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-interaction-contracts-6bbf691.json)
+- [Browser Evidence Index](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
+- [Threat Model v1.4.0](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
+- [Traceability Matrix](../../TRACEABILITY_MATRIX.md)
+- [Task Register](../../TASKS.md)
+- [Web Client Workspace](../../../apps/web/README.md)
+- [OXS Importer Workspace](../../../packages/importers/oxs/README.md)
+- [Persistence Workspace](../../../packages/persistence/README.md)
+- [GitHub Actions run 30215995535](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30215995535)
+
+### Review History Update
+
+- 2026-07-26, version 1.8.0: AU-AGENT-003 narrowly reverified Completion
+  Report v1.1.0 at exact source `d9a6896f` and successful exact-head CI run
+  `30215995535`. TS001-COMP-001 and TS001-COMP-002 are resolved.
+  Supplemental pointer, pan-threshold, overview, rollback, and reopen evidence
+  is accepted only for Chrome 150/macOS 26.5.2. TS001-COMP-003 is materially
+  remediated but remains mandatory because three changed documents retain
+  inaccurate update dates and the active task register retains unqualified
+  obsolete stage boundaries/next actions. TS001-COMP-004 remains a
+  non-blocking tracked recommendation. The Completion Report status remains
+  `REWORK REQUIRED`; no Claude handoff or external acceptance is authorized.
