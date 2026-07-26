@@ -23,6 +23,7 @@ import {
 import {
   ClientProgressState,
   DEFAULT_CELL_SIZE,
+  syncCanvasBackingStore,
   zoomViewport,
 } from "./client-state.ts";
 import { emitEngineeringEvidence } from "./engineering-evidence.ts";
@@ -171,8 +172,10 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
       const devicePixelRatio = window.devicePixelRatio || 1;
       for (const canvas of [staticCanvas.current, progressCanvas.current]) {
         if (canvas === null) continue;
-        canvas.width = Math.max(1, Math.round(width * devicePixelRatio));
-        canvas.height = Math.max(1, Math.round(height * devicePixelRatio));
+        // Assigning an unchanged Canvas dimension clears its bitmap. Guard the
+        // assignment so duplicate ResizeObserver notifications cannot erase a
+        // completed frame without a corresponding viewport change.
+        syncCanvasBackingStore(canvas, width, height, devicePixelRatio);
       }
       setViewport((current) => ({
         ...current,

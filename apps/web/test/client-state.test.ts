@@ -4,6 +4,7 @@ import { test } from "node:test";
 import {
   ClientProgressState,
   clampCellSize,
+  syncCanvasBackingStore,
   zoomViewport,
 } from "../src/client-state.ts";
 import { countedCoordinate, issueMessage } from "../src/messages.ts";
@@ -39,6 +40,33 @@ test("progress failure restores the committed value and exposes not-saved", () =
     status: "not-saved",
     committed: "marked",
   });
+});
+
+test("canvas backing-store synchronization does not clear unchanged dimensions", () => {
+  let writes = 0;
+  let width = 800;
+  let height = 600;
+  const canvas = {
+    get width() {
+      return width;
+    },
+    set width(value: number) {
+      writes += 1;
+      width = value;
+    },
+    get height() {
+      return height;
+    },
+    set height(value: number) {
+      writes += 1;
+      height = value;
+    },
+  };
+  assert.equal(syncCanvasBackingStore(canvas, 400, 300, 2), false);
+  assert.equal(writes, 0);
+  assert.equal(syncCanvasBackingStore(canvas, 420, 300, 2), true);
+  assert.equal(writes, 1);
+  assert.equal(canvas.width, 840);
 });
 
 test("user messages remain bounded and coordinates are one-based", () => {

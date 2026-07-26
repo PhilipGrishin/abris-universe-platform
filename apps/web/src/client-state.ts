@@ -12,6 +12,31 @@ export const MIN_CELL_SIZE = 8;
 export const MAX_CELL_SIZE = 64;
 export const DEFAULT_CELL_SIZE = 28;
 
+export interface CanvasSizeLike {
+  width: number;
+  height: number;
+}
+
+export function syncCanvasBackingStore(
+  canvas: CanvasSizeLike,
+  cssWidth: number,
+  cssHeight: number,
+  devicePixelRatio: number,
+): boolean {
+  const backingWidth = Math.max(1, Math.round(cssWidth * devicePixelRatio));
+  const backingHeight = Math.max(1, Math.round(cssHeight * devicePixelRatio));
+  let changed = false;
+  if (canvas.width !== backingWidth) {
+    canvas.width = backingWidth;
+    changed = true;
+  }
+  if (canvas.height !== backingHeight) {
+    canvas.height = backingHeight;
+    changed = true;
+  }
+  return changed;
+}
+
 export function clampCellSize(value: number): number {
   return Math.min(MAX_CELL_SIZE, Math.max(MIN_CELL_SIZE, value));
 }
