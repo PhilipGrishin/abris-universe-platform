@@ -111,23 +111,41 @@ async function holdProjectLock(): Promise<void> {
 }
 
 upgradeButton.addEventListener("click", () => {
-  const request = indexedDB.open(
+  const holdRequest = indexedDB.open(
     ABRIS_DATABASE_NAME,
-    result.blockedUpgrade.requestedVersion,
+    ABRIS_DATABASE_VERSION,
   );
-  request.onblocked = () => {
-    Object.assign(result.blockedUpgrade, { observed: true });
-    status.textContent = "Blocked IndexedDB upgrade observed.";
+  holdRequest.onerror = () => {
+    status.textContent = "Could not create the deliberate upgrade blocker.";
     publish();
   };
-  request.onerror = () => {
-    status.textContent = `Upgrade failed with ${request.error?.name ?? "unknown error"}.`;
-    publish();
-  };
-  request.onsuccess = () => {
-    request.result.close();
-    status.textContent = "Upgrade was not blocked.";
-    publish();
+  holdRequest.onsuccess = () => {
+    const heldConnection = holdRequest.result;
+    heldConnection.onversionchange = () => {
+      // Deliberately remain open until the real `blocked` event is observed.
+    };
+    const request = indexedDB.open(
+      ABRIS_DATABASE_NAME,
+      result.blockedUpgrade.requestedVersion,
+    );
+    request.onblocked = () => {
+      Object.assign(result.blockedUpgrade, { observed: true });
+      status.textContent = "Blocked IndexedDB upgrade observed.";
+      publish();
+      heldConnection.close();
+    };
+    request.onerror = () => {
+      heldConnection.close();
+      status.textContent = `Upgrade failed with ${request.error?.name ?? "unknown error"}.`;
+      publish();
+    };
+    request.onsuccess = () => {
+      request.result.close();
+      if (!result.blockedUpgrade.observed) {
+        status.textContent = "Upgrade was not blocked.";
+        publish();
+      }
+    };
   };
 });
 
