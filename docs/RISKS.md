@@ -386,13 +386,13 @@
   isolates the steady-gesture scenario with zero long tasks and manually
   dispositions the remaining contrast targets. Exact source `4009944` now has
   separate registered DPR1 reference and owner-confirmed 4× constrained raw
-  profiles; every applicable provisional budget passes, pending independent
-  disposition. Browser-reported Worker peak memory, manual screen-reader and
+  profiles. AU-AGENT-003 reverified evidence package `04302399`, accepted the
+  owner-confirmed 4× provenance and passing method-conforming metric subsets,
+  but kept both complete profiles open for Viewer TTI and retained-memory
+  evidence. Browser-reported Worker peak memory, manual screen-reader and
   physical Tab traversal, and broader-browser evidence remain open and cannot
-  be generalized. AU-AGENT-003 narrowly reverified the earlier evidence at
-  exact source `4009944`, accepted the steady-gesture long-task and contrast
-  subconditions, and retained performance/accessibility findings 002 and 003
-  as mandatory for their remaining evidence before a Completion Report.
+  be generalized. Performance/accessibility findings 002 and 003 remain
+  mandatory before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

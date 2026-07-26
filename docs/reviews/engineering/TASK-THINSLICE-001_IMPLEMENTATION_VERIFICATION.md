@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.1; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation sources `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a` and `40099443d156bcc2497e57e06528772be57e601b`; GitHub Actions runs `30191845477`, `30195963832`, and `30197035083` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.1; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence source `40099443d156bcc2497e57e06528772be57e601b`; registered-profile evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, and `30211416975` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -641,9 +641,9 @@ Exception is registered.
 - **Operational boundary:** production assertions and deployment remain
   unauthorized and outside this narrow review.
 
-### Current Quality Gate Decision
+### Quality Gate Decision at `40099443`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Decision rationale:** Targeted evidence correctly resolves the
   measured-profile steady-gesture long-task and normal-color contrast
   subconditions. TS001-IMPL-002 still lacks both registered profiles and
@@ -693,3 +693,251 @@ authorization.
   contrast targets. TS001-IMPL-002 and TS001-IMPL-003 remain mandatory for
   their explicitly listed evidence gaps, so the Engineering Verification
   Status remains `REWORK REQUIRED`.
+
+## Registered-Profile Reverification at `04302399`
+
+### Identity and Scope
+
+- **Exact evidence-package source:** commit
+  `043023999558f7d76f95b8552fe0e8b1923133f0`, parent
+  `eb47f759f5f791a96d51384b273e0c8b32d9a5b2`, branch
+  `codex/task-thinslice-001-client-integration`.
+- **Executable benchmark source:** clean commit
+  `40099443d156bcc2497e57e06528772be57e601b`, as registered by the manifest
+  and the two cold-benchmark artifacts.
+- **Source identity:** local `HEAD`,
+  `origin/codex/task-thinslice-001-client-integration`, and GitHub Actions run
+  `30211416975` resolve to the exact evidence-package source.
+- **Review scope:** only the registered reference- and constrained-profile
+  remainder of TS001-IMPL-002 and the evidence needed to disposition it.
+- **Preserved outside scope:** the existing TS001-IMPL-003 disposition, every
+  other finding, product and architecture meaning, production deployment,
+  release readiness, product acceptance, and project `[VERIFIED]`.
+- **Reviewer and independence:** AU-AGENT-003 did not author or capture the
+  benchmark artifacts, manifest, evidence index, or Benchmark Report. It
+  modified only this report.
+- **Documentation Impact:** Material.
+
+### Evidence Reviewed
+
+- [Benchmark Plan v1.2.1](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md);
+- [Browser Benchmark Report v1.4.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md);
+- [Browser Evidence Index v1.3.0](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md);
+- `performance-profile-manifest-4009944.json`;
+- the three `reference-*-4009944.json` artifacts;
+- the three `constrained-4x-*-4009944.json` artifacts;
+- exact evidence-package diff, source history, GitHub Actions run, and retained
+  static artifact.
+
+### Integrity and Provenance Checks
+
+All seven registered SHA-256 values were independently recomputed over the
+repository bytes and match the manifest or evidence index:
+
+| Artifact | Independently recomputed SHA-256 |
+| --- | --- |
+| `reference-browser-benchmark-4009944.json` | `a02b66823b7c4586a01c9ddc8c8989c96dd962849f5f257835a431451275d1c4` |
+| `reference-medium-gesture-4009944.json` | `23ef1182d6e4bab6e77575a48119e2bc4d1e7355cc8bb3fd7ff6d35908186aaa` |
+| `reference-interaction-4009944.json` | `25bf4f0ad610227ebb71f31edadb5ff3b3335f8ac14d59d3245da6cc2c8fb7f4` |
+| `constrained-4x-browser-benchmark-4009944.json` | `754da8713dcb77f8b2f18a307b5717da1675ea612a8555746260d96fd094ba42` |
+| `constrained-4x-medium-gesture-4009944.json` | `2f2172d0a991d1d95b1be368ab7511101076a6d4e62456154953fbacc6b0694b` |
+| `constrained-4x-interaction-4009944.json` | `1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b` |
+| `performance-profile-manifest-4009944.json` | `306e46e618ac5b7a4e974fd6365b672a501998f424e622811b1e24fe36a26083` |
+
+The manifest binds both profiles to clean executable source `40099443`, the
+same MacBook Pro `Mac15,3`, Chrome 150, macOS, AC power, 1365×768 viewport,
+and DPR 1. Its six artifact references and checksums resolve without mismatch.
+The evidence-package range after executable source changes documentation only;
+no later implementation is silently attributed to these captures.
+
+Exact-head GitHub Actions run `30211416975`, job `89818165205`, passed patch
+hygiene, typecheck, 67 tests, static build/provenance verification, production
+dependency audit, no-deploy rehearsal, and artifact upload. The retained
+446,540-byte artifact is not expired and is registered to exact head
+`04302399`.
+
+### Independent Statistical Recalculation
+
+Nearest-rank p95 uses ordered sample `ceil(0.95 × n)`. Even-sample medians
+average the two center observations. The 30-run confidence intervals use the
+sample standard deviation and the registered two-sided Student-t factor
+`2.045` with 29 degrees of freedom. No sample was deleted.
+
+| Profile and distribution | n | Median | p95 | Maximum | Mean and independently recomputed 95% CI |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reference minimal cold import | 30 | 31.4 ms | 124.3 ms | 135.4 ms | 41.1 ms [30.9, 51.3] |
+| Reference medium cold import | 30 | 1,618.4 ms | 1,751.6 ms | 1,803.5 ms | 1,621.9 ms [1,599.1, 1,644.6] |
+| Reference 10,000-event reload | 30 | 390.4 ms | 542.1 ms | 606.7 ms | 406.5 ms [387.9, 425.1] |
+| Constrained minimal cold import | 30 | 29.65 ms | 71.8 ms | 85.1 ms | 35.5 ms [30.2, 40.8] |
+| Constrained medium cold import | 30 | 2,367.3 ms | 2,648.6 ms | 2,741.2 ms | 2,402.8 ms [2,353.8, 2,451.9] |
+| Constrained 10,000-event reload | 30 | 1,679.7 ms | 1,866.6 ms | 1,911.8 ms | 1,700.4 ms [1,675.5, 1,725.3] |
+
+| Profile and interaction metric | n | Median | p95 | Maximum | Threshold result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Reference medium frame interval | 120 | 8.3 ms | 9.1 ms | 9.3 ms | 0/120 above 18.2 ms; 0% |
+| Reference isolated renderer work | 98 | 0.7 ms | 1.7 ms | 2.8 ms | Diagnostic; not substituted for frame time |
+| Reference medium mark-to-paint | 115 | 4.3 ms | 7.9 ms | 8.2 ms | Passes 50 ms p95 budget |
+| Reference medium autosave | 141 | 8.5 ms | 18.4 ms | 25.5 ms | Passes 150 ms p95 budget |
+| Constrained medium frame interval | 120 | 9.1 ms | 24.1 ms | 33.3 ms | 7/120 above 18.2 ms; 5.83% |
+| Constrained isolated renderer work | 1 | 2.3 ms | 2.3 ms | 2.3 ms | Diagnostic only; cancellation limitation retained |
+| Constrained medium mark-to-paint | 111 | 0.7 ms | 9.3 ms | 38.7 ms | Passes 100 ms p95 budget |
+| Constrained medium autosave | 111 | 17.4 ms | 34.0 ms | 117.0 ms | Passes 300 ms p95 budget |
+
+The isolated reference and constrained gesture artifacts each contain zero
+long-task records. The four long tasks in each combined interaction artifact
+remain outside those isolated windows and are not relabeled or deleted.
+
+### Applicable Budget Disposition
+
+#### Captured profile metrics
+
+The reference cold-import p95 values pass the 750 ms minimal and 3,000 ms
+medium budgets. Reference frame p95, dropped-frame ratio, isolated long-task
+count, mark-to-paint p95, autosave p95, 10,000-event reload p95, and corrupt
+import containment all pass their registered conditions.
+
+The constrained medium cold-import p95 passes 6,000 ms; frame p95 passes
+33.3 ms; 7/120 frames above 18.2 ms produce 5.83%, below 10%; zero isolated
+long tasks pass the allowance of at most one; mark-to-paint, autosave, and
+10,000-event reload p95 values pass 100 ms, 300 ms, and 2,000 ms respectively.
+Corrupt import is rejected with `OXS_XML_MALFORMED`.
+
+#### Viewer TTI sample sufficiency
+
+The Benchmark Plan requires at least 100 measured iterations after warm-up for
+gate latency scenarios; the Task Package requires Viewer time-to-interactive
+evidence on both minimal and medium fixtures. The reference interaction
+artifact contains only two Viewer TTI records, both tagged with 100,000
+stitches. Their nearest-rank p95 is 95.6 ms, below the medium 2,000 ms budget,
+but `n = 2` cannot satisfy the registered method and no reference minimal
+Viewer TTI sample is present.
+
+The constrained interaction artifact contains two Viewer TTI records: one
+five-stitch sample and one 100,000-stitch sample. The only constrained medium
+sample is 124.9 ms, below 4,000 ms, but `n = 1` cannot establish the registered
+p95 distribution. A fast undersampled observation is not promoted to a gate
+pass.
+
+#### Memory boundaries
+
+The registered interaction artifacts expose only a process main-thread
+`peakUsedJsHeapBytes` signal. They do not retain a before-scenario baseline or
+a forced-GC retained delta, so the reference `<= 160 MiB` retained-memory-delta
+budget cannot be independently recomputed from this package. The constrained
+profile has no numeric retained-delta threshold, but the registered metric
+still calls for peak and retained delta; only the peak signal is present.
+
+The deterministic 100,374,296-byte importer estimate remains enforced
+admission-control evidence only. It is not observed import-Worker peak memory
+and does not close the `<= 256 MiB` medium or provisional `<= 384 MiB`
+constrained Worker-memory conditions. Measured Worker peak memory or an
+owner-approved documented limitation remains mandatory.
+
+### Constrained-Profile Configuration
+
+The Benchmark Plan requires the tool version and throttling configuration to
+be recorded; it does not require a browser API to echo the active multiplier.
+The Project Owner's confirmation that Chrome DevTools 4× CPU slowdown was
+enabled is an authoritative configuration record. The manifest also preserves
+the same inspected target from the isolated gesture through navigation to the
+cold-import/reload benchmark, and the artifact sequence, viewport, browser,
+hardware, resource names, and source binding are consistent.
+
+That confirmation plus target continuity is sufficient evidence that the
+captured constrained scenarios used the registered DevTools configuration. It
+does not prove a fourfold effect in every Worker context. The absence of a
+browser-readable active multiplier and the host-relative nature of DevTools
+throttling remain explicit limitations, not reasons to infer a mobile CPU or
+another hardware class.
+
+### Narrow Finding Disposition
+
+| Finding | Severity | Reference-profile remainder | Constrained-profile remainder | Mandatory remainder |
+| --- | --- | --- | --- | --- |
+| TS001-IMPL-002 | Medium | **Not resolved.** Captured import, gesture, mark, save, reload, and corrupt-input conditions pass, but Viewer TTI lacks the registered sample count and minimal-fixture coverage; the retained-memory delta cannot be recomputed | **Not resolved.** The owner-confirmed 4× configuration is accepted and captured metrics pass, but medium Viewer TTI has only one sample and the retained-memory metric lacks a delta | Produce method-conforming Viewer TTI evidence and retained-memory evidence for the registered profiles; obtain measured import-Worker peak memory or an owner-approved documented limitation |
+
+The new evidence materially narrows TS001-IMPL-002, but it does not close
+either complete profile remainder. Severity remains `Medium`; the finding
+remains mandatory and blocks the consolidated Completion Report.
+TS001-IMPL-003 is not re-reviewed or changed by this section.
+
+### Documentation Lifecycle
+
+The Browser Benchmark Report v1.4.0 currently states that every applicable
+registered-profile budget passes while omitting Viewer TTI and retained-memory
+delta from both profile tables. The evidence index, status, task, focus, risk,
+traceability, and handoff records correctly preserve independent disposition
+as pending, but several describe all applicable profile budgets as passed.
+
+After this review is integrated, AU-AGENT-002 and the technical owners must
+preserve the passing captured metrics while correcting those statements to
+distinguish:
+
+- passing captured profile metrics;
+- insufficient Viewer TTI sample count and fixture coverage;
+- absent registered-profile retained-memory delta;
+- absent measured import-Worker peak memory or owner-approved limitation;
+- accepted owner-confirmed 4× configuration with its browser-API and
+  host-relative limitations;
+- unchanged TS001-IMPL-003 disposition and current quality-gate status.
+
+Those changes are outside this review's write authority. No Documentation
+Exception or evidence limitation is registered here.
+
+### Current Quality Gate Decision
+
+- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision rationale:** The exact profile artifacts are intact, the reported
+  distribution statistics are reproducible, the method-conforming captured
+  distributions and gesture metrics pass their budgets, and the
+  owner-confirmed 4× configuration is sufficient for configuration
+  provenance. The registered profile method is nevertheless incomplete for
+  Viewer TTI and retained-memory delta, while actual import-Worker peak memory
+  or an approved limitation remains absent. Missing evidence is not an assumed
+  pass.
+- **Mandatory unresolved findings:** TS001-IMPL-002 and the unchanged
+  TS001-IMPL-003.
+- **Completion Report blocked:** Yes.
+- **Required next action:** AU-AGENT-004/AU-AGENT-006 capture
+  method-conforming reference minimal/medium and constrained medium Viewer TTI
+  evidence plus registered retained-memory evidence; separately provide
+  measured import-Worker peak memory or route a documented limitation for
+  Project Owner approval. AU-AGENT-002 then integrates this exact disposition,
+  and AU-AGENT-003 performs a narrow exact-source re-review.
+
+This unbracketed Engineering Verification Status is task-scoped. It is not
+project `[VERIFIED]`, product acceptance, release readiness, or deployment
+authorization.
+
+### Residual Risks and Limitations
+
+- The 4× configuration depends on the authoritative Project Owner
+  confirmation because the browser evidence API cannot expose the active
+  multiplier.
+- DevTools throttling is host-relative and does not establish performance on a
+  named mobile or lower-end CPU.
+- Combined-session long tasks remain retained outside the isolated gesture
+  windows; they are not evidence of steady-gesture failure.
+- Main-thread heap peaks exclude Worker, Canvas, and GPU allocation and cannot
+  substitute for a retained delta or Worker peak.
+- AU-AGENT-003 did not rerun captures, modify implementation, or review
+  TS001-IMPL-003.
+
+### References
+
+- [Benchmark Plan v1.2.1](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Browser Benchmark Report v1.4.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [Browser Evidence Index v1.3.0](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
+- [GitHub Actions run 30211416975](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30211416975)
+
+### Review History Update
+
+- 2026-07-26, version 1.3.0: AU-AGENT-003 independently verified the integrity
+  and reported statistics of registered-profile evidence package `04302399`.
+  All method-conforming captured reference and owner-confirmed 4× constrained
+  metrics pass their applicable numeric budgets. Complete reference and
+  constrained profile remainders stay open because registered Viewer TTI
+  sampling/fixture coverage and retained-memory delta evidence are incomplete.
+  Measured import-Worker peak memory or an owner-approved documented
+  limitation remains mandatory. The Engineering Verification Status remains
+  `REWORK REQUIRED`.

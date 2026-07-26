@@ -10,7 +10,7 @@ repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status remains `REWORK REQUIRED` after
-AU-AGENT-003 narrow reverification at `4009944`
+AU-AGENT-003 registered-profile reverification at evidence package `04302399`
 
 Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
 all unsupported performance, accessibility, and platform limitations. Keep
@@ -81,10 +81,12 @@ this internal stage.
 - Exact clean source `4009944` now has separate registered 1365×768 DPR1
   reference and owner-confirmed Chrome DevTools 4× constrained raw evidence.
   Both retain 30 cold imports, 30 10,000-event reloads, isolated 120-frame
-  medium gestures, and at least 100 medium mark/save samples. Every applicable
-  provisional profile budget passes. The constrained multiplier is supported
-  by owner confirmation and preserved inspected-target continuity because the
-  browser evidence API does not expose the active multiplier.
+  medium gestures, and at least 100 medium mark/save samples. Every
+  method-conforming captured metric passes. Complete profile passes remain
+  unassigned because Viewer TTI sampling/fixture coverage and registered
+  retained-memory deltas are incomplete. The constrained multiplier is
+  supported by owner confirmation and preserved inspected-target continuity
+  because the browser evidence API does not expose the active multiplier.
 - Pinned axe-core reports zero violations after exact-source remediation.
   Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
   five toolbar controls, and manual calculations disposition those controls at
@@ -104,9 +106,11 @@ this internal stage.
   AU-AGENT-003 changes their dispositions. Exact source `d69b5c5` isolates the
   medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
   2.3 ms Worker-render p95; the earlier combined-session artifact with 31
-  unattributed long tasks remains historical evidence. Registered profile
-  evidence is now a tested candidate awaiting independent review;
-  browser-reported Worker peak memory remains absent. The enforced medium
+  unattributed long tasks remains historical evidence. AU-AGENT-003
+  independently accepted the registered profile configuration and passing
+  captured metrics at evidence package `04302399`, but kept both complete
+  profile remainders open for Viewer TTI and retained-memory evidence.
+  Browser-reported Worker peak memory remains absent. The enforced medium
   import estimate is about 95.7 MiB against 256 MiB but is not actual Worker
   telemetry. Manual screen-reader and reliable physical focus traversal remain
   absent.
@@ -210,8 +214,9 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and push the registered-profile evidence package, confirm exact-head
-CI, and request narrow AU-AGENT-003 disposition. Then obtain measured Worker
-peak memory or an owner-approved documented limitation and complete a manual
-screen-reader session plus reliable physical Tab/focus traversal. No
-Completion Report or Claude acceptance exchange is permitted before closure.
+Capture method-conforming reference minimal/medium and constrained medium
+Viewer TTI distributions plus registered retained-memory evidence. Then obtain
+measured Worker peak memory or an owner-approved documented limitation and
+complete a manual screen-reader session plus reliable physical Tab/focus
+traversal. No Completion Report or Claude acceptance exchange is permitted
+before closure.

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-002 |
 | Title | TASK-THINSLICE-001 Browser Benchmark Report |
-| Status | `[TESTED]`; measured, registered reference, and registered constrained profiles pass their listed budgets; independent disposition pending |
+| Status | `[TESTED]`; captured registered-profile metrics pass, but Viewer TTI sampling and retained-memory evidence are incomplete |
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, and exact evidence source `40099443d156bcc2497e57e06528772be57e601b`; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence source `40099443d156bcc2497e57e06528772be57e601b`, evidence package `043023999558f7d76f95b8552fe0e8b1923133f0`, and Engineering Verification Report v1.3.0; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -82,11 +82,14 @@ host-relative proxy, not a claim about a specific mobile architecture.
 | --- | ---: | ---: | --- |
 | Minimal cold import p95, 30 runs | 124.3 ms | <= 750 ms | Pass |
 | Medium cold import p95, 30 runs | 1,751.6 ms | <= 3,000 ms | Pass |
+| Minimal Viewer TTI | No sample | <= 750 ms | Incomplete |
+| Medium Viewer TTI p95, 2 samples | 95.6 ms | <= 2,000 ms | Incomplete: fewer than 100 iterations |
 | Medium scripted-pan frame p95, 120 frames | 9.1 ms | <= 18.2 ms | Pass |
 | Frames over 18.2 ms | 0 / 120, 0% | < 5% | Pass |
 | Steady-gesture long tasks | 0 | 0 | Pass |
 | Medium mark-to-paint p95, 115 samples | 7.9 ms | <= 50 ms | Pass |
 | Medium autosave p95, 141 samples | 18.4 ms | <= 150 ms | Pass |
+| Retained memory delta after open | No baseline/delta | <= 160 MiB | Incomplete |
 | 10,000-event reload p95, 30 runs | 542.1 ms | <= 1,000 ms | Pass |
 | Corrupt import | 14.7 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
 
@@ -100,11 +103,13 @@ deleted, and are not represented as steady-gesture events.
 | Metric | Result | Constrained budget | Disposition |
 | --- | ---: | ---: | --- |
 | Medium cold import p95, 30 runs | 2,648.6 ms | <= 6,000 ms | Pass |
+| Medium Viewer TTI, 1 sample | 124.9 ms | <= 4,000 ms | Incomplete: fewer than 100 iterations |
 | Medium scripted-pan frame p95, 120 frames | 24.1 ms | <= 33.3 ms | Pass |
 | Frames over 18.2 ms | 7 / 120, 5.83% | < 10% | Pass |
 | Steady-gesture long tasks | 0 | <= 1 | Pass |
 | Medium mark-to-paint p95, 111 samples | 9.3 ms | <= 100 ms | Pass |
 | Medium autosave p95, 111 samples | 34.0 ms | <= 300 ms | Pass |
+| Retained memory delta after open | No baseline/delta | Record only | Incomplete |
 | 10,000-event reload p95, 30 runs | 1,866.6 ms | <= 2,000 ms | Pass |
 | Corrupt import | 29.8 ms, `OXS_XML_MALFORMED` | Rejected and contained | Pass |
 
@@ -167,20 +172,25 @@ approved limitation is registered.
 
 ## Budget Disposition
 
-The listed budgets pass on the measured, reference, and constrained profiles.
-Full TS001-IMPL-002 closure is not claimed because import-Worker peak memory was
-not available from the browser measurement, and the heap evidence is an
-observational main-thread signal rather than a forced-GC retained allocation
-result.
+The listed measured-profile budgets pass. For the registered reference and
+constrained profiles, every method-conforming captured import, gesture,
+mark-to-paint, autosave, reload, and corrupt-input condition passes. Complete
+profile passes are not assigned because Viewer TTI lacks the registered sample
+count and reference minimal-fixture coverage, and neither profile records the
+required before-scenario baseline and retained-memory delta. Import-Worker peak
+memory is also unavailable; the heap evidence is an observational main-thread
+signal rather than a forced-GC retained allocation result.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
 accepted the isolated steady-gesture long-task disposition for the earlier
 measured profile. It also confirmed the estimator as valid enforced
-admission-control evidence, but not as observed Worker peak memory. The later
-registered profile evidence remains a candidate until narrow independent
-reverification. Measured Worker peak memory or an owner-approved documented
-limitation remains mandatory.
+admission-control evidence, but not as observed Worker peak memory.
+AU-AGENT-003 then independently reverified evidence package `04302399` and
+accepted the owner-confirmed 4× configuration provenance and all
+method-conforming captured metrics. It kept both complete profile remainders
+open for Viewer TTI and retained-memory evidence. Measured Worker peak memory
+or an owner-approved documented limitation remains mandatory.
 
 ## Common Mistakes
 
@@ -196,15 +206,19 @@ limitation remains mandatory.
 - [x] Exact source and dirty state recorded.
 - [x] Hardware, OS, power, browser, viewport, DPR, and capability path recorded.
 - [x] Minimal and medium cold import samples retained.
-- [x] At least 100 interaction samples retained per fixture.
+- [x] At least 100 mark-to-paint and autosave samples retained where reported.
+- [ ] At least 100 Viewer TTI samples retained for reference minimal,
+      reference medium, and constrained medium.
 - [x] 120 actual animation-frame intervals retained per fixture.
 - [x] 10,000-event history and 30 reload samples retained.
 - [x] Corrupt import result retained.
 - [x] Registered reference viewport and DPR run.
 - [x] Registered constrained profile run.
+- [ ] Registered retained-memory baseline, peak, and delta recorded.
 - [ ] Import-Worker peak memory measured.
 - [x] Long-task evidence isolated and dispositioned for the scripted gesture.
-- [ ] AU-AGENT-003 independently reverifies the registered profile evidence.
+- [x] AU-AGENT-003 independently reverified the registered profile evidence;
+      complete profile remainders remain open.
 
 ## References
 

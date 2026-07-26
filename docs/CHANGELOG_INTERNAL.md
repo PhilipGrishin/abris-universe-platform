@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.1.0 |
+| Version | 4.2.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -27,6 +27,19 @@ implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
 
+## 2026-07-26 — Registered Profile Reverification Integration
+
+- Integrated AU-AGENT-003 Engineering Verification Report v1.3.0 for evidence
+  package `04302399` and successful exact-head CI run `30211416975`.
+- Preserved the accepted 4× configuration provenance and passing
+  method-conforming captured metrics without promoting incomplete profiles.
+- Corrected the Benchmark Report and lifecycle records to state that Viewer TTI
+  sample/fixture coverage and registered retained-memory deltas are incomplete.
+- Preserved measured Worker peak memory or an owner-approved documented
+  limitation and unchanged TS001-IMPL-003 as mandatory evidence.
+- Retained `REWORK REQUIRED` and the Completion Report block.
+- Documentation Impact: Material.
+
 ## 2026-07-26 — Registered Performance Profile Evidence
 
 - Connected the owner-enabled Chrome control surface and captured the
@@ -36,9 +49,11 @@ material defect.
 - Retained 30 minimal/medium cold imports, corrupt containment, 30
   10,000-event reloads, isolated 120-frame medium gestures, and more than 100
   medium mark/save samples per profile.
-- Confirmed that every applicable reference and constrained provisional budget
-  passes while retaining combined-run long tasks and incomplete Worker-render
-  response counts without deletion or inference.
+- Confirmed that every method-conforming captured reference and constrained
+  metric passes while retaining combined-run long tasks and incomplete
+  Worker-render response counts without deletion or inference. Later
+  independent review kept complete profile closure open for TTI and
+  retained-memory evidence.
 - Registered raw artifacts, checksums, configuration provenance, target
   continuity, and memory/throttling limitations.
 - Preserved measured import-Worker peak memory or owner-approved limitation as

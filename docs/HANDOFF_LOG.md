@@ -1,5 +1,27 @@
 # Handoff Log
 
+## 2026-07-26 — Registered Performance Profile Reverification
+
+- **Evidence package:** `043023999558f7d76f95b8552fe0e8b1923133f0`;
+  executable source `40099443d156bcc2497e57e06528772be57e601b`;
+  successful GitHub Actions run `30211416975`.
+- **Independent result:** AU-AGENT-003 verified all seven artifact hashes,
+  recomputed the raw distributions, accepted owner-confirmed 4× configuration
+  provenance, and confirmed that every method-conforming captured metric
+  passes its applicable budget.
+- **Profile disposition:** Neither complete profile remainder is resolved.
+  Reference minimal/medium and constrained medium Viewer TTI do not meet the
+  registered iteration/fixture method, and neither profile has a reproducible
+  before-scenario baseline and retained-memory delta.
+- **Other mandatory evidence:** Measured import-Worker peak memory or an
+  owner-approved documented limitation remains required. TS001-IMPL-003 is
+  unchanged.
+- **Quality gate:** `REWORK REQUIRED`; Completion Report remains blocked.
+- **Bridge disposition:** Internal quality-gate work; no Claude return or
+  Exchange ID is required.
+- **Next gate:** Capture method-conforming Viewer TTI and retained-memory
+  evidence, then request another narrow AU-AGENT-003 re-review.
+
 ## 2026-07-26 — Registered Performance Profile Evidence
 
 - **Exact evidence source:** `40099443d156bcc2497e57e06528772be57e601b`,
@@ -20,12 +42,12 @@
   retained without reinterpretation or deletion.
 - **Open limitation:** Main-thread heap signals do not measure import-Worker
   peak memory. The enforced estimator remains admission-control evidence only.
-- **Status boundary:** Registered profiles are `[TESTED]` candidates pending
-  narrow AU-AGENT-003 disposition. TS001-IMPL-002 remains mandatory and the
-  Engineering Verification Status remains `REWORK REQUIRED`.
+- **Status boundary:** Registered-profile captures are `[TESTED]`; later
+  AU-AGENT-003 review accepts their integrity and metric subsets but not
+  complete profile closure.
 - **Bridge disposition:** Internal evidence work; no Claude return or Exchange
   ID is required.
-- **Next gate:** Commit/push, exact-head CI, then AU-AGENT-003 narrow review.
+- **Next gate:** AU-AGENT-003 narrow review, recorded above.
 
 ## 2026-07-26 — Targeted Assurance Reverification
 

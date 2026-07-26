@@ -448,20 +448,24 @@
   separate 1365×768 DPR1 reference and owner-confirmed 4× constrained raw
   captures: 30 cold imports per fixture, 30 10,000-event reloads, isolated
   120-frame gestures, and more than 100 medium mark/save samples per profile.
-  Every applicable provisional profile budget passes; no outlier or
-  combined-session long task was deleted.
+  Every method-conforming captured metric passes; no outlier or
+  combined-session long task was deleted. AU-AGENT-003 accepted the 4×
+  configuration provenance but did not close either complete profile
+  remainder because Viewer TTI and retained-memory evidence are incomplete.
 - **Explicit limitations:** Browser-reported Worker peak memory or an
-  owner-approved documented limitation, manual screen-reader and physical Tab
-  traversal,
+  owner-approved documented limitation, reference minimal/medium and
+  constrained medium Viewer TTI distributions, registered retained-memory
+  deltas, manual screen-reader and physical Tab traversal,
   non-Chromium/mobile profiles, safe real quota/eviction, and production
   assertions were not inferred or represented as passes.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 remains partially resolved. Registered
-  profile evidence is a tested candidate awaiting independent disposition;
-  Worker peak-memory evidence or an owner-approved documented limitation
-  remains absent. The measured-profile long-task scenario is resolved.
+  profile configuration and captured metric subsets passed independent review,
+  but Viewer TTI and retained-memory evidence plus Worker peak-memory evidence
+  or an owner-approved documented limitation remain absent. The
+  measured-profile long-task scenario is resolved.
   TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
   physical focus-traversal evidence; the normal-color contrast subcondition is
@@ -472,10 +476,10 @@
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Commit and push the registered-profile evidence, confirm
-  exact-head CI, and request narrow AU-AGENT-003 disposition. Then address
-  Worker peak evidence or an owner-approved limitation and the manual
-  accessibility remainder before any Completion Report.
+- **Next step:** Capture method-conforming registered-profile Viewer TTI and
+  retained-memory evidence. Then address Worker peak evidence or an
+  owner-approved limitation and the manual accessibility remainder before any
+  Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

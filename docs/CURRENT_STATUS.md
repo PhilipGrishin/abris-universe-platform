@@ -162,8 +162,13 @@
 - `[TESTED]` Exact clean source `4009944` now has registered 1365×768 DPR1
   reference and owner-confirmed 4× constrained profile captures with 30 cold
   imports, 30 10,000-event reloads, isolated 120-frame medium gestures, and
-  more than 100 medium mark/save samples per profile. Every applicable
-  provisional profile budget passes; independent disposition remains pending.
+  more than 100 medium mark/save samples per profile. Every
+  method-conforming captured metric passes.
+- `[IMPLEMENTED]` AU-AGENT-003 independently reverified evidence package
+  `04302399` with successful GitHub Actions run `30211416975`. It accepted the
+  owner-confirmed 4× configuration provenance and passing captured metrics, but
+  kept both complete profile remainders open because Viewer TTI
+  sampling/fixture coverage and retained-memory deltas are incomplete.
 - `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
@@ -443,17 +448,18 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: registered reference/constrained evidence is a
-  tested candidate awaiting independent disposition; measured Worker peak
-  memory or an owner-approved documented limitation remains absent. The
+- `[OPEN]` TS001-IMPL-002: method-conforming registered-profile captures pass,
+  but reference minimal/medium and constrained medium Viewer TTI distributions
+  plus registered retained-memory deltas remain incomplete. Measured Worker
+  peak memory or an owner-approved documented limitation remains absent. The
   measured-profile steady-gesture long-task subcondition is resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
-- `[OPEN]` Independent disposition of registered profiles, Worker peak memory
-  or accepted limitation, manual assistive-technology traversal, broader
-  browsers, safe real quota/eviction, and production response assertions remain
-  explicit evidence limitations pending completion or their applicable
-  governance disposition.
+- `[OPEN]` Registered-profile Viewer TTI and retained-memory evidence, Worker
+  peak memory or accepted limitation, manual assistive-technology traversal,
+  broader browsers, safe real quota/eviction, and production response
+  assertions remain explicit evidence limitations pending completion or their
+  applicable governance disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -489,18 +495,19 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Captured registered 1365×768 DPR1 reference and owner-confirmed 4× constrained
-profiles at exact clean source `4009944`. Both profiles retain complete raw
-cold-import/reload, isolated gesture, and medium interaction distributions and
-pass every applicable provisional budget. This is a tested candidate pending
-AU-AGENT-003 disposition; Engineering Verification Status remains
-`REWORK REQUIRED`. No project `[VERIFIED]`, product acceptance, release
-approval, or deployment permission was assigned.
+Integrated AU-AGENT-003 v1.3.0 registered-profile reverification of evidence
+package `04302399` and successful GitHub Actions run `30211416975`.
+Method-conforming captured metrics and owner-confirmed 4× provenance pass, but
+Viewer TTI sampling/fixture coverage and registered retained-memory deltas are
+incomplete. Engineering Verification Status remains `REWORK REQUIRED`. No
+project `[VERIFIED]`, product acceptance, release approval, or deployment
+permission was assigned.
 
 ## Next Step
 
-Commit and push the registered-profile evidence, confirm exact-head CI, and
-request narrow AU-AGENT-003 disposition. Then address measured Worker peak
-evidence or an owner-approved documented limitation and complete manual
-screen-reader plus reliable physical Tab/focus traversal. Preserve unsupported
-profiles and modes before any Completion Report or Claude acceptance exchange.
+Capture method-conforming reference minimal/medium and constrained medium
+Viewer TTI distributions plus registered retained-memory evidence. Then
+address measured Worker peak evidence or an owner-approved documented
+limitation and complete manual screen-reader plus reliable physical Tab/focus
+traversal. Preserve unsupported profiles and modes before any Completion Report
+or Claude acceptance exchange.
