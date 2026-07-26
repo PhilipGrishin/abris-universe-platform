@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-26
-**Current focus:** TASK-THINSLICE-001 Completion Report v1.1.0 remediation and narrow AU-AGENT-003 rereview
+**Current focus:** TASK-THINSLICE-001 exact-source Collaboration Bridge independent-acceptance handoff
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace` and the bounded INIT-003 organizational-validation scope at `f748c95`; every recorded exclusion remains unverified
 
@@ -519,18 +519,14 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-AU-AGENT-003 reviewed Completion Report v1.0.0 at exact source `6bbf6915` and
-assigned the report gate `REWORK REQUIRED` while preserving the underlying
-implementation status `VERIFIED WITH FINDINGS`. Remediation now records the
-required repeat-import limitation, reproducible manual procedures, current
-documentation lifecycle, and a supplemental Chrome session covering pointer
-click, strict `> 6 CSS px` pan-only behavior, unreadable overview suppression,
-close-tab/new-tab persistence, and failed-save visual rollback. No Claude
-exchange has been registered.
+AU-AGENT-003 completed final narrow Completion Report v1.1.0 reverification at
+exact source `c6314a9c` and CI run `30216308387`. TS001-COMP-001 through
+TS001-COMP-003 are resolved; TS001-COMP-004 remains non-blocking. The report
+and underlying implementation both have task-scoped Engineering Verification
+Status `VERIFIED WITH FINDINGS`. No product acceptance, project `[VERIFIED]`,
+release, production, or deployment status is assigned.
 
 ## Next Step
 
-Complete link/status/checksum validation, commit the v1.1.0 remediation
-package, run exact-head CI, and request narrow AU-AGENT-003 reverification of
-TS001-COMP-001 through TS001-COMP-004. Only after that internal gate passes
-may a new Collaboration Bridge independent-acceptance exchange be registered.
+Register, validate, and export a source-qualified Collaboration Bridge
+independent-acceptance package, then stop for Claude Cowork.

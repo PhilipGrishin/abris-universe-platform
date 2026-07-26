@@ -438,8 +438,8 @@
 
 - **Status:** Remediation `[IMPLEMENTED]`, `[TESTED]`; exact-source
   reverification `[IMPLEMENTED]`; Engineering Verification Status
-  `VERIFIED WITH FINDINGS`; Completion Report v1.0.0 received `REWORK
-  REQUIRED`; v1.1.0 remediation is in progress.
+  `VERIFIED WITH FINDINGS`; Completion Report v1.1.0 Engineering Verification
+  Status `VERIFIED WITH FINDINGS`; independent Claude acceptance `[OPEN]`.
 - **Initial review source:** Exact commit
   `43782195c2db734bc16e7401dcad4becbe3e0d4f`; GitHub Actions run
   `30191845477`.
@@ -510,9 +510,11 @@
 - **Boundary:** No Critical or High defect was observed. `VERIFIED WITH
   FINDINGS` is a task-scoped engineering status, not product acceptance or
   project `[VERIFIED]`.
-- **Next step:** Complete and validate the v1.1.0 documentation remediation,
-  then request narrow exact-source AU-AGENT-003 reverification without
-  expanding the accepted scope.
+- **Completion Report disposition:** TS001-COMP-001 through TS001-COMP-003 are
+  resolved at final exact-source rereview `c6314a9c`; TS001-COMP-004 remains an
+  open non-blocking recommendation.
+- **Next step:** Prepare the exact-source Collaboration Bridge independent
+  acceptance package without expanding the accepted scope.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

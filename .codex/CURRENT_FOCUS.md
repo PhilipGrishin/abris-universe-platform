@@ -11,11 +11,11 @@ integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
 AU-AGENT-003 manual-accessibility reverification at evidence package
-`58d5832f`; Completion Report v1.0.0 quality-gate status is `REWORK REQUIRED`,
-and v1.1.0 remediation is in progress
+`58d5832f`; Completion Report v1.1.0 Engineering Verification Status is
+`VERIFIED WITH FINDINGS` after final source `c6314a9c`
 
-Complete the v1.1.0 Completion Report/documentation remediation and submit its
-exact source to AU-AGENT-003 for narrow internal rereview. Preserve all
+Prepare the exact-source Collaboration Bridge independent-acceptance package
+for Claude Cowork. Preserve all
 unsupported performance, accessibility, platform, release, and deployment
 limitations. TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their
 bounded Phase 0 scopes. Keep production deployment, product acceptance, and
@@ -211,13 +211,11 @@ TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
 scopes, plus the bounded persistence/runtime-security scopes. The current
 Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
 implementation finding remains in that declared scope. A consolidated
-Completion Report v1.0.0 was independently reviewed and received `REWORK
-REQUIRED` for TS001-COMP-001, TS001-COMP-002, and TS001-COMP-003, plus
-non-blocking recommendation TS001-COMP-004. The v1.1.0 remediation includes a
-supplemental Chrome interaction session for pointer click, the strict pan
-threshold, unreadable overview, failed-save visual rollback, and explicit
-close-tab/new-tab persistence. This internal remediation requires no Claude
-return and therefore no new Collaboration Bridge Exchange ID.
+Completion Report v1.1.0 passed final narrow AU-AGENT-003 reverification.
+TS001-COMP-001 through TS001-COMP-003 are resolved; TS001-COMP-004 remains a
+non-blocking recommendation. The supplemental Chrome interaction evidence is
+accepted only within its declared profile. A new Collaboration Bridge Exchange
+ID is now required for independent Claude acceptance.
 
 ## Current Renderer Gate
 

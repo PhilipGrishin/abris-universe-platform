@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.4.0; Benchmark Plan v1.2.4; AU-BENCH-TS001-LIM-001; Client Accessibility Matrix v1.5.0; Completion Report v1.1.0; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, `c64d3ec8ab390269121c651d8c78695d9b4946f5`, and `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0`, `15ea8f9304d787aff604598f69e2e8551f5761cb`, `58d5832fd248b085774aadd417b4c0a54855ed10`, and `manual-interaction-contracts-6bbf691.json`; Completion Report sources `6bbf6915fd6bf618022c2f781ecb22cda6e001e0` and `d9a6896fbc0e2b89efff1759843d950e64dfa951`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, `30213355972`, `30213649361`, `30214387294`, `30215102272`, and `30215995535` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.4.0; Benchmark Plan v1.2.4; AU-BENCH-TS001-LIM-001; Client Accessibility Matrix v1.5.0; Completion Report v1.1.0; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, `c64d3ec8ab390269121c651d8c78695d9b4946f5`, and `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0`, `15ea8f9304d787aff604598f69e2e8551f5761cb`, `58d5832fd248b085774aadd417b4c0a54855ed10`, and `manual-interaction-contracts-6bbf691.json`; Completion Report sources `6bbf6915fd6bf618022c2f781ecb22cda6e001e0`, `d9a6896fbc0e2b89efff1759843d950e64dfa951`, and lifecycle correction `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, `30213355972`, `30213649361`, `30214387294`, `30215102272`, `30215995535`, and `30216308387` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -1969,9 +1969,9 @@ Chrome/macOS profile.
   mutable tag, permission expansion, or silent warning suppression was
   introduced.
 
-### Current Completion Report Quality Gate Decision
+### Completion Report Quality Gate Decision at `d9a6896f`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Resolved findings:** TS001-COMP-001 and TS001-COMP-002.
 - **Partially resolved mandatory finding:** TS001-COMP-003.
 - **Accepted non-blocking recommendation:** TS001-COMP-004.
@@ -2014,3 +2014,112 @@ platform support.
   obsolete stage boundaries/next actions. TS001-COMP-004 remains a
   non-blocking tracked recommendation. The Completion Report status remains
   `REWORK REQUIRED`; no Claude handoff or external acceptance is authorized.
+
+## Final TS001-COMP-003 Reverification at `c6314a9c`
+
+### Identity and Scope
+
+- **Exact reviewed source:**
+  `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`, with parent
+  `d9a6896fbc0e2b89efff1759843d950e64dfa951`.
+- **Exact-head CI:** GitHub Actions run `30216308387`, job `89831016063`,
+  succeeded on branch `codex/task-thinslice-001-client-integration`.
+- **Finding re-reviewed:** TS001-COMP-003 only.
+- **Unaffected dispositions:** TS001-COMP-001 and TS001-COMP-002 remain
+  resolved; TS001-COMP-004 remains an accepted open non-blocking
+  recommendation.
+- **Reviewer:** AU-AGENT-003.
+- **Documentation Impact:** `Material`.
+
+The exact remediation changes only the task register, three maintained
+document metadata fields, and the append-only independent review history. No
+implementation, product source, Technical Design, ADR, Completion Report,
+evidence artifact, dependency, build, test, CI workflow, release, or
+deployment behavior changes.
+
+### Verification
+
+- Exact-head CI is bound to the reviewed full SHA and passed install,
+  patch-hygiene, typecheck, all tests, build/provenance, production dependency
+  audit, no-deploy rehearsal, and artifact retention.
+- The remediation-range diff passes `git diff --check`.
+- All local links in the five modified Markdown documents resolve.
+- `packages/importers/oxs/README.md`,
+  `packages/persistence/README.md`, and Threat Model v1.4.0 now record
+  `Last Updated` as 2026-07-26.
+- `AU-CDX-TASK-001-ROUTE1-SCAFFOLD` now distinguishes its historical stage
+  boundary, completed historical next step, and current provenance lifecycle.
+- `AU-CDX-TASK-001-DOMAIN-CORE` now distinguishes its historical package-stage
+  exclusions, completed importer next step, and current domain-boundary
+  lifecycle.
+- `AU-CDX-TASK-001-RENDERER` now identifies client integration as a completed
+  historical next step and records the current renderer/client evidence
+  boundary.
+
+### Meaning-Preservation Review
+
+The normalization does not rewrite the technical history:
+
+- the route-1 scaffold still records that runtime implementation did not exist
+  at its exact source, while separately acknowledging later implementation;
+- domain-core remains framework- and importer-independent;
+- the registered producer-profile and unknown-coordinate/symbol rejection
+  rules are unchanged;
+- renderer-core ownership, verified contracts, and separation from
+  client/browser evidence are unchanged;
+- production, product acceptance, and project `[VERIFIED]` remain outside
+  every stage;
+- earlier sources, evidence counts, findings, and verification decisions are
+  retained.
+
+No parallel current source of truth or obsolete active instruction remains in
+the re-reviewed TS001-COMP-003 scope.
+
+### Finding Disposition
+
+| Finding | Historical severity | Previous remainder | Final disposition |
+| --- | --- | --- | --- |
+| TS001-COMP-003 | Medium | Three inaccurate `Last Updated` values and obsolete unqualified stage boundaries/next actions in the active task register | **Resolved.** Metadata is correct, stage history is explicit, current lifecycle statements are present, and technical meaning/history is preserved |
+
+TS001-COMP-001 and TS001-COMP-002 remain resolved without modification.
+TS001-COMP-004 remains an open Recommendation concerning the Node runtime of
+SHA-pinned GitHub Actions and does not block the Completion Report.
+
+### Current Completion Report Quality Gate Decision
+
+- **Engineering Verification Status:** VERIFIED WITH FINDINGS
+- **Mandatory Completion Report findings:** none unresolved.
+- **Open non-blocking recommendation:** TS001-COMP-004.
+- **Underlying implementation:** remains task-scoped
+  `VERIFIED WITH FINDINGS` within all previously recorded route-1,
+  Chrome/macOS, accessibility, memory, persistence, security, and no-deploy
+  boundaries.
+- **Claude handoff:** may proceed through the registered Collaboration Bridge
+  after AU-AGENT-002 records this exact disposition and AU-CODEX-PRIMARY
+  prepares the source-qualified acceptance package.
+
+This decision approves only the internal engineering quality of Completion
+Report v1.1.0 and its documentation lifecycle. It does not grant product
+acceptance, project `[VERIFIED]`, release readiness, production readiness,
+deployment authority, or broader platform support.
+
+### References
+
+- [Completion Report v1.1.0](../technical/TASK-THINSLICE-001/COMPLETION_REPORT.md)
+- [Task Register](../../TASKS.md)
+- [Threat Model v1.4.0](../../assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md)
+- [OXS Importer Workspace](../../../packages/importers/oxs/README.md)
+- [Persistence Workspace](../../../packages/persistence/README.md)
+- [GitHub Actions run 30216308387](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30216308387)
+
+### Review History Update
+
+- 2026-07-26, version 1.9.0: AU-AGENT-003 independently reverified only
+  TS001-COMP-003 at exact source `c6314a9c` and successful exact-head CI run
+  `30216308387`. All three metadata dates are corrected, the route-1 scaffold,
+  domain-core, and renderer records distinguish source-qualified history from
+  current lifecycle, and no technical meaning or evidence history is changed.
+  TS001-COMP-003 is resolved. With no mandatory Completion Report finding
+  remaining, the report-level Engineering Verification Status is
+  `VERIFIED WITH FINDINGS`; TS001-COMP-004 remains a non-blocking
+  recommendation. No external acceptance or deployment authority is assigned.
