@@ -48,7 +48,10 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
   console, retained in tab-scoped session storage, exposed through the hidden
   machine-readable `#engineering-evidence-json` output, and never transmitted.
   Adding `&evidence-auto-pan=1` runs a 120-frame local scripted pan and records
-  actual animation-frame intervals for dropped-frame analysis.
+  actual animation-frame intervals for dropped-frame analysis. The harness
+  clears earlier import/initial-paint observations immediately before the
+  scripted gesture so retained long-task records are attributable to that
+  scenario.
 - Static Cloudflare Worker asset boundary with SPA fallback, GET/HEAD-only
   handling, reviewed CSP, `nosniff`, and no-referrer response headers.
 - Non-secret build provenance in generated `version.json`, verified

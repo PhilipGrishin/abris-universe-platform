@@ -51,6 +51,7 @@ main {
   justify-content: space-between;
   min-height: 92px;
   border-bottom: 1px solid #b9b5aa;
+  background: #f1eee7;
 }
 
 .brand {
@@ -85,7 +86,7 @@ main {
 
 .brand small {
   margin-top: 2px;
-  color: #66706d;
+  color: #596562;
   font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -269,7 +270,7 @@ main {
   border: 1px solid #c8c4ba;
   border-radius: 18px;
   overflow: hidden;
-  background: rgb(255 255 255 / 48%);
+  background: #f8f6f3;
 }
 
 .project-summary > div {

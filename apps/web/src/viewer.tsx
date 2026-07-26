@@ -28,6 +28,7 @@ import {
   zoomViewport,
 } from "./client-state.ts";
 import {
+  clearEngineeringEvidence,
   emitEngineeringEvidence,
   engineeringAutoPanEnabled,
   engineeringEvidenceEnabled,
@@ -309,6 +310,10 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
     evidenceGestureStarted.current = true;
     let cancelled = false;
     const timer = window.setTimeout(() => {
+      // The scripted gesture is a distinct benchmark scenario. Remove import,
+      // initial-paint, and idle observations so long tasks retained by this run
+      // can be dispositioned against the steady-gesture budget.
+      clearEngineeringEvidence();
       let frame = 0;
       let previous = performance.now();
       const step = (now: number) => {
