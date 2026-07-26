@@ -154,6 +154,11 @@
   TS001-IMPL-001 is resolved. TS001-PERSIST-006 is resolved only for the
   declared Chromium/macOS Phase 0 scope, and the implementation-runtime part of
   TS001-SEC-002 is resolved for that profile.
+- `[IMPLEMENTED]` AU-AGENT-003 narrowly reverified exact source `4009944` and
+  successful GitHub Actions run `30197035083`. It resolved the
+  measured-profile steady-gesture long-task and normal-color contrast
+  subconditions, accepted the deterministic memory estimator only as enforced
+  admission-control evidence, and kept TS001-IMPL-002/003 mandatory.
 - `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
@@ -433,17 +438,16 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles and Worker
-  peak memory or an independently accepted estimator limitation. The
-  steady-gesture long-task scenario has a targeted remediation candidate.
+- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles and
+  measured Worker peak memory or an owner-approved documented limitation. The
+  measured-profile steady-gesture long-task subcondition is resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
-  traversal. The incomplete contrast targets have a manual exact-ratio
-  remediation candidate.
+  traversal. The normal-color contrast subcondition is resolved.
 - `[OPEN]` Registered reference/constrained benchmark profiles, Worker peak
   memory or accepted limitation, manual assistive-technology traversal,
   broader browsers, safe real quota/eviction, and production response
-  assertions remain explicit evidence limitations pending independent
-  disposition.
+  assertions remain explicit evidence limitations pending completion or their
+  applicable governance disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -479,17 +483,19 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated AU-AGENT-003 reverification of exact source `6da2f9e` and successful
-GitHub Actions run `30195963832`. The reviewer resolved TS001-IMPL-001, bounded
-TS001-PERSIST-006, and the measured-profile implementation-runtime part of
-TS001-SEC-002. Engineering Verification Status remains `REWORK REQUIRED`
-because TS001-IMPL-002 and TS001-IMPL-003 are mandatory. No project
-`[VERIFIED]`, product acceptance, release approval, or deployment permission
-was assigned.
+Integrated AU-AGENT-003 narrow reverification of exact source `4009944` and
+successful GitHub Actions run `30197035083`. The reviewer resolved the
+measured-profile steady-gesture long-task and normal-color contrast
+subconditions. Engineering Verification Status remains `REWORK REQUIRED`
+because registered performance profiles, Worker peak evidence or approved
+limitation, manual screen-reader, and physical Tab/focus traversal are still
+mandatory. No project `[VERIFIED]`, product acceptance, release approval, or
+deployment permission was assigned.
 
 ## Next Step
 
-Commit and push the targeted evidence package, confirm exact-head CI, and
-request narrow AU-AGENT-003 reverification. Preserve unavailable profile,
-Worker-telemetry, and manual assistive-technology limitations before a
-Completion Report or Claude acceptance exchange.
+Obtain the registered 1365×768 DPR1 and 4× constrained profiles plus measured
+Worker peak evidence or an owner-approved documented limitation. Complete the
+manual screen-reader and reliable physical Tab/focus traversal evidence, then
+request narrow AU-AGENT-003 reverification. Preserve unsupported profiles and
+modes before any Completion Report or Claude acceptance exchange.

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.1; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; GitHub Actions runs `30191845477` and `30195963832` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.1; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation sources `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a` and `40099443d156bcc2497e57e06528772be57e601b`; GitHub Actions runs `30191845477`, `30195963832`, and `30197035083` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -439,9 +439,9 @@ exact source, CI run, dispositions, remaining blockers, and unchanged current
 gate without rewriting this independent review. No Documentation Exception is
 registered.
 
-### Current Quality Gate Decision
+### Quality Gate Decision at `6da2f9e9`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Decision rationale:** The renderer architecture remediation and the bounded
   Chromium persistence/runtime-security evidence pass. The consolidated
   implementation still lacks the registered performance profiles, complete
@@ -501,3 +501,195 @@ deploy.
   implementation-runtime scope; TS001-DOC-001 is partially resolved;
   TS001-IMPL-002 and TS001-IMPL-003 remain mandatory. The Engineering
   Verification Status remains `REWORK REQUIRED`.
+
+## Narrow Reverification at `40099443`
+
+### Identity and Scope
+
+- **Exact reverified source:** commit
+  `40099443d156bcc2497e57e06528772be57e601b`, parent
+  `d69b5c564cf17a042d2bf36ef1a864031e802676`, branch
+  `codex/task-thinslice-001-client-integration`.
+- **Source identity:** local `HEAD`,
+  `origin/codex/task-thinslice-001-client-integration`, and GitHub Actions run
+  `30197035083` resolve to the exact source.
+- **Review scope:** only TS001-IMPL-002, TS001-IMPL-003, exact-head regression
+  evidence, and the documentation lifecycle required by their disposition.
+- **Out of scope:** every other finding disposition; product or architecture
+  meaning; unsupported platform inference; production deployment or
+  acceptance; implementation or evidence modification; project `[VERIFIED]`.
+- **Reviewer and independence:** AU-AGENT-003 did not author the targeted
+  implementation, evidence, benchmark report, accessibility matrix, or
+  lifecycle records. It modified only this report.
+- **Documentation Impact:** Material.
+
+### Evidence Reviewed
+
+- [Browser Benchmark Report v1.2.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md);
+- `medium-gesture-d69b5c5.json` and the preserved historical
+  `medium-interaction-a8f764b.json`;
+- [Client Accessibility and Platform Matrix v1.2.0](../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md);
+- `accessibility-d69b5c5.json`, exact CSS tokens, computed-style evidence, and
+  the prior accessibility artifact;
+- importer memory estimators, their enforcement points and tests, the
+  Technical Design, and Benchmark Plan v1.2.1;
+- the targeted implementation diff, exact-head lifecycle records, exact-head
+  CI, and retained CI artifact.
+
+| Check | Result |
+| --- | --- |
+| Local, remote, and GitHub Actions source identity | Pass; exact commit `40099443d156bcc2497e57e06528772be57e601b` |
+| Remediation-range and exact-head patch hygiene | Pass |
+| `medium-gesture-d69b5c5.json` checksum and JSON parse | Pass; registered SHA-256 `eb7f60bcc9895033bfcb36e1b08d1c09d4747d27c0278b1fe9685e942fa708be` |
+| Isolated gesture recomputation | Pass; 120 frames, p50 8.3 ms, p95 8.5 ms, maximum 10.2 ms, zero frames above 18.2 ms, 85 renderer samples, renderer p95 2.3 ms, maximum 6.1 ms, zero long tasks |
+| Historical medium evidence preservation | Pass; the original 31 unattributed long-task entries remain unchanged and indexed |
+| `accessibility-d69b5c5.json` checksum and JSON parse | Pass; registered SHA-256 `0dd1827829b37dd4c354a4ed6f85bea3163202dd1743c22165f6e00248eff57d` |
+| Independent WCAG contrast recomputation | Pass; 5.23:1, 4.61:1, 15.44:1, 8.37:1, and 10.25:1 match the artifact |
+| Exact CSS token/source comparison | Pass; the remaining five axe targets use the 8.37:1 toolbar-control pair |
+| Deterministic medium import estimate | Confirmed; 100,374,296 bytes, approximately 95.7 MiB, below the 256 MiB medium budget |
+| Exact-head GitHub Actions run `30197035083`, job `89780253737` | Pass; hygiene, typecheck, 67 tests, clean static build/provenance, production dependency audit, no-deploy rehearsal, and artifact upload |
+| Exact-head CI artifact | Present, 446,540 bytes, not expired; expires 2026-08-09T09:46:04Z |
+
+### Targeted Evidence Disposition
+
+#### Isolated gesture and historical long tasks
+
+The targeted capture clears task-owned engineering evidence immediately before
+the scripted gesture, then retains the exact 120 frame intervals, Worker
+renderer durations, and long-task set for that scenario. Its zero long tasks
+therefore dispositions the Benchmark Plan's steady-pan/zoom long-task
+condition for the measured Chromium/macOS profile.
+
+The result does not explain or erase the 31 unattributed long-task entries from
+the earlier combined-session artifact. They remain historical evidence of
+work elsewhere in that combined session. No claim is made about their source
+phase, and they are not rewritten as gesture failures or passes.
+
+#### Import-Worker memory estimator
+
+The 100,374,296-byte result is an enforced deterministic admission estimate,
+not an observation of the import Worker's peak heap or total allocation. It
+uses explicit source/count coefficients and a fixed staging reserve, but the
+evidence does not calibrate those coefficients against actual Worker, parser,
+string, object, structured-clone, or garbage-collection allocation.
+
+The estimator is valid implementation evidence for the preflight safety
+control and shows that the medium fixture is admitted below that modeled
+bound. It is not sufficient evidence for the Benchmark Plan metric
+“Import-worker peak memory.” Closing that condition still requires measured
+Worker-memory evidence or an owner-approved documented evidence limitation
+accepted through the normal governance route. AU-AGENT-003 does not create
+that exception in this report.
+
+#### Contrast evidence
+
+The exact opaque CSS foreground/background pairs and independent WCAG
+relative-luminance recomputation match the five recorded ratios. All remaining
+axe incomplete targets are the direction/zoom controls using
+`#f4f1e9` on `#214d49`, which measures 8.37:1. The manual evidence therefore
+dispositions the five incomplete contrast targets as passes for the measured
+normal-color state.
+
+This contrast disposition is not a screen-reader, physical Tab traversal,
+forced-colors, browser-zoom, mobile, touch, or unsupported-platform result.
+
+### Finding Disposition
+
+| Finding ID | Severity | Previous state | Narrow disposition | Mandatory remainder | Completion effect |
+| --- | --- | --- | --- | --- | --- |
+| TS001-IMPL-002 | Medium | Partially resolved; missing profiles, Worker memory, and isolated long-task disposition | Partially resolved; steady-gesture long-task condition is resolved for the measured profile and historical 31 entries remain preserved. The estimator passes only as admission-control evidence | Registered 1365×768 DPR 1 reference profile; 4× constrained profile; measured import-Worker peak memory or an owner-approved documented limitation | Still mandatory; blocks |
+| TS001-IMPL-003 | Medium | Partially resolved; contrast, manual screen reader, and reliable physical focus traversal open | Partially resolved; all five remaining contrast targets are manually resolved with independently confirmed ratios | Manual screen-reader session and reliable physical Tab/focus traversal on the declared supported profile. Firefox, Safari/WebKit, mobile, touch, forced-colors, and browser zoom remain unsupported/unclaimed rather than inferred requirements passed | Still mandatory; blocks |
+
+Neither finding is downgraded. No new `Critical`, `High`, or mandatory finding
+was observed in this narrow scope.
+
+### Documentation Lifecycle
+
+Benchmark Report v1.2.0, Accessibility Matrix v1.2.0, the evidence index,
+traceability, task, status, focus, risks, and handoff records preserve the
+previous `REWORK REQUIRED` decision and identify the targeted results as
+pending independent disposition. They do not silently claim closure or infer
+unsupported platforms.
+
+After this report is integrated, AU-AGENT-002 must update the engineering
+review index and persistent state to record:
+
+- exact reviewed source `40099443d156bcc2497e57e06528772be57e601b`;
+- exact CI run `30197035083`;
+- resolved steady-gesture long-task and contrast subconditions;
+- still-open performance profiles, Worker-memory condition, manual
+  screen-reader session, and physical focus traversal;
+- unchanged current Engineering Verification Status and Completion Report
+  block.
+
+Those updates are outside this review's write authority. No Documentation
+Exception is registered.
+
+### Risk Assessment
+
+- **Confirmed:** the isolated measured-profile gesture contains no long task
+  and stays within the frame budget.
+- **Confirmed:** the five manual contrast ratios exceed 4.5:1 for their exact
+  opaque normal-color token pairs.
+- **Confirmed:** the deterministic importer estimate is enforced and below the
+  medium budget, but is not measured Worker peak memory.
+- **Unknown:** registered reference and constrained performance behavior,
+  actual Worker peak allocation, manual screen-reader behavior, and reliable
+  physical Tab traversal.
+- **Unsupported and not inferred:** Firefox, Safari/WebKit, mobile, touch,
+  forced-colors, browser zoom, and other untested platforms or modes.
+- **Operational boundary:** production assertions and deployment remain
+  unauthorized and outside this narrow review.
+
+### Current Quality Gate Decision
+
+- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision rationale:** Targeted evidence correctly resolves the
+  measured-profile steady-gesture long-task and normal-color contrast
+  subconditions. TS001-IMPL-002 still lacks both registered profiles and
+  valid Worker-peak evidence or an approved limitation. TS001-IMPL-003 still
+  lacks the explicitly required manual screen-reader session and reliable
+  physical focus traversal. Missing evidence is not an assumed pass.
+- **Mandatory unresolved findings:** TS001-IMPL-002 and TS001-IMPL-003.
+- **Completion Report blocked:** Yes. A Completion Report claiming complete
+  TASK-THINSLICE-001 engineering readiness for independent product acceptance
+  remains blocked until both findings are resolved and AU-AGENT-003 reverifies
+  the exact evidence source.
+- **Required next action:** AU-AGENT-004/AU-AGENT-006 provide the registered
+  performance profiles and Worker-memory evidence or route an evidence
+  limitation for owner approval; AU-AGENT-006 completes the manual
+  screen-reader and physical focus traversal evidence; AU-AGENT-002 integrates
+  this report; AU-AGENT-003 performs only the resulting narrow exact-source
+  reverification.
+
+This unbracketed Engineering Verification Status is task-scoped. It is not
+project `[VERIFIED]`, product acceptance, release approval, or deployment
+authorization.
+
+### Limitations
+
+- AU-AGENT-003 did not rerun the browser captures or modify implementation,
+  evidence, product requirements, architecture, ADRs, or owner records.
+- Evidence checksums, raw values, ratios, estimator semantics, source diffs,
+  documentation, and exact-head CI were independently inspected.
+- Missing registered profiles, measured Worker memory, manual screen reader,
+  and physical Tab traversal remain explicit; unsupported platforms are not
+  inferred.
+
+### References
+
+- [Browser Benchmark Report v1.2.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [Client Accessibility and Platform Matrix v1.2.0](../../assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
+- [Browser Evidence Index](../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
+- [Benchmark Plan v1.2.1](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [GitHub Actions run 30197035083](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30197035083)
+
+### Review History Update
+
+- 2026-07-26, version 1.2.0: AU-AGENT-003 narrowly reverified exact source
+  `40099443d156bcc2497e57e06528772be57e601b`. The isolated gesture resolves
+  the measured-profile steady-gesture long-task subcondition while preserving
+  31 historical unattributed entries. Exact manual ratios resolve the five axe
+  contrast targets. TS001-IMPL-002 and TS001-IMPL-003 remain mandatory for
+  their explicitly listed evidence gaps, so the Engineering Verification
+  Status remains `REWORK REQUIRED`.

@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676` |
@@ -84,8 +84,10 @@ source-qualified row and evidence.
   accessibility behavior remain unverified.
 
 TS001-IMPL-003 is therefore materially advanced but not declared closed.
-AU-AGENT-003 independently reverified this bounded evidence at exact source
-`6da2f9e` and retained TS001-IMPL-003 as a mandatory Medium finding.
+AU-AGENT-003 independently reverified exact source `4009944`, accepted the
+manual contrast disposition for the measured normal-color state, and retained
+TS001-IMPL-003 as a mandatory Medium finding for manual screen-reader and
+reliable physical Tab/focus traversal evidence.
 
 ## Common Mistakes
 

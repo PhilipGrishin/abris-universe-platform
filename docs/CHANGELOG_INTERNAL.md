@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.9.0 |
+| Version | 4.0.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Targeted Assurance Reverification
+
+- Integrated AU-AGENT-003 version 1.2.0 narrow reverification for exact source
+  `4009944` and successful GitHub Actions run `30197035083` without changing
+  independent review meaning.
+- Recorded the measured-profile steady-gesture long-task and five normal-color
+  contrast subconditions as resolved.
+- Recorded the deterministic memory estimator as valid admission-control
+  evidence but not observed Worker peak memory.
+- Preserved TS001-IMPL-002 and TS001-IMPL-003 as mandatory Medium findings and
+  Engineering Verification Status `REWORK REQUIRED`.
+- Kept registered performance profiles, Worker peak evidence or owner-approved
+  documented limitation, manual screen-reader, and physical Tab/focus
+  traversal as explicit completion blockers.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Targeted Assurance Evidence Remediation
 

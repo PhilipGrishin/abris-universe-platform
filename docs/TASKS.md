@@ -424,9 +424,9 @@
   `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; GitHub Actions run
   `30195963832`.
 - **Subsequent remediation source:** Exact implementation commit
-  `d69b5c564cf17a042d2bf36ef1a864031e802676`; targeted evidence and lifecycle
-  commit plus exact-head CI remain to be registered before the next
-  AU-AGENT-003 review.
+  `d69b5c564cf17a042d2bf36ef1a864031e802676`; evidence/lifecycle and narrow
+  reverification source `40099443d156bcc2497e57e06528772be57e601b`;
+  GitHub Actions run `30197035083`.
 - **Owner:** AU-AGENT-003 for independent findings and status; AU-AGENT-001
   coordinates remediation; domain owners retain their implementation scopes;
   AU-AGENT-002 integrates lifecycle records without changing review meaning.
@@ -454,18 +454,20 @@
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 remains partially resolved for missing
   registered profiles and Worker peak-memory evidence or accepted limitation.
-  The long-task scenario has a new remediation candidate. TS001-IMPL-003
+  The measured-profile long-task scenario is resolved. TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
-  physical focus-traversal evidence; contrast has a new remediation candidate.
+  physical focus-traversal evidence; the normal-color contrast subcondition is
+  resolved.
 - **Documentation finding:** TS001-DOC-001 is partially resolved and
   non-blocking; version 1.1.0 of the independent report and current
   dispositions require this lifecycle integration.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Register exact-head CI for the new candidate and request narrow
-  exact-source AU-AGENT-003 reverification without inferring unsupported
-  profiles before any Completion Report.
+- **Next step:** Obtain the registered performance profiles and measured Worker
+  peak or an owner-approved documented limitation; complete manual
+  screen-reader and reliable physical Tab/focus traversal; then request narrow
+  exact-source AU-AGENT-003 reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

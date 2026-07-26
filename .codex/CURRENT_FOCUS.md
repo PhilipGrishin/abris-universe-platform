@@ -10,8 +10,7 @@ repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status remains `REWORK REQUIRED` after
-AU-AGENT-003 reverification at `6da2f9e`; later exact-source performance and
-contrast remediation is awaiting narrow reverification
+AU-AGENT-003 narrow reverification at `4009944`
 
 Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
 all unsupported performance, accessibility, and platform limitations. Keep
@@ -104,6 +103,11 @@ this internal stage.
   The enforced medium import estimate is about 95.7 MiB against 256 MiB but is
   not actual Worker telemetry. Manual screen-reader and reliable physical
   focus traversal remain absent.
+- AU-AGENT-003 narrowly reverified exact source `4009944` and successful
+  GitHub Actions run `30197035083`. It resolved the measured-profile
+  steady-gesture long-task and normal-color contrast subconditions, accepted
+  the estimator only as admission-control evidence, and retained both Medium
+  findings as mandatory.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -199,8 +203,8 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and push the exact-source targeted evidence, confirm exact-head CI, and
-request narrow AU-AGENT-003 reverification of TS001-IMPL-002 and
-TS001-IMPL-003. Preserve unavailable profiles and assistive-technology results
-as explicit limitations before preparing any Completion Report or Claude
-acceptance exchange.
+Obtain the registered 1365×768 DPR1 and 4× constrained profiles plus measured
+Worker peak memory or an owner-approved documented limitation. Complete a
+manual screen-reader session and reliable physical Tab/focus traversal on the
+declared profile, then request narrow AU-AGENT-003 reverification. No
+Completion Report or Claude acceptance exchange is permitted before closure.

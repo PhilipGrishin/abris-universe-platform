@@ -387,10 +387,10 @@
   dispositions the remaining contrast targets. Reference/constrained
   profiles, browser-reported Worker peak memory, manual screen-reader and
   physical Tab traversal, and broader-browser evidence remain open and cannot
-  be generalized. AU-AGENT-003 reverified exact source `6da2f9e`, resolved
-  TS001-IMPL-001, and retained performance/accessibility findings 002 and 003
-  as mandatory before a Completion Report; the later candidate requires
-  narrow reverification.
+  be generalized. AU-AGENT-003 narrowly reverified exact source `4009944`,
+  accepted the steady-gesture long-task and contrast subconditions, and
+  retained performance/accessibility findings 002 and 003 as mandatory for
+  their remaining evidence before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

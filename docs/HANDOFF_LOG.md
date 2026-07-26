@@ -1,5 +1,28 @@
 # Handoff Log
 
+## 2026-07-26 — Targeted Assurance Reverification
+
+- **Exact source:** `40099443d156bcc2497e57e06528772be57e601b`,
+  matching local, remote, and successful GitHub Actions run `30197035083`.
+- **Engineering Verification Status:** `REWORK REQUIRED`.
+- **Resolved subconditions:** The measured Chromium/macOS steady-gesture
+  long-task scenario and all five remaining normal-color contrast targets.
+- **Memory disposition:** The 100,374,296-byte estimator is valid enforced
+  admission-control evidence, but not measured import-Worker peak memory.
+- **Mandatory TS001-IMPL-002 remainder:** Registered 1365×768 DPR1 profile,
+  4× constrained profile, and measured Worker peak memory or an owner-approved
+  documented limitation.
+- **Mandatory TS001-IMPL-003 remainder:** Manual screen-reader session and
+  reliable physical Tab/focus traversal on the declared supported profile.
+- **Unsupported boundary:** Firefox, Safari/WebKit, mobile, touch,
+  forced-colors, browser zoom, production assertions, release, deployment,
+  product acceptance, and project `[VERIFIED]` remain unclaimed.
+- **Bridge disposition:** Remaining work is internal/manual engineering
+  evidence and owner limitation governance; no Claude return or Exchange ID is
+  required.
+- **Next gate:** Complete or owner-disposition the listed evidence, then request
+  narrow exact-source AU-AGENT-003 reverification.
+
 ## 2026-07-26 — Targeted Performance and Accessibility Remediation
 
 - **Implementation source:** `d69b5c564cf17a042d2bf36ef1a864031e802676`.

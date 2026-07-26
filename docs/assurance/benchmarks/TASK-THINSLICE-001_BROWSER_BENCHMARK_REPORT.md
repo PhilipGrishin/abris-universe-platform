@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, and `d69b5c564cf17a042d2bf36ef1a864031e802676`; registered route-1 fixtures |
@@ -112,12 +112,13 @@ TS001-IMPL-002 closure is not claimed because:
 - heap evidence is an observational upper signal, not a forced-GC retained
   allocation result.
 
-These are evidence limitations, not assumed passes. AU-AGENT-003 reverified the
-evidence at exact source `6da2f9e`, accepted the measured values within their
-declared profile, and kept TS001-IMPL-002 mandatory. Exact source `d69b5c5`
-subsequently isolates and dispositions the steady-gesture long-task scenario.
-The missing profiles and Worker-memory evidence or approved limitation remain
-subject to narrow AU-AGENT-003 reverification.
+These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
+reverified exact source `4009944` with successful CI run `30197035083` and
+accepted the isolated steady-gesture long-task disposition for the measured
+profile. It also confirmed the estimator as valid enforced admission-control
+evidence, but not as observed Worker peak memory. TS001-IMPL-002 remains
+mandatory for the missing registered profiles and measured Worker peak memory
+or an owner-approved documented limitation.
 
 ## Common Mistakes
 
