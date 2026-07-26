@@ -142,8 +142,8 @@
 - `[CONFIRMED]` The Project Owner approved missing observed import-Worker peak
   memory as a Phase 0 documented limitation under an enforced/unit-tested
   384 MiB control and mandatory Prototype 9.1 actual measurement before any
-  500,000-stitch scale claim. AU-AGENT-003 exact-source confirmation remains
-  open.
+  500,000-stitch scale claim. AU-AGENT-003 independently confirmed exact source
+  `c64d3ec8` and resolved TS001-IMPL-002 for bounded Phase 0.
 - `[OPEN]` Manual screen-reader, reliable physical Tab traversal, additional
   browsers, and mobile remain outside the evidence.
 - `[TESTED]` Real browser transaction abort, Web Locks contention with visible
@@ -183,10 +183,11 @@
   `30212305750`/`30212621771`. It resolved the Viewer TTI and registered
   Chromium main-thread retained-memory remainders within the documented
   observational boundaries.
-- `[OPEN]` TS001-IMPL-002 awaits AU-AGENT-003 exact-source confirmation of the
-  approved limitation. TS001-IMPL-003 remains a mandatory Medium finding.
-  Completion Report, project `[VERIFIED]`, product acceptance, release
-  readiness, and deployment authorization remain absent.
+- `[IMPLEMENTED]` AU-AGENT-003 independently resolved TS001-IMPL-002 for
+  bounded Phase 0 under the approved limitation. TS001-IMPL-003 remains the
+  sole mandatory implementation finding. Completion Report, project
+  `[VERIFIED]`, product acceptance, release readiness, and deployment
+  authorization remain absent.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -463,10 +464,11 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: the Project Owner-approved Phase 0 import-Worker
-  memory limitation and its tested 384 MiB control await AU-AGENT-003
-  exact-source confirmation. Viewer TTI, registered main-thread retained
-  memory, and steady-gesture long-task subconditions are resolved.
+- `[IMPLEMENTED]` TS001-IMPL-002 is resolved for bounded Phase 0. The
+  Project Owner-approved import-Worker memory limitation, tested 384 MiB
+  control, Viewer TTI, registered main-thread retained memory, and
+  steady-gesture long-task subconditions passed exact-source independent
+  review.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
 - `[OPEN]` Prototype 9.1 actual Worker-memory measurement, manual
@@ -508,17 +510,18 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered the Project Owner-approved Phase 0 import-Worker memory evidence
-limitation with its enforced/unit-tested 384 MiB operative control and
-mandatory Prototype 9.1 actual measurement before any 500,000-stitch scale
-claim. TS001-IMPL-002 awaits AU-AGENT-003 exact-source confirmation;
-TS001-IMPL-003 is unchanged. Engineering Verification Status remains
-`REWORK REQUIRED`. No project `[VERIFIED]`, product acceptance, release
-approval, or deployment permission was assigned.
+Integrated AU-AGENT-003 Engineering Verification Report v1.5.0 for exact
+source `c64d3ec8` and successful CI run `30213355972`. TS001-IMPL-002 is
+resolved for bounded Phase 0 under the owner-approved limitation and tested
+384 MiB control. Prototype 9.1 actual Worker-memory measurement remains
+mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is unchanged
+and mandatory. Engineering Verification Status remains `REWORK REQUIRED`. No
+project `[VERIFIED]`, product acceptance, release approval, or deployment
+permission was assigned.
 
 ## Next Step
 
-Complete exact-source AU-AGENT-003 confirmation of the approved Worker-memory
-limitation, then complete manual screen-reader plus reliable physical Tab/focus
-traversal. Preserve unsupported profiles and modes before any Completion
-Report or Claude acceptance exchange.
+Complete manual screen-reader plus reliable physical Tab/focus traversal for
+TS001-IMPL-003, then request narrow AU-AGENT-003 reverification. Preserve
+unsupported profiles and modes before any Completion Report or Claude
+acceptance exchange.

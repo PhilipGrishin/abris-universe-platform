@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.3 |
+| Version | 1.2.4 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
@@ -189,6 +189,8 @@ The later benchmark report must include:
 - [ ] No target is changed after observing a failure without review.
 - [x] AU-AGENT-003 independently reviewed the initial and supplemental
       registered-profile evidence; Worker peak memory remains separate.
+- [x] AU-AGENT-003 independently confirmed the owner-approved Phase 0
+      Worker-memory limitation and resolved TS001-IMPL-002 for that scope.
 
 ## References
 

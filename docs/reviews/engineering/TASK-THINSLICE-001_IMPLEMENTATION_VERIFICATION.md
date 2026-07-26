@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; independent engineering quality-gate result recorded below |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.2; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, and `30212621771` |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.2; ADR-TS001-001 through ADR-TS001-004; Threat Model v1.3.0; Benchmark Plan v1.2.3; AU-BENCH-TS001-LIM-001; implementation and technical reviews; initial source `43782195c2db734bc16e7401dcad4becbe3e0d4f`; remediation source `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; executable evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, and `c64d3ec8ab390269121c651d8c78695d9b4946f5`; evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`; GitHub Actions runs `30191845477`, `30195963832`, `30197035083`, `30211416975`, `30212305750`, `30212621771`, and `30213355972` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed source change; finding remediation; browser, benchmark, accessibility, runtime-request, CI, deployment, or Completion Report evidence change |
@@ -1111,9 +1111,9 @@ report is integrated, AU-AGENT-002 must update those records to preserve:
 Those updates remain outside this review's write authority. No Documentation
 Exception or Worker-memory limitation is registered here.
 
-### Current Quality Gate Decision
+### Quality Gate Decision at `15ea8f93`
 
-- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision recorded at this source:** REWORK REQUIRED
 - **Decision rationale:** Supplemental evidence closes the registered Viewer
   TTI and Chromium main-thread retained-memory remainders. TS001-IMPL-002 still
   lacks measured import-Worker peak memory or a Project Owner-approved
@@ -1161,3 +1161,187 @@ authorization, or Completion Report approval.
   a Project Owner-approved documented limitation and unchanged TS001-IMPL-003
   remain mandatory, so Engineering Verification Status remains
   `REWORK REQUIRED`.
+
+## Phase 0 Import-Worker Limitation Reverification at `c64d3ec8`
+
+### Identity and Scope
+
+- **Exact reviewed source:** commit
+  `c64d3ec8ab390269121c651d8c78695d9b4946f5`, parent
+  `65c4b8afc990294ff13f352392dba895457c2934`, branch
+  `codex/task-thinslice-001-client-integration`.
+- **Source identity:** local `HEAD`,
+  `origin/codex/task-thinslice-001-client-integration`, and GitHub Actions run
+  `30213355972` resolve to the exact source.
+- **Review scope:** the Project Owner-approved Phase 0 import-Worker
+  peak-memory evidence limitation, its two mandatory conditions, the exact
+  control implementation and tests, evidence-boundary wording, and
+  TS001-IMPL-002 disposition only.
+- **Preserved outside scope:** TS001-IMPL-003 and every other finding, product
+  acceptance, Completion Report approval or readiness, release readiness,
+  deployment authorization, and project `[VERIFIED]`.
+- **Reviewer independence:** AU-AGENT-003 did not author the owner decision,
+  limitation record, implementation, tests, or lifecycle updates. It modified
+  only this report.
+- **Documentation Impact:** Material.
+
+### Evidence Reviewed
+
+- Project Owner directive dated 2026-07-26 as registered in
+  [OWNER-DEC-TS001-WORKER-MEMORY-001](../../DECISIONS.md);
+- [AU-BENCH-TS001-LIM-001](../../assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md);
+- [Benchmark Plan v1.2.3](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md);
+- [Browser Benchmark Report v1.8.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md);
+- `packages/importers/oxs/src/limits.ts`,
+  `packages/importers/oxs/src/import-oxs.ts`,
+  `apps/web/src/project-service.ts`, and the focused importer tests;
+- exact source diff and history, local importer test result, exact-head
+  GitHub Actions run, and retained CI artifact.
+
+### Owner Meaning and Mandatory Conditions
+
+The owner decision accepts missing observed import-Worker peak memory only as
+a documented Phase 0 evidence limitation. It does not convert the
+deterministic estimate or Chromium main-thread heap signal into measured Worker
+memory and does not authorize a 500,000-stitch performance or memory claim.
+
+Both owner-mandated conditions are preserved consistently in the decision
+register, limitation record, Benchmark Plan, Benchmark Report, status,
+task, risk, traceability, focus, changelog, and handoff records:
+
+1. the exact 384 MiB deterministic preflight estimator remains the operative,
+   enforced, unit-tested Phase 0 control;
+2. actual import-Worker memory measurement is mandatory in Prototype 9.1
+   before any 500,000-stitch scale claim.
+
+The limitation record further requires source, runtime, device, fixture,
+method, raw observations, peak, uncertainty, limitations, and AU-AGENT-003
+independent review for Prototype 9.1. It blocks a scale claim when actual
+Worker memory is absent or exceeds the applicable approved budget without a
+new owner disposition. This strengthens traceability without changing owner
+meaning.
+
+### Operative Control Verification
+
+| Check | Exact-source result |
+| --- | --- |
+| Constant | `OXS_LIMITS.maxPreflightPeakBytes` equals `384 * 1024 * 1024`, exactly 402,653,184 bytes |
+| Before-transfer boundary | `ProjectService.importFile` calls `assertOxsSourcePreflight(file.size)` before reading the file into an `ArrayBuffer` and before Worker transfer |
+| Worker-side defense | `importOxsRoute1` repeats source preflight before hashing, decoding, or parsing |
+| Parsed-structure boundary | `exceedsOxsParsedPeakBudget` compares the conservative parsed estimate with the same 402,653,184-byte ceiling before canonical mapping |
+| Rejection | An over-budget parsed estimate produces bounded `OXS_LIMIT_PREFLIGHT_MEMORY` |
+| Maximum-structure test | The registered maximum source/palette/stitch/unsupported structure is asserted over budget and the enforcement helper returns `true` |
+| Medium-fixture test | 4,308,166 source bytes, 32 palette entries, 100,000 stitches, and zero unsupported objects return `false`; exact estimate is 100,374,296 bytes |
+| Exact constant test | Focused test asserts the exact 384 MiB value |
+
+The new helper is a behavior-preserving extraction of the prior exact
+`estimate > limit` comparison. Equality remains admitted; values above the
+ceiling remain rejected. No estimator coefficient, limit, failure code,
+product behavior, or architecture boundary is silently changed.
+
+The focused importer suite passed locally: 15 tests, zero failures. Exact-head
+GitHub Actions run `30213355972`, job `89823206749`, passed hygiene, typecheck,
+the full 68-test repository suite, static build/provenance, production
+dependency audit, no-deploy rehearsal, and artifact upload. Its retained
+447,055-byte artifact is not expired and is bound to exact source `c64d3ec8`.
+
+### Evidence Boundary
+
+The exact documents correctly distinguish:
+
+- 100,374,296 bytes as a deterministic admission estimate for the registered
+  100,000-stitch medium fixture;
+- the 384 MiB value as an enforced preflight ceiling;
+- Chromium `usedJSHeapSize` as a main-thread process signal that excludes the
+  dedicated import Worker, Canvas, GPU, browser process, and total-system
+  allocation;
+- absent observed import-Worker peak telemetry as an approved Phase 0
+  limitation, not a pass;
+- Prototype 9.1 actual Worker measurement as a mandatory future pre-scale-claim
+  gate.
+
+No wording reviewed in this scope labels estimated bytes as observed memory,
+uses the Phase 0 limitation to support a 500,000-stitch claim, or removes the
+need for a new owner disposition if the control is raised or removed.
+
+### TS001-IMPL-002 Disposition
+
+| Finding | Historical severity | Previous mandatory remainder | Exact-source disposition | Future condition |
+| --- | --- | --- | --- | --- |
+| TS001-IMPL-002 | Medium | Measured import-Worker peak memory or a Project Owner-approved documented limitation | **Resolved for TASK-THINSLICE-001 Phase 0.** The authorized limitation exists and both mandatory conditions are implemented, tested, and preserved | Prototype 9.1 must measure actual import-Worker memory before any 500,000-stitch scale claim |
+
+The finding is resolved rather than downgraded. Its `Medium` severity remains
+in history. TS001-IMPL-002 no longer blocks the bounded Phase 0 implementation
+on Worker-memory evidence, but this review does not approve a Completion
+Report or any broader readiness claim.
+
+TS001-IMPL-003 is unchanged, remains outside this re-review, and retains its
+existing mandatory disposition.
+
+### Documentation Lifecycle
+
+The limitation, decision, Benchmark Plan, Benchmark Report, and persistent
+state correctly identify AU-AGENT-003 exact-source confirmation as pending.
+After this report is integrated, AU-AGENT-002 must update those records to
+preserve:
+
+- exact reviewed source `c64d3ec8ab390269121c651d8c78695d9b4946f5`;
+- exact successful CI run `30213355972`;
+- TS001-IMPL-002 resolved for Phase 0 under the owner-approved limitation;
+- the exact 384 MiB enforced and unit-tested operative control;
+- actual Prototype 9.1 import-Worker measurement as mandatory before any
+  500,000-stitch scale claim;
+- TS001-IMPL-003 unchanged and the overall quality-gate status below.
+
+Those updates are outside this review's write authority. This report does not
+alter the owner decision or create a second limitation.
+
+### Current Quality Gate Decision
+
+- **Engineering Verification Status:** REWORK REQUIRED
+- **Decision rationale:** TS001-IMPL-002 is resolved for the bounded Phase 0
+  scope through the exact owner-approved limitation and its verified mandatory
+  controls. The unchanged mandatory TS001-IMPL-003 disposition prevents a
+  consolidated engineering pass.
+- **Mandatory unresolved finding:** unchanged TS001-IMPL-003 only.
+- **Completion Report:** not approved or reviewed by this narrow re-review.
+- **Release, deployment, product acceptance, and project `[VERIFIED]`:** not
+  assigned.
+- **Required next action:** AU-AGENT-002 integrates this exact finding
+  disposition; the responsible owner separately remediates TS001-IMPL-003 for
+  an independent exact-source AU-AGENT-003 review.
+
+This unbracketed Engineering Verification Status is task-scoped. It is not
+product acceptance, Completion Report approval, release readiness, deployment
+authorization, or project `[VERIFIED]`.
+
+### Residual Risks and Limitations
+
+- No artifact measures Phase 0 import-Worker peak memory; this is the explicit
+  owner-approved limitation.
+- The estimator is conservative admission control, not proof of actual
+  allocation or memory safety at the 500,000-stitch scale.
+- Prototype 9.1 remains mandatory and may reveal a need for a lower limit,
+  allocation redesign, or a new owner disposition.
+- Raising or removing 384 MiB requires separate architecture review, tests,
+  documentation updates, and approval.
+- AU-AGENT-003 did not review TS001-IMPL-003 or approve any Completion Report,
+  release, deployment, product acceptance, or project status.
+
+### References
+
+- [Owner Decision Register](../../DECISIONS.md)
+- [Import-Worker Memory Evidence Limitation](../../assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
+- [Benchmark Plan v1.2.3](../../assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Browser Benchmark Report v1.8.0](../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
+- [GitHub Actions run 30213355972](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30213355972)
+
+### Review History Update
+
+- 2026-07-26, version 1.5.0: AU-AGENT-003 independently reverified exact
+  source `c64d3ec8`. The Project Owner-approved Phase 0 limitation preserves
+  both mandatory conditions: the exact 384 MiB estimator remains enforced and
+  unit-tested, and Prototype 9.1 actual import-Worker memory measurement
+  remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-002 is
+  resolved for bounded Phase 0. TS001-IMPL-003 is unchanged, so the Engineering
+  Verification Status remains `REWORK REQUIRED`.

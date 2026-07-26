@@ -353,8 +353,8 @@
 ### AU-CDX-TASK-001-CLIENT-INTEGRATION — Accessible Local-First Web Flow
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`; consolidated AU-AGENT-003
-  reverification completed with mandatory findings TS001-IMPL-002/003; no
-  project `[VERIFIED]`.
+  reverification resolved TS001-IMPL-002 for bounded Phase 0; TS001-IMPL-003
+  remains mandatory; no project `[VERIFIED]`.
 - **Source:** Technical Design v1.5.2 sections 4 and 8–11;
   TASK-THINSLICE-001 v1.1.
 - **Owner:** AU-AGENT-006; AU-AGENT-001 for technical integration;
@@ -375,9 +375,8 @@
   assistive-technology matrices, rendering goldens, 500,000-stitch prototype,
   production deployment, product acceptance, and project `[VERIFIED]` remain
   open.
-- **Next step:** Complete performance finding TS001-IMPL-002 and accessibility
-  finding TS001-IMPL-003, then request narrow exact-source AU-AGENT-003
-  reverification.
+- **Next step:** Complete accessibility finding TS001-IMPL-003, then request
+  narrow exact-source AU-AGENT-003 reverification.
 
 ### AU-CDX-TASK-001-CI-REHEARSAL — Static Delivery CI and No-Deploy Rehearsal
 
@@ -469,24 +468,20 @@
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
-- **Mandatory findings:** TS001-IMPL-002 remains pending exact-source
-  independent confirmation. Registered profile configuration, captured metric
-  subsets, and supplemental Viewer TTI/main-thread heap evidence passed
-  independent review. The Project Owner supplied the approved-limitation
-  alternative for the sole remaining Worker-memory condition.
-  TS001-IMPL-003
-  remains partially resolved for missing manual screen-reader and reliable
-  physical focus-traversal evidence; the normal-color contrast subcondition is
-  resolved.
+- **Mandatory findings:** TS001-IMPL-002 is resolved for bounded Phase 0 at
+  exact source `c64d3ec8`; Prototype 9.1 actual Worker-memory measurement
+  remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is
+  the sole mandatory implementation finding and remains partially resolved for
+  missing manual screen-reader and reliable physical focus-traversal evidence;
+  the normal-color contrast subcondition is resolved.
 - **Documentation finding:** TS001-DOC-001 is partially resolved and
   non-blocking; version 1.1.0 of the independent report and current
   dispositions require this lifecycle integration.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Obtain AU-AGENT-003 exact-source confirmation of the approved
-  Worker-memory limitation, then complete the manual accessibility remainder
-  and request narrow reverification before any Completion Report.
+- **Next step:** Complete the manual accessibility remainder and request narrow
+  AU-AGENT-003 reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

@@ -13,9 +13,9 @@ consolidated Engineering Verification Status remains `REWORK REQUIRED` after
 AU-AGENT-003 supplemental-profile reverification at evidence package
 `15ea8f93`
 
-Complete AU-AGENT-003 exact-source confirmation of the owner-approved
-TS001-IMPL-002 limitation, then complete TS001-IMPL-003 while preserving all
-unsupported performance, accessibility, and platform limitations. Keep
+Complete TS001-IMPL-003 while preserving all unsupported performance,
+accessibility, and platform limitations. TS001-IMPL-002 is resolved for bounded
+Phase 0 under the independently confirmed owner-approved limitation. Keep
 production deployment, product acceptance, and project `[VERIFIED]` outside
 this internal stage.
 
@@ -112,8 +112,9 @@ this internal stage.
   declared Chromium/macOS Phase 0 scope. The implementation-runtime part of
   TS001-SEC-002 is resolved for that profile; production assertions remain
   open.
-- TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings until
-  AU-AGENT-003 changes their dispositions. Exact source `d69b5c5` isolates the
+- TS001-IMPL-003 remains the sole mandatory Medium implementation finding.
+  TS001-IMPL-002 was resolved for bounded Phase 0 at exact source `c64d3ec8`.
+  Exact source `d69b5c5` isolates the
   medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
   2.3 ms Worker-render p95; the earlier combined-session artifact with 31
   unattributed long tasks remains historical evidence. AU-AGENT-003
@@ -125,10 +126,10 @@ this internal stage.
   method. Browser-reported Worker peak memory remains absent. The Project Owner
   approved a Phase 0 documented limitation under the enforced/unit-tested
   384 MiB control and mandatory Prototype 9.1 actual measurement before any
-  500,000-stitch scale claim. AU-AGENT-003 exact-source confirmation remains
-  pending. The medium estimate remains about 95.7 MiB against 256 MiB and is
-  not actual Worker telemetry. Manual screen-reader and reliable physical
-  focus traversal remain absent.
+  500,000-stitch scale claim. AU-AGENT-003 confirmed exact source `c64d3ec8`
+  and resolved TS001-IMPL-002 for bounded Phase 0. The medium estimate remains
+  about 95.7 MiB against 256 MiB and is not actual Worker telemetry. Manual
+  screen-reader and reliable physical focus traversal remain absent.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -199,10 +200,11 @@ the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
 TD-GATE-003 and production assertions remain open.
 
 AU-AGENT-003 reports no Critical or High defect and has resolved
-TS001-IMPL-001 plus the bounded persistence/runtime-security scopes.
-TS001-IMPL-002 and TS001-IMPL-003 remain mandatory; the Completion Report
-remains blocked. This internal remediation requires no Claude return and
-therefore no new Collaboration Bridge Exchange ID.
+TS001-IMPL-001, TS001-IMPL-002 for bounded Phase 0, and the bounded
+persistence/runtime-security scopes. TS001-IMPL-003 remains the sole mandatory
+implementation finding; the Completion Report remains blocked. This internal
+remediation requires no Claude return and therefore no new Collaboration
+Bridge Exchange ID.
 
 ## Current Renderer Gate
 
@@ -229,8 +231,7 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and validate the owner-approved Worker-memory limitation and its
-unit-tested 384 MiB operative control, then request narrow AU-AGENT-003
-confirmation of TS001-IMPL-002. After that, complete a manual screen-reader
-session plus reliable physical Tab/focus traversal for TS001-IMPL-003. No
-Completion Report or Claude acceptance exchange is permitted before closure.
+Complete a manual screen-reader session plus reliable physical Tab/focus
+traversal for TS001-IMPL-003, preserve the exact evidence, and request narrow
+AU-AGENT-003 reverification. No Completion Report or Claude acceptance exchange
+is permitted before closure.

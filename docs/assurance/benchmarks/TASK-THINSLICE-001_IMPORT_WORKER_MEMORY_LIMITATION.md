@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-BENCH-TS001-LIM-001 |
 | Title | TASK-THINSLICE-001 Import-Worker Memory Evidence Limitation |
-| Status | `[APPROVED]`; Phase 0 evidence limitation only |
+| Status | `[APPROVED]`; Phase 0 evidence limitation independently confirmed |
 | Owner | AU-AGENT-004 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Project Owner directive dated 2026-07-26; Benchmark Plan v1.2.3; Browser Benchmark Report v1.8.0; `packages/importers/oxs/src/limits.ts`; focused importer tests |
+| Dependencies | Project Owner directive dated 2026-07-26; Benchmark Plan v1.2.4; Browser Benchmark Report v1.8.1; Engineering Verification Report v1.5.0; exact source `c64d3ec8ab390269121c651d8c78695d9b4946f5`; GitHub Actions run `30213355972`; `packages/importers/oxs/src/limits.ts`; focused importer tests |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Preflight estimator, importer allocation model, Worker lifecycle, browser measurement method, Prototype 9.1 plan/evidence, or scale-claim change |
@@ -42,9 +42,10 @@ for import-Worker peak memory under both mandatory conditions:
    (500,000 stitches) evidence before any scale claim.
 
 This owner decision satisfies the approved-limitation alternative in
-TS001-IMPL-002. AU-AGENT-003 remains responsible for independently confirming
-the control and assigning the finding disposition. This record does not
-self-assign an Engineering Verification Status or project `[VERIFIED]`.
+TS001-IMPL-002. AU-AGENT-003 independently confirmed exact source `c64d3ec8`
+and resolved TS001-IMPL-002 for bounded Phase 0 in Engineering Verification
+Report v1.5.0. This record does not self-assign an Engineering Verification
+Status or project `[VERIFIED]`.
 
 ## Operative Control
 
@@ -102,7 +103,7 @@ This gate is mandatory and cannot be satisfied by extrapolating the
 - [x] Focused unit-test obligations are explicit.
 - [x] Existing observed-memory boundaries are preserved.
 - [x] Prototype 9.1 actual measurement is a mandatory pre-scale-claim gate.
-- [ ] AU-AGENT-003 exact-source disposition is recorded.
+- [x] AU-AGENT-003 exact-source disposition is recorded.
 - [ ] Prototype 9.1 actual Worker-memory evidence exists.
 
 ## References

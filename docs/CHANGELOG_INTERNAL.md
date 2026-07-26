@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.5.0 |
+| Version | 4.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,21 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Phase 0 Worker-Memory Limitation Reverification
+
+- Integrated AU-AGENT-003 Engineering Verification Report v1.5.0 for exact
+  source `c64d3ec8` and successful CI run `30213355972`.
+- Registered TS001-IMPL-002 as resolved for bounded Phase 0 without converting
+  the deterministic estimator or main-thread heap signal into measured Worker
+  memory.
+- Preserved the exact 384 MiB operative control and mandatory Prototype 9.1
+  actual Worker-memory measurement before any 500,000-stitch scale claim.
+- Preserved unchanged TS001-IMPL-003 as the sole mandatory implementation
+  finding and retained `REWORK REQUIRED`.
+- Updated benchmark, review, task, risk, traceability, focus, status, and
+  handoff lifecycle records.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Phase 0 Import-Worker Memory Limitation
 

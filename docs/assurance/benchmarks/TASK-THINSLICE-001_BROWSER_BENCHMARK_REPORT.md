@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.8.0 |
+| Version | 1.8.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.3; AU-BENCH-TS001-LIM-001; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`, and Engineering Verification Report v1.4.0; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.4; AU-BENCH-TS001-LIM-001 v1.1.0; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b`, `d36a8272b808f862ad6aa5d4a774a71b337432f4`, and `c64d3ec8ab390269121c651d8c78695d9b4946f5`, evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`, and Engineering Verification Report v1.5.0; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -212,8 +212,8 @@ The focused importer test asserts the exact 402,653,184-byte ceiling, an
 over-budget maximum-structure case, and the registered 100,000-stitch medium
 case below the ceiling. The source and parsed-structure enforcement points use
 that same limit. This disposition does not transform estimated bytes into
-measured bytes and remains pending AU-AGENT-003 exact-source confirmation for
-finding closure.
+measured bytes. AU-AGENT-003 independently confirmed exact source `c64d3ec8`
+and resolved TS001-IMPL-002 for bounded Phase 0.
 
 ## Budget Disposition
 
@@ -227,7 +227,7 @@ Import-Worker peak memory remains unavailable; the heap evidence is a Chromium
 main-thread process signal rather than Worker telemetry or a forced-GC
 retained-allocation result. The Project Owner-approved Phase 0 limitation now
 supplies the authorized alternative required by TS001-IMPL-002. Independent
-finding closure remains with AU-AGENT-003.
+exact-source review confirms the finding is resolved for bounded Phase 0.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
@@ -239,9 +239,10 @@ accepted the owner-confirmed 4× configuration provenance and all
 method-conforming captured metrics. It kept both complete profile remainders
 open for Viewer TTI and retained-memory evidence. AU-AGENT-003 then reverified
 exact package `15ea8f93`, resolved those two profile remainders, and retained
-the observational boundaries above. The owner has now approved the documented
-Phase 0 limitation; AU-AGENT-003 exact-source confirmation is the remaining
-finding-lifecycle step.
+the observational boundaries above. AU-AGENT-003 then independently reviewed
+the owner-approved limitation at exact source `c64d3ec8` and resolved
+TS001-IMPL-002 for bounded Phase 0. Prototype 9.1 actual Worker-memory
+measurement remains mandatory before any 500,000-stitch scale claim.
 
 ## Common Mistakes
 

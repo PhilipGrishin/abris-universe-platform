@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-26 — Phase 0 Worker-Memory Limitation Reverification
+
+- **Exact source:** `c64d3ec8ab390269121c651d8c78695d9b4946f5`;
+  successful GitHub Actions run `30213355972`.
+- **Independent result:** AU-AGENT-003 confirmed the owner-approved limitation,
+  exact 402,653,184-byte operative control, before-transfer and defensive
+  importer gates, parsed-structure gate, bounded rejection, and focused tests.
+- **Finding disposition:** TS001-IMPL-002 is resolved for bounded Phase 0. Its
+  historical Medium severity is retained rather than downgraded.
+- **Future gate:** Actual import-Worker memory measurement remains mandatory in
+  Prototype 9.1 before any 500,000-stitch scale claim.
+- **Unchanged finding:** TS001-IMPL-003 remains the sole mandatory
+  implementation finding.
+- **Quality gate:** `REWORK REQUIRED`; Completion Report remains blocked.
+- **Status boundary:** No release, deployment, product acceptance, Completion
+  Report, or project `[VERIFIED]` status was assigned.
+- **Bridge disposition:** Internal engineering quality-gate work; no Claude
+  return or Exchange ID is required.
+- **Next gate:** Complete manual screen-reader and reliable physical Tab/focus
+  traversal evidence, then request narrow AU-AGENT-003 reverification.
+
 ## 2026-07-26 — Owner-Approved Phase 0 Worker-Memory Limitation Candidate
 
 - **Owner decision:** Missing observed import-Worker peak memory is approved as

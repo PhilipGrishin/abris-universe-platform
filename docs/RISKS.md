@@ -396,11 +396,11 @@
   method. The Project Owner accepted missing observed import-Worker peak
   memory as a Phase 0 limitation while retaining the unit-tested 384 MiB
   admission control and making actual Prototype 9.1 measurement mandatory
-  before any 500,000-stitch scale claim. AU-AGENT-003 exact-source
-  confirmation, manual screen-reader and physical Tab traversal, and
-  broader-browser evidence remain open and cannot be generalized.
-  Performance/accessibility findings 002 and 003 remain mandatory until their
-  independent disposition before a Completion Report.
+  before any 500,000-stitch scale claim. AU-AGENT-003 independently confirmed
+  the limitation and resolved TS001-IMPL-002 for bounded Phase 0. Manual
+  screen-reader and physical Tab traversal and broader-browser evidence remain
+  open and cannot be generalized. Accessibility finding TS001-IMPL-003 remains
+  mandatory before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.
