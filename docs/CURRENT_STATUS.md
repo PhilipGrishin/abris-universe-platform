@@ -519,14 +519,13 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-AU-AGENT-003 completed final narrow Completion Report v1.1.0 reverification at
-exact source `c6314a9c` and CI run `30216308387`. TS001-COMP-001 through
-TS001-COMP-003 are resolved; TS001-COMP-004 remains non-blocking. The report
-and underlying implementation both have task-scoped Engineering Verification
-Status `VERIFIED WITH FINDINGS`. No product acceptance, project `[VERIFIED]`,
-release, production, or deployment status is assigned.
+Registered and exported Collaboration Bridge exchange
+`AU-EX-20260726-001` for Claude Cowork independent acceptance. The package is
+bound to immutable source `1a683ab`, contains 179 checksum-registered files and
+5,919,618 bytes, and has lifecycle
+`EXPORTED / CURRENT / NOT_RETURNED / NOT_INTEGRATED`.
 
 ## Next Step
 
-Register, validate, and export a source-qualified Collaboration Bridge
-independent-acceptance package, then stop for Claude Cowork.
+Stop for Claude Cowork. When the owner reports `Claude finished`, validate the
+return under the registered Bridge contract before any integration.

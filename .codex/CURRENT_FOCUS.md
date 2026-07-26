@@ -14,8 +14,8 @@ AU-AGENT-003 manual-accessibility reverification at evidence package
 `58d5832f`; Completion Report v1.1.0 Engineering Verification Status is
 `VERIFIED WITH FINDINGS` after final source `c6314a9c`
 
-Prepare the exact-source Collaboration Bridge independent-acceptance package
-for Claude Cowork. Preserve all
+Collaboration Bridge exchange `AU-EX-20260726-001` is exported for Claude
+Cowork independent acceptance against immutable source `1a683ab`. Preserve all
 unsupported performance, accessibility, platform, release, and deployment
 limitations. TS001-IMPL-002 and TS001-IMPL-003 are resolved only for their
 bounded Phase 0 scopes. Keep production deployment, product acceptance, and
@@ -214,8 +214,8 @@ implementation finding remains in that declared scope. A consolidated
 Completion Report v1.1.0 passed final narrow AU-AGENT-003 reverification.
 TS001-COMP-001 through TS001-COMP-003 are resolved; TS001-COMP-004 remains a
 non-blocking recommendation. The supplemental Chrome interaction evidence is
-accepted only within its declared profile. A new Collaboration Bridge Exchange
-ID is now required for independent Claude acceptance.
+accepted only within its declared profile. Exchange `AU-EX-20260726-001` is
+exported and its return is pending.
 
 ## Current Renderer Gate
 

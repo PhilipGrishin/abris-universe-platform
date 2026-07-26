@@ -1,0 +1,1159 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260726-001",
+  "task_id": "TASK-THINSLICE-001-INDEPENDENT-ACCEPTANCE",
+  "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
+  "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
+  "source_commit_sha": "1a683abd9a8294de5a36888e997e65aba7b7a167",
+  "source_branch": "codex/task-thinslice-001-acceptance-source",
+  "review_commit_range": "c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5..1a683abd9a8294de5a36888e997e65aba7b7a167",
+  "prepared_at": "2026-07-26T19:17:31Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Request independent product, quality, security, architecture-foundation, and acceptance review of the completed TASK-THINSLICE-001 Phase 0 thin slice against Task Package v1.1, exact implementation source, retained evidence, Completion Report v1.1.0, and the internal Engineering Verification Report.",
+  "scope": [
+    "Review exact source commit 1a683abd9a8294de5a36888e997e65aba7b7a167, the final lifecycle range after internal gate source c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5, and the complete included implementation snapshot.",
+    "Independently evaluate TASK-THINSLICE-001 acceptance criteria AC-01 through AC-09 against the approved Task Package, implementation, tests, reports, and retained evidence rather than accepting Codex conclusions by default.",
+    "Verify the registered OXS route-1 import semantics, coordinate and literal-symbol boundaries, original-source retention, canonical Pattern/PatternVersion separation, and explicit unsupported-content behavior.",
+    "Verify Viewer behavior for tiled rendering, readable symbols, unreadable overview, zoom, pan, strict greater-than-six-CSS-pixel pan-only gesture behavior, pointer-click marking, keyboard interaction, automatic save, failed-save visual rollback, reload, and close-tab/new-tab recovery.",
+    "Review persistence integrity, Web Locks contention, projection rebuild, local-only privacy, untrusted XML controls, request inventory, security headers, CI evidence, dependency audit, no-deploy rehearsal, and remaining production-only gates.",
+    "Review registered reference and owner-confirmed constrained performance evidence, the owner-approved Phase 0 import-Worker memory limitation, and the mandatory Prototype 9.1 measurement boundary before any 500,000-stitch scale claim.",
+    "Review accessibility evidence only within the declared Chrome 150/macOS 26.5.2 profile and preserve explicit limitations for touch, mobile, broader browsers, operating systems, browser zoom, forced colors, and missing session media/details.",
+    "Confirm whether the implemented Phase 0 result provides an acceptable foundation for Phase 1 under AC-08 without treating production deployment, release readiness, broader compatibility, or future features as completed.",
+    "Identify every blocking and non-blocking finding with severity, exact evidence, requirement, owner, and required disposition.",
+    "Return decision VERIFIED or REWORK_REQUIRED under the registered independent-acceptance contract and list the exact verified and excluded scopes."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, implementation, tests, product requirements, Task Package, Technical Design, ADRs, Completion Report, Engineering Verification Report, or retained evidence.",
+    "Writing production code, fixing defects, changing product behavior, reducing acceptance criteria, redesigning architecture, changing agent authority, or modifying documentation meaning.",
+    "Deploying to Cloudflare, changing DNS, routes, Workers, GitHub settings, branch protection, credentials, secrets, or production state.",
+    "Treating local/no-deploy evidence as production verification or authorizing release or deployment.",
+    "Generalizing the registered OXS producer profile, Chrome/macOS accessibility profile, memory method, performance profiles, or pointer evidence to unsupported formats, platforms, devices, or input modes.",
+    "Assigning acceptance to out-of-scope Phase 1 features, Prototype 9.1 scale, backend, synchronization, accounts, backup, non-OXS formats, or production operations."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+    "sources/repository/product/decisions/05_Decision_Log.md",
+    "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md",
+    "sources/repository/docs/assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/docs/RISKS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "b433896b469ad20144b841ede4d12c5a85d9ed74e63f07eedf242f29f361a515",
+      "size_bytes": 14576
+    },
+    {
+      "path": "sources/repository/.github/workflows/ci.yml",
+      "sha256": "6471182461884535eec17a1e255414ccfe3149fb9221e441c41910c6fdd58527",
+      "size_bytes": 1530
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "e1a01e40d3181e7fa521a9c4bf347bb17bacd274f04bf98684855702b590733c",
+      "size_bytes": 16160
+    },
+    {
+      "path": "sources/repository/apps/web/README.md",
+      "sha256": "166389fbdbdcbf9f7db13be56b29e5455f924c703ac506d25072772dd3f9962e",
+      "size_bytes": 5952
+    },
+    {
+      "path": "sources/repository/apps/web/accessibility.html",
+      "sha256": "477463c1a21c7bd736235b73d08f4cf5c89ec9e97956b1a42874e5ba1605ae9c",
+      "size_bytes": 453
+    },
+    {
+      "path": "sources/repository/apps/web/benchmark.html",
+      "sha256": "7411bb0750c4a36c64d599a230048c5e377a0ad8c0e648a40213c31924cdacdc",
+      "size_bytes": 526
+    },
+    {
+      "path": "sources/repository/apps/web/browser-failure.html",
+      "sha256": "986c1639acaf3fd61c19ce73f52727d42040d93bad86977151407aeadd09512b",
+      "size_bytes": 619
+    },
+    {
+      "path": "sources/repository/apps/web/index.html",
+      "sha256": "4bbd286c6d21d5f01aba4ccf327e239ca9453b830aa54161596e7174a5fb3e90",
+      "size_bytes": 447
+    },
+    {
+      "path": "sources/repository/apps/web/package.json",
+      "sha256": "e31332b13e347b340425f26495dc00bba427060c64f94eea96cc09b642974735",
+      "size_bytes": 1383
+    },
+    {
+      "path": "sources/repository/apps/web/src/App.tsx",
+      "sha256": "3a658c482824cad416d07ec7dfedb8bde838ee20a3289e53a8dacab2d80526dd",
+      "size_bytes": 8727
+    },
+    {
+      "path": "sources/repository/apps/web/src/accessibility-main.tsx",
+      "sha256": "06454956b2c3c6747438434a83f9a6767cb7b95adbd807de362a89cbf582c629",
+      "size_bytes": 2867
+    },
+    {
+      "path": "sources/repository/apps/web/src/benchmark-main.ts",
+      "sha256": "c0ea96877668b6a5cf3fe55102054de406d8bd3864bff232ac0afe08145d85e1",
+      "size_bytes": 8322
+    },
+    {
+      "path": "sources/repository/apps/web/src/browser-failure-main.ts",
+      "sha256": "034440802912434729f172a0431b1665d5efebceb08b431233c9fd2ad877b0fc",
+      "size_bytes": 4878
+    },
+    {
+      "path": "sources/repository/apps/web/src/client-state.ts",
+      "sha256": "690a9ff6590389f6e0ef237a3cdbb60375c58b686a9562e2bb6ce1a2656bb591",
+      "size_bytes": 2912
+    },
+    {
+      "path": "sources/repository/apps/web/src/engineering-evidence-output.tsx",
+      "sha256": "8edc77b6a44032ec814da6a0a1942d089f59d8c89e37cacad1a5747a9592e5d5",
+      "size_bytes": 1212
+    },
+    {
+      "path": "sources/repository/apps/web/src/engineering-evidence.ts",
+      "sha256": "8d2251b7fe33378c0984fab01754d1b4c075e68f5f456c1c232677a42cb50ab2",
+      "size_bytes": 8735
+    },
+    {
+      "path": "sources/repository/apps/web/src/glyph-atlas.ts",
+      "sha256": "7ce72e3f14d2c9ac48a856ff83b935844c0f93dc78b6aacc04e8c1a43470d6d5",
+      "size_bytes": 2698
+    },
+    {
+      "path": "sources/repository/apps/web/src/import-client.ts",
+      "sha256": "d22de28d15cb34a9d8b183af633b29ec10cfef72da23b4c4533e38fb9ea806f2",
+      "size_bytes": 2010
+    },
+    {
+      "path": "sources/repository/apps/web/src/import.worker.ts",
+      "sha256": "2aec9c21ca3a987a7af20812b097eaada3cca2afe18392b9469311c90c4bb693",
+      "size_bytes": 1247
+    },
+    {
+      "path": "sources/repository/apps/web/src/main.tsx",
+      "sha256": "ab3b482f534238923009c4a46346c1f7cdb23a10248b6d48f66ee6f1227e7e4c",
+      "size_bytes": 409
+    },
+    {
+      "path": "sources/repository/apps/web/src/messages.ts",
+      "sha256": "1e8d1432ca12add8b052f27b9158a6be9b2945ba132dba93ed18aff7dd046462",
+      "size_bytes": 1915
+    },
+    {
+      "path": "sources/repository/apps/web/src/project-service.ts",
+      "sha256": "c15ec43289b448d7b071106bfdf60d9e2bca3cb8caf2548d568daf097da6b66a",
+      "size_bytes": 12138
+    },
+    {
+      "path": "sources/repository/apps/web/src/render-worker-cache.ts",
+      "sha256": "04e9ea5658a55167252ed2730e5bf754acb01d81ef6209bbc123e61ed21fcbb9",
+      "size_bytes": 1338
+    },
+    {
+      "path": "sources/repository/apps/web/src/render-worker-client.ts",
+      "sha256": "793bb9e414354accf23d36938fd404f6d134da72878635e731750d59c718e66f",
+      "size_bytes": 2774
+    },
+    {
+      "path": "sources/repository/apps/web/src/render.worker.ts",
+      "sha256": "55705add8783312a99edaf2a5dd3f4696f6472604e4d11147c93ca62359ecac3",
+      "size_bytes": 9144
+    },
+    {
+      "path": "sources/repository/apps/web/src/styles.css",
+      "sha256": "111964eb072ebdca44f3f2212067c2bc8e0be7cc96ecffc0115aa1b2a09d865f",
+      "size_bytes": 9443
+    },
+    {
+      "path": "sources/repository/apps/web/src/viewer.tsx",
+      "sha256": "6f19855e6c6367286c19182689e2f370a466fb2b661cfd8fd52c4b877c00333c",
+      "size_bytes": 20939
+    },
+    {
+      "path": "sources/repository/apps/web/src/worker-contracts.ts",
+      "sha256": "36bc2a351e506cdf272cfd19a320aa32ab3c9773aa1d0a09893db10f6985e24e",
+      "size_bytes": 715
+    },
+    {
+      "path": "sources/repository/apps/web/test/client-state.test.ts",
+      "sha256": "e18fd494ecd28d80a49b4470374b9065ede1df26013b7bb20d22ad54893b54c2",
+      "size_bytes": 4256
+    },
+    {
+      "path": "sources/repository/apps/web/test/worker.test.ts",
+      "sha256": "e0fbe5158c3478a0ba82aa20e9dbd3d9630c0848d97e1c011db6f0ff935636b6",
+      "size_bytes": 1735
+    },
+    {
+      "path": "sources/repository/apps/web/tsconfig.json",
+      "sha256": "cae6a1f0546d27332c7585b4c83b4e0ef4c552bafce7f2e61580079c3e81ffa4",
+      "size_bytes": 354
+    },
+    {
+      "path": "sources/repository/apps/web/vite.config.ts",
+      "sha256": "0a069bd182970e36bc0ae060bb782a06c4bb0cd77ebcccd90bbe608175594809",
+      "size_bytes": 1238
+    },
+    {
+      "path": "sources/repository/apps/web/worker/index.ts",
+      "sha256": "853fe8bd6b0f3d9bd4bb457003ec4cc4ef95094eefddb489442d8b2c1941d1ed",
+      "size_bytes": 1452
+    },
+    {
+      "path": "sources/repository/apps/web/wrangler.jsonc",
+      "sha256": "b8b22e24ad5c88529b8d7a93d587b8d6d072bbf46e2a790031613e6d6c643728",
+      "size_bytes": 365
+    },
+    {
+      "path": "sources/repository/collaboration/README.md",
+      "sha256": "191e8f2b74bb97d27abb85e0a004690ae811cbf037aa8508bce5a7d9f1ccbaa8",
+      "size_bytes": 5714
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/README.md",
+      "sha256": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+      "size_bytes": 2073
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-return-manifest.schema.json",
+      "sha256": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+      "size_bytes": 3542
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-task-manifest.schema.json",
+      "sha256": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+      "size_bytes": 4451
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "a0f72c7f9a0785f934d7d3486383d43b865cf5eb978ad8107aab187177817a33",
+      "size_bytes": 35482
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "27380e9a23917312c108f9f414d4f94d84287a850b1027b42ae62d431ed5004c",
+      "size_bytes": 20224
+    },
+    {
+      "path": "sources/repository/docs/RISKS.md",
+      "sha256": "626454a130519407d257d9d3a01cc6233220dc331eff5cf38707ce669fc56f1a",
+      "size_bytes": 24951
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "16bb780d9ecfabc45b6717b746700efe3242adc1926cc918ffdb287b73a18965",
+      "size_bytes": 13262
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "1741383a0124eddcf22e9af5f4a5e96b293ea9868758d5e69269d1908fb28549",
+      "size_bytes": 49294
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "c05bec9f16740b17442e98a84ee19a4485e0d63dbbfdf9a6d2bb8839678c8253",
+      "size_bytes": 26005
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md",
+      "sha256": "3447aa9f5a958a9aefee3638b9fe4d7c365b45e00b1c390802ccb10f5f7e1baa",
+      "size_bytes": 5673
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md",
+      "sha256": "45fbde5f31cfc05ec287f5f91b1f913e27e03b3a04e4c5d553afb819737793e5",
+      "size_bytes": 5485
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md",
+      "sha256": "27b16255c6f5b12e3127778d5e18b582875f146f1057a836170fdcfa88a1524d",
+      "size_bytes": 5425
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md",
+      "sha256": "2ca816aae7191a87fe4928ab4c0b4806bbfd25642c7caf0db2ecade9945c3722",
+      "size_bytes": 5471
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/README.md",
+      "sha256": "1e39b1653a67fce1ff1f66d679fea235b7a41d144b3a9e1e9d45735b861925a9",
+      "size_bytes": 4125
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/TEMPLATE.md",
+      "sha256": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+      "size_bytes": 1985
+    },
+    {
+      "path": "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+      "sha256": "0c08a15dfe5a4c842527f1dd8b9dc259a0b2a8899a4c58042ef68b864002e1f6",
+      "size_bytes": 48125
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/README.md",
+      "sha256": "9fd7f20ba8f17a95252083f45dd87ea7925594539b5b2e7963bc3df3ece6a0bf",
+      "size_bytes": 2981
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md",
+      "sha256": "42f7c3f4489f6afff0f7f52f5cf6579d76d2db3b85dcd3d356016d0e139be81b",
+      "size_bytes": 10059
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md",
+      "sha256": "da62aea53be31c43baba710cc8d3bc0ef4884f8e9ac3860522e45360d67ff500",
+      "size_bytes": 16642
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md",
+      "sha256": "97111040132a33fb1fea0a9dba2ddbebf86026594dfe6aee7403d7502f54181e",
+      "size_bytes": 5296
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md",
+      "sha256": "3ed5d718468a56e12c228c137d0210e6ecff8054ce8fd42d843c9b2c951080ae",
+      "size_bytes": 5424
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md",
+      "sha256": "f6260e44dabc3b28f78dc4b20151f5eabf4c75704bacf1126b696385d15e8c86",
+      "size_bytes": 8791
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-1c2bd5d.json",
+      "sha256": "5428c66ec13d85fc38a488f2247620baeeebbfc8b51ca7c960561a6ec41558a5",
+      "size_bytes": 1771
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-d69b5c5.json",
+      "sha256": "0dd1827829b37dd4c354a4ed6f85bea3163202dd1743c22165f6e00248eff57d",
+      "size_bytes": 2862
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/browser-benchmark-37e657e.json",
+      "sha256": "1b7bcdb120e7004479eb96dec090c63b1132c654f945e4c035a5c845c2000b19",
+      "size_bytes": 7500
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/browser-failure-f17d0d3.json",
+      "sha256": "71c92ed0c29481fc6469e67554978663281198a2bc48fbea12d80670b8c36c37",
+      "size_bytes": 440
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/client-browser-signal-fc50d66.json",
+      "sha256": "0fec4e18baf1ab02d776877825e646251c967600c5dd4d08e372dbb84c4cc95a",
+      "size_bytes": 2800
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-browser-benchmark-4009944.json",
+      "sha256": "754da8713dcb77f8b2f18a307b5717da1675ea612a8555746260d96fd094ba42",
+      "size_bytes": 14503
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-interaction-4009944.json",
+      "sha256": "1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b",
+      "size_bytes": 40822
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-medium-gesture-4009944.json",
+      "sha256": "2f2172d0a991d1d95b1be368ab7511101076a6d4e62456154953fbacc6b0694b",
+      "size_bytes": 23099
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-tti-memory-d36a827.json",
+      "sha256": "a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b",
+      "size_bytes": 3927
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-accessibility-470a30a.json",
+      "sha256": "8d8f7ccacf71b4b3e90abadd8ca281e7a6f5008954f8ac7f99fe6adbf067e430",
+      "size_bytes": 4887
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-interaction-contracts-6bbf691.json",
+      "sha256": "1212debc85c000280115377195867e0ea043f532b584fa7fb2104119fa4c4620",
+      "size_bytes": 4820
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/medium-gesture-d69b5c5.json",
+      "sha256": "eb7f60bcc9895033bfcb36e1b08d1c09d4747d27c0278b1fe9685e942fa708be",
+      "size_bytes": 2726
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/medium-interaction-a8f764b.json",
+      "sha256": "83251381a6196ea7f7c43d6c7bb6376fcf4060b2b018418923b09125e9a758e2",
+      "size_bytes": 6874
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/minimal-interaction-a8f764b.json",
+      "sha256": "1d96a0365288586fd2f9f950943ea0651c8d034c5dfee9f39f1f5c8325cf1815",
+      "size_bytes": 7221
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/performance-profile-manifest-4009944.json",
+      "sha256": "306e46e618ac5b7a4e974fd6365b672a501998f424e622811b1e24fe36a26083",
+      "size_bytes": 3020
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/performance-tti-memory-manifest-d36a827.json",
+      "sha256": "9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e",
+      "size_bytes": 2518
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-browser-benchmark-4009944.json",
+      "sha256": "a02b66823b7c4586a01c9ddc8c8989c96dd962849f5f257835a431451275d1c4",
+      "size_bytes": 14570
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-interaction-4009944.json",
+      "sha256": "25bf4f0ad610227ebb71f31edadb5ff3b3335f8ac14d59d3245da6cc2c8fb7f4",
+      "size_bytes": 46737
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-medium-gesture-4009944.json",
+      "sha256": "23ef1182d6e4bab6e77575a48119e2bc4d1e7355cc8bb3fd7ff6d35908186aaa",
+      "size_bytes": 39752
+    },
+    {
+      "path": "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-tti-memory-d36a827.json",
+      "sha256": "c1725f9ef599f82fa31adb5c374d7d5d6688c99771a6fb5942bee9b49bf67c0d",
+      "size_bytes": 4592
+    },
+    {
+      "path": "sources/repository/docs/assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md",
+      "sha256": "9c8483e4edcb72f8c9b6b7e059ae14cf266b24a3169d9ca0ab3f466484b401db",
+      "size_bytes": 7688
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/README.md",
+      "sha256": "d35bd4ce4cb07e76a569f2d82159e3e58d984fa292ea1bb61e9713c69c96ba3a",
+      "size_bytes": 2835
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md",
+      "sha256": "d9a2c3c5d4f2c33b72acfd1d3c59a06a775ee1568349c6d21eb57579ffd0d717",
+      "size_bytes": 5442
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md",
+      "sha256": "6e5d6de9d85aa8742d05b28520588b67547f6b830f65f4a14774463928234c47",
+      "size_bytes": 14059
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/README.md",
+      "sha256": "2891e176d4f4ffa00572a9280076a37c95496a73c908695327f81c8943fc0e21",
+      "size_bytes": 6237
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md",
+      "sha256": "40cce48572f0e7b500dc8b32d297a9d95be3934e22c4e90359d61908e2f62d1d",
+      "size_bytes": 132782
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md",
+      "sha256": "cc4d8019689d12f742a19fea5a04d3cb86d92a0949fbf42cf295312c463b3fe1",
+      "size_bytes": 22730
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md",
+      "sha256": "0e1b4a6ce32eaffa9ddbd03f47ce5ef7ad6b84b4328173584b912d1608f9a4a6",
+      "size_bytes": 10929
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md",
+      "sha256": "724e358f4c0d8b77b8b6c6554297f385eae0da609ff3b811084fb4d35053d618",
+      "size_bytes": 22879
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TEMPLATE.md",
+      "sha256": "b4d30a071757734ccf25d7e0766cd35e1f36c15c2159d1820a41eb6d0809017d",
+      "size_bytes": 3686
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md",
+      "sha256": "2354841c01fe81a9f4efcd924070fef1ca131b4442877ef5acb96a7b61c021aa",
+      "size_bytes": 5714
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md",
+      "sha256": "8f86c680bae74cf9c77c590a955859eea8098c46f8e11e0a24570c80e5c90ab8",
+      "size_bytes": 6666
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md",
+      "sha256": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+      "size_bytes": 4433
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md",
+      "sha256": "3ab3c1990ac7d8f9f89ab65480855ff673dfdd04902d8b16c34763102763e586",
+      "size_bytes": 7446
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md",
+      "sha256": "c1cd5a3b83d0eb96be03b43743b62df1f122a8cf9e9dd10f4eb792aabc37831c",
+      "size_bytes": 28604
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md",
+      "sha256": "fd6733b4bf3fd93135121f32d922c0d144127672cac02e70c53ea108fb08d071",
+      "size_bytes": 4613
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md",
+      "sha256": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+      "size_bytes": 8442
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md",
+      "sha256": "5d3df1a0b099bf747f4069638f0fe6fbdbfc822d37702e6d37c60828d374f51e",
+      "size_bytes": 6182
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PERSISTENCE_IMPLEMENTATION_REVIEW.md",
+      "sha256": "6b21c169c97b4500d2cde4a822abc1e6d02050b4f1e7bed78554a97c9e94c952",
+      "size_bytes": 8285
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md",
+      "sha256": "e6397d1cf99a74ffe3e92888e5ed36f082d04ae090216dfcfa2d2bf9d55cd67b",
+      "size_bytes": 7619
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md",
+      "sha256": "a4499c40e650bb6dbae8adda74d3844d4db3e50ad5e40b48d7964c1dd63967f4",
+      "size_bytes": 7300
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md",
+      "sha256": "5e885799622fe06429579c993af70118126c748928d1c0ca2e4ac578263e6c97",
+      "size_bytes": 5495
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md",
+      "sha256": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+      "size_bytes": 17897
+    },
+    {
+      "path": "sources/repository/package.json",
+      "sha256": "3ec17e8678ef3e3ac7cdb9a6a4e0c89a6f0d7fca708507f2cb691dd1bf32a273",
+      "size_bytes": 1225
+    },
+    {
+      "path": "sources/repository/packages/domain-core/README.md",
+      "sha256": "23568faeff689e43ec5114bdfb51ece4e46fc454868920a1c8f99682ceddc452",
+      "size_bytes": 2230
+    },
+    {
+      "path": "sources/repository/packages/domain-core/package.json",
+      "sha256": "4bb794978d36900da39907e6b6d53cfcf9a3c7b5debe261bde57ebc9fec30c94",
+      "size_bytes": 280
+    },
+    {
+      "path": "sources/repository/packages/domain-core/src/index.ts",
+      "sha256": "eb69f9848a5b5fd390df45cb12e2f81e5631ed96a1dfe9af618fb6b7114021aa",
+      "size_bytes": 61
+    },
+    {
+      "path": "sources/repository/packages/domain-core/src/model.ts",
+      "sha256": "300ebb296c4bc7419594fc34bbe09fa2e380e7d654cfa953872dada4fc1a7ff7",
+      "size_bytes": 4584
+    },
+    {
+      "path": "sources/repository/packages/domain-core/src/validation.ts",
+      "sha256": "bcbf36b2176c333b3bc4a0934332440f335cda9093b1e2834dffe4f6bab277df",
+      "size_bytes": 14227
+    },
+    {
+      "path": "sources/repository/packages/domain-core/test/domain-core.test.ts",
+      "sha256": "0b20e79daf462fc8036d8e0d155c62ce24bc3a3141d94d27481c387d2dc7d024",
+      "size_bytes": 9037
+    },
+    {
+      "path": "sources/repository/packages/domain-core/tsconfig.json",
+      "sha256": "5ed80efde27f927157aaba3ad7ec5d885ecd7abe86abd7f59fc51ab85e722da5",
+      "size_bytes": 123
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/README.md",
+      "sha256": "6748aa27970c051c04fd1f8b64f0f71ef2fa00df26d94c35b6345bc35a1438f7",
+      "size_bytes": 4108
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/package.json",
+      "sha256": "ca0a89a65b6a8e7833f3f1f5507c4fe98ee34cc56b5c6b2605c5bf5aec272c5d",
+      "size_bytes": 407
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/contracts.ts",
+      "sha256": "f173dc2710b1556d229be1f9d03a5079855cafc527ba00790d85af0aa5112e04",
+      "size_bytes": 2671
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/import-oxs.ts",
+      "sha256": "548cc7411128e52b67969f9abda93f3fc22b35fcc017b06e174a632716c5248b",
+      "size_bytes": 20840
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/index.ts",
+      "sha256": "5ae320ea96ebd4224a0bb9080d301e8a489d06bb467c37d17995133a00ce83dd",
+      "size_bytes": 134
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/limits.ts",
+      "sha256": "4aac15d1b18c47c2258cf46d52985dc80f985ed1aa7d774a1f83e515a78b6816",
+      "size_bytes": 2791
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/parser.ts",
+      "sha256": "6948befb783451baf1b22fc57ef5faad0a2ab0b0b51e39522db20a275d850104",
+      "size_bytes": 11073
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/src/report-validation.ts",
+      "sha256": "f984659abb31b31f8c0c8476ce756b367c31ef108cf9f3cb7482a358d1de0b8e",
+      "size_bytes": 5127
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/test/oxs-importer.test.ts",
+      "sha256": "b710ebea1e050b8571a4113f3bbd3d7230327ecf84e2a33d9ac73b49f40b0265",
+      "size_bytes": 15411
+    },
+    {
+      "path": "sources/repository/packages/importers/oxs/tsconfig.json",
+      "sha256": "103ba730fa02aa4af710a68986b0b5bd0b090844160386afbcde7b6a5053c730",
+      "size_bytes": 126
+    },
+    {
+      "path": "sources/repository/packages/persistence/README.md",
+      "sha256": "e61cc3e3bae312ecd34b507c8d40e095d8f01fee12d138f93ff0c4b93228ba0b",
+      "size_bytes": 4139
+    },
+    {
+      "path": "sources/repository/packages/persistence/package.json",
+      "sha256": "f420e2ff48dfc070ab215436e828c10f7cab90e23e13851741ef2b0883a41a9e",
+      "size_bytes": 493
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/capability.ts",
+      "sha256": "b451658e9fdf2d729dd953a783cd01a56d05382ea2bc1838201a1e6e1b73fc03",
+      "size_bytes": 1710
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/contracts.ts",
+      "sha256": "cde1ab5fde68ed1646981598bfe4a409234eb5b3620580b89056e272f026289e",
+      "size_bytes": 4786
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/database.ts",
+      "sha256": "a4ce89040b70153508d4dee81978cf12b107ee5db1aad609c0328092faf633f7",
+      "size_bytes": 9153
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/import-repository.ts",
+      "sha256": "99752f83382e2701cf4121842db2da68a2558f6ee9e0c46c7c1c48bafacfb75a",
+      "size_bytes": 20646
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/index.ts",
+      "sha256": "cb49dca000c4849533c99dff05d4918ed5836a5386507658d752f60fdd5f8cf6",
+      "size_bytes": 178
+    },
+    {
+      "path": "sources/repository/packages/persistence/src/progress-repository.ts",
+      "sha256": "d0eb9e15d28da62f93378e82e252b880dbf18d102862ba0782f783e50faaf01f",
+      "size_bytes": 16434
+    },
+    {
+      "path": "sources/repository/packages/persistence/test/persistence.test.ts",
+      "sha256": "9355ab42bddb599798aa6e50a77b17f701f25a783d26babcf9485187b9083da2",
+      "size_bytes": 27086
+    },
+    {
+      "path": "sources/repository/packages/persistence/tsconfig.json",
+      "sha256": "0bd5017e93b92ffd1bfc5ad1466b5da5aec10393313ff0dfc8f03763b31d6337",
+      "size_bytes": 153
+    },
+    {
+      "path": "sources/repository/packages/renderer/README.md",
+      "sha256": "3a6fe9a362f628cfd8c8b3d547b2369ed9c202bb77d6a36e2cd85ff753bfff44",
+      "size_bytes": 4091
+    },
+    {
+      "path": "sources/repository/packages/renderer/package.json",
+      "sha256": "13875fbc3cbecdcb47a789e05d5ac174bc69c7c9a46131430c4fc03e107dbc85",
+      "size_bytes": 512
+    },
+    {
+      "path": "sources/repository/packages/renderer/scripts/measure-medium.ts",
+      "sha256": "04a3f58724b11820f522a065e99a2cb2f2a0c37149ada3e80198825aae72468e",
+      "size_bytes": 4610
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/contracts.ts",
+      "sha256": "d51e253d5c21492aeee24041e2b500c604abca8a3d26fa89f2ac1ffdd83d9e27",
+      "size_bytes": 4245
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/contrast.ts",
+      "sha256": "4222615c105b173cb8bb1fcb43eceab6c9ab0f1a02087ad0557911dcd0ddbee0",
+      "size_bytes": 1136
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/index.ts",
+      "sha256": "7abf2532631d01dcfbfeb9c90c4e55e31be2747ac9deaf837f91a69786156fe5",
+      "size_bytes": 153
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/renderer.ts",
+      "sha256": "bd093aeda152ddafbf021e6f771bc3d60efee743a86fb7fcedfeea0f45309087",
+      "size_bytes": 24520
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/tiles.ts",
+      "sha256": "347aae9b710f6da03a58d8f633e5fcf01eb0c85f1ca41df991e31544afa9ac6b",
+      "size_bytes": 2871
+    },
+    {
+      "path": "sources/repository/packages/renderer/src/viewport.ts",
+      "sha256": "41526af782f9379587bee9937d5816245e79829cc4ee028f1325ac972f7934f2",
+      "size_bytes": 2897
+    },
+    {
+      "path": "sources/repository/packages/renderer/test/renderer.test.ts",
+      "sha256": "1300ca6a5585d0472e5c652229fe8a18f6f6e894e305aabf51a9927582265c05",
+      "size_bytes": 24832
+    },
+    {
+      "path": "sources/repository/packages/renderer/tsconfig.json",
+      "sha256": "0bd5017e93b92ffd1bfc5ad1466b5da5aec10393313ff0dfc8f03763b31d6337",
+      "size_bytes": 153
+    },
+    {
+      "path": "sources/repository/pnpm-lock.yaml",
+      "sha256": "dee7b9639024c7b45688eaed668a8db3bbcad12eb733cd38ce768469b2511956",
+      "size_bytes": 55864
+    },
+    {
+      "path": "sources/repository/pnpm-workspace.yaml",
+      "sha256": "f10cbb2eb8aab0c45ac2bc640c70343667c6e990f88cf90b559d43314645198c",
+      "size_bytes": 98
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md",
+      "sha256": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+      "size_bytes": 52062
+    },
+    {
+      "path": "sources/repository/product/decisions/05_Decision_Log.md",
+      "sha256": "2c61f843c6183652bbf0ade1bdb9eb07d44c72a79ffc23f2bd1995dd1cb5ac2f",
+      "size_bytes": 40162
+    },
+    {
+      "path": "sources/repository/product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md",
+      "sha256": "0246546d29205dd16e7651fc11166cd196dc4b478e99ee94cc3ace637dfe32e8",
+      "size_bytes": 13371
+    },
+    {
+      "path": "sources/repository/product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md",
+      "sha256": "260bea570a070e74fc914ad9427a18ef5cfbe5be791c18b4eca87645da2651b0",
+      "size_bytes": 17736
+    },
+    {
+      "path": "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+      "sha256": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+      "size_bytes": 45137
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/COMPATIBILITY_MATRIX.md",
+      "sha256": "940fb37bed359c1bc31d49db6d2e3d91d3cf9921c184bce54f2edc4ace8e0303",
+      "size_bytes": 3047
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/PROVENANCE.md",
+      "sha256": "833d32af1025b2639a45c95c80c8e68b9ce2cf533b1b69e04bd83dfe6f64ba9a",
+      "size_bytes": 2224
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/README.md",
+      "sha256": "b22e33c9267f02216f1fa9780be667355b3d9d24ec91a90b79a7eb63f06d0a9e",
+      "size_bytes": 3849
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/SYMBOL_MAPPING.md",
+      "sha256": "050abfe48ce0acfdf48da3028d12215dc9c665eb4bc521a47c6b61fecbae6622",
+      "size_bytes": 2669
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/corrupt-truncated.expected.json",
+      "sha256": "8e513357dd0a5534f163e5e02ae0cb035932dab8c857867b071cb86f0cbfb18b",
+      "size_bytes": 240
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/duplicate-palette-index.expected.json",
+      "sha256": "d9d1fbda22f0b43b50bc59c5bcefecb02fe0af1de19b24a6c6ea6141e8cf5532",
+      "size_bytes": 256
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/empty-full-cross.expected.json",
+      "sha256": "35e4442212a6277be1aa94e6b23468b43e864b84414b1cbc7b50b00c0cc80b60",
+      "size_bytes": 640
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/invalid-palette-reference.expected.json",
+      "sha256": "ac4380eb9ee355f6eab726f5ac4c707ad214752b4acac6ab2f3eb0f140ec345c",
+      "size_bytes": 260
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/medium-full-cross.expected.json",
+      "sha256": "25fe7439fc59ce468823dd16e7986a2bc3ad7d2d36840772f86e1e3ba772bc90",
+      "size_bytes": 888
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/minimal-full-cross.expected.json",
+      "sha256": "de9a83bb0c949bc158ccbaf7b3d89e5d70d203954b17220fe686bc36380e5ee7",
+      "size_bytes": 1094
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/out-of-bounds-coordinate.expected.json",
+      "sha256": "f5b23ca9f92f2b48b93df868038a8ed671cdbebb8618ca9c723e83f00e9792f9",
+      "size_bytes": 258
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/oversized-declared-grid.expected.json",
+      "sha256": "7a93ec8dd1b002d247800ec1cfcd5a6289002552eff2209924285519c2ad705a",
+      "size_bytes": 243
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/security-doctype.expected.json",
+      "sha256": "344e3a225f93561c445d12587cba270d720c2fc39b6086b53c4570ea447fcd4f",
+      "size_bytes": 239
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/expected/unsupported-content.expected.json",
+      "sha256": "cf422210e81cc9af2aca266342743af6ae004dcfb28840db0e8ec1285d800f47",
+      "size_bytes": 815
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generate-fixtures.mjs",
+      "sha256": "843c9adaf8ddbef09fe73d5b41246937bf36eb284d2f67fa1b727bbf40d9db47",
+      "size_bytes": 19584
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/corrupt-truncated.oxs",
+      "sha256": "f24462124da57c66a2c03c96851ad96525f5f0d21fff22d39a9dfa6d2ac9b1d8",
+      "size_bytes": 1053
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/duplicate-palette-index.oxs",
+      "sha256": "1720a535db2a55c30a85b0bfedb547ba360fc500709fc24a37a3abb7640ad10f",
+      "size_bytes": 1407
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/empty-full-cross.oxs",
+      "sha256": "a6c81639ce98e8fd38d7b5e53b1c61a15190774503f8ad0858a6400cf67b1081",
+      "size_bytes": 1005
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/invalid-palette-reference.oxs",
+      "sha256": "ccccebc0a580ddaf0de98881bec8c35fe78aec5d745b0adf9f2bd5cffd5fc91f",
+      "size_bytes": 1236
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/medium-full-cross.oxs",
+      "sha256": "1211319f5cb392b2c0b9c401d6898e6c18564d90c218035d274d96bcdc2aa167",
+      "size_bytes": 4308166
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/minimal-full-cross.oxs",
+      "sha256": "912fc540e3d92e789c6c5bf94ccf89079773bc578a3b6db594b05708290e818d",
+      "size_bytes": 2063
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/out-of-bounds-coordinate.oxs",
+      "sha256": "9059757503b63ee2bca366996c19aedb0a2e99dc039648c13ce49826ea17af90",
+      "size_bytes": 1234
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/oversized-declared-grid.oxs",
+      "sha256": "85d3456fee85beee8281a3322509a312ff30da4ff859a1e7444d713a5f314d8f",
+      "size_bytes": 1189
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/security-doctype.oxs",
+      "sha256": "273f404670311cedd170bcf71dd4367111419b37c70eb67c9a551d78d0a33636",
+      "size_bytes": 1272
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/generated/unsupported-content.oxs",
+      "sha256": "c260c51d527c028b97973f20feeb03c1e75fb39afbb801f2bc99beb8bfe64bba",
+      "size_bytes": 1814
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/manifest.json",
+      "sha256": "a2595395af489839689ee8679f379e0e04b231c5bb1b9c8ccb5c7a023dcd7cd7",
+      "size_bytes": 3961
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/source-charts/fixture-designs.md",
+      "sha256": "207d71671a83bafc5812e34df70faa3295811375577f7002798ce033910ea0c6",
+      "size_bytes": 1527
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/source-charts/minimal-full-cross.txt",
+      "sha256": "5de63cb56f5e486649785a55cc07661ab5412d4e0c9d74038eb61f23c6b411af",
+      "size_bytes": 133
+    },
+    {
+      "path": "sources/repository/tests/fixtures/oxs/verify-fixtures.mjs",
+      "sha256": "1d66ee7cd29bd805e4dfb4d103cb83aeabfb9f5e39f556c8bd6f5bc5e76b6f46",
+      "size_bytes": 2913
+    },
+    {
+      "path": "sources/repository/tsconfig.base.json",
+      "sha256": "f64effc087aa763842e7089585f8f0f1be6b10204bfd8ada8e7655f842cd1073",
+      "size_bytes": 534
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "27d395211aee76dde7c8cc934a352cd82c6a4d3a8af732ae12b38eb0e8732d39",
+      "size_bytes": 32052
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "89e485a33631396abaf50df16e483ff0dbed444be9775ddc9f5f5d4bc4a665d7",
+      "size_bytes": 633
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "472bf30466ac9a94740f6f6557cc913d2a19ce9a775c93f28fcc05136de201df",
+      "size_bytes": 84
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type INDEPENDENT_ACCEPTANCE_REVIEW and decision VERIFIED or REWORK_REQUIRED.",
+    "outputs/task-thinslice-001-independent-acceptance-report.md containing exact reviewed-source identity, reviewer independence, acceptance-criterion disposition for AC-01 through AC-09, functional/domain/UX/recovery/performance/security/privacy/accessibility findings, verified and excluded scopes, limitations, risks, decision, and exact next step."
+  ],
+  "acceptance_criteria": [
+    "The response identifies exact source 1a683abd9a8294de5a36888e997e65aba7b7a167, exact review range, Task Package v1.1, Completion Report v1.1.0, and Engineering Verification Report v1.9.0.",
+    "Every required input is reviewed and every AC-01 through AC-09 receives an explicit evidence-based disposition.",
+    "The response independently checks implementation and raw evidence and does not accept an AC only because Codex or AU-AGENT-003 assigned a status.",
+    "The response specifically dispositions pointer-click AC-05 modality, strict greater-than-six-CSS-pixel pan-only behavior, glyph-free/non-interactive unreadable overview, failed-save committed-state visual rollback, and close-tab/new-tab AC-07 persistence.",
+    "Any finding identifies severity, exact evidence, violated requirement or invariant, risk, owner, required remediation, and reverification condition.",
+    "The response preserves the route-1 producer, Chrome/macOS, touch/mobile, Worker-memory, Prototype 9.1, production, and no-deploy limitations without silently broadening support.",
+    "AC-08 is evaluated as implementation-based foundation acceptance, not production release or acceptance of Phase 1 functionality.",
+    "The response assigns decision VERIFIED only when all mandatory acceptance criteria pass; otherwise it assigns REWORK_REQUIRED.",
+    "The response does not modify sources, invent product or engineering meaning, authorize deployment, or assign verification outside the exact declared scope."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and registered Claude Cowork product roles retain product meaning, requirements, UX, scope, acceptance criteria, and independent product acceptance. The reviewer may reject or request clarification but may not rewrite those sources.",
+    "engineering_authority": "AU-CODEX-PRIMARY and AU-AGENT-001 retain implementation, architecture, integration, and remediation authority. AU-AGENT-003 retains its internal Engineering Verification Report meaning. Claude independently reviews the result but does not implement or directly edit engineering sources.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, navigation, metadata, lifecycle, and traceability after return validation without changing Claude-authored or engineering-authored meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git, commit, push, merge, or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260726-001",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/CURRENT_FOCUS.md": "b433896b469ad20144b841ede4d12c5a85d9ed74e63f07eedf242f29f361a515",
+    "sources/repository/.github/workflows/ci.yml": "6471182461884535eec17a1e255414ccfe3149fb9221e441c41910c6fdd58527",
+    "sources/repository/AGENTS.md": "e1a01e40d3181e7fa521a9c4bf347bb17bacd274f04bf98684855702b590733c",
+    "sources/repository/apps/web/README.md": "166389fbdbdcbf9f7db13be56b29e5455f924c703ac506d25072772dd3f9962e",
+    "sources/repository/apps/web/accessibility.html": "477463c1a21c7bd736235b73d08f4cf5c89ec9e97956b1a42874e5ba1605ae9c",
+    "sources/repository/apps/web/benchmark.html": "7411bb0750c4a36c64d599a230048c5e377a0ad8c0e648a40213c31924cdacdc",
+    "sources/repository/apps/web/browser-failure.html": "986c1639acaf3fd61c19ce73f52727d42040d93bad86977151407aeadd09512b",
+    "sources/repository/apps/web/index.html": "4bbd286c6d21d5f01aba4ccf327e239ca9453b830aa54161596e7174a5fb3e90",
+    "sources/repository/apps/web/package.json": "e31332b13e347b340425f26495dc00bba427060c64f94eea96cc09b642974735",
+    "sources/repository/apps/web/src/App.tsx": "3a658c482824cad416d07ec7dfedb8bde838ee20a3289e53a8dacab2d80526dd",
+    "sources/repository/apps/web/src/accessibility-main.tsx": "06454956b2c3c6747438434a83f9a6767cb7b95adbd807de362a89cbf582c629",
+    "sources/repository/apps/web/src/benchmark-main.ts": "c0ea96877668b6a5cf3fe55102054de406d8bd3864bff232ac0afe08145d85e1",
+    "sources/repository/apps/web/src/browser-failure-main.ts": "034440802912434729f172a0431b1665d5efebceb08b431233c9fd2ad877b0fc",
+    "sources/repository/apps/web/src/client-state.ts": "690a9ff6590389f6e0ef237a3cdbb60375c58b686a9562e2bb6ce1a2656bb591",
+    "sources/repository/apps/web/src/engineering-evidence-output.tsx": "8edc77b6a44032ec814da6a0a1942d089f59d8c89e37cacad1a5747a9592e5d5",
+    "sources/repository/apps/web/src/engineering-evidence.ts": "8d2251b7fe33378c0984fab01754d1b4c075e68f5f456c1c232677a42cb50ab2",
+    "sources/repository/apps/web/src/glyph-atlas.ts": "7ce72e3f14d2c9ac48a856ff83b935844c0f93dc78b6aacc04e8c1a43470d6d5",
+    "sources/repository/apps/web/src/import-client.ts": "d22de28d15cb34a9d8b183af633b29ec10cfef72da23b4c4533e38fb9ea806f2",
+    "sources/repository/apps/web/src/import.worker.ts": "2aec9c21ca3a987a7af20812b097eaada3cca2afe18392b9469311c90c4bb693",
+    "sources/repository/apps/web/src/main.tsx": "ab3b482f534238923009c4a46346c1f7cdb23a10248b6d48f66ee6f1227e7e4c",
+    "sources/repository/apps/web/src/messages.ts": "1e8d1432ca12add8b052f27b9158a6be9b2945ba132dba93ed18aff7dd046462",
+    "sources/repository/apps/web/src/project-service.ts": "c15ec43289b448d7b071106bfdf60d9e2bca3cb8caf2548d568daf097da6b66a",
+    "sources/repository/apps/web/src/render-worker-cache.ts": "04e9ea5658a55167252ed2730e5bf754acb01d81ef6209bbc123e61ed21fcbb9",
+    "sources/repository/apps/web/src/render-worker-client.ts": "793bb9e414354accf23d36938fd404f6d134da72878635e731750d59c718e66f",
+    "sources/repository/apps/web/src/render.worker.ts": "55705add8783312a99edaf2a5dd3f4696f6472604e4d11147c93ca62359ecac3",
+    "sources/repository/apps/web/src/styles.css": "111964eb072ebdca44f3f2212067c2bc8e0be7cc96ecffc0115aa1b2a09d865f",
+    "sources/repository/apps/web/src/viewer.tsx": "6f19855e6c6367286c19182689e2f370a466fb2b661cfd8fd52c4b877c00333c",
+    "sources/repository/apps/web/src/worker-contracts.ts": "36bc2a351e506cdf272cfd19a320aa32ab3c9773aa1d0a09893db10f6985e24e",
+    "sources/repository/apps/web/test/client-state.test.ts": "e18fd494ecd28d80a49b4470374b9065ede1df26013b7bb20d22ad54893b54c2",
+    "sources/repository/apps/web/test/worker.test.ts": "e0fbe5158c3478a0ba82aa20e9dbd3d9630c0848d97e1c011db6f0ff935636b6",
+    "sources/repository/apps/web/tsconfig.json": "cae6a1f0546d27332c7585b4c83b4e0ef4c552bafce7f2e61580079c3e81ffa4",
+    "sources/repository/apps/web/vite.config.ts": "0a069bd182970e36bc0ae060bb782a06c4bb0cd77ebcccd90bbe608175594809",
+    "sources/repository/apps/web/worker/index.ts": "853fe8bd6b0f3d9bd4bb457003ec4cc4ef95094eefddb489442d8b2c1941d1ed",
+    "sources/repository/apps/web/wrangler.jsonc": "b8b22e24ad5c88529b8d7a93d587b8d6d072bbf46e2a790031613e6d6c643728",
+    "sources/repository/collaboration/README.md": "191e8f2b74bb97d27abb85e0a004690ae811cbf037aa8508bce5a7d9f1ccbaa8",
+    "sources/repository/collaboration/schemas/README.md": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+    "sources/repository/collaboration/schemas/claude-return-manifest.schema.json": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+    "sources/repository/collaboration/schemas/claude-task-manifest.schema.json": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+    "sources/repository/docs/CURRENT_STATUS.md": "a0f72c7f9a0785f934d7d3486383d43b865cf5eb978ad8107aab187177817a33",
+    "sources/repository/docs/DECISIONS.md": "27380e9a23917312c108f9f414d4f94d84287a850b1027b42ae62d431ed5004c",
+    "sources/repository/docs/RISKS.md": "626454a130519407d257d9d3a01cc6233220dc331eff5cf38707ce669fc56f1a",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "16bb780d9ecfabc45b6717b746700efe3242adc1926cc918ffdb287b73a18965",
+    "sources/repository/docs/TASKS.md": "1741383a0124eddcf22e9af5f4a5e96b293ea9868758d5e69269d1908fb28549",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "c05bec9f16740b17442e98a84ee19a4485e0d63dbbfdf9a6d2bb8839678c8253",
+    "sources/repository/docs/architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md": "3447aa9f5a958a9aefee3638b9fe4d7c365b45e00b1c390802ccb10f5f7e1baa",
+    "sources/repository/docs/architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md": "45fbde5f31cfc05ec287f5f91b1f913e27e03b3a04e4c5d553afb819737793e5",
+    "sources/repository/docs/architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md": "27b16255c6f5b12e3127778d5e18b582875f146f1057a836170fdcfa88a1524d",
+    "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md": "2ca816aae7191a87fe4928ab4c0b4806bbfd25642c7caf0db2ecade9945c3722",
+    "sources/repository/docs/architecture/adr/README.md": "1e39b1653a67fce1ff1f66d679fea235b7a41d144b3a9e1e9d45735b861925a9",
+    "sources/repository/docs/architecture/adr/TEMPLATE.md": "931a79d45dc359b5b23a75dec64841347f1bedddbee6ca05f6e321047a0b199b",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md": "0c08a15dfe5a4c842527f1dd8b9dc259a0b2a8899a4c58042ef68b864002e1f6",
+    "sources/repository/docs/assurance/benchmarks/README.md": "9fd7f20ba8f17a95252083f45dd87ea7925594539b5b2e7963bc3df3ece6a0bf",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BENCHMARK_PLAN.md": "42f7c3f4489f6afff0f7f52f5cf6579d76d2db3b85dcd3d356016d0e139be81b",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md": "da62aea53be31c43baba710cc8d3bc0ef4884f8e9ac3860522e45360d67ff500",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md": "97111040132a33fb1fea0a9dba2ddbebf86026594dfe6aee7403d7502f54181e",
+    "sources/repository/docs/assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md": "3ed5d718468a56e12c228c137d0210e6ecff8054ce8fd42d843c9b2c951080ae",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md": "f6260e44dabc3b28f78dc4b20151f5eabf4c75704bacf1126b696385d15e8c86",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-1c2bd5d.json": "5428c66ec13d85fc38a488f2247620baeeebbfc8b51ca7c960561a6ec41558a5",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/accessibility-d69b5c5.json": "0dd1827829b37dd4c354a4ed6f85bea3163202dd1743c22165f6e00248eff57d",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/browser-benchmark-37e657e.json": "1b7bcdb120e7004479eb96dec090c63b1132c654f945e4c035a5c845c2000b19",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/browser-failure-f17d0d3.json": "71c92ed0c29481fc6469e67554978663281198a2bc48fbea12d80670b8c36c37",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/client-browser-signal-fc50d66.json": "0fec4e18baf1ab02d776877825e646251c967600c5dd4d08e372dbb84c4cc95a",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-browser-benchmark-4009944.json": "754da8713dcb77f8b2f18a307b5717da1675ea612a8555746260d96fd094ba42",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-interaction-4009944.json": "1200d26e52cd9fa9b80139c7c8e54b6b7bbcb5d78c6808f22ecb2ca88336f30b",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-medium-gesture-4009944.json": "2f2172d0a991d1d95b1be368ab7511101076a6d4e62456154953fbacc6b0694b",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/constrained-4x-tti-memory-d36a827.json": "a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-accessibility-470a30a.json": "8d8f7ccacf71b4b3e90abadd8ca281e7a6f5008954f8ac7f99fe6adbf067e430",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/manual-interaction-contracts-6bbf691.json": "1212debc85c000280115377195867e0ea043f532b584fa7fb2104119fa4c4620",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/medium-gesture-d69b5c5.json": "eb7f60bcc9895033bfcb36e1b08d1c09d4747d27c0278b1fe9685e942fa708be",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/medium-interaction-a8f764b.json": "83251381a6196ea7f7c43d6c7bb6376fcf4060b2b018418923b09125e9a758e2",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/minimal-interaction-a8f764b.json": "1d96a0365288586fd2f9f950943ea0651c8d034c5dfee9f39f1f5c8325cf1815",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/performance-profile-manifest-4009944.json": "306e46e618ac5b7a4e974fd6365b672a501998f424e622811b1e24fe36a26083",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/performance-tti-memory-manifest-d36a827.json": "9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-browser-benchmark-4009944.json": "a02b66823b7c4586a01c9ddc8c8989c96dd962849f5f257835a431451275d1c4",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-interaction-4009944.json": "25bf4f0ad610227ebb71f31edadb5ff3b3335f8ac14d59d3245da6cc2c8fb7f4",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-medium-gesture-4009944.json": "23ef1182d6e4bab6e77575a48119e2bc4d1e7355cc8bb3fd7ff6d35908186aaa",
+    "sources/repository/docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/reference-tti-memory-d36a827.json": "c1725f9ef599f82fa31adb5c374d7d5d6688c99771a6fb5942bee9b49bf67c0d",
+    "sources/repository/docs/assurance/capability-matrices/TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md": "9c8483e4edcb72f8c9b6b7e059ae14cf266b24a3169d9ca0ab3f466484b401db",
+    "sources/repository/docs/assurance/threat-models/README.md": "d35bd4ce4cb07e76a569f2d82159e3e58d984fa292ea1bb61e9713c69c96ba3a",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md": "d9a2c3c5d4f2c33b72acfd1d3c59a06a775ee1568349c6d21eb57579ffd0d717",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md": "6e5d6de9d85aa8742d05b28520588b67547f6b830f65f4a14774463928234c47",
+    "sources/repository/docs/reviews/engineering/README.md": "2891e176d4f4ffa00572a9280076a37c95496a73c908695327f81c8943fc0e21",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md": "40cce48572f0e7b500dc8b32d297a9d95be3934e22c4e90359d61908e2f62d1d",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md": "cc4d8019689d12f742a19fea5a04d3cb86d92a0949fbf42cf295312c463b3fe1",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md": "0e1b4a6ce32eaffa9ddbd03f47ce5ef7ad6b84b4328173584b912d1608f9a4a6",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_SECURITY_DESIGN_VERIFICATION.md": "724e358f4c0d8b77b8b6c6554297f385eae0da609ff3b811084fb4d35053d618",
+    "sources/repository/docs/reviews/engineering/TEMPLATE.md": "b4d30a071757734ccf25d7e0766cd35e1f36c15c2159d1820a41eb6d0809017d",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md": "2354841c01fe81a9f4efcd924070fef1ca131b4442877ef5acb96a7b61c021aa",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md": "8f86c680bae74cf9c77c590a955859eea8098c46f8e11e0a24570c80e5c90ab8",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md": "3ab3c1990ac7d8f9f89ab65480855ff673dfdd04902d8b16c34763102763e586",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md": "c1cd5a3b83d0eb96be03b43743b62df1f122a8cf9e9dd10f4eb792aabc37831c",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md": "fd6733b4bf3fd93135121f32d922c0d144127672cac02e70c53ea108fb08d071",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md": "5d3df1a0b099bf747f4069638f0fe6fbdbfc822d37702e6d37c60828d374f51e",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PERSISTENCE_IMPLEMENTATION_REVIEW.md": "6b21c169c97b4500d2cde4a822abc1e6d02050b4f1e7bed78554a97c9e94c952",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md": "e6397d1cf99a74ffe3e92888e5ed36f082d04ae090216dfcfa2d2bf9d55cd67b",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md": "a4499c40e650bb6dbae8adda74d3844d4db3e50ad5e40b48d7964c1dd63967f4",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md": "5e885799622fe06429579c993af70118126c748928d1c0ca2e4ac578263e6c97",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+    "sources/repository/package.json": "3ec17e8678ef3e3ac7cdb9a6a4e0c89a6f0d7fca708507f2cb691dd1bf32a273",
+    "sources/repository/packages/domain-core/README.md": "23568faeff689e43ec5114bdfb51ece4e46fc454868920a1c8f99682ceddc452",
+    "sources/repository/packages/domain-core/package.json": "4bb794978d36900da39907e6b6d53cfcf9a3c7b5debe261bde57ebc9fec30c94",
+    "sources/repository/packages/domain-core/src/index.ts": "eb69f9848a5b5fd390df45cb12e2f81e5631ed96a1dfe9af618fb6b7114021aa",
+    "sources/repository/packages/domain-core/src/model.ts": "300ebb296c4bc7419594fc34bbe09fa2e380e7d654cfa953872dada4fc1a7ff7",
+    "sources/repository/packages/domain-core/src/validation.ts": "bcbf36b2176c333b3bc4a0934332440f335cda9093b1e2834dffe4f6bab277df",
+    "sources/repository/packages/domain-core/test/domain-core.test.ts": "0b20e79daf462fc8036d8e0d155c62ce24bc3a3141d94d27481c387d2dc7d024",
+    "sources/repository/packages/domain-core/tsconfig.json": "5ed80efde27f927157aaba3ad7ec5d885ecd7abe86abd7f59fc51ab85e722da5",
+    "sources/repository/packages/importers/oxs/README.md": "6748aa27970c051c04fd1f8b64f0f71ef2fa00df26d94c35b6345bc35a1438f7",
+    "sources/repository/packages/importers/oxs/package.json": "ca0a89a65b6a8e7833f3f1f5507c4fe98ee34cc56b5c6b2605c5bf5aec272c5d",
+    "sources/repository/packages/importers/oxs/src/contracts.ts": "f173dc2710b1556d229be1f9d03a5079855cafc527ba00790d85af0aa5112e04",
+    "sources/repository/packages/importers/oxs/src/import-oxs.ts": "548cc7411128e52b67969f9abda93f3fc22b35fcc017b06e174a632716c5248b",
+    "sources/repository/packages/importers/oxs/src/index.ts": "5ae320ea96ebd4224a0bb9080d301e8a489d06bb467c37d17995133a00ce83dd",
+    "sources/repository/packages/importers/oxs/src/limits.ts": "4aac15d1b18c47c2258cf46d52985dc80f985ed1aa7d774a1f83e515a78b6816",
+    "sources/repository/packages/importers/oxs/src/parser.ts": "6948befb783451baf1b22fc57ef5faad0a2ab0b0b51e39522db20a275d850104",
+    "sources/repository/packages/importers/oxs/src/report-validation.ts": "f984659abb31b31f8c0c8476ce756b367c31ef108cf9f3cb7482a358d1de0b8e",
+    "sources/repository/packages/importers/oxs/test/oxs-importer.test.ts": "b710ebea1e050b8571a4113f3bbd3d7230327ecf84e2a33d9ac73b49f40b0265",
+    "sources/repository/packages/importers/oxs/tsconfig.json": "103ba730fa02aa4af710a68986b0b5bd0b090844160386afbcde7b6a5053c730",
+    "sources/repository/packages/persistence/README.md": "e61cc3e3bae312ecd34b507c8d40e095d8f01fee12d138f93ff0c4b93228ba0b",
+    "sources/repository/packages/persistence/package.json": "f420e2ff48dfc070ab215436e828c10f7cab90e23e13851741ef2b0883a41a9e",
+    "sources/repository/packages/persistence/src/capability.ts": "b451658e9fdf2d729dd953a783cd01a56d05382ea2bc1838201a1e6e1b73fc03",
+    "sources/repository/packages/persistence/src/contracts.ts": "cde1ab5fde68ed1646981598bfe4a409234eb5b3620580b89056e272f026289e",
+    "sources/repository/packages/persistence/src/database.ts": "a4ce89040b70153508d4dee81978cf12b107ee5db1aad609c0328092faf633f7",
+    "sources/repository/packages/persistence/src/import-repository.ts": "99752f83382e2701cf4121842db2da68a2558f6ee9e0c46c7c1c48bafacfb75a",
+    "sources/repository/packages/persistence/src/index.ts": "cb49dca000c4849533c99dff05d4918ed5836a5386507658d752f60fdd5f8cf6",
+    "sources/repository/packages/persistence/src/progress-repository.ts": "d0eb9e15d28da62f93378e82e252b880dbf18d102862ba0782f783e50faaf01f",
+    "sources/repository/packages/persistence/test/persistence.test.ts": "9355ab42bddb599798aa6e50a77b17f701f25a783d26babcf9485187b9083da2",
+    "sources/repository/packages/persistence/tsconfig.json": "0bd5017e93b92ffd1bfc5ad1466b5da5aec10393313ff0dfc8f03763b31d6337",
+    "sources/repository/packages/renderer/README.md": "3a6fe9a362f628cfd8c8b3d547b2369ed9c202bb77d6a36e2cd85ff753bfff44",
+    "sources/repository/packages/renderer/package.json": "13875fbc3cbecdcb47a789e05d5ac174bc69c7c9a46131430c4fc03e107dbc85",
+    "sources/repository/packages/renderer/scripts/measure-medium.ts": "04a3f58724b11820f522a065e99a2cb2f2a0c37149ada3e80198825aae72468e",
+    "sources/repository/packages/renderer/src/contracts.ts": "d51e253d5c21492aeee24041e2b500c604abca8a3d26fa89f2ac1ffdd83d9e27",
+    "sources/repository/packages/renderer/src/contrast.ts": "4222615c105b173cb8bb1fcb43eceab6c9ab0f1a02087ad0557911dcd0ddbee0",
+    "sources/repository/packages/renderer/src/index.ts": "7abf2532631d01dcfbfeb9c90c4e55e31be2747ac9deaf837f91a69786156fe5",
+    "sources/repository/packages/renderer/src/renderer.ts": "bd093aeda152ddafbf021e6f771bc3d60efee743a86fb7fcedfeea0f45309087",
+    "sources/repository/packages/renderer/src/tiles.ts": "347aae9b710f6da03a58d8f633e5fcf01eb0c85f1ca41df991e31544afa9ac6b",
+    "sources/repository/packages/renderer/src/viewport.ts": "41526af782f9379587bee9937d5816245e79829cc4ee028f1325ac972f7934f2",
+    "sources/repository/packages/renderer/test/renderer.test.ts": "1300ca6a5585d0472e5c652229fe8a18f6f6e894e305aabf51a9927582265c05",
+    "sources/repository/packages/renderer/tsconfig.json": "0bd5017e93b92ffd1bfc5ad1466b5da5aec10393313ff0dfc8f03763b31d6337",
+    "sources/repository/pnpm-lock.yaml": "dee7b9639024c7b45688eaed668a8db3bbcad12eb733cd38ce768469b2511956",
+    "sources/repository/pnpm-workspace.yaml": "f10cbb2eb8aab0c45ac2bc640c70343667c6e990f88cf90b559d43314645198c",
+    "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+    "sources/repository/product/decisions/05_Decision_Log.md": "2c61f843c6183652bbf0ade1bdb9eb07d44c72a79ffc23f2bd1995dd1cb5ac2f",
+    "sources/repository/product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md": "0246546d29205dd16e7651fc11166cd196dc4b478e99ee94cc3ace637dfe32e8",
+    "sources/repository/product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md": "260bea570a070e74fc914ad9427a18ef5cfbe5be791c18b4eca87645da2651b0",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+    "sources/repository/tests/fixtures/oxs/COMPATIBILITY_MATRIX.md": "940fb37bed359c1bc31d49db6d2e3d91d3cf9921c184bce54f2edc4ace8e0303",
+    "sources/repository/tests/fixtures/oxs/PROVENANCE.md": "833d32af1025b2639a45c95c80c8e68b9ce2cf533b1b69e04bd83dfe6f64ba9a",
+    "sources/repository/tests/fixtures/oxs/README.md": "b22e33c9267f02216f1fa9780be667355b3d9d24ec91a90b79a7eb63f06d0a9e",
+    "sources/repository/tests/fixtures/oxs/SYMBOL_MAPPING.md": "050abfe48ce0acfdf48da3028d12215dc9c665eb4bc521a47c6b61fecbae6622",
+    "sources/repository/tests/fixtures/oxs/expected/corrupt-truncated.expected.json": "8e513357dd0a5534f163e5e02ae0cb035932dab8c857867b071cb86f0cbfb18b",
+    "sources/repository/tests/fixtures/oxs/expected/duplicate-palette-index.expected.json": "d9d1fbda22f0b43b50bc59c5bcefecb02fe0af1de19b24a6c6ea6141e8cf5532",
+    "sources/repository/tests/fixtures/oxs/expected/empty-full-cross.expected.json": "35e4442212a6277be1aa94e6b23468b43e864b84414b1cbc7b50b00c0cc80b60",
+    "sources/repository/tests/fixtures/oxs/expected/invalid-palette-reference.expected.json": "ac4380eb9ee355f6eab726f5ac4c707ad214752b4acac6ab2f3eb0f140ec345c",
+    "sources/repository/tests/fixtures/oxs/expected/medium-full-cross.expected.json": "25fe7439fc59ce468823dd16e7986a2bc3ad7d2d36840772f86e1e3ba772bc90",
+    "sources/repository/tests/fixtures/oxs/expected/minimal-full-cross.expected.json": "de9a83bb0c949bc158ccbaf7b3d89e5d70d203954b17220fe686bc36380e5ee7",
+    "sources/repository/tests/fixtures/oxs/expected/out-of-bounds-coordinate.expected.json": "f5b23ca9f92f2b48b93df868038a8ed671cdbebb8618ca9c723e83f00e9792f9",
+    "sources/repository/tests/fixtures/oxs/expected/oversized-declared-grid.expected.json": "7a93ec8dd1b002d247800ec1cfcd5a6289002552eff2209924285519c2ad705a",
+    "sources/repository/tests/fixtures/oxs/expected/security-doctype.expected.json": "344e3a225f93561c445d12587cba270d720c2fc39b6086b53c4570ea447fcd4f",
+    "sources/repository/tests/fixtures/oxs/expected/unsupported-content.expected.json": "cf422210e81cc9af2aca266342743af6ae004dcfb28840db0e8ec1285d800f47",
+    "sources/repository/tests/fixtures/oxs/generate-fixtures.mjs": "843c9adaf8ddbef09fe73d5b41246937bf36eb284d2f67fa1b727bbf40d9db47",
+    "sources/repository/tests/fixtures/oxs/generated/corrupt-truncated.oxs": "f24462124da57c66a2c03c96851ad96525f5f0d21fff22d39a9dfa6d2ac9b1d8",
+    "sources/repository/tests/fixtures/oxs/generated/duplicate-palette-index.oxs": "1720a535db2a55c30a85b0bfedb547ba360fc500709fc24a37a3abb7640ad10f",
+    "sources/repository/tests/fixtures/oxs/generated/empty-full-cross.oxs": "a6c81639ce98e8fd38d7b5e53b1c61a15190774503f8ad0858a6400cf67b1081",
+    "sources/repository/tests/fixtures/oxs/generated/invalid-palette-reference.oxs": "ccccebc0a580ddaf0de98881bec8c35fe78aec5d745b0adf9f2bd5cffd5fc91f",
+    "sources/repository/tests/fixtures/oxs/generated/medium-full-cross.oxs": "1211319f5cb392b2c0b9c401d6898e6c18564d90c218035d274d96bcdc2aa167",
+    "sources/repository/tests/fixtures/oxs/generated/minimal-full-cross.oxs": "912fc540e3d92e789c6c5bf94ccf89079773bc578a3b6db594b05708290e818d",
+    "sources/repository/tests/fixtures/oxs/generated/out-of-bounds-coordinate.oxs": "9059757503b63ee2bca366996c19aedb0a2e99dc039648c13ce49826ea17af90",
+    "sources/repository/tests/fixtures/oxs/generated/oversized-declared-grid.oxs": "85d3456fee85beee8281a3322509a312ff30da4ff859a1e7444d713a5f314d8f",
+    "sources/repository/tests/fixtures/oxs/generated/security-doctype.oxs": "273f404670311cedd170bcf71dd4367111419b37c70eb67c9a551d78d0a33636",
+    "sources/repository/tests/fixtures/oxs/generated/unsupported-content.oxs": "c260c51d527c028b97973f20feeb03c1e75fb39afbb801f2bc99beb8bfe64bba",
+    "sources/repository/tests/fixtures/oxs/manifest.json": "a2595395af489839689ee8679f379e0e04b231c5bb1b9c8ccb5c7a023dcd7cd7",
+    "sources/repository/tests/fixtures/oxs/source-charts/fixture-designs.md": "207d71671a83bafc5812e34df70faa3295811375577f7002798ce033910ea0c6",
+    "sources/repository/tests/fixtures/oxs/source-charts/minimal-full-cross.txt": "5de63cb56f5e486649785a55cc07661ab5412d4e0c9d74038eb61f23c6b411af",
+    "sources/repository/tests/fixtures/oxs/verify-fixtures.mjs": "1d66ee7cd29bd805e4dfb4d103cb83aeabfb9f5e39f556c8bd6f5bc5e76b6f46",
+    "sources/repository/tsconfig.base.json": "f64effc087aa763842e7089585f8f0f1be6b10204bfd8ada8e7655f842cd1073",
+    "sources/review/review-range.diff": "27d395211aee76dde7c8cc934a352cd82c6a4d3a8af732ae12b38eb0e8732d39",
+    "sources/review/review-range.stat.txt": "89e485a33631396abaf50df16e483ff0dbed444be9775ddc9f5f5d4bc4a665d7",
+    "sources/review/review-range.commits.txt": "472bf30466ac9a94740f6f6557cc913d2a19ce9a775c93f28fcc05136de201df"
+  }
+}

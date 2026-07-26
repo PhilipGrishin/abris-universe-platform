@@ -62,8 +62,9 @@ not approve returned meaning.
 - [`AU-EX-20260726-001`](AU-EX-20260726-001/README.md) —
   independent acceptance review of the exact TASK-THINSLICE-001 Phase 0
   implementation, Completion Report v1.1.0, Engineering Verification Report
-  v1.9.0, and retained evidence; registered for Claude Cowork with return
-  pending and no project `[VERIFIED]` or deployment authority assigned.
+  v1.9.0, and retained evidence; checksum-bound package exported to Claude
+  Cowork with return pending and no project `[VERIFIED]` or deployment
+  authority assigned.
 
 ## Rules
 

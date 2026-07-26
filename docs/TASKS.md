@@ -513,8 +513,10 @@
 - **Completion Report disposition:** TS001-COMP-001 through TS001-COMP-003 are
   resolved at final exact-source rereview `c6314a9c`; TS001-COMP-004 remains an
   open non-blocking recommendation.
-- **Next step:** Prepare the exact-source Collaboration Bridge independent
-  acceptance package without expanding the accepted scope.
+- **Acceptance exchange:** `AU-EX-20260726-001` is exported against immutable
+  source `1a683ab`; return pending.
+- **Next step:** Stop for Claude Cowork and validate the registered return
+  before any canonical integration.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

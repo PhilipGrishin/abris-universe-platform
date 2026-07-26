@@ -5,12 +5,12 @@
   "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
   "source_commit_sha": "1a683abd9a8294de5a36888e997e65aba7b7a167",
   "source_branch": "codex/task-thinslice-001-acceptance-source",
-  "review_commit_range": "395c5d62975ba0f52e0da69af256ef870bf02770..1a683abd9a8294de5a36888e997e65aba7b7a167",
+  "review_commit_range": "c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5..1a683abd9a8294de5a36888e997e65aba7b7a167",
   "prepared_at": "2026-07-26T19:17:31Z",
   "prepared_by": "AU-CODEX-PRIMARY",
   "purpose": "Request independent product, quality, security, architecture-foundation, and acceptance review of the completed TASK-THINSLICE-001 Phase 0 thin slice against Task Package v1.1, exact implementation source, retained evidence, Completion Report v1.1.0, and the internal Engineering Verification Report.",
   "scope": [
-    "Review exact source commit 1a683abd9a8294de5a36888e997e65aba7b7a167 and the complete implementation range after the independently confirmed design source 395c5d62975ba0f52e0da69af256ef870bf02770.",
+    "Review exact source commit 1a683abd9a8294de5a36888e997e65aba7b7a167, the final lifecycle range after internal gate source c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5, and the complete included implementation snapshot.",
     "Independently evaluate TASK-THINSLICE-001 acceptance criteria AC-01 through AC-09 against the approved Task Package, implementation, tests, reports, and retained evidence rather than accepting Codex conclusions by default.",
     "Verify the registered OXS route-1 import semantics, coordinate and literal-symbol boundaries, original-source retention, canonical Pattern/PatternVersion separation, and explicit unsupported-content behavior.",
     "Verify Viewer behavior for tiled rendering, readable symbols, unreadable overview, zoom, pan, strict greater-than-six-CSS-pixel pan-only gesture behavior, pointer-click marking, keyboard interaction, automatic save, failed-save visual rollback, reload, and close-tab/new-tab recovery.",
@@ -106,7 +106,6 @@
     "product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md",
     "product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md",
     "product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
-    "scripts",
     "tests/fixtures/oxs",
     "tsconfig.base.json"
   ],
@@ -114,6 +113,8 @@
     "apps/web/dist",
     "apps/web/dist-benchmark",
     "apps/web/node_modules",
+    "docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/grayscale-1c2bd5d.jpg",
+    "docs/assurance/benchmarks/evidence/TASK-THINSLICE-001/medium-pattern-fc50d66.png",
     "node_modules"
   ]
 }

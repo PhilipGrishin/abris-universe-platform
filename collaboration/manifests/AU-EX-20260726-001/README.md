@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260726-001 |
 | Title | TASK-THINSLICE-001 Independent Acceptance Exchange |
-| Status | `REGISTERED`; package preparation pending |
+| Status | `EXPORTED`; source `CURRENT`; return `NOT_RETURNED`; integration `NOT_INTEGRATED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Independent Reviewer | Claude Cowork — Quality, Security & Independent Acceptance Lead |
@@ -41,9 +41,11 @@ project `[VERIFIED]` outside the exact returned scope.
 - Source branch: `codex/task-thinslice-001-acceptance-source`
 - Source commit: `1a683abd9a8294de5a36888e997e65aba7b7a167`
 - Review range:
-  `395c5d62975ba0f52e0da69af256ef870bf02770..1a683abd9a8294de5a36888e997e65aba7b7a167`
+  `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5..1a683abd9a8294de5a36888e997e65aba7b7a167`
 - Internal Completion Report gate: `VERIFIED WITH FINDINGS`
-- External inbox: not exported
+- Registered files: 179
+- Registered payload bytes: 5,919,618
+- External inbox: exported and checksum-bound
 - Return: pending
 - Project `[VERIFIED]`: not assigned
 - Production deployment: not authorized
