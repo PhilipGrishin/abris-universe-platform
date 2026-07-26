@@ -81,9 +81,10 @@ authorized disposition.
 
 - **Status:** Owner authorization `[APPROVED]`; AU-AGENT-003 exact-source
   review returned `REWORK REQUIRED`; findings TS001-DEPLOY-001 through
-  TS001-DEPLOY-004 are remediated locally and await exact-source reverification.
-  Production mutation remains blocked on reverification, credentials, and
-  TD-GATE-003 external-state capture.
+  TS001-DEPLOY-004 are resolved at exact remediation source `2c88639`, with
+  task-scoped Engineering Verification Status `VERIFIED`. Merge is allowed.
+  Production mutation remains blocked on credentials and TD-GATE-003
+  external-state capture.
 - **Source:** PROD-DEC-013; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;

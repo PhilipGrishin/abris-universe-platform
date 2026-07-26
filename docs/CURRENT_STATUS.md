@@ -495,7 +495,11 @@
   TS001-DEPLOY-001 through TS001-DEPLOY-004 are remediated by step-scoped
   secrets, explicit pre-environment authorization failure, deterministic
   orchestration/rollback tests, exact restored-version confirmation, and
-  expanded rollback-baseline evidence. Exact-source reverification is open.
+  expanded rollback-baseline evidence.
+- `[VERIFIED]` AU-AGENT-003 independently reverified exact deployment source
+  `2c88639`; all four deployment findings are resolved, remote CI
+  `30219444159` passed, and merge is allowed. This task-scoped engineering
+  status is not production or product acceptance.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and GitHub environment
   secrets block the production workflow. Cloudflare CLI authentication is
   absent; current placeholder HTTPS `200` body hash is recorded.

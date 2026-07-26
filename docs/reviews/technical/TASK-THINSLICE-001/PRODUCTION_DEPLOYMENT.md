@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Owner authorization `[APPROVED]`; pipeline remediation `[IMPLEMENTED]`, locally `[TESTED]`; AU-AGENT-003 reverification, credentials, and TD-GATE-003 remain blocking |
+| Status | Owner authorization `[APPROVED]`; pipeline `[IMPLEMENTED]`, `[TESTED]`, task-scoped engineering `[VERIFIED]`; production blocked on credentials and TD-GATE-003 |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | PROD-DEC-013; Technical Design v1.5.3; ADR-TS001-004 v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
@@ -91,6 +91,13 @@ after promotion, exact-version rollback confirmation, rollback-baseline
 verification, rollback failure reporting, sanitized evidence persistence, and
 the HTTP smoke contract.
 
+AU-AGENT-003 first returned `REWORK REQUIRED` at exact source `4097a5c`, then
+independently reverified exact remediation source `2c88639`. Findings
+TS001-DEPLOY-001 through TS001-DEPLOY-004 are resolved, remote CI run
+`30219444159` passed, and the task-scoped Engineering Verification Status is
+`VERIFIED`. This allows merge but does not authorize dispatch while either
+external blocker remains open.
+
 ## Smoke Contract
 
 `scripts/verify-production-deployment.mjs` verifies:
@@ -153,6 +160,7 @@ complete production and browser verification.
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
 - [Technical Design](../../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
+- [Engineering Verification](../../engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

@@ -1,5 +1,21 @@
 # Handoff Log
 
+## 2026-07-26 — Production Pipeline Independent Reverification
+
+- **Scope:** TASK-THINSLICE-001 first controlled production deployment.
+- **Result:** AU-AGENT-003 reviewed exact source `4097a5c` as
+  `REWORK REQUIRED`. Exact remediation source `2c88639` step-scopes Cloudflare
+  secrets, fails unauthorized dispatch before environment access, tests the
+  deployment/rollback state machine and Cloudflare evidence parsing, and
+  confirms exact-version plus public-baseline restoration after rollback.
+- **Evidence:** 14 focused deployment tests, full local gates, and GitHub
+  Actions run `30219444159` passed. AU-AGENT-003 resolved
+  TS001-DEPLOY-001 through TS001-DEPLOY-004 and assigned task-scoped
+  Engineering Verification Status `VERIFIED`.
+- **Boundary:** Merge is allowed. Production dispatch remains blocked until
+  `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist in the GitHub
+  `production` environment and authenticated preflight closes TD-GATE-003.
+
 ## 2026-07-26 — Production Authorization and Pipeline Candidate
 
 - **Owner decisions:** PROD-DEC-012 sanctions preserve-only `strandCount`;

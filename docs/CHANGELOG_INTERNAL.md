@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.14.0 |
+| Version | 4.15.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,18 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Production Pipeline Independent Reverification
+
+- Remediated AU-AGENT-003 production findings with step-scoped Cloudflare
+  credentials, explicit pre-environment authorization failure, deterministic
+  deployment lifecycle tests, tested Cloudflare evidence parsing, and
+  exact-version plus public-baseline rollback confirmation.
+- Protected `main` with strict required `verify`, pull-request flow,
+  conversation resolution, and force-push/deletion prevention.
+- Recorded AU-AGENT-003 task-scoped `VERIFIED` at exact source `2c88639` and
+  successful remote CI run `30219444159`; production remains blocked on the
+  two environment secrets and TD-GATE-003.
 
 ## 2026-07-26 — Owner-Authorized Production Pipeline Candidate
 
