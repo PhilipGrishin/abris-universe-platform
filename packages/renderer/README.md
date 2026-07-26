@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-RENDER-001 |
 | Title | Renderer Workspace |
-| Status | Renderer core `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering Verification Status `VERIFIED`; browser integration `[OPEN]` |
+| Status | Renderer core `[IMPLEMENTED]`, `[TESTED]`; repository-level Engineering Verification Status `VERIFIED`; browser capability remediation candidate `[IMPLEMENTED]`, `[TESTED]` |
 | Owner | AU-AGENT-004 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-002 |
 | Supersedes | None |
 | Superseded By | None |
@@ -37,6 +37,11 @@ overlay invalidation, and canonical-cell hit testing.
   testing and disables hit testing in overview mode.
 - Provides an explicit OffscreenCanvas/Worker capability decision and an
   incremental main-thread frame-budget fallback.
+- Exposes a validated static scene and a progress-only render path so the
+  browser adapter can render the static layer in a Worker without moving
+  hit-testing or progress semantics out of the core.
+- Accepts a platform-owned glyph atlas contract and falls back to direct text
+  drawing only when the platform atlas cannot draw.
 - Uses no DOM node per stitch and does not mutate Pattern, PatternVersion,
   Project, or Progress.
 - Rejects invalid summaries and corrupt, duplicate, mis-keyed, out-of-range,
@@ -56,11 +61,12 @@ a browser frame-time result or performance acceptance.
 
 ## Explicit Non-Claims
 
-This package does not implement the browser Canvas adapter, glyph bitmap atlas,
-OffscreenCanvas Worker transport, React/client gesture arbitration, companion
-accessible DOM, rendering golden screenshots, or browser performance matrix.
-Those items remain mandatory later integration evidence. It makes no exact
-symbol-fidelity claim outside the registered route-1 literal-symbol profile.
+This package does not implement the browser Canvas adapter, Worker lifecycle,
+React/client gesture arbitration, companion accessible DOM, rendering golden
+screenshots, or browser performance matrix. The web package supplies the
+OffscreenCanvas Worker and glyph bitmap atlas implementations. Controlled
+evidence remains separate. This package makes no exact symbol-fidelity claim
+outside the registered route-1 literal-symbol profile.
 
 ## Lifecycle and Additions
 

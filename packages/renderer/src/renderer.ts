@@ -5,17 +5,20 @@ import {
   MAX_RENDER_STRING_CODE_UNITS,
   READABLE_CELL_SIZE_CSS_PX,
   type Canvas2DLike,
+  type GlyphAtlasLike,
   type PatternSummary,
   type PatternTile,
   type PatternTileProvider,
   type PatternRenderer,
   type Point,
   type ProgressRenderState,
+  type ProgressRenderFrame,
   type ProgressStateProvider,
   type RenderFrame,
   type RendererExecutionPath,
   type RenderMetrics,
   type StitchHit,
+  type StaticRenderScene,
   type TileRange,
   type Viewport,
 } from "./contracts.ts";
@@ -306,6 +309,7 @@ export class TiledPatternRenderer implements PatternRenderer {
         this.#visibleStitches[this.#staticCursor]!,
         viewport,
         readable,
+        frame.glyphAtlas,
       );
       this.#staticCursor += 1;
       drawnStaticStitches += 1;
@@ -368,6 +372,44 @@ export class TiledPatternRenderer implements PatternRenderer {
     return stitch === undefined
       ? null
       : toStitchHit(stitch.id, stitch.x, stitch.y);
+  }
+
+  getStaticScene(): StaticRenderScene {
+    const summary = this.#requireSummary();
+    const viewport = this.#requireViewport();
+    return {
+      summary,
+      viewport,
+      stitches: this.#visibleStitches,
+    };
+  }
+
+  renderProgress(frame: ProgressRenderFrame): RenderMetrics {
+    this.#requireSummary();
+    const viewport = this.#requireViewport();
+    if (!Number.isFinite(frame.budgetMs) || frame.budgetMs <= 0) {
+      throw new TypeError("Render budget must be positive.");
+    }
+    const start = this.#clock();
+    const readable = viewport.cellSize >= READABLE_CELL_SIZE_CSS_PX;
+    this.#prepareContext(frame.progressContext, viewport);
+    const drawnProgressStitches = this.#renderProgress(
+      frame.progressContext,
+      viewport,
+      readable,
+      start,
+      frame.budgetMs,
+    );
+    return {
+      mode: readable ? "readable" : "overview",
+      visibleTiles: this.#tiles.size,
+      visibleStitches: this.#visibleStitches.length,
+      drawnStaticStitches: 0,
+      drawnProgressStitches,
+      complete:
+        !this.#overlayFullDirty && this.#changedProgressIds.size === 0,
+      elapsedMs: Math.max(0, this.#clock() - start),
+    };
   }
 
   dispose(): void {
@@ -635,6 +677,7 @@ export class TiledPatternRenderer implements PatternRenderer {
     stitch: FullCrossStitch,
     viewport: Viewport,
     readable: boolean,
+    glyphAtlas?: GlyphAtlasLike,
   ): void {
     const palette = this.#paletteById.get(stitch.paletteItemId);
     const symbol = this.#symbolById.get(stitch.symbolId);
@@ -651,12 +694,32 @@ export class TiledPatternRenderer implements PatternRenderer {
     context.strokeStyle = "#808080";
     context.lineWidth = 1;
     context.strokeRect(left, top, viewport.cellSize, viewport.cellSize);
-    context.fillStyle = readableGlyphColor(palette.displayColor);
-    context.font = `${Math.max(10, viewport.cellSize * 0.65)}px sans-serif`;
+    const glyphColor = readableGlyphColor(palette.displayColor);
+    const glyph =
+      symbol.visual.kind === "text-code-point" ? symbol.visual.value : "×";
+    const fontFamily =
+      symbol.visual.kind === "text-code-point"
+        ? symbol.visual.fontFamily
+        : "sans-serif";
+    if (
+      glyphAtlas?.drawGlyph(context, {
+        glyph,
+        fontFamily,
+        color: glyphColor,
+        left,
+        top,
+        cellSize: viewport.cellSize,
+        devicePixelRatio: viewport.devicePixelRatio,
+      }) === true
+    ) {
+      return;
+    }
+    context.fillStyle = glyphColor;
+    context.font = `${Math.max(10, viewport.cellSize * 0.65)}px ${fontFamily}`;
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText(
-      symbol.visual.kind === "text-code-point" ? symbol.visual.value : "×",
+      glyph,
       left + viewport.cellSize / 2,
       top + viewport.cellSize / 2,
     );

@@ -16,6 +16,7 @@ import {
   TiledPatternRenderer,
   type Canvas2DLike,
   type RenderMetrics,
+  type RendererExecutionPath,
   type StitchHit,
   type Viewport,
 } from "@abris-universe/renderer";
@@ -26,13 +27,21 @@ import {
   syncCanvasBackingStore,
   zoomViewport,
 } from "./client-state.ts";
-import { emitEngineeringEvidence } from "./engineering-evidence.ts";
+import {
+  emitEngineeringEvidence,
+  engineeringEvidenceEnabled,
+} from "./engineering-evidence.ts";
+import { BrowserGlyphAtlas } from "./glyph-atlas.ts";
 import { countedCoordinate } from "./messages.ts";
 import {
   ProjectService,
   type LoadedProject,
   type StitchDescription,
 } from "./project-service.ts";
+import {
+  StaticRenderWorkerClient,
+  supportsOffscreenWorkerRendering,
+} from "./render-worker-client.ts";
 
 type SaveStatus = "saved" | "saving" | "not-saved" | "read-only";
 
@@ -70,6 +79,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   const loadAbort = useRef<AbortController | null>(null);
   const animationFrame = useRef<number | null>(null);
   const commandQueue = useRef<Promise<void>>(Promise.resolve());
+  const staticWorker = useRef<StaticRenderWorkerClient | null>(null);
   const viewerStartedAt = useRef(performance.now());
   const viewerInteractiveReported = useRef(false);
   const pendingPaintStartedAt = useRef<number | null>(null);
@@ -82,6 +92,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
     () => new TiledPatternRenderer(loaded.tileProvider, progressState),
     [loaded, progressState],
   );
+  const glyphAtlas = useMemo(() => new BrowserGlyphAtlas(), []);
   const [viewport, setViewport] = useState<Viewport>({
     offsetX: 24,
     offsetY: 24,
@@ -98,12 +109,29 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   const [saveStatus, setSaveStatus] = useState<SaveStatus>(
     navigator.locks === undefined ? "read-only" : "saved",
   );
+  const [executionPath, setExecutionPath] = useState<RendererExecutionPath>(
+    "incremental-main-thread",
+  );
 
-  const renderUntilComplete = useCallback(() => {
+  const renderUntilComplete = useCallback((staticInvalidated = false) => {
     if (animationFrame.current !== null) {
       cancelAnimationFrame(animationFrame.current);
     }
-    const draw = () => {
+    const reportProgressPaint = (result: RenderMetrics) => {
+      if (
+        pendingPaintStartedAt.current !== null &&
+        result.drawnProgressStitches > 0
+      ) {
+        emitEngineeringEvidence(
+          "mark-to-paint",
+          performance.now() - pendingPaintStartedAt.current,
+          loaded.summary.stitchCount,
+        );
+        pendingPaintStartedAt.current = null;
+      }
+      setMetrics(result);
+    };
+    const drawFallback = () => {
       const staticContext = staticCanvas.current?.getContext("2d");
       const progressContext = progressCanvas.current?.getContext("2d");
       if (staticContext === undefined || staticContext === null) return;
@@ -114,6 +142,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
         staticContext: staticContext as unknown as Canvas2DLike,
         progressContext: progressContext as unknown as Canvas2DLike,
         budgetMs: 8,
+        glyphAtlas,
       });
       emitEngineeringEvidence(
         "renderer-frame",
@@ -132,24 +161,68 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
           loaded.summary.stitchCount,
         );
       }
-      if (
-        pendingPaintStartedAt.current !== null &&
-        result.drawnProgressStitches > 0
-      ) {
-        emitEngineeringEvidence(
-          "mark-to-paint",
-          performance.now() - pendingPaintStartedAt.current,
-          loaded.summary.stitchCount,
-        );
-        pendingPaintStartedAt.current = null;
-      }
-      setMetrics(result);
+      reportProgressPaint(result);
       animationFrame.current = result.complete
         ? null
-        : requestAnimationFrame(draw);
+        : requestAnimationFrame(drawFallback);
     };
-    animationFrame.current = requestAnimationFrame(draw);
-  }, [renderer]);
+
+    const worker = staticWorker.current;
+    if (worker === null) {
+      animationFrame.current = requestAnimationFrame(drawFallback);
+      return;
+    }
+
+    const drawProgress = () => {
+      const progressContext = progressCanvas.current?.getContext("2d");
+      if (progressContext === undefined || progressContext === null) return;
+      const result = renderer.renderProgress({
+        progressContext: progressContext as unknown as Canvas2DLike,
+        budgetMs: 8,
+      });
+      reportProgressPaint(result);
+      animationFrame.current = result.complete
+        ? null
+        : requestAnimationFrame(drawProgress);
+    };
+    animationFrame.current = requestAnimationFrame(drawProgress);
+
+    if (!staticInvalidated) return;
+    void worker
+      .draw(renderer.getStaticScene())
+      .then((result) => {
+        const canvas = staticCanvas.current;
+        const context = canvas?.getContext("2d");
+        if (canvas === null || canvas === undefined || context === null || context === undefined) {
+          result.bitmap.close();
+          return;
+        }
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(result.bitmap, 0, 0, canvas.width, canvas.height);
+        result.bitmap.close();
+        emitEngineeringEvidence(
+          "renderer-frame",
+          result.durationMs,
+          loaded.summary.stitchCount,
+        );
+        if (!viewerInteractiveReported.current && result.drawnStitches > 0) {
+          viewerInteractiveReported.current = true;
+          emitEngineeringEvidence(
+            "viewer-tti",
+            performance.now() - viewerStartedAt.current,
+            loaded.summary.stitchCount,
+          );
+        }
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        staticWorker.current?.dispose();
+        staticWorker.current = null;
+        setExecutionPath("incremental-main-thread");
+        animationFrame.current = requestAnimationFrame(drawFallback);
+      });
+  }, [glyphAtlas, loaded.summary.stitchCount, renderer]);
 
   useEffect(() => {
     renderer.setPattern(loaded.summary);
@@ -158,9 +231,30 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
       if (animationFrame.current !== null) {
         cancelAnimationFrame(animationFrame.current);
       }
+      glyphAtlas.clear();
       renderer.dispose();
     };
-  }, [loaded, renderer]);
+  }, [glyphAtlas, loaded, renderer]);
+
+  useEffect(() => {
+    const forceMainThread =
+      engineeringEvidenceEnabled() &&
+      new URLSearchParams(window.location.search).get("renderer-path") ===
+        "main-thread";
+    if (!supportsOffscreenWorkerRendering(forceMainThread)) return;
+    try {
+      const worker = new StaticRenderWorkerClient();
+      staticWorker.current = worker;
+      setExecutionPath("offscreen-worker-capable");
+      return () => {
+        worker.dispose();
+        if (staticWorker.current === worker) staticWorker.current = null;
+      };
+    } catch {
+      staticWorker.current = null;
+      setExecutionPath("incremental-main-thread");
+    }
+  }, [loaded.project.id]);
 
   useEffect(() => {
     const shell = canvasShell.current;
@@ -198,7 +292,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
     void renderer
       .loadVisibleTiles(controller.signal)
       .then((current) => {
-        if (current) renderUntilComplete();
+        if (current) renderUntilComplete(true);
       })
       .catch((error: unknown) => {
         if (!(error instanceof DOMException && error.name === "AbortError")) {
@@ -378,7 +472,12 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
         : `${countedCoordinate(selected.description.coordinate.x, selected.description.coordinate.y)}, symbol ${selected.description.symbol}, color ${selected.description.color}${selected.description.brandCode === null ? "" : `, thread ${selected.description.brandCode}`}, ${progressState.committedValue(selected.hit.stitchId)}.`;
 
   return (
-    <section className="viewer-panel" aria-labelledby="viewer-title">
+    <section
+      className="viewer-panel"
+      aria-labelledby="viewer-title"
+      data-renderer-path={executionPath}
+      data-glyph-atlas="zoom-dpr-cache"
+    >
       <div className="viewer-heading">
         <div>
           <p className="eyebrow">Local pattern viewer</p>

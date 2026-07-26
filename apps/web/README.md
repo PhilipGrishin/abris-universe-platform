@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-WEB-001 |
 | Title | Web Client Workspace |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering Verification Status `REWORK REQUIRED`; renderer capability remediation candidate pending reverification |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, `docs/SOURCE_OF_TRUTH.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -29,7 +29,12 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
 - Exact public importer, renderer, and persistence package contracts.
 - Native IndexedDB import lifecycle, retained original Blob, ready Project,
   bounded visible-tile reads, and projection rebuild on reload.
-- Separate static and progress Canvas2D layers with incremental frame budgets.
+- Separate static and progress Canvas2D layers. The primary supported path
+  renders validated static scenes in an OffscreenCanvas module Worker, while
+  progress and hit testing retain the canonical core contracts.
+- Bounded glyph bitmap atlas keyed by glyph, font, color, zoom bucket, and
+  device-pixel-ratio; a forced engineering-evidence main-thread mode exercises
+  the incremental fallback.
 - Pointer drag pan, toolbar and keyboard pan/zoom, 6-pixel click-versus-pan
   threshold, and non-interactive overview below the readable symbol threshold.
 - Serialized mark/unmark commands with visible `saving`, `saved`, `not saved`,
@@ -66,10 +71,10 @@ multi-tab stale-write behavior, responsive layout, and accessibility state.
 This stage does not add a backend, synchronization, accounts, multi-format
 import, undo/redo, production deployment, or a 500,000-stitch performance
 claim. `pnpm rehearse:deploy` only compiles and inspects a local Worker bundle;
-it has no production route or deploy command. The current renderer execution
-path is incremental main-thread Canvas2D; the dedicated Worker applies to
-import. Controlled browser benchmark and assistive-technology matrices remain
-independent evidence gates.
+it has no production route or deploy command. OffscreenCanvas capability
+changes only the static rendering execution path; the incremental main-thread
+fallback preserves symbols and interaction. Controlled browser benchmark and
+assistive-technology matrices remain independent evidence gates.
 
 ## Lifecycle and Additions
 

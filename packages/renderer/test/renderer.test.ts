@@ -375,6 +375,40 @@ test("overview mode omits glyph claims and disables hit testing", async () => {
   assert.equal(renderer.hitTest({ x: 12, y: 20 }), null);
 });
 
+test("uses a supplied glyph atlas and exposes the validated static scene", async () => {
+  const { pattern, version, stitches } = smallPattern();
+  const provider = new MemoryProvider(
+    summary(pattern, version),
+    buildPatternTiles(version.id, stitches),
+  );
+  const renderer = new TiledPatternRenderer(provider);
+  renderer.setPattern(summary(pattern, version));
+  renderer.setViewport({ ...viewport, width: 800, height: 800 });
+  await renderer.loadVisibleTiles(new AbortController().signal);
+  let atlasDraws = 0;
+  const output = frame();
+  const result = renderer.render({
+    ...output.frame,
+    glyphAtlas: {
+      drawGlyph: () => {
+        atlasDraws += 1;
+        return true;
+      },
+      clear: () => undefined,
+    },
+  });
+  assert.equal(result.complete, true);
+  assert.equal(atlasDraws, stitches.length);
+  assert.equal(
+    output.staticCanvas.calls.some((call) => call.startsWith("text:")),
+    false,
+  );
+  assert.deepEqual(
+    renderer.getStaticScene().stitches.map((stitch) => stitch.id),
+    stitches.map((stitch) => stitch.id),
+  );
+});
+
 test("selects explicit capability paths and readable glyph contrast", () => {
   assert.equal(
     selectRendererExecutionPath(true, true),

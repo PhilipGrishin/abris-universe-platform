@@ -113,6 +113,33 @@ export interface RenderFrame {
   readonly staticContext: Canvas2DLike;
   readonly progressContext: Canvas2DLike;
   readonly budgetMs: number;
+  readonly glyphAtlas?: GlyphAtlasLike;
+}
+
+export interface GlyphAtlasDraw {
+  readonly glyph: string;
+  readonly fontFamily: string;
+  readonly color: string;
+  readonly left: number;
+  readonly top: number;
+  readonly cellSize: number;
+  readonly devicePixelRatio: number;
+}
+
+export interface GlyphAtlasLike {
+  drawGlyph(context: Canvas2DLike, draw: GlyphAtlasDraw): boolean;
+  clear(): void;
+}
+
+export interface StaticRenderScene {
+  readonly summary: PatternSummary;
+  readonly viewport: Viewport;
+  readonly stitches: readonly FullCrossStitch[];
+}
+
+export interface ProgressRenderFrame {
+  readonly progressContext: Canvas2DLike;
+  readonly budgetMs: number;
 }
 
 export interface RenderMetrics {

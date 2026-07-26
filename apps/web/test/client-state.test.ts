@@ -7,7 +7,9 @@ import {
   syncCanvasBackingStore,
   zoomViewport,
 } from "../src/client-state.ts";
+import { glyphAtlasKey } from "../src/glyph-atlas.ts";
 import { countedCoordinate, issueMessage } from "../src/messages.ts";
+import { supportsOffscreenWorkerRendering } from "../src/render-worker-client.ts";
 
 test("zoom preserves the canonical point under its anchor and clamps scale", () => {
   const viewport = {
@@ -73,4 +75,27 @@ test("user messages remain bounded and coordinates are one-based", () => {
   assert.equal(countedCoordinate(0, 0), "row 1, column 1");
   assert.match(issueMessage("OXS_XML_INVALID"), /damaged or incomplete/u);
   assert.doesNotMatch(issueMessage("<untrusted>"), /untrusted/u);
+});
+
+test("glyph atlas keys include zoom bucket, DPR, glyph, font, and color", () => {
+  const base = {
+    glyph: "X",
+    fontFamily: "sans-serif",
+    color: "#000000",
+    left: 0,
+    top: 0,
+    cellSize: 20,
+    devicePixelRatio: 2,
+  };
+  assert.equal(glyphAtlasKey(base), glyphAtlasKey({ ...base, left: 100, top: 50 }));
+  assert.notEqual(
+    glyphAtlasKey(base),
+    glyphAtlasKey({ ...base, devicePixelRatio: 1 }),
+  );
+  assert.notEqual(
+    glyphAtlasKey(base),
+    glyphAtlasKey({ ...base, cellSize: 24 }),
+  );
+  assert.equal(typeof supportsOffscreenWorkerRendering(), "boolean");
+  assert.equal(supportsOffscreenWorkerRendering(true), false);
 });
