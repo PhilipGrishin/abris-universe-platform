@@ -461,27 +461,28 @@
 - **Explicit limitations:** The Project Owner approved missing observed
   import-Worker peak memory as a Phase 0 limitation under the tested 384 MiB
   admission control and mandatory Prototype 9.1 actual measurement before any
-  scale claim. Manual screen-reader and physical Tab traversal,
-  non-Chromium/mobile profiles, safe real quota/eviction, and production
-  assertions were not inferred or represented as passes. Accepted heap
-  evidence remains Chromium main-thread observational evidence only.
+  scale claim. Project Owner-confirmed corrected physical Tab and VoiceOver
+  evidence now exists at exact source `470a30a`; non-Chromium/mobile profiles,
+  safe real quota/eviction, and production assertions were not inferred or
+  represented as passes. Accepted heap evidence remains Chromium main-thread
+  observational evidence only.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 is resolved for bounded Phase 0 at
   exact source `c64d3ec8`; Prototype 9.1 actual Worker-memory measurement
   remains mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is
-  the sole mandatory implementation finding and remains partially resolved for
-  missing manual screen-reader and reliable physical focus-traversal evidence;
-  the normal-color contrast subcondition is resolved.
+  the sole mandatory implementation finding. The normal-color contrast
+  subcondition is resolved, and Project Owner-confirmed corrected physical Tab
+  plus VoiceOver evidence now awaits exact-source AU-AGENT-003 disposition.
 - **Documentation finding:** TS001-DOC-001 is partially resolved and
   non-blocking; version 1.1.0 of the independent report and current
   dispositions require this lifecycle integration.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Complete the manual accessibility remainder and request narrow
-  AU-AGENT-003 reverification before any Completion Report.
+- **Next step:** Commit and validate the manual accessibility evidence, then
+  request narrow AU-AGENT-003 reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

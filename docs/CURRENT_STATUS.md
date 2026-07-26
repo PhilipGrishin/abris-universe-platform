@@ -144,8 +144,10 @@
   384 MiB control and mandatory Prototype 9.1 actual measurement before any
   500,000-stitch scale claim. AU-AGENT-003 independently confirmed exact source
   `c64d3ec8` and resolved TS001-IMPL-002 for bounded Phase 0.
-- `[OPEN]` Manual screen-reader, reliable physical Tab traversal, additional
-  browsers, and mobile remain outside the evidence.
+- `[TESTED]` Exact source `470a30a` now has Project Owner-confirmed corrected
+  physical Tab traversal and macOS VoiceOver evidence. The rejected
+  click-anchored method is retained. AU-AGENT-003 disposition remains open;
+  additional browsers and mobile remain outside the evidence.
 - `[TESTED]` Real browser transaction abort, Web Locks contention with visible
   `Read-only`, blocked upgrade, persistent-storage denial, corrupt import,
   10,000-event lifecycle, and same-origin runtime resources are recorded.
@@ -185,9 +187,9 @@
   observational boundaries.
 - `[IMPLEMENTED]` AU-AGENT-003 independently resolved TS001-IMPL-002 for
   bounded Phase 0 under the approved limitation. TS001-IMPL-003 remains the
-  sole mandatory implementation finding. Completion Report, project
-  `[VERIFIED]`, product acceptance, release readiness, and deployment
-  authorization remain absent.
+  sole mandatory implementation finding pending independent review of the new
+  manual evidence. Completion Report, project `[VERIFIED]`, product acceptance,
+  release readiness, and deployment authorization remain absent.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
   definitions, product navigation, and shared workflow are integrated under
   `product/` without merging product and engineering authority.
@@ -469,8 +471,9 @@
   control, Viewer TTI, registered main-thread retained memory, and
   steady-gesture long-task subconditions passed exact-source independent
   review.
-- `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
-  traversal. The normal-color contrast subcondition is resolved.
+- `[OPEN]` TS001-IMPL-003: the normal-color contrast subcondition is resolved,
+  and corrected physical Tab plus VoiceOver evidence now exists at exact source
+  `470a30a`; AU-AGENT-003 exact-source disposition remains pending.
 - `[OPEN]` Prototype 9.1 actual Worker-memory measurement, manual
   assistive-technology traversal, broader browsers, safe real quota/eviction,
   and production response assertions remain explicit limitations pending
@@ -510,18 +513,15 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated AU-AGENT-003 Engineering Verification Report v1.5.0 for exact
-source `c64d3ec8` and successful CI run `30213355972`. TS001-IMPL-002 is
-resolved for bounded Phase 0 under the owner-approved limitation and tested
-384 MiB control. Prototype 9.1 actual Worker-memory measurement remains
-mandatory before any 500,000-stitch scale claim. TS001-IMPL-003 is unchanged
-and mandatory. Engineering Verification Status remains `REWORK REQUIRED`. No
-project `[VERIFIED]`, product acceptance, release approval, or deployment
-permission was assigned.
+Registered Project Owner-confirmed corrected physical Tab traversal and macOS
+VoiceOver evidence against exact clean source `470a30a`, including the rejected
+click-anchored method and remaining platform/capture limitations.
+TS001-IMPL-003 awaits AU-AGENT-003 exact-source disposition. Engineering
+Verification Status remains `REWORK REQUIRED`. No project `[VERIFIED]`,
+product acceptance, release approval, or deployment permission was assigned.
 
 ## Next Step
 
-Complete manual screen-reader plus reliable physical Tab/focus traversal for
-TS001-IMPL-003, then request narrow AU-AGENT-003 reverification. Preserve
-unsupported profiles and modes before any Completion Report or Claude
-acceptance exchange.
+Commit and validate the manual accessibility evidence, then request narrow
+AU-AGENT-003 reverification of TS001-IMPL-003. Preserve unsupported profiles
+and modes before any Completion Report or Claude acceptance exchange.

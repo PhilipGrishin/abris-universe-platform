@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
@@ -35,8 +35,8 @@ scope, version, evidence, and an assigned technical approver.
   codes; no general producer exact-symbol claim.
 - [TASK-THINSLICE-001 Client Accessibility and Platform Matrix](TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
   — `[TESTED]` only for Chromium/Chrome 150 on the recorded macOS profile;
-  manual screen-reader, contrast-completion, non-Chromium, and mobile rows
-  remain open.
+  Project Owner-confirmed physical Tab and VoiceOver evidence is pending
+  AU-AGENT-003 disposition; non-Chromium and mobile rows remain open.
 
 ## Owner
 

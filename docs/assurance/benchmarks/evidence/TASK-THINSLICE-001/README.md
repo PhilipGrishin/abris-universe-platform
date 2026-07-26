@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; source-qualified evidence with independent dispositions recorded in the Engineering Verification Report |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.6.1 |
+| Version | 1.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, `../../TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md`, implementation commits named by each artifact |
@@ -65,6 +65,9 @@ acceptance or assign `[VERIFIED]`.
 - `performance-tti-memory-manifest-d36a827.json`: schema-v2 instrumentation
   method, exact-source binding, owner confirmation, target continuity,
   artifact hashes, and limitations for the supplemental TTI/memory evidence.
+- `manual-accessibility-470a30a.json`: Project Owner-confirmed corrected
+  physical Tab traversal and macOS VoiceOver session, rejected initial method,
+  exact source, declared environment, outcomes, and limitations.
 
 SHA-256:
 
@@ -104,6 +107,8 @@ SHA-256:
   `a74c5461d00095978f6edf18c280d87b0abf740626bd71d6901288452a756d2b`
 - `performance-tti-memory-manifest-d36a827.json`:
   `9f926bbca881718aae7227b01ed05df1aa2a873061948d73baba81663eae832e`
+- `manual-accessibility-470a30a.json`:
+  `8d8f7ccacf71b4b3e90abadd8ca281e7a6f5008954f8ac7f99fe6adbf067e430`
 
 ## Owner and Lifecycle
 

@@ -128,8 +128,10 @@ this internal stage.
   384 MiB control and mandatory Prototype 9.1 actual measurement before any
   500,000-stitch scale claim. AU-AGENT-003 confirmed exact source `c64d3ec8`
   and resolved TS001-IMPL-002 for bounded Phase 0. The medium estimate remains
-  about 95.7 MiB against 256 MiB and is not actual Worker telemetry. Manual
-  screen-reader and reliable physical focus traversal remain absent.
+  about 95.7 MiB against 256 MiB and is not actual Worker telemetry. Exact
+  source `470a30a` now has Project Owner-confirmed corrected physical Tab
+  traversal and macOS VoiceOver evidence; AU-AGENT-003 disposition remains
+  pending.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -201,10 +203,11 @@ TD-GATE-003 and production assertions remain open.
 
 AU-AGENT-003 reports no Critical or High defect and has resolved
 TS001-IMPL-001, TS001-IMPL-002 for bounded Phase 0, and the bounded
-persistence/runtime-security scopes. TS001-IMPL-003 remains the sole mandatory
-implementation finding; the Completion Report remains blocked. This internal
-remediation requires no Claude return and therefore no new Collaboration
-Bridge Exchange ID.
+persistence/runtime-security scopes. TS001-IMPL-003 now has corrected physical
+Tab and VoiceOver evidence but remains the sole mandatory implementation
+finding until AU-AGENT-003 exact-source review; the Completion Report remains
+blocked. This internal remediation requires no Claude return and therefore no
+new Collaboration Bridge Exchange ID.
 
 ## Current Renderer Gate
 
@@ -231,7 +234,6 @@ remains open.
 
 ## Next Concrete Step
 
-Complete a manual screen-reader session plus reliable physical Tab/focus
-traversal for TS001-IMPL-003, preserve the exact evidence, and request narrow
-AU-AGENT-003 reverification. No Completion Report or Claude acceptance exchange
-is permitted before closure.
+Commit and validate the exact-source manual accessibility evidence, then
+request narrow AU-AGENT-003 reverification of TS001-IMPL-003. No Completion
+Report or Claude acceptance exchange is permitted before closure.

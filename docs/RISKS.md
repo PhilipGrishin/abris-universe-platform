@@ -397,8 +397,9 @@
   memory as a Phase 0 limitation while retaining the unit-tested 384 MiB
   admission control and making actual Prototype 9.1 measurement mandatory
   before any 500,000-stitch scale claim. AU-AGENT-003 independently confirmed
-  the limitation and resolved TS001-IMPL-002 for bounded Phase 0. Manual
-  screen-reader and physical Tab traversal and broader-browser evidence remain
+  the limitation and resolved TS001-IMPL-002 for bounded Phase 0. Exact source
+  `470a30a` adds Project Owner-confirmed corrected physical Tab and VoiceOver
+  evidence; its AU-AGENT-003 disposition and broader-browser evidence remain
   open and cannot be generalized. Accessibility finding TS001-IMPL-003 remains
   mandatory before a Completion Report.
 - **Fallback:** Retain the stable renderer interface, disable a failing

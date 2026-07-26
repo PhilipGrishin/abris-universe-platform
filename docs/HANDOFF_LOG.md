@@ -1,5 +1,32 @@
 # Handoff Log
 
+## 2026-07-26 — Manual Physical-Keyboard and VoiceOver Evidence Candidate
+
+- **Exact source:** clean commit
+  `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; local production-mode benchmark
+  accessibility harness.
+- **Operator:** Project Owner on the declared Chrome 150/macOS 26.5.2 profile
+  with built-in VoiceOver.
+- **Method correction:** Clicking the middle summary made Tab and Option+Tab
+  begin at `Zoom out`. Those attempts are retained and rejected as
+  full-document methods. Reload without a content click established the valid
+  starting condition.
+- **Physical traversal:** Home link, Import OXS, Zoom out/in, Pan
+  left/up/down/right, and pattern Canvas matched the expected order.
+- **VoiceOver:** The owner confirmed the expected link/button names and roles,
+  Canvas name/grid/stitch-count/instructions, selected-stitch
+  coordinate/symbol/color/state, and saving/saved announcements.
+- **Limitations:** VoiceOver version, exact viewport, and audio were not
+  independently captured. Other browsers, mobile, touch, forced-colors, and
+  browser zoom remain unclaimed.
+- **Status boundary:** Evidence is `[TESTED]` and a pass-candidate.
+  TS001-IMPL-003 remains mandatory pending AU-AGENT-003 exact-source review;
+  `REWORK REQUIRED` and the Completion Report block remain.
+- **Bridge disposition:** Internal engineering evidence; no Claude return or
+  Exchange ID is required.
+- **Next gate:** Commit, push, confirm exact-head CI, and request narrow
+  AU-AGENT-003 review.
+
 ## 2026-07-26 — Phase 0 Worker-Memory Limitation Reverification
 
 - **Exact source:** `c64d3ec8ab390269121c651d8c78695d9b4946f5`;

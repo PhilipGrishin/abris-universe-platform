@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676` |
+| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676`; manual evidence source `470a30a7ea04860c9dacab5ae6edace960ca7d6d` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Browser, OS, viewport, assistive technology, interaction, semantics, color, motion, or source change |
@@ -74,20 +74,46 @@ source-qualified row and evidence.
   supporting structural evidence only and is not represented as a successful
   physical Tab traversal.
 
-## Unresolved Accessibility Evidence
+## Manual Accessibility Evidence
 
-- No manual VoiceOver, NVDA, JAWS, or other screen-reader session was run.
-- The browser control surface could not provide a reliable end-to-end Tab
-  traversal assertion, although native focusable controls, visible
-  `:focus-visible` styling, and focused keyboard interaction were observed.
+At exact clean source `470a30a`, the Project Owner completed a physical
+keyboard and macOS VoiceOver session on the declared Chrome/macOS profile.
+The retained
+[manual evidence artifact](../benchmarks/evidence/TASK-THINSLICE-001/manual-accessibility-470a30a.json)
+records:
+
+- a corrected physical Tab traversal in the exact order home link, import
+  control, zoom out/in, pan left/up/down/right, and pattern Canvas;
+- visible physical focus with no reported order mismatch;
+- VoiceOver names and roles for the home link, import control, six viewer
+  controls, and named Canvas;
+- the spoken Canvas pattern name, 512×256 summary, 100,000-stitch count, and
+  keyboard instructions;
+- physical Canvas ArrowRight and Plus operation;
+- spoken selected-stitch coordinate, symbol, color, marked/unmarked state,
+  `Saving…`, and `Saved locally`.
+
+The initial attempt after clicking the middle project-summary region and its
+Option+Tab repeat both started at `Zoom out`. They are retained as rejected
+full-document methods because the click established the sequential-focus
+starting point after the header. The valid pass-candidate used page reload and
+no content click before physical Tab traversal. The correction is not hidden
+or represented as an implementation fix.
+
+The manual evidence is `[TESTED]` and remains a pass-candidate until
+AU-AGENT-003 independently reviews its sufficiency and finding disposition.
+
+## Remaining Accessibility Limitations
+
+- The VoiceOver version, exact viewport, and audio output were not
+  independently captured.
+- The session is Project Owner-confirmed manual evidence, not automated
+  screen-reader telemetry.
 - Mobile viewport, touch target, browser zoom, forced-colors, and non-Chromium
   accessibility behavior remain unverified.
 
-TS001-IMPL-003 is therefore materially advanced but not declared closed.
-AU-AGENT-003 independently reverified exact source `4009944`, accepted the
-manual contrast disposition for the measured normal-color state, and retained
-TS001-IMPL-003 as a mandatory Medium finding for manual screen-reader and
-reliable physical Tab/focus traversal evidence.
+TS001-IMPL-003 now has the requested manual evidence but is not self-declared
+closed. AU-AGENT-003 retains authority over its exact-source disposition.
 
 ## Common Mistakes
 
@@ -105,10 +131,11 @@ reliable physical Tab/focus traversal evidence.
 - [x] Accessible names and live status present in the accessibility tree.
 - [x] Grayscale/non-color-only visual state retained.
 - [x] Reduced-motion rule and evidence state checked.
-- [ ] Manual screen-reader session completed.
+- [x] Manual screen-reader session completed.
+- [x] Reliable corrected physical Tab/focus traversal completed.
 - [x] Incomplete contrast targets manually dispositioned with exact ratios.
 - [ ] Additional supported browser/platform rows exercised.
-- [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
+- [ ] AU-AGENT-003 independent review of the new manual evidence completed.
 
 ## References
 

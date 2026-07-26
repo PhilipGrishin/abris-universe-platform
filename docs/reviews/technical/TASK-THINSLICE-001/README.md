@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.18.0 |
+| Version | 1.19.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -81,10 +81,11 @@ contract, static Worker boundary, restrictive headers, clean-source
 TS001-PERSIST-006, and the measured-profile implementation-runtime part of
 TS001-SEC-002. Later exact-source reverification at `c64d3ec8` resolves
 TS001-IMPL-002 for bounded Phase 0 under the owner-approved Worker-memory
-limitation. TS001-IMPL-003 remains mandatory for manual screen-reader and
-reliable physical focus-traversal evidence. TD-GATE-002 remains open for
-exact-symbol claims about other producers. Production deployment also requires
-TD-GATE-003 and authorized production security assertions.
+limitation. TS001-IMPL-003 remains mandatory pending independent review of
+Project Owner-confirmed physical Tab and VoiceOver evidence at exact source
+`470a30a`. TD-GATE-002 remains open for exact-symbol claims about other
+producers. Production deployment also requires TD-GATE-003 and authorized
+production security assertions.
 
 ## Owner
 

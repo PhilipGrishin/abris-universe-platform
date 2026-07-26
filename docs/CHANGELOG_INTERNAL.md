@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.6.0 |
+| Version | 4.7.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Manual Physical-Keyboard and VoiceOver Evidence
+
+- Added source-qualified Project Owner-confirmed manual accessibility evidence
+  for exact clean source `470a30a`.
+- Retained the initial click-anchored Tab and Option+Tab attempts as rejected
+  full-document methods rather than hiding or misclassifying them.
+- Registered the corrected reload-without-content-click physical Tab order
+  across the home link, import control, viewer controls, and Canvas.
+- Registered VoiceOver names/roles, Canvas summary and instructions,
+  ArrowRight/Plus operation, selected-stitch detail, and saving/saved
+  announcements.
+- Preserved missing VoiceOver version, exact viewport/audio capture, other
+  browsers, mobile, touch, forced-colors, and browser zoom as explicit
+  limitations.
+- Preserved TS001-IMPL-003 and `REWORK REQUIRED` pending AU-AGENT-003
+  exact-source review.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Phase 0 Worker-Memory Limitation Reverification
 
