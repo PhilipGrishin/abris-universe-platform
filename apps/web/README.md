@@ -57,6 +57,7 @@ pnpm --filter @abris-universe/web dev
 pnpm --filter @abris-universe/web typecheck
 pnpm --filter @abris-universe/web test
 pnpm --filter @abris-universe/web build
+pnpm --filter @abris-universe/web build:benchmark
 pnpm --filter @abris-universe/web preview
 pnpm build
 pnpm rehearse:deploy
@@ -66,6 +67,11 @@ The client tests cover viewport zoom invariants, bounded user messages, one-base
 coordinates, and progress save/failure transitions. Browser verification is
 required for Worker creation, Canvas pixels, IndexedDB reload recovery,
 multi-tab stale-write behavior, responsive layout, and accessibility state.
+
+`build:benchmark` writes a separate production-mode harness to
+`dist-benchmark`. It embeds only the project-original registered fixtures,
+exercises 30 storage-reset cold imports per fixture plus a 10,000-event history
+reload scenario, and must never be deployed with the product SPA.
 
 ## Limits
 
