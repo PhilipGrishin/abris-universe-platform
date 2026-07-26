@@ -15,6 +15,9 @@ node_modules/
 dist/
 coverage/
 *.tsbuildinfo
+.wrangler/
+.deploy-dry-run/
+apps/web/public/version.json
 
 # Local Claude-Codex bridge state. Canonical contracts and exchange manifests
 # remain committed under collaboration/; payloads and machine paths do not.

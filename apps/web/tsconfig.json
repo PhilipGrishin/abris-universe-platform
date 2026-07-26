@@ -7,5 +7,11 @@
     "rootDir": ".",
     "types": ["vite/client", "node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/**/*.ts",
+    "worker/**/*.ts",
+    "vite.config.ts"
+  ]
 }

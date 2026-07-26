@@ -38,15 +38,19 @@ for (const [directory, expectedName] of expectedPackages) {
           "tsconfig.json",
         ]
       : [
+          ".wrangler",
           "README.md",
           "dist",
           "index.html",
           "node_modules",
           "package.json",
+          "public",
           "src",
           "test",
           "tsconfig.json",
           "vite.config.ts",
+          "worker",
+          "wrangler.jsonc",
         ];
   const unexpectedRuntimeFiles = readdirSync(directory).filter(
     (entry) => !allowedEntries.includes(entry)
@@ -100,8 +104,14 @@ for (const requiredPath of [
   "apps/web/src/styles.css",
   "apps/web/src/viewer.tsx",
   "apps/web/test/client-state.test.ts",
+  "apps/web/test/worker.test.ts",
   "apps/web/tsconfig.json",
   "apps/web/vite.config.ts",
+  "apps/web/worker/index.ts",
+  "apps/web/wrangler.jsonc",
+  "scripts/verify-deploy-rehearsal.mjs",
+  "scripts/verify-static-build.mjs",
+  "scripts/write-version.mjs",
 ]) {
   if (!existsSync(requiredPath)) {
     throw new Error(`Approved workspace implementation is missing ${requiredPath}`);

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification pending |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -39,6 +39,10 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
 - Opt-in local engineering timings through
   `?engineering-evidence=1`; records are written only to the browser console
   and are never transmitted.
+- Static Cloudflare Worker asset boundary with SPA fallback, GET/HEAD-only
+  handling, reviewed CSP, `nosniff`, and no-referrer response headers.
+- Non-secret build provenance in generated `version.json`, verified
+  content-hashed assets, and a Wrangler dry-run bundle that does not deploy.
 
 ## Run and Verify
 
@@ -48,6 +52,8 @@ pnpm --filter @abris-universe/web typecheck
 pnpm --filter @abris-universe/web test
 pnpm --filter @abris-universe/web build
 pnpm --filter @abris-universe/web preview
+pnpm build
+pnpm rehearse:deploy
 ```
 
 The client tests cover viewport zoom invariants, bounded user messages, one-based
@@ -59,9 +65,11 @@ multi-tab stale-write behavior, responsive layout, and accessibility state.
 
 This stage does not add a backend, synchronization, accounts, multi-format
 import, undo/redo, production deployment, or a 500,000-stitch performance
-claim. The current renderer execution path is incremental main-thread Canvas2D;
-the dedicated Worker applies to import. Controlled browser benchmark and
-assistive-technology matrices remain independent evidence gates.
+claim. `pnpm rehearse:deploy` only compiles and inspects a local Worker bundle;
+it has no production route or deploy command. The current renderer execution
+path is incremental main-thread Canvas2D; the dedicated Worker applies to
+import. Controlled browser benchmark and assistive-technology matrices remain
+independent evidence gates.
 
 ## Lifecycle and Additions
 
