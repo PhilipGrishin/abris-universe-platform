@@ -1,5 +1,32 @@
 # Handoff Log
 
+## 2026-07-26 — Targeted Performance and Accessibility Remediation
+
+- **Implementation source:** `d69b5c564cf17a042d2bf36ef1a864031e802676`.
+- **Performance evidence:** The medium-pattern scripted gesture now clears
+  engineering evidence immediately before the scenario. The exact clean-source
+  capture retains 120 frame intervals and 85 Worker-render samples with zero
+  long tasks, 8.5 ms frame p95, 10.2 ms frame maximum, and 2.3 ms
+  Worker-render p95.
+- **Historical evidence:** The earlier combined-session artifact and its 31
+  unattributed long-task entries remain retained and unchanged.
+- **Memory boundary:** The enforced medium-import estimator produces about
+  95.7 MiB against the 256 MiB budget. It is not browser-reported Worker heap;
+  sufficiency or limitation disposition remains with AU-AGENT-003.
+- **Accessibility evidence:** A clean axe-core rerun reports zero violations
+  and five incomplete toolbar targets. Manual exact-ratio calculations
+  disposition every target at 8.37:1 or better. Rendered focus order is
+  retained as supporting structural evidence.
+- **Open limitations:** Reference DPR1, 4× constrained, browser-reported Worker
+  heap, manual screen-reader, and reliable physical Tab traversal remain
+  unclaimed.
+- **Status boundary:** Findings TS001-IMPL-002 and TS001-IMPL-003 remain
+  mandatory until AU-AGENT-003 completes narrow exact-source reverification.
+- **Bridge disposition:** This is an internal engineering gate; no Claude
+  return or Exchange ID is required.
+- **Next gate:** Commit and push the evidence package, confirm exact-head CI,
+  then request AU-AGENT-003 reverification.
+
 ## 2026-07-26 — Consolidated Remediation Reverification
 
 - **Exact source:** `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`,

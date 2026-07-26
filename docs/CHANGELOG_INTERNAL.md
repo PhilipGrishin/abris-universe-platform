@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 3.8.0 |
+| Version | 3.9.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,25 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Targeted Assurance Evidence Remediation
+
+- Isolated the scripted medium-pattern gesture by clearing engineering evidence
+  immediately before the 120-frame scenario.
+- Retained exact-source raw evidence with zero long tasks, 8.5 ms frame p95,
+  10.2 ms frame maximum, and 2.3 ms Worker-render p95.
+- Preserved the earlier combined-session artifact and its 31 unattributed long
+  tasks as historical evidence.
+- Replaced the remaining translucent audit backgrounds and retained an
+  exact-source axe-core rerun with zero violations.
+- Manually dispositioned all five remaining incomplete toolbar contrast
+  targets at 8.37:1 or better and recorded rendered focus order without
+  claiming successful physical Tab traversal.
+- Preserved reference/constrained profiles, browser-reported Worker memory,
+  manual screen-reader, and physical Tab traversal as explicit limitations.
+- Documentation Impact: Material.
+- Status: remediation `[IMPLEMENTED]`, `[TESTED]`; TS001-IMPL-002/003 remain
+  mandatory until narrow AU-AGENT-003 reverification.
 
 ## 2026-07-26 — Consolidated Remediation Reverification
 

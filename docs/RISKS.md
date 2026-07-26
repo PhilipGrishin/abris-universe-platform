@@ -382,11 +382,15 @@
   OffscreenCanvas Worker, bounded glyph atlas and tile-raster cache,
   incremental main-thread fallback, accessible browser integration, and
   source-qualified measured-profile evidence. Listed budgets pass on the
-  recorded Chromium/macOS profile. Reference/constrained profiles, Worker peak
-  memory, manual accessibility, and broader-browser evidence remain open and
-  cannot be generalized. AU-AGENT-003 reverified exact source `6da2f9e`,
-  resolved TS001-IMPL-001, and retained performance/accessibility findings 002
-  and 003 as mandatory before a Completion Report.
+  recorded Chromium/macOS profile. Exact source `d69b5c5` additionally
+  isolates the steady-gesture scenario with zero long tasks and manually
+  dispositions the remaining contrast targets. Reference/constrained
+  profiles, browser-reported Worker peak memory, manual screen-reader and
+  physical Tab traversal, and broader-browser evidence remain open and cannot
+  be generalized. AU-AGENT-003 reverified exact source `6da2f9e`, resolved
+  TS001-IMPL-001, and retained performance/accessibility findings 002 and 003
+  as mandatory before a Completion Report; the later candidate requires
+  narrow reverification.
 - **Fallback:** Retain the stable renderer interface, disable a failing
   execution path, use the incremental main-thread fallback, and do not promote
   the release until mandatory findings and browser gates pass.

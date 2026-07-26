@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b` and `37e657eb6571c525154e07ed225d6b877358fb99`; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.1; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, and `d69b5c564cf17a042d2bf36ef1a864031e802676`; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -75,9 +75,16 @@ The raw medium interaction artifact also contains 31 `long-task` entries:
 one at 50 ms and 30 above 50 ms, with a maximum of 93 ms. The original capture
 did not label which scenario phase produced each entry. They therefore cannot
 be attributed to or excluded from the steady pan/zoom window, and this report
-does not assign a pass or failure to the long-task budget. A targeted rerun
-must reset and label long-task observations per scenario before that metric can
-be dispositioned.
+does not assign a pass or failure to the long-task budget.
+
+Exact clean source `d69b5c5` added a targeted rerun that clears local
+engineering evidence immediately before the scripted medium-pattern gesture.
+That isolated 120-frame capture retained 120 ordered frame intervals, 85
+Worker renderer samples, and zero long-task entries. Frame p95 was 8.5 ms,
+maximum was 10.2 ms, and no frame exceeded the 18.2 ms budget. Worker renderer
+p95 was 2.3 ms and maximum was 6.1 ms. This targeted result dispositions the
+steady-gesture long-task scenario only. The historical combined-session
+artifact and its 31 unattributed long tasks remain retained and unchanged.
 
 The recorded main-thread heap signal rose from 50,468,280 bytes after the
 scripted interaction to a 189,160,737-byte observed peak after the combined
@@ -85,6 +92,14 @@ interaction and 30 reload sequence. The 138,692,457-byte delta is about
 132.3 MiB and is below the provisional 160 MiB medium retained-delta budget,
 but it is not a forced-GC retained-heap measurement and excludes Worker,
 Canvas, and GPU allocations.
+
+The importer also enforces a deterministic preflight peak estimate for the
+registered 100,000-stitch medium fixture: 100,374,296 bytes, about 95.7 MiB,
+against the 256 MiB medium import budget. This is a conservative admission
+bound enforced before parsing, not browser-reported import-Worker heap
+telemetry. It must not be represented as measured Worker peak memory unless
+AU-AGENT-003 explicitly accepts the estimator as sufficient evidence or an
+approved limitation is registered.
 
 ## Budget Disposition
 
@@ -94,14 +109,15 @@ TS001-IMPL-002 closure is not claimed because:
 - the exact reference viewport/DPR profile was not run;
 - the 4× constrained profile was not run;
 - import-Worker peak memory was not available from the browser measurement;
-- retained medium long-task observations are not attributed to scenario phase;
 - heap evidence is an observational upper signal, not a forced-GC retained
   allocation result.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 reverified the
 evidence at exact source `6da2f9e`, accepted the measured values within their
-declared profile, and kept TS001-IMPL-002 mandatory for the missing profiles,
-Worker memory, and long-task disposition.
+declared profile, and kept TS001-IMPL-002 mandatory. Exact source `d69b5c5`
+subsequently isolates and dispositions the steady-gesture long-task scenario.
+The missing profiles and Worker-memory evidence or approved limitation remain
+subject to narrow AU-AGENT-003 reverification.
 
 ## Common Mistakes
 
@@ -124,7 +140,7 @@ Worker memory, and long-task disposition.
 - [ ] Registered reference viewport and DPR run.
 - [ ] Registered constrained profile run.
 - [ ] Import-Worker peak memory measured.
-- [ ] Long-task evidence isolated and dispositioned by scenario phase.
+- [x] Long-task evidence isolated and dispositioned for the scripted gesture.
 - [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
 
 ## References

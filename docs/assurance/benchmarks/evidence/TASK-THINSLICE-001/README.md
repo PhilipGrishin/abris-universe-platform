@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]`; source-qualified gate-candidate and historical non-gate evidence |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, implementation commits named by each artifact |
@@ -38,6 +38,11 @@ acceptance or assign `[VERIFIED]`.
   blocked-upgrade results.
 - `accessibility-1c2bd5d.json`: pinned axe-core result after remediation.
 - `grayscale-1c2bd5d.jpg`: 1280×720 grayscale/reduced-motion visual evidence.
+- `medium-gesture-d69b5c5.json`: isolated 120-frame medium-pattern gesture
+  capture after clearing engineering evidence immediately before the scenario.
+- `accessibility-d69b5c5.json`: exact-source axe-core rerun, manual contrast
+  calculations, and rendered focus-order inspection after contrast
+  remediation.
 
 SHA-256:
 
@@ -53,6 +58,10 @@ SHA-256:
   `5428c66ec13d85fc38a488f2247620baeeebbfc8b51ca7c960561a6ec41558a5`
 - `grayscale-1c2bd5d.jpg`:
   `8566a4b798727d1b687c7fbf64addb2974fbc4b8637809bc315cff4bad203999`
+- `medium-gesture-d69b5c5.json`:
+  `eb7f60bcc9895033bfcb36e1b08d1c09d4747d27c0278b1fe9685e942fa708be`
+- `accessibility-d69b5c5.json`:
+  `0dd1827829b37dd4c354a4ed6f85bea3163202dd1743c22165f6e00248eff57d`
 
 ## Owner and Lifecycle
 

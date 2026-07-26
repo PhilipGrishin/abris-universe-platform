@@ -131,8 +131,17 @@
   memory remain open.
 - `[TESTED]` Pinned axe-core reports zero violations after remediation;
   Chromium/macOS accessibility tree, grayscale and reduced-motion evidence
-  state, and keyboard Canvas behavior are recorded. Manual screen-reader,
-  incomplete contrast review, additional browsers, and mobile remain open.
+  state, and keyboard Canvas behavior are recorded.
+- `[IMPLEMENTED]`, `[TESTED]` Exact source `d69b5c5` isolates the scripted
+  medium gesture after clearing evidence and records 120 frame intervals,
+  zero long tasks, 8.5 ms frame p95, and 2.3 ms Worker-render p95. It also
+  replaces the remaining translucent audit backgrounds; a clean axe rerun has
+  zero violations and five incomplete toolbar targets, all manually
+  dispositioned at 8.37:1 or better.
+- `[OPEN]` Registered reference/constrained profiles, browser-reported Worker
+  peak memory or reviewer-accepted estimator limitation, manual screen-reader,
+  reliable physical Tab traversal, additional browsers, and mobile remain
+  outside the evidence.
 - `[TESTED]` Real browser transaction abort, Web Locks contention with visible
   `Read-only`, blocked upgrade, persistent-storage denial, corrupt import,
   10,000-event lifecycle, and same-origin runtime resources are recorded.
@@ -424,15 +433,17 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles, Worker
-  peak memory or approved limitation, and scenario-attributed long-task
-  disposition.
-- `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable focus traversal and
-  manual disposition of axe's 15 incomplete contrast targets.
+- `[OPEN]` TS001-IMPL-002: registered reference/constrained profiles and Worker
+  peak memory or an independently accepted estimator limitation. The
+  steady-gesture long-task scenario has a targeted remediation candidate.
+- `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
+  traversal. The incomplete contrast targets have a manual exact-ratio
+  remediation candidate.
 - `[OPEN]` Registered reference/constrained benchmark profiles, Worker peak
-  memory, manual accessibility/contrast, broader browsers, safe real
-  quota/eviction, and production response assertions remain explicit evidence
-  limitations pending independent disposition.
+  memory or accepted limitation, manual assistive-technology traversal,
+  broader browsers, safe real quota/eviction, and production response
+  assertions remain explicit evidence limitations pending independent
+  disposition.
 - `[OPEN]` TD-GATE-003 placeholder rollback anchor and explicit authorization
   before any production deployment.
 - `[OPEN]` Independent Claude Cowork product acceptance after a complete,
@@ -478,7 +489,7 @@ was assigned.
 
 ## Next Step
 
-Complete safe local remediation for TS001-IMPL-002 and TS001-IMPL-003,
-preserving any profile or manual-assistive-technology limitation that cannot be
-verified. Request narrow AU-AGENT-003 reverification before a Completion Report
-or Claude acceptance exchange.
+Commit and push the targeted evidence package, confirm exact-head CI, and
+request narrow AU-AGENT-003 reverification. Preserve unavailable profile,
+Worker-telemetry, and manual assistive-technology limitations before a
+Completion Report or Claude acceptance exchange.

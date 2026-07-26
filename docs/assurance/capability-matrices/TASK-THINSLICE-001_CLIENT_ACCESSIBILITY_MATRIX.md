@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commit `1c2bd5d7e83de32471ebe29d50809f42b0244039` |
+| Dependencies | Technical Design sections 8.4 and 11.2; ADR-TS001-002; implementation commits `1c2bd5d7e83de32471ebe29d50809f42b0244039` and `d69b5c564cf17a042d2bf36ef1a864031e802676` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Browser, OS, viewport, assistive technology, interaction, semantics, color, motion, or source change |
@@ -59,6 +59,20 @@ source-qualified row and evidence.
 - The stylesheet contains the production
   `prefers-reduced-motion: reduce` rule. The benchmark-only reduced-motion
   state disables animation and transition duration for visual inspection.
+- Exact clean source `d69b5c5` replaced the remaining translucent header and
+  project-summary backgrounds with opaque values and darkened the secondary
+  brand text. Axe-core 4.10.3 again reported zero violations and reduced its
+  incomplete contrast set from 15 targets to the five toolbar direction
+  buttons.
+- Manual WCAG contrast calculations disposition every remaining axe target and
+  the remediated contextual text: toolbar controls `#f4f1e9` on `#214d49`
+  measured 8.37:1; toolbar output on `#183f3c` measured 10.25:1; secondary
+  brand text measured 5.23:1; summary labels measured 4.61:1; and summary
+  values measured 15.44:1. Each exceeds the 4.5:1 normal-text threshold.
+- Rendered DOM inspection recorded the focusable order as home link, file
+  input, zoom controls, four pan controls, then the pattern Canvas. This is
+  supporting structural evidence only and is not represented as a successful
+  physical Tab traversal.
 
 ## Unresolved Accessibility Evidence
 
@@ -66,8 +80,6 @@ source-qualified row and evidence.
 - The browser control surface could not provide a reliable end-to-end Tab
   traversal assertion, although native focusable controls, visible
   `:focus-visible` styling, and focused keyboard interaction were observed.
-- Axe's incomplete contrast targets require a manual contrast review or a
-  tool that can resolve the layered backgrounds.
 - Mobile viewport, touch target, browser zoom, forced-colors, and non-Chromium
   accessibility behavior remain unverified.
 
@@ -92,7 +104,7 @@ AU-AGENT-003 independently reverified this bounded evidence at exact source
 - [x] Grayscale/non-color-only visual state retained.
 - [x] Reduced-motion rule and evidence state checked.
 - [ ] Manual screen-reader session completed.
-- [ ] Incomplete contrast targets manually resolved.
+- [x] Incomplete contrast targets manually dispositioned with exact ratios.
 - [ ] Additional supported browser/platform rows exercised.
 - [x] AU-AGENT-003 independent review completed; finding remains partially resolved.
 

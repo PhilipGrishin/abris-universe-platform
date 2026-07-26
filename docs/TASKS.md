@@ -423,6 +423,10 @@
 - **Reverification source:** Exact commit
   `6da2f9e9f08fc34dc0880b394ae1a032d8ce410a`; GitHub Actions run
   `30195963832`.
+- **Subsequent remediation source:** Exact implementation commit
+  `d69b5c564cf17a042d2bf36ef1a864031e802676`; targeted evidence and lifecycle
+  commit plus exact-head CI remain to be registered before the next
+  AU-AGENT-003 review.
 - **Owner:** AU-AGENT-003 for independent findings and status; AU-AGENT-001
   coordinates remediation; domain owners retain their implementation scopes;
   AU-AGENT-002 integrates lifecycle records without changing review meaning.
@@ -434,27 +438,34 @@
   atlas and tile-raster cache, incremental fallback, measured-profile browser
   benchmark, accessibility/platform matrix, real persistence failure and
   contention scenarios, and same-origin runtime inventory are retained.
+- **Subsequent remediation evidence:** The scripted medium gesture now clears
+  evidence immediately before its 120-frame scenario; exact-source capture
+  records zero long tasks, 8.5 ms frame p95, and 2.3 ms Worker-render p95.
+  Exact-source contrast remediation reduces axe incomplete targets from 15 to
+  five toolbar controls, and manual calculations disposition all five at
+  8.37:1 or better. Rendered focus order is recorded as supporting structure.
 - **Explicit limitations:** Registered reference/constrained benchmark
-  profiles, Worker peak memory, manual screen-reader and incomplete contrast
-  review, non-Chromium/mobile profiles, safe real quota/eviction, and
-  production assertions were not inferred or represented as passes.
+  profiles, browser-reported Worker peak memory or reviewer-accepted estimator
+  limitation, manual screen-reader and physical Tab traversal,
+  non-Chromium/mobile profiles, safe real quota/eviction, and production
+  assertions were not inferred or represented as passes.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
 - **Mandatory findings:** TS001-IMPL-002 remains partially resolved for missing
-  registered profiles, Worker peak-memory evidence, and long-task scenario
-  disposition. TS001-IMPL-003 remains partially resolved for missing manual
-  screen-reader/focus-traversal evidence and manual disposition of axe's
-  incomplete contrast targets.
+  registered profiles and Worker peak-memory evidence or accepted limitation.
+  The long-task scenario has a new remediation candidate. TS001-IMPL-003
+  remains partially resolved for missing manual screen-reader and reliable
+  physical focus-traversal evidence; contrast has a new remediation candidate.
 - **Documentation finding:** TS001-DOC-001 is partially resolved and
   non-blocking; version 1.1.0 of the independent report and current
   dispositions require this lifecycle integration.
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Complete TS001-IMPL-002 and TS001-IMPL-003 without inferring
-  unsupported profiles, then request narrow exact-source AU-AGENT-003
-  reverification before any Completion Report.
+- **Next step:** Register exact-head CI for the new candidate and request narrow
+  exact-source AU-AGENT-003 reverification without inferring unsupported
+  profiles before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

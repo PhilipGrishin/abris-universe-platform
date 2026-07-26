@@ -10,7 +10,8 @@ repository-level Engineering Verification Status `VERIFIED`; client
 integration, renderer capability remediation, measured-profile browser
 evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
 consolidated Engineering Verification Status remains `REWORK REQUIRED` after
-AU-AGENT-003 reverification at `6da2f9e`
+AU-AGENT-003 reverification at `6da2f9e`; later exact-source performance and
+contrast remediation is awaiting narrow reverification
 
 Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
 all unsupported performance, accessibility, and platform limitations. Keep
@@ -80,8 +81,10 @@ this internal stage.
   1280×720 DPR 2 profile; the registered reference/constrained profiles and
   Worker peak memory remain open.
 - Pinned axe-core reports zero violations after exact-source remediation.
-  Manual screen-reader, incomplete contrast review, non-Chromium, and mobile
-  evidence remain open.
+  Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
+  five toolbar controls, and manual calculations disposition those controls at
+  8.37:1 or better. Manual screen-reader, reliable physical Tab traversal,
+  non-Chromium, and mobile evidence remain open.
 - Real-browser evidence observes transaction abort, exact Web Locks contention
   with visible `Read-only`, blocked IndexedDB upgrade, persistent-storage
   denial, and a same-origin runtime resource inventory. Safe real quota/
@@ -92,10 +95,15 @@ this internal stage.
   declared Chromium/macOS Phase 0 scope. The implementation-runtime part of
   TS001-SEC-002 is resolved for that profile; production assertions remain
   open.
-- TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings. Raw
-  medium evidence has 31 unattributed long-task entries; registered reference/
-  constrained profiles and Worker peak memory are absent. Manual screen-reader,
-  reliable focus traversal, and manual contrast disposition remain absent.
+- TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings until
+  AU-AGENT-003 changes their dispositions. Exact source `d69b5c5` isolates the
+  medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
+  2.3 ms Worker-render p95; the earlier combined-session artifact with 31
+  unattributed long tasks remains historical evidence. Registered reference/
+  constrained profiles and browser-reported Worker peak memory are absent.
+  The enforced medium import estimate is about 95.7 MiB against 256 MiB but is
+  not actual Worker telemetry. Manual screen-reader and reliable physical
+  focus traversal remain absent.
 - TD-GATE-001 is closed only for the registered route-1 generator profile:
   top-left origin, x rightward, y downward, zero-based integer coordinates,
   no transposition.
@@ -191,8 +199,8 @@ remains open.
 
 ## Next Concrete Step
 
-Integrate the independent version 1.1.0 report, then complete the measurable
-parts of TS001-IMPL-002 and TS001-IMPL-003 without inferring unsupported
-profiles or assistive-technology results. Request narrow exact-source
-AU-AGENT-003 reverification before preparing any Completion Report or Claude
+Commit and push the exact-source targeted evidence, confirm exact-head CI, and
+request narrow AU-AGENT-003 reverification of TS001-IMPL-002 and
+TS001-IMPL-003. Preserve unavailable profiles and assistive-technology results
+as explicit limitations before preparing any Completion Report or Claude
 acceptance exchange.
