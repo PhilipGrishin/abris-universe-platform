@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.12.0 |
+| Version | 1.13.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -46,6 +46,7 @@ final product acceptance.
 - [OXS Importer Implementation Review](OXS_IMPORTER_IMPLEMENTATION_REVIEW.md)
 - [Persistence Implementation Review](PERSISTENCE_IMPLEMENTATION_REVIEW.md)
 - [Renderer Core Implementation Review](RENDERER_IMPLEMENTATION_REVIEW.md)
+- [Client Integration Implementation Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [Independent Renderer Verification](../../engineering/TASK-THINSLICE-001_RENDERER_VERIFICATION.md)
 - [OXS Route-1 Fixture Registry](../../../../tests/fixtures/oxs/README.md)
 
@@ -60,7 +61,12 @@ core, IndexedDB persistence/recovery, and the tiled renderer core are
 implemented and tested. The renderer's initial exact-source AU-AGENT-003 review
 assigned `REWORK REQUIRED`; final exact source `930cad2` subsequently resolved
 all renderer-core findings with Engineering Verification Status `VERIFIED`.
-Later browser/Worker/client evidence remains open. TD-GATE-002 remains open for
+The accessible browser flow, dedicated import Worker, real IndexedDB reload,
+two-tab stale-write rejection, and bounded Canvas integration are now
+`[IMPLEMENTED]`, `[TESTED]` at final client commit `3a73748`; the non-gate
+browser signal remains tied to exact earlier commit `fc50d66`. Controlled performance,
+browser/accessibility matrices, CI/CD, deployment, and consolidated
+AU-AGENT-003 verification remain open. TD-GATE-002 remains open for
 exact-symbol claims about other producers. Production deployment also requires
 TD-GATE-003 and security-header/request-inventory/network-capture evidence.
 
