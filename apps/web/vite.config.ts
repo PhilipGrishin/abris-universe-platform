@@ -29,7 +29,11 @@ export default defineConfig(({ mode }) => {
         ? {
             outDir: "dist-benchmark",
             rollupOptions: {
-              input: "benchmark.html",
+              input: {
+                app: "index.html",
+                benchmark: "benchmark.html",
+                browserFailure: "browser-failure.html",
+              },
             },
           }
         : {}),

@@ -71,7 +71,9 @@ multi-tab stale-write behavior, responsive layout, and accessibility state.
 `build:benchmark` writes a separate production-mode harness to
 `dist-benchmark`. It embeds only the project-original registered fixtures,
 exercises 30 storage-reset cold imports per fixture plus a 10,000-event history
-reload scenario, and must never be deployed with the product SPA.
+reload scenario, exposes the same-origin app for exact-fixture interaction, and
+includes disposable-origin transaction, Web Locks, and blocked-upgrade checks.
+The complete benchmark output must never be deployed with the product SPA.
 
 ## Limits
 
