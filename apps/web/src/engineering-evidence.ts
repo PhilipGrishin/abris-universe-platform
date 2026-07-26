@@ -8,6 +8,7 @@ export interface EngineeringEvidenceRecord {
     | "import-latency"
     | "viewer-tti"
     | "renderer-frame"
+    | "viewport-to-paint"
     | "mark-to-paint"
     | "autosave-commit"
     | "long-task";

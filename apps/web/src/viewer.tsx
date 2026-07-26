@@ -83,6 +83,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   const viewerStartedAt = useRef(performance.now());
   const viewerInteractiveReported = useRef(false);
   const pendingPaintStartedAt = useRef<number | null>(null);
+  const pendingViewportStartedAt = useRef<number | null>(null);
   const progressState = useMemo(() => {
     const state = new ClientProgressState();
     state.hydrate(loaded.progress);
@@ -161,6 +162,14 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
           loaded.summary.stitchCount,
         );
       }
+      if (result.complete && pendingViewportStartedAt.current !== null) {
+        emitEngineeringEvidence(
+          "viewport-to-paint",
+          performance.now() - pendingViewportStartedAt.current,
+          loaded.summary.stitchCount,
+        );
+        pendingViewportStartedAt.current = null;
+      }
       reportProgressPaint(result);
       animationFrame.current = result.complete
         ? null
@@ -206,6 +215,14 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
           result.durationMs,
           loaded.summary.stitchCount,
         );
+        if (pendingViewportStartedAt.current !== null) {
+          emitEngineeringEvidence(
+            "viewport-to-paint",
+            performance.now() - pendingViewportStartedAt.current,
+            loaded.summary.stitchCount,
+          );
+          pendingViewportStartedAt.current = null;
+        }
         if (!viewerInteractiveReported.current && result.drawnStitches > 0) {
           viewerInteractiveReported.current = true;
           emitEngineeringEvidence(
@@ -362,6 +379,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   );
 
   const changeZoom = useCallback((factor: number) => {
+    pendingViewportStartedAt.current = performance.now();
     setViewport((current) =>
       zoomViewport(current, factor, {
         x: current.width / 2,
@@ -371,6 +389,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   }, []);
 
   const pan = useCallback((x: number, y: number) => {
+    pendingViewportStartedAt.current = performance.now();
     setViewport((current) => ({
       ...current,
       offsetX: current.offsetX + x,
