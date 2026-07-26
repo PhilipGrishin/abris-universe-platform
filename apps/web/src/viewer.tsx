@@ -29,6 +29,7 @@ import {
 } from "./client-state.ts";
 import {
   emitEngineeringEvidence,
+  engineeringAutoPanEnabled,
   engineeringEvidenceEnabled,
 } from "./engineering-evidence.ts";
 import { BrowserGlyphAtlas } from "./glyph-atlas.ts";
@@ -78,6 +79,8 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
   const gesture = useRef<PointerGesture | null>(null);
   const loadAbort = useRef<AbortController | null>(null);
   const animationFrame = useRef<number | null>(null);
+  const evidenceGestureFrame = useRef<number | null>(null);
+  const evidenceGestureStarted = useRef(false);
   const commandQueue = useRef<Promise<void>>(Promise.resolve());
   const staticWorker = useRef<StaticRenderWorkerClient | null>(null);
   const viewerStartedAt = useRef(performance.now());
@@ -300,6 +303,47 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
     observer.observe(shell);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!engineeringAutoPanEnabled() || evidenceGestureStarted.current) return;
+    evidenceGestureStarted.current = true;
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      let frame = 0;
+      let previous = performance.now();
+      const step = (now: number) => {
+        if (cancelled) return;
+        if (frame > 0) {
+          emitEngineeringEvidence(
+            "animation-frame-interval",
+            now - previous,
+            loaded.summary.stitchCount,
+          );
+        }
+        previous = now;
+        const direction = frame < 60 ? -2 : 2;
+        setViewport((current) => ({
+          ...current,
+          offsetX: current.offsetX + direction,
+        }));
+        frame += 1;
+        if (frame <= 120) {
+          evidenceGestureFrame.current = requestAnimationFrame(step);
+        } else {
+          evidenceGestureFrame.current = null;
+        }
+      };
+      evidenceGestureFrame.current = requestAnimationFrame(step);
+    }, 1_000);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+      if (evidenceGestureFrame.current !== null) {
+        cancelAnimationFrame(evidenceGestureFrame.current);
+        evidenceGestureFrame.current = null;
+      }
+    };
+  }, [loaded.summary.stitchCount]);
 
   useEffect(() => {
     renderer.setViewport(viewport);

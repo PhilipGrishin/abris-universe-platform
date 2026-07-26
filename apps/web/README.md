@@ -47,6 +47,8 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
   `?engineering-evidence=1`; bounded records are written to the browser
   console, retained in tab-scoped session storage, exposed through the hidden
   machine-readable `#engineering-evidence-json` output, and never transmitted.
+  Adding `&evidence-auto-pan=1` runs a 120-frame local scripted pan and records
+  actual animation-frame intervals for dropped-frame analysis.
 - Static Cloudflare Worker asset boundary with SPA fallback, GET/HEAD-only
   handling, reviewed CSP, `nosniff`, and no-referrer response headers.
 - Non-secret build provenance in generated `version.json`, verified

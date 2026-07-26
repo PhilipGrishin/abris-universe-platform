@@ -8,6 +8,7 @@ export interface EngineeringEvidenceRecord {
     | "import-latency"
     | "viewer-tti"
     | "renderer-frame"
+    | "animation-frame-interval"
     | "viewport-to-paint"
     | "mark-to-paint"
     | "autosave-commit"
@@ -84,6 +85,13 @@ export function engineeringEvidenceEnabled(): boolean {
   return (
     new URLSearchParams(window.location.search).get("engineering-evidence") ===
     "1"
+  );
+}
+
+export function engineeringAutoPanEnabled(): boolean {
+  if (!engineeringEvidenceEnabled()) return false;
+  return (
+    new URLSearchParams(window.location.search).get("evidence-auto-pan") === "1"
   );
 }
 
