@@ -71,6 +71,22 @@ export interface PatternTileRecord {
   readonly stitches: readonly FullCrossStitch[];
 }
 
+export interface PatternTileReadRange {
+  readonly minTileX: number;
+  readonly maxTileX: number;
+  readonly minTileY: number;
+  readonly maxTileY: number;
+}
+
+export interface PatternTileRangeReadOptions {
+  readonly range: PatternTileReadRange;
+  /**
+   * The caller supplies the approved consumer limit so persistence does not
+   * create a parallel source of truth for renderer safety policy.
+   */
+  readonly maxTileCoordinates: number;
+}
+
 export interface TileSetMetadata {
   readonly patternVersionId: string;
   readonly tileSize: number;

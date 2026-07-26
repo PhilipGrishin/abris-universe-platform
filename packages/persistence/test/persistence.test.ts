@@ -17,6 +17,7 @@ import {
   STORE_NAMES,
   appendProgressEvent,
   commitSuccessfulImport,
+  getPattern,
   getPatternVersion,
   getPersistenceCapability,
   getProgressProjection,
@@ -25,6 +26,7 @@ import {
   getStoredSourceFile,
   getTileSetMetadata,
   listPatternTiles,
+  listPatternTilesInRange,
   listProgressEvents,
   openAbrisDatabase,
   requestPersistentStorage,
@@ -400,6 +402,7 @@ test("commits retained source, canonical records, tiles, and ready Project atomi
     (await getPatternVersion(database, data.patternVersion.id))?.id,
     data.patternVersion.id,
   );
+  assert.deepEqual(await getPattern(database, data.pattern.id), data.pattern);
   assert.deepEqual(await listPatternTiles(database, data.patternVersion.id), [
     {
       patternVersionId: data.patternVersion.id,
@@ -409,11 +412,48 @@ test("commits retained source, canonical records, tiles, and ready Project atomi
     },
   ]);
   assert.deepEqual(
+    await listPatternTilesInRange(database, data.patternVersion.id, {
+      range: {
+        minTileX: 0,
+        maxTileX: 0,
+        minTileY: 0,
+        maxTileY: 0,
+      },
+      maxTileCoordinates: 1,
+    }),
+    [
+      {
+        patternVersionId: data.patternVersion.id,
+        tileY: 0,
+        tileX: 0,
+        stitches: [data.stitch],
+      },
+    ],
+  );
+  assert.deepEqual(
     await getTileSetMetadata(database, data.patternVersion.id),
     {
       patternVersionId: data.patternVersion.id,
       tileSize: 32,
     },
+  );
+});
+
+test("bounded tile-range reads reject excessive requests", async () => {
+  const database = await openDatabase();
+  await assert.rejects(
+    listPatternTilesInRange(database, "version", {
+      range: {
+        minTileX: 0,
+        maxTileX: 1,
+        minTileY: 0,
+        maxTileY: 1,
+      },
+      maxTileCoordinates: 3,
+    }),
+    (error: unknown) =>
+      error instanceof PersistenceError &&
+      error.code === "PERSISTENCE_STATE_CONFLICT",
   );
 });
 

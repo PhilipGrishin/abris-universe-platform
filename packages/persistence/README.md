@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-PERSIST-001 |
 | Title | Persistence Workspace |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; browser integration and independent verification pending |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; browser integration implemented, independent client verification pending |
 | Owner | AU-AGENT-005 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, ADR-TS001-003 |
@@ -41,6 +41,10 @@ projections, transactions, and schema upgrades.
 - Projection rebuild, reopen recovery, strict-durability request where
   supported, persistence-capability recording, and typed unavailable, blocked,
   quota, conflict, and corruption errors.
+- Read-only Pattern lookup and caller-bounded tile-range reads for the renderer
+  provider without loading the complete PatternVersion on every frame.
+- Browser-integrated source verification uses asynchronous Web Crypto SHA-256
+  before canonical commit.
 
 ## Verification
 
@@ -52,7 +56,8 @@ pnpm --filter @abris-universe/persistence test
 ```
 
 The focused suite uses `fake-indexeddb` only as a test dependency. It covers
-schema/reopen compatibility, atomic commit and rollback, failed/interrupted
+schema/reopen compatibility, atomic commit and rollback, bounded tile-range
+reads, failed/interrupted
 cleanup, canonical tile integrity, quota and blocked-upgrade paths, persistence
 denial, bounded/malformed ImportReport cleanup, progress
 idempotency/conflict/corruption, phantom-stitch rejection, lock capability,
@@ -60,10 +65,10 @@ stale toggles, reload, and fail-closed projection rebuild.
 
 ## Limits
 
-This package does not implement UI save-state behavior, Web Worker import
-integration, canonical tile construction, rendering, synchronization, backup,
-or browser-specific runtime acceptance. Initial schema version 1 has no
-historical production migration.
+This package does not implement UI save-state behavior, Web Worker import,
+canonical tile construction, rendering, synchronization, or backup. Browser
+runtime evidence is owned by the client integration stage. Initial schema
+version 1 has no historical production migration.
 
 ## Lifecycle and Additions
 

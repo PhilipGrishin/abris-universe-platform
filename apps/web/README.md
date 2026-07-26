@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-WORKSPACE-WEB-001 |
 | Title | Web Client Workspace |
-| Status | `[IMPLEMENTED]` scaffold; runtime implementation absent |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; independent engineering verification pending |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-25 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, `docs/SOURCE_OF_TRUTH.md` |
@@ -17,15 +17,51 @@
 
 ## Purpose and Scope
 
-Reserve the approved Phase 0 web-client package boundary. This directory will
-own presentation, interaction, accessibility, client state, and integration
-with public importer, renderer, and persistence contracts.
+Provide the approved Phase 0 local-first web flow: import one registered OXS
+route-1 file, open the Project, render visible tiles and readable symbols,
+zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
 
-## Current Boundary
+## Implemented Boundary
 
-This is a non-behavioral scaffold. It contains no application entry point,
-dependency, UI, product behavior, API bypass, importer logic, rendering
-algorithm, persistence implementation, or deployment configuration.
+- React/Vite SPA with no backend or analytics endpoint.
+- Dedicated module Worker for OXS parsing, canonical mapping, hashing, and tile
+  construction; there is no UI-thread parser fallback.
+- Exact public importer, renderer, and persistence package contracts.
+- Native IndexedDB import lifecycle, retained original Blob, ready Project,
+  bounded visible-tile reads, and projection rebuild on reload.
+- Separate static and progress Canvas2D layers with incremental frame budgets.
+- Pointer drag pan, toolbar and keyboard pan/zoom, 6-pixel click-versus-pan
+  threshold, and non-interactive overview below the readable symbol threshold.
+- Serialized mark/unmark commands with visible `saving`, `saved`, `not saved`,
+  and read-only states.
+- Accessible Canvas name, one-based selected-stitch status, real DOM controls,
+  focus treatment, reduced-motion support, and mobile layout rules.
+- Opt-in local engineering timings through
+  `?engineering-evidence=1`; records are written only to the browser console
+  and are never transmitted.
+
+## Run and Verify
+
+```sh
+pnpm --filter @abris-universe/web dev
+pnpm --filter @abris-universe/web typecheck
+pnpm --filter @abris-universe/web test
+pnpm --filter @abris-universe/web build
+pnpm --filter @abris-universe/web preview
+```
+
+The client tests cover viewport zoom invariants, bounded user messages, one-based
+coordinates, and progress save/failure transitions. Browser verification is
+required for Worker creation, Canvas pixels, IndexedDB reload recovery,
+multi-tab stale-write behavior, responsive layout, and accessibility state.
+
+## Limits
+
+This stage does not add a backend, synchronization, accounts, multi-format
+import, undo/redo, production deployment, or a 500,000-stitch performance
+claim. The current renderer execution path is incremental main-thread Canvas2D;
+the dedicated Worker applies to import. Controlled browser benchmark and
+assistive-technology matrices remain independent evidence gates.
 
 ## Lifecycle and Additions
 

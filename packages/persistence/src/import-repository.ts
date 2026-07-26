@@ -1,9 +1,9 @@
-import { sha256 } from "@noble/hashes/sha2.js";
-import { bytesToHex } from "@noble/hashes/utils.js";
 import {
   validateCanonicalPatternVersion,
   validateProject,
   type ImportJob,
+  type Pattern,
+  type PatternVersion,
   type Project,
 } from "@abris-universe/domain-core";
 import {
@@ -17,6 +17,7 @@ import {
   type ImportCommitInput,
   type ImportRejectionInput,
   type PatternTileRecord,
+  type PatternTileRangeReadOptions,
   type StoredImportJob,
   type StoredSourceFile,
   type TileSetMetadata,
@@ -67,7 +68,10 @@ function assertImportAttempt(input: ImportAttemptInput): void {
 }
 
 async function hashBlob(blob: Blob): Promise<string> {
-  return bytesToHex(sha256(new Uint8Array(await blob.arrayBuffer())));
+  const digest = await crypto.subtle.digest("SHA-256", await blob.arrayBuffer());
+  return [...new Uint8Array(digest)]
+    .map((value) => value.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 export async function startImportAttempt(
@@ -544,12 +548,21 @@ export async function getProject(
 export async function getPatternVersion(
   database: AbrisDatabase,
   id: string,
-) {
+): Promise<PatternVersion | undefined> {
   return runReadonly(
     database,
     [STORE_NAMES.patternVersions],
     async (transaction) =>
       requestResult(transaction.objectStore(STORE_NAMES.patternVersions).get(id)),
+  );
+}
+
+export async function getPattern(
+  database: AbrisDatabase,
+  id: string,
+): Promise<Pattern | undefined> {
+  return runReadonly(database, [STORE_NAMES.patterns], async (transaction) =>
+    requestResult(transaction.objectStore(STORE_NAMES.patterns).get(id)),
   );
 }
 
@@ -569,6 +582,70 @@ export async function listPatternTiles(
           ),
         ),
       )) as PatternTileRecord[],
+  );
+}
+
+export async function listPatternTilesInRange(
+  database: AbrisDatabase,
+  patternVersionId: string,
+  options: PatternTileRangeReadOptions,
+): Promise<PatternTileRecord[]> {
+  const { range, maxTileCoordinates } = options;
+  const values = [
+    range.minTileX,
+    range.maxTileX,
+    range.minTileY,
+    range.maxTileY,
+    maxTileCoordinates,
+  ];
+  if (
+    patternVersionId.trim().length === 0 ||
+    values.some((value) => !Number.isSafeInteger(value)) ||
+    range.minTileX < 0 ||
+    range.minTileY < 0 ||
+    range.maxTileX < range.minTileX ||
+    range.maxTileY < range.minTileY ||
+    maxTileCoordinates <= 0
+  ) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "Pattern tile range is invalid.",
+    );
+  }
+  const tileCoordinateCount =
+    (range.maxTileX - range.minTileX + 1) *
+    (range.maxTileY - range.minTileY + 1);
+  if (
+    !Number.isSafeInteger(tileCoordinateCount) ||
+    tileCoordinateCount > maxTileCoordinates
+  ) {
+    throw new PersistenceError(
+      "PERSISTENCE_STATE_CONFLICT",
+      "Pattern tile range exceeds the caller-approved safety limit.",
+    );
+  }
+
+  return runReadonly(
+    database,
+    [STORE_NAMES.patternTiles],
+    async (transaction) => {
+      const store = transaction.objectStore(STORE_NAMES.patternTiles);
+      const requests: IDBRequest<PatternTileRecord[]>[] = [];
+      for (let tileY = range.minTileY; tileY <= range.maxTileY; tileY += 1) {
+        requests.push(
+          store.getAll(
+            IDBKeyRange.bound(
+              [patternVersionId, tileY, range.minTileX],
+              [patternVersionId, tileY, range.maxTileX],
+            ),
+          ) as IDBRequest<PatternTileRecord[]>,
+        );
+      }
+      const rows = await Promise.all(
+        requests.map(async (request) => requestResult(request)),
+      );
+      return rows.flat();
+    },
   );
 }
 

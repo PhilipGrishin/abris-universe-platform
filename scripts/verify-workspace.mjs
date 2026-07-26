@@ -37,7 +37,17 @@ for (const [directory, expectedName] of expectedPackages) {
           "test",
           "tsconfig.json",
         ]
-      : ["README.md", "package.json"];
+      : [
+          "README.md",
+          "dist",
+          "index.html",
+          "node_modules",
+          "package.json",
+          "src",
+          "test",
+          "tsconfig.json",
+          "vite.config.ts",
+        ];
   const unexpectedRuntimeFiles = readdirSync(directory).filter(
     (entry) => !allowedEntries.includes(entry)
   );
@@ -79,6 +89,19 @@ for (const requiredPath of [
   "packages/renderer/scripts/measure-medium.ts",
   "packages/renderer/test/renderer.test.ts",
   "packages/renderer/tsconfig.json",
+  "apps/web/index.html",
+  "apps/web/src/App.tsx",
+  "apps/web/src/engineering-evidence.ts",
+  "apps/web/src/import-client.ts",
+  "apps/web/src/import.worker.ts",
+  "apps/web/src/main.tsx",
+  "apps/web/src/messages.ts",
+  "apps/web/src/project-service.ts",
+  "apps/web/src/styles.css",
+  "apps/web/src/viewer.tsx",
+  "apps/web/test/client-state.test.ts",
+  "apps/web/tsconfig.json",
+  "apps/web/vite.config.ts",
 ]) {
   if (!existsSync(requiredPath)) {
     throw new Error(`Approved workspace implementation is missing ${requiredPath}`);
@@ -93,5 +116,5 @@ for (const pattern of ["apps/*", "packages/*", "packages/*/*"]) {
 }
 
 process.stdout.write(
-  "Workspace boundary verification passed: package identities, privacy, ESM mode, domain/importer/persistence/renderer scope, and scaffold-only client package.\n"
+  "Workspace boundary verification passed: package identities, privacy, ESM mode, and approved domain/importer/persistence/renderer/client scope.\n"
 );
