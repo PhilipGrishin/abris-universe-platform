@@ -5,9 +5,14 @@
  */
 import { ABRIS_DATABASE_NAME } from "@abris-universe/persistence";
 
+import corruptOxs from "../../../tests/fixtures/oxs/generated/corrupt-truncated.oxs?raw";
 import mediumOxs from "../../../tests/fixtures/oxs/generated/medium-full-cross.oxs?raw";
 import minimalOxs from "../../../tests/fixtures/oxs/generated/minimal-full-cross.oxs?raw";
-import { ProjectService, type LoadedProject } from "./project-service.ts";
+import {
+  ImportRejectedError,
+  ProjectService,
+  type LoadedProject,
+} from "./project-service.ts";
 
 interface BenchmarkSample {
   readonly iteration: number;
@@ -36,12 +41,21 @@ interface BenchmarkResult {
     readonly historyEventCount: 10_000;
     readonly historyReloadIterations: 30;
     readonly storageResetBetweenColdImports: true;
+    readonly corruptImportIterations: 1;
   };
   readonly coldImport: {
     readonly minimal: readonly BenchmarkSample[];
     readonly medium: readonly BenchmarkSample[];
   };
+  readonly corruptImport: {
+    readonly durationMs: number;
+    readonly errorCode: string;
+  };
   readonly historyReload: readonly BenchmarkSample[];
+  readonly resources: readonly {
+    readonly initiatorType: string;
+    readonly name: string;
+  }[];
 }
 
 interface NavigatorWithDeviceMemory extends Navigator {
@@ -142,6 +156,32 @@ async function seedProgressHistory(): Promise<LoadedProject> {
   return loaded;
 }
 
+async function rejectedImportSample(): Promise<{
+  readonly durationMs: number;
+  readonly errorCode: string;
+}> {
+  status.textContent = "Running corrupt import containment check.";
+  await deleteTaskStorage();
+  const service = await ProjectService.open();
+  const startedAt = performance.now();
+  try {
+    await service.importFile(
+      new File([corruptOxs], "corrupt-truncated.oxs", {
+        type: "application/xml",
+      }),
+    );
+    throw new Error("Corrupt fixture was unexpectedly accepted.");
+  } catch (error) {
+    if (!(error instanceof ImportRejectedError)) throw error;
+    return {
+      durationMs: roundedDuration(startedAt),
+      errorCode: error.report.errors[0]?.code ?? "MISSING_ERROR_CODE",
+    };
+  } finally {
+    service.close();
+  }
+}
+
 async function historyReloadSamples(): Promise<BenchmarkSample[]> {
   const seeded = await seedProgressHistory();
   const samples: BenchmarkSample[] = [];
@@ -169,6 +209,7 @@ async function historyReloadSamples(): Promise<BenchmarkSample[]> {
 async function run(): Promise<void> {
   const minimal = await coldImportSamples("minimal-full-cross", minimalOxs);
   const medium = await coldImportSamples("medium-full-cross", mediumOxs);
+  const corruptImport = await rejectedImportSample();
   const historyReload = await historyReloadSamples();
   const runtime = navigator as NavigatorWithDeviceMemory;
   const result: BenchmarkResult = {
@@ -193,9 +234,23 @@ async function run(): Promise<void> {
       historyEventCount: 10_000,
       historyReloadIterations: 30,
       storageResetBetweenColdImports: true,
+      corruptImportIterations: 1,
     },
     coldImport: { minimal, medium },
+    corruptImport,
     historyReload,
+    resources: performance
+      .getEntriesByType("resource")
+      .map((entry) => entry as PerformanceResourceTiming)
+      .map((entry) => ({
+        initiatorType: entry.initiatorType,
+        name: entry.name,
+      }))
+      .sort((left, right) =>
+        `${left.initiatorType}:${left.name}`.localeCompare(
+          `${right.initiatorType}:${right.name}`,
+        ),
+      ),
   };
   output.textContent = JSON.stringify(result);
   status.textContent = "Benchmark complete.";
