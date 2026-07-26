@@ -118,6 +118,7 @@ export function App() {
   return (
     <main>
       <EngineeringEvidenceOutput />
+      <h1 className="visually-hidden">Abris Universe pattern workspace</h1>
       <header className="app-header">
         <a className="brand" href="/" aria-label="Abris Universe home">
           <span className="brand-mark" aria-hidden="true">A</span>

@@ -138,6 +138,18 @@ main {
   text-transform: uppercase;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .hero {
   display: grid;
   min-height: calc(100vh - 128px);
@@ -305,6 +317,10 @@ main {
   color: #f4f1e9;
   background: #183f3c;
   box-shadow: 0 25px 75px rgb(25 56 52 / 20%);
+}
+
+.viewer-panel .eyebrow {
+  color: #f4c9b8;
 }
 
 .viewer-heading {

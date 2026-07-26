@@ -557,7 +557,11 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
         </div>
       </div>
 
-      <div className="viewer-toolbar" aria-label="Pattern view controls">
+      <div
+        className="viewer-toolbar"
+        role="group"
+        aria-label="Pattern view controls"
+      >
         <button type="button" onClick={() => changeZoom(1 / 1.2)} aria-label="Zoom out">
           −
         </button>

@@ -29,8 +29,6 @@ async function waitForViewer(): Promise<void> {
 
 const root = requireElement<HTMLElement>("#root");
 const output = requireElement<HTMLOutputElement>("#accessibility-result");
-document.documentElement.dataset.engineeringGrayscale = "true";
-document.documentElement.dataset.engineeringReducedMotion = "true";
 
 createRoot(root).render(
   <StrictMode>
@@ -44,6 +42,9 @@ void waitForViewer()
     const result = await axe.run(document, {
       resultTypes: ["violations", "incomplete", "passes"],
     });
+    document.documentElement.dataset.engineeringGrayscale = "true";
+    document.documentElement.dataset.engineeringReducedMotion = "true";
+    await new Promise((resolve) => requestAnimationFrame(resolve));
     output.textContent = JSON.stringify({
       schemaVersion: 1,
       sourceCommit: import.meta.env.AU_SOURCE_COMMIT,
@@ -62,7 +63,10 @@ void waitForViewer()
           devicePixelRatio: window.devicePixelRatio,
         },
       },
-      modes: {
+      auditModes: {
+        normalColor: true,
+      },
+      visualEvidenceModes: {
         grayscale: true,
         reducedMotion: true,
       },
