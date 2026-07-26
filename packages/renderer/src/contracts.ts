@@ -153,7 +153,7 @@ export interface RenderMetrics {
 }
 
 export type RendererExecutionPath =
-  | "offscreen-worker-capable"
+  | "offscreen-worker"
   | "incremental-main-thread";
 
 export interface PatternRenderer {

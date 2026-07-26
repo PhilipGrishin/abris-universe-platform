@@ -245,7 +245,7 @@ export function PatternViewer({ loaded, service }: ViewerProps) {
     try {
       const worker = new StaticRenderWorkerClient();
       staticWorker.current = worker;
-      setExecutionPath("offscreen-worker-capable");
+      setExecutionPath("offscreen-worker");
       return () => {
         worker.dispose();
         if (staticWorker.current === worker) staticWorker.current = null;

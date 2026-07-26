@@ -172,7 +172,7 @@ export function selectRendererExecutionPath(
   supportsWorker: boolean,
 ): RendererExecutionPath {
   return supportsOffscreenCanvas && supportsWorker
-    ? "offscreen-worker-capable"
+    ? "offscreen-worker"
     : "incremental-main-thread";
 }
 

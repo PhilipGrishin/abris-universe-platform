@@ -412,7 +412,7 @@ test("uses a supplied glyph atlas and exposes the validated static scene", async
 test("selects explicit capability paths and readable glyph contrast", () => {
   assert.equal(
     selectRendererExecutionPath(true, true),
-    "offscreen-worker-capable",
+    "offscreen-worker",
   );
   assert.equal(
     selectRendererExecutionPath(false, true),

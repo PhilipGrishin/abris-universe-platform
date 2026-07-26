@@ -42,8 +42,9 @@ zoom/pan, toggle one full-cross stitch, autosave, and recover after reload.
 - Accessible Canvas name, one-based selected-stitch status, real DOM controls,
   focus treatment, reduced-motion support, and mobile layout rules.
 - Opt-in local engineering timings through
-  `?engineering-evidence=1`; records are written only to the browser console
-  and are never transmitted.
+  `?engineering-evidence=1`; bounded records are written to the browser
+  console, retained in tab-scoped session storage, exposed through the hidden
+  machine-readable `#engineering-evidence-json` output, and never transmitted.
 - Static Cloudflare Worker asset boundary with SPA fallback, GET/HEAD-only
   handling, reviewed CSP, `nosniff`, and no-referrer response headers.
 - Non-secret build provenance in generated `version.json`, verified

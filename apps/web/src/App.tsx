@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 
 import { emitEngineeringEvidence } from "./engineering-evidence.ts";
+import { EngineeringEvidenceOutput } from "./engineering-evidence-output.tsx";
 import { issueMessage, formatCount } from "./messages.ts";
 import {
   ImportRejectedError,
@@ -116,6 +117,7 @@ export function App() {
 
   return (
     <main>
+      <EngineeringEvidenceOutput />
       <header className="app-header">
         <a className="brand" href="/" aria-label="Abris Universe home">
           <span className="brand-mark" aria-hidden="true">A</span>
