@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.11.0 |
 | Created | 2026-07-21 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -33,6 +33,39 @@ not approve returned meaning.
   platform repository initialization and product/engineering governance
   integration; completed, validated, integrated, and archived with decision
   `VERIFIED` within the registered scope.
+- [`AU-EX-20260725-001`](AU-EX-20260725-001/README.md) — independent review of
+  INIT-003 full engineering-organization readiness validation; completed,
+  validated, integrated, and archived with decision `VERIFIED` within the
+  registered scope.
+- [`AU-EX-20260725-002`](AU-EX-20260725-002/README.md) — Product Decision
+  integration for Cowork DEC-005 through DEC-008; return validated, canonical
+  product records integrated, and exchange archived with decision
+  `NO_DECISION`.
+- [`AU-EX-20260725-003`](AU-EX-20260725-003/README.md) — TASK-THINSLICE-001
+  product clarification preparation rejected before return after the source
+  branch advanced; retained as provenance and replaced.
+- [`AU-EX-20260725-004`](AU-EX-20260725-004/README.md) — replacement
+  TASK-THINSLICE-001 product clarification for `SXP`/`XSP`, the OXS
+  recommendation, and fixture authority; return validated and integrated as
+  PROD-DEC-009 and related records, then archived with `NO_DECISION` and no
+  `[VERIFIED]` status.
+- [`AU-EX-20260725-005`](AU-EX-20260725-005/README.md) —
+  TASK-THINSLICE-001 pre-implementation architecture review of the exact
+  Technical Design, ADRs, threat model, and benchmark plan; valid
+  `COMPLETED / NO_DECISION` return integrated as `ACCEPTED_WITH_GATES` and
+  archived with no project `[VERIFIED]` status; development remains blocked.
+- [`AU-EX-20260725-006`](AU-EX-20260725-006/README.md) —
+  confirmation review of the exact TASK-THINSLICE-001 design revision and
+  AU-AGENT-003 security-design gate; valid `COMPLETED / NO_DECISION` return
+  integrated as `CONFIRMED_ACCEPTED_WITH_GATES` and archived with no
+  implementation, deployment, product acceptance, or project `[VERIFIED]`.
+- [`AU-EX-20260726-001`](AU-EX-20260726-001/README.md) —
+  independent acceptance review of the exact TASK-THINSLICE-001 Phase 0
+  implementation, Completion Report v1.1.0, Engineering Verification Report
+  v1.9.0, and retained evidence; valid `COMPLETED / VERIFIED` return integrated
+  byte-for-byte with zero blocking and sixteen non-blocking findings. The
+  bounded result grants no release, production, or deployment authority;
+  exchange is archived with canonical outcome provenance.
 
 ## Rules
 

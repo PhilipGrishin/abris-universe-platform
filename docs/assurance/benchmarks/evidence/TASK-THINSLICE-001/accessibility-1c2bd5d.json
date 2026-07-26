@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1c2bd5d7e83de32471ebe29d50809f42b0244039",
+  "sourceDirty": false,
+  "capturedAt": "2026-07-26T08:54:19.088Z",
+  "tool": {
+    "name": "axe-core",
+    "version": "4.10.3"
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "devicePixelRatio": 2
+    }
+  },
+  "auditModes": {
+    "normalColor": true
+  },
+  "visualEvidenceModes": {
+    "grayscale": true,
+    "reducedMotion": true
+  },
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "targets": [
+        [
+          "span:nth-child(2) > strong"
+        ],
+        [
+          "small"
+        ],
+        [
+          "div:nth-child(1) > span"
+        ],
+        [
+          "div:nth-child(1) > strong"
+        ],
+        [
+          ".project-summary > div:nth-child(2) > span"
+        ],
+        [
+          "div:nth-child(2) > strong"
+        ],
+        [
+          "div:nth-child(3) > span"
+        ],
+        [
+          "div:nth-child(3) > strong"
+        ],
+        [
+          "div:nth-child(4) > span"
+        ],
+        [
+          "div:nth-child(4) > strong"
+        ],
+        [
+          "button[aria-label=\"Zoom out\"]"
+        ],
+        [
+          "button[aria-label=\"Pan left\"]"
+        ],
+        [
+          "button[aria-label=\"Pan up\"]"
+        ],
+        [
+          "button[aria-label=\"Pan down\"]"
+        ],
+        [
+          "button[aria-label=\"Pan right\"]"
+        ]
+      ]
+    }
+  ],
+  "passCount": 37
+}

@@ -1,0 +1,900 @@
+{
+  "schemaVersion": 1,
+  "runId": "constrained-4x-4009944",
+  "capturedAt": "2026-07-26T16:35:55.637Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "hardwareConcurrency": 8,
+    "deviceMemoryGiB": 8,
+    "viewport": {
+      "width": 1365,
+      "height": 768,
+      "devicePixelRatio": 1
+    },
+    "capabilities": {
+      "offscreenCanvas": true,
+      "moduleWorker": true,
+      "webLocks": true,
+      "indexedDb": true
+    }
+  },
+  "executionPath": "offscreen-worker",
+  "glyphAtlas": "zoom-dpr-cache",
+  "peakUsedJsHeapBytes": 166521674,
+  "resources": [
+    {
+      "initiatorType": "link",
+      "name": "http://127.0.0.1:4173/assets/styles-C5z2-Inc.css"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/project-service-CiBP4X2w.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/render.worker-lkgsDS-y.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/src-Ee-tkyr4.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/styles-B1ZaHAa3.js"
+    },
+    {
+      "initiatorType": "script",
+      "name": "http://127.0.0.1:4173/assets/app-BsHEInkc.js"
+    }
+  ],
+  "records": [
+    {
+      "sequence": 1,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.342,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.376Z"
+    },
+    {
+      "sequence": 2,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.384Z"
+    },
+    {
+      "sequence": 3,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.407Z"
+    },
+    {
+      "sequence": 4,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.410Z"
+    },
+    {
+      "sequence": 5,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.412Z"
+    },
+    {
+      "sequence": 6,
+      "metric": "animation-frame-interval",
+      "durationMs": 9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.427Z"
+    },
+    {
+      "sequence": 7,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.439Z"
+    },
+    {
+      "sequence": 8,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.450Z"
+    },
+    {
+      "sequence": 9,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.462Z"
+    },
+    {
+      "sequence": 10,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.464Z"
+    },
+    {
+      "sequence": 11,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.478Z"
+    },
+    {
+      "sequence": 12,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.490Z"
+    },
+    {
+      "sequence": 13,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.505Z"
+    },
+    {
+      "sequence": 14,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.517Z"
+    },
+    {
+      "sequence": 15,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.524Z"
+    },
+    {
+      "sequence": 16,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.526Z"
+    },
+    {
+      "sequence": 17,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.536Z"
+    },
+    {
+      "sequence": 18,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.580Z"
+    },
+    {
+      "sequence": 19,
+      "metric": "animation-frame-interval",
+      "durationMs": 33.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.602Z"
+    },
+    {
+      "sequence": 20,
+      "metric": "animation-frame-interval",
+      "durationMs": 24.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.623Z"
+    },
+    {
+      "sequence": 21,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.641Z"
+    },
+    {
+      "sequence": 22,
+      "metric": "animation-frame-interval",
+      "durationMs": 25,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.653Z"
+    },
+    {
+      "sequence": 23,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.656Z"
+    },
+    {
+      "sequence": 24,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.660Z"
+    },
+    {
+      "sequence": 25,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.671Z"
+    },
+    {
+      "sequence": 26,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.690Z"
+    },
+    {
+      "sequence": 27,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.701Z"
+    },
+    {
+      "sequence": 28,
+      "metric": "animation-frame-interval",
+      "durationMs": 16,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.720Z"
+    },
+    {
+      "sequence": 29,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.728Z"
+    },
+    {
+      "sequence": 30,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.736Z"
+    },
+    {
+      "sequence": 31,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.739Z"
+    },
+    {
+      "sequence": 32,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.743Z"
+    },
+    {
+      "sequence": 33,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.759Z"
+    },
+    {
+      "sequence": 34,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.778Z"
+    },
+    {
+      "sequence": 35,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.790Z"
+    },
+    {
+      "sequence": 36,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.802Z"
+    },
+    {
+      "sequence": 37,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.812Z"
+    },
+    {
+      "sequence": 38,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.833Z"
+    },
+    {
+      "sequence": 39,
+      "metric": "animation-frame-interval",
+      "durationMs": 24.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.842Z"
+    },
+    {
+      "sequence": 40,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.844Z"
+    },
+    {
+      "sequence": 41,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.857Z"
+    },
+    {
+      "sequence": 42,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.875Z"
+    },
+    {
+      "sequence": 43,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.886Z"
+    },
+    {
+      "sequence": 44,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.896Z"
+    },
+    {
+      "sequence": 45,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.915Z"
+    },
+    {
+      "sequence": 46,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.931Z"
+    },
+    {
+      "sequence": 47,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.941Z"
+    },
+    {
+      "sequence": 48,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.944Z"
+    },
+    {
+      "sequence": 49,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.963Z"
+    },
+    {
+      "sequence": 50,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.980Z"
+    },
+    {
+      "sequence": 51,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:43.991Z"
+    },
+    {
+      "sequence": 52,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.001Z"
+    },
+    {
+      "sequence": 53,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.018Z"
+    },
+    {
+      "sequence": 54,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.028Z"
+    },
+    {
+      "sequence": 55,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.038Z"
+    },
+    {
+      "sequence": 56,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.041Z"
+    },
+    {
+      "sequence": 57,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.044Z"
+    },
+    {
+      "sequence": 58,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.056Z"
+    },
+    {
+      "sequence": 59,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.076Z"
+    },
+    {
+      "sequence": 60,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.089Z"
+    },
+    {
+      "sequence": 61,
+      "metric": "animation-frame-interval",
+      "durationMs": 8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.101Z"
+    },
+    {
+      "sequence": 62,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.113Z"
+    },
+    {
+      "sequence": 63,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.130Z"
+    },
+    {
+      "sequence": 64,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.143Z"
+    },
+    {
+      "sequence": 65,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.154Z"
+    },
+    {
+      "sequence": 66,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.158Z"
+    },
+    {
+      "sequence": 67,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.161Z"
+    },
+    {
+      "sequence": 68,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.177Z"
+    },
+    {
+      "sequence": 69,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.193Z"
+    },
+    {
+      "sequence": 70,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.211Z"
+    },
+    {
+      "sequence": 71,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.235Z"
+    },
+    {
+      "sequence": 72,
+      "metric": "animation-frame-interval",
+      "durationMs": 24.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.247Z"
+    },
+    {
+      "sequence": 73,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.259Z"
+    },
+    {
+      "sequence": 74,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.270Z"
+    },
+    {
+      "sequence": 75,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.282Z"
+    },
+    {
+      "sequence": 76,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.295Z"
+    },
+    {
+      "sequence": 77,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.307Z"
+    },
+    {
+      "sequence": 78,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.310Z"
+    },
+    {
+      "sequence": 79,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.328Z"
+    },
+    {
+      "sequence": 80,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.339Z"
+    },
+    {
+      "sequence": 81,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.362Z"
+    },
+    {
+      "sequence": 82,
+      "metric": "animation-frame-interval",
+      "durationMs": 24.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.375Z"
+    },
+    {
+      "sequence": 83,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.386Z"
+    },
+    {
+      "sequence": 84,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.397Z"
+    },
+    {
+      "sequence": 85,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.414Z"
+    },
+    {
+      "sequence": 86,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.426Z"
+    },
+    {
+      "sequence": 87,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.440Z"
+    },
+    {
+      "sequence": 88,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.452Z"
+    },
+    {
+      "sequence": 89,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.463Z"
+    },
+    {
+      "sequence": 90,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.473Z"
+    },
+    {
+      "sequence": 91,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.484Z"
+    },
+    {
+      "sequence": 92,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.494Z"
+    },
+    {
+      "sequence": 93,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.505Z"
+    },
+    {
+      "sequence": 94,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.516Z"
+    },
+    {
+      "sequence": 95,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.527Z"
+    },
+    {
+      "sequence": 96,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.537Z"
+    },
+    {
+      "sequence": 97,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.548Z"
+    },
+    {
+      "sequence": 98,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.560Z"
+    },
+    {
+      "sequence": 99,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.576Z"
+    },
+    {
+      "sequence": 100,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.588Z"
+    },
+    {
+      "sequence": 101,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.599Z"
+    },
+    {
+      "sequence": 102,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.610Z"
+    },
+    {
+      "sequence": 103,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.626Z"
+    },
+    {
+      "sequence": 104,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.638Z"
+    },
+    {
+      "sequence": 105,
+      "metric": "animation-frame-interval",
+      "durationMs": 9.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.650Z"
+    },
+    {
+      "sequence": 106,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.661Z"
+    },
+    {
+      "sequence": 107,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.673Z"
+    },
+    {
+      "sequence": 108,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.685Z"
+    },
+    {
+      "sequence": 109,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.696Z"
+    },
+    {
+      "sequence": 110,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.708Z"
+    },
+    {
+      "sequence": 111,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.719Z"
+    },
+    {
+      "sequence": 112,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.731Z"
+    },
+    {
+      "sequence": 113,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.748Z"
+    },
+    {
+      "sequence": 114,
+      "metric": "animation-frame-interval",
+      "durationMs": 16.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.768Z"
+    },
+    {
+      "sequence": 115,
+      "metric": "animation-frame-interval",
+      "durationMs": 25.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.780Z"
+    },
+    {
+      "sequence": 116,
+      "metric": "animation-frame-interval",
+      "durationMs": 7.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.791Z"
+    },
+    {
+      "sequence": 117,
+      "metric": "animation-frame-interval",
+      "durationMs": 17.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.802Z"
+    },
+    {
+      "sequence": 118,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.815Z"
+    },
+    {
+      "sequence": 119,
+      "metric": "animation-frame-interval",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.826Z"
+    },
+    {
+      "sequence": 120,
+      "metric": "animation-frame-interval",
+      "durationMs": 15.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.840Z"
+    },
+    {
+      "sequence": 121,
+      "metric": "renderer-frame",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:35:44.963Z"
+    }
+  ]
+}

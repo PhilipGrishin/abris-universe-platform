@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-21 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md`, `collaboration/schemas/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -32,7 +32,8 @@ commit the local file.
 The scripts use Node.js standard-library APIs and local Git commands. They
 prepare immutable text snapshots, synchronize the configured bridge, validate
 returns, import to ignored staging, archive reviewed exchanges, and report
-status. They do not integrate canonical content or perform Git writes.
+active and archived lifecycle status. They do not integrate canonical content
+or perform Git writes.
 
 ## Commands
 
@@ -79,7 +80,15 @@ node --test collaboration/scripts/bridge-core.test.mjs
 
 The suite includes negative checks for traversal, hidden outputs, symbolic
 links, secret-like material, machine paths, unexpected extensions, ambiguous
-acceptance, unregistered output, and checksum mismatch.
+acceptance, unregistered output, checksum mismatch, mismatched archive records,
+inconsistent canonical outcome provenance, and a required input that is absent
+from the checksum-registered package.
+
+`report-exchange-status.mjs` distinguishes `REGISTERED`, `PREPARED`, `EXPORTED`,
+`RETURNED`, and `ARCHIVED`. For archived exchanges it revalidates the archived
+task and return, archive record, canonical outcome, canonical report checksum,
+and return-manifest checksum. A source branch that has advanced is reported as
+`HISTORICAL_ARCHIVED` rather than as a failed active exchange.
 
 ## Owner, Lifecycle, and Adding Commands
 

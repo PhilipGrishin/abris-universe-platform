@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.4.0 |
+| Version | 2.5.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `PROJECT_MANIFEST.md`, `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`, `.codex/agents/README.md`, `product/README.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -76,14 +76,16 @@ project-owner approval.
 | Product contour navigation | `product/README.md` | Project Owner / Claude Cowork | Navigation layer; does not replace specifications or decisions. |
 | Consolidated product specification | `product/specifications/Abris_Universe_Master_Product_Specification_RU.docx` | Project Owner / Claude Cowork | Approved Master Product Specification v1.0. |
 | Product and owner decisions | `product/decisions/05_Decision_Log.md` | Project Owner / Claude Cowork | Each entry retains its own status. |
-| Independent product and governance acceptance | `product/reviews/` | Claude Cowork reviewer identified by each report | Acceptance applies only to the exact source, scope, evidence, and limitations declared by the report. |
-| Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | Approval for review does not bypass engineering intake. |
+| Independent product, architecture, and governance review evidence | `product/reviews/` | Claude Cowork reviewer identified by each report | Review or acceptance applies only to the exact source, scope, evidence, disposition, and limitations declared by the report; `TASK-THINSLICE-001_Design_Revision_Confirmation.md` confirms design revision only and assigns no project `[VERIFIED]`. |
+| Product intent and acceptance criteria | Approved versioned files under `product/task-packages/` | Project Owner / Claude Cowork | TASK-THINSLICE-001 v1.1 is current; v1.0 is preserved. Approval for review or design does not bypass engineering intake. |
 | Claude Cowork roles | `product/agents/README.md` and linked source definitions | Project Owner / Claude Cowork | Separate from the Codex engineering registry. |
 | Shared organization navigation | `AI_ORGANIZATION.md` | Project Owner | References both registries without merging authority. |
 | Shared delivery lifecycle | `docs/SHARED_WORKFLOW.md` | Project Owner / AU-CODEX-PRIMARY | Artifact routing and status flow, not product or technical meaning. |
-| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Repository exists; application implementation does not. |
+| Implemented behavior | Source, tests, schemas, configuration, and Git history | Assigned technical owner | Canonical domain-core, bounded route-1 importer core, and test tooling exist; executable application behavior does not. |
+| Project-original test fixtures and expected results | `tests/fixtures/`, with task-scoped registries and checksum manifests | Assigned domain owner; AU-AGENT-003 reviews implementation evidence | Fixture evidence does not itself prove importer, renderer, persistence, security, performance, or product behavior. |
 | Technical decisions | `docs/DECISIONS.md` and approved files under `docs/architecture/adr/` | AU-AGENT-001 | ADR indexes must not restate decision content. |
 | Architecture overview | `docs/ARCHITECTURE.md` | AU-AGENT-001 | Detailed architecture documents may be indexed under `docs/architecture/`. |
+| Task-scoped Technical Designs | `docs/architecture/designs/` | AU-AGENT-001 with named domain owners | A `[PROPOSED]` design is not approved architecture, implementation evidence, or product acceptance. |
 | Proposed cross-cutting changes | Files under `docs/architecture/rfc/` | Proposal owner; AU-AGENT-001 approver | An RFC is not an approved decision unless its disposition says so and required ADRs exist. |
 | Engineering specifications | `docs/specifications/` | Assigned technical owner | Each specification declares its own owner and approver. |
 | Engineering standards | `docs/standards/` | AU-CODEX-PRIMARY or assigned technical owner | Documentation governance is defined by `docs/standards/DOCUMENTATION_STANDARD.md`. |
@@ -95,7 +97,9 @@ project-owner approval.
 | Engineering Handbook | `docs/handbook/` | AU-AGENT-002 | Explanatory navigation and synthesis; never a parallel source of technical truth. |
 | Risks | `docs/RISKS.md` | AU-CODEX-PRIMARY / named risk owner | Risk status does not approve a technical change. |
 | Documentation review evidence | `docs/reviews/documentation/` | AU-AGENT-002 | Review findings do not change source meaning by themselves. |
+| Technical reviews, Completion Reports, and non-independent implementation evidence | `docs/reviews/technical/` | AU-AGENT-001 or assigned technical reviewer | Feasibility, spike, clarification, conflict, alternative, implementing-contour evidence, and consolidated delivery reports; never substitutes for AU-AGENT-003 verification or product acceptance. |
 | Engineering verification evidence | `docs/reviews/engineering/` | AU-AGENT-003 | Engineering Verification Status is a task-scoped quality gate, not project `[VERIFIED]` or product acceptance. |
+| Production deployment contract and evidence | `.github/workflows/deploy-production.yml`, `scripts/deploy-production.mjs`, and task records under `docs/reviews/technical/` | AU-CODEX-PRIMARY; AU-AGENT-001 approves technical meaning; AU-AGENT-003 verifies evidence | GitHub environment secrets and Cloudflare runtime state remain external; commit names and evidence, never secret values. |
 | Claude-Codex exchange governance | `collaboration/README.md` | AU-CODEX-PRIMARY | Defines the transport boundary and lifecycle; it does not transfer product or technical authority. |
 | Exchange task and return contracts | `collaboration/schemas/` | AU-CODEX-PRIMARY; AU-AGENT-002 maintains documentation structure | Machine-readable field, status, and validation contracts. |
 | Registered exchange provenance | `collaboration/manifests/` | AU-CODEX-PRIMARY | Committed request and exact-source manifest records; transported content is not canonical by transport alone. |
@@ -108,6 +112,16 @@ GitHub and the committed repository remain canonical. Generated packages under
 external `Collaboration-Bridge` are local transport or staging state and are
 not sources of truth. Their machine-specific location is held only in the
 Git-ignored local configuration.
+
+All substantive Claude–Codex communication and artifact transfer uses the
+registered Collaboration Bridge, regardless of direct repository availability.
+Chat history is not evidence. Project Owner manual input is limited to the
+registered trigger phrases `Codex finished` and `Claude finished` unless a
+later explicit owner governance decision changes the route.
+Every completed Codex work package that is ready for owner-mediated handoff to
+Claude ends with the exact standalone final line `Codex finished`. The marker
+records transport readiness only and does not become a source of engineering
+evidence, approval, acceptance, or `[VERIFIED]` status.
 
 A Claude return becomes a candidate for canonical integration only after
 schema, path, safety, freshness, registration, and checksum validation. It

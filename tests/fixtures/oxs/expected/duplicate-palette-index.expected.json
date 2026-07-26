@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "fixture": "duplicate-palette-index.oxs",
+  "expectedDisposition": "rejected",
+  "canonical": null,
+  "importReport": {
+    "status": "rejected",
+    "errors": [
+      "OXS_PALETTE_INDEX_DUPLICATE"
+    ],
+    "warnings": []
+  }
+}

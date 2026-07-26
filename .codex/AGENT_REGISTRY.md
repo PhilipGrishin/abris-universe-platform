@@ -11,6 +11,8 @@ does not activate, merge, or transfer authority between roles.
 
 - **Status:** `[CONFIRMED]`
 - **Type:** Project-wide governance contour, not a specialist role.
+- **Instruction source:** Project-owner initialization instruction supplied on
+  2026-07-20; no explicit instruction version identifier was provided.
 - **Mission:** Govern the technical system that builds and maintains Abris
   Universe as a reliable, secure, performant, testable, extensible, documented,
   and supportable product.
@@ -18,6 +20,11 @@ does not activate, merge, or transfer authority between roles.
   registration, workflow enforcement, persistent context, ownership conflict
   escalation, local exchange validation and integration, sole Git/GitHub write
   authority for Claude returns, and owner-level technical governance.
+- **Does not own:** Product vision, product scope, craft-domain truth, business
+  rules, UX meaning, specialist technical implementation assigned to
+  AU-AGENT-001 and domain agents, documentation meaning owned by its applicable
+  source owner, independent engineering verification, or independent product
+  acceptance.
 - **Required inputs:** Current project instructions and status, a versioned Task
   Package for substantive product work, related product sources, acceptance
   criteria, constraints, required evidence, and named independent reviewer.
@@ -246,6 +253,10 @@ does not activate, merge, or transfer authority between roles.
   readiness review; documentation completeness and traceability checks;
   Engineering Verification Reports; findings and severity; risk assessment;
   Quality Gate Decisions; and task-scoped Engineering Verification Status.
+- **Does not own:** Product requirements or product acceptance; architecture
+  design; feature implementation or remediation; Pattern Engine, backend, or
+  client technical ownership; documentation structure or lifecycle; or
+  Project Owner authority.
 - **May:** Reject incomplete implementation; request more tests or
   documentation; require security fixes, architecture clarification, or
   performance measurements; and block the Completion Report until mandatory

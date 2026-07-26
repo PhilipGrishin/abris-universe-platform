@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.3.0 |
+| Version | 1.10.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -21,12 +21,17 @@ Index reproducible benchmark definitions, baselines, results, and limitations.
 
 ## Scope
 
-No performance claim or benchmark result exists yet. This index does not define
-targets, datasets, environments, or implementation performance.
+This index distinguishes benchmark plans from measured results. A proposed plan
+may define reproducible targets and methods but creates no performance claim.
 
 ## Current Benchmarks
 
-None.
+| Task | Record | Status | Result |
+| --- | --- | --- | --- |
+| TASK-THINSLICE-001 | [Phase 0 Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES` | Registered profile budgets pass; Prototype 9.1 Worker-memory measurement remains mandatory before a scale claim |
+| TASK-THINSLICE-001 | [Client Browser Signal](TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md) | `[IMPLEMENTED]`, `[TESTED]`; non-gate | Minimal and 100,000-stitch single-run integration signal; no performance acceptance |
+| TASK-THINSLICE-001 | [Browser Benchmark Report](TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md) | `[TESTED]`; TS001-IMPL-002 resolved for bounded Phase 0 | Registered profile budgets pass within documented methods and owner-approved limitations |
+| TASK-THINSLICE-001 | [Import-Worker Memory Evidence Limitation](TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md) | `[APPROVED]`; independently confirmed for Phase 0 | 384 MiB operative control retained; actual Prototype 9.1 measurement mandatory before any scale claim |
 
 ## Owner
 

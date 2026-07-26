@@ -8,9 +8,9 @@
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/RISKS.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -18,17 +18,20 @@
 
 ## Purpose
 
-Index approved threat models and their security review status.
+Index proposed and approved threat models and their security review status.
 
 ## Scope
 
-No threat model exists yet. This index does not invent trust boundaries,
-controls, assets, actors, or threats.
+This index contains task-scoped threat models grounded in approved requirements
+and proposed technical data flows. A proposed threat model does not prove that
+its controls are implemented or tested.
 
 ## Current Threat Models
 
-None. Creation requires an approved task, confirmed architecture/data flow, and
-an assigned security reviewer.
+| Task | Threat model | Status | Security review |
+| --- | --- | --- | --- |
+| TASK-THINSLICE-001 | [Phase 0 Threat Model](TASK-THINSLICE-001_THREAT_MODEL.md) | `[PROPOSED]`; architecture review `ACCEPTED_WITH_GATES`; importer-core controls `[TESTED]` | AU-AGENT-003 design review `VERIFIED WITH FINDINGS`; Worker, persistence, remaining runtime, and implementation-verification evidence `[OPEN]` |
+| TASK-THINSLICE-001 | [Runtime Request Inventory](TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md) | `[IMPLEMENTED]`, `[TESTED]` locally | `connect-src 'none'`, no client network API, local Worker headers/methods tested; full capture and production assertion `[OPEN]` |
 
 ## Owner
 

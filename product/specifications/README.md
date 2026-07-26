@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Product Strategy & Requirements Lead |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SOURCE_OF_TRUTH.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -25,8 +25,8 @@ different authority levels.
 - [Master Product Specification v1.0](Abris_Universe_Master_Product_Specification_RU.docx)
   — `[APPROVED]`, canonical consolidated product specification.
 - [Product Vision and Roadmap v1.0](01_Product_Vision_and_Roadmap.md) —
-  `[DRAFT]`, requires Project Owner approval and does not supersede the Master
-  Specification or later owner decisions.
+  `[APPROVED]` product input without changes under PROD-DEC-005; it does not
+  supersede the Master Specification or later owner decisions.
 
 ## Owner, Lifecycle, and Additions
 

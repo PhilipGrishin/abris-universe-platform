@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "fixture": "out-of-bounds-coordinate.oxs",
+  "expectedDisposition": "rejected",
+  "canonical": null,
+  "importReport": {
+    "status": "rejected",
+    "errors": [
+      "OXS_COORDINATE_OUT_OF_BOUNDS"
+    ],
+    "warnings": []
+  }
+}

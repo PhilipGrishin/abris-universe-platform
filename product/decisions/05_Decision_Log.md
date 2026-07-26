@@ -1,11 +1,11 @@
 # DECISION LOG — ABRIS UNIVERSE
 
 **Document ID:** AU-GOV-DECISIONLOG-001
-**Версия:** 1.0
+**Версия:** 1.1
 **Статус:** [APPROVED] как живой реестр (отдельные записи имеют собственный статус, см. поле «Статус» каждой записи)
 **Владелец документа:** Delivery, Documentation & Codex Coordination Lead
 **Дата создания:** 2026-07-20
-**Дата обновления:** 2026-07-20
+**Дата обновления:** 2026-07-25
 **Reviewers:** все профильные Claude-агенты (по маршрутизации), владелец проекта — для записей, требующих его решения
 **Связанные документы:** Master Product Specification v1.0 §19 (Реестр противоречий); `01_Product_Vision_and_Roadmap.md`; `02_Architecture_and_Stack.md`; `03_Deep_Research_Standards.md`
 **Правило ведения:** записи не удаляются. При пересмотре решения старая запись помечается `[SUPERSEDED]` со ссылкой на новую. Каждая запись должна содержать: Decision ID, дату, тему, контекст, варианты, выбранный вариант/рекомендацию, обоснование, статус, кого затрагивает, кто принимает решение, условия пересмотра, связанные документы/задачи.
@@ -135,6 +135,124 @@
 - **Статус:** **Resolved (процессное решение).**
 - **Связанные документы:** `02_Architecture_and_Stack.md` §6–7; `04_Codex_Context_Pack.md` §6.
 
+### DEC-005 — Утверждение Product Vision, Roadmap и Architecture-input
+- **Дата:** 2026-07-21. **Тема:** Перевод стратегических документов из [DRAFT] в [APPROVED].
+- **Контекст:** `01_Product_Vision_and_Roadmap.md` и `02_Architecture_and_Stack.md` находились в статусе [DRAFT — к утверждению владельцем] (блокер B2 из 10_Project_Readiness_Validation.md); Task Package TASK-THINSLICE-001 ссылается на них.
+- **Выбранный вариант:** Владелец утвердил оба документа без правок («утверждаю», 2026-07-21).
+- **Последствия:** 01 (Vision + Roadmap, Части I–II) — [APPROVED] как продуктовые входы разработки. 02 — [APPROVED] как продуктовый архитектурный вход; при этом раздел 6 (стек) остаётся рекомендацией с обязательным Codex Technical Review, ADR-001…008 остаются Proposed до Architecture Review (DEC-004 не изменён). Блокер B2 снят. Канонические копии в репозитории получают статус через ближайший exchange.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+### DEC-006 — Критерий выбора первого формата импорта (закрытие OQ-005)
+- **Дата:** 2026-07-21. **Тема:** OQ-005, блокер B3.
+- **Контекст:** Для Phase 0 требовался владельческий критерий выбора одного простого формата импорта.
+- **Выбранный вариант:** Владелец подтвердил («подтверждаю», 2026-07-21): критерий — «минимальная сложность парсинга при репрезентативности реальных пользовательских файлов»; конкретный формат выбирает spike Codex на 2–3 структурированных кандидатах (класса XSD/PAT/SXP; не PDF, не растровое изображение) с обоснованием в составе Technical Review.
+- **Последствия:** OQ-005 закрыт на уровне критерия; DEP-001/DEP-003 Task Package разблокированы в части владельческого решения; остаётся технический spike на стороне Codex. Блокер B3 снят.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+*Примечание (F2):* с DEC-005 продуктовые решения при кросс-ссылках между контурами указывать как PROD-DEC-xxx во избежание коллизии с инженерными DEC-xxx в docs/DECISIONS.md.
+
+### DEC-007 — Тестовый поддомен abris.653915.com (Cloudflare static hosting)
+- **Дата:** 2026-07-25
+- **Контекст:** Владельцу нужна временная тестовая страница до начала реализации Phase 0. Домен `653915.com` находится в Cloudflare-аккаунте владельца; Infrastructure Plan (04_ARCHITECTURE/03) рекомендует Cloudflare static hosting как $0-вариант без запрета коммерческого использования.
+- **Выбранный вариант:** Тестовая среда живёт на поддомене **abris.653915.com**. Временная заглушка развёрнута владельцем 2026-07-25 как Cloudflare Worker `abris-universe` (static assets, Direct Upload) с кастомным доменом abris.653915.com в зоне 653915.com (первоначальный план «Cloudflare Pages» уточнён по факту: актуальный поток Cloudflare создаёт Worker со static assets; смысл решения не меняется — статический хостинг Cloudflare). Постоянный деплой-пайплайн (GitHub → CI → deploy) проектирует и настраивает Codex в рамках Phase 0 Technical Design Proposal; заглушка будет заменена первым деплоем тонкого среза.
+- **Последствия:** У проекта есть публичный тестовый URL с первого дня; DNS/SSL управляются автоматически внутри одного Cloudflare-аккаунта. Для Technical Review: target deployment Phase 0 — Cloudflare static hosting на abris.653915.com.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+### DEC-008 — Диспозиции владельца по итогам INIT-003
+- **Дата:** 2026-07-25
+- **Контекст:** Приёмка INIT-003 (AU-EX-20260725-001, VERIFIED) подтвердила неблокирующие находки OVR-001…005 и рекомендовала PRODUCT_DECISION-обмен.
+- **Выбранный вариант:** Владелец распорядился («одобряю нормализацию» + директива от 2026-07-25): (1) OVR-001/002/005 — формулировочная нормализация одобрена (поле provenance у AU-CODEX-PRIMARY; отдельные «Does not own» у AU-CODEX-PRIMARY и AU-AGENT-003; закрепление исключительно-мостовой коммуникации в каноническом governance-тексте); полномочия, границы и смысл ролей не меняются; исполнение — AU-CODEX-PRIMARY/AU-AGENT-002. (2) OVR-004 — одобрен как отдельная протестированная tooling-задача (archive-aware status reporting), сроки на усмотрение AU-CODEX-PRIMARY. (3) PD-001 — одобрено проведение PRODUCT_DECISION-обмена для канонической интеграции DEC-005…008. (4) Следующий гейт после интеграции — TASK-THINSLICE-001 Technical Review + ограниченный spike OQ-005; разработка остаётся заблокированной до прохождения Technical Review.
+- **Последствия:** Follow-up ID Codex INIT-003-OVR-001/002/004/005 и INIT-003-PD-001 разблокированы владельческим решением.
+- **Статус:** **Resolved.** **Автор/утверждающий:** владелец проекта.
+
+### DEC-009 — Первый формат импорта Phase 0: OXS 1.0; нормализация SXP→XSP; правило фикстур
+
+- **Дата:** 2026-07-25
+- **Контекст:** Spike OQ-005 (`docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md`) рекомендовал OXS 1.0; Clarification and Conflict Report запросил продуктовые диспозиции CLR-001…003. DEC-006 заранее делегировал конкретный выбор формата spike-у Codex при обосновании в составе Technical Review — условие выполнено.
+- **Выбранный вариант:** (1) **OXS 1.0 принят** как первый структурированный формат импорта Phase 0: документированный XML с публичной официальной спецификацией (минимальная сложность парсинга) и реальный vendor-формат, чей образец содержит и out-of-scope классы стежков (репрезентативность). Формулировка «класса XSD/PAT/SXP» в продуктовых источниках была иллюстративной, не исчерпывающей; OXS принадлежит целевому классу. XSP отклонён для Phase 0 (шифрованный payload без публичной схемы); PAT/XSD отложены как будущие кандидаты после отдельной проверки доказательств и прав. (2) **«SXP» — подтверждённая опечатка**; канонический идентификатор — XSP (Cross Stitch Professional Platinum); отдельного формата SXP не существует (проверено по официальным экосистемным источникам 2026-07-25). Нормализация SXP→XSP в продуктовых источниках одобрена как формулировочная. (3) **Правило фикстур:** публичная доступность файла НЕ даёт права на редистрибуцию/производные. Маршруты: приоритетный — оригинальные фикстуры проекта (рукописный малый full-cross OXS по публичной спецификации; программно сгенерированный средний с намеренными out-of-scope элементами; негативные производные только от собственных фикстур; для каждой — авторство/скрипт, чек-сумма, golden-ожидания, разрешённые трансформации); опциональный — файлы владельца/Abris Art с явной фиксацией гранта в Decision Log до коммита; сторонние — только с письменным лицензионным доказательством; официальные vendor-образцы — только транзиентно для кросс-валидации, без коммита.
+- **Последствия:** OQ-005 закрыт полностью (критерий DEC-006 + выбор DEC-009). DEP-001 закрывается созданием фикстур маршрута 1; DEP-TR-001 (Technical Design Proposal + architecture review) — следующий гейт; разработка остаётся заблокированной. Инвариант отображения OXS (Symbol ≠ PaletteItem; Pattern ≠ Progress; исходный `marked`-статус не импортируется молча) обязателен для Technical Design. TASK-THINSLICE-001 остаётся действительным по смыслу; одобрена редакционная ревизия v1.1 (см. DEC-009-примечание).
+- **Статус:** **Resolved.** **Автор/утверждающий:** Claude Cowork (Chief Project Orchestrator) в рамках делегирования владельца DEC-006; владелец проинформирован до интеграции.
+
+### DEC-010 — Abris Art как якорный бренд, канал дистрибуции и источник ресурсов
+
+- **Дата:** 2026-07-25.
+- **Контекст:** Владелец проекта является сооснователем и совладельцем Abris Art — первого крупного производителя рукоделия в орбите проекта Abris Universe.
+- **Выбранный вариант:** Abris Universe запускается и в первую очередь проверяется на схемах и инфраструктуре Abris Art. Ссылка на приложение будет добавлена во все физические наборы Abris Art как канал дистрибуции и прямая связь с EP-21 QR activation / Brand & Retail Space. Все электронные схемы Abris Art будут доступны в приложении как якорный каталог. Владелец обязуется предоставлять ресурсы Abris Art на любом этапе проекта.
+- **Граница прав:** Каждая передача конкретного контента для fixture или каталога по-прежнему требует явной фиксации гранта по маршруту 2 PROD-DEC-009(3) до коммита; общее ресурсное обязательство не заменяет индивидуальную фиксацию прав.
+- **Последствия:** Scope Phase 0 не меняется. Доступность route-2 fixtures становится реальной опцией по инициативе владельца. Для Phase 1 зарегистрировать исследование исходных форматов электронных схем Abris Art (XSD/PAT/PDF/другие) как вход в post-OXS importer roadmap.
+- **Статус:** **Resolved.** **Автор/утверждающий:** Project Owner. **Источник интеграции:** валидированный `AU-EX-20260725-005`, раздел 8 независимого архитектурного review.
+
+### DEC-011 — Производственные XSP-образцы Abris Art и приоритет XSD для Phase 1
+
+- **Дата:** 2026-07-25.
+- **Контекст:** Владелец предоставил Claude Cowork четыре производственные схемы Abris Art (`123.xsp`, `AH339.xsp`, `Камін.xsp`, `AH334.xsp`) как рабочие образцы по маршруту 2 PROD-DEC-009(3). Образцы и их SHA-256 хранятся в рабочем контуре Claude; бинарные файлы запрещено передавать через Collaboration Bridge. Любая передача в инженерный контур требует отдельного действия владельца.
+- **Подтверждённые результаты:** Все четыре файла являются контейнерами `XSPPLAT`+ZIP с единственным зашифрованным payload `adesignfile.xsu`, структурно соответствующим доказательству OQ5-E03. Исходный формат Abris Art — XSP (Cross Stitch Professional Platinum). Предоставленный владельцем screenshot подтверждает экспорт из лицензированного Abris Art ПО в Pattern Maker (XSD), PCStitch (PAT), Stitchcraft, XSPro2000, XSS viewer и graphics/WMF; прямого экспорта OXS нет.
+- **Выбранный вариант:** Для Phase 1 приоритетный путь — пакетный экспорт каталога в XSD через собственное лицензированное ПО Abris Art без reverse engineering. XSD становится приоритетным кандидатом для второго импортера. Для ранних экспериментов допустима промежуточная конверсия XSD→OXS через ПО владельца спецификации OXS.
+- **Последствия:** PHASE1-ABRIS-ART-FORMAT-SURVEY существенно закрыт на уровне продуктового входа; последующий технический XSD spike и передача разрешённых образцов оформляются отдельно. Phase 0 остаётся без изменений: OXS 1.0 и route-1 fixtures.
+- **Граница прав и передачи:** Этот grant относится к четырём названным XSP-образцам и не разрешает их помещение в Bridge или Git. Он не заменяет отдельную владельческую передачу файлов в инженерный контур и не расширяет права на другие материалы.
+- **Статус:** **Resolved.** **Автор/утверждающий:** Project Owner + Claude Cowork expertise. **Источник интеграции:** валидированный `AU-EX-20260725-006`, раздел 7 подтверждения ревизии дизайна.
+
+### PROD-DEC-012 — Sanctioned Preserve-Only `strandCount` Exception
+
+- **Date:** 2026-07-26.
+- **Context:** TASK-THINSLICE-001 section 10 excludes strand-count behavior,
+  while section 14 requires the optional field to exist and the approved
+  Technical Design preserves valid OXS `@strands` values without using them to
+  drive Phase 0 behavior. Independent acceptance finding F-02 required an
+  explicit product disposition.
+- **Decision:** Preserve valid source `strandCount` as an optional canonical
+  value. This is a sanctioned preserve-only exception for Phase 0.
+- **Behavior boundary:** Phase 0 must not interpret, edit, display as a
+  supported feature, validate against stitching technique, or use
+  `strandCount` to drive rendering, progress, material calculation, business
+  rules, or UX behavior.
+- **Rationale:** Lossless preservation supports future compatible expansion
+  without silently introducing the excluded strand-count feature.
+- **Consequences:** TS001-ACCEPT-F-02 is resolved. Existing importer and
+  canonical-model behavior remains unchanged. Any behavioral use requires a
+  future approved Task Package and review.
+- **Status:** **Resolved / owner-approved.**
+- **Author and approver:** Project Owner.
+
+### PROD-DEC-013 — First Phase 0 Production Deployment Authorization
+
+- **Date:** 2026-07-26.
+- **Context:** TASK-THINSLICE-001 received bounded independent
+  `[VERIFIED]` at immutable source `1a683ab`. Production deployment remained
+  separately blocked on explicit owner authorization, rollback-anchor capture,
+  approved credentials, and production smoke evidence.
+- **Decision:** Authorize the first production deployment of the accepted
+  Phase 0 thin slice to `https://abris.653915.com`.
+- **Conditions:** Use the accepted executable source, the protected
+  GitHub-to-CI-to-Cloudflare pipeline, a main-only `production` environment,
+  least-privilege environment secrets, an immutable previous Worker version,
+  pre-promotion smoke, production smoke, automatic rollback, and retained
+  provenance. Do not change DNS or broaden the accepted product scope.
+- **Consequences:** Explicit authorization gate is closed. TD-GATE-003 and
+  credential availability remain factual pre-deployment gates until the
+  Cloudflare account exposes the current version and the GitHub environment
+  contains the required secrets.
+- **Status:** **Approved; implementation in progress.**
+- **Author and approver:** Project Owner.
+
+### PROD-DEC-014 — Phase 0 Import-Worker Memory Evidence Limitation
+
+- **Date:** 2026-07-26.
+- **Context:** Actual import-Worker peak memory was not observable in the Phase
+  0 browser evidence. The Project Owner previously approved the documented
+  limitation under two mandatory controls.
+- **Decision:** Accept the missing observed import-Worker peak-memory result
+  only as a Phase 0 evidence limitation. Keep the exact 384 MiB preflight
+  estimator enforced and unit-tested. Require actual import-Worker memory
+  measurement in Prototype 9.1 before any 500,000-stitch scale claim.
+- **Boundary:** The estimator is admission control, not measured memory
+  evidence or a scale claim.
+- **Consequences:** This entry mirrors
+  `OWNER-DEC-TS001-WORKER-MEMORY-001` into the canonical product Decision Log
+  without changing its meaning and resolves TS001-ACCEPT-F-16.
+- **Status:** **Resolved / owner-approved.**
+- **Author and approver:** Project Owner.
+
 ---
 
 ## Часть C. Открытые вопросы (Open Questions Register)
@@ -145,7 +263,7 @@
 | OQ-002 | Планируется ли вовлекать несовершеннолетних учеников в Education (EP-22) на горизонте, требующем privacy-by-design (age assurance, parental consent) заранее? | Deep Research R4-03 | EP-22, Phase 3d | Quality, Security & Independent Acceptance Lead | Владелец проекта | До входа в Phase 3d | Open |
 | OQ-003 | Технологический стек команды: TypeScript/React(Native) или инвестиция в Kotlin Multiplatform? Organизационно-ресурсный вопрос, влияющий на рекомендацию ADR-004. | Deep Research R3-02/R3-03 | ADR-004, Phase 2 (mobile) | System Architecture, Data & AI Governance Lead + Codex (Technical Design Proposal) | Владелец проекта | До начала Phase 2 (mobile), не блокирует Phase 0 | Open |
 | OQ-004 | Кто ведёт continuous regulatory monitoring за EU Digital Omnibus (GDPR/ePrivacy/Data Act/NIS2/AI Act реформа) на 2026–2027? | Deep Research R4-02 | NFR-008, privacy-слой | Quality, Security & Independent Acceptance Lead (кандидат) | Владелец проекта (назначение ответственного) | Ближайший Project Status Report | Open |
-| OQ-005 | Критерий и конкретный выбор первого простого формата импорта для Phase 0. | Roadmap Phase 0; `02_Architecture_and_Stack.md` §9.5 | EP-02, TASK-THINSLICE-001 | System Architecture Lead + Codex (spike 9.5) | Владелец проекта подтверждает критерий; выбор конкретного формата делегирован spike | До старта реализации TASK-THINSLICE-001 | Open — см. также `07_TaskPackage_EP01_ThinSlice.md` |
+| OQ-005 | Критерий и конкретный выбор первого простого формата импорта для Phase 0. | Roadmap Phase 0; `02_Architecture_and_Stack.md` §9.5 | EP-02, TASK-THINSLICE-001 | System Architecture Lead + Codex (spike 9.5) | Критерий — владелец 2026-07-21 (DEC-006); формат — **OXS 1.0** (DEC-009, 2026-07-25, по делегированию) | Закрыт | **Resolved (полностью)** — фикстуры по правилу DEC-009(3) до закрытия DEP-001 |
 | OQ-006 | Конкретный SLA распознавания PDF (confidence %, доля успешного импорта) для EP-03. | C-01; Roadmap Phase 1.5 | EP-03, Phase 1.5 | System Architecture Lead + Codex (Prototype 9.2) | Владелец проекта | После Prototype 9.2 (20–30 файлов) | Open |
 | OQ-007 | Вводить ли Cloud Sync проактивно в Phase 1.5 (де-риск перед Phase 2) или оставить строго обязательным только с Phase 2 (mobile)? | C-04; Roadmap Phase 1.5/2 | EP-15 | Product Strategy & Requirements Lead + System Architecture Lead (рекомендация) | Владелец проекта | До планирования Phase 1.5 | Open |
 | OQ-008 | Переносить ли базовую QR-активацию набора Abris Art (часть EP-21) в Phase 1.5 (Web) ради быстрого канала роста, вместо ожидания Phase 2 (Mobile)? | Roadmap Phase 2 сводная таблица | EP-21 | Ecosystem, Community & Commercial Product Lead | Владелец проекта | До планирования Phase 1.5 | Open |

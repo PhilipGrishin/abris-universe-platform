@@ -1,6 +1,7 @@
 # Архитектура, данные и масштабируемость + рекомендованный стек (Abris Universe)
 
-> **Repository authority note:** `[PROPOSED]` product-side architecture input.
+> **Repository authority note:** `[APPROVED — product-side architecture input]`
+> without content changes by the Project Owner on 2026-07-21 (PROD-DEC-005).
 > This document does not approve the engineering technology stack or runtime
 > architecture. Engineering decisions require Codex Technical Review and the
 > canonical engineering decision process registered in
@@ -204,7 +205,7 @@ ProgressEvent {
 **9.2 PDF-импорт** — доля machine-readable vs scanned среди 20–30 образцов, достижимый confidence (C-01/EP-03).
 **9.3 Синхронизация** — корректность идемпотентного применения ProgressEvent и merge-правил на всех 7 сценариях §15.
 **9.4 Стоимость/latency AI** — до коммита на AI-провайдера в Creator Hub/Phase 2.
-**9.5 Выбор «одного простого формата»** — рекомендация: структурированный интерактивный формат (XSD/PAT/SXP-класса), не PDF и не изображение; конкретный — по короткому spike на 2–3 файлах кандидатов.
+**9.5 Выбор «одного простого формата»** — рекомендация: структурированный интерактивный формат (XSD/PAT/XSP-класса), не PDF и не изображение; конкретный — по короткому spike на 2–3 файлах кандидатов.
 
 ---
 

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d69b5c564cf17a042d2bf36ef1a864031e802676",
+  "sourceDirty": false,
+  "capturedAt": "2026-07-26T09:33:14.173Z",
+  "tool": {
+    "name": "axe-core",
+    "version": "4.10.3"
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "devicePixelRatio": 2
+    }
+  },
+  "auditModes": {
+    "normalColor": true
+  },
+  "visualEvidenceModes": {
+    "grayscale": true,
+    "reducedMotion": true
+  },
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "targets": [
+        ["button[aria-label=\"Zoom out\"]"],
+        ["button[aria-label=\"Pan left\"]"],
+        ["button[aria-label=\"Pan up\"]"],
+        ["button[aria-label=\"Pan down\"]"],
+        ["button[aria-label=\"Pan right\"]"]
+      ]
+    }
+  ],
+  "passCount": 37,
+  "manualContrastDisposition": {
+    "method": "WCAG relative-luminance formula applied to exact opaque CSS foreground/background tokens after rendered computed-style verification",
+    "minimumRatio": 4.5,
+    "results": [
+      {
+        "name": "brand-small",
+        "foreground": "#596562",
+        "background": "#f1eee7",
+        "ratio": 5.23,
+        "result": "pass"
+      },
+      {
+        "name": "summary-label",
+        "foreground": "#68726f",
+        "background": "#f8f6f3",
+        "ratio": 4.61,
+        "result": "pass"
+      },
+      {
+        "name": "summary-value",
+        "foreground": "#16201f",
+        "background": "#f8f6f3",
+        "ratio": 15.44,
+        "result": "pass"
+      },
+      {
+        "name": "toolbar-control",
+        "foreground": "#f4f1e9",
+        "background": "#214d49",
+        "ratio": 8.37,
+        "result": "pass"
+      },
+      {
+        "name": "toolbar-output",
+        "foreground": "#f4f1e9",
+        "background": "#183f3c",
+        "ratio": 10.25,
+        "result": "pass"
+      }
+    ],
+    "remainingAxeTargets": "The five incomplete targets all use the toolbar-control token pair measured above. They are manually dispositioned as contrast passes; axe did not calculate them automatically."
+  },
+  "focusOrderInspection": {
+    "method": "Rendered DOM focusable-order enumeration",
+    "order": [
+      "Abris Universe home",
+      "Import OXS file input",
+      "Zoom out",
+      "Zoom in",
+      "Pan left",
+      "Pan up",
+      "Pan down",
+      "Pan right",
+      "Pattern canvas"
+    ],
+    "limitation": "The browser-control surface did not produce a reliable end-to-end physical Tab traversal. DOM order is evidence, not a substitute for the required manual focus and screen-reader session."
+  }
+}

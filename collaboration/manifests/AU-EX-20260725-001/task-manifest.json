@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260725-001",
+  "task_id": "INIT-003-ORG-VALIDATION",
+  "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
+  "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
+  "source_commit_sha": "f748c9551175d24b22106b826354c8fc5878e0c6",
+  "source_branch": "codex/init-003-org-validation",
+  "review_commit_range": "1ccaace4aa6c5a441dca52bcbbab3fd26017f908..f748c9551175d24b22106b826354c8fc5878e0c6",
+  "prepared_at": "2026-07-25T11:54:47Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Independently review the INIT-003 full engineering-organization readiness validation.",
+  "scope": [
+    "Review the exact organizational changes and evidence since source commit 1ccaace.",
+    "Review registration, owner-instruction provenance, required fields, pairwise boundaries, interfaces, and readiness for AU-CODEX-PRIMARY and AU-AGENT-001 through AU-AGENT-006.",
+    "Review documentation consistency, Source of Truth, traceability, status semantics, and Documentation Impact.",
+    "Review Collaboration Bridge contracts, self-test evidence, completed-exchange integrity, shared-folder safety, and synchronization conclusions.",
+    "Review TASK-THINSLICE-001 executor mapping, open gates, and the prohibition on development before Technical Review.",
+    "Assess every OVR finding and return an evidence-based independent acceptance decision."
+  ],
+  "out_of_scope": [
+    "Changing product requirements, product behavior, approved terminology, scope, priorities, UX, or acceptance criteria.",
+    "Changing engineering architecture, role meaning, implementation, runtime, technology, platform, data model, API, or synchronization design.",
+    "Implementing product features, fixing Bridge tooling, or silently repairing organizational findings.",
+    "Reviewing the substantive binary Master Product Specification.",
+    "Using Git, committing, pushing, merging, or directly editing the canonical repository.",
+    "Assigning product or project VERIFIED without reviewing the exact registered source and evidence."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/.codex/AGENT_REGISTRY.md",
+    "sources/repository/docs/CODEX_AGENTS.md",
+    "sources/repository/AI_ORGANIZATION.md",
+    "sources/repository/AGENTS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/.codex/CURRENT_FOCUS.md",
+    "sources/repository/docs/TASKS.md",
+    "sources/repository/docs/HANDOFF_LOG.md",
+    "sources/repository/docs/RISKS.md",
+    "sources/repository/docs/OPEN_QUESTIONS.md",
+    "sources/repository/docs/DECISIONS.md",
+    "sources/repository/docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/AGENT_REGISTRY.md",
+      "sha256": "8201993aebeec892eab91ca8dce9351e35c70530ab8b489ad3d635f5419aa50b",
+      "size_bytes": 45381
+    },
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "18c8147a7f5828086a651996bc038e1d4eb4e8aca2cada6deb470eb1fdfb4b82",
+      "size_bytes": 2130
+    },
+    {
+      "path": "sources/repository/.codex/agents/README.md",
+      "sha256": "80da5a314f5688c2772a4f3458500d61d7710d573e817fccd26e2076cf5ff887",
+      "size_bytes": 2845
+    },
+    {
+      "path": "sources/repository/.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md",
+      "sha256": "b7dc5698a5ec4a45025ef84ddfd56f8c0c13ad40ca59cd238e0fc632d8ae5c8e",
+      "size_bytes": 8837
+    },
+    {
+      "path": "sources/repository/.codex/agents/definitions/au-agent-004-pattern-engine-import-rendering-algorithms-lead.md",
+      "sha256": "4dcb736a0758efbce7ac2a6335555d9522a48d16f83d52904555d75ec2cf4245",
+      "size_bytes": 9572
+    },
+    {
+      "path": "sources/repository/.codex/agents/definitions/au-agent-005-backend-data-synchronization-lead.md",
+      "sha256": "200b3b2999b7af56b918cab39f315a7e876d0e26833ae6bf3b07eb89a7c2d184",
+      "size_bytes": 10111
+    },
+    {
+      "path": "sources/repository/.codex/agents/definitions/au-agent-006-mobile-web-client-lead.md",
+      "sha256": "6da1fdaa5406a729bc3c712480e25d3c8e56f60d2a1bfcdaf27687247e41adb3",
+      "size_bytes": 11015
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "af779fa28a69f4b8c9fff9fcb93cb7b3e5ee2cfb8370385184a928532cb0b518",
+      "size_bytes": 15607
+    },
+    {
+      "path": "sources/repository/AI_ORGANIZATION.md",
+      "sha256": "c8f9eae7a4b3ed3ac35aec0213635b4d5a87ca1eaa1bcb1ad7be3aaabd86c31f",
+      "size_bytes": 3609
+    },
+    {
+      "path": "sources/repository/PROJECT_MANIFEST.md",
+      "sha256": "23866eaa9b7219ac665175f0badc2f0159f6889fd0ed064a154c8b22184e4e46",
+      "size_bytes": 11714
+    },
+    {
+      "path": "sources/repository/collaboration/README.md",
+      "sha256": "20b3254e07f5236d91eeca323464ea137d39bdc2b423df6cb87bcd861e0fab9b",
+      "size_bytes": 5169
+    },
+    {
+      "path": "sources/repository/collaboration/manifests/AU-EX-20260721-001/README.md",
+      "sha256": "fd3bd7c8561795184ec4726fc84d8db3de9be78b4ad15549df407abe85b27a92",
+      "size_bytes": 2154
+    },
+    {
+      "path": "sources/repository/collaboration/manifests/AU-EX-20260721-001/outcome.json",
+      "sha256": "3b2165ac18211e456b03d4792f80a5fee5efc42879bb5e89b0bc5d974ceb03dc",
+      "size_bytes": 1621
+    },
+    {
+      "path": "sources/repository/collaboration/manifests/AU-EX-20260721-001/request.json",
+      "sha256": "e75acad3e24de42435b574511c36a7b870138e61b2a76d25eda73425e75070c0",
+      "size_bytes": 3676
+    },
+    {
+      "path": "sources/repository/collaboration/manifests/AU-EX-20260721-001/task-manifest.json",
+      "sha256": "8c58c55ce8715fdc4353c4131210209a4d435779c57417b6d967df6bfc869966",
+      "size_bytes": 27557
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/README.md",
+      "sha256": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+      "size_bytes": 2073
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-return-manifest.schema.json",
+      "sha256": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+      "size_bytes": 3542
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-task-manifest.schema.json",
+      "sha256": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+      "size_bytes": 4451
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/README.md",
+      "sha256": "d82b1fe29a7b1a97a3128f42ace64c27146394b2673cb2f28bddc16227fe90b6",
+      "size_bytes": 3337
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/archive-exchange.mjs",
+      "sha256": "1d842f3965bee2298c9f2bb8a6f6f15eb205ec4cb0e347c8f56b67089997e6d4",
+      "size_bytes": 2238
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/bridge-core.test.mjs",
+      "sha256": "a7f3d9519a05b4bf8a8570026cb68a25d4b7e59975e92677441b6122256c7a33",
+      "size_bytes": 9105
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/import-claude-output.mjs",
+      "sha256": "c6c6724b41082fdc29826fe3e611740daab3ac63df7b40e3f51c387b3c374592",
+      "size_bytes": 2229
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/lib/bridge-core.mjs",
+      "sha256": "1b32105287bf0ecf281f8101301fd01c61010d525f2e8eba4520af8fab0831fb",
+      "size_bytes": 25935
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/prepare-claude-package.mjs",
+      "sha256": "9a8d33c115cd6dbb70fe909cc737e9b1f91a2148ea0cc0643438b01c12438266",
+      "size_bytes": 8363
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/report-exchange-status.mjs",
+      "sha256": "bee0b0826ccb9a2e188771850bc790e88676e63baa7e83f04a442e210e396fad",
+      "size_bytes": 2632
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/sync-claude-bridge.mjs",
+      "sha256": "467b34c6d86148cb407a79ed4a81fe8bc4468c3db02e7936fbed4134f57d6225",
+      "size_bytes": 2892
+    },
+    {
+      "path": "sources/repository/collaboration/scripts/validate-claude-output.mjs",
+      "sha256": "2ffd94dd0f524e5e22666e124af37761e8ea557b01feca1377d009f7d0fccf49",
+      "size_bytes": 1727
+    },
+    {
+      "path": "sources/repository/docs/CHANGELOG_INTERNAL.md",
+      "sha256": "c5a3ecef0aeb06e2a30801f75da0d3c92fd2a7f45c147337d0ed2385d668f343",
+      "size_bytes": 10950
+    },
+    {
+      "path": "sources/repository/docs/CODEX_AGENTS.md",
+      "sha256": "792d460cd657310eebdc457d691e81de87e291fe481c8a33d73316c22193e0a4",
+      "size_bytes": 27972
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "420a283f06fe49f83b8825b7980964acdfa9ab3dba1b01b23506b8c0732f8e12",
+      "size_bytes": 12815
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "bbb2e8d75c40e3d8d9c4576c74608696498c3512b2815e116bec3b738723cf48",
+      "size_bytes": 13696
+    },
+    {
+      "path": "sources/repository/docs/DEVELOPMENT_WORKFLOW.md",
+      "sha256": "3bd026a57fcc38d2ca3b60cdeeca5045c0f0c92a9ce0fb05fd2280fa11d11bf0",
+      "size_bytes": 10632
+    },
+    {
+      "path": "sources/repository/docs/HANDOFF_LOG.md",
+      "sha256": "c92dec3cbb4c98f1b9739705a0e695e024de2452eddf48b73e1d068364be5317",
+      "size_bytes": 30064
+    },
+    {
+      "path": "sources/repository/docs/OPEN_QUESTIONS.md",
+      "sha256": "05b994b153b268ca01035147abda4ae282e5c713cc942922ae205a2b43c16582",
+      "size_bytes": 2675
+    },
+    {
+      "path": "sources/repository/docs/README.md",
+      "sha256": "fd875c043ba50f8c619d781e1372f4ddd648123d8045c7cdcb216f676c9f6575",
+      "size_bytes": 3746
+    },
+    {
+      "path": "sources/repository/docs/RISKS.md",
+      "sha256": "7a8279e33de5848368e96dd6a36076bc5cf6a3c73e02df8c081f8de0d6e362db",
+      "size_bytes": 11898
+    },
+    {
+      "path": "sources/repository/docs/SHARED_WORKFLOW.md",
+      "sha256": "77c76e8119e8529045f91a51f001148b5fe30e97aaf16f2afa85a9f75211353b",
+      "size_bytes": 5408
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "380bbc5b320a5632efaaac8c712ef158006d7306a36f0a2f210ae824b0abbe6a",
+      "size_bytes": 11433
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "0e0650e4a9114ee2e7ff477e501e9828dc9823f737f7ef3c753e652dc8cf448d",
+      "size_bytes": 16004
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "2b060679efe772e5c0afcce99267faf5056f3db6078e452f56507cd14d4dee3e",
+      "size_bytes": 9145
+    },
+    {
+      "path": "sources/repository/docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md",
+      "sha256": "04dc251c319a999a96ca0113606192e50713d09ade0949c0942493d063235c0f",
+      "size_bytes": 21484
+    },
+    {
+      "path": "sources/repository/docs/standards/DOCUMENTATION_STANDARD.md",
+      "sha256": "eb81407c7a7b3dfeca54738934ed3c91c55c243d371c92e2414e5c5ea26b3239",
+      "size_bytes": 7354
+    },
+    {
+      "path": "sources/repository/product/decisions/05_Decision_Log.md",
+      "sha256": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+      "size_bytes": 23601
+    },
+    {
+      "path": "sources/repository/product/reviews/INIT-002_Independent_Acceptance_Report.md",
+      "sha256": "fb0325185ff3da68eee01ce90ee00c0af88387a94c390abca9be7845b135b0c7",
+      "size_bytes": 9623
+    },
+    {
+      "path": "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+      "sha256": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+      "size_bytes": 45081
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "1d264cb7ccac39b143e0eaf17d22090f5e8eb0ac91e969e44dc593ad8400f6a6",
+      "size_bytes": 417344
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "e56ee1b75c9794bf638c82bbef072f6ef1efaac55fc41eb88b762553b93f6f98",
+      "size_bytes": 4456
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "57d441204ecf8f9fb31798cae0e9ec1dd0f6d61073c6fd7bb085129b8735e0ed",
+      "size_bytes": 1036
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema.",
+    "outputs/acceptance-report.md containing reviewed source identity, evidence assessment, finding dispositions, limitations, risks, and the independent acceptance rationale."
+  ],
+  "acceptance_criteria": [
+    "The exact range 1ccaace4aa6c5a441dca52bcbbab3fd26017f908..f748c9551175d24b22106b826354c8fc5878e0c6 and registered source checksums are reviewed.",
+    "All seven engineering roles and their owner-instruction evidence are assessed without assuming registration correctness.",
+    "Every required role field, all 21 pairwise boundaries, independent review ownership, and self-acceptance prohibitions are assessed.",
+    "Documentation, Source of Truth, traceability, status, Documentation Impact, and persistent-state claims are assessed.",
+    "Bridge schemas, scripts, tests, archive integrity, shared-folder safety, synchronization, and communication-contract claims are assessed from registered evidence.",
+    "TASK-THINSLICE-001 intake mapping and every development blocker are assessed without approving implementation.",
+    "OVR-001 through OVR-005 and existing INIT-002-F2/F5 limitations are explicitly accepted, rejected, or returned for rework with evidence.",
+    "No product or technical meaning is invented or changed by the reviewer.",
+    "The return decision is exactly VERIFIED or REWORK_REQUIRED and is limited to the registered INIT-003 scope."
+  ],
+  "authority_boundaries": {
+    "product_authority": "Claude Cowork may independently review product and organizational acceptance within the registered scope but may not change product meaning through this review.",
+    "engineering_authority": "AU-CODEX-PRIMARY governs the engineering organization; AU-AGENT-001 and assigned domain agents retain technical meaning and implementation authority; AU-AGENT-003 retains task-scoped independent engineering verification without product-acceptance authority. Claude must not directly edit engineering artifacts.",
+    "documentation_authority": "AU-AGENT-002 owns documentation structure, navigation, terminology records, traceability, and lifecycle without changing product, technical, role, or review meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260725-001",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/AGENT_REGISTRY.md": "8201993aebeec892eab91ca8dce9351e35c70530ab8b489ad3d635f5419aa50b",
+    "sources/repository/.codex/CURRENT_FOCUS.md": "18c8147a7f5828086a651996bc038e1d4eb4e8aca2cada6deb470eb1fdfb4b82",
+    "sources/repository/.codex/agents/README.md": "80da5a314f5688c2772a4f3458500d61d7710d573e817fccd26e2076cf5ff887",
+    "sources/repository/.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md": "b7dc5698a5ec4a45025ef84ddfd56f8c0c13ad40ca59cd238e0fc632d8ae5c8e",
+    "sources/repository/.codex/agents/definitions/au-agent-004-pattern-engine-import-rendering-algorithms-lead.md": "4dcb736a0758efbce7ac2a6335555d9522a48d16f83d52904555d75ec2cf4245",
+    "sources/repository/.codex/agents/definitions/au-agent-005-backend-data-synchronization-lead.md": "200b3b2999b7af56b918cab39f315a7e876d0e26833ae6bf3b07eb89a7c2d184",
+    "sources/repository/.codex/agents/definitions/au-agent-006-mobile-web-client-lead.md": "6da1fdaa5406a729bc3c712480e25d3c8e56f60d2a1bfcdaf27687247e41adb3",
+    "sources/repository/AGENTS.md": "af779fa28a69f4b8c9fff9fcb93cb7b3e5ee2cfb8370385184a928532cb0b518",
+    "sources/repository/AI_ORGANIZATION.md": "c8f9eae7a4b3ed3ac35aec0213635b4d5a87ca1eaa1bcb1ad7be3aaabd86c31f",
+    "sources/repository/PROJECT_MANIFEST.md": "23866eaa9b7219ac665175f0badc2f0159f6889fd0ed064a154c8b22184e4e46",
+    "sources/repository/collaboration/README.md": "20b3254e07f5236d91eeca323464ea137d39bdc2b423df6cb87bcd861e0fab9b",
+    "sources/repository/collaboration/manifests/AU-EX-20260721-001/README.md": "fd3bd7c8561795184ec4726fc84d8db3de9be78b4ad15549df407abe85b27a92",
+    "sources/repository/collaboration/manifests/AU-EX-20260721-001/outcome.json": "3b2165ac18211e456b03d4792f80a5fee5efc42879bb5e89b0bc5d974ceb03dc",
+    "sources/repository/collaboration/manifests/AU-EX-20260721-001/request.json": "e75acad3e24de42435b574511c36a7b870138e61b2a76d25eda73425e75070c0",
+    "sources/repository/collaboration/manifests/AU-EX-20260721-001/task-manifest.json": "8c58c55ce8715fdc4353c4131210209a4d435779c57417b6d967df6bfc869966",
+    "sources/repository/collaboration/schemas/README.md": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+    "sources/repository/collaboration/schemas/claude-return-manifest.schema.json": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+    "sources/repository/collaboration/schemas/claude-task-manifest.schema.json": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+    "sources/repository/collaboration/scripts/README.md": "d82b1fe29a7b1a97a3128f42ace64c27146394b2673cb2f28bddc16227fe90b6",
+    "sources/repository/collaboration/scripts/archive-exchange.mjs": "1d842f3965bee2298c9f2bb8a6f6f15eb205ec4cb0e347c8f56b67089997e6d4",
+    "sources/repository/collaboration/scripts/bridge-core.test.mjs": "a7f3d9519a05b4bf8a8570026cb68a25d4b7e59975e92677441b6122256c7a33",
+    "sources/repository/collaboration/scripts/import-claude-output.mjs": "c6c6724b41082fdc29826fe3e611740daab3ac63df7b40e3f51c387b3c374592",
+    "sources/repository/collaboration/scripts/lib/bridge-core.mjs": "1b32105287bf0ecf281f8101301fd01c61010d525f2e8eba4520af8fab0831fb",
+    "sources/repository/collaboration/scripts/prepare-claude-package.mjs": "9a8d33c115cd6dbb70fe909cc737e9b1f91a2148ea0cc0643438b01c12438266",
+    "sources/repository/collaboration/scripts/report-exchange-status.mjs": "bee0b0826ccb9a2e188771850bc790e88676e63baa7e83f04a442e210e396fad",
+    "sources/repository/collaboration/scripts/sync-claude-bridge.mjs": "467b34c6d86148cb407a79ed4a81fe8bc4468c3db02e7936fbed4134f57d6225",
+    "sources/repository/collaboration/scripts/validate-claude-output.mjs": "2ffd94dd0f524e5e22666e124af37761e8ea557b01feca1377d009f7d0fccf49",
+    "sources/repository/docs/CHANGELOG_INTERNAL.md": "c5a3ecef0aeb06e2a30801f75da0d3c92fd2a7f45c147337d0ed2385d668f343",
+    "sources/repository/docs/CODEX_AGENTS.md": "792d460cd657310eebdc457d691e81de87e291fe481c8a33d73316c22193e0a4",
+    "sources/repository/docs/CURRENT_STATUS.md": "420a283f06fe49f83b8825b7980964acdfa9ab3dba1b01b23506b8c0732f8e12",
+    "sources/repository/docs/DECISIONS.md": "bbb2e8d75c40e3d8d9c4576c74608696498c3512b2815e116bec3b738723cf48",
+    "sources/repository/docs/DEVELOPMENT_WORKFLOW.md": "3bd026a57fcc38d2ca3b60cdeeca5045c0f0c92a9ce0fb05fd2280fa11d11bf0",
+    "sources/repository/docs/HANDOFF_LOG.md": "c92dec3cbb4c98f1b9739705a0e695e024de2452eddf48b73e1d068364be5317",
+    "sources/repository/docs/OPEN_QUESTIONS.md": "05b994b153b268ca01035147abda4ae282e5c713cc942922ae205a2b43c16582",
+    "sources/repository/docs/README.md": "fd875c043ba50f8c619d781e1372f4ddd648123d8045c7cdcb216f676c9f6575",
+    "sources/repository/docs/RISKS.md": "7a8279e33de5848368e96dd6a36076bc5cf6a3c73e02df8c081f8de0d6e362db",
+    "sources/repository/docs/SHARED_WORKFLOW.md": "77c76e8119e8529045f91a51f001148b5fe30e97aaf16f2afa85a9f75211353b",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "380bbc5b320a5632efaaac8c712ef158006d7306a36f0a2f210ae824b0abbe6a",
+    "sources/repository/docs/TASKS.md": "0e0650e4a9114ee2e7ff477e501e9828dc9823f737f7ef3c753e652dc8cf448d",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "2b060679efe772e5c0afcce99267faf5056f3db6078e452f56507cd14d4dee3e",
+    "sources/repository/docs/reviews/documentation/INIT-003_Organizational_Validation_Report.md": "04dc251c319a999a96ca0113606192e50713d09ade0949c0942493d063235c0f",
+    "sources/repository/docs/standards/DOCUMENTATION_STANDARD.md": "eb81407c7a7b3dfeca54738934ed3c91c55c243d371c92e2414e5c5ea26b3239",
+    "sources/repository/product/decisions/05_Decision_Log.md": "3e671737fac645b9adbf46690aa63a315ec086281f95173ec5d6106325c407bb",
+    "sources/repository/product/reviews/INIT-002_Independent_Acceptance_Report.md": "fb0325185ff3da68eee01ce90ee00c0af88387a94c390abca9be7845b135b0c7",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md": "89971954aac150cc8d116808797de5289886e7556247c75a1731d0324fddc8ae",
+    "sources/review/review-range.diff": "1d264cb7ccac39b143e0eaf17d22090f5e8eb0ac91e969e44dc593ad8400f6a6",
+    "sources/review/review-range.stat.txt": "e56ee1b75c9794bf638c82bbef072f6ef1efaac55fc41eb88b762553b93f6f98",
+    "sources/review/review-range.commits.txt": "57d441204ecf8f9fb31798cae0e9ec1dd0f6d61073c6fd7bb085129b8735e0ed"
+  }
+}

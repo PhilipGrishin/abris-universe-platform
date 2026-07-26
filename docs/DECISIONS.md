@@ -151,7 +151,12 @@
 - **Consequence:** Exchange payloads are non-canonical until validation,
   authorized meaning review, and Codex integration. All write-capable bridge
   commands default to dry-run. No bridge script commits, pushes, merges, or
-  grants Claude repository write authority.
+  grants Claude repository write authority. Following the Project Owner
+  disposition dated 2026-07-25, the registered Bridge is the exclusive route
+  for all substantive Claude–Codex communication and artifact transfer,
+  regardless of direct repository availability. Chat history is not evidence,
+  and manual owner input is limited to the registered trigger phrases unless a
+  later explicit owner governance decision changes the route.
 - **Reversibility:** A later approved decision may adopt Option A or another
   transport. Existing manifests and archives remain traceable; no source
   history needs destructive migration.
@@ -159,6 +164,31 @@
 - **Review status:** Exchange `AU-EX-20260721-001` completed a validated full
   round-trip. The exercised operating model is independently accepted; this does
   not verify every tooling implementation change or future exchange.
+
+## OWNER-DEC-INIT003-DISPOSITIONS-001 — Resolve INIT-003 Governance Findings
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`
+- **Date:** 2026-07-25
+- **Source:** Explicit Project Owner directive dated 2026-07-25.
+- **Related records:** INIT-003-OVR-001, INIT-003-OVR-002,
+  INIT-003-OVR-004, INIT-003-OVR-005, and INIT-003-PD-001.
+- **Decision:** Authorize wording-only normalization for explicit
+  AU-CODEX-PRIMARY instruction provenance, standalone `Does not own` fields for
+  AU-CODEX-PRIMARY and AU-AGENT-003, and the exclusive Collaboration Bridge
+  communication rule. Separately authorize tested archive-aware exchange status
+  reporting. Open a `PRODUCT_DECISION` exchange for Cowork DEC-005 through
+  DEC-008 before TASK-THINSLICE-001 Technical Review and OQ-005 spike intake.
+- **Meaning boundary:** The normalization changes no role authority, ownership,
+  product decision, architecture, or implementation meaning. Cowork DEC-005
+  through DEC-008 remain product inputs pending their validated Bridge return
+  and canonical integration.
+- **Consequence:** OVR-001, OVR-002, OVR-004, and OVR-005 are implemented.
+  Development remains gated behind the Technical Review, which cannot start
+  until the product-decision exchange is integrated.
+- **Evidence:** `.codex/AGENT_REGISTRY.md`, `docs/CODEX_AGENTS.md`,
+  `collaboration/README.md`, the canonical governance indexes,
+  `collaboration/scripts/report-exchange-status.mjs`, and 19 passing Bridge
+  unit tests.
 
 ## OWNER-DEC-F1-001 — Activate Specialized Codex Agents
 
@@ -228,6 +258,90 @@
 - **Review status:** Exercised successfully by PR #1 for the prior linear
   Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain, by PR #2 for
   AU-AGENT-004, and by PR #3 for AU-AGENT-005. AU-AGENT-006 uses the same gate.
+
+## TASK-THINSLICE-001 Proposed Architecture Decisions
+
+The following task-scoped decisions remain `[PROPOSED]` and have independent
+pre-implementation disposition `ACCEPTED_WITH_GATES` through
+`AU-EX-20260725-005`. Their full context, alternatives, consequences, risks,
+migration, rollback, evidence obligations, and review histories live in the ADR
+library and are not duplicated here:
+
+- [ADR-TS001-001](architecture/adr/ADR-TS001-001-canonical-pattern-and-oxs-boundary.md):
+  canonical Pattern independent of OXS; evidence-gated coordinate and symbol
+  mapping.
+- [ADR-TS001-002](architecture/adr/ADR-TS001-002-tiled-canvas-rendering.md):
+  tiled Canvas2D behind a stable renderer interface; WebGL deferred to measured
+  evidence.
+- [ADR-TS001-003](architecture/adr/ADR-TS001-003-indexeddb-progress-event-log.md):
+  IndexedDB with an append-only local ProgressEvent log and atomic projections.
+- [ADR-TS001-004](architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md):
+  portable TypeScript workspace and immutable GitHub-to-Cloudflare delivery.
+
+None of these records authorizes implementation. The architecture review and
+AU-AGENT-003 design-only security review are complete; TD-GATE-004 is closed.
+The ADRs remain `[PROPOSED]` behind their recorded fixture, implementation,
+runtime, performance, and deployment evidence gates. Independent revision
+confirmation `AU-EX-20260725-006` records
+`CONFIRMED_ACCEPTED_WITH_GATES`, confirms TD-GATE-004 closed, and permits
+route-1 fixture production and workspace scaffolding without authorizing
+importer implementation, deployment, or project `[VERIFIED]`.
+
+The project-original fixture stage is now `[IMPLEMENTED]`, `[TESTED]`.
+TD-GATE-001 is closed only for the registered route-1 producer profile; this
+evidence does not approve the ADR, other producer coordinate profiles, general
+exact-symbol fidelity, runtime implementation, or deployment.
+
+## OWNER-DEC-TS001-WORKER-MEMORY-001 — Accept the Phase 0 Worker-Memory Evidence Limitation
+
+- **Status:** `[APPROVED]`
+- **Date:** 2026-07-26
+- **Source:** Explicit Project Owner directive dated 2026-07-26.
+- **Related task:** TASK-THINSLICE-001, finding TS001-IMPL-002.
+- **Context:** Registered Chromium main-thread memory signals do not measure
+  transient dedicated import-Worker peak memory. The deterministic importer
+  estimator is enforced admission control, not observed allocation.
+- **Decision:** Accept the missing observed import-Worker peak-memory result as
+  a documented Phase 0 evidence limitation only.
+- **Conditions:** Keep the exact 384 MiB preflight estimator enforced and
+  unit-tested as the operative Phase 0 control. Make actual import-Worker
+  memory measurement mandatory in future Prototype 9.1 evidence before any
+  500,000-stitch scale claim.
+- **Alternatives:** Delay Phase 0 until a new Worker-memory measurement harness
+  exists; or incorrectly treat the estimator/main-thread signal as observed
+  Worker memory.
+- **Reason:** The limitation is explicit and bounded while the deterministic
+  control prevents unbounded admission. Deferring actual measurement does not
+  authorize extrapolation to the future scale target.
+- **Consequence:** The approved-limitation alternative of TS001-IMPL-002 is
+  supplied for AU-AGENT-003 review. Prototype 9.1 cannot support a scale claim
+  without actual Worker-memory evidence and independent review.
+- **Reversibility:** A later measured result may supersede this Phase 0
+  limitation. Raising or removing the control requires separate architecture,
+  test, documentation, and approval work.
+- **Owner:** Project Owner
+- **Implementation record:** [AU-BENCH-TS001-LIM-001](assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
+- **Product-source cross-reference:** `[OPEN]` as
+  PROD-DEC-014; `TS001-ACCEPT-F-16` is resolved without changing this
+  engineering decision's meaning.
+
+## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
+
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`
+- **Date:** 2026-07-25
+- **Context:** The Project Owner manually transfers completed Codex work to
+  Claude through the registered Collaboration Bridge trigger flow.
+- **Decision:** Every completed Codex work package that is ready for
+  owner-mediated handoff to Claude must end its final user-facing response with
+  the exact standalone line `Codex finished`.
+- **Boundary:** The marker records transport readiness only. It is not
+  engineering evidence, approval, product acceptance, or `[VERIFIED]` status.
+- **Owner:** Project Owner
+- **Implemented by:** AU-CODEX-PRIMARY; AU-AGENT-002 maintains the documented
+  rule and navigation.
+- **Related records:** `AGENTS.md`, `.codex/PROJECT_INSTRUCTIONS.md`,
+  `collaboration/README.md`, `docs/SHARED_WORKFLOW.md`, and
+  `docs/SOURCE_OF_TRUTH.md`.
 
 ## Decision Process
 

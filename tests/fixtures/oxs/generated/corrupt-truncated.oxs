@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <format comments01="Project-original Abris Universe route-1 test fixture" comments12="properties, fullstitches, and backstitches are present even when empty" comments13="element and attribute names are lowercase"/>
+  <properties oxsversion="1.0" software="Abris Universe Route-1 Fixture Generator" software_version="1.0.0" chartheight="2" chartwidth="2" charttitle="Route-1 Corrupt Truncated" author="Abris Universe Engineering" copyright="Abris Universe project fixture" instructions="Test data only" stitchesperinch="14" stitchesperinch_y="14" palettecount="1"/>
+  <palette>
+    <palette_item index="0" number="cloth" name="Cloth" color="FFFFFF" printcolor="FFFFFF" blendcolor="nil" comments="" strands="2" symbol="0" dashpattern="" misc1=""/>
+    <palette_item index="1" number="AU-01" name="Fixture Color 1" color="5375A5" printcolor="5375A5" blendcolor="nil" comments="" strands="2" symbol="A" dashpattern="" misc1=""/>
+  </palette>
+  <fullstitches>
+    <stitch x="0" y="0" palindex="1"/>
+  </fullst

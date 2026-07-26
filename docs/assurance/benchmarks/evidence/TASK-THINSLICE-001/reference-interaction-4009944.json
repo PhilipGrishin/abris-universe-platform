@@ -1,0 +1,1923 @@
+{
+  "schemaVersion": 1,
+  "runId": "reference-interaction-4009944",
+  "capturedAt": "2026-07-26T16:44:37.373Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "hardwareConcurrency": 8,
+    "deviceMemoryGiB": 8,
+    "viewport": {
+      "width": 1365,
+      "height": 768,
+      "devicePixelRatio": 1
+    },
+    "capabilities": {
+      "offscreenCanvas": true,
+      "moduleWorker": true,
+      "webLocks": true,
+      "indexedDb": true
+    }
+  },
+  "executionPath": "offscreen-worker",
+  "glyphAtlas": "zoom-dpr-cache",
+  "peakUsedJsHeapBytes": 103622540,
+  "resources": [
+    {
+      "initiatorType": "link",
+      "name": "http://127.0.0.1:4173/assets/styles-C5z2-Inc.css"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/import.worker-BeDPphMA.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/project-service-CiBP4X2w.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/render.worker-lkgsDS-y.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/render.worker-lkgsDS-y.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/src-Ee-tkyr4.js"
+    },
+    {
+      "initiatorType": "other",
+      "name": "http://127.0.0.1:4173/assets/styles-B1ZaHAa3.js"
+    },
+    {
+      "initiatorType": "script",
+      "name": "http://127.0.0.1:4173/assets/app-BsHEInkc.js"
+    }
+  ],
+  "records": [
+    {
+      "sequence": 1,
+      "metric": "long-task",
+      "durationMs": 99,
+      "stitchCount": null,
+      "timestamp": "2026-07-26T16:43:25.619Z"
+    },
+    {
+      "sequence": 2,
+      "metric": "renderer-frame",
+      "durationMs": 32.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:25.704Z"
+    },
+    {
+      "sequence": 3,
+      "metric": "viewer-tti",
+      "durationMs": 64.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:25.704Z"
+    },
+    {
+      "sequence": 4,
+      "metric": "long-task",
+      "durationMs": 148,
+      "stitchCount": null,
+      "timestamp": "2026-07-26T16:43:37.165Z"
+    },
+    {
+      "sequence": 5,
+      "metric": "long-task",
+      "durationMs": 75,
+      "stitchCount": null,
+      "timestamp": "2026-07-26T16:43:37.242Z"
+    },
+    {
+      "sequence": 6,
+      "metric": "long-task",
+      "durationMs": 56,
+      "stitchCount": null,
+      "timestamp": "2026-07-26T16:43:37.364Z"
+    },
+    {
+      "sequence": 7,
+      "metric": "import-latency",
+      "durationMs": 1951.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:37.366Z"
+    },
+    {
+      "sequence": 8,
+      "metric": "renderer-frame",
+      "durationMs": 0.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:37.404Z"
+    },
+    {
+      "sequence": 9,
+      "metric": "renderer-frame",
+      "durationMs": 42.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:37.462Z"
+    },
+    {
+      "sequence": 10,
+      "metric": "viewer-tti",
+      "durationMs": 95.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:37.462Z"
+    },
+    {
+      "sequence": 11,
+      "metric": "mark-to-paint",
+      "durationMs": 4.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:50.720Z"
+    },
+    {
+      "sequence": 12,
+      "metric": "autosave-commit",
+      "durationMs": 21.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:43:50.737Z"
+    },
+    {
+      "sequence": 13,
+      "metric": "mark-to-paint",
+      "durationMs": 2.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.786Z"
+    },
+    {
+      "sequence": 14,
+      "metric": "autosave-commit",
+      "durationMs": 13.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.798Z"
+    },
+    {
+      "sequence": 15,
+      "metric": "mark-to-paint",
+      "durationMs": 0.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.842Z"
+    },
+    {
+      "sequence": 16,
+      "metric": "autosave-commit",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.850Z"
+    },
+    {
+      "sequence": 17,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.867Z"
+    },
+    {
+      "sequence": 18,
+      "metric": "autosave-commit",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.875Z"
+    },
+    {
+      "sequence": 19,
+      "metric": "mark-to-paint",
+      "durationMs": 0.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.882Z"
+    },
+    {
+      "sequence": 20,
+      "metric": "autosave-commit",
+      "durationMs": 9.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.891Z"
+    },
+    {
+      "sequence": 21,
+      "metric": "mark-to-paint",
+      "durationMs": 3.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.906Z"
+    },
+    {
+      "sequence": 22,
+      "metric": "autosave-commit",
+      "durationMs": 12.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.915Z"
+    },
+    {
+      "sequence": 23,
+      "metric": "mark-to-paint",
+      "durationMs": 5.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.930Z"
+    },
+    {
+      "sequence": 24,
+      "metric": "autosave-commit",
+      "durationMs": 10.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.935Z"
+    },
+    {
+      "sequence": 25,
+      "metric": "mark-to-paint",
+      "durationMs": 3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.947Z"
+    },
+    {
+      "sequence": 26,
+      "metric": "autosave-commit",
+      "durationMs": 9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.953Z"
+    },
+    {
+      "sequence": 27,
+      "metric": "mark-to-paint",
+      "durationMs": 2.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.981Z"
+    },
+    {
+      "sequence": 28,
+      "metric": "autosave-commit",
+      "durationMs": 13.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:00.992Z"
+    },
+    {
+      "sequence": 29,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.095Z"
+    },
+    {
+      "sequence": 30,
+      "metric": "autosave-commit",
+      "durationMs": 6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.100Z"
+    },
+    {
+      "sequence": 31,
+      "metric": "mark-to-paint",
+      "durationMs": 5.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.115Z"
+    },
+    {
+      "sequence": 32,
+      "metric": "autosave-commit",
+      "durationMs": 10.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.120Z"
+    },
+    {
+      "sequence": 33,
+      "metric": "mark-to-paint",
+      "durationMs": 6.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.148Z"
+    },
+    {
+      "sequence": 34,
+      "metric": "autosave-commit",
+      "durationMs": 20.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.161Z"
+    },
+    {
+      "sequence": 35,
+      "metric": "mark-to-paint",
+      "durationMs": 2.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.164Z"
+    },
+    {
+      "sequence": 36,
+      "metric": "autosave-commit",
+      "durationMs": 4.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.166Z"
+    },
+    {
+      "sequence": 37,
+      "metric": "autosave-commit",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.169Z"
+    },
+    {
+      "sequence": 38,
+      "metric": "mark-to-paint",
+      "durationMs": 5.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.181Z"
+    },
+    {
+      "sequence": 39,
+      "metric": "autosave-commit",
+      "durationMs": 14.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.190Z"
+    },
+    {
+      "sequence": 40,
+      "metric": "autosave-commit",
+      "durationMs": 3.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.193Z"
+    },
+    {
+      "sequence": 41,
+      "metric": "mark-to-paint",
+      "durationMs": 3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.198Z"
+    },
+    {
+      "sequence": 42,
+      "metric": "autosave-commit",
+      "durationMs": 5.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.200Z"
+    },
+    {
+      "sequence": 43,
+      "metric": "mark-to-paint",
+      "durationMs": 1.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.206Z"
+    },
+    {
+      "sequence": 44,
+      "metric": "autosave-commit",
+      "durationMs": 5.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.210Z"
+    },
+    {
+      "sequence": 45,
+      "metric": "mark-to-paint",
+      "durationMs": 6.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.223Z"
+    },
+    {
+      "sequence": 46,
+      "metric": "autosave-commit",
+      "durationMs": 15.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.232Z"
+    },
+    {
+      "sequence": 47,
+      "metric": "autosave-commit",
+      "durationMs": 2.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.234Z"
+    },
+    {
+      "sequence": 48,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.276Z"
+    },
+    {
+      "sequence": 49,
+      "metric": "autosave-commit",
+      "durationMs": 5.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.281Z"
+    },
+    {
+      "sequence": 50,
+      "metric": "mark-to-paint",
+      "durationMs": 2.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.289Z"
+    },
+    {
+      "sequence": 51,
+      "metric": "autosave-commit",
+      "durationMs": 5.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.292Z"
+    },
+    {
+      "sequence": 52,
+      "metric": "mark-to-paint",
+      "durationMs": 0.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.298Z"
+    },
+    {
+      "sequence": 53,
+      "metric": "autosave-commit",
+      "durationMs": 6.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.303Z"
+    },
+    {
+      "sequence": 54,
+      "metric": "mark-to-paint",
+      "durationMs": 5.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.313Z"
+    },
+    {
+      "sequence": 55,
+      "metric": "autosave-commit",
+      "durationMs": 15.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.324Z"
+    },
+    {
+      "sequence": 56,
+      "metric": "mark-to-paint",
+      "durationMs": 8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.332Z"
+    },
+    {
+      "sequence": 57,
+      "metric": "autosave-commit",
+      "durationMs": 13.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.337Z"
+    },
+    {
+      "sequence": 58,
+      "metric": "mark-to-paint",
+      "durationMs": 2.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.340Z"
+    },
+    {
+      "sequence": 59,
+      "metric": "autosave-commit",
+      "durationMs": 10.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.348Z"
+    },
+    {
+      "sequence": 60,
+      "metric": "autosave-commit",
+      "durationMs": 2.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.351Z"
+    },
+    {
+      "sequence": 61,
+      "metric": "mark-to-paint",
+      "durationMs": 3.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.356Z"
+    },
+    {
+      "sequence": 62,
+      "metric": "autosave-commit",
+      "durationMs": 7.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.360Z"
+    },
+    {
+      "sequence": 63,
+      "metric": "mark-to-paint",
+      "durationMs": 2.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.364Z"
+    },
+    {
+      "sequence": 64,
+      "metric": "autosave-commit",
+      "durationMs": 5.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.367Z"
+    },
+    {
+      "sequence": 65,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.372Z"
+    },
+    {
+      "sequence": 66,
+      "metric": "autosave-commit",
+      "durationMs": 19.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.391Z"
+    },
+    {
+      "sequence": 67,
+      "metric": "autosave-commit",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.394Z"
+    },
+    {
+      "sequence": 68,
+      "metric": "autosave-commit",
+      "durationMs": 2.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.396Z"
+    },
+    {
+      "sequence": 69,
+      "metric": "mark-to-paint",
+      "durationMs": 4.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.406Z"
+    },
+    {
+      "sequence": 70,
+      "metric": "autosave-commit",
+      "durationMs": 8.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.410Z"
+    },
+    {
+      "sequence": 71,
+      "metric": "mark-to-paint",
+      "durationMs": 1.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.414Z"
+    },
+    {
+      "sequence": 72,
+      "metric": "autosave-commit",
+      "durationMs": 4.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.417Z"
+    },
+    {
+      "sequence": 73,
+      "metric": "mark-to-paint",
+      "durationMs": 0.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.423Z"
+    },
+    {
+      "sequence": 74,
+      "metric": "autosave-commit",
+      "durationMs": 4.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.426Z"
+    },
+    {
+      "sequence": 75,
+      "metric": "mark-to-paint",
+      "durationMs": 7.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.439Z"
+    },
+    {
+      "sequence": 76,
+      "metric": "autosave-commit",
+      "durationMs": 10.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.442Z"
+    },
+    {
+      "sequence": 77,
+      "metric": "autosave-commit",
+      "durationMs": 2.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.445Z"
+    },
+    {
+      "sequence": 78,
+      "metric": "mark-to-paint",
+      "durationMs": 5.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.448Z"
+    },
+    {
+      "sequence": 79,
+      "metric": "mark-to-paint",
+      "durationMs": 6.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.456Z"
+    },
+    {
+      "sequence": 80,
+      "metric": "autosave-commit",
+      "durationMs": 17,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.466Z"
+    },
+    {
+      "sequence": 81,
+      "metric": "autosave-commit",
+      "durationMs": 2.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.469Z"
+    },
+    {
+      "sequence": 82,
+      "metric": "mark-to-paint",
+      "durationMs": 3.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.473Z"
+    },
+    {
+      "sequence": 83,
+      "metric": "autosave-commit",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.478Z"
+    },
+    {
+      "sequence": 84,
+      "metric": "mark-to-paint",
+      "durationMs": 7.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.489Z"
+    },
+    {
+      "sequence": 85,
+      "metric": "autosave-commit",
+      "durationMs": 18.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.500Z"
+    },
+    {
+      "sequence": 86,
+      "metric": "autosave-commit",
+      "durationMs": 2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.502Z"
+    },
+    {
+      "sequence": 87,
+      "metric": "autosave-commit",
+      "durationMs": 1.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.504Z"
+    },
+    {
+      "sequence": 88,
+      "metric": "mark-to-paint",
+      "durationMs": 4.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.506Z"
+    },
+    {
+      "sequence": 89,
+      "metric": "mark-to-paint",
+      "durationMs": 6.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.514Z"
+    },
+    {
+      "sequence": 90,
+      "metric": "autosave-commit",
+      "durationMs": 17.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.525Z"
+    },
+    {
+      "sequence": 91,
+      "metric": "autosave-commit",
+      "durationMs": 1.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.527Z"
+    },
+    {
+      "sequence": 92,
+      "metric": "autosave-commit",
+      "durationMs": 1.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.529Z"
+    },
+    {
+      "sequence": 93,
+      "metric": "mark-to-paint",
+      "durationMs": 7.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.540Z"
+    },
+    {
+      "sequence": 94,
+      "metric": "autosave-commit",
+      "durationMs": 15.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.548Z"
+    },
+    {
+      "sequence": 95,
+      "metric": "autosave-commit",
+      "durationMs": 3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.551Z"
+    },
+    {
+      "sequence": 96,
+      "metric": "mark-to-paint",
+      "durationMs": 4.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.556Z"
+    },
+    {
+      "sequence": 97,
+      "metric": "autosave-commit",
+      "durationMs": 12.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.564Z"
+    },
+    {
+      "sequence": 98,
+      "metric": "mark-to-paint",
+      "durationMs": 8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.573Z"
+    },
+    {
+      "sequence": 99,
+      "metric": "autosave-commit",
+      "durationMs": 11.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.576Z"
+    },
+    {
+      "sequence": 100,
+      "metric": "mark-to-paint",
+      "durationMs": 5.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.581Z"
+    },
+    {
+      "sequence": 101,
+      "metric": "autosave-commit",
+      "durationMs": 16.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.593Z"
+    },
+    {
+      "sequence": 102,
+      "metric": "mark-to-paint",
+      "durationMs": 4.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.597Z"
+    },
+    {
+      "sequence": 103,
+      "metric": "autosave-commit",
+      "durationMs": 14.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.608Z"
+    },
+    {
+      "sequence": 104,
+      "metric": "mark-to-paint",
+      "durationMs": 6.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.614Z"
+    },
+    {
+      "sequence": 105,
+      "metric": "autosave-commit",
+      "durationMs": 9.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.618Z"
+    },
+    {
+      "sequence": 106,
+      "metric": "mark-to-paint",
+      "durationMs": 4.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.623Z"
+    },
+    {
+      "sequence": 107,
+      "metric": "autosave-commit",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.626Z"
+    },
+    {
+      "sequence": 108,
+      "metric": "mark-to-paint",
+      "durationMs": 4.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.631Z"
+    },
+    {
+      "sequence": 109,
+      "metric": "autosave-commit",
+      "durationMs": 8.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.635Z"
+    },
+    {
+      "sequence": 110,
+      "metric": "mark-to-paint",
+      "durationMs": 4.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.639Z"
+    },
+    {
+      "sequence": 111,
+      "metric": "autosave-commit",
+      "durationMs": 6.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.642Z"
+    },
+    {
+      "sequence": 112,
+      "metric": "autosave-commit",
+      "durationMs": 2.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.644Z"
+    },
+    {
+      "sequence": 113,
+      "metric": "mark-to-paint",
+      "durationMs": 3.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.648Z"
+    },
+    {
+      "sequence": 114,
+      "metric": "autosave-commit",
+      "durationMs": 11.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.656Z"
+    },
+    {
+      "sequence": 115,
+      "metric": "mark-to-paint",
+      "durationMs": 8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.664Z"
+    },
+    {
+      "sequence": 116,
+      "metric": "autosave-commit",
+      "durationMs": 18,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.674Z"
+    },
+    {
+      "sequence": 117,
+      "metric": "mark-to-paint",
+      "durationMs": 6.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.681Z"
+    },
+    {
+      "sequence": 118,
+      "metric": "autosave-commit",
+      "durationMs": 16.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.691Z"
+    },
+    {
+      "sequence": 119,
+      "metric": "mark-to-paint",
+      "durationMs": 6.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.698Z"
+    },
+    {
+      "sequence": 120,
+      "metric": "autosave-commit",
+      "durationMs": 15.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.707Z"
+    },
+    {
+      "sequence": 121,
+      "metric": "autosave-commit",
+      "durationMs": 2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.709Z"
+    },
+    {
+      "sequence": 122,
+      "metric": "autosave-commit",
+      "durationMs": 3.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.713Z"
+    },
+    {
+      "sequence": 123,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.714Z"
+    },
+    {
+      "sequence": 124,
+      "metric": "autosave-commit",
+      "durationMs": 10.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.724Z"
+    },
+    {
+      "sequence": 125,
+      "metric": "mark-to-paint",
+      "durationMs": 6.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.731Z"
+    },
+    {
+      "sequence": 126,
+      "metric": "autosave-commit",
+      "durationMs": 15.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.740Z"
+    },
+    {
+      "sequence": 127,
+      "metric": "mark-to-paint",
+      "durationMs": 7.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.748Z"
+    },
+    {
+      "sequence": 128,
+      "metric": "autosave-commit",
+      "durationMs": 18.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.758Z"
+    },
+    {
+      "sequence": 129,
+      "metric": "mark-to-paint",
+      "durationMs": 5.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.764Z"
+    },
+    {
+      "sequence": 130,
+      "metric": "autosave-commit",
+      "durationMs": 14.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.773Z"
+    },
+    {
+      "sequence": 131,
+      "metric": "autosave-commit",
+      "durationMs": 3.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.777Z"
+    },
+    {
+      "sequence": 132,
+      "metric": "mark-to-paint",
+      "durationMs": 2.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.780Z"
+    },
+    {
+      "sequence": 133,
+      "metric": "autosave-commit",
+      "durationMs": 6.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.784Z"
+    },
+    {
+      "sequence": 134,
+      "metric": "autosave-commit",
+      "durationMs": 2.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.787Z"
+    },
+    {
+      "sequence": 135,
+      "metric": "mark-to-paint",
+      "durationMs": 1.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.788Z"
+    },
+    {
+      "sequence": 136,
+      "metric": "autosave-commit",
+      "durationMs": 5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.792Z"
+    },
+    {
+      "sequence": 137,
+      "metric": "mark-to-paint",
+      "durationMs": 5.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.798Z"
+    },
+    {
+      "sequence": 138,
+      "metric": "autosave-commit",
+      "durationMs": 11,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.803Z"
+    },
+    {
+      "sequence": 139,
+      "metric": "mark-to-paint",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.806Z"
+    },
+    {
+      "sequence": 140,
+      "metric": "autosave-commit",
+      "durationMs": 11.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.815Z"
+    },
+    {
+      "sequence": 141,
+      "metric": "mark-to-paint",
+      "durationMs": 6.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.822Z"
+    },
+    {
+      "sequence": 142,
+      "metric": "autosave-commit",
+      "durationMs": 7.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.823Z"
+    },
+    {
+      "sequence": 143,
+      "metric": "autosave-commit",
+      "durationMs": 2.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.826Z"
+    },
+    {
+      "sequence": 144,
+      "metric": "autosave-commit",
+      "durationMs": 2.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.829Z"
+    },
+    {
+      "sequence": 145,
+      "metric": "mark-to-paint",
+      "durationMs": 0.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.831Z"
+    },
+    {
+      "sequence": 146,
+      "metric": "autosave-commit",
+      "durationMs": 3.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.834Z"
+    },
+    {
+      "sequence": 147,
+      "metric": "mark-to-paint",
+      "durationMs": 4.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.848Z"
+    },
+    {
+      "sequence": 148,
+      "metric": "autosave-commit",
+      "durationMs": 13.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.856Z"
+    },
+    {
+      "sequence": 149,
+      "metric": "mark-to-paint",
+      "durationMs": 8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.864Z"
+    },
+    {
+      "sequence": 150,
+      "metric": "autosave-commit",
+      "durationMs": 8.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.865Z"
+    },
+    {
+      "sequence": 151,
+      "metric": "autosave-commit",
+      "durationMs": 6.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.872Z"
+    },
+    {
+      "sequence": 152,
+      "metric": "mark-to-paint",
+      "durationMs": 0.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.873Z"
+    },
+    {
+      "sequence": 153,
+      "metric": "autosave-commit",
+      "durationMs": 11.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.884Z"
+    },
+    {
+      "sequence": 154,
+      "metric": "autosave-commit",
+      "durationMs": 1.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.886Z"
+    },
+    {
+      "sequence": 155,
+      "metric": "mark-to-paint",
+      "durationMs": 5.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.898Z"
+    },
+    {
+      "sequence": 156,
+      "metric": "autosave-commit",
+      "durationMs": 19.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.911Z"
+    },
+    {
+      "sequence": 157,
+      "metric": "mark-to-paint",
+      "durationMs": 0.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.925Z"
+    },
+    {
+      "sequence": 158,
+      "metric": "autosave-commit",
+      "durationMs": 4.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.929Z"
+    },
+    {
+      "sequence": 159,
+      "metric": "mark-to-paint",
+      "durationMs": 0.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.941Z"
+    },
+    {
+      "sequence": 160,
+      "metric": "autosave-commit",
+      "durationMs": 14.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.955Z"
+    },
+    {
+      "sequence": 161,
+      "metric": "mark-to-paint",
+      "durationMs": 0.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.956Z"
+    },
+    {
+      "sequence": 162,
+      "metric": "autosave-commit",
+      "durationMs": 9.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.965Z"
+    },
+    {
+      "sequence": 163,
+      "metric": "mark-to-paint",
+      "durationMs": 6.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.973Z"
+    },
+    {
+      "sequence": 164,
+      "metric": "autosave-commit",
+      "durationMs": 18.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.984Z"
+    },
+    {
+      "sequence": 165,
+      "metric": "autosave-commit",
+      "durationMs": 1.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.987Z"
+    },
+    {
+      "sequence": 166,
+      "metric": "mark-to-paint",
+      "durationMs": 1.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.988Z"
+    },
+    {
+      "sequence": 167,
+      "metric": "autosave-commit",
+      "durationMs": 3.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.990Z"
+    },
+    {
+      "sequence": 168,
+      "metric": "mark-to-paint",
+      "durationMs": 7.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:01.998Z"
+    },
+    {
+      "sequence": 169,
+      "metric": "autosave-commit",
+      "durationMs": 16.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.007Z"
+    },
+    {
+      "sequence": 170,
+      "metric": "mark-to-paint",
+      "durationMs": 7.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.014Z"
+    },
+    {
+      "sequence": 171,
+      "metric": "autosave-commit",
+      "durationMs": 9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.016Z"
+    },
+    {
+      "sequence": 172,
+      "metric": "mark-to-paint",
+      "durationMs": 5.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.022Z"
+    },
+    {
+      "sequence": 173,
+      "metric": "autosave-commit",
+      "durationMs": 8.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.025Z"
+    },
+    {
+      "sequence": 174,
+      "metric": "autosave-commit",
+      "durationMs": 3.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.028Z"
+    },
+    {
+      "sequence": 175,
+      "metric": "mark-to-paint",
+      "durationMs": 2.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.031Z"
+    },
+    {
+      "sequence": 176,
+      "metric": "autosave-commit",
+      "durationMs": 4.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.033Z"
+    },
+    {
+      "sequence": 177,
+      "metric": "autosave-commit",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.035Z"
+    },
+    {
+      "sequence": 178,
+      "metric": "mark-to-paint",
+      "durationMs": 6.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.040Z"
+    },
+    {
+      "sequence": 179,
+      "metric": "mark-to-paint",
+      "durationMs": 5.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.048Z"
+    },
+    {
+      "sequence": 180,
+      "metric": "autosave-commit",
+      "durationMs": 8.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.051Z"
+    },
+    {
+      "sequence": 181,
+      "metric": "mark-to-paint",
+      "durationMs": 1.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.056Z"
+    },
+    {
+      "sequence": 182,
+      "metric": "autosave-commit",
+      "durationMs": 5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.059Z"
+    },
+    {
+      "sequence": 183,
+      "metric": "mark-to-paint",
+      "durationMs": 5.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.072Z"
+    },
+    {
+      "sequence": 184,
+      "metric": "autosave-commit",
+      "durationMs": 17,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.083Z"
+    },
+    {
+      "sequence": 185,
+      "metric": "mark-to-paint",
+      "durationMs": 6.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.090Z"
+    },
+    {
+      "sequence": 186,
+      "metric": "autosave-commit",
+      "durationMs": 16,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.099Z"
+    },
+    {
+      "sequence": 187,
+      "metric": "mark-to-paint",
+      "durationMs": 6.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.106Z"
+    },
+    {
+      "sequence": 188,
+      "metric": "autosave-commit",
+      "durationMs": 9.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.109Z"
+    },
+    {
+      "sequence": 189,
+      "metric": "mark-to-paint",
+      "durationMs": 5.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.114Z"
+    },
+    {
+      "sequence": 190,
+      "metric": "autosave-commit",
+      "durationMs": 14.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.123Z"
+    },
+    {
+      "sequence": 191,
+      "metric": "autosave-commit",
+      "durationMs": 3.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.128Z"
+    },
+    {
+      "sequence": 192,
+      "metric": "mark-to-paint",
+      "durationMs": 2.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.130Z"
+    },
+    {
+      "sequence": 193,
+      "metric": "autosave-commit",
+      "durationMs": 12.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.140Z"
+    },
+    {
+      "sequence": 194,
+      "metric": "mark-to-paint",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.149Z"
+    },
+    {
+      "sequence": 195,
+      "metric": "autosave-commit",
+      "durationMs": 16.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.157Z"
+    },
+    {
+      "sequence": 196,
+      "metric": "autosave-commit",
+      "durationMs": 2.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.159Z"
+    },
+    {
+      "sequence": 197,
+      "metric": "mark-to-paint",
+      "durationMs": 4.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.164Z"
+    },
+    {
+      "sequence": 198,
+      "metric": "autosave-commit",
+      "durationMs": 6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.166Z"
+    },
+    {
+      "sequence": 199,
+      "metric": "autosave-commit",
+      "durationMs": 2.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.168Z"
+    },
+    {
+      "sequence": 200,
+      "metric": "autosave-commit",
+      "durationMs": 1.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.170Z"
+    },
+    {
+      "sequence": 201,
+      "metric": "mark-to-paint",
+      "durationMs": 7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.181Z"
+    },
+    {
+      "sequence": 202,
+      "metric": "autosave-commit",
+      "durationMs": 17.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.191Z"
+    },
+    {
+      "sequence": 203,
+      "metric": "mark-to-paint",
+      "durationMs": 6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.198Z"
+    },
+    {
+      "sequence": 204,
+      "metric": "autosave-commit",
+      "durationMs": 11,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.203Z"
+    },
+    {
+      "sequence": 205,
+      "metric": "mark-to-paint",
+      "durationMs": 3.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.206Z"
+    },
+    {
+      "sequence": 206,
+      "metric": "autosave-commit",
+      "durationMs": 8.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:02.212Z"
+    },
+    {
+      "sequence": 207,
+      "metric": "mark-to-paint",
+      "durationMs": 1.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.759Z"
+    },
+    {
+      "sequence": 208,
+      "metric": "autosave-commit",
+      "durationMs": 20.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.778Z"
+    },
+    {
+      "sequence": 209,
+      "metric": "mark-to-paint",
+      "durationMs": 1.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.821Z"
+    },
+    {
+      "sequence": 210,
+      "metric": "autosave-commit",
+      "durationMs": 25.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.846Z"
+    },
+    {
+      "sequence": 211,
+      "metric": "mark-to-paint",
+      "durationMs": 1.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.889Z"
+    },
+    {
+      "sequence": 212,
+      "metric": "autosave-commit",
+      "durationMs": 5.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.892Z"
+    },
+    {
+      "sequence": 213,
+      "metric": "mark-to-paint",
+      "durationMs": 4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.922Z"
+    },
+    {
+      "sequence": 214,
+      "metric": "autosave-commit",
+      "durationMs": 7.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.925Z"
+    },
+    {
+      "sequence": 215,
+      "metric": "mark-to-paint",
+      "durationMs": 6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.955Z"
+    },
+    {
+      "sequence": 216,
+      "metric": "autosave-commit",
+      "durationMs": 9.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.959Z"
+    },
+    {
+      "sequence": 217,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.981Z"
+    },
+    {
+      "sequence": 218,
+      "metric": "autosave-commit",
+      "durationMs": 12.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:25.992Z"
+    },
+    {
+      "sequence": 219,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.036Z"
+    },
+    {
+      "sequence": 220,
+      "metric": "autosave-commit",
+      "durationMs": 4.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.040Z"
+    },
+    {
+      "sequence": 221,
+      "metric": "mark-to-paint",
+      "durationMs": 4.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.072Z"
+    },
+    {
+      "sequence": 222,
+      "metric": "autosave-commit",
+      "durationMs": 7.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.075Z"
+    },
+    {
+      "sequence": 223,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.097Z"
+    },
+    {
+      "sequence": 224,
+      "metric": "autosave-commit",
+      "durationMs": 13.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.110Z"
+    },
+    {
+      "sequence": 225,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.130Z"
+    },
+    {
+      "sequence": 226,
+      "metric": "autosave-commit",
+      "durationMs": 11.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.141Z"
+    },
+    {
+      "sequence": 227,
+      "metric": "mark-to-paint",
+      "durationMs": 0.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.161Z"
+    },
+    {
+      "sequence": 228,
+      "metric": "autosave-commit",
+      "durationMs": 5.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.166Z"
+    },
+    {
+      "sequence": 229,
+      "metric": "mark-to-paint",
+      "durationMs": 4.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.196Z"
+    },
+    {
+      "sequence": 230,
+      "metric": "autosave-commit",
+      "durationMs": 8.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.200Z"
+    },
+    {
+      "sequence": 231,
+      "metric": "mark-to-paint",
+      "durationMs": 7.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.231Z"
+    },
+    {
+      "sequence": 232,
+      "metric": "autosave-commit",
+      "durationMs": 14.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.237Z"
+    },
+    {
+      "sequence": 233,
+      "metric": "mark-to-paint",
+      "durationMs": 0.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.253Z"
+    },
+    {
+      "sequence": 234,
+      "metric": "autosave-commit",
+      "durationMs": 4.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.257Z"
+    },
+    {
+      "sequence": 235,
+      "metric": "mark-to-paint",
+      "durationMs": 3.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.289Z"
+    },
+    {
+      "sequence": 236,
+      "metric": "autosave-commit",
+      "durationMs": 6.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.292Z"
+    },
+    {
+      "sequence": 237,
+      "metric": "mark-to-paint",
+      "durationMs": 7.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.322Z"
+    },
+    {
+      "sequence": 238,
+      "metric": "autosave-commit",
+      "durationMs": 11,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.325Z"
+    },
+    {
+      "sequence": 239,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.345Z"
+    },
+    {
+      "sequence": 240,
+      "metric": "autosave-commit",
+      "durationMs": 4.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.349Z"
+    },
+    {
+      "sequence": 241,
+      "metric": "mark-to-paint",
+      "durationMs": 0.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.379Z"
+    },
+    {
+      "sequence": 242,
+      "metric": "autosave-commit",
+      "durationMs": 4.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.383Z"
+    },
+    {
+      "sequence": 243,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.415Z"
+    },
+    {
+      "sequence": 244,
+      "metric": "autosave-commit",
+      "durationMs": 9.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.424Z"
+    },
+    {
+      "sequence": 245,
+      "metric": "mark-to-paint",
+      "durationMs": 6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.455Z"
+    },
+    {
+      "sequence": 246,
+      "metric": "autosave-commit",
+      "durationMs": 9.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.458Z"
+    },
+    {
+      "sequence": 247,
+      "metric": "mark-to-paint",
+      "durationMs": 5.1,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.488Z"
+    },
+    {
+      "sequence": 248,
+      "metric": "autosave-commit",
+      "durationMs": 8.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.492Z"
+    },
+    {
+      "sequence": 249,
+      "metric": "mark-to-paint",
+      "durationMs": 5.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.522Z"
+    },
+    {
+      "sequence": 250,
+      "metric": "autosave-commit",
+      "durationMs": 9.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.526Z"
+    },
+    {
+      "sequence": 251,
+      "metric": "mark-to-paint",
+      "durationMs": 0.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.549Z"
+    },
+    {
+      "sequence": 252,
+      "metric": "autosave-commit",
+      "durationMs": 8.9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.558Z"
+    },
+    {
+      "sequence": 253,
+      "metric": "mark-to-paint",
+      "durationMs": 4.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.589Z"
+    },
+    {
+      "sequence": 254,
+      "metric": "autosave-commit",
+      "durationMs": 8.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.593Z"
+    },
+    {
+      "sequence": 255,
+      "metric": "mark-to-paint",
+      "durationMs": 5.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.622Z"
+    },
+    {
+      "sequence": 256,
+      "metric": "autosave-commit",
+      "durationMs": 8.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.625Z"
+    },
+    {
+      "sequence": 257,
+      "metric": "mark-to-paint",
+      "durationMs": 5.2,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.655Z"
+    },
+    {
+      "sequence": 258,
+      "metric": "autosave-commit",
+      "durationMs": 8.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.659Z"
+    },
+    {
+      "sequence": 259,
+      "metric": "mark-to-paint",
+      "durationMs": 4.4,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.688Z"
+    },
+    {
+      "sequence": 260,
+      "metric": "autosave-commit",
+      "durationMs": 8.5,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.692Z"
+    },
+    {
+      "sequence": 261,
+      "metric": "mark-to-paint",
+      "durationMs": 0.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.724Z"
+    },
+    {
+      "sequence": 262,
+      "metric": "autosave-commit",
+      "durationMs": 9.8,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.733Z"
+    },
+    {
+      "sequence": 263,
+      "metric": "mark-to-paint",
+      "durationMs": 5.6,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.764Z"
+    },
+    {
+      "sequence": 264,
+      "metric": "autosave-commit",
+      "durationMs": 9,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.767Z"
+    },
+    {
+      "sequence": 265,
+      "metric": "mark-to-paint",
+      "durationMs": 5.3,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.797Z"
+    },
+    {
+      "sequence": 266,
+      "metric": "autosave-commit",
+      "durationMs": 8.7,
+      "stitchCount": 100000,
+      "timestamp": "2026-07-26T16:44:26.800Z"
+    }
+  ]
+}

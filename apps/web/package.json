@@ -1,0 +1,35 @@
+{
+  "name": "@abris-universe/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prebuild": "node ../../scripts/write-version.mjs",
+    "build": "vite build",
+    "build:benchmark": "vite build --mode benchmark",
+    "deploy:dry-run": "WRANGLER_SEND_METRICS=false WRANGLER_WRITE_LOGS=false wrangler deploy --dry-run --outdir ../../.deploy-dry-run",
+    "dev": "vite --host 127.0.0.1",
+    "dev:worker": "WRANGLER_SEND_METRICS=false WRANGLER_WRITE_LOGS=false wrangler dev --local --ip 127.0.0.1 --port 8787 --inspector-ip 127.0.0.1 --inspector-port 9231 --show-interactive-dev-session false",
+    "preview": "vite preview --host 127.0.0.1",
+    "preview:benchmark": "vite preview --host 127.0.0.1 --outDir dist-benchmark",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@abris-universe/domain-core": "workspace:*",
+    "@abris-universe/oxs-importer": "workspace:*",
+    "@abris-universe/persistence": "workspace:*",
+    "@abris-universe/renderer": "workspace:*",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "axe-core": "4.10.3",
+    "vite": "^8.1.5",
+    "wrangler": "4.114.0"
+  }
+}

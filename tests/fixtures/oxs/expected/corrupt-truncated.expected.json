@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "fixture": "corrupt-truncated.oxs",
+  "expectedDisposition": "rejected",
+  "canonical": null,
+  "importReport": {
+    "status": "rejected",
+    "errors": [
+      "OXS_XML_MALFORMED"
+    ],
+    "warnings": []
+  }
+}

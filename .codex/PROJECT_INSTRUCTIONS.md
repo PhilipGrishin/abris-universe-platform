@@ -22,8 +22,16 @@ authoritative full instruction set for this workspace.
 10. Treat `[IMPLEMENTED]`, `[TESTED]`, and `[VERIFIED]` as distinct states.
 11. Write all project artifacts in English.
 12. Do not register speculative specialist agents.
-13. Use the controlled local bridge for Claude exchanges when direct repository
-    access is unavailable; AU-CODEX-PRIMARY remains the sole Git writer.
+13. Use the controlled local bridge for all substantive Claude–Codex
+    communication and artifact transfer, regardless of direct repository
+    availability; chat history is not evidence; Project Owner manual input is
+    limited to the registered trigger phrases `Codex finished` and `Claude
+    finished` unless a later explicit owner governance decision changes the
+    route; AU-CODEX-PRIMARY remains the sole Git writer.
+14. End every completed Codex work package that is ready for owner-mediated
+    handoff to Claude with the exact standalone final line `Codex finished`.
+    This transport marker is not evidence, approval, acceptance, or
+    `[VERIFIED]` status.
 
 ## Active Specialist Leadership
 

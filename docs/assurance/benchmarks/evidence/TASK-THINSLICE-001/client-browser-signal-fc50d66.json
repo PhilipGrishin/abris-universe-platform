@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "status": "non-gate-engineering-signal",
+  "sourceCommit": "fc50d664b97f51118f5dd88f7d9eb0a28fa771a4",
+  "recordedAt": "2026-07-26T06:19:39.000Z",
+  "build": {
+    "mode": "production",
+    "tool": "Vite 8.1.5",
+    "serveMode": "local-preview"
+  },
+  "environment": {
+    "browserSurface": "Codex In-app Browser",
+    "exactBrowserVersion": null,
+    "viewportCssPixels": {
+      "width": 1280,
+      "height": 720
+    },
+    "devicePixelRatioApproximate": 2,
+    "rendererPath": "incremental-main-thread-canvas2d",
+    "importPath": "dedicated-module-worker",
+    "controlledReferenceProfile": false
+  },
+  "fixtures": [
+    {
+      "name": "minimal-full-cross.oxs",
+      "sha256": "912fc540e3d92e789c6c5bf94ccf89079773bc578a3b6db594b05708290e818d",
+      "bytes": 2063,
+      "grid": {
+        "width": 7,
+        "height": 5
+      },
+      "stitches": 5,
+      "samples": {
+        "importLatencyMs": [186.6],
+        "viewerTtiMs": [73.1],
+        "markToPaintMs": [3.7],
+        "autosaveCommitMs": [14.6]
+      }
+    },
+    {
+      "name": "medium-full-cross.oxs",
+      "sha256": "1211319f5cb392b2c0b9c401d6898e6c18564d90c218035d274d96bcdc2aa167",
+      "bytes": 4308166,
+      "grid": {
+        "width": 512,
+        "height": 256
+      },
+      "stitches": 100000,
+      "visibleStitches": 6144,
+      "visibleTiles": 6,
+      "samples": {
+        "importLatencyMs": [1814.7],
+        "viewerTtiMs": [27.8],
+        "markToPaintMs": [1.8],
+        "autosaveCommitMs": [15.5],
+        "panRendererWorkMs": [
+          7.2,
+          5.2,
+          5.2,
+          5.0,
+          5.2,
+          4.6,
+          4.7,
+          5.4,
+          4.6,
+          5.0,
+          4.9,
+          4.6,
+          5.2,
+          4.6,
+          4.3,
+          4.4,
+          4.5,
+          4.2,
+          4.3,
+          4.5
+        ]
+      },
+      "panRendererWorkSummaryMs": {
+        "sampleCount": 20,
+        "median": 4.6,
+        "p95": 5.4,
+        "max": 7.2
+      }
+    }
+  ],
+  "functionalEvidence": {
+    "workerImport": "passed",
+    "corruptFileContainment": "passed",
+    "twoCanvasLayers": "passed",
+    "markReloadUnmark": "passed",
+    "keyboardToggle": "passed",
+    "overviewToggleBlocked": "passed",
+    "staleSecondTabWrite": "failed-closed",
+    "projectionRecoveryAfterReload": "passed",
+    "mobileViewport390x844": "passed-without-document-horizontal-overflow",
+    "browserConsoleErrors": 0
+  },
+  "limitations": [
+    "Single-run import, TTI, mark, and save samples are not p95 evidence.",
+    "Pan samples measure renderer work rather than complete frame intervals.",
+    "Exact browser version and hardware profile were unavailable.",
+    "No throttled, memory, long-task, multi-browser, screen-reader, or 100-iteration gate run was performed."
+  ]
+}

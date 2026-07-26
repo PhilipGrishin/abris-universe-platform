@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Project Owner / Claude Cowork |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `PROJECT_MANIFEST.md`, `collaboration/README.md` |
 | Supersedes | External-workspace physical navigation only |
 | Superseded By | None |
@@ -54,8 +54,15 @@ artifacts continue to follow the project English-language policy.
 - [Product Governance](governance/README.md) contains the imported Claude Cowork
   project instructions and the Codex context pack.
 
-Draft vision, product-side architecture recommendations, and research evidence
-remain subordinate to approved decisions and specifications.
+The Product Vision/Roadmap and product-side Architecture input are approved
+without content changes under PROD-DEC-005. Stack recommendations and proposed
+ADRs still require Codex Technical Review. Research evidence remains
+subordinate to approved decisions and specifications.
+
+PROD-DEC-009 selects OXS 1.0 for the Phase 0 importer, confirms the authorized
+`SXP` to `XSP` wording normalization, and establishes the rights-safe fixture
+rule. TASK-THINSLICE-001 v1.1 is the current editorial revision. These product
+inputs authorize Technical Design, not implementation.
 
 ## Navigation
 
@@ -86,10 +93,18 @@ review, design, implementation, tests, evidence, and Completion Reports. Claude
 Cowork independently returns `VERIFIED` or `REWORK REQUIRED`; no author accepts
 its own work.
 
-When Claude cannot access GitHub directly, use the controlled route in
-`collaboration/README.md`. Claude reads the prepared inbox and writes only to
-its outbox. Codex validates and is the sole Git writer; transport does not make
-a returned artifact canonical or accepted.
+Use the controlled route in `collaboration/README.md` for every substantive
+Claude–Codex communication and artifact transfer, regardless of direct
+repository availability. Claude reads the prepared inbox and writes only to its
+outbox. Codex validates and is the sole Git writer; transport does not make a
+returned artifact canonical or accepted. Chat history is not evidence. Project
+Owner manual input is limited to the registered trigger phrases `Codex
+finished` and `Claude finished` unless a later explicit owner governance
+decision changes the route.
+For a completed Codex work package that is ready for owner-mediated Claude
+handoff, Codex ends its final response with the exact standalone line `Codex
+finished`. This is a transport marker, not evidence, approval, acceptance, or
+`[VERIFIED]` status.
 
 ## Acceptance Records
 

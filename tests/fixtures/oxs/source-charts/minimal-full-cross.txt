@@ -1,0 +1,11 @@
+A.....B
+.......
+.......
+..E....
+C.....D
+
+Origin: top-left
+Coordinate base: zero
+X direction: right
+Y direction: down
+Axis order: x,y

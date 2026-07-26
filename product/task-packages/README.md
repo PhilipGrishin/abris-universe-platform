@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | Delivery, Documentation & Codex Coordination Lead |
 | Technical Approver | Project Owner |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-20 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `product/README.md`, `docs/SHARED_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -23,9 +23,13 @@ or Documentation Impact gates.
 
 ## Registered Task Packages
 
-- [AU-CDX-TASK-001 v1.0 — Phase 0 Thin Vertical Slice](07_TaskPackage_EP01_ThinSlice.md)
-  — `[APPROVED]` for Codex review; implementation is `[OPEN]`. Named future
-  specialist roles are not active until registered by the Project Owner.
+- [AU-CDX-TASK-001 v1.1 — Phase 0 Thin Vertical Slice](08_TaskPackage_EP01_ThinSlice_v1.1.md)
+  — current `[APPROVED]` editorial revision under PROD-DEC-009; OXS 1.0 is
+  selected, fixture production and Technical Design remain open, and
+  implementation remains blocked.
+- [AU-CDX-TASK-001 v1.0 — preserved prior version](07_TaskPackage_EP01_ThinSlice.md)
+  — superseded editorially by v1.1; retained for history and exact-source
+  review provenance.
 
 ## Versioning and Lifecycle
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <format comments01="Project-original Abris Universe route-1 test fixture" comments12="properties, fullstitches, and backstitches are present even when empty" comments13="element and attribute names are lowercase"/>
+  <properties oxsversion="1.0" software="Abris Universe Route-1 Fixture Generator" software_version="1.0.0" chartheight="5" chartwidth="7" charttitle="Route-1 Coordinate Boundary" author="Abris Universe Engineering" copyright="Abris Universe project fixture" instructions="Test data only" stitchesperinch="14" stitchesperinch_y="14" palettecount="5"/>
+  <palette>
+    <palette_item index="0" number="cloth" name="Cloth" color="FFFFFF" printcolor="FFFFFF" blendcolor="nil" comments="" strands="2" symbol="0" dashpattern="" misc1=""/>
+    <palette_item index="1" number="AU-A" name="Corner A" color="D7263D" printcolor="D7263D" blendcolor="nil" comments="" strands="2" symbol="A" dashpattern="" misc1=""/>
+    <palette_item index="2" number="AU-B" name="Corner B" color="1B998B" printcolor="1B998B" blendcolor="nil" comments="" strands="2" symbol="B" dashpattern="" misc1=""/>
+    <palette_item index="3" number="AU-C" name="Corner C" color="2E294E" printcolor="2E294E" blendcolor="nil" comments="" strands="2" symbol="C" dashpattern="" misc1=""/>
+    <palette_item index="4" number="AU-D" name="Corner D" color="F46036" printcolor="F46036" blendcolor="nil" comments="" strands="2" symbol="D" dashpattern="" misc1=""/>
+    <palette_item index="5" number="AU-E" name="Interior E" color="E2C044" printcolor="E2C044" blendcolor="nil" comments="" strands="2" symbol="E" dashpattern="" misc1=""/>
+  </palette>
+  <fullstitches>
+    <stitch x="0" y="0" palindex="1"/>
+    <stitch x="6" y="0" palindex="2"/>
+    <stitch x="2" y="3" palindex="5"/>
+    <stitch x="0" y="4" palindex="3"/>
+    <stitch x="6" y="4" palindex="4"/>
+  </fullstitches>
+  <partstitches>
+  </partstitches>
+  <backstitches>
+  </backstitches>
+  <ornaments_inc_knots_and_beads>
+  </ornaments_inc_knots_and_beads>
+  <commentboxes/>
+</chart>

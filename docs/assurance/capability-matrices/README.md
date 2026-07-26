@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.2.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-20 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/AGENT_REGISTRY.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -26,7 +26,18 @@ scope, version, evidence, and an assigned technical approver.
 
 ## Current Matrices
 
-None.
+- [OXS Coordinate Compatibility Matrix](../../../tests/fixtures/oxs/COMPATIBILITY_MATRIX.md)
+  — `[TESTED]` for `Abris Universe Route-1 Fixture Generator 1.0.0`; all other
+  producer profiles remain explicitly open. The bounded importer core enforces
+  this matrix by rejecting unregistered profiles.
+- [OXS Route-1 Symbol Mapping Evidence](../../../tests/fixtures/oxs/SYMBOL_MAPPING.md)
+  — `[TESTED]` for project-original literal `A`–`Z` and `a`–`f` route-1 source
+  codes; no general producer exact-symbol claim.
+- [TASK-THINSLICE-001 Client Accessibility and Platform Matrix](TASK-THINSLICE-001_CLIENT_ACCESSIBILITY_MATRIX.md)
+  — `[TESTED]` only for Chromium/Chrome 150 on the recorded macOS profile;
+  AU-AGENT-003 accepted the Project Owner-confirmed physical Tab and VoiceOver
+  evidence and resolved TS001-IMPL-003 for that bounded profile;
+  non-Chromium and mobile rows remain open.
 
 ## Owner
 

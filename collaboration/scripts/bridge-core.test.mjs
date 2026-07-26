@@ -12,8 +12,11 @@ import {
   ensureAllowedExtension,
   inspectTextSafety,
   sha256,
+  validateArchiveRecord,
   validateClaudeReturn,
+  validateExchangeOutcome,
   validateReturnManifest,
+  validateTaskManifest,
   validateTextFile,
 } from "./lib/bridge-core.mjs";
 
@@ -89,6 +92,38 @@ test("rejects stale source commits", () => {
   execFileSync("git", ["add", "source.md"], { cwd: root });
   execFileSync("git", ["-c", "user.name=Bridge Test", "-c", "user.email=bridge@example.invalid", "commit", "-m", "two"], { cwd: root, stdio: "ignore" });
   expectCode(() => assertSourceIsCurrent(root, { source_branch: "main", source_commit_sha: first }), "STALE_SOURCE_COMMIT");
+});
+
+test("rejects task manifests whose required inputs are not packaged", () => {
+  const included = { path: "sources/present.md", sha256: "a".repeat(64), size_bytes: 1 };
+  expectCode(() => validateTaskManifest({
+    schema_version: "1.0.0",
+    exchange_id: "AU-EX-MISSING-INPUT",
+    task_id: "TASK-MISSING-INPUT",
+    task_type: "PRODUCT_DECISION",
+    requested_claude_role: "Chief Project Orchestrator",
+    source_commit_sha: "b".repeat(40),
+    source_branch: "codex/test",
+    prepared_at: "2026-07-25T00:00:00Z",
+    prepared_by: "AU-CODEX-PRIMARY",
+    purpose: "Validate required package inputs.",
+    scope: ["Validate input registration."],
+    out_of_scope: ["No integration."],
+    required_inputs: ["sources/missing.md"],
+    included_files: [included],
+    expected_outputs: ["return-manifest.json"],
+    acceptance_criteria: ["Every required input exists."],
+    authority_boundaries: {
+      product_authority: "Product owner.",
+      engineering_authority: "Engineering owner.",
+      documentation_authority: "Documentation owner.",
+      git_authority: "Git owner."
+    },
+    documentation_impact: "Minor",
+    return_location: "claude/outbox/AU-EX-MISSING-INPUT",
+    allowed_output_extensions: [".md", ".json"],
+    integrity_checksums: { [included.path]: included.sha256 },
+  }), "MISSING_REQUIRED_INPUT");
 });
 
 test("requires an explicit independent acceptance decision", () => {
@@ -194,4 +229,110 @@ test("rejects output checksum mismatches", () => {
       allowed_output_extensions: [".md"],
     },
   }), "CHECKSUM_MISMATCH");
+});
+
+test("validates archive records against returned status and decision", () => {
+  const returnManifest = { result_status: "COMPLETED", decision: "VERIFIED" };
+  const archiveRecord = {
+    schema_version: "1.0.0",
+    exchange_id: "AU-EX-ARCHIVE-001",
+    archived_at: "2026-07-25T00:00:00Z",
+    archived_by: "AU-CODEX-PRIMARY",
+    review_reference: "product/reviews/report.md",
+    result_status: "COMPLETED",
+    decision: "VERIFIED",
+  };
+  assert.equal(validateArchiveRecord(archiveRecord, {
+    exchangeId: "AU-EX-ARCHIVE-001",
+    returnManifest,
+  }), archiveRecord);
+});
+
+test("rejects archive records that disagree with the validated return", () => {
+  expectCode(() => validateArchiveRecord({
+    schema_version: "1.0.0",
+    exchange_id: "AU-EX-ARCHIVE-002",
+    archived_at: "2026-07-25T00:00:00Z",
+    archived_by: "AU-CODEX-PRIMARY",
+    review_reference: "product/reviews/report.md",
+    result_status: "PARTIAL",
+    decision: "NO_DECISION",
+  }, {
+    exchangeId: "AU-EX-ARCHIVE-002",
+    returnManifest: { result_status: "COMPLETED", decision: "VERIFIED" },
+  }), "ARCHIVE_RETURN_MISMATCH");
+});
+
+test("validates integrated outcomes against task, return, and archive provenance", () => {
+  const taskManifest = {
+    exchange_id: "AU-EX-OUTCOME-001",
+    task_id: "TASK-OUTCOME-001",
+    source_commit_sha: "a".repeat(40),
+    review_commit_range: "b".repeat(40) + ".." + "a".repeat(40),
+  };
+  const returnManifest = { result_status: "COMPLETED", decision: "VERIFIED" };
+  const archiveRecord = {
+    archived_at: "2026-07-25T00:00:00Z",
+    review_reference: "product/reviews/report.md",
+  };
+  const outcome = {
+    schema_version: "1.0.0",
+    exchange_id: taskManifest.exchange_id,
+    source_task_id: taskManifest.task_id,
+    result_status: "COMPLETED",
+    validation_status: "VALID",
+    decision: "VERIFIED",
+    source_commit_sha: taskManifest.source_commit_sha,
+    review_commit_range: taskManifest.review_commit_range,
+    reviewer: "Independent Reviewer",
+    canonical_report: "product/reviews/report.md",
+    report_sha256: "c".repeat(64),
+    return_manifest_sha256: "d".repeat(64),
+    verified_scope: [],
+    excluded_scope: [],
+    follow_up_ids: [],
+    archive_location: "claude/archive/AU-EX-OUTCOME-001",
+    archive_review_reference: archiveRecord.review_reference,
+    archived_at: archiveRecord.archived_at,
+    integrated_by: "AU-CODEX-PRIMARY",
+  };
+  assert.equal(validateExchangeOutcome(outcome, {
+    taskManifest,
+    returnManifest,
+    archiveRecord,
+  }), outcome);
+});
+
+test("rejects outcomes with mismatched archive provenance", () => {
+  expectCode(() => validateExchangeOutcome({
+    schema_version: "1.0.0",
+    exchange_id: "AU-EX-OUTCOME-002",
+    source_task_id: "TASK-OUTCOME-002",
+    result_status: "COMPLETED",
+    validation_status: "VALID",
+    decision: "VERIFIED",
+    source_commit_sha: "a".repeat(40),
+    reviewer: "Independent Reviewer",
+    canonical_report: "product/reviews/report.md",
+    report_sha256: "c".repeat(64),
+    return_manifest_sha256: "d".repeat(64),
+    verified_scope: [],
+    excluded_scope: [],
+    follow_up_ids: [],
+    archive_location: "claude/archive/AU-EX-OUTCOME-002",
+    archive_review_reference: "product/reviews/other.md",
+    archived_at: "2026-07-25T00:00:00Z",
+    integrated_by: "AU-CODEX-PRIMARY",
+  }, {
+    taskManifest: {
+      exchange_id: "AU-EX-OUTCOME-002",
+      task_id: "TASK-OUTCOME-002",
+      source_commit_sha: "a".repeat(40),
+    },
+    returnManifest: { result_status: "COMPLETED", decision: "VERIFIED" },
+    archiveRecord: {
+      archived_at: "2026-07-25T00:00:00Z",
+      review_reference: "product/reviews/report.md",
+    },
+  }), "OUTCOME_ARCHIVE_MISMATCH");
 });

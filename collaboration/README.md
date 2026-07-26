@@ -7,25 +7,33 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; exercised operating model `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.1.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-21 |
-| Last Updated | 2026-07-21 |
+| Last Updated | 2026-07-25 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md`, `AI_ORGANIZATION.md` |
 | Supersedes | None |
 | Superseded By | None |
-| Review Triggers | Direct Claude repository access; exchange contract change; security finding; synchronization failure; automation approval |
+| Review Triggers | Exchange contract change; communication-route governance change; security finding; synchronization failure; automation approval |
 
 ## Purpose
 
-Provide a controlled local exchange between Claude Cowork and Codex when Claude
-cannot access GitHub directly. GitHub remains canonical. Codex is the sole Git
-operator and repository writer for Claude-produced artifacts.
+Provide the exclusive controlled route for substantive Claude–Codex
+communication and artifact transfer, regardless of direct repository
+availability. GitHub remains canonical. Codex is the sole Git operator and
+repository writer for Claude-produced artifacts.
 
 ## Scope
 
 This infrastructure governs local task and review transport, validation,
 staging, status, and archival. It does not define product requirements,
 technical architecture, implementation behavior, or independent acceptance.
+Chat history is not evidence. Project Owner manual input is limited to the
+registered trigger phrases `Codex finished` and `Claude finished` unless a
+later explicit owner governance decision changes the route.
+For every completed Codex work package that is ready for owner-mediated handoff
+to Claude, the final user-facing response ends with the exact standalone line
+`Codex finished`. The marker signals transport readiness only; it is not
+evidence, approval, acceptance, or `[VERIFIED]` status.
 
 ## Selected Topology
 

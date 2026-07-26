@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-26T08:34:30.416Z",
+  "sourceCommit": "f17d0d3b465af88b82c78c7f66abe0cbc0ade66c",
+  "sourceDirty": false,
+  "transactionAbort": {
+    "observed": true,
+    "errorName": "ConstraintError"
+  },
+  "webLock": {
+    "name": "au:project:project:fb9a2e58-f3a0-47ee-906f-86d86d72fcf7:progress-writer",
+    "held": true
+  },
+  "blockedUpgrade": {
+    "requestedVersion": 2,
+    "observed": true
+  }
+}

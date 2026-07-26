@@ -166,6 +166,16 @@
 - **Mitigation:** Reject invalid returns before staging, preserve evidence,
   regenerate stale packages, require authorized meaning review, and keep every
   state below `[VERIFIED]` until independent acceptance.
+- **Archive-status control:** `[IMPLEMENTED]`, `[TESTED]` The status reporter
+  distinguishes registered, prepared, exported, returned, integrated, and
+  archived states. It revalidates archived task/return manifests, the archive
+  record, canonical outcome, canonical report checksum, and archived
+  return-manifest checksum. An advanced source branch is reported as
+  `HISTORICAL_ARCHIVED`, not as an active-exchange failure.
+- **Residual limitation:** Archive-aware reporting detects missing or
+  inconsistent registered evidence but cannot recover deleted external archive
+  data or independently verify the storage device. OVR-004 tooling is not
+  project `[VERIFIED]`.
 - **Fallback:** Stop the exchange, quarantine the affected local package, issue
   a security or conflict report, rotate any exposed credential through its
   owner, and resume only from a new Exchange ID and clean source commit.
@@ -215,3 +225,238 @@
   conflict, required review, protection rule, unclear target, or mandatory
   finding cannot be resolved safely.
 - **Owner:** AU-CODEX-PRIMARY
+
+## RISK-012 — Import Format or Fixtures Create Lock-In, Security, or Rights Exposure
+
+- **Status:** `[OPEN]`, format and rights rule resolved; route-1 coordinate,
+  literal-symbol, bounded importer-core, and security-limit evidence
+  `[TESTED]`; other producers, Worker/persistence integration, and independent
+  implementation verification pending
+- **Probability:** High without the OQ-005 and fixture gates
+- **Impact:** High
+- **Trigger:** Importer development starts from an undocumented/proprietary
+  format, untrusted XML lacks resource limits, a source format dictates the
+  canonical model, or third-party samples are committed without redistribution
+  and derivative authority.
+- **Affected areas:** Pattern correctness, data loss, security, compatibility,
+  legal exposure, tests, repository distribution, and roadmap.
+- **Prevention:** Use the confirmed OXS 1.0 selection; preserve original
+  files; define a mapping contract; keep Symbol separate from PaletteItem and
+  Pattern separate from Progress; disable unsafe XML features; impose resource
+  limits; require fixture provenance and permission.
+- **Mitigation:** PROD-DEC-009 resolves the format, terminology, and rights-safe
+  acquisition rule. The Technical Design and ADR-TS001-001 define the bounded
+  mapping and prohibit heuristic coordinate/symbol interpretation. The
+  route-1 profile has deterministic golden, malformed, size-limit, coordinate,
+  palette-reference, and unsupported-content fixtures. The importer core now
+  uses a non-DOM SAX parser, rejects DTD/processing instructions and unknown
+  producer profiles, enforces the registered hard limits, keeps source progress
+  out of canonical Progress, and produces bounded reports. Dedicated Worker
+  integration, source Blob retention, and atomic canonical persistence are
+  now tested through the browser flow. Consolidated independent verification
+  remains open. Keep unregistered producer profiles blocked or rejected.
+  PROD-DEC-011 keeps the four
+  owner-granted XSP binaries outside the Bridge and Git pending a separate
+  owner-controlled transfer and prioritizes licensed XSD export over reverse
+  engineering for Phase 1.
+- **Fallback:** Reject the affected format or fixture, preserve evidence,
+  disable the importer, restore the last known-good static deployment, and
+  return the choice through a Technical Alternative or Conflict Report.
+- **Owner:** AU-AGENT-004 for importer evidence; AU-AGENT-001 for architecture
+  disposition; AU-AGENT-003 for independent security/quality verification;
+  Project Owner or rights holder for fixture permission
+
+## RISK-013 — Browser-Local Progress Is Lost or Misreported as Saved
+
+- **Status:** `[OPEN]`; repository and client functional controls
+  `[IMPLEMENTED]`, `[TESTED]`; repository independently
+  `VERIFIED WITH FINDINGS`; consolidated TS001-PERSIST-006 resolved only for
+  the declared Chromium/macOS Phase 0 scope
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** IndexedDB is unavailable, quota is exhausted, storage is evicted,
+  an upgrade fails, or optimistic UI state is presented as durably saved.
+- **Affected areas:** Progress integrity, user trust, reload recovery, rollback,
+  and Phase 1 compatibility.
+- **Prevention:** Keep Pattern and Progress separate; use short atomic
+  transactions, append-only idempotent events with `deviceId`, in-transaction
+  sequence allocation and payload hashes, a Web Locks single-writer policy
+  across tabs, a rebuildable projection, strict IndexedDB durability when
+  supported, commit-driven save status, persistent-storage requests, explicit
+  quota errors, and one-release schema rollback compatibility.
+- **Mitigation:** Revert failed optimistic state to the last committed
+  projection, retain the live session, expose `not saved`, and stop release on
+  failed two-context, idempotency, reload, or recovery evidence. Record the
+  relaxed-durability residual on browsers that do not support strict mode.
+  The schema-v1 repository has focused atomic rollback, blocked-upgrade,
+  simulated quota, persistence-denial, idempotency, lock-failure, reopen, and
+  projection-rebuild tests. The exact Chromium/macOS browser flow observed a
+  real transaction abort, exact Web Locks contention with visible `Read-only`,
+  blocked IndexedDB upgrade, persistent-storage denial, save/reload, and
+  10,000-event rebuild. Safe real quota/eviction, power loss, strict-durability,
+  and broader-browser evidence remain open.
+  AU-AGENT-003 resolved repository findings TS001-PERSIST-001 through
+  TS001-PERSIST-005 at exact commit `854073c`; consolidated reverification at
+  `6da2f9e` resolves TS001-PERSIST-006 only for the declared profile. Safe
+  quota/eviction, power loss, and additional-platform claims remain prohibited.
+- **Fallback:** Roll back the client without deleting IndexedDB and recover the
+  projection from retained events. Manual backup remains out of approved Phase
+  0 scope.
+- **Owner:** AU-AGENT-005 for persistence design; AU-AGENT-006 for client
+  surfacing; AU-AGENT-003 for independent verification
+
+## RISK-014 — First Cloudflare Deployment Has No Recoverable Rollback Anchor
+
+- **Status:** `[OPEN]`; protected pipeline `[IMPLEMENTED]`, locally `[TESTED]`;
+  blocks production deployment until credentials expose the rollback anchor
+- **Probability:** Unknown
+- **Impact:** High
+- **Trigger:** The current `abris-universe` placeholder is replaced before its
+  immutable version ID or recoverable artifact is recorded.
+- **Affected areas:** `abris.653915.com`, production availability, auditability,
+  and deployment rollback.
+- **Prevention:** Complete TD-GATE-003 before first production deployment:
+  record the current Worker/version, route, smoke baseline, and restorable
+  artifact; keep DNS unchanged; deploy immutable versions through protected
+  CI; serve and assert CSP, `X-Content-Type-Options`, `frame-ancestors`, and
+  `Referrer-Policy` controls.
+- **Mitigation:** Smoke the uploaded version before promotion, record prior and
+  new version IDs, serialize production deployments, and automatically roll
+  back on failed production smoke.
+- **Current evidence:** The main-only GitHub `production` environment and
+  versioned upload/zero-traffic smoke/promotion/rollback workflow are
+  implemented. Deterministic tests cover failure before and after promotion,
+  confirm the exact prior version at 100 percent, and verify the recorded
+  public rollback baseline. Placeholder HTTPS `200` body hash
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`
+  is recorded. Cloudflare authentication and the immutable prior version
+  remain open.
+- **Fallback:** If no prior version is recoverable, do not deploy until the
+  Project Owner approves a specific replacement rollback artifact.
+- **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence
+
+## RISK-015 — Same-Origin Requests Expose Pattern-Derived Data
+
+- **Status:** `[OPEN]`; inventory, static check, CSP, local header controls, and
+  measured-profile Resource Timing capture `[IMPLEMENTED]`, `[TESTED]`;
+  independent disposition and production assertion pending
+- **Probability:** Low with the implemented local controls; unknown in
+  production until assertion
+- **Impact:** High
+- **Trigger:** Production code makes an unregistered same-origin connection,
+  keeps `connect-src 'self'` without a justified runtime need, or places
+  pattern-derived content in a URL, request body, header, log, analytics event,
+  or telemetry.
+- **Affected areas:** Pattern confidentiality, local-only privacy boundary,
+  CSP effectiveness, Cloudflare delivery, security evidence, and user trust.
+- **Prevention:** Maintain a reviewed minimum runtime request inventory; use
+  `connect-src 'none'` when no script-initiated connection is required; permit
+  only reviewed non-pattern static metadata otherwise; prohibit analytics and
+  telemetry for pattern data.
+- **Mitigation:** Compare a browser runtime capture against the inventory across
+  import, render, toggle, reload, and representative error paths; block
+  deployment on an unexpected request or pattern-derived payload. Exact source
+  `35bbb34` has no client connection API, uses `connect-src 'none'`, and passed
+  local workerd header/method smoke. The measured Chromium/macOS Resource
+  Timing inventory contains only registered same-origin assets; AU-AGENT-003
+  must decide its finding sufficiency. Production assertions remain mandatory.
+- **Fallback:** Disable the offending connection or feature, tighten CSP,
+  rebuild the immutable artifact, repeat security review and smoke evidence,
+  and deploy only after the finding is cleared.
+- **Owner:** AU-AGENT-001 for the contract; AU-AGENT-006 for client evidence;
+  AU-AGENT-003 for independent reverification
+
+## RISK-016 — Renderer Core Evidence Is Mistaken for Browser Readiness
+
+- **Status:** `[OPEN]`; bounded core and browser functional controls
+  `[IMPLEMENTED]`, `[TESTED]`; consolidated Engineering Verification Status
+  `VERIFIED WITH FINDINGS`
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A Node Canvas-contract signal or capability selector is treated
+  as proof of browser pixels, OffscreenCanvas Worker operation, accessibility,
+  glyph-atlas behavior, device performance, or production readiness.
+- **Affected areas:** Rendering correctness, symbol readability,
+  accessibility, interaction, performance, memory, and release confidence.
+- **Prevention:** Keep core, browser adapter, Worker, client interaction,
+  accessibility, rendering-golden, and controlled benchmark evidence distinct.
+  Require exact-source AU-AGENT-003 review and the task benchmark plan before
+  release claims.
+- **Mitigation:** The renderer core bounds viewport work, rejects stale
+  requests, separates static/progress layers, validates provider data, budgets
+  changed overlays, restores committed state after save failure, and records
+  its Node measurement explicitly as a non-acceptance regression signal.
+  AU-AGENT-003 resolved all mandatory renderer-core findings at exact
+  `930cad2`. Exact remediation source `1c2bd5d` adds the approved
+  OffscreenCanvas Worker, bounded glyph atlas and tile-raster cache,
+  incremental main-thread fallback, accessible browser integration, and
+  source-qualified measured-profile evidence. Listed budgets pass on the
+  recorded Chromium/macOS profile. Exact source `d69b5c5` additionally
+  isolates the steady-gesture scenario with zero long tasks and manually
+  dispositions the remaining contrast targets. Exact source `4009944` now has
+  separate registered DPR1 reference and owner-confirmed 4× constrained raw
+  profiles. AU-AGENT-003 reverified evidence package `04302399`, accepted the
+  owner-confirmed 4× provenance and passing method-conforming metric subsets,
+  but kept both complete profiles open for Viewer TTI and retained-memory
+  evidence. Exact source `d36a827` adds 100-sample profile TTI distributions
+  and signed baseline/current/peak main-thread heap signals. AU-AGENT-003
+  reverified package `15ea8f93` and resolved the Viewer TTI and registered
+  main-thread retained-memory remainders for the documented observational
+  method. The Project Owner accepted missing observed import-Worker peak
+  memory as a Phase 0 limitation while retaining the unit-tested 384 MiB
+  admission control and making actual Prototype 9.1 measurement mandatory
+  before any 500,000-stitch scale claim. AU-AGENT-003 independently confirmed
+  the limitation and resolved TS001-IMPL-002 for bounded Phase 0. Exact source
+  `470a30a` adds Project Owner-confirmed corrected physical Tab and VoiceOver
+  evidence. AU-AGENT-003 accepted it at package `58d5832f` and resolved
+  TS001-IMPL-003 only for Chrome 150/macOS 26.5.2. The missing VoiceOver
+  version, exact viewport, session recording, and broader-browser evidence
+  remain open and cannot be generalized.
+- **Fallback:** Retain the stable renderer interface, disable a failing
+  execution path, use the incremental main-thread fallback, and do not promote
+  the release until mandatory findings and browser gates pass.
+- **Owner:** AU-AGENT-004 for renderer correctness and performance;
+  AU-AGENT-006 for browser/client/accessibility evidence; AU-AGENT-003 for
+  independent engineering verification
+
+## RISK-017 — Pinned GitHub Actions Lag the Hosted Node Runtime
+
+- **Status:** `[OPEN]`; non-blocking maintenance recommendation
+- **Probability:** Medium
+- **Impact:** Medium
+- **Trigger:** A SHA-pinned JavaScript action that still declares Node 20
+  stops working when GitHub removes its compatibility override or changes the
+  hosted runtime.
+- **Affected areas:** CI availability, build provenance, dependency audit,
+  static-artifact retention, and delivery lead time.
+- **Prevention:** Keep actions pinned to immutable full commits. Periodically
+  review upstream Node 24-native releases, provenance, changelogs, permissions,
+  and compatibility without replacing pins with mutable tags.
+- **Mitigation:** Update each action through a separate tested dependency/CI
+  task with exact-head GitHub Actions evidence and no permission expansion.
+- **Fallback:** Retain the last passing pins while the compatibility override
+  remains available; if a pin fails, block promotion and use a reviewed
+  replacement commit rather than bypassing CI.
+- **Owner:** AU-CODEX-PRIMARY; AU-AGENT-003 reviews the resulting CI evidence
+
+## RISK-018 — Non-Blocking Acceptance Findings Lose Lifecycle Ownership
+
+- **Status:** `[OPEN]`; controlled by separate follow-up records
+- **Probability:** Medium
+- **Impact:** High
+- **Trigger:** A later task touches an accepted finding but neither closes it
+  with evidence nor explicitly carries it forward.
+- **Affected areas:** Import compatibility, product scope, progress integrity,
+  client error semantics, accessibility, evidence portability, traceability,
+  and future review reproducibility.
+- **Prevention:** Treat TS001-ACCEPT-F-01 through F-16 as independent records
+  in `docs/TASKS.md`; every later Task Package and Technical Review must check
+  applicable records.
+- **Mitigation:** Block completion of an affected later task until the finding
+  is resolved, deferred by authorized disposition, or explicitly inherited
+  with unchanged risk.
+- **Fallback:** Preserve the bounded TASK-THINSLICE-001 acceptance while
+  withholding broader compatibility, scale, release, production, or
+  deployment claims.
+- **Owner:** AU-CODEX-PRIMARY for routing; named finding owners for closure;
+  AU-AGENT-003 for engineering reverification where applicable

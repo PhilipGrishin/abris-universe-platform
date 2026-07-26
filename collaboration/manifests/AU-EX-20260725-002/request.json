@@ -1,0 +1,97 @@
+{
+  "exchange_id": "AU-EX-20260725-002",
+  "task_id": "INIT-003-PD-001",
+  "task_type": "PRODUCT_DECISION",
+  "requested_claude_role": "Chief Project Orchestrator",
+  "source_commit_sha": "aec043a0796948c27b825907c929d783f6f8fca0",
+  "source_branch": "codex/owner-dispositions-pd-exchange",
+  "review_commit_range": "35130a50605bf7cfa3bf0522775954fd73070cd7..aec043a0796948c27b825907c929d783f6f8fca0",
+  "prepared_at": "2026-07-25T12:43:47Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Formally return Cowork DEC-005 through DEC-008 for canonical product-decision integration before TASK-THINSLICE-001 Technical Review.",
+  "scope": [
+    "Preserve and formalize Cowork DEC-005: Project Owner approval without changes of the Product Vision and Roadmap as a product input.",
+    "Preserve and formalize Cowork DEC-006: Project Owner approval of the product-side Architecture and Stack input, while the stack remains a recommendation subject to Codex Technical Review and proposed ADRs remain unapproved.",
+    "Preserve and formalize Cowork DEC-006 OQ-005 disposition: select the first import format by minimal parsing complexity while remaining representative of real user files; delegate the concrete choice to a Codex spike over two or three structured XSD/PAT/SXP-class candidates, excluding PDF and raster, with justification inside the Technical Review.",
+    "Preserve and formalize Cowork DEC-007: the owner reports the live test environment at https://abris.653915.com in owner Cloudflare zone 653915.com, currently a temporary placeholder deployed as Worker abris-universe with static assets; Phase 0 targets Cloudflare static hosting on this domain; Codex must design the permanent GitHub-to-CI-to-deploy pipeline in the Technical Design Proposal.",
+    "Preserve and formalize Cowork DEC-008: the 2026-07-25 Project Owner dispositions approving wording-only OVR-001, OVR-002, and OVR-005 normalization, separate tested OVR-004 tooling, this Product Decision exchange, and the subsequent Technical Review plus OQ-005 spike gate.",
+    "Return one authoritative, append-ready Product Decision integration artifact that identifies exact source authority, dates, status, relationships, and any required OQ-005 register update without duplicating or silently changing existing product meaning.",
+    "Keep development gated behind the Technical Review and keep the permanent deployment pipeline as a Codex Technical Design responsibility rather than a Cowork implementation design."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, product Decision Log, engineering governance, architecture, code, infrastructure, Cloudflare configuration, GitHub configuration, CI/CD, or deployment.",
+    "Inventing technology choices, a permanent pipeline design, application architecture, import-format selection, implementation details, product behavior, UX, scope, priority, or acceptance criteria.",
+    "Changing the Project Owner dispositions, role authority, the registered Collaboration Bridge route, or the separation of product, engineering, documentation, and independent-review authority.",
+    "Starting or accepting TASK-THINSLICE-001 Technical Review, the OQ-005 spike, product development, or deployment work.",
+    "Assigning project VERIFIED or independently accepting any engineering implementation."
+  ],
+  "required_inputs": [
+    "sources/repository/product/reviews/INIT-003_Independent_Acceptance_Report.md",
+    "sources/repository/docs/HANDOFF_LOG.md",
+    "sources/repository/docs/TASKS.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/.codex/CURRENT_FOCUS.md",
+    "sources/repository/product/decisions/05_Decision_Log.md",
+    "sources/repository/product/specifications/01_Product_Vision_and_Roadmap.md",
+    "sources/repository/product/architecture-inputs/02_Architecture_and_Stack.md",
+    "sources/repository/product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+    "sources/repository/product/agents/README.md",
+    "sources/repository/product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md",
+    "sources/repository/collaboration/README.md"
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type PRODUCT_DECISION.",
+    "outputs/product-decision-integration.md containing exact append-ready Cowork DEC-005 through DEC-008 records, OQ-005 register disposition text, provenance, authority, limitations, and the explicit next gate."
+  ],
+  "acceptance_criteria": [
+    "The return explicitly identifies Cowork DEC-005 through DEC-008 and preserves every owner-supplied meaning without additions or omissions.",
+    "DEC-005 records approval of the Product Vision and Roadmap as a product input.",
+    "DEC-006 records approval of the product-side Architecture and Stack input, preserves the recommended-stack/Technical Review boundary, and formally resolves the owner criterion portion of OQ-005 while delegating the concrete structured format choice to the Codex spike.",
+    "DEC-007 records the owner-confirmed Cloudflare domain, zone, temporary Worker/static placeholder state, Phase 0 static-hosting target, and Codex ownership of permanent GitHub-to-CI-to-deploy design in the Technical Design Proposal.",
+    "DEC-008 records exactly the owner dispositions for OVR-001, OVR-002, OVR-004, OVR-005, PD-001, and the subsequent Technical Review plus OQ-005 spike gate.",
+    "The artifact distinguishes owner-confirmed facts from Codex-tested public endpoint evidence and does not claim public verification of Worker identity or deployment internals.",
+    "The artifact provides append-ready decision-log text and a precise OQ-005 status update without rewriting unrelated existing decisions.",
+    "No product, technical, role, governance, or implementation meaning is invented; no canonical file is directly edited by Claude.",
+    "The result is COMPLETED with decision NO_DECISION unless a genuine authority or source conflict requires PARTIAL or BLOCKED; product-decision content is not a project acceptance status.",
+    "The next gate is explicit: Codex validates and integrates this return, then begins TASK-THINSLICE-001 Technical Review plus the bounded OQ-005 spike; development remains blocked behind Technical Review."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and Claude Cowork own the meaning and canonical formulation of Cowork DEC-005 through DEC-008. Claude may return the authorized product-decision artifact but may not invent or expand the supplied decisions.",
+    "engineering_authority": "AU-CODEX-PRIMARY governs integration; AU-AGENT-001 and assigned domain agents retain Technical Review, Technical Design, spike, architecture, and implementation authority. The permanent deployment pipeline and concrete import-format recommendation are not designed in this exchange.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, metadata, navigation, terminology consistency, traceability, and lifecycle after validation, without changing Claude-authored product meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260725-002",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "include_paths": [
+    ".codex/CURRENT_FOCUS.md",
+    "AGENTS.md",
+    "AI_ORGANIZATION.md",
+    "PROJECT_MANIFEST.md",
+    "collaboration/README.md",
+    "collaboration/schemas",
+    "docs/CURRENT_STATUS.md",
+    "docs/DECISIONS.md",
+    "docs/HANDOFF_LOG.md",
+    "docs/OPEN_QUESTIONS.md",
+    "docs/SHARED_WORKFLOW.md",
+    "docs/SOURCE_OF_TRUTH.md",
+    "docs/TASKS.md",
+    "docs/TRACEABILITY_MATRIX.md",
+    "product/README.md",
+    "product/agents/README.md",
+    "product/architecture-inputs/02_Architecture_and_Stack.md",
+    "product/decisions/05_Decision_Log.md",
+    "product/governance/CLAUDE_COWORK_PROJECT_INSTRUCTIONS.md",
+    "product/reviews/INIT-003_Independent_Acceptance_Report.md",
+    "product/task-packages/07_TaskPackage_EP01_ThinSlice.md",
+    "product/specifications/01_Product_Vision_and_Roadmap.md"
+  ],
+  "exclude_paths": []
+}

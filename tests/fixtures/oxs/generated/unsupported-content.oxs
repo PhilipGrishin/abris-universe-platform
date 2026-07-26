@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <format comments01="Project-original Abris Universe route-1 test fixture" comments12="properties, fullstitches, and backstitches are present even when empty" comments13="element and attribute names are lowercase"/>
+  <properties oxsversion="1.0" software="Abris Universe Route-1 Fixture Generator" software_version="1.0.0" chartheight="3" chartwidth="4" charttitle="Route-1 Unsupported Content" author="Abris Universe Engineering" copyright="Abris Universe project fixture" instructions="Test data only" stitchesperinch="14" stitchesperinch_y="14" palettecount="3"/>
+  <palette>
+    <palette_item index="0" number="cloth" name="Cloth" color="FFFFFF" printcolor="FFFFFF" blendcolor="nil" comments="" strands="2" symbol="0" dashpattern="" misc1=""/>
+    <palette_item index="1" number="AU-01" name="Fixture Color 1" color="5375A5" printcolor="5375A5" blendcolor="nil" comments="" strands="2" symbol="A" dashpattern="" misc1=""/>
+    <palette_item index="2" number="AU-02" name="Fixture Color 2" color="96DA5A" printcolor="96DA5A" blendcolor="nil" comments="" strands="2" symbol="B" dashpattern="" misc1=""/>
+    <palette_item index="3" number="AU-03" name="Fixture Color 3" color="D95FEF" printcolor="D95FEF" blendcolor="nil" comments="" strands="2" symbol="C" dashpattern="" misc1=""/>
+  </palette>
+  <fullstitches>
+    <stitch x="1" y="1" palindex="1"/>
+  </fullstitches>
+  <partstitches>
+    <partstitch x="2" y="0" palindex1="1" palindex2="2" direction="1"/>
+  </partstitches>
+  <backstitches>
+    <backstitch x1="0" y1="0" x2="3" y2="2" palindex="2" objecttype="backstitch" sequence="0"/>
+  </backstitches>
+  <ornaments_inc_knots_and_beads>
+    <object x1="3" y1="1" palindex="3" objecttype="knot"/>
+  </ornaments_inc_knots_and_beads>
+  <commentboxes/>
+</chart>

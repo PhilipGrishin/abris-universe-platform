@@ -1,0 +1,20 @@
+{
+  "name": "@abris-universe/renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "measure:medium": "node --experimental-strip-types scripts/measure-medium.ts",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@abris-universe/domain-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@abris-universe/oxs-importer": "workspace:*"
+  }
+}

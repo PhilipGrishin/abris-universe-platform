@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "fixture": "empty-full-cross.oxs",
+  "expectedDisposition": "completed",
+  "canonical": {
+    "grid": {
+      "width": 3,
+      "height": 2
+    },
+    "paletteItems": 1,
+    "fullCrossStitches": [],
+    "stitchSequenceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "importReport": {
+    "status": "completed",
+    "messageKey": "import.oxs.emptyPattern",
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "paletteItems": 1,
+      "fullCrossStitches": 0,
+      "unsupportedPartStitches": 0,
+      "unsupportedBackstitches": 0,
+      "unsupportedObjects": 0
+    }
+  }
+}

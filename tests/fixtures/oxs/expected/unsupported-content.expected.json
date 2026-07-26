@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "fixture": "unsupported-content.oxs",
+  "expectedDisposition": "completed_with_warnings",
+  "canonical": {
+    "grid": {
+      "width": 4,
+      "height": 3
+    },
+    "paletteItems": 4,
+    "fullCrossStitches": [
+      {
+        "x": 1,
+        "y": 1,
+        "palindex": 1
+      }
+    ],
+    "stitchSequenceSha256": "f3176ea4064dc47ccab85eb06a79460c0a07325bfdc3da7863dbd974031ee89b"
+  },
+  "importReport": {
+    "status": "completed_with_warnings",
+    "errors": [],
+    "warnings": [
+      "OXS_UNSUPPORTED_PART_STITCHES",
+      "OXS_UNSUPPORTED_BACKSTITCHES",
+      "OXS_UNSUPPORTED_OBJECTS"
+    ],
+    "counts": {
+      "paletteItems": 4,
+      "fullCrossStitches": 1,
+      "unsupportedPartStitches": 1,
+      "unsupportedBackstitches": 1,
+      "unsupportedObjects": 1
+    }
+  }
+}

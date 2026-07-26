@@ -173,11 +173,14 @@ session continue without relying on chat history.
 
 ## 12. Claude-Codex Local Exchange
 
-Use `collaboration/README.md` when Claude cannot reliably access the canonical
-repository. Codex registers the task against an exact source commit, prepares
-and validates the package, exports it to the controlled inbox, validates the
-returned manifest and files, and imports valid output only into ignored
-staging. Authorized owners review meaning before any canonical integration.
+Use `collaboration/README.md` for every substantive Claude–Codex communication
+and artifact transfer, regardless of direct repository availability. Codex
+registers the task against an exact source commit, prepares and validates the
+package, exports it to the controlled inbox, validates the returned manifest and
+files, and imports valid output only into ignored staging. Authorized owners
+review meaning before any canonical integration. Chat history is not evidence;
+Project Owner manual input is limited to the registered trigger phrases unless
+a later explicit owner governance decision changes the route.
 
 All write, synchronization, import, and archive commands default to dry-run and
 require explicit `--apply`. No bridge script commits, pushes, merges, or

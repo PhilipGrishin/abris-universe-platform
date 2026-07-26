@@ -1,34 +1,264 @@
 # Current Focus
 
-## Focus ID: AGENT-006
+## Focus ID: TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT
 
-**Status:** `[IMPLEMENTED]`, `[TESTED]`, not project `[VERIFIED]`
+**Status:** Route-1 evidence, workspace scaffold, canonical domain-core,
+bounded OXS route-1 importer core, and IndexedDB schema-v1 persistence/recovery
+`[IMPLEMENTED]`, `[TESTED]`; repository-level persistence is
+`VERIFIED WITH FINDINGS`; renderer core is `[IMPLEMENTED]`, `[TESTED]` with
+repository-level Engineering Verification Status `VERIFIED`; client
+integration, renderer capability remediation, measured-profile browser
+evidence, and no-deploy CI/rehearsal are `[IMPLEMENTED]`, `[TESTED]`;
+consolidated Engineering Verification Status is `VERIFIED WITH FINDINGS` after
+AU-AGENT-003 manual-accessibility reverification at evidence package
+`58d5832f`; Completion Report v1.1.0 Engineering Verification Status is
+`VERIFIED WITH FINDINGS` after final source `c6314a9c`; Claude Cowork bounded
+independent acceptance is `[VERIFIED]` at immutable source `1a683ab`
 
-Register AU-AGENT-006 — Mobile & Web Client Lead from the complete Project
-Owner instruction without product implementation, architecture invention,
-platform selection, or AU-CDX-TASK-001 execution.
+Collaboration Bridge exchange `AU-EX-20260726-001` returned
+`COMPLETED / VERIFIED`, passed contract validation, and is integrated
+byte-for-byte. Preserve all unsupported performance, accessibility, platform,
+release, and deployment limitations. PROD-DEC-012 sanctions preserve-only
+`strandCount`; PROD-DEC-013 authorizes the first production deployment;
+PROD-DEC-014 mirrors the Worker-memory limitation. The protected deployment
+workflow is implemented; AU-AGENT-003's first exact-source review returned
+`REWORK REQUIRED`, and exact remediation source `2c88639` resolves all four
+findings with task-scoped Engineering Verification Status `VERIFIED`.
+Production mutation remains blocked on GitHub environment secrets and
+TD-GATE-003.
 
-## Completed in This Focus
+## Confirmed Inputs
 
-- Preserved AU-AGENT-006 mission, responsibilities, authority, ownership,
-  inputs, outputs, interfaces, principles, evidence, deliverables, rules, and
-  Definition of Done.
-- Registered mobile/web client ownership without creating client architecture,
-  applications, UI components, platform commitments, or implementation.
-- Preserved AU-AGENT-001 system architecture, AU-AGENT-002 documentation
-  lifecycle, AU-AGENT-003 independent verification, AU-AGENT-004 Pattern Engine
-  and rendering-core ownership, and AU-AGENT-005 backend/API/synchronization
-  ownership.
-- Completed the Owner Decision F1 specialist-registration sequence.
-- Applied the checked automatic PR merge workflow for agent registration.
+- TASK-THINSLICE-001 v1.1 is the current approved product handoff.
+- PROD-DEC-009 selects OXS 1.0 and authorizes project-original route-1
+  fixtures.
+- PROD-DEC-007 sets the Cloudflare production target at
+  `abris.653915.com`.
+- PROD-DEC-010 establishes Abris Art as the launch and catalog anchor while
+  preserving per-file rights grants.
+- PROD-DEC-011 confirms the four owner-granted XSP samples, prohibits their
+  transfer through the Bridge, identifies XSD as the Phase 1 second-importer
+  priority, and leaves Phase 0 unchanged.
+- PROD-DEC-012 resolves TS001-ACCEPT-F-02 as preserve-only with no Phase 0
+  behavior.
+- PROD-DEC-013 authorizes the first controlled deployment to
+  `abris.653915.com`.
+- PROD-DEC-014 mirrors the owner-approved Worker-memory limitation and resolves
+  TS001-ACCEPT-F-16.
+- `AU-EX-20260725-006` independently confirms Technical Design v1.2.1 and the
+  R-1 through R-8 and N-1 through N-7/N-9 closures at design level.
 
-## Blocked or Awaiting Input
+## Current Design State
 
-- Engineering intake and Technical Review of AU-CDX-TASK-001 v1.0.
-- Product architecture, stack, platform order, implementation, and evidence.
+- Technical Design v1.5.3 remains `[PROPOSED]` with independent disposition
+  `CONFIRMED_ACCEPTED_WITH_GATES`.
+- AU-AGENT-003 Engineering Verification Status remains
+  `VERIFIED WITH FINDINGS` for the design-only security review.
+- The project-original route-1 fixture set and strict TypeScript pnpm workspace
+  scaffold are `[IMPLEMENTED]`, `[TESTED]`.
+- Canonical `domain-core` records, validation, immutable snapshot boundary,
+  Project lifecycle, and progress projection are `[IMPLEMENTED]`, `[TESTED]`.
+- The route-1 importer core, deterministic IDs/hash, ImportReport, unsupported
+  handling, source-progress isolation, and parser limits are `[IMPLEMENTED]`,
+  `[TESTED]`.
+- IndexedDB schema version 1, source staging, atomic import commit,
+  failed/interrupted cleanup, metadata, idempotent progress, Web Locks,
+  capability failures, reopen, and projection rebuild are `[IMPLEMENTED]`,
+  `[TESTED]` at the repository API boundary.
+- The remediation candidate adds final-event hashes, exact-version stitch
+  validation, Blob/hash binding, bounded report validation/cleanup, and
+  fail-closed replay/rebuild integrity with 17 focused persistence tests.
+- AU-AGENT-003 resolved TS001-PERSIST-001 through TS001-PERSIST-005 at exact
+  commit `854073c`; the repository-level persistence quality gate passes with
+  Engineering Verification Status `VERIFIED WITH FINDINGS`.
+- The accessible React/Vite browser flow, dedicated importer Worker, bounded
+  Canvas integration, real IndexedDB reload, stale-tab fail-closed behavior,
+  and local-only evidence path are `[IMPLEMENTED]`, `[TESTED]` at final client
+  commit `3a73748`. Its numerical browser signal remains attributable only to
+  exact earlier source `fc50d66`.
+- SHA-pinned read-only CI, frozen dependency installation, verified build
+  provenance, restrictive Cloudflare Worker headers, and a no-deploy Wrangler
+  rehearsal are `[IMPLEMENTED]`, `[TESTED]` at `35bbb34`.
+- The runtime request inventory uses `connect-src 'none'`; application source
+  has no script-initiated connection API. Full browser capture and production
+  assertion remain open.
+- AU-AGENT-003 initially reviewed exact consolidated source `43782195`, confirmed
+  successful GitHub Actions run `30191845477`, and assigned `REWORK REQUIRED`.
+  At that source, TS001-IMPL-001/002/003 and remaining TS001-PERSIST-006 were
+  mandatory, while TS001-SEC-002 was partially resolved and non-blocking for
+  the no-deploy scope.
+- The approved OffscreenCanvas Worker, bounded glyph atlas, incremental
+  main-thread fallback, and eight-entry/128 MiB bounded Worker tile-raster
+  cache are implemented and tested.
+- Measured Chromium/macOS evidence records 30 cold imports per fixture, 30
+  10,000-event reloads, at least 100 mark/save samples per fixture, and 120
+  scripted frame intervals per fixture. Listed budgets pass on the measured
+  1280×720 DPR 2 profile.
+- Exact clean source `4009944` now has separate registered 1365×768 DPR1
+  reference and owner-confirmed Chrome DevTools 4× constrained raw evidence.
+  Both retain 30 cold imports, 30 10,000-event reloads, isolated 120-frame
+  medium gestures, and at least 100 medium mark/save samples. Every
+  method-conforming captured metric passes. Complete profile passes remain
+  unassigned because Viewer TTI sampling/fixture coverage and registered
+  retained-memory deltas are incomplete. The constrained multiplier is
+  supported by owner confirmation and preserved inspected-target continuity
+  because the browser evidence API does not expose the active multiplier.
+- Exact clean source `d36a827` adds schema-v2 opt-in heap instrumentation and
+  retains 100 Viewer TTI reloads for reference minimal, reference medium, and
+  owner-confirmed 4× constrained medium. Their p95 values are 20.8, 119.7, and
+  130.5 ms and pass the applicable budgets. Baseline/current/peak main-thread
+  heap signals and signed retained deltas are recorded with the no-forced-GC
+  and Worker/Canvas/GPU exclusions. AU-AGENT-003 independently resolved the
+  Viewer TTI and registered main-thread retained-memory remainders at exact
+  package `15ea8f93`.
+- Pinned axe-core reports zero violations after exact-source remediation.
+  Exact clean source `d69b5c5` reduces incomplete contrast targets from 15 to
+  five toolbar controls, and manual calculations disposition those controls at
+  8.37:1 or better. Exact source `470a30a` adds the corrected physical Tab
+  traversal and Project Owner-confirmed VoiceOver session. Non-Chromium,
+  mobile, touch, forced-colors, and browser-zoom evidence remain open.
+- Real-browser evidence observes transaction abort, exact Web Locks contention
+  with visible `Read-only`, blocked IndexedDB upgrade, persistent-storage
+  denial, and a same-origin runtime resource inventory. Safe real quota/
+  eviction and production assertions remain open.
+- AU-AGENT-003 reverified exact remediation source `6da2f9e`, successful
+  GitHub Actions run `30195963832`, 67 tests, checksums, and evidence.
+  TS001-IMPL-001 is resolved. TS001-PERSIST-006 is resolved only for the
+  declared Chromium/macOS Phase 0 scope. The implementation-runtime part of
+  TS001-SEC-002 is resolved for that profile; production assertions remain
+  open.
+- TS001-IMPL-002 and TS001-IMPL-003 are resolved for their bounded Phase 0
+  scopes. TS001-IMPL-002 was resolved at exact source `c64d3ec8`.
+  Exact source `d69b5c5` isolates the
+  medium 120-frame gesture and records zero long tasks, 8.5 ms frame p95, and
+  2.3 ms Worker-render p95; the earlier combined-session artifact with 31
+  unattributed long tasks remains historical evidence. AU-AGENT-003
+  independently accepted the registered profile configuration and passing
+  captured metrics at evidence package `04302399`, but kept both complete
+  profile remainders open for Viewer TTI and retained-memory evidence.
+  Exact source `d36a827` supplies those profile samples/signals, and independent
+  review at `15ea8f93` resolves their remainders for the documented Chromium
+  method. Browser-reported Worker peak memory remains absent. The Project Owner
+  approved a Phase 0 documented limitation under the enforced/unit-tested
+  384 MiB control and mandatory Prototype 9.1 actual measurement before any
+  500,000-stitch scale claim. AU-AGENT-003 confirmed exact source `c64d3ec8`
+  and resolved TS001-IMPL-002 for bounded Phase 0. The medium estimate remains
+  about 95.7 MiB against 256 MiB and is not actual Worker telemetry. Exact
+  source `470a30a` has Project Owner-confirmed corrected physical Tab traversal
+  and macOS VoiceOver evidence. AU-AGENT-003 independently accepted it at
+  evidence package `58d5832f`, resolving TS001-IMPL-003 only for Chrome
+  150/macOS 26.5.2. The VoiceOver version, exact viewport, session recording,
+  and broader profiles remain unverified.
+- AU-AGENT-003 narrowly reverified exact source `4009944` and successful
+  GitHub Actions run `30197035083`. It resolved the measured-profile
+  steady-gesture long-task and normal-color contrast subconditions, accepted
+  the estimator only as admission-control evidence, and retained both Medium
+  findings as mandatory.
+- TD-GATE-001 is closed only for the registered route-1 generator profile:
+  top-left origin, x rightward, y downward, zero-based integer coordinates,
+  no transposition.
+- TD-GATE-004 is closed at design level.
+- TD-GATE-002 remains open for exact-symbol claims outside the lawful route-1
+  literal-symbol profile.
+- Exact implementation source `1c2bd5d` passes GitHub Actions run
+  `30195542862`, including frozen install, typecheck, 67 tests, static build,
+  production dependency audit, and no-deploy Cloudflare rehearsal.
+- TD-GATE-003 and production headers/smoke block production deployment.
+  Explicit owner authorization is closed by PROD-DEC-013. The measured-profile
+  implementation runtime inventory is complete; production assertion remains
+  open.
+- Bounded TASK-THINSLICE-001 `[VERIFIED]` exists only at source `1a683ab` and
+  only within the independent report's declared scope. Release readiness,
+  production verification and excluded scope do not exist. Production
+  authorization exists separately through PROD-DEC-013.
+
+## Assigned Roles
+
+- AU-AGENT-001 owns the consolidated technical result and gate discipline.
+- AU-AGENT-004 owns importer compatibility and any importer finding
+  remediation.
+- AU-AGENT-005 owns IndexedDB repositories, transactions, recovery, and data
+  integrity.
+- AU-AGENT-006 owns the approved client flow, browser integration,
+  accessibility, interaction, and client evidence.
+- AU-AGENT-003 independently verifies later implementation evidence.
+- AU-AGENT-002 maintains documentation, navigation, terminology, and
+  traceability without changing technical or product meaning.
+
+## Immediate Boundaries
+
+- Review the exact consolidated source, tests, implementation reviews, runtime
+  request inventory, benchmark limitations, and deployment rehearsal.
+- AU-AGENT-003 must not implement fixes, redesign architecture, change product
+  meaning, or self-assign project `[VERIFIED]`.
+- Register every finding with severity, evidence, owner, and disposition.
+- Do not claim power-loss, eviction, supported-browser, performance,
+  accessibility, or pixel-golden completion without exact evidence.
+- Do not claim exact OXS symbol fidelity before TD-GATE-002 closes.
+- Do not promote production before TD-GATE-003, AU-AGENT-003 deployment
+  disposition, and the workflow's production smoke/assertions close. Explicit
+  owner authorization is already recorded in PROD-DEC-013.
+- Do not transfer the four PROD-DEC-011 XSP binaries through the Collaboration
+  Bridge or commit them without the separate owner-controlled transfer path.
+- Do not broaden the bounded project `[VERIFIED]` result beyond the independent
+  report's explicit scope and limitations.
+
+## Completed Exchange
+
+`AU-EX-20260725-006` reviewed exact commit
+`395c5d62975ba0f52e0da69af256ef870bf02770` on immutable branch
+`codex/task-thinslice-001-design-revision-source`. Its schema-valid
+`REQUIREMENTS_REVIEW / COMPLETED / NO_DECISION` return was meaning-reviewed and
+integrated byte-for-byte as
+`product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md`.
+The disposition is `CONFIRMED_ACCEPTED_WITH_GATES`; the exchange is archived
+with checksum provenance and no verified scope.
+
+## Current Quality Gate
+
+Client integration and the CI/no-deploy rehearsal are implemented and tested.
+Exact implementation source `1c2bd5d` passes frozen install, strict typecheck,
+67 tests, verified clean-source static build, production dependency audit, and
+the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
+TD-GATE-003 and production assertions remain open.
+
+AU-AGENT-003 reports no Critical or High defect and has resolved
+TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
+scopes, plus the bounded persistence/runtime-security scopes. The current
+Engineering Verification Status is `VERIFIED WITH FINDINGS`; no mandatory
+implementation finding remains in that declared scope. A consolidated
+Completion Report v1.1.0 passed final narrow AU-AGENT-003 reverification.
+TS001-COMP-001 through TS001-COMP-003 are resolved; TS001-COMP-004 remains a
+non-blocking recommendation. The supplemental Chrome interaction evidence is
+accepted only within its declared profile. Exchange `AU-EX-20260726-001` is
+valid, integrated, and archived with provenance.
+
+## Current Renderer Gate
+
+AU-AGENT-003 reviewed exact commit `cb34a48` and assigned `REWORK REQUIRED`.
+High findings TS001-RENDER-001 through 003 and Medium finding
+TS001-RENDER-004 are registered. The remediation candidate now has 12 focused
+renderer tests plus the full workspace suite, but finding disposition remains
+with AU-AGENT-003 until exact-source reverification.
+
+Reverification at exact commit `bdaf3ed` resolved TS001-RENDER-001, 002, and
+004 and left High TS001-RENDER-003 partially resolved. The second remediation
+candidate adds complete rendering-relevant symbol validation, declared stitch
+counts, and absolute request/response ceilings with 14 focused renderer tests.
+
+Reverification at exact commit `f3e2fdc` confirmed those controls and left only
+the missing `patternVersionId` length check inside finding 003. The final narrow
+candidate adds the pre-acceptance bound, a dedicated oversized-identity test,
+and a committed empty-tile regression. Fifteen renderer tests pass.
+
+Final reverification at exact commit `930cad2` resolved
+TS001-RENDER-001 through 004. The bounded repository-level renderer-core gate
+passes with Engineering Verification Status `VERIFIED`. Browser/client evidence
+remains open.
 
 ## Next Concrete Step
 
-Stop after AU-AGENT-006 activation and checked automatic merge. In a separate
-task, AU-AGENT-001 should perform engineering intake and Technical Review of
-AU-CDX-TASK-001 v1.0. Do not begin product implementation in this focus.
+Commit and independently review the deployment workflow. Production then
+requires two GitHub `production` environment secrets, TD-GATE-003 capture,
+main-branch workflow dispatch, and production/browser evidence. Never place
+secret values in chat or the repository.

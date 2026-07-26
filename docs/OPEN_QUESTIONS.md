@@ -48,7 +48,31 @@
   canonical integration, provenance archive, and traceability updates.
 - **Evidence:** Completed exchange `AU-EX-20260721-001`, its validated outcome,
   canonical Independent Acceptance Report, and external archive record.
-- **Result:** Direct Claude GitHub access remains unavailable but is non-blocking.
-  The file-based channel now establishes delivery and return provenance when the
-  registered validation and integration workflow completes.
+- **Result:** The file-based channel is the exclusive route for substantive
+  Claude–Codex communication regardless of direct repository availability and
+  establishes delivery and return provenance when the registered validation and
+  integration workflow completes.
 - **Decision owner:** Project Owner / Claude Cowork / AU-CODEX-PRIMARY
+
+## OQ-005 — First Phase 0 Import Format
+
+- **Status:** `[CONFIRMED]`, fully resolved
+- **Answer:** Per PROD-DEC-006, the Project Owner confirmed the criterion on
+  2026-07-21: minimize parsing complexity while remaining representative of
+  real user files. PROD-DEC-009 confirms OXS 1.0 as the concrete Phase 0
+  format under that standing delegation.
+- **Spike result:** The bounded review inspected real official OXS and XSP
+  samples. OXS 1.0 was selected because its official XML specification and
+  sample expose the required Phase 0 fields; the inspected XSP sample contains
+  an encrypted payload without a public official schema.
+- **Terminology and fixtures:** PROD-DEC-009 confirms `SXP` as a typographical
+  error for `XSP`, authorizes normalization, and registers the fixture rule.
+- **Evidence:** `docs/reviews/technical/TASK-THINSLICE-001/`.
+- **Result:** OQ-005 is closed. The Technical Design mapping contract has
+  independent revision disposition `CONFIRMED_ACCEPTED_WITH_GATES`, and the
+  AU-AGENT-003 security design review is complete. Route-1 fixture evidence is
+  `[IMPLEMENTED]`, `[TESTED]`; TD-GATE-001 is closed for the registered
+  route-1 producer profile. Other producer profiles remain evidence-gated.
+- **Decision owner:** Project Owner for the criterion; Claude Cowork within
+  PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
+  evidence; AU-AGENT-001 for the Technical Review disposition.

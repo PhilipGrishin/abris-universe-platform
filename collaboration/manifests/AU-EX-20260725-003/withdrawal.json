@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260725-003",
+  "status": "REJECTED",
+  "detected_at": "2026-07-25T14:17:05Z",
+  "reason": "The registered source branch advanced from e53794b51e0ed753e9d1b7b39ac455df23e4b5bf to the manifest commit, causing the Bridge freshness check to report STALE_OR_UNAVAILABLE.",
+  "claude_return_received": false,
+  "external_inbox_disposition": "Withdrawn before return and moved without deletion to a recoverable temporary backup.",
+  "replacement_exchange_id": "AU-EX-20260725-004",
+  "development_started": false
+}

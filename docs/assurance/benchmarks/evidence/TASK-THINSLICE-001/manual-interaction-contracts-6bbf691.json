@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-26T18:52:54Z",
+  "sourceCommit": "6bbf6915fd6bf618022c2f781ecb22cda6e001e0",
+  "executableBaselineCommit": "470a30a7ea04860c9dacab5ae6edace960ca7d6d",
+  "sourceQualification": {
+    "workingTreeDirty": true,
+    "dirtyPaths": [
+      "docs/reviews/engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md",
+      "docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md"
+    ],
+    "executablePathsChangedSinceBaseline": [],
+    "disposition": "The build was produced from source commit 6bbf6915 with documentation-only working-tree changes. Executable application, package, build-script, dependency, fixture, and CI-workflow paths were unchanged from the independently reviewed executable baseline."
+  },
+  "environment": {
+    "browser": "Google Chrome 150",
+    "operatingSystem": "macOS 26.5.2",
+    "origin": "http://127.0.0.1:4173",
+    "entry": "/accessibility.html",
+    "buildCommand": "pnpm --filter @abris-universe/web build:benchmark",
+    "serverCommand": "pnpm --filter @abris-universe/web preview:benchmark --host 127.0.0.1",
+    "cpuThrottling": "none"
+  },
+  "fixture": {
+    "name": "Route-1 Medium Deterministic Pattern",
+    "grid": {
+      "width": 512,
+      "height": 256
+    },
+    "stitchCount": 100000,
+    "threadColorCount": 32
+  },
+  "checks": {
+    "pointerClickModality": {
+      "result": "passed",
+      "method": "A physical pointer click with no drag was sent to row 1, column 1 on the readable Canvas.",
+      "observed": [
+        "The selected-stitch status identified row 1, column 1.",
+        "The stitch changed to marked.",
+        "The save status returned to Saved locally."
+      ],
+      "acceptanceCriterion": "AC-05"
+    },
+    "panThreshold": {
+      "result": "passed",
+      "thresholdCssPx": 6,
+      "method": "A pointer drag followed the viewport-coordinate path (128,436) -> (132,436) -> (135,436) -> (138,436), for 10 CSS px total movement.",
+      "observed": [
+        "The gesture was treated as pan-only.",
+        "The previously selected row 1, column 1 remained selected and marked.",
+        "No new mark toggle or save transition was observed."
+      ],
+      "contract": "Movement strictly greater than 6 CSS px is pan-only."
+    },
+    "unreadableOverview": {
+      "result": "passed",
+      "zoomLevel": "54%",
+      "method": "The viewer was reduced below READABLE_CELL_SIZE_CSS_PX and the Canvas was inspected visually and through the accessible status output before and after a pointer click.",
+      "observed": [
+        "Colored overview cells remained visible.",
+        "No glyph symbols were drawn or visually claimed.",
+        "The status said Zoom in to read symbols and mark stitches.",
+        "A pointer click did not change selection, mark state, or save state."
+      ]
+    },
+    "closeAndReopenPersistence": {
+      "result": "passed",
+      "method": "After row 1, column 1 was committed as marked, the application tab was closed. A new Chrome tab was created and the same local entry URL was opened.",
+      "observed": [
+        "The persisted Project reopened automatically.",
+        "The viewer reported Saved locally.",
+        "The X progress mark at row 1, column 1 was visibly restored without another toggle."
+      ],
+      "acceptanceCriterion": "AC-07"
+    },
+    "saveFailureVisualRollback": {
+      "result": "passed",
+      "method": "The registered browser-failure harness held the real per-project Web Lock. The application then received a pointer click attempting to unmark the committed row 1, column 1.",
+      "observed": [
+        "The save status changed to Read-only.",
+        "The selected-stitch status remained marked.",
+        "The committed X remained visually present after the failed optimistic unmark.",
+        "After the failure harness released the lock and the application reloaded, the X was still present and the viewer returned to Saved locally."
+      ],
+      "control": "PERSISTENCE_PROGRESS_LOCK_UNAVAILABLE"
+    }
+  },
+  "supportBoundary": {
+    "verified": [
+      "pointer click",
+      "10 CSS px pointer drag",
+      "Chrome tab close and new-tab reopen",
+      "real Web Locks contention",
+      "Chrome 150 on macOS 26.5.2"
+    ],
+    "notVerified": [
+      "touch or mobile tap",
+      "other browsers",
+      "other operating systems",
+      "browser zoom",
+      "safe real quota exhaustion",
+      "operating-system power loss"
+    ]
+  },
+  "retention": {
+    "machineReadableRecord": true,
+    "screenshotsRetainedInRepository": false,
+    "note": "The Chrome session was visually inspected and screenshots were displayed in the controlled Codex session, but no screenshot file was retained in the repository. DOM status and deterministic source/tests remain separately inspectable."
+  },
+  "status": "passed"
+}
