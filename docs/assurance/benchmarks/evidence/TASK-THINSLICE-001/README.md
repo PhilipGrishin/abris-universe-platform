@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`; source-qualified evidence with independent dispositions recorded in the Engineering Verification Report |
 | Owner | AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, implementation commits named by each artifact |
+| Dependencies | `../../TASK-THINSLICE-001_CLIENT_BROWSER_SIGNAL.md`, `../../TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md`, `../../TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md`, implementation commits named by each artifact |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Evidence artifact, source commit, fixture, browser, or method change |
@@ -114,7 +114,11 @@ evidence when implementation or method changes.
 
 AU-AGENT-003 independently accepted the registered Viewer TTI and Chromium
 main-thread retained-memory remainders at package `15ea8f93`. Import-Worker
-peak memory remains outside these artifacts and mandatory under TS001-IMPL-002.
+peak memory remains outside these artifacts. The Project Owner approved its
+Phase 0 evidence limitation in
+[AU-BENCH-TS001-LIM-001](../../TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md);
+actual Worker-memory measurement remains mandatory in Prototype 9.1 before any
+500,000-stitch scale claim.
 
 ## Adding Evidence
 

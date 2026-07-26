@@ -58,6 +58,22 @@ export function estimateOxsParsedPeakBytes(
   );
 }
 
+export function exceedsOxsParsedPeakBudget(
+  sourceBytes: number,
+  paletteEntries: number,
+  fullCrossStitches: number,
+  unsupportedObjects: number,
+): boolean {
+  return (
+    estimateOxsParsedPeakBytes(
+      sourceBytes,
+      paletteEntries,
+      fullCrossStitches,
+      unsupportedObjects,
+    ) > OXS_LIMITS.maxPreflightPeakBytes
+  );
+}
+
 export function assertOxsSourcePreflight(sourceBytes: number): void {
   if (!Number.isSafeInteger(sourceBytes) || sourceBytes < 0) {
     throw new TypeError("Source byte length must be a non-negative safe integer.");

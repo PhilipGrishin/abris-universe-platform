@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-004 and AU-AGENT-006 |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-26 |
-| Dependencies | Benchmark Plan v1.2.2; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`, and Engineering Verification Report v1.4.0; registered route-1 fixtures |
+| Dependencies | Benchmark Plan v1.2.3; AU-BENCH-TS001-LIM-001; implementation commits `a8f764b28b774b783127abc63441bd9515a8768b`, `37e657eb6571c525154e07ed225d6b877358fb99`, `d69b5c564cf17a042d2bf36ef1a864031e802676`, exact evidence sources `40099443d156bcc2497e57e06528772be57e601b` and `d36a8272b808f862ad6aa5d4a774a71b337432f4`, evidence packages `043023999558f7d76f95b8552fe0e8b1923133f0` and `15ea8f9304d787aff604598f69e2e8551f5761cb`, and Engineering Verification Report v1.4.0; registered route-1 fixtures |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Fixture, browser, hardware, viewport, renderer, importer, persistence, budget, method, or source change |
@@ -193,8 +193,27 @@ registered 100,000-stitch medium fixture: 100,374,296 bytes, about 95.7 MiB,
 against the 256 MiB medium import budget. This is a conservative admission
 bound enforced before parsing, not browser-reported import-Worker heap
 telemetry. It must not be represented as measured Worker peak memory unless
-AU-AGENT-003 explicitly accepts the estimator as sufficient evidence or an
-approved limitation is registered.
+an observed Worker-memory artifact is produced.
+
+### Owner-Approved Phase 0 Import-Worker Memory Limitation
+
+The Project Owner approved
+[AU-BENCH-TS001-LIM-001](TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
+on 2026-07-26. For Phase 0 only, the missing observed import-Worker
+peak-memory result is accepted as an explicit evidence limitation under two
+mandatory conditions:
+
+1. The 384 MiB deterministic preflight estimator remains enforced in code and
+   covered by unit tests as the operative control.
+2. Actual import-Worker memory measurement is mandatory in Prototype 9.1
+   before any 500,000-stitch scale claim.
+
+The focused importer test asserts the exact 402,653,184-byte ceiling, an
+over-budget maximum-structure case, and the registered 100,000-stitch medium
+case below the ceiling. The source and parsed-structure enforcement points use
+that same limit. This disposition does not transform estimated bytes into
+measured bytes and remains pending AU-AGENT-003 exact-source confirmation for
+finding closure.
 
 ## Budget Disposition
 
@@ -206,7 +225,9 @@ recorded. AU-AGENT-003 independently accepted the Viewer TTI and registered
 main-thread retained-memory remainders for the declared Chromium method.
 Import-Worker peak memory remains unavailable; the heap evidence is a Chromium
 main-thread process signal rather than Worker telemetry or a forced-GC
-retained-allocation result.
+retained-allocation result. The Project Owner-approved Phase 0 limitation now
+supplies the authorized alternative required by TS001-IMPL-002. Independent
+finding closure remains with AU-AGENT-003.
 
 These are evidence limitations, not assumed passes. AU-AGENT-003 narrowly
 reverified exact source `4009944` with successful CI run `30197035083` and
@@ -218,9 +239,9 @@ accepted the owner-confirmed 4× configuration provenance and all
 method-conforming captured metrics. It kept both complete profile remainders
 open for Viewer TTI and retained-memory evidence. AU-AGENT-003 then reverified
 exact package `15ea8f93`, resolved those two profile remainders, and retained
-the observational boundaries above. Measured Worker peak memory or an
-owner-approved documented limitation remains the sole TS001-IMPL-002
-remainder.
+the observational boundaries above. The owner has now approved the documented
+Phase 0 limitation; AU-AGENT-003 exact-source confirmation is the remaining
+finding-lifecycle step.
 
 ## Common Mistakes
 
@@ -246,16 +267,21 @@ remainder.
 - [x] Registered constrained profile run.
 - [x] Registered main-thread heap baseline, current, peak, sample count, and
       signed retained delta recorded.
-- [ ] Import-Worker peak memory measured.
+- [ ] Import-Worker peak memory measured; not required for Phase 0 under the
+      approved limitation and mandatory for Prototype 9.1 before a scale claim.
+- [x] Project Owner-approved Phase 0 Worker-memory limitation recorded with
+      the enforced 384 MiB control and Prototype 9.1 condition.
 - [x] Long-task evidence isolated and dispositioned for the scripted gesture.
 - [x] AU-AGENT-003 independently reverified the registered profile evidence;
-      complete profile remainders remain open.
+      profile configuration and captured metric subsets passed.
 - [x] AU-AGENT-003 independently reverified the supplemental TTI/heap
-      remediation candidate; Worker peak memory remains separate.
+      remediation candidate; Viewer TTI/main-thread memory are resolved and
+      Worker peak remains a separately approved limitation.
 
 ## References
 
 - [Benchmark Plan](TASK-THINSLICE-001_BENCHMARK_PLAN.md)
+- [Import-Worker Memory Evidence Limitation](TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
 - [Raw Evidence Index](evidence/TASK-THINSLICE-001/README.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Source of Truth Registry](../../SOURCE_OF_TRUTH.md)

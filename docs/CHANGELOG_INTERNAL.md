@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.4.0 |
+| Version | 4.5.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,22 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-26 — Phase 0 Import-Worker Memory Limitation
+
+- Registered OWNER-DEC-TS001-WORKER-MEMORY-001 and
+  AU-BENCH-TS001-LIM-001 without representing the deterministic estimator as
+  measured memory.
+- Preserved the exact 384 MiB preflight ceiling as the operative Phase 0
+  control and strengthened focused unit evidence for the limit, over-budget
+  maximum structures, and the admitted 100,000-stitch medium case.
+- Made actual import-Worker memory measurement mandatory in Prototype 9.1
+  before any 500,000-stitch scale claim.
+- Updated benchmark navigation, evidence boundaries, traceability, risks,
+  tasks, status, focus, and handoff lifecycle.
+- Preserved AU-AGENT-003 authority over TS001-IMPL-002 finding closure and
+  project `[VERIFIED]`.
+- Documentation Impact: Material.
 
 ## 2026-07-26 — Supplemental Profile Reverification Integration
 

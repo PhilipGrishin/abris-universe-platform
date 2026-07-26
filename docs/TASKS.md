@@ -459,19 +459,21 @@
   sample counts, and signed retained deltas without forced-GC or total-memory
   claims. AU-AGENT-003 independently resolved the Viewer TTI and registered
   main-thread retained-memory remainders at package `15ea8f93`.
-- **Explicit limitations:** Browser-reported Worker peak memory or an
-  owner-approved documented limitation, manual screen-reader and physical Tab
-  traversal, non-Chromium/mobile profiles, safe real quota/eviction, and
-  production assertions were not inferred or represented as passes. Accepted
-  heap evidence remains Chromium main-thread observational evidence only.
+- **Explicit limitations:** The Project Owner approved missing observed
+  import-Worker peak memory as a Phase 0 limitation under the tested 384 MiB
+  admission control and mandatory Prototype 9.1 actual measurement before any
+  scale claim. Manual screen-reader and physical Tab traversal,
+  non-Chromium/mobile profiles, safe real quota/eviction, and production
+  assertions were not inferred or represented as passes. Accepted heap
+  evidence remains Chromium main-thread observational evidence only.
 - **Resolved scope:** TS001-IMPL-001; TS001-PERSIST-006 for the declared
   Chromium/macOS Phase 0 scope only; TS001-SEC-002 implementation-runtime
   portion for that profile.
-- **Mandatory findings:** TS001-IMPL-002 remains partially resolved. Registered
-  profile configuration and captured metric subsets passed independent review,
-  and supplemental Viewer TTI/main-thread heap evidence passed independent
-  review. Worker peak-memory evidence or a Project Owner-approved documented
-  limitation is the sole remaining TS001-IMPL-002 condition.
+- **Mandatory findings:** TS001-IMPL-002 remains pending exact-source
+  independent confirmation. Registered profile configuration, captured metric
+  subsets, and supplemental Viewer TTI/main-thread heap evidence passed
+  independent review. The Project Owner supplied the approved-limitation
+  alternative for the sole remaining Worker-memory condition.
   TS001-IMPL-003
   remains partially resolved for missing manual screen-reader and reliable
   physical focus-traversal evidence; the normal-color contrast subcondition is
@@ -482,9 +484,9 @@
 - **Boundary:** No Critical or High defect was observed. `REWORK REQUIRED` is a
   task-scoped engineering status, not product acceptance or project
   `[VERIFIED]`.
-- **Next step:** Address Worker peak evidence or a Project Owner-approved
-  documented limitation and the manual accessibility remainder, then request
-  narrow AU-AGENT-003 reverification before any Completion Report.
+- **Next step:** Obtain AU-AGENT-003 exact-source confirmation of the approved
+  Worker-memory limitation, then complete the manual accessibility remainder
+  and request narrow reverification before any Completion Report.
 
 ### AU-CDX-TASK-001-SECURITY-DESIGN-REVIEW — Independent Pre-Code Security Gate
 

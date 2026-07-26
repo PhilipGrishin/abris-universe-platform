@@ -127,8 +127,9 @@
 - `[TESTED]` Source-qualified evidence records 30 cold imports per fixture, 30
   10,000-event reloads, 120 scripted frame intervals, and at least 100
   mark/save samples per fixture. The measured 1280×720 DPR 2 profile passes
-  listed budgets; registered reference/constrained profiles and Worker peak
-  memory remain open.
+  listed budgets; registered reference/constrained profile remainders are
+  resolved within their documented methods. Observed Worker peak memory is
+  absent under the separately approved Phase 0 limitation below.
 - `[TESTED]` Pinned axe-core reports zero violations after remediation;
   Chromium/macOS accessibility tree, grayscale and reduced-motion evidence
   state, and keyboard Canvas behavior are recorded.
@@ -138,10 +139,13 @@
   replaces the remaining translucent audit backgrounds; a clean axe rerun has
   zero violations and five incomplete toolbar targets, all manually
   dispositioned at 8.37:1 or better.
-- `[OPEN]` Registered reference/constrained profiles, browser-reported Worker
-  peak memory or reviewer-accepted estimator limitation, manual screen-reader,
-  reliable physical Tab traversal, additional browsers, and mobile remain
-  outside the evidence.
+- `[CONFIRMED]` The Project Owner approved missing observed import-Worker peak
+  memory as a Phase 0 documented limitation under an enforced/unit-tested
+  384 MiB control and mandatory Prototype 9.1 actual measurement before any
+  500,000-stitch scale claim. AU-AGENT-003 exact-source confirmation remains
+  open.
+- `[OPEN]` Manual screen-reader, reliable physical Tab traversal, additional
+  browsers, and mobile remain outside the evidence.
 - `[TESTED]` Real browser transaction abort, Web Locks contention with visible
   `Read-only`, blocked upgrade, persistent-storage denial, corrupt import,
   10,000-event lifecycle, and same-origin runtime resources are recorded.
@@ -179,7 +183,8 @@
   `30212305750`/`30212621771`. It resolved the Viewer TTI and registered
   Chromium main-thread retained-memory remainders within the documented
   observational boundaries.
-- `[OPEN]` TS001-IMPL-002 and TS001-IMPL-003 remain mandatory Medium findings.
+- `[OPEN]` TS001-IMPL-002 awaits AU-AGENT-003 exact-source confirmation of the
+  approved limitation. TS001-IMPL-003 remains a mandatory Medium finding.
   Completion Report, project `[VERIFIED]`, product acceptance, release
   readiness, and deployment authorization remain absent.
 - `[IMPLEMENTED]` The audited Claude Cowork product sources, seven Claude role
@@ -458,13 +463,13 @@
 
 ## Blockers
 
-- `[OPEN]` TS001-IMPL-002: measured import-Worker peak memory or a Project
-  Owner-approved documented limitation remains the sole unresolved condition.
-  Viewer TTI, registered main-thread retained memory, and steady-gesture
-  long-task subconditions are resolved.
+- `[OPEN]` TS001-IMPL-002: the Project Owner-approved Phase 0 import-Worker
+  memory limitation and its tested 384 MiB control await AU-AGENT-003
+  exact-source confirmation. Viewer TTI, registered main-thread retained
+  memory, and steady-gesture long-task subconditions are resolved.
 - `[OPEN]` TS001-IMPL-003: manual screen-reader/reliable physical focus
   traversal. The normal-color contrast subcondition is resolved.
-- `[OPEN]` Worker peak memory or accepted limitation, manual
+- `[OPEN]` Prototype 9.1 actual Worker-memory measurement, manual
   assistive-technology traversal, broader browsers, safe real quota/eviction,
   and production response assertions remain explicit limitations pending
   completion or their applicable governance disposition.
@@ -503,18 +508,17 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Integrated AU-AGENT-003 v1.4.0 supplemental-profile reverification at exact
-package `15ea8f93`. Viewer TTI and registered Chromium main-thread
-retained-memory remainders are resolved. TS001-IMPL-002 remains open only for
-import-Worker peak memory or a Project Owner-approved documented limitation;
+Registered the Project Owner-approved Phase 0 import-Worker memory evidence
+limitation with its enforced/unit-tested 384 MiB operative control and
+mandatory Prototype 9.1 actual measurement before any 500,000-stitch scale
+claim. TS001-IMPL-002 awaits AU-AGENT-003 exact-source confirmation;
 TS001-IMPL-003 is unchanged. Engineering Verification Status remains
 `REWORK REQUIRED`. No project `[VERIFIED]`, product acceptance, release
 approval, or deployment permission was assigned.
 
 ## Next Step
 
-Address measured import-Worker peak memory or a Project Owner-approved
-documented limitation and complete manual screen-reader plus reliable physical
-Tab/focus traversal. Then request narrow AU-AGENT-003 reverification. Preserve
-unsupported profiles and modes before any Completion Report or Claude
-acceptance exchange.
+Complete exact-source AU-AGENT-003 confirmation of the approved Worker-memory
+limitation, then complete manual screen-reader plus reliable physical Tab/focus
+traversal. Preserve unsupported profiles and modes before any Completion
+Report or Claude acceptance exchange.

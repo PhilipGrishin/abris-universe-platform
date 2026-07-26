@@ -22,7 +22,7 @@ import type {
 } from "./contracts.ts";
 import {
   assertOxsSourcePreflight,
-  estimateOxsParsedPeakBytes,
+  exceedsOxsParsedPeakBudget,
   OXS_LIMITS,
 } from "./limits.ts";
 import {
@@ -425,12 +425,12 @@ export function importOxsRoute1(request: OxsImportRequest): OxsImportResult {
       0,
     );
     if (
-      estimateOxsParsedPeakBytes(
+      exceedsOxsParsedPeakBudget(
         request.bytes.byteLength,
         parsed.paletteItems.length,
         parsed.stitches.length,
         unsupportedCount,
-      ) > OXS_LIMITS.maxPreflightPeakBytes
+      )
     ) {
       throw new OxsParseFailure(
         "OXS_LIMIT_PREFLIGHT_MEMORY",

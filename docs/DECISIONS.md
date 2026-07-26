@@ -292,6 +292,36 @@ TD-GATE-001 is closed only for the registered route-1 producer profile; this
 evidence does not approve the ADR, other producer coordinate profiles, general
 exact-symbol fidelity, runtime implementation, or deployment.
 
+## OWNER-DEC-TS001-WORKER-MEMORY-001 — Accept the Phase 0 Worker-Memory Evidence Limitation
+
+- **Status:** `[APPROVED]`
+- **Date:** 2026-07-26
+- **Source:** Explicit Project Owner directive dated 2026-07-26.
+- **Related task:** TASK-THINSLICE-001, finding TS001-IMPL-002.
+- **Context:** Registered Chromium main-thread memory signals do not measure
+  transient dedicated import-Worker peak memory. The deterministic importer
+  estimator is enforced admission control, not observed allocation.
+- **Decision:** Accept the missing observed import-Worker peak-memory result as
+  a documented Phase 0 evidence limitation only.
+- **Conditions:** Keep the exact 384 MiB preflight estimator enforced and
+  unit-tested as the operative Phase 0 control. Make actual import-Worker
+  memory measurement mandatory in future Prototype 9.1 evidence before any
+  500,000-stitch scale claim.
+- **Alternatives:** Delay Phase 0 until a new Worker-memory measurement harness
+  exists; or incorrectly treat the estimator/main-thread signal as observed
+  Worker memory.
+- **Reason:** The limitation is explicit and bounded while the deterministic
+  control prevents unbounded admission. Deferring actual measurement does not
+  authorize extrapolation to the future scale target.
+- **Consequence:** The approved-limitation alternative of TS001-IMPL-002 is
+  supplied for AU-AGENT-003 review. Prototype 9.1 cannot support a scale claim
+  without actual Worker-memory evidence and independent review.
+- **Reversibility:** A later measured result may supersede this Phase 0
+  limitation. Raising or removing the control requires separate architecture,
+  test, documentation, and approval work.
+- **Owner:** Project Owner
+- **Implementation record:** [AU-BENCH-TS001-LIM-001](assurance/benchmarks/TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
+
 ## OWNER-DEC-CODEX-HANDOFF-001 — Codex Completion Marker
 
 - **Status:** `[APPROVED]`, `[IMPLEMENTED]`

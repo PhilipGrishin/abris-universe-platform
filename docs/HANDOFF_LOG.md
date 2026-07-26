@@ -1,5 +1,29 @@
 # Handoff Log
 
+## 2026-07-26 — Owner-Approved Phase 0 Worker-Memory Limitation Candidate
+
+- **Owner decision:** Missing observed import-Worker peak memory is approved as
+  a documented Phase 0 evidence limitation.
+- **Condition 1:** The 384 MiB deterministic preflight estimator remains
+  enforced in code and unit-tested as the operative control.
+- **Condition 2:** Actual import-Worker memory measurement is mandatory in
+  future Prototype 9.1 evidence before any 500,000-stitch scale claim.
+- **Implementation evidence:** The exact 402,653,184-byte constant remains
+  unchanged. Source and parsed-structure gates remain active. Focused tests
+  assert the limit, over-budget maximum structures, and admitted
+  100,000-stitch medium case.
+- **Documentation evidence:** OWNER-DEC-TS001-WORKER-MEMORY-001 and
+  AU-BENCH-TS001-LIM-001 preserve the decision, scope, prohibited claims,
+  review triggers, and future gate.
+- **Status boundary:** The owner supplied the limitation alternative, but
+  AU-AGENT-003 still owns exact-source TS001-IMPL-002 disposition. Overall
+  Engineering Verification Status remains `REWORK REQUIRED`; TS001-IMPL-003
+  remains mandatory.
+- **Bridge disposition:** Internal engineering evidence and owner governance;
+  no Claude return or Exchange ID is required.
+- **Next gate:** Commit, push, confirm exact-head CI, and request narrow
+  AU-AGENT-003 review.
+
 ## 2026-07-26 — Supplemental Profile Reverification
 
 - **Exact package/source:** evidence package `15ea8f93`; instrumentation source

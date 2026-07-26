@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-004 for import/rendering and AU-AGENT-006 for client interaction |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.2 |
+| Version | 1.2.3 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-26 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `tests/fixtures/oxs/manifest.json` |
@@ -131,6 +131,13 @@ Meeting these budgets does not prove the 500,000-stitch requirement. Missing a
 budget blocks completion unless AU-AGENT-003 accepts a documented finding and
 the authorized owner accepts any resulting scope or product impact.
 
+For Phase 0 only, the Project Owner approved the missing observed
+import-Worker peak-memory result as a documented evidence limitation. The
+384 MiB deterministic preflight estimator remains the operative enforced and
+unit-tested control. Actual import-Worker memory measurement is mandatory in
+Prototype 9.1 before any 500,000-stitch scale claim. See
+[AU-BENCH-TS001-LIM-001](TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md).
+
 ## Method
 
 1. Use a production build with source maps controlled consistently.
@@ -175,8 +182,10 @@ The later benchmark report must include:
 - [x] Raw samples are retained.
 - [x] Cold and warm states are not mixed.
 - [x] UI responsiveness and persistence are measured independently.
-- [ ] Import-Worker peak memory remains unmeasured; 10,000-event reload is
-      measured.
+- [x] Phase 0 import-Worker peak memory remains unmeasured and is covered by
+      the Project Owner-approved limitation; 10,000-event reload is measured.
+- [ ] Prototype 9.1 actual import-Worker memory is measured before any
+      500,000-stitch scale claim.
 - [ ] No target is changed after observing a failure without review.
 - [x] AU-AGENT-003 independently reviewed the initial and supplemental
       registered-profile evidence; Worker peak memory remains separate.
@@ -186,6 +195,7 @@ The later benchmark report must include:
 - [Source of Truth Registry](../../SOURCE_OF_TRUTH.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [Benchmark Index](README.md)
+- [Import-Worker Memory Evidence Limitation](TASK-THINSLICE-001_IMPORT_WORKER_MEMORY_LIMITATION.md)
 - [Technical Review](../../reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)
 - [Independent Design Revision Confirmation](../../../product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md)

@@ -10,6 +10,7 @@ import {
   OXS_LIMITS,
   OxsImportBoundaryError,
   assertOxsSourcePreflight,
+  exceedsOxsParsedPeakBudget,
   estimateOxsParsedPeakBytes,
   importOxsRoute1,
   validateOxsImportReport,
@@ -357,6 +358,7 @@ test("rejects invalid UTF-8 without including source bytes in diagnostics", () =
 });
 
 test("enforces source and parsed-memory preflight boundaries", () => {
+  assert.equal(OXS_LIMITS.maxPreflightPeakBytes, 384 * 1024 * 1024);
   assert.throws(
     () => assertOxsSourcePreflight(OXS_LIMITS.maxSourceBytes + 1),
     (error) =>
@@ -370,6 +372,23 @@ test("enforces source and parsed-memory preflight boundaries", () => {
       OXS_LIMITS.maxFullCrossStitches,
       OXS_LIMITS.maxUnsupportedObjects,
     ) > OXS_LIMITS.maxPreflightPeakBytes,
+  );
+  assert.equal(
+    exceedsOxsParsedPeakBudget(
+      OXS_LIMITS.maxSourceBytes,
+      OXS_LIMITS.maxPaletteEntries,
+      OXS_LIMITS.maxFullCrossStitches,
+      OXS_LIMITS.maxUnsupportedObjects,
+    ),
+    true,
+  );
+  assert.equal(
+    exceedsOxsParsedPeakBudget(4_308_166, 32, 100_000, 0),
+    false,
+  );
+  assert.equal(
+    estimateOxsParsedPeakBytes(4_308_166, 32, 100_000, 0),
+    100_374_296,
   );
 });
 

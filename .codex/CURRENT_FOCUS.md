@@ -13,8 +13,9 @@ consolidated Engineering Verification Status remains `REWORK REQUIRED` after
 AU-AGENT-003 supplemental-profile reverification at evidence package
 `15ea8f93`
 
-Complete mandatory findings TS001-IMPL-002 and TS001-IMPL-003 while preserving
-all unsupported performance, accessibility, and platform limitations. Keep
+Complete AU-AGENT-003 exact-source confirmation of the owner-approved
+TS001-IMPL-002 limitation, then complete TS001-IMPL-003 while preserving all
+unsupported performance, accessibility, and platform limitations. Keep
 production deployment, product acceptance, and project `[VERIFIED]` outside
 this internal stage.
 
@@ -121,10 +122,13 @@ this internal stage.
   profile remainders open for Viewer TTI and retained-memory evidence.
   Exact source `d36a827` supplies those profile samples/signals, and independent
   review at `15ea8f93` resolves their remainders for the documented Chromium
-  method. Browser-reported Worker peak memory remains absent. The enforced
-  medium import estimate is about 95.7 MiB against 256 MiB but is not actual
-  Worker telemetry. Manual screen-reader and reliable physical focus traversal
-  remain absent.
+  method. Browser-reported Worker peak memory remains absent. The Project Owner
+  approved a Phase 0 documented limitation under the enforced/unit-tested
+  384 MiB control and mandatory Prototype 9.1 actual measurement before any
+  500,000-stitch scale claim. AU-AGENT-003 exact-source confirmation remains
+  pending. The medium estimate remains about 95.7 MiB against 256 MiB and is
+  not actual Worker telemetry. Manual screen-reader and reliable physical
+  focus traversal remain absent.
 - AU-AGENT-003 narrowly reverified exact source `4009944` and successful
   GitHub Actions run `30197035083`. It resolved the measured-profile
   steady-gesture long-task and normal-color contrast subconditions, accepted
@@ -225,7 +229,8 @@ remains open.
 
 ## Next Concrete Step
 
-Obtain measured import-Worker peak memory or an owner-approved documented
-limitation and complete a manual screen-reader session plus reliable physical
-Tab/focus traversal. Then request narrow AU-AGENT-003 reverification. No
+Commit and validate the owner-approved Worker-memory limitation and its
+unit-tested 384 MiB operative control, then request narrow AU-AGENT-003
+confirmation of TS001-IMPL-002. After that, complete a manual screen-reader
+session plus reliable physical Tab/focus traversal for TS001-IMPL-003. No
 Completion Report or Claude acceptance exchange is permitted before closure.
