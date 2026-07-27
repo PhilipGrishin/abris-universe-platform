@@ -374,11 +374,22 @@ const inspectProductionDeploymentOnce = async ({
         `Deployment asset ${pathname}`,
         runtimeProvenance.workerVersionId,
       );
+      const contentType = response.headers["content-type"] ?? "";
+      assert(
+        pathname.endsWith(".css")
+          ? contentType.startsWith("text/css")
+          : /(?:java|ecma)script/u.test(contentType),
+        `Deployment asset ${pathname} returned an invalid content type.`,
+      );
+      assert(
+        response.bodySha256 !== root.bodySha256,
+        `Deployment asset ${pathname} resolved to the SPA shell.`,
+      );
       assets.push({
         pathname,
         status: response.status,
         bodySha256: response.bodySha256,
-        contentType: response.headers["content-type"] ?? null,
+        contentType,
       });
     }
     assert(assets.length >= 2, "Deployment shell does not reference hashed JS and CSS.");
@@ -597,7 +608,13 @@ export const inspectProductionStability = async ({
         );
         const transitionInconsistency =
           candidateRoot &&
-          (observedVersions.size > 1 ||
+          (checks.some(
+            (check) =>
+              inspection.expectedWorkerVersionId !== undefined &&
+              check.workerVersionId !==
+                inspection.expectedWorkerVersionId,
+          ) ||
+            observedVersions.size > 1 ||
             checks.some(
               (check) =>
                 check.status === 404 &&
@@ -645,7 +662,14 @@ export const inspectProductionStability = async ({
     error.stabilityAttemptsExhausted = stabilityAttempts;
     error.stabilityWindowMs = stabilityTimeoutMs;
     error.stabilityClassification =
-      consecutivePasses > 0 ? "candidate-not-stable" : "prior-baseline";
+      consecutivePasses > 0
+        ? "candidate-not-stable"
+        : attemptSummaries.some(
+              (summary) =>
+                summary.outcome === "bounded-version-transition",
+            )
+          ? "version-transition-timeout"
+          : "prior-baseline";
     error.stabilityObservation = lastObservation;
     error.stabilityAttemptSummaries = attemptSummaries;
     throw error;
@@ -665,6 +689,9 @@ const runCli = async () => {
   process.stdout.write(`${JSON.stringify(evidence, null, 2)}\n`);
 };
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
   await runCli();
 }

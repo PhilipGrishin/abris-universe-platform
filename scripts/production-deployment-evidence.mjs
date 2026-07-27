@@ -280,6 +280,7 @@ export const deploymentFailureEvidence = (error) => {
         "prior-baseline",
         "candidate-contract",
         "candidate-not-stable",
+        "version-transition-timeout",
         "unrecognized",
         "timeout",
       ].includes(cause?.stabilityClassification)

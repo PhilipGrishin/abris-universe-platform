@@ -90,10 +90,12 @@ const createFixtureServer = async ({
   versionStatus = 200,
   versionStatusSequence = [],
   runtimeStatus = 200,
+  legacyRuntimeResponses = 0,
 } = {}) => {
   const remainingRootResponses = [...rootSequence];
   const remainingVersionStatuses = [...versionStatusSequence];
   let rootRequests = 0;
+  let remainingLegacyRuntimeResponses = legacyRuntimeResponses;
   let notifyFirstRootRequest;
   const firstRootRequest = new Promise((resolve) => {
     notifyFirstRootRequest = resolve;
@@ -133,6 +135,14 @@ const createFixtureServer = async ({
       return;
     }
     if (request.url === "/__deployment") {
+      if (remainingLegacyRuntimeResponses > 0) {
+        remainingLegacyRuntimeResponses -= 1;
+        response.removeHeader("X-Abris-Worker-Version");
+        response.removeHeader("X-Abris-Source-Commit");
+        response.setHeader("Content-Type", "text/html");
+        response.end(SHELL);
+        return;
+      }
       response.statusCode = runtimeStatus;
       response.setHeader("Content-Type", "application/json");
       response.end(
@@ -533,6 +543,37 @@ test("retries a bounded candidate transition when a proven static asset briefly 
   }
 });
 
+test("retries a bounded transition when a legacy Worker answers without runtime identity", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [SHELL],
+    legacyRuntimeResponses: 1,
+  });
+  try {
+    const result = await inspectProductionStability({
+      baseUrl: fixture.httpBaseUrl,
+      expectedCommit: EXPECTED_COMMIT,
+      expectedWorkerVersionId: WORKER_VERSION_ID,
+      allowHttpForTest: true,
+      priorBaseline: PRIOR_BASELINE,
+      previewSmoke: PREVIEW_SMOKE,
+      stabilityAttempts: 4,
+      requiredConsecutivePasses: 3,
+      stabilityRetryDelayMs: 0,
+    });
+    assert.equal(result.stability.attempt, 4);
+    assert.equal(
+      result.stability.attempts[0].outcome,
+      "bounded-version-transition",
+    );
+    assert.equal(
+      result.stability.attempts[0].checks.at(-1).workerVersionId,
+      null,
+    );
+  } finally {
+    await fixture.close();
+  }
+});
+
 test("fails when the attempt ceiling cannot satisfy the consecutive quorum", async () => {
   const fixture = await createFixtureServer({
     rootSequence: [undefined, PLACEHOLDER],
@@ -557,6 +598,47 @@ test("fails when the attempt ceiling cannot satisfy the consecutive quorum", asy
       },
     );
     assert.equal(fixture.rootRequests(), 3);
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("classifies a persistent bounded version transition at the attempt ceiling", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: Array(3).fill(SHELL),
+    legacyRuntimeResponses: 3,
+  });
+  try {
+    await assert.rejects(
+      inspectProductionStability({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        expectedWorkerVersionId: WORKER_VERSION_ID,
+        allowHttpForTest: true,
+        priorBaseline: PRIOR_BASELINE,
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 3,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 0,
+      }),
+      (error) => {
+        assert.equal(error.stabilityAttempt, 3);
+        assert.equal(error.stabilityAttemptsExhausted, 3);
+        assert.equal(
+          error.stabilityClassification,
+          "version-transition-timeout",
+        );
+        assert.equal(error.stabilityAttemptSummaries.length, 3);
+        assert.equal(
+          error.stabilityAttemptSummaries.every(
+            (attempt) =>
+              attempt.outcome === "bounded-version-transition",
+          ),
+          true,
+        );
+        return true;
+      },
+    );
   } finally {
     await fixture.close();
   }
