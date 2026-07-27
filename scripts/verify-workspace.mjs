@@ -54,6 +54,7 @@ for (const [directory, expectedName] of expectedPackages) {
           "tsconfig.json",
           "vite.config.ts",
           "worker",
+          "wrangler.deployment-lab.jsonc",
           "wrangler.jsonc",
         ];
   const unexpectedRuntimeFiles = readdirSync(directory).filter(
@@ -123,6 +124,7 @@ for (const requiredPath of [
   "apps/web/tsconfig.json",
   "apps/web/vite.config.ts",
   "apps/web/worker/index.ts",
+  "apps/web/wrangler.deployment-lab.jsonc",
   "apps/web/wrangler.jsonc",
   "scripts/verify-deploy-rehearsal.mjs",
   "scripts/verify-static-build.mjs",

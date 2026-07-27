@@ -7,6 +7,7 @@ test("does not expose cache-purge authority to Wrangler subprocesses", () => {
     CLOUDFLARE_API_TOKEN: "worker-token",
     CLOUDFLARE_ACCOUNT_ID: "account",
     CLOUDFLARE_CACHE_PURGE_TOKEN: "purge-token",
+    CLOUDFLARE_RULES_TOKEN: "rules-token",
     CLOUDFLARE_ZONE_ID: "zone",
     CI: "true",
   };
@@ -18,4 +19,5 @@ test("does not expose cache-purge authority to Wrangler subprocesses", () => {
     CI: "true",
   });
   assert.equal(source.CLOUDFLARE_CACHE_PURGE_TOKEN, "purge-token");
+  assert.equal(source.CLOUDFLARE_RULES_TOKEN, "rules-token");
 });

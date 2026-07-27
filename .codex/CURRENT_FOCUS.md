@@ -84,8 +84,22 @@ version `d1f2b05d` at 100 percent, purged the hostname, and restored the exact
 public baseline. AU-AGENT-003 assigned `FAIL` / `REWORK REQUIRED`, High
 TS001-DEPLOY-014 and Medium TS001-DEPLOY-015. Rollback is task-scoped
 `VERIFIED`; production is not complete; attempt authority is exhausted and no
-repeat is authorized. The next gate is a separately reviewed Technical
-Alternative Proposal and evidence-schema remediation.
+repeat is authorized. OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized a
+non-production investigation without the production review/merge gates. The
+isolated lab reproduced cross-request Worker-version skew, implemented and
+tested Worker-owned immutable provenance, exact-host IP affinity, strict asset
+checks, bounded transition classification, and sanitized per-attempt evidence.
+The full promotion rehearsal observed 12 exact prior-baseline contracts
+followed by three strict candidate contracts in 72,979 milliseconds; exact
+rollback and cleanup passed. Production was not mutated. The next production
+gate was the permanent rules credential and exact-host rule. Both are now
+operator-tested without changing the public baseline. AU-AGENT-003 rejected
+first source `2eaae2a` with TS001-DEPLOY-016/017 and the remaining
+TS001-DEPLOY-015 serializer condition. Exact remediation `e22e4c7` resolves
+all three and has task-scoped Engineering Verification Status `VERIFIED`.
+OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one controlled post-gate
+attempt. The next gate is documentation integration, executable-tree
+preservation confirmation, branch CI, and protected merge.
 
 ## Confirmed Inputs
 

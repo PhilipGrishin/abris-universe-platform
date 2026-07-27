@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.34.0 |
+| Version | 1.36.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -52,6 +52,7 @@ acceptance remains canonical under `product/reviews/`.
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
+- [Cloudflare Deployment Transition Lab Report](CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
 - [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
@@ -152,7 +153,21 @@ preview, promotion, and purge, then failed production stability on
 `/version.json` `404` and rolled back to the exact prior baseline.
 AU-AGENT-003 assigned production `REWORK REQUIRED`, High TS001-DEPLOY-014,
 Medium TS001-DEPLOY-015, and task-scoped rollback `VERIFIED`. Authority is
-exhausted; no repeat is authorized.
+exhausted; no repeat is authorized. A later isolated deployment lab reproduced
+cross-request Worker-version skew during deployment-state convergence,
+implemented Worker-owned runtime provenance, exact-host version affinity,
+strict asset validation, bounded baseline-aware transition handling, and
+per-attempt/check evidence. The isolated candidate completed a 50/50 affinity
+rehearsal, a full baseline-to-candidate promotion with three consecutive strict
+contracts after 72,979 milliseconds, exact rollback, and cleanup. The
+remediation is `[IMPLEMENTED]`, `[TESTED]` on branch
+`codex/task-thinslice-001-deployment-lab`; first exact-source review and
+finding remediation followed.
+AU-AGENT-003 rejected first source `2eaae2a`, then assigned task-scoped
+`VERIFIED` at exact remediation `e22e4c7`, resolving TS001-DEPLOY-015/016/017
+and accepting TS001-DEPLOY-014 technical remediation for integration.
+OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one post-gate run; protected
+merge, exact-main CI, and live production evidence remain open.
 
 ## Owner
 

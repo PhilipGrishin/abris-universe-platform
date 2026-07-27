@@ -186,6 +186,8 @@ const observationFields = [
   "contentSecurityPolicy",
   "cfCacheStatus",
   "server",
+  "workerVersionId",
+  "sourceCommit",
 ];
 
 const sanitizeObservation = (value) => {
@@ -199,6 +201,42 @@ const sanitizeObservation = (value) => {
 
 const optionalInteger = (value) =>
   Number.isInteger(value) && value > 0 ? value : null;
+
+const sanitizeChecks = (value) =>
+  Array.isArray(value)
+    ? value.slice(0, 24).map((check) => ({
+        checkId:
+          typeof check?.checkId === "string" ? check.checkId : null,
+        method: typeof check?.method === "string" ? check.method : null,
+        pathname:
+          typeof check?.pathname === "string" ? check.pathname : null,
+        status: Number.isInteger(check?.status) ? check.status : null,
+        workerVersionId:
+          typeof check?.workerVersionId === "string"
+            ? check.workerVersionId
+            : null,
+        sourceCommit:
+          typeof check?.sourceCommit === "string"
+            ? check.sourceCommit
+            : null,
+      }))
+    : [];
+
+const sanitizeStabilityAttempts = (value) =>
+  Array.isArray(value)
+    ? value.slice(0, 25).map((attempt) => ({
+        attempt: optionalInteger(attempt?.attempt),
+        outcome: [
+          "candidate-pass",
+          "prior-baseline",
+          "bounded-version-transition",
+        ].includes(attempt?.outcome)
+          ? attempt.outcome
+          : null,
+        observation: sanitizeObservation(attempt?.observation),
+        checks: sanitizeChecks(attempt?.checks),
+      }))
+    : [];
 
 export const deploymentFailureEvidence = (error) => {
   const cause = error?.cause ?? null;
@@ -218,6 +256,7 @@ export const deploymentFailureEvidence = (error) => {
       optionalInteger(cause?.semanticAttemptsExhausted),
     deploymentObservation:
       sanitizeObservation(cause?.deploymentObservation),
+    deploymentChecks: sanitizeChecks(cause?.deploymentChecks),
     transitionAttempt: optionalInteger(cause?.transitionAttempt),
     transitionAttemptsExhausted:
       optionalInteger(cause?.transitionAttemptsExhausted),
@@ -241,6 +280,7 @@ export const deploymentFailureEvidence = (error) => {
         "prior-baseline",
         "candidate-contract",
         "candidate-not-stable",
+        "version-transition-timeout",
         "unrecognized",
         "timeout",
       ].includes(cause?.stabilityClassification)
@@ -248,6 +288,8 @@ export const deploymentFailureEvidence = (error) => {
         : null,
     stabilityObservation:
       sanitizeObservation(cause?.stabilityObservation),
+    stabilityAttemptSummaries:
+      sanitizeStabilityAttempts(cause?.stabilityAttemptSummaries),
     rollbackAttemptsExhausted:
       optionalInteger(rollbackCause?.rollbackAttemptsExhausted),
     rollbackObservation:

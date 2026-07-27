@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–6 retained as failed-closed history; attempt 6 rollback task-scoped `VERIFIED`; production continuation `REWORK REQUIRED`; authority exhausted |
+| Status | Attempts 1–6 retained as failed-closed history; transition remediation task-scoped `VERIFIED`; one controlled post-gate attempt `[APPROVED]`; protected integration pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.3.0 |
+| Version | 2.5.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.2.1; bounded independent acceptance at `1a683ab`; exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -446,6 +446,48 @@ rollback, as designed.
   protected merge, exact-main CI, then separate Project Owner authority for
   any later attempt.
 
+## Isolated Deployment Transition Lab
+
+OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized an isolated test-only
+investigation. The lab reproduced temporary cross-request Worker-version skew
+during deployment-state propagation and proved a combined remediation:
+Worker-owned immutable runtime identity, exact-host IP affinity, strict asset
+validation, bounded baseline-aware transition handling, sanitized per-check
+evidence, and a strict eventual three-contract candidate quorum.
+
+The full rehearsal retained 12 exact prior-baseline observations before three
+consecutive strict candidate contracts completed in 72,979 milliseconds.
+Rollback restored the exact baseline Worker and root hash. Every temporary
+Cloudflare resource and credential was removed. Production was not mutated.
+The result is `[IMPLEMENTED]`, `[TESTED]`, not independently `VERIFIED`;
+the first exact-source review and remediation are recorded below.
+
+## Production Attempt 7 Readiness
+
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 approves one
+  controlled workflow dispatch after all gates.
+- **External prerequisite:** permanent secret name
+  `CLOUDFLARE_RULES_TOKEN` is present in the GitHub `production` environment;
+  the token is scoped to Account Rulesets Read and exact-zone Transform Rules
+  Edit. No secret value is retained here.
+- **Affinity rule:** exact enabled hostname
+  `abris.653915.com`, header `Cloudflare-Workers-Version-Key`, and key
+  `to_string(ip.src)` were applied and read back. Three public root checks and
+  HEAD retained the exact baseline SHA-256.
+- **First review:** AU-AGENT-003 assigned `FAIL` / `REWORK REQUIRED` to
+  `2eaae2a` with TS001-DEPLOY-016/017 and the remaining TS001-DEPLOY-015
+  serializer condition.
+- **Remediation:** exact source `e22e4c7` rejects unknown third versions,
+  tightly bounds null legacy identity, proves effective ordered rule
+  semantics, and tests populated bounded evidence sanitization.
+- **Independent gate:** AU-AGENT-003 assigned Quality Gate Decision `PASS` and
+  task-scoped Engineering Verification Status `VERIFIED` at `e22e4c7`, with no
+  mandatory unresolved finding. TS001-DEPLOY-014 technical remediation is fit
+  for integration; live closure remains open.
+- **Remaining gates:** documentation integration, exact-head executable-tree
+  preservation, branch CI, protected merge, exact-main CI, exact authenticated
+  workflow preflight, and the controlled deployment result.
+
 ## References
 
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
@@ -455,6 +497,7 @@ rollback, as designed.
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
+- [Cloudflare Deployment Transition Lab Report](CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

@@ -30,6 +30,9 @@ try {
     compatibility_date: "2026-07-26",
     workers_dev: false,
     preview_urls: true,
+    version_metadata: {
+      binding: "CF_VERSION_METADATA",
+    },
     assets: {
       directory: "./dist",
       binding: "ASSETS",
@@ -66,6 +69,7 @@ const forbiddenMarkers = [
   "CLOUDFLARE_API_TOKEN",
   "CLOUDFLARE_ACCOUNT_ID",
   "CLOUDFLARE_CACHE_PURGE_TOKEN",
+  "CLOUDFLARE_RULES_TOKEN",
   "CLOUDFLARE_ZONE_ID",
   "github_pat_",
   "-----BEGIN PRIVATE KEY-----",

@@ -129,8 +129,20 @@ authorized disposition.
   when `/version.json` returned `404` on attempt 3 while the candidate root
   remained active. Automatic rollback restored the prior version and exact
   baseline. AU-AGENT-003 assigned `REWORK REQUIRED`, High TS001-DEPLOY-014,
-  and Medium TS001-DEPLOY-015; rollback is task-scoped `VERIFIED`. Attempt
-  authority is exhausted. Production/browser results remain open.
+  and Medium TS001-DEPLOY-015; rollback is task-scoped `VERIFIED`. Under
+  OWNER-DEC-TS001-DEPLOYMENT-LAB-004, an isolated Cloudflare contour then
+  reproduced the version-transition mechanism and proved the remediation:
+  20/20 coherent 50/50 affinity contracts, three strict candidate contracts
+  after a 72,979 millisecond full promotion transition, exact rollback, and
+  complete test-resource cleanup. Implementation sources `bcdd369` and
+  `d741abd` are `[IMPLEMENTED]`, `[TESTED]` outside production. AU-AGENT-003
+  rejected first source `2eaae2a`, then assigned task-scoped `VERIFIED` to
+  exact remediation `e22e4c7`, resolving TS001-DEPLOY-015/016/017 and
+  accepting TS001-DEPLOY-014 technical remediation for integration. Permanent
+  rules credential presence and the exact-host rule are operator-tested.
+  OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one post-gate production
+  run. Protected integration, exact-main CI, live production, and browser
+  results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

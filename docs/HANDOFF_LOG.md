@@ -1,5 +1,56 @@
 # Handoff Log
 
+## 2026-07-27 — Production Affinity Gate and Exact Remediation Verified
+
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
+  controlled post-gate production workflow dispatch.
+- **External state:** permanent scoped `CLOUDFLARE_RULES_TOKEN` presence is
+  confirmed in GitHub `production`; exact-host IP affinity rule was applied
+  and read back; three GET checks, HEAD, and exact root SHA-256 confirmed the
+  unchanged production baseline.
+- **First independent review:** exact source `2eaae2a`; `FAIL` /
+  `REWORK REQUIRED`; TS001-DEPLOY-016 High, TS001-DEPLOY-017 Medium, and the
+  remaining TS001-DEPLOY-015 populated-evidence condition.
+- **Remediation:** exact source `e22e4c7`; unknown Worker identities now fail
+  immediately; null legacy evidence is path/provenance bounded; later
+  same-header rules are rejected; populated 25-attempt/24-check evidence
+  bounds and disclosure stripping are tested.
+- **Reverification:** AU-AGENT-003 Quality Gate Decision `PASS`; task-scoped
+  Engineering Verification Status `VERIFIED`; no mandatory unresolved finding;
+  49 focused, 60 script, and 70 package tests plus typecheck, build, rehearsal,
+  audit, and patch checks pass.
+- **Boundary:** production has not been deployed. Documentation integration,
+  exact-head preservation, branch CI, protected merge, exact-main CI, and live
+  workflow evidence remain mandatory.
+
+## 2026-07-27 — Isolated Cloudflare Transition Lab Completed
+
+- **Authority:** OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized autonomous
+  test-only diagnosis and remediation without production review/merge gates.
+- **Isolation:** Temporary Worker `abris-universe-deployment-lab` and hostname
+  `abris-deployment-lab.653915.com`; no production Worker, hostname, traffic,
+  cache, secret, branch, or workflow mutation.
+- **Root cause:** Separate requests temporarily observed different Worker
+  deployment states after a 100-percent version switch. This reproduced the
+  static-endpoint failure mechanism from run `30266185702`.
+- **Remediation:** Worker-owned `/__deployment` provenance, immutable version
+  headers, exact-host IP-based version affinity, bounded baseline-aware
+  transition classification, strict asset validation, three-contract eventual
+  quorum, and sanitized per-attempt/check evidence.
+- **Live evidence:** 20/20 coherent 50/50 affinity contracts; full promotion
+  reached three strict candidate contracts after 12 exact prior-baseline
+  observations and 72,979 milliseconds; rollback restored the exact baseline
+  version and SHA-256 on check 2.
+- **Cleanup:** Temporary Worker, domain, DNS record, Transform Rule, ruleset,
+  token, and local token file independently confirmed absent or revoked.
+- **Source:** branch `codex/task-thinslice-001-deployment-lab`; implementation
+  commits `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c` and
+  `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`; report
+  `AU-TECHREV-TS001-CF-LAB-001`.
+- **Boundary:** `[IMPLEMENTED]`, `[TESTED]` only. AU-AGENT-003 review,
+  protected integration, exact-main CI, finding closure, and production
+  attempt authorization remain open.
+
 ## 2026-07-27 — Attempt 6 Failed Production Stability and Rolled Back
 
 - **Exact source:** protected-main merge

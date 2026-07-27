@@ -378,11 +378,12 @@ test("allowlists semantic and transition failure evidence", () => {
     rollbackFailureStage: null,
     semanticAttempt: 1,
     semanticAttemptsExhausted: 1,
-    deploymentObservation: {
-      status: 200,
-      bodySha256: "a".repeat(64),
-      contentSecurityPolicy: null,
-    },
+      deploymentObservation: {
+        status: 200,
+        bodySha256: "a".repeat(64),
+        contentSecurityPolicy: null,
+      },
+      deploymentChecks: [],
     transitionAttempt: 3,
     transitionAttemptsExhausted: 61,
     transitionWindowMs: 120_000,
@@ -398,12 +399,13 @@ test("allowlists semantic and transition failure evidence", () => {
     stabilityAttemptsExhausted: 25,
     stabilityWindowMs: 120_000,
     stabilityClassification: "candidate-not-stable",
-    stabilityObservation: {
-      status: 200,
-      headStatus: 200,
-      bodySha256: "c".repeat(64),
-      contentType: "text/html",
-    },
+      stabilityObservation: {
+        status: 200,
+        headStatus: 200,
+        bodySha256: "c".repeat(64),
+        contentType: "text/html",
+      },
+      stabilityAttemptSummaries: [],
     rollbackAttemptsExhausted: 25,
     rollbackObservation: {
       status: 200,
@@ -413,4 +415,93 @@ test("allowlists semantic and transition failure evidence", () => {
     },
   });
   assert.equal(JSON.stringify(failure).includes("must-not-be-retained"), false);
+});
+
+test("bounds populated nested failure evidence and removes sensitive fields", () => {
+  const populatedChecks = Array.from({ length: 30 }, (_, index) => ({
+    checkId: `GET /assets/app-${index}.js`,
+    method: "GET",
+    pathname: `/assets/app-${index}.js`,
+    status: index === 0 ? 404 : 200,
+    workerVersionId: `worker-${index}`,
+    sourceCommit: "a".repeat(40),
+    body: "sensitive-body-must-not-be-retained",
+    authorization: "Bearer sensitive-token-must-not-be-retained",
+    requestHeaders: {
+      cookie: "sensitive-cookie-must-not-be-retained",
+    },
+    previewUrl:
+      "https://capability-value-must-not-be-retained.workers.dev",
+    token: "sensitive-token-must-not-be-retained",
+  }));
+  const populatedAttempts = Array.from(
+    { length: 30 },
+    (_, index) => ({
+      attempt: index + 1,
+      outcome:
+        index === 0
+          ? "bounded-version-transition"
+          : "candidate-pass",
+      observation: {
+        status: 200,
+        bodySha256: "b".repeat(64),
+        contentType: "text/html",
+        body: "attempt-body-must-not-be-retained",
+        authorization:
+          "attempt-authorization-must-not-be-retained",
+      },
+      checks: populatedChecks,
+      responseHeaders: {
+        "set-cookie": "attempt-cookie-must-not-be-retained",
+      },
+      previewUrl:
+        "https://attempt-capability-must-not-be-retained.workers.dev",
+    }),
+  );
+  const failure = deploymentFailureEvidence({
+    name: "ProductionDeploymentError",
+    state: {
+      failureStage: "production-smoke",
+      rollbackFailureStage: null,
+    },
+    cause: {
+      deploymentChecks: populatedChecks,
+      stabilityAttempt: 25,
+      stabilityAttemptsExhausted: 25,
+      stabilityWindowMs: 120_000,
+      stabilityClassification: "version-transition-timeout",
+      stabilityAttemptSummaries: populatedAttempts,
+    },
+  });
+
+  assert.equal(failure.deploymentChecks.length, 24);
+  assert.equal(failure.stabilityAttemptSummaries.length, 25);
+  assert.equal(
+    failure.stabilityAttemptSummaries[0].checks.length,
+    24,
+  );
+  assert.deepEqual(failure.deploymentChecks[0], {
+    checkId: "GET /assets/app-0.js",
+    method: "GET",
+    pathname: "/assets/app-0.js",
+    status: 404,
+    workerVersionId: "worker-0",
+    sourceCommit: "a".repeat(40),
+  });
+  assert.equal(
+    failure.stabilityAttemptSummaries[0].outcome,
+    "bounded-version-transition",
+  );
+  const serialized = JSON.stringify(failure);
+  for (const forbidden of [
+    "must-not-be-retained",
+    "authorization",
+    "requestHeaders",
+    "responseHeaders",
+    "previewUrl",
+    "workers.dev",
+    "token",
+  ]) {
+    assert.equal(serialized.includes(forbidden), false);
+  }
 });

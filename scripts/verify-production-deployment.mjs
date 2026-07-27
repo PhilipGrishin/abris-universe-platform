@@ -25,6 +25,9 @@ export const PRODUCTION_STABILITY_REQUIRED_PASSES = 3;
 export const PRODUCTION_STABILITY_RETRY_DELAY_MS = 5_000;
 export const PRODUCTION_STABILITY_TIMEOUT_MS = 120_000;
 
+const WORKER_VERSION_HEADER = "x-abris-worker-version";
+const SOURCE_COMMIT_HEADER = "x-abris-source-commit";
+
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
 
@@ -64,6 +67,11 @@ const fetchWithRetry = async (url, init, attempts = 5) => {
       lastError = new Error(
         `Deployment request returned status ${response.status}.`,
       );
+      lastError.responseStatus = response.status;
+      lastError.responseWorkerVersionId =
+        response.headers.get(WORKER_VERSION_HEADER);
+      lastError.responseSourceCommit =
+        response.headers.get(SOURCE_COMMIT_HEADER);
     } catch {
       if (init.signal?.aborted) throw abortedError(init.signal);
       lastError = new Error("Deployment request failed.");
@@ -113,6 +121,8 @@ const absoluteAssetPaths = (html) => {
 const validateInspectionInput = ({
   baseUrl,
   expectedCommit,
+  expectedWorkerVersionId,
+  versionAffinityKey,
   allowHttpForTest = false,
 }) => {
   assert(
@@ -124,10 +134,25 @@ const validateInspectionInput = ({
     /^[0-9a-f]{40}$/u.test(expectedCommit),
     "expectedCommit must be a full lowercase Git SHA.",
   );
+  assert(
+    expectedWorkerVersionId === undefined ||
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u.test(
+        expectedWorkerVersionId,
+      ),
+    "expectedWorkerVersionId must be a lowercase UUID.",
+  );
+  assert(
+    versionAffinityKey === undefined ||
+      (typeof versionAffinityKey === "string" &&
+        versionAffinityKey.length > 0 &&
+        versionAffinityKey.length <= 128),
+    "versionAffinityKey must contain between 1 and 128 characters.",
+  );
 };
 
 const validateStabilityInput = ({
   priorBaseline,
+  priorWorkerVersionId,
   previewSmoke,
   expectedCommit,
 }) => {
@@ -139,6 +164,13 @@ const validateStabilityInput = ({
       typeof priorBaseline.contentType === "string" &&
       priorBaseline.contentType.length > 0,
     "priorBaseline must contain the registered status, HEAD status, body SHA-256, and content type.",
+  );
+  assert(
+    priorWorkerVersionId === undefined ||
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u.test(
+        priorWorkerVersionId,
+      ),
+    "priorWorkerVersionId must be a lowercase UUID.",
   );
   assert(
     previewSmoke?.observedCommit === expectedCommit &&
@@ -161,20 +193,70 @@ const matchesCandidateSentinel = (observation, previewSmoke) =>
 const inspectProductionDeploymentOnce = async ({
   baseUrl,
   expectedCommit,
+  expectedWorkerVersionId,
+  versionAffinityKey,
   signal,
   requestAttempts,
 }) => {
-  const request = (pathname, init = {}) =>
-    fetchWithRetry(
-      `${baseUrl}${pathname}`,
-      {
-        cache: "no-store",
-        redirect: "error",
-        signal,
-        ...init,
-      },
-      requestAttempts,
+  const requestChecks = [];
+  const affinityKey =
+    versionAffinityKey ?? `abris-deployment-${expectedCommit}`;
+  const request = async (pathname, init = {}) => {
+    const method = init.method ?? "GET";
+    try {
+      const response = await fetchWithRetry(
+        `${baseUrl}${pathname}`,
+        {
+          cache: "no-store",
+          redirect: "error",
+          signal,
+          ...init,
+          headers: {
+            "Cloudflare-Workers-Version-Key": affinityKey,
+            ...init.headers,
+          },
+        },
+        requestAttempts,
+      );
+      requestChecks.push({
+        checkId: `${method} ${pathname}`,
+        method,
+        pathname,
+        status: response.status,
+        workerVersionId: response.headers.get(WORKER_VERSION_HEADER),
+        sourceCommit: response.headers.get(SOURCE_COMMIT_HEADER),
+      });
+      return response;
+    } catch (error) {
+      if (Number.isInteger(error.responseStatus)) {
+        requestChecks.push({
+          checkId: `${method} ${pathname}`,
+          method,
+          pathname,
+          status: error.responseStatus,
+          workerVersionId: error.responseWorkerVersionId ?? null,
+          sourceCommit: error.responseSourceCommit ?? null,
+        });
+      }
+      error.deploymentChecks ??= [...requestChecks];
+      throw error;
+    }
+  };
+
+  const assertResponseIdentity = (headers, label, workerVersionId) => {
+    const observedWorkerVersionId = headers[WORKER_VERSION_HEADER] ?? null;
+    const observedSourceCommit = headers[SOURCE_COMMIT_HEADER] ?? null;
+    if (workerVersionId) {
+      assert(
+        observedWorkerVersionId === workerVersionId,
+        `${label} was served by Worker version ${observedWorkerVersionId} instead of ${workerVersionId}.`,
+      );
+    }
+    assert(
+      observedSourceCommit === expectedCommit,
+      `${label} source commit header does not match ${expectedCommit}.`,
     );
+  };
 
   const root = await readResponse(await request("/"));
   const head = await request("/", { method: "HEAD" });
@@ -188,6 +270,8 @@ const inspectProductionDeploymentOnce = async ({
       root.headers["content-security-policy"] ?? null,
     cfCacheStatus: root.headers["cf-cache-status"] ?? null,
     server: root.headers.server ?? null,
+    workerVersionId: root.headers[WORKER_VERSION_HEADER] ?? null,
+    sourceCommit: root.headers[SOURCE_COMMIT_HEADER] ?? null,
   };
   try {
     assert(root.status === 200, "Deployment root did not return 200.");
@@ -196,17 +280,66 @@ const inspectProductionDeploymentOnce = async ({
       "Deployment root does not contain the application shell.",
     );
     assertSecurityHeaders(root.headers, "Deployment root");
+    assertResponseIdentity(
+      root.headers,
+      "Deployment root",
+      expectedWorkerVersionId,
+    );
     assert(head.status === 200, "Deployment HEAD / did not return 200.");
     assertSecurityHeaders(headHeaders, "Deployment HEAD");
+    assertResponseIdentity(
+      headHeaders,
+      "Deployment HEAD",
+      expectedWorkerVersionId,
+    );
   } catch (error) {
     error.deploymentObservation = rootObservation;
+    error.deploymentChecks = [...requestChecks];
     throw error;
   }
 
   try {
+    const runtime = await readResponse(await request("/__deployment"));
+    assert(
+      runtime.status === 200,
+      "Deployment Worker-owned provenance did not return 200.",
+    );
+    assertSecurityHeaders(
+      runtime.headers,
+      "Deployment Worker-owned provenance",
+    );
+    const runtimeProvenance = JSON.parse(runtime.body);
+    assert(
+      runtimeProvenance.sourceCommit === expectedCommit,
+      `Deployment runtime source commit ${runtimeProvenance.sourceCommit} does not match ${expectedCommit}.`,
+    );
+    assert(
+      runtimeProvenance.sourceDirty === false,
+      "Deployment runtime provenance is dirty.",
+    );
+    assert(
+      typeof runtimeProvenance.workerVersionId === "string",
+      "Deployment runtime provenance is missing its Worker version ID.",
+    );
+    assert(
+      expectedWorkerVersionId === undefined ||
+        runtimeProvenance.workerVersionId === expectedWorkerVersionId,
+      `Deployment runtime Worker version ${runtimeProvenance.workerVersionId} does not match ${expectedWorkerVersionId}.`,
+    );
+    assertResponseIdentity(
+      runtime.headers,
+      "Deployment Worker-owned provenance",
+      runtimeProvenance.workerVersionId,
+    );
+
     const version = await readResponse(await request("/version.json"));
     assert(version.status === 200, "Deployment version.json did not return 200.");
     assertSecurityHeaders(version.headers, "Deployment version.json");
+    assertResponseIdentity(
+      version.headers,
+      "Deployment version.json",
+      runtimeProvenance.workerVersionId,
+    );
     const provenance = JSON.parse(version.body);
     assert(
       provenance.sourceCommit === expectedCommit,
@@ -223,22 +356,48 @@ const inspectProductionDeploymentOnce = async ({
       "Deployment SPA fallback does not match the application shell.",
     );
     assertSecurityHeaders(fallback.headers, "Deployment SPA fallback");
+    assertResponseIdentity(
+      fallback.headers,
+      "Deployment SPA fallback",
+      runtimeProvenance.workerVersionId,
+    );
 
     const post = await readResponse(await request("/", { method: "POST" }));
     assert(post.status === 405, "Deployment POST / did not return 405.");
     assert(post.headers.allow === "GET, HEAD", "Deployment Allow header is wrong.");
     assertSecurityHeaders(post.headers, "Deployment POST rejection");
+    assertResponseIdentity(
+      post.headers,
+      "Deployment POST rejection",
+      runtimeProvenance.workerVersionId,
+    );
 
     const assets = [];
     for (const pathname of absoluteAssetPaths(root.body)) {
       const response = await readResponse(await request(pathname));
       assert(response.status === 200, `Deployment asset ${pathname} did not return 200.`);
       assertSecurityHeaders(response.headers, `Deployment asset ${pathname}`);
+      assertResponseIdentity(
+        response.headers,
+        `Deployment asset ${pathname}`,
+        runtimeProvenance.workerVersionId,
+      );
+      const contentType = response.headers["content-type"] ?? "";
+      assert(
+        pathname.endsWith(".css")
+          ? contentType.startsWith("text/css")
+          : /(?:java|ecma)script/u.test(contentType),
+        `Deployment asset ${pathname} returned an invalid content type.`,
+      );
+      assert(
+        response.bodySha256 !== root.bodySha256,
+        `Deployment asset ${pathname} resolved to the SPA shell.`,
+      );
       assets.push({
         pathname,
         status: response.status,
         bodySha256: response.bodySha256,
-        contentType: response.headers["content-type"] ?? null,
+        contentType,
       });
     }
     assert(assets.length >= 2, "Deployment shell does not reference hashed JS and CSS.");
@@ -247,6 +406,14 @@ const inspectProductionDeploymentOnce = async ({
       baseUrl,
       expectedCommit,
       observedCommit: provenance.sourceCommit,
+      runtimeProvenance: {
+        sourceCommit: runtimeProvenance.sourceCommit,
+        sourceDirty: runtimeProvenance.sourceDirty,
+        workerVersionId: runtimeProvenance.workerVersionId,
+        workerVersionTag: runtimeProvenance.workerVersionTag ?? null,
+        workerVersionCreatedAt:
+          runtimeProvenance.workerVersionCreatedAt ?? null,
+      },
       root: {
         status: root.status,
         bodySha256: root.bodySha256,
@@ -267,9 +434,11 @@ const inspectProductionDeploymentOnce = async ({
         referrerPolicy: root.headers["referrer-policy"],
       },
       assets,
+      checks: requestChecks,
     };
   } catch (error) {
     error.deploymentObservation ??= rootObservation;
+    error.deploymentChecks ??= [...requestChecks];
     throw error;
   }
 };
@@ -336,12 +505,14 @@ export const inspectProductionStability = async ({
   stabilitySleep = (delayMs) =>
     new Promise((resolve) => setTimeout(resolve, delayMs)),
   priorBaseline,
+  priorWorkerVersionId,
   previewSmoke,
   ...inspection
 }) => {
   validateInspectionInput(inspection);
   validateStabilityInput({
     priorBaseline,
+    priorWorkerVersionId,
     previewSmoke,
     expectedCommit: inspection.expectedCommit,
   });
@@ -375,6 +546,7 @@ export const inspectProductionStability = async ({
   let priorBaselineObservations = 0;
   let lastObservation = null;
   let lastEvidence = null;
+  const attemptSummaries = [];
 
   for (let attempt = 1; attempt <= stabilityAttempts; attempt += 1) {
     const remainingMs =
@@ -388,6 +560,7 @@ export const inspectProductionStability = async ({
       error.stabilityWindowMs = stabilityTimeoutMs;
       error.stabilityClassification = "timeout";
       error.stabilityObservation = lastObservation;
+      error.stabilityAttemptSummaries = attemptSummaries;
       throw error;
     }
 
@@ -400,6 +573,12 @@ export const inspectProductionStability = async ({
         requestAttempts: 1,
       });
       lastObservation = lastEvidence.root.observation;
+      attemptSummaries.push({
+        attempt,
+        outcome: "candidate-pass",
+        observation: lastObservation,
+        checks: lastEvidence.checks,
+      });
       consecutivePasses += 1;
       if (consecutivePasses === requiredConsecutivePasses) {
         return {
@@ -411,6 +590,7 @@ export const inspectProductionStability = async ({
             priorBaselineObservations,
             windowMs: stabilityTimeoutMs,
             observation: lastObservation,
+            attempts: attemptSummaries,
           },
         };
       }
@@ -419,17 +599,80 @@ export const inspectProductionStability = async ({
       if (matchesPriorBaseline(lastObservation, priorBaseline)) {
         priorBaselineObservations += 1;
         consecutivePasses = 0;
+        attemptSummaries.push({
+          attempt,
+          outcome: "prior-baseline",
+          observation: lastObservation,
+          checks: error.deploymentChecks ?? [],
+        });
       } else {
-        error.stabilityAttempt = attempt;
-        error.stabilityWindowMs = stabilityTimeoutMs;
-        error.stabilityClassification = matchesCandidateSentinel(
+        const checks = error.deploymentChecks ?? [];
+        const observedVersions = new Set(
+          checks
+            .map((check) => check.workerVersionId)
+            .filter((versionId) => typeof versionId === "string"),
+        );
+        const unknownWorkerVersions = [...observedVersions].filter(
+          (versionId) =>
+            inspection.expectedWorkerVersionId !== undefined &&
+            versionId !== inspection.expectedWorkerVersionId &&
+            versionId !== priorWorkerVersionId,
+        );
+        const nullVersionChecks = checks.filter(
+          (check) => check.workerVersionId === null,
+        );
+        const nullLegacyChecksAreCorrelated =
+          nullVersionChecks.length === 0 ||
+          nullVersionChecks.every(
+            (check) =>
+              check.sourceCommit === null &&
+              (check.pathname === "/__deployment" ||
+                check.pathname === "/version.json" ||
+                check.pathname?.startsWith("/assets/")),
+          );
+        const candidateRoot = matchesCandidateSentinel(
           lastObservation,
           previewSmoke,
-        )
-          ? "candidate-contract"
-          : "unrecognized";
-        error.stabilityObservation = lastObservation;
-        throw error;
+        );
+        const transitionInconsistency =
+          candidateRoot &&
+          unknownWorkerVersions.length === 0 &&
+          nullLegacyChecksAreCorrelated &&
+          (checks.some(
+            (check) =>
+              inspection.expectedWorkerVersionId !== undefined &&
+              check.workerVersionId !==
+                inspection.expectedWorkerVersionId,
+          ) ||
+            observedVersions.size > 1 ||
+            checks.some(
+              (check) =>
+                check.status === 404 &&
+                (check.pathname === "/__deployment" ||
+                  check.pathname === "/version.json" ||
+                  check.pathname.startsWith("/assets/")),
+            ));
+        if (transitionInconsistency) {
+          consecutivePasses = 0;
+          attemptSummaries.push({
+            attempt,
+            outcome: "bounded-version-transition",
+            observation: lastObservation,
+            checks,
+          });
+        } else {
+          error.stabilityAttempt = attempt;
+          error.stabilityWindowMs = stabilityTimeoutMs;
+          error.stabilityClassification =
+            unknownWorkerVersions.length > 0
+              ? "unrecognized"
+              : candidateRoot
+                ? "candidate-contract"
+                : "unrecognized";
+          error.stabilityObservation = lastObservation;
+          error.stabilityAttemptSummaries = attemptSummaries;
+          throw error;
+        }
       }
     }
 
@@ -452,8 +695,16 @@ export const inspectProductionStability = async ({
     error.stabilityAttemptsExhausted = stabilityAttempts;
     error.stabilityWindowMs = stabilityTimeoutMs;
     error.stabilityClassification =
-      consecutivePasses > 0 ? "candidate-not-stable" : "prior-baseline";
+      consecutivePasses > 0
+        ? "candidate-not-stable"
+        : attemptSummaries.some(
+              (summary) =>
+                summary.outcome === "bounded-version-transition",
+            )
+          ? "version-transition-timeout"
+          : "prior-baseline";
     error.stabilityObservation = lastObservation;
+    error.stabilityAttemptSummaries = attemptSummaries;
     throw error;
   }
 };
@@ -471,6 +722,9 @@ const runCli = async () => {
   process.stdout.write(`${JSON.stringify(evidence, null, 2)}\n`);
 };
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
   await runCli();
 }
