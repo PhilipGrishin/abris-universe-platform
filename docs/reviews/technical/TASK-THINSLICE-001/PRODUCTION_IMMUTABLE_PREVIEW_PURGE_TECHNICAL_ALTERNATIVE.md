@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-002 |
 | Title | Immutable Preview and Hostname Cache Purge Technical Alternative |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, locally `[TESTED]`; independent AU-AGENT-003 review and protected merge open |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and live attempt open |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v1.7.0; protected-main run `30253457090` |
+| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v1.9.0; Production Deployment Verification v1.7.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795` |
 | Supersedes | The continuation mechanism in `AU-TAP-TS001-001`; its historical evidence and rollback result remain authoritative |
 | Superseded By | None |
 | Review Triggers | Cloudflare preview behavior change; cache API change; deployment-state-machine change; token-scope change; production or rollback failure |
@@ -177,7 +177,7 @@ Production mutation remains blocked until:
 
 ## Local Implementation Evidence
 
-The first two gates pass locally:
+The first three gates pass:
 
 - strict workspace typecheck;
 - 46 script tests, including 43 deployment-focused tests;
@@ -190,9 +190,12 @@ The first two gates pass locally:
 The purge token and zone variable are removed from every Wrangler subprocess
 environment. Version-upload process output is suppressed, and the public
 preview URL is removed from retained lifecycle and smoke evidence. Production
-mutation has not occurred. Exact-source
-AU-AGENT-003 review, protected pull-request checks, protected merge, and the
-one controlled attempt remain open.
+mutation has not occurred. AU-AGENT-003 independently reviewed exact source
+`1054a2f0a7c1385fd8d51661c6be013e90df9df5`, resolved one High and three
+Medium preliminary findings, recorded no remaining finding, and assigned
+task-scoped Engineering Verification Status `VERIFIED`. Both exact-source CI
+runs pass. Protected merge and the one controlled attempt remain open. This
+status is not project `[VERIFIED]` or proof of live provider behavior.
 
 ## References
 

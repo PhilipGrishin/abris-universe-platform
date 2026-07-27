@@ -472,8 +472,9 @@
 ## RISK-019 — Default Route Lags Verified Candidate After Promotion
 
 - **Status:** `[OPEN]`; attempts 3 and 4 evidence retained; prior continuation
-  blocked by High TS001-DEPLOY-007; replacement `AU-TAP-TS001-002`
-  `[APPROVED]`, `[IMPLEMENTED]`, locally `[TESTED]`; independent review open
+  superseded; replacement `AU-TAP-TS001-002` `[APPROVED]`, `[IMPLEMENTED]`,
+  `[TESTED]`, exact-source Engineering Verification Status `VERIFIED`;
+  protected merge and live evidence open
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -505,8 +506,10 @@
   a separate zone-scoped Cache Purge token, 25-observation/120-second
   production bounds, exact prior/candidate classification, and cache purge
   both after promotion and rollback. Forty-three focused deployment tests and
-  the complete local repository gate pass. AU-AGENT-003 exact-source review,
-  protected merge, and live evidence remain required.
+  the complete local repository gate pass. AU-AGENT-003 exact-source review at
+  `1054a2f0` resolves TS001-DEPLOY-008 through TS001-DEPLOY-011 with no
+  remaining finding; both CI runs pass. Protected merge and live evidence
+  remain required.
 - **Fallback:** Keep or restore the prior placeholder. If the approved
   immutable-preview/purge attempt fails, retain sanitized evidence and require
   a new finding disposition before another attempt.

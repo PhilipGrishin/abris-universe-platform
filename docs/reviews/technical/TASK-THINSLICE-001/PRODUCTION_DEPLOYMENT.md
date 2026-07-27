@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–4 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, locally `[TESTED]`; exact-source AU-AGENT-003 review and protected merge open |
+| Status | Attempts 1–4 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and one live attempt open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002`; Technical Design v1.5.12; ADR-TS001-004 v1.3.8; Production Deployment Verification v1.6.0; bounded independent acceptance at `1a683ab`; protected-main source `80d942ec`; run `30253457090`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.2.0; Technical Design v1.5.13; ADR-TS001-004 v1.3.9; Production Deployment Verification v1.7.0; bounded independent acceptance at `1a683ab`; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -248,9 +248,9 @@ IndexedDB.
 TD-GATE-003 remains closed. The owner supplied the dedicated cache-purge secret
 and zone variable without exposing their values. OWNER-DEC-TS001-PRODUCTION-
 DELIVERY-002 and `AU-TAP-TS001-002` provide the required disposition for
-TS001-DEPLOY-007. The implementation and local gate pass, but production
-mutation remains blocked until exact-source AU-AGENT-003 review, protected
-pull-request checks, and protected merge complete.
+TS001-DEPLOY-007. The implementation and exact-source quality gate pass, but
+production mutation remains blocked until protected pull-request checks and
+protected merge complete.
 
 ## Approved Immutable Preview and Purge Continuation
 
@@ -278,7 +278,11 @@ production build verification, dependency audit with no known vulnerabilities,
 and Wrangler dry-run rehearsal. The purge credential and zone variable are
 removed from Wrangler subprocess environments, and the public preview URL is
 suppressed from version-upload logs and not written to retained evidence.
-Independent review and live evidence remain open.
+AU-AGENT-003 independently assigned task-scoped Engineering Verification
+Status `VERIFIED` at exact source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`
+after 46 script tests, strict typecheck, accepted-source review, manual
+security review, and two successful CI runs. No finding remains. Protected
+merge and live evidence remain open; no automatic repeat is authorized.
 
 ## Approved Baseline-Aware Transition
 

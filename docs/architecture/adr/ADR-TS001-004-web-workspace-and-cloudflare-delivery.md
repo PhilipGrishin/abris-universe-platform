@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; credentials configured; TD-GATE-003 `[TESTED]`, closed; successful production/browser evidence `[OPEN]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, `[TESTED]`, exact-source engineering `VERIFIED`; credentials configured; TD-GATE-003 `[TESTED]`, closed; protected merge and successful production/browser evidence `[OPEN]` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.8 |
+| Version | 1.3.9 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -181,3 +181,7 @@ production smoke, rollback rehearsal, and local-data compatibility.
   consecutive complete production contracts. Exact-source AU-AGENT-003
   verification and protected merge remain required before one controlled
   attempt.
+- 2026-07-27: Version 1.3.9 records AU-AGENT-003 task-scoped Engineering
+  Verification Status `VERIFIED` at exact source `1054a2f0`, no remaining
+  finding, and successful CI runs `30261460673` and `30261463795`. Protected
+  merge and live production/browser evidence remain open.

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record; AU-TAP-TS001-001 v1.1.0; protected-main merge `80d942ec521b9f2830ea2af7730356d39e398ee6`; runs `30250084131` and `30253457090`; artifacts `8647947029` and run-3 artifact |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design v1.5.13; ADR-TS001-004 v1.3.9; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v1.9.0; AU-TAP-TS001-002 v1.2.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; PR #11; runs `30261460673` and `30261463795` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -35,6 +35,12 @@
   `codex/task-thinslice-001-baseline-aware-transition`.
 - **Exact protected-main deployment source:** merge commit
   `80d942ec521b9f2830ea2af7730356d39e398ee6` from PR #9.
+- **Superseded immutable-preview candidate:** commit
+  `c6616a69ea9ef89c3c7d8e4e719bb49f3fd5ff38`; AU-AGENT-003 withheld a final
+  gate and required four security remediations.
+- **Exact immutable-preview/purge reverified source:** commit
+  `1054a2f0a7c1385fd8d51661c6be013e90df9df5` on
+  `codex/task-thinslice-001-immutable-preview-purge`, PR #11.
 - **Superseded observability source:** commit
   `73811129110cfa991689028441d45a4eccead613` set 61 attempts as the global
   default and was superseded before merge because that also extended
@@ -47,12 +53,13 @@
 - **Independence:** AU-AGENT-003 did not author or modify the reviewed workflow
   or deployment scripts. This report and its index link are its only outputs.
 - **Scope:** production workflow permissions and gates, source identity,
-  immutable upload, zero-traffic smoke, promotion, rollback, evidence safety,
-  baseline-aware transition classification, observation/time ceilings, smoke
-  assertions, tests, and observed GitHub controls.
-- **Out of scope:** unavailable secret values, a future technical alternative,
-  browser acceptance, DNS mutation, product acceptance, and authorization for
-  another deployment.
+  immutable upload and exact Workers preview, exact-version promotion,
+  hostname-only purge, production stability quorum, rollback and rollback
+  purge, evidence safety, prior/candidate/unknown classification, shared
+  deadlines, smoke assertions, tests, and observed GitHub controls.
+- **Out of scope:** unavailable secret values and live provider configuration,
+  browser acceptance, DNS mutation, product acceptance, and any production
+  attempt beyond the one explicitly authorized by the Project Owner.
 - **Documentation Impact:** Material.
 
 ## Evidence
@@ -170,6 +177,27 @@
   protection, pull-request review rules, stale-review dismissal, conversation
   resolution, and force-push/deletion disabled; the `production` environment
   has a `main`-only branch policy
+- owner-approved
+  [Immutable Preview and Hostname Purge Technical Alternative](../technical/TASK-THINSLICE-001/PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
+  v1.1.0 and OWNER-DEC-TS001-PRODUCTION-DELIVERY-002
+- superseded candidate `c6616a69ea9ef89c3c7d8e4e719bb49f3fd5ff38`
+  received no final gate; AU-AGENT-003 identified one High and three Medium
+  mandatory findings
+- final exact source
+  `1054a2f0a7c1385fd8d51661c6be013e90df9df5`
+- independent exact-source `git show --check`, all 46 script tests, strict
+  workspace typecheck, accepted-source scoped diff, and manual
+  deployment/security contract review passed
+- both exact-source CI runs
+  [30261460673](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30261460673)
+  and
+  [30261463795](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30261463795)
+  completed successfully
+- exact-source controls include a 10-second abortable purge, abort-aware
+  request and semantic backoff, one-request production observations, shared
+  rollback deadline, exact prior/candidate/unknown classification, suppressed
+  Wrangler upload output, and removal of the preview capability URL from live
+  state and retained evidence
 
 The accepted source is an ancestor of the reviewed source. The reviewed
 application, packages, registered OXS fixtures, lockfile, workspace manifest,
@@ -180,14 +208,14 @@ executable source.
 
 | Area | Result | Limitation |
 | --- | --- | --- |
-| Source identity | Pass for the exact reviewed source | Reusable-workflow hardening is recorded below |
-| Static smoke contract | Pass for fail-closed behavior | Attempt 4 observed a candidate sentinel, then the one full contract received the exact prior placeholder response and rejected it |
-| Security headers | Pass at zero traffic; fail closed on default route | Candidate zero-traffic smoke had the reviewed CSP, `nosniff`, and referrer policy; the immediate default-route response lacked CSP and was rejected |
-| Immutable upload and zero-traffic smoke | Pass | Candidate `2f2367c2-d85b-49e2-b785-a1b9d5c326c5` passed the complete zero-traffic contract at semantic attempt 18 |
-| Promotion and rollback | Pass for safety contract | Attempt 4 promoted, failed closed, and restored exact prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e` and baseline |
-| Secret boundary | Pass | Values are step-scoped, unavailable to the reviewer, and masked in immutable logs |
-| Branch/environment governance | Pass | PR #9 merged through protected main and the authorized workflow selected exact source `80d942ec` |
-| Production workflow readiness | Blocked | The single Alternative A attempt is exhausted; the placeholder remains live and no retry is authorized |
+| Source identity | Pass for exact source `1054a2f0` | Accepted application boundary is unchanged; only the exact reviewed Wrangler deployment config is excepted and separately guarded |
+| Static smoke contract | Pass for implementation and fail-closed tests | Live immutable preview and production execution remain for the controlled attempt |
+| Security headers | Pass in the complete preview/production contract | Live preview and production header evidence remain open |
+| Immutable upload and preview smoke | Pass | Exact preview URL validation, 61-observation/120-second bounds, and capability-URL non-retention are tested; live provider behavior remains open |
+| Promotion, purge, and rollback | Pass for the exact state machine | Ten-second purge deadline, promotion-or-later rollback, rollback purge, active prior version, and shared-deadline baseline restoration are tested; live execution remains open |
+| Secret and capability boundary | Pass for repository/workflow scope | Values were unavailable to the reviewer; live Cloudflare token scope/configuration was not inspected |
+| Branch/environment governance | Pass | PR #11 exact head `1054a2f0` has two successful required CI runs and remains subject to protected merge |
+| Production workflow readiness | Pass for merge and one controlled attempt | A single runner cannot prove global edge convergence; no automatic repeat is allowed |
 
 ## Findings
 
@@ -199,7 +227,11 @@ executable source.
 | TS001-DEPLOY-004 | Medium | At the original source, the job-level branch/commit `if` skipped the only job rather than producing an explicit failed authorization record. | Replace the job-level skip with an always-entered, fail-closed authorization check before environment access and mutation. | AU-CODEX-PRIMARY | Tests show wrong branch/SHA fails explicitly before the production environment job can run. | Resolved at `2c886390091fd8b05b18130c1555dcaf0a778d7a` |
 | TS001-DEPLOY-005 | High | Run `30250084131` used the one further attempt authorized by the v1.3.0 gate. Candidate smoke passed at zero traffic on attempt 17 and promotion occurred, but post-promotion smoke exhausted all six attempts and the workflow rolled back. Production could not complete under the prior transition contract. | Do not run another deployment under the prior contract. Obtain an explicit Project Owner disposition on AU-TAP-TS001-001 or another separately reviewed alternative. If approved, implement the bounded state machine with deterministic tests and return its exact source to AU-AGENT-003 before deployment. | Project Owner for alternative authority; AU-AGENT-001 for technical meaning; AU-CODEX-PRIMARY for implementation | Approved alternative, exact implementation, focused tests, required CI, independent AU-AGENT-003 reverification, and a new explicitly authorized deployment attempt | Resolved at `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; merge and the single live attempt remain separate gates |
 | TS001-DEPLOY-006 | Medium | The initial AU-TAP-TS001-001 draft incorrectly attributed the final retained observation's exact prior hash, absent CSP, and `cf-cache-status: HIT` properties to every post-promotion attempt. Retained evidence proves six attempts were exhausted and records those properties only for the final observation; attempts 1–5 are not individually retained. | Replace the overgeneralized claim with the evidence-supported statement: six attempts were exhausted, and the final retained observation matched the exact prior hash with no CSP and cache HIT. Apply the same epistemic limit to related proposed documentation. | AU-AGENT-001 for claim meaning; AU-AGENT-002 for consistency | Documentation diff contains no per-attempt claim beyond retained evidence and preserves the actual final observation plus attempt count | Resolved in the reviewed documentation-only worktree diff; final-source preservation remains required |
-| TS001-DEPLOY-007 | High | The single attempt authorized by OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 exhausted its authority without completing production. After complete zero-traffic verification and promotion, transition attempt 3 observed the exact candidate sentinel, but the immediately following one-shot full contract received the exact prior placeholder hash with missing CSP and `cf-cache-status: HIT`. Alternative A correctly failed closed and restored the exact prior version/baseline; the evidence proves safe behavior but not stable default-route candidate delivery. | Do not retry, extend the window, weaken candidate verification, or change routing/deployment behavior under current authority. Register the incident evidence and require a separately reviewed technical alternative or explicit stop decision with Project Owner disposition before any new production mutation. | AU-AGENT-001 for technical analysis; AU-CODEX-PRIMARY for governance/evidence; Project Owner for any new alternative or attempt | Approved next disposition; if it authorizes implementation or another attempt, exact design/source review, deterministic tests, required CI, protected merge, and explicit attempt authority | Open; blocks production completion and every further deployment attempt |
+| TS001-DEPLOY-007 | High | The single attempt authorized by OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 exhausted its authority without completing production. After complete zero-traffic verification and promotion, transition attempt 3 observed the exact candidate sentinel, but the immediately following one-shot full contract received the exact prior placeholder hash with missing CSP and `cf-cache-status: HIT`. Alternative A correctly failed closed and restored the exact prior version/baseline; the evidence proves safe behavior but not stable default-route candidate delivery. | Do not retry, extend the window, weaken candidate verification, or change routing/deployment behavior under current authority. Register the incident evidence and require a separately reviewed technical alternative or explicit stop decision with Project Owner disposition before any new production mutation. | AU-AGENT-001 for technical analysis; AU-CODEX-PRIMARY for governance/evidence; Project Owner for any new alternative or attempt | Approved next disposition; if it authorizes implementation or another attempt, exact design/source review, deterministic tests, required CI, protected merge, and explicit attempt authority | Resolved by OWNER-DEC-TS001-PRODUCTION-DELIVERY-002, AU-TAP-TS001-002, and exact-source AU-AGENT-003 `VERIFIED` gate at `1054a2f0`; live attempt remains separate evidence |
+| TS001-DEPLOY-008 | High | Superseded source `c6616a6` had no timeout or abort on production and rollback hostname purge. A hung request after promotion could leave the candidate at 100 percent until job termination and prevent the promised rollback path. | Bound every purge operation and prove that timeout enters the existing promotion-or-later rollback path. | AU-CODEX-PRIMARY / AU-AGENT-001 | Abortable strict timeout, deterministic hung-purge test, state-machine rollback coverage, exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
+| TS001-DEPLOY-009 | Medium | Superseded source `c6616a6` did not abort request or semantic backoff immediately and gave rollback snapshots a new fixed timeout rather than the shared remaining deadline. The strict 120-second contract could be exceeded. | Make requests and both retry layers abort-aware, remove inner production request retry, and pass the remaining rollback deadline into each snapshot. | AU-CODEX-PRIMARY / AU-AGENT-001 | Mid-request, request-backoff, semantic-backoff, transport, timeout, and late-snapshot tests; exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
+| TS001-DEPLOY-010 | Medium | Superseded source `c6616a6` labelled every non-prior root observation `candidate-contract`, including content that did not match the exact preview sentinel. | Classify exact prior, exact candidate sentinel, and unknown content separately; fail unknown content immediately. | AU-CODEX-PRIMARY / AU-AGENT-001 | Deterministic exact classification tests and exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
+| TS001-DEPLOY-011 | Medium | Suppressing retained JSON alone did not prevent the public preview capability URL from appearing in Wrangler output, live error state, or request errors. | Suppress upload output, remove preview origin from live state and retained evidence, and use URL-free request errors. | AU-CODEX-PRIMARY / AU-AGENT-001 | State/evidence non-disclosure tests, manual error-path review, exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
 
 ## Finding Disposition and Reverification
 
@@ -229,8 +261,21 @@ executable source.
   and that the final retained observation matched the exact prior baseline
   hash with no CSP and `cf-cache-status: HIT`. No reviewed record attributes
   those final-observation properties to attempts 1–5.
+- **TS001-DEPLOY-007:** OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 approves the
+  separate immutable-preview and hostname-purge continuation, its exact-source
+  review, protected merge, and one controlled attempt. AU-TAP-TS001-002 records
+  the new bounds without rewriting the failed-closed historical evidence.
+- **TS001-DEPLOY-008:** each production and rollback purge is abortable and
+  limited to 10 seconds; timeout enters the existing rollback state machine.
+- **TS001-DEPLOY-009:** request and semantic backoffs are abort-aware,
+  production stability performs no inner request retry, and rollback snapshots
+  receive only the shared remaining deadline.
+- **TS001-DEPLOY-010:** stability classifies exact prior baseline, exact
+  candidate sentinel with a failed contract, and unknown content separately.
+- **TS001-DEPLOY-011:** Wrangler upload output is suppressed; preview origins
+  are absent from deployment state, request errors, and retained evidence.
 
-Findings TS001-DEPLOY-001 through TS001-DEPLOY-006 are resolved without
+Findings TS001-DEPLOY-001 through TS001-DEPLOY-011 are resolved without
 changing product behavior or the accepted executable application scope.
 
 ## Propagation Remediation Reverification
@@ -374,22 +419,70 @@ tooling for merge and one bounded attempt. It is not product `[VERIFIED]`,
 successful production verification, browser acceptance, or release
 authorization.
 
+## Immutable Preview and Hostname Purge Exact-Source Reverification
+
+| Control | Exact-source evidence | Result |
+| --- | --- | --- |
+| Owner authority | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 approves AU-TAP-TS001-002, implementation, independent review, protected merge, and one controlled production attempt | Pass |
+| Exact reviewed source | `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; `git show --check` passed | Pass |
+| Preview identity and bounds | Wrangler's exact version ID and immutable preview are captured; the full preview contract is limited to 61 semantic observations and 120 seconds | Pass |
+| Production mutation boundary | Only the exact previewed version can be promoted; mutation is marked before promotion and every promotion-or-later failure enters rollback | Pass |
+| Purge scope and timeout | The purge body contains only `abris.653915.com`; every production and rollback purge has a strict abortable 10-second timeout | Pass |
+| Stability classification and quorum | Exact prior, exact candidate sentinel, and unknown content are distinct; production requires three consecutive complete contracts within 25 observations and 120 seconds | Pass |
+| Abort and deadline behavior | Requests and both retry layers are abort-aware; production observations have no inner retry; rollback snapshots share the remaining deadline | Pass |
+| Rollback path | Tests cover exact prior-version restoration, rollback purge, active-version confirmation, bounded baseline restoration, and rollback failure | Pass |
+| Evidence and capability boundary | Wrangler upload output is suppressed; preview origin, tokens, zone ID, request headers, raw bodies, and authorization values are absent from retained lifecycle evidence | Pass |
+| Accepted executable boundary | Accepted application, package, fixture, lockfile, workspace, and shared TypeScript paths remain unchanged; the reviewed Wrangler configuration is separately exact-guarded | Pass |
+| Tests | Independent rerun passed all 46 script tests; strict workspace typecheck passed | Pass |
+| Remote CI | Runs `30261460673` and `30261463795` completed successfully at the exact reviewed source | Pass |
+| Documentation and traceability | The approved alternative, design, ADR, deployment record, rehearsal, risks, tasks, open question, traceability, status, and review record preserve the exact bounds and remaining live-evidence gates | Pass |
+
+No `Critical`, `High`, `Medium`, `Low`, or `Recommendation` finding remains
+for exact source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`.
+Findings TS001-DEPLOY-008 through TS001-DEPLOY-011 are resolved at that source.
+
+## Immutable Preview and Hostname Purge Quality Gate Decision
+
+- **Quality Gate Decision:** PASS.
+- **Engineering Verification Status:** VERIFIED.
+- **Exact source:** `1054a2f0a7c1385fd8d51661c6be013e90df9df5`.
+- **Mandatory unresolved findings:** None.
+- **Pull request may leave draft:** Yes, only if its executable implementation
+  remains identical to the exact reviewed source.
+- **Protected merge allowed:** Yes, only with required checks passing and no
+  content-changing conflict resolution. A changed implementation requires a
+  new exact-source review.
+- **Production attempt allowed:** Yes, exactly one controlled attempt after
+  protected merge, dispatched against the exact resulting protected `main`
+  source. No automatic repeat is authorized.
+- **Required live evidence:** Retain immutable-preview, purge, production
+  stability, and rollback evidence as applicable, then independently assess
+  the resulting production and browser state.
+
+This task-scoped, unbracketed `VERIFIED` status is an engineering disposition.
+It is not project `[VERIFIED]`, product acceptance, successful production
+verification, or permission for more than the one owner-authorized attempt.
+
 ## Residual External Blockers
 
 - TD-GATE-003 is closed by retained run `30248680612`.
-- Attempt-3 candidate was promoted but failed default-route production smoke
-  and was rolled back; no candidate remains in production.
+- The exact implementation gate passes, but AU-AGENT-003 did not inspect the
+  live Cloudflare credential scopes or provider configuration.
+- Immutable preview, exact promotion, hostname purge, rollback purge, and
+  production stability remain unproven in a live execution.
 - Production security headers, runtime request inventory, browser network
   capture, console, import entry point, and live post-promotion assertions
   remain open.
+- A single workflow runner cannot prove simultaneous global edge convergence.
 
-These items remain mandatory completion and acceptance evidence. They do not
-authorize a second production attempt and do not negate the single attempt
-allowed by the current Alternative A gate.
+These items remain mandatory live evidence. Exactly one protected-main attempt
+is allowed; failure exhausts that authority and must not trigger an automatic
+repeat.
 
 ## References
 
 - [Production Deployment Record](../technical/TASK-THINSLICE-001/PRODUCTION_DEPLOYMENT.md)
+- [Immutable Preview and Hostname Purge Technical Alternative](../technical/TASK-THINSLICE-001/PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [ADR-TS001-004](../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Cloudflare Workers Domains API](https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/list/)

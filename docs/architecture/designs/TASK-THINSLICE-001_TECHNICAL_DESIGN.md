@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.12 |
+| Version | 1.5.13 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -103,6 +103,12 @@ Version 1.5.12 records the owner-approved immutable Workers preview and
 hostname-purge continuation after TS001-DEPLOY-007. It changes deployment
 tooling and credential separation only; the accepted application, product
 behavior, production hostname, DNS, and rollback anchor are unchanged.
+
+Version 1.5.13 records AU-AGENT-003 exact-source Engineering Verification
+Status `VERIFIED` for commit `1054a2f0`, resolution of TS001-DEPLOY-008 through
+TS001-DEPLOY-011, and two successful exact-source CI runs. It changes no
+architecture or product meaning. Protected merge and live production/browser
+evidence remain separate gates.
 
 ## 2. Scope and Non-Scope
 

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview and hostname-purge continuation `[IMPLEMENTED]`, locally `[TESTED]`; independent review open |
+| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview and hostname-purge continuation `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.9.0 |
+| Version | 1.10.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002`; Technical Design v1.5.12 section 12; ADR-TS001-004 v1.3.8; Production Deployment Verification v1.6.0; Production Deployment Record v1.8.0; Threat Model TM-011 through TM-019; protected-main source `80d942ec`; historical run `30253457090` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.2.0; Technical Design v1.5.13 section 12; ADR-TS001-004 v1.3.9; Production Deployment Verification v1.7.0; Production Deployment Record v1.9.0; Threat Model TM-011 through TM-022; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -194,8 +194,11 @@ rejects every deployment or purge secret/variable marker in the generated
 bundle. Local evidence passes strict typecheck, 46 script tests, 68 package
 tests, production build verification, dependency audit with no known
 vulnerabilities, and Wrangler dry-run. No Cloudflare mutation occurred.
-Exact-source AU-AGENT-003 review, protected pull-request checks, protected
-merge, and the single authorized live attempt remain open. Abort-aware request
+AU-AGENT-003 independently reviewed exact source `1054a2f0`, resolved the
+preliminary purge-timeout, deadline, classification, and preview-capability
+findings, recorded no remaining finding, and assigned task-scoped Engineering
+Verification Status `VERIFIED`. Both exact-source CI runs pass. Protected
+merge and the single authorized live attempt remain open. Abort-aware request
 and backoff tests distinguish exact prior, exact candidate, and unknown states.
 
 ## References

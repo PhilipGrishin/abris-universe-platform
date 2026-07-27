@@ -105,8 +105,8 @@
 
 ## OQ-007 — Immutable Preview and Hostname Cache Purge
 
-- **Status:** `[CONFIRMED]`; implementation locally tested; independent review
-  and live attempt open
+- **Status:** `[CONFIRMED]`; implementation `[TESTED]`; exact-source
+  engineering verification complete; protected merge and live attempt open
 - **Question:** May production continuation use the exact immutable Workers
   preview, exact-version promotion, a hostname-only cache purge, and a
   three-consecutive-pass production quorum?
@@ -117,8 +117,9 @@
   `CLOUDFLARE_ZONE_ID`, and authorized implementation, AU-AGENT-003 review, and
   one controlled attempt after protected merge.
 - **Evidence:** OWNER-DEC-TS001-PRODUCTION-DELIVERY-002;
-  `AU-TAP-TS001-002`; 43 focused deployment tests; complete local repository
-  gate.
+  `AU-TAP-TS001-002`; exact source `1054a2f0`; 43 focused deployment tests;
+  complete repository gate; AU-AGENT-003 Engineering Verification Status
+  `VERIFIED`; CI runs `30261460673` and `30261463795`.
 - **Boundary:** Public PR previews remain disabled. The version preview is
   created only inside the protected production workflow and contains no user
   data or secrets. Live success and global cache convergence are not yet

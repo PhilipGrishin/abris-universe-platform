@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.5.0 |
+| Version | 1.5.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `AU-TAP-TS001-002`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
@@ -121,6 +121,13 @@ no product-data network egress in Phase 0.
    unsupported abrupt-power-loss durability is recorded rather than overstated.
 10. Cache mutation is limited to the registered production hostname and uses a
     credential separate from Worker deployment authority.
+
+AU-AGENT-003 independently reverified the immutable-preview and hostname-purge
+implementation at exact source `1054a2f0`. Findings concerning unbounded
+purge, non-abort-aware deadlines, ambiguous response classification, and
+preview-capability retention are resolved. The task-scoped Engineering
+Verification Status is `VERIFIED`; live credential scope and provider behavior
+remain outside that exact-source review.
 
 ## Open Findings
 
