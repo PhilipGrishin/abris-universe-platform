@@ -19,12 +19,15 @@ assigned task-scoped Engineering Verification Status `VERIFIED` at exact source
 `30261463795` passed. Protected merge `ebdde8ec` and exact-main CI passed.
 Run `30262328350` consumed the one controlled attempt and failed before
 production mutation because remote Worker Preview URLs were disabled. The
-prior version and public baseline remain unchanged. `AU-TAP-TS001-003` is
-`[PROPOSED]`. AU-AGENT-003 assigned production continuation `REWORK REQUIRED`
-with TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium). Owner disposition,
-exact remote state `enabled: false`, `previews_enabled: true`, read-only
-preflight and sanitized version-provenance implementation/review, protected
-merge, and new explicit attempt authority are required.
+prior version and public baseline remain unchanged. The Project Owner approved
+`AU-TAP-TS001-003` through OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 and
+authorized exactly one new attempt after all gates. Exact remote state
+`enabled: false`, `previews_enabled: true` is reload-confirmed. Read-only
+preflight and sanitized version-provenance evidence are `[IMPLEMENTED]`,
+`[TESTED]`. AU-AGENT-003 assigned task-scoped Engineering Verification Status
+`VERIFIED` at exact source `497991c`, resolving TS001-DEPLOY-012/013.
+Required CI, protected merge, exact-main CI, production, and browser evidence
+remain open.
 
 ## Confirmed Workspace State
 

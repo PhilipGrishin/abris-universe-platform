@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-REVIEW-ENG-TS001-DEPLOY-001 |
 | Title | Engineering Verification Report — TASK-THINSLICE-001 Production Deployment Readiness |
-| Status | Historical implementation gate `VERIFIED`; production continuation `REWORK REQUIRED`; not project `[VERIFIED]` |
+| Status | Remote preview prerequisite remediation task-scoped engineering `VERIFIED`; protected merge, exact-main CI, and live production/browser evidence `[OPEN]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.8.0 |
+| Version | 2.0.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design v1.5.14; ADR-TS001-004 v1.3.10; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.0.0; AU-TAP-TS001-002 v1.3.0; AU-TAP-TS001-003 v1.1.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; PR #11; runs `30261460673`, `30261463795`, `30262250573`, and `30262328350`; retained artifact `8651402890` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; Technical Design v1.5.16; ADR-TS001-004 v1.3.12; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.2.0; AU-TAP-TS001-002 v1.3.2; AU-TAP-TS001-003 v1.3.0; exact immutable-preview source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; PR #11; runs `30261460673`, `30261463795`, `30262250573`, and `30262328350`; retained artifact `8651402890` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -44,6 +44,9 @@
 - **Exact protected-main immutable-preview source:** merge commit
   `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b` from PR #11; the executable
   deployment diff from exact reviewed source `1054a2f0` is empty.
+- **Exact remote-preview remediation source:** commit
+  `497991c7eb5d9c558becafa2f4d2461e639be1ec` on
+  `codex/task-thinslice-001-preview-preflight`.
 - **Superseded observability source:** commit
   `73811129110cfa991689028441d45a4eccead613` set 61 attempts as the global
   default and was superseded before merge because that also extended
@@ -268,8 +271,8 @@ executable source.
 | TS001-DEPLOY-009 | Medium | Superseded source `c6616a6` did not abort request or semantic backoff immediately and gave rollback snapshots a new fixed timeout rather than the shared remaining deadline. The strict 120-second contract could be exceeded. | Make requests and both retry layers abort-aware, remove inner production request retry, and pass the remaining rollback deadline into each snapshot. | AU-CODEX-PRIMARY / AU-AGENT-001 | Mid-request, request-backoff, semantic-backoff, transport, timeout, and late-snapshot tests; exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
 | TS001-DEPLOY-010 | Medium | Superseded source `c6616a6` labelled every non-prior root observation `candidate-contract`, including content that did not match the exact preview sentinel. | Classify exact prior, exact candidate sentinel, and unknown content separately; fail unknown content immediately. | AU-CODEX-PRIMARY / AU-AGENT-001 | Deterministic exact classification tests and exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
 | TS001-DEPLOY-011 | Medium | Suppressing retained JSON alone did not prevent the public preview capability URL from appearing in Wrangler output, live error state, or request errors. | Suppress upload output, remove preview origin from live state and retained evidence, and use URL-free request errors. | AU-CODEX-PRIMARY / AU-AGENT-001 | State/evidence non-disclosure tests, manual error-path review, exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
-| TS001-DEPLOY-012 | High | Run `30262328350` proved that repository `preview_urls: true` did not establish the remote Worker preview capability. Wrangler 4.114.0 `versions upload` does not apply the non-versioned subdomain setting, so the run created a version but received no preview URL. | Treat exact remote state `enabled: false`, `previews_enabled: true` as an external prerequisite. Add a read-only fail-closed preflight before upload. Any provider-state mutation requires explicit Project Owner authority and a separately reviewed idempotent action that preserves `enabled: false`; ordinary `wrangler deploy` is prohibited for this correction. | Project Owner for provider-state authority; AU-CODEX-PRIMARY / AU-AGENT-001 for implementation | Owner approval; exact-state preflight; disabled/malformed/unauthorized-state tests; complete gates; exact-source AU-AGENT-003 review | Open — production continuation blocked |
-| TS001-DEPLOY-013 | Medium | The upload succeeded far enough to return an immutable version ID, but preview validation failed and sanitized evidence retained neither the ID nor an upload-occurrence flag. A likely zero-traffic version therefore lacks retained provenance. | Preserve `uploadOccurred: true` and the sanitized immutable version ID whenever upload succeeded, including missing-preview failure. Continue excluding preview capability URLs and sensitive values. | AU-CODEX-PRIMARY / AU-AGENT-001 | Deterministic missing-preview test proves version-ID retention, zero production/cache mutation, and secret/capability non-disclosure; exact-source AU-AGENT-003 review | Open |
+| TS001-DEPLOY-012 | High | Run `30262328350` proved that repository `preview_urls: true` did not establish the remote Worker preview capability. Wrangler 4.114.0 `versions upload` does not apply the non-versioned subdomain setting, so the run created a version but received no preview URL. | Treat exact remote state `enabled: false`, `previews_enabled: true` as an external prerequisite. Add a read-only fail-closed preflight before upload. Any provider-state mutation requires explicit Project Owner authority and a separately reviewed idempotent action that preserves `enabled: false`; ordinary `wrangler deploy` is prohibited for this correction. | Project Owner for provider-state authority; AU-CODEX-PRIMARY / AU-AGENT-001 for implementation | Owner approval; exact-state preflight; disabled/malformed/unauthorized-state tests; complete gates; exact-source AU-AGENT-003 review | Resolved at `497991c7eb5d9c558becafa2f4d2461e639be1ec` |
+| TS001-DEPLOY-013 | Medium | The upload succeeded far enough to return an immutable version ID, but preview validation failed and sanitized evidence retained neither the ID nor an upload-occurrence flag. A likely zero-traffic version therefore lacks retained provenance. | Preserve `uploadOccurred: true` and the sanitized immutable version ID whenever upload succeeded, including missing-preview failure. Continue excluding preview capability URLs and sensitive values. | AU-CODEX-PRIMARY / AU-AGENT-001 | Deterministic missing/invalid-preview tests prove version-ID retention, zero production/cache mutation, and secret/capability non-disclosure; exact-source AU-AGENT-003 review | Resolved at `497991c7eb5d9c558becafa2f4d2461e639be1ec` |
 
 ## Finding Disposition and Reverification
 
@@ -315,8 +318,9 @@ executable source.
 
 Findings TS001-DEPLOY-001 through TS001-DEPLOY-011 are resolved without
 changing product behavior or the accepted executable application scope.
-Findings TS001-DEPLOY-012 and TS001-DEPLOY-013 remain open and block another
-production attempt.
+Findings TS001-DEPLOY-012 and TS001-DEPLOY-013 are resolved at exact source
+`497991c7eb5d9c558becafa2f4d2461e639be1ec`. Protected merge and exact-main CI
+remain mandatory before the single authorized production attempt.
 
 ## Propagation Remediation Reverification
 
@@ -528,9 +532,16 @@ sanitized evidence.
 - **Exact live source:** `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`.
 - **Mandatory unresolved findings:** TS001-DEPLOY-012 (High) and
   TS001-DEPLOY-013 (Medium).
-- **Attempt authority:** exhausted by run `30262328350`; no automatic or manual
-  rerun is authorized under the prior disposition.
-- **Provider-state mutation:** not authorized by the exhausted disposition.
+- **Prior attempt authority:** exhausted by run `30262328350`; no repeat is
+  authorized under OWNER-DEC-TS001-PRODUCTION-DELIVERY-002.
+- **New conditional authority:** OWNER-DEC-TS001-PRODUCTION-PREVIEW-003
+  authorizes one separate attempt only after remediation, exact-source
+  AU-AGENT-003 review, protected merge, and exact-main CI. It is not yet
+  exercisable at this report revision.
+- **Provider state:** the Project Owner authorized exact state
+  `enabled: false`, `previews_enabled: true`; Dashboard application and reload
+  confirmation are registered. This does not resolve findings without
+  exact-source implementation review.
 - **Required remediation:** register the run and findings; obtain explicit
   owner authority for the exact remote state and another attempt; implement
   read-only exact-state preflight and sanitized version-ID preservation; add
@@ -543,6 +554,42 @@ The historical exact-source `VERIFIED` disposition for implementation
 `1054a2f0` remains valid for that reviewed code. It does not override this
 later live-evidence `REWORK REQUIRED` decision.
 
+## Remote Preview Prerequisite Exact-Source Reverification
+
+| Control | Exact-source evidence | Result |
+| --- | --- | --- |
+| Owner authority | OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 approves exact provider state, remediation, independent review, protected merge, exact-main CI, and one later attempt without repeat | Pass |
+| Exact source | `497991c7eb5d9c558becafa2f4d2461e639be1ec`; direct child of protected main `d298021`; `git show --check` passed | Pass |
+| Provider state | Authenticated Dashboard action and full reload recorded `enabled: false`, `previews_enabled: true`; custom domain, DNS, traffic allocation, and cache unchanged | Pass with declared manual-evidence boundary |
+| Read-only preflight | Authenticated Worker-subdomain GET uses redirect rejection and a ten-second abort; exact booleans are required before upload | Pass |
+| Fail-closed order | False, missing, malformed, unauthorized, or non-exact state fails at `remote-preview-preflight` with no upload, smoke, promotion, purge, production mutation, or rollback | Pass |
+| Upload provenance | Missing, malformed, and non-Cloudflare preview values normalize to `previewUrl: null`; lifecycle retains `uploadOccurred: true` and sanitized version ID before generic failure | Pass |
+| Capability and secret boundary | Valid preview URL remains transient; malformed raw input, preview capability URL, tokens, account ID, authorization, raw headers, and raw bodies are absent from lifecycle/evidence | Pass |
+| Evidence contract | Deployment evidence schema v3 adds normalized remote state, upload occurrence, and sanitized candidate version; preflight evidence remains schema v2 | Pass |
+| Existing controls | Immutable preview, exact promotion, hostname-only purge, stability quorum, bounded deadlines, rollback, rollback purge, and no-repeat controls are unchanged | Pass |
+| Tests and verification | 20 focused tests, 49 complete script tests, 68 package tests, strict typecheck, fixtures, workspace boundary, accepted-source diff, 103 changed-document links, and patch hygiene passed independently | Pass |
+
+Superseded candidates `152effa` and `c64799b` receive no final gate.
+
+## Remote Preview Prerequisite Quality Gate Decision
+
+- **Quality Gate Decision:** PASS.
+- **Engineering Verification Status:** VERIFIED.
+- **Exact source:** `497991c7eb5d9c558becafa2f4d2461e639be1ec`.
+- **TS001-DEPLOY-012:** Resolved.
+- **TS001-DEPLOY-013:** Resolved.
+- **Mandatory unresolved findings:** None.
+- **Branch/PR:** May be pushed and merged through protection only if executable
+  head remains exact, required CI passes, and conflict resolution changes no
+  content.
+- **Production attempt:** Exactly one controlled attempt may proceed only after
+  protected merge and successful exact-main CI against that merge commit.
+  Failure exhausts the authority; no automatic or manual repeat is authorized.
+
+This task-scoped, unbracketed `VERIFIED` status is an engineering disposition.
+It is not project `[VERIFIED]`, product acceptance, live production success, or
+release approval.
+
 ## Residual External Blockers
 
 - TD-GATE-003 is closed by retained run `30248680612`.
@@ -551,9 +598,8 @@ later live-evidence `REWORK REQUIRED` decision.
   `previews_enabled: true`.
 - The exact immutable version created by attempt 5 cannot be reconstructed
   from retained sanitized evidence and likely remains orphaned at zero traffic.
-- The exact implementation gate passed historically, but findings
-  TS001-DEPLOY-012 and TS001-DEPLOY-013 now require remediation and independent
-  exact-source review.
+- Findings TS001-DEPLOY-012 and TS001-DEPLOY-013 are resolved at exact source
+  `497991c`; protected merge and exact-main CI remain open.
 - Immutable preview, exact promotion, hostname purge, rollback purge, and
   production stability remain unproven in a live execution.
 - Production security headers, runtime request inventory, browser network
@@ -561,8 +607,8 @@ later live-evidence `REWORK REQUIRED` decision.
   remain open.
 - A single workflow runner cannot prove simultaneous global edge convergence.
 
-These items remain mandatory evidence. No new protected-main attempt is
-currently authorized.
+These items remain mandatory evidence. One attempt is conditionally authorized
+but cannot be dispatched before protected merge and successful exact-main CI.
 
 ## References
 

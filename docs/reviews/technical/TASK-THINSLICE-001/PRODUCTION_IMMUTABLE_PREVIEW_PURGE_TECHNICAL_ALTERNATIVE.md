@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.3.2 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v2.0.0; Production Deployment Verification v1.8.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; `AU-TAP-TS001-003` |
+| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v2.2.0; Production Deployment Verification v2.0.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; `AU-TAP-TS001-003` v1.3.0 |
 | Supersedes | The continuation mechanism in `AU-TAP-TS001-001`; its historical evidence and rollback result remain authoritative |
 | Superseded By | None |
 | Review Triggers | Cloudflare preview behavior change; cache API change; deployment-state-machine change; token-scope change; production or rollback failure |
@@ -206,7 +206,12 @@ Production traffic and cache were not mutated, the prior version remained at
 authorized attempt is exhausted. `AU-TAP-TS001-003` proposes an explicit
 remote prerequisite, read-only exact-state preflight, and sanitized
 upload/version-ID retention. AU-AGENT-003 assigned production continuation
-`REWORK REQUIRED` with TS001-DEPLOY-012/013; no further attempt is authorized.
+`REWORK REQUIRED` with TS001-DEPLOY-012/013. The Project Owner subsequently
+approved `AU-TAP-TS001-003` and one separate attempt after its exact-source
+review, protected merge, and exact-main CI gates. Exact-source review passed at
+`497991c` and resolved TS001-DEPLOY-012/013; protected merge and exact-main CI
+remain open. The exhausted
+OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 authority grants no repeat by itself.
 
 ## References
 

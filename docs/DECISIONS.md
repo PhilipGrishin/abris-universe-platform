@@ -336,6 +336,49 @@
   rollback path.
 - **Owner:** Project Owner
 
+## OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 — Approve Remote Preview Prerequisite Remediation
+
+- **Status:** `[APPROVED]`; provider state `[TESTED]`; implementation
+  `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; protected
+  merge and exact-main CI `[OPEN]`
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive approving
+  `AU-TAP-TS001-003` Alternative A.
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; findings
+  TS001-DEPLOY-012 and TS001-DEPLOY-013.
+- **Context:** Run `30262328350` failed before production mutation because the
+  non-versioned Worker subdomain state was `enabled: true`,
+  `previews_enabled: false`. The run also lost the successfully uploaded
+  zero-traffic version ID from retained failure evidence.
+- **Decision:** Establish exact remote state `enabled: false`,
+  `previews_enabled: true`; query and require that state through the read-only
+  Worker subdomain endpoint before version upload; retain sanitized
+  `uploadOccurred` and immutable version ID whenever upload succeeds, including
+  missing-preview failure; never retain the preview capability URL.
+- **Provider action:** AU-CODEX-PRIMARY applied Production Worker URL Off and
+  Preview URLs On in the authenticated Cloudflare Dashboard under this
+  authority. A full page reload confirmed both persisted states. The custom
+  domain and production traffic allocation were not changed.
+- **Boundary:** Ordinary `wrangler deploy` is prohibited as a configuration
+  shortcut. False, missing, malformed, or unauthorized remote state fails
+  before upload. Provider-state drift remains fail-closed. No product behavior,
+  accepted executable application, DNS, custom-domain assignment, purge scope,
+  security-header contract, or rollback anchor changes.
+- **Authorization:** Implement and test the remediation, obtain AU-AGENT-003
+  exact-source review, merge through protected `main`, pass exact-main CI, and
+  then perform exactly one controlled production attempt. No automatic repeat
+  is authorized.
+- **Consequence:** The previous attempt authority remains exhausted. The newly
+  authorized attempt becomes exercisable only after every implementation gate
+  passes. AU-AGENT-003 independently verified exact source `497991c`, resolved
+  TS001-DEPLOY-012/013, and allowed protected merge. The Project Owner's
+  one-attempt authority becomes exercisable only after successful exact-main
+  CI.
+- **Reversibility:** Revert the deployment-tooling change and do not dispatch
+  the production workflow. The owner-controlled subdomain state can be changed
+  only under a later explicit disposition.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent

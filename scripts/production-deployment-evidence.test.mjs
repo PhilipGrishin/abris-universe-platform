@@ -7,11 +7,17 @@ import {
   deploymentFailureEvidence,
   deploymentLifecycleEvidence,
   deploymentList,
+  parseWorkerSubdomainState,
   readVersionUpload,
   validateProductionDomain,
   validateProductionPreflight,
+  validateWorkerSubdomainResponse,
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
+import {
+  executeProductionDeployment,
+  ProductionDeploymentError,
+} from "./production-deployment-state.mjs";
 
 test("accepts registered Cloudflare deployment output shapes", () => {
   const deployment = {
@@ -110,6 +116,39 @@ test("rejects a domain assigned to a different Worker", () => {
   );
 });
 
+test("parses only the non-sensitive Worker subdomain state", () => {
+  assert.deepEqual(
+    parseWorkerSubdomainState({
+      success: true,
+      result: {
+        enabled: false,
+        previews_enabled: true,
+        extra: "not-retained",
+      },
+    }),
+    {
+      enabled: false,
+      previewsEnabled: true,
+    },
+  );
+  assert.throws(
+    () =>
+      parseWorkerSubdomainState({
+        success: true,
+        result: { enabled: false },
+      }),
+    /subdomain result is invalid/u,
+  );
+  assert.throws(
+    () =>
+      validateWorkerSubdomainResponse({
+        status: 403,
+        response: { success: false, errors: [{ code: 10 }] },
+      }),
+    /did not return 200/u,
+  );
+});
+
 test("parses upload provenance and persists failure-safe JSON evidence", async () => {
   const directory = await mkdtemp(join(tmpdir(), "abris-deploy-evidence-"));
   const uploadPath = join(directory, "wrangler.ndjson");
@@ -158,7 +197,7 @@ test("parses upload provenance and persists failure-safe JSON evidence", async (
   }
 });
 
-test("rejects missing or non-Cloudflare preview URLs", async () => {
+test("sanitizes invalid preview values while retaining upload provenance", async () => {
   const directory = await mkdtemp(join(tmpdir(), "abris-preview-evidence-"));
   const outputPath = join(directory, "wrangler.ndjson");
   try {
@@ -171,9 +210,65 @@ test("rejects missing or non-Cloudflare preview URLs", async () => {
       })}\n`,
       "utf8",
     );
-    assert.throws(
-      () => readVersionUpload(outputPath),
-      /invalid immutable preview URL/u,
+    assert.deepEqual(readVersionUpload(outputPath), {
+      versionId: "uploaded-version",
+      previewUrl: null,
+    });
+    await writeFile(
+      outputPath,
+      `${JSON.stringify({
+        type: "version-upload",
+        version_id: "uploaded-version-without-preview",
+      })}\n`,
+      "utf8",
+    );
+    assert.deepEqual(readVersionUpload(outputPath), {
+      versionId: "uploaded-version-without-preview",
+      previewUrl: null,
+    });
+    await writeFile(
+      outputPath,
+      `${JSON.stringify({
+        type: "version-upload",
+        version_id: "uploaded-version-with-invalid-preview",
+        preview_url: "capability-value-must-not-be-retained",
+      })}\n`,
+      "utf8",
+    );
+    const sanitizedUpload = readVersionUpload(outputPath);
+    assert.deepEqual(sanitizedUpload, {
+      versionId: "uploaded-version-with-invalid-preview",
+      previewUrl: null,
+    });
+    await assert.rejects(
+      executeProductionDeployment({
+        priorVersionId: "prior-version",
+        verifyRemotePreviewState: async () => ({
+          enabled: false,
+          previewsEnabled: true,
+        }),
+        uploadVersion: async () => sanitizedUpload,
+      }),
+      (error) => {
+        assert(error instanceof ProductionDeploymentError);
+        assert.equal(error.state.failureStage, "upload");
+        assert.equal(error.state.uploadOccurred, true);
+        assert.deepEqual(error.state.candidate, {
+          versionId: "uploaded-version-with-invalid-preview",
+        });
+        const retained = deploymentLifecycleEvidence(error.state);
+        assert.equal(
+          JSON.stringify(retained).includes(
+            "capability-value-must-not-be-retained",
+          ),
+          false,
+        );
+        assert.equal(retained.uploadOccurred, true);
+        assert.deepEqual(retained.candidate, {
+          versionId: "uploaded-version-with-invalid-preview",
+        });
+        return true;
+      },
     );
   } finally {
     await rm(directory, { recursive: true, force: true });
@@ -183,6 +278,11 @@ test("rejects missing or non-Cloudflare preview URLs", async () => {
 test("retains version and smoke evidence without the public preview capability URL", () => {
   const lifecycle = deploymentLifecycleEvidence({
     stage: "complete",
+    remotePreviewState: {
+      enabled: false,
+      previewsEnabled: true,
+    },
+    uploadOccurred: true,
     candidate: {
       versionId: "candidate-version",
       previewUrl: "https://capability.example.workers.dev",
@@ -200,6 +300,11 @@ test("retains version and smoke evidence without the public preview capability U
 
   assert.deepEqual(lifecycle, {
     stage: "complete",
+    remotePreviewState: {
+      enabled: false,
+      previewsEnabled: true,
+    },
+    uploadOccurred: true,
     candidate: { versionId: "candidate-version" },
     previewSmoke: {
       observedCommit: "a".repeat(40),

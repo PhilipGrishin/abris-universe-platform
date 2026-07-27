@@ -88,6 +88,30 @@ export const validateProductionDomain = ({
   };
 };
 
+export const parseWorkerSubdomainState = (response) => {
+  assert(
+    response?.success === true,
+    "Cloudflare Worker subdomain query was not successful.",
+  );
+  assert(
+    typeof response?.result?.enabled === "boolean" &&
+      typeof response?.result?.previews_enabled === "boolean",
+    "Cloudflare Worker subdomain result is invalid.",
+  );
+  return {
+    enabled: response.result.enabled,
+    previewsEnabled: response.result.previews_enabled,
+  };
+};
+
+export const validateWorkerSubdomainResponse = ({ status, response }) => {
+  assert(
+    status === 200,
+    "Cloudflare Worker subdomain query did not return 200.",
+  );
+  return parseWorkerSubdomainState(response);
+};
+
 export const readVersionUpload = (outputPath) => {
   const entries = readFileSync(outputPath, "utf8")
     .split(/\r?\n/u)
@@ -99,22 +123,29 @@ export const readVersionUpload = (outputPath) => {
   const versionId = upload?.version_id ?? upload?.versionId;
   assert(typeof versionId === "string", "Wrangler did not report a version ID.");
   const previewUrl = upload?.preview_url ?? upload?.previewUrl;
-  assert(
-    typeof previewUrl === "string",
-    "Wrangler did not report an immutable preview URL.",
-  );
-  const parsedPreviewUrl = new URL(previewUrl);
-  assert(
-    parsedPreviewUrl.protocol === "https:" &&
+  if (typeof previewUrl !== "string") {
+    return { versionId, previewUrl: null };
+  }
+  let parsedPreviewUrl;
+  try {
+    parsedPreviewUrl = new URL(previewUrl);
+  } catch {
+    return { versionId, previewUrl: null };
+  }
+  if (
+    !(
+      parsedPreviewUrl.protocol === "https:" &&
       parsedPreviewUrl.pathname === "/" &&
       parsedPreviewUrl.port === "" &&
       parsedPreviewUrl.search === "" &&
       parsedPreviewUrl.hash === "" &&
       parsedPreviewUrl.username === "" &&
       parsedPreviewUrl.password === "" &&
-      parsedPreviewUrl.hostname.endsWith(".workers.dev"),
-    "Wrangler reported an invalid immutable preview URL.",
-  );
+      parsedPreviewUrl.hostname.endsWith(".workers.dev")
+    )
+  ) {
+    return { versionId, previewUrl: null };
+  }
   return {
     versionId,
     previewUrl: parsedPreviewUrl.origin,

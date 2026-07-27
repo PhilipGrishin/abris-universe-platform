@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-003 |
 | Title | Remote Preview Enablement and Fail-Closed Preflight Technical Alternative |
-| Status | `[PROPOSED]`; owner disposition required before implementation or another production attempt |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; provider state established; protected merge and exact-main CI `[OPEN]`; one controlled attempt authorized only after those gates |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; production run `30262328350`; retained artifact `8651402890` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; production run `30262328350`; retained artifact `8651402890` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Owner disposition; Cloudflare Preview URLs configuration change; Wrangler output-contract change; preflight implementation; production retry |
@@ -156,22 +156,40 @@ ambiguous smoke failure.
   mandatory.
 - One runner cannot prove simultaneous global edge convergence.
 
-## Required Owner Disposition
+## Owner Disposition and Implementation
 
-Approve or reject Recommended Alternative A. Approval must explicitly:
+OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 approves Alternative A, the exact
+provider-state change, implementation, independent AU-AGENT-003 review, and
+exactly one later production attempt after all gates pass.
 
-- authorize changing the remote subdomain state for `abris-universe` to
-  `enabled: false` and `previews_enabled: true`, whether performed manually by
-  the Project Owner or by a separately reviewed idempotent control-plane
-  action;
-- authorize the read-only fail-closed subdomain preflight implementation and
-  the sanitized upload/version-ID evidence correction;
-- authorize deterministic focused tests and independent AU-AGENT-003
-  exact-source review;
-- authorize no production attempt until exact-source review, required CI, and
-  protected merge pass;
-- state whether exactly one new controlled production attempt is authorized;
-- preserve the no-automatic-repeat rule.
+The authenticated Cloudflare Dashboard now records Production Worker URL Off
+and Preview URLs On. Reload verification confirmed the persisted state. The
+custom domain, DNS, production traffic, and cache were not changed.
+
+The implementation:
+
+- performs an authenticated read-only Worker subdomain query before version
+  upload;
+- retains only `enabled` and `previewsEnabled`;
+- fails before upload unless they are exactly `false` and `true`;
+- records `uploadOccurred` and the immutable version ID after a successful
+  upload even when no preview URL is returned;
+- continues to remove the preview capability URL from live lifecycle and
+  retained JSON;
+- increments the deployment-evidence schema to version 3;
+- adds deterministic exact-state, malformed/unauthorized response,
+  no-upload/no-mutation, missing-preview provenance, and disclosure-boundary
+  tests.
+
+The implementation does not automate provider-state mutation and does not use
+ordinary `wrangler deploy`. Protected merge, exact-main CI, and the controlled
+attempt remain separate gates.
+
+AU-AGENT-003 independently reviewed exact source
+`497991c7eb5d9c558becafa2f4d2461e639be1ec`, assigned Quality Gate Decision
+`PASS` and task-scoped Engineering Verification Status `VERIFIED`, and resolved
+TS001-DEPLOY-012/013. Protected merge and exact-main CI remain open before the
+single authorized attempt.
 
 ## References
 

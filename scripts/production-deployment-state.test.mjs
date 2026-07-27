@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { deploymentLifecycleEvidence } from "./production-deployment-evidence.mjs";
 import {
   executeProductionDeployment,
   ProductionDeploymentError,
@@ -20,6 +21,10 @@ const lifecycle = (overrides = {}) => {
   const calls = [];
   const operations = {
     priorVersionId: PRIOR,
+    verifyRemotePreviewState: async () => {
+      calls.push("verify-remote-preview-state");
+      return { enabled: false, previewsEnabled: true };
+    },
     uploadVersion: async () => {
       calls.push("upload");
       return CANDIDATE;
@@ -64,6 +69,7 @@ test("executes immutable preview, exact promotion, purge, and stability smoke in
   const state = await executeProductionDeployment(fixture.operations);
 
   assert.deepEqual(fixture.calls, [
+    "verify-remote-preview-state",
     "upload",
     `smoke-preview:${NEXT}`,
     `promote:${NEXT}@100`,
@@ -73,6 +79,11 @@ test("executes immutable preview, exact promotion, purge, and stability smoke in
   assert.equal(state.stage, "complete");
   assert.equal(state.promoted, true);
   assert.equal(state.rollbackAttempted, false);
+  assert.equal(state.uploadOccurred, true);
+  assert.deepEqual(state.remotePreviewState, {
+    enabled: false,
+    previewsEnabled: true,
+  });
   assert.deepEqual(state.candidate, { versionId: NEXT });
   assert.equal(JSON.stringify(state).includes(CANDIDATE.previewUrl), false);
 });
@@ -95,6 +106,32 @@ test("passes the exact preview evidence into production stability verification",
   });
 });
 
+test("fails before upload when the exact remote preview state is absent", async () => {
+  const fixture = lifecycle({
+    verifyRemotePreviewState: async () => {
+      fixture.calls.push("verify-remote-preview-state");
+      return { enabled: true, previewsEnabled: false };
+    },
+  });
+
+  await assert.rejects(
+    executeProductionDeployment(fixture.operations),
+    (error) => {
+      assert(error instanceof ProductionDeploymentError);
+      assert.equal(error.state.failureStage, "remote-preview-preflight");
+      assert.equal(error.state.productionMutationAttempted, false);
+      assert.equal(error.state.uploadOccurred, false);
+      assert.equal(error.state.candidate, null);
+      assert.deepEqual(error.state.remotePreviewState, {
+        enabled: true,
+        previewsEnabled: false,
+      });
+      return true;
+    },
+  );
+  assert.deepEqual(fixture.calls, ["verify-remote-preview-state"]);
+});
+
 test("does not roll back when immutable upload fails before traffic mutation", async () => {
   const fixture = lifecycle({
     uploadVersion: async () => {
@@ -112,7 +149,50 @@ test("does not roll back when immutable upload fails before traffic mutation", a
       return true;
     },
   );
-  assert.deepEqual(fixture.calls, ["upload"]);
+  assert.deepEqual(fixture.calls, [
+    "verify-remote-preview-state",
+    "upload",
+  ]);
+});
+
+test("retains uploaded version provenance when the preview URL is missing", async () => {
+  const fixture = lifecycle({
+    uploadVersion: async () => {
+      fixture.calls.push("upload");
+      return { versionId: NEXT, previewUrl: null };
+    },
+  });
+
+  await assert.rejects(
+    executeProductionDeployment(fixture.operations),
+    (error) => {
+      assert(error instanceof ProductionDeploymentError);
+      assert.equal(error.state.failureStage, "upload");
+      assert.equal(error.state.productionMutationAttempted, false);
+      assert.equal(error.state.rollbackAttempted, false);
+      assert.equal(error.state.uploadOccurred, true);
+      assert.deepEqual(error.state.candidate, { versionId: NEXT });
+      assert.deepEqual(deploymentLifecycleEvidence(error.state).candidate, {
+        versionId: NEXT,
+      });
+      assert.equal(
+        deploymentLifecycleEvidence(error.state).uploadOccurred,
+        true,
+      );
+      assert.equal(JSON.stringify(error.state).includes("workers.dev"), false);
+      assert.equal(
+        JSON.stringify(deploymentLifecycleEvidence(error.state)).includes(
+          "workers.dev",
+        ),
+        false,
+      );
+      return true;
+    },
+  );
+  assert.deepEqual(fixture.calls, [
+    "verify-remote-preview-state",
+    "upload",
+  ]);
 });
 
 test("does not roll back when immutable preview smoke fails before promotion", async () => {
@@ -134,7 +214,11 @@ test("does not roll back when immutable preview smoke fails before promotion", a
       return true;
     },
   );
-  assert.deepEqual(fixture.calls, ["upload", "smoke-preview:failed"]);
+  assert.deepEqual(fixture.calls, [
+    "verify-remote-preview-state",
+    "upload",
+    "smoke-preview:failed",
+  ]);
 });
 
 test("rolls back when exact-version promotion may have partially mutated traffic", async () => {

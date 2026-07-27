@@ -128,7 +128,7 @@
 
 ## OQ-008 — Remote Preview Enablement and Another Controlled Attempt
 
-- **Status:** `[OPEN]`
+- **Status:** `[CONFIRMED]`
 - **Question:** Approve `AU-TAP-TS001-003` Alternative A: set the remote Worker
   subdomain state to `enabled: false`, `previews_enabled: true`, add a
   fail-closed read-only exact-state preflight and sanitized upload/version-ID
@@ -141,7 +141,15 @@
 - **Evidence:** protected-main source `ebdde8ec`; run `30262328350`; artifact
   `8651402890`; unchanged public baseline; Cloudflare Dashboard Preview URLs
   switch observed disabled; Wrangler 4.114.0 output contract.
-- **Boundary:** No setting change, implementation, or production repeat is
-  authorized by this question. Ordinary `wrangler deploy` is not an allowed
-  configuration path. The prior version remains production.
+- **Answer:** Yes. OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 authorizes the exact
+  provider state, implementation, AU-AGENT-003 review, protected merge, and one
+  controlled attempt after all gates. No automatic repeat is authorized.
+- **Implementation state:** Dashboard state `enabled: false`,
+  `previews_enabled: true` is applied and reload-confirmed. Exact-state
+  preflight and upload/version provenance are implemented, tested, and
+  independently verified at exact source `497991c`; protected merge and
+  exact-main CI remain open.
+- **Boundary:** Ordinary `wrangler deploy` is not an allowed configuration
+  path. The prior version remains production until the controlled attempt
+  succeeds.
 - **Decision owner:** Project Owner

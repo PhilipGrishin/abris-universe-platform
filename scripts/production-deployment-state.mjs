@@ -24,6 +24,27 @@ const requiredCandidate = (value) => {
   };
 };
 
+const observedRemotePreviewState = (value) => {
+  if (
+    typeof value?.enabled !== "boolean" ||
+    typeof value?.previewsEnabled !== "boolean"
+  ) {
+    throw new Error("Cloudflare Worker subdomain state is invalid.");
+  }
+  return {
+    enabled: value.enabled,
+    previewsEnabled: value.previewsEnabled,
+  };
+};
+
+const requireRemotePreviewState = (value) => {
+  if (value.enabled !== false || value.previewsEnabled !== true) {
+    throw new Error(
+      "Cloudflare Worker subdomain requires Production Worker URL off and Preview URLs on.",
+    );
+  }
+};
+
 const withoutBaseUrl = (value) => {
   if (!value || typeof value !== "object") return value;
   const { baseUrl: _baseUrl, ...evidence } = value;
@@ -32,6 +53,7 @@ const withoutBaseUrl = (value) => {
 
 export const executeProductionDeployment = async ({
   priorVersionId,
+  verifyRemotePreviewState,
   uploadVersion,
   smokePreview,
   promote,
@@ -43,8 +65,10 @@ export const executeProductionDeployment = async ({
   verifyRollbackBaseline,
 }) => {
   const state = {
-    stage: "upload",
+    stage: "remote-preview-preflight",
     priorVersionId,
+    remotePreviewState: null,
+    uploadOccurred: false,
     candidate: null,
     previewSmoke: null,
     productionMutationAttempted: false,
@@ -61,8 +85,21 @@ export const executeProductionDeployment = async ({
   };
 
   try {
-    const uploadedCandidate = requiredCandidate(await uploadVersion());
-    state.candidate = { versionId: uploadedCandidate.versionId };
+    state.remotePreviewState = observedRemotePreviewState(
+      await verifyRemotePreviewState(),
+    );
+    requireRemotePreviewState(state.remotePreviewState);
+
+    state.stage = "upload";
+    const uploadResult = await uploadVersion();
+    if (
+      typeof uploadResult?.versionId === "string" &&
+      uploadResult.versionId.length > 0
+    ) {
+      state.uploadOccurred = true;
+      state.candidate = { versionId: uploadResult.versionId };
+    }
+    const uploadedCandidate = requiredCandidate(uploadResult);
 
     state.stage = "preview-smoke";
     state.previewSmoke = withoutBaseUrl(

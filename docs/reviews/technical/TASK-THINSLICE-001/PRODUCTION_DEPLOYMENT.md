@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–5 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; attempt 5 failed before production mutation; no further attempt authorized |
+| Status | Attempts 1–5 retained as failed-closed history; remote preview prerequisite remediation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`, and exact-source Engineering Verification Status `VERIFIED`; attempt 6 authorized only after protected merge and exact-main CI |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.0.0 |
+| Version | 2.2.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.3.0; `AU-TAP-TS001-003` v1.1.0; Technical Design v1.5.14; ADR-TS001-004 v1.3.10; Production Deployment Verification v1.8.0; bounded independent acceptance at `1a683ab`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; artifact `8651402890`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.2; `AU-TAP-TS001-003` v1.3.0; Technical Design v1.5.16; ADR-TS001-004 v1.3.12; Production Deployment Verification v2.0.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; artifact `8651402890`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -372,6 +372,30 @@ rollback, as designed.
   upload. Owner approval, implementation, exact-source AU-AGENT-003 review,
   required CI, protected merge, and explicit new attempt authority are
   required.
+
+## Attempt 6 Authorization and Pre-Dispatch Gates
+
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 authorizes
+  exactly one new controlled attempt after every registered gate passes.
+- **Provider state:** authenticated Dashboard update set Production Worker URL
+  Off and Preview URLs On; full reload confirmed `enabled: false`,
+  `previews_enabled: true`.
+- **Implementation:** read-only exact-state preflight executes before version
+  upload. False, missing, malformed, or unauthorized state fails closed.
+- **Evidence:** deployment-evidence schema v3 retains `uploadOccurred` and the
+  immutable version ID whenever upload succeeds, including missing-preview
+  failure, while excluding the preview capability URL.
+- **Local tests:** exact-state acceptance, disabled-state rejection,
+  malformed/unauthorized response rejection, no-upload/no-production/cache
+  mutation, missing-preview provenance, and disclosure boundaries pass.
+- **Independent gate:** AU-AGENT-003 reviewed exact source
+  `497991c7eb5d9c558becafa2f4d2461e639be1ec`, resolved TS001-DEPLOY-012 and
+  TS001-DEPLOY-013, assigned Quality Gate Decision `PASS`, and assigned
+  task-scoped Engineering Verification Status `VERIFIED`.
+- **Open gates:** required branch CI, protected merge, exact-main CI, and exact
+  protected-main source selection.
+- **Repeat rule:** no automatic retry. Dispatching the authorized attempt
+  exhausts its authority regardless of result.
 
 ## References
 

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview implementation exact-source engineering `VERIFIED`; protected merge complete; run `30262328350` failed before production mutation; production continuation `REWORK REQUIRED` |
+| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; remote-state/provenance remediation `[IMPLEMENTED]`, `[TESTED]`, and exact-source Engineering Verification Status `VERIFIED`; protected merge and exact-main CI `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.11.0 |
+| Version | 1.13.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.3.0; `AU-TAP-TS001-003` v1.1.0; Technical Design v1.5.14 section 12; ADR-TS001-004 v1.3.10; Production Deployment Verification v1.8.0; Production Deployment Record v2.0.0; Threat Model TM-011 through TM-023; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; runs `30262250573` and `30262328350` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.2; `AU-TAP-TS001-003` v1.3.0; Technical Design v1.5.16 section 12; ADR-TS001-004 v1.3.12; Production Deployment Verification v2.0.0; Production Deployment Record v2.2.0; Threat Model TM-011 through TM-023; exact immutable-preview source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; runs `30262250573` and `30262328350` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -212,6 +212,20 @@ precondition, read-only exact-state preflight, and sanitized upload/version-ID
 retention. AU-AGENT-003 assigned production continuation `REWORK REQUIRED`
 with TS001-DEPLOY-012/013. The consumed run is not repeatable under the
 existing authority.
+
+OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 authorizes the exact remote-state
+remediation and one later controlled attempt after all gates. Dashboard reload
+confirmed Production Worker URL Off and Preview URLs On. The workflow now
+queries the read-only Worker subdomain endpoint before upload, requires exact
+state, and retains only its two booleans. Deployment-evidence schema v3 records
+`uploadOccurred` and the immutable version ID after successful upload even
+when preview discovery fails. Focused exact-state, malformed/unauthorized
+response, no-upload/no-mutation, provenance, and disclosure-boundary tests
+pass. AU-AGENT-003 independently reviewed exact source
+`497991c7eb5d9c558becafa2f4d2461e639be1ec`, resolved TS001-DEPLOY-012 and
+TS001-DEPLOY-013, assigned Quality Gate Decision `PASS`, and assigned
+task-scoped Engineering Verification Status `VERIFIED`. Required branch CI,
+protected merge, and exact-main CI remain open.
 
 ## References
 
