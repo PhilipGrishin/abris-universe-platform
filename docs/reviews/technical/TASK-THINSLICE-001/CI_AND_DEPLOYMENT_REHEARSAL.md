@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; production attempts 1 and 2 failed closed and rollback `[TESTED]`; TD-GATE-003 closed; bounded extended propagation diagnostic awaiting review |
+| Status | No-deploy rehearsal `[TESTED]`; attempt 3 passed zero-traffic smoke, promoted, then rolled back after the runner edge retained the exact prior cached baseline; TD-GATE-003 closed; Technical Alternative Proposal awaiting owner decision |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.5.1 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | Technical Design v1.5.6 section 12; ADR-TS001-004 v1.3.2; Production Deployment Verification v1.2.0; Production Deployment Record v1.4.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | Technical Design v1.5.8 section 12; ADR-TS001-004 v1.3.4; Production Deployment Verification v1.4.1; Production Deployment Record v1.5.0; Production Propagation Technical Alternative Proposal v1.0.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -114,12 +114,20 @@ placeholder.
 
 Production remains blocked by:
 
-- protected merge of independently verified exact observability remediation
-  `a503500`;
-- successful zero-traffic candidate smoke;
+- Project Owner disposition of the baseline-aware post-promotion transition
+  proposal;
+- exact-source implementation, tests, AU-AGENT-003 review, and protected merge
+  if the proposal is approved;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - corrected production and browser verification.
+
+Run `30250084131` proved the complete zero-traffic candidate contract on
+semantic attempt 17, promoted candidate `5eca15e6-5ba4-4ab9-9ce7-16a7537e591c`,
+then exhausted six production attempts. The final retained runner-edge
+observation matched the exact prior cached placeholder. Automatic rollback
+restored the prior version and baseline. The retained artifact digest is
+`sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`.
 
 PROD-DEC-013 closes the explicit authorization item. The main-only GitHub
 environment and versioned deployment workflow are now implemented. The
@@ -130,9 +138,10 @@ back automatically on failure.
 
 ## Rollback
 
-Attempts 1 and 2 proved rollback to the exact prior version and public baseline.
-Both unused zero-traffic candidate versions remain immutable Cloudflare history;
-they do not receive production traffic.
+Attempts 1 through 3 proved rollback to the exact prior version and public
+baseline. Attempt 3 also proved zero-traffic selection and brief promotion
+before rollback. All three candidate versions remain immutable Cloudflare
+history and currently receive no production traffic.
 
 ## Quality Gate
 
@@ -147,8 +156,10 @@ The implementation owner cannot change AU-AGENT-003 status.
 
 AU-AGENT-003 independently assigned exact observability remediation `a503500`
 task-scoped `VERIFIED`; 61 attempts apply only before promotion and production
-smoke remains at six. Superseded `7381112` is not mergeable. Protected merge
-and one further zero-traffic dispatch are allowed.
+smoke remains at six. Superseded `7381112` is not mergeable. The independently
+allowed dispatch is now exhausted. Another deployment is not allowed until the
+Project Owner dispositions `AU-TAP-TS001-001` and any approved implementation
+passes an exact-source AU-AGENT-003 gate.
 
 ## References
 
@@ -158,4 +169,5 @@ and one further zero-traffic dispatch are allowed.
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Client Integration Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [Task Review Index](README.md)
+- [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)

@@ -35,9 +35,13 @@ attempts. Candidate `b855e2e0` remained at zero traffic and the exact prior
 version/baseline was restored. A bounded two-minute data-plane wait and
 sanitized last-response diagnostic are task-scoped engineering `VERIFIED` at
 exact source `a503500`; superseded source `7381112` was rejected because it
-also extended post-promotion exposure. Protected merge and one further
-zero-traffic attempt
-are allowed. Production promotion remains open.
+also extended post-promotion exposure. Run `30250084131` passed the complete
+zero-traffic candidate contract on attempt 17 and promoted. Production smoke
+exhausted six attempts; the final retained observation matched the exact prior
+cached baseline. Exact rollback succeeded. The one allowed retry is exhausted.
+`AU-TAP-TS001-001` requires Project Owner disposition before implementation
+or another deployment. AU-AGENT-003 assigns production continuation `BLOCKED`;
+TS001-DEPLOY-005 remains High/Open and TS001-DEPLOY-006 is resolved.
 
 ## Confirmed Inputs
 
@@ -62,7 +66,7 @@ are allowed. Production promotion remains open.
 
 ## Current Design State
 
-- Technical Design v1.5.6 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.8 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -232,8 +236,9 @@ Client integration and the CI/no-deploy rehearsal are implemented and tested.
 Exact implementation source `1c2bd5d` passes frozen install, strict typecheck,
 67 tests, verified clean-source static build, production dependency audit, and
 the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
-Later retained run `30248680612` closes TD-GATE-003; successful zero-traffic
-smoke and production/browser assertions remain open.
+Later retained run `30248680612` closes TD-GATE-003. Run `30250084131` passes
+successful zero-traffic smoke but not default-route production/browser
+assertions; exact rollback is retained.
 
 AU-AGENT-003 reports no Critical or High defect and has resolved
 TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
@@ -271,8 +276,8 @@ remains open.
 
 ## Next Concrete Step
 
-Merge exact observability remediation `a503500`, then run one exact
-protected-main attempt. If the override still cannot select
-the zero-traffic version, stop and raise a Technical Alternative Proposal
-instead of weakening the pre-promotion gate. Never place secret values in chat
-or the repository.
+Obtain Project Owner disposition for Alternative A in
+`AU-TAP-TS001-001`. If approved, implement the baseline-aware transition
+state machine with deterministic tests, obtain AU-AGENT-003 exact-source
+review, merge through protected `main`, and only then dispatch one controlled
+attempt. Never place secret values in chat or the repository.

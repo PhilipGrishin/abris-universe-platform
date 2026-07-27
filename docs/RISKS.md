@@ -468,3 +468,32 @@
   deployment claims.
 - **Owner:** AU-CODEX-PRIMARY for routing; named finding owners for closure;
   AU-AGENT-003 for engineering reverification where applicable
+
+## RISK-019 — Default Route Lags Verified Candidate After Promotion
+
+- **Status:** `[OPEN]`; attempt 3 evidence retained; Technical Alternative
+  Proposal pending Project Owner disposition
+- **Probability:** Observed once after a successful zero-traffic candidate
+  smoke
+- **Impact:** High
+- **Trigger:** The version override selects and fully verifies the candidate,
+  but the workflow runner continues to receive the exact prior cached baseline
+  after promotion for longer than the current production-smoke window.
+- **Affected areas:** Production availability, security-header assertions,
+  deployment confidence, rollback timing, and release auditability.
+- **Prevention:** Keep full zero-traffic candidate smoke mandatory. Do not
+  extend post-promotion exposure generically or retry an unrecognized response.
+  Require explicit owner approval and independent AU-AGENT-003 review for any
+  baseline-aware transition state machine.
+- **Mitigation:** Attempt 3 retained the exact candidate provenance and
+  security contract at zero traffic, classified the post-promotion response as
+  the registered prior body with `cf-cache-status: HIT`, and restored immutable
+  prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e` plus the complete public
+  baseline. `AU-TAP-TS001-001` proposes polling only while observations exactly
+  match that registered prior baseline, with immediate rollback for every
+  unknown or candidate-contract failure.
+- **Fallback:** Reject the proposal and keep the prior placeholder, or select a
+  separately approved preview/canary hosting strategy with its own security,
+  access, traffic, and rollback review.
+- **Owner:** AU-AGENT-001 for the technical proposal; Project Owner for risk
+  approval; AU-AGENT-003 for independent verification
