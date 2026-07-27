@@ -108,3 +108,58 @@ export const writeJsonEvidence = (outputPath, evidence) => {
     "utf8",
   );
 };
+
+const observationFields = [
+  "status",
+  "headStatus",
+  "bodySha256",
+  "contentType",
+  "contentSecurityPolicy",
+  "cfCacheStatus",
+  "server",
+];
+
+const sanitizeObservation = (value) => {
+  if (!value || typeof value !== "object") return null;
+  return Object.fromEntries(
+    observationFields
+      .filter((field) => Object.hasOwn(value, field))
+      .map((field) => [field, value[field]]),
+  );
+};
+
+const optionalInteger = (value) =>
+  Number.isInteger(value) && value > 0 ? value : null;
+
+export const deploymentFailureEvidence = (error) => {
+  const cause = error?.cause ?? null;
+  return {
+    name: typeof error?.name === "string" ? error.name : "Error",
+    failureStage:
+      typeof error?.state?.failureStage === "string"
+        ? error.state.failureStage
+        : null,
+    rollbackFailureStage:
+      typeof error?.state?.rollbackFailureStage === "string"
+        ? error.state.rollbackFailureStage
+        : null,
+    semanticAttempt: optionalInteger(cause?.semanticAttempt),
+    semanticAttemptsExhausted:
+      optionalInteger(cause?.semanticAttemptsExhausted),
+    deploymentObservation:
+      sanitizeObservation(cause?.deploymentObservation),
+    transitionAttempt: optionalInteger(cause?.transitionAttempt),
+    transitionAttemptsExhausted:
+      optionalInteger(cause?.transitionAttemptsExhausted),
+    transitionWindowMs:
+      optionalInteger(cause?.transitionWindowMs),
+    transitionClassification:
+      ["candidate", "prior-baseline", "unrecognized"].includes(
+        cause?.transitionClassification,
+      )
+        ? cause.transitionClassification
+        : null,
+    transitionObservation:
+      sanitizeObservation(cause?.transitionObservation),
+  };
+};

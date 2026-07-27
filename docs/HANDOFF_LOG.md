@@ -1,5 +1,24 @@
 # Handoff Log
 
+## 2026-07-27 — Alternative A Owner Approval and Implementation Candidate
+
+- **Owner decision:** OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 approves
+  `AU-TAP-TS001-001` Alternative A, implementation, independent AU-AGENT-003
+  review, and one subsequent controlled production attempt.
+- **Implementation:** Wait only on the exact registered prior
+  GET/HEAD/content/hash baseline; when the exact candidate root sentinel
+  appears, execute one full semantic contract. Unknown, transport, timeout, and
+  candidate-contract failures immediately enter the existing rollback path.
+- **Bounds:** Maximum 61 observations and a strict 120-second wall-clock
+  window, whichever closes first.
+- **Evidence:** Transition and failure artifacts use an explicit allowlist and
+  cannot retain response bodies, request headers, tokens, or account values.
+- **Verification:** 27 focused deployment tests, full 95-test suite, and strict
+  typecheck pass. Accepted application paths remain unchanged.
+- **Next gate:** Commit the exact source, obtain AU-AGENT-003 review, pass
+  required CI, and merge through protected `main` before the single authorized
+  dispatch.
+
 ## 2026-07-27 — Production Attempt 3 Verified Candidate and Rolled Back
 
 - **Workflow/source:** `30250084131` at exact protected-main source

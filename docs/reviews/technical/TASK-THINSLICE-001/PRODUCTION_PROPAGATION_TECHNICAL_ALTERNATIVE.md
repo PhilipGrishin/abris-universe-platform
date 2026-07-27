@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-001 |
 | Title | Production Default-Route Propagation Technical Alternative Proposal |
-| Status | `[PROPOSED]`; owner decision required before implementation or another deployment |
+| Status | `[APPROVED]`; implementation candidate `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 review and protected merge required before one authorized deployment |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.8; ADR-TS001-004 v1.3.4; Production Deployment Record v1.5.0; Production Deployment Verification v1.4.1; workflow run `30250084131` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; Production Deployment Record v1.6.0; Production Deployment Verification v1.4.1; workflow run `30250084131` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Owner decision; Cloudflare routing evidence; deployment-state-machine change; production smoke or rollback result |
@@ -190,12 +190,35 @@ prior baseline. Do not authorize another deployment until:
 3. AU-AGENT-003 independently reviews the exact source;
 4. required CI passes and the change merges through protected `main`.
 
-## Owner Decision Required
+## Owner Decision
 
-Approve or reject **Alternative A — Baseline-Aware Transition Window**. Approval
-authorizes only the deployment-tooling change and one subsequent controlled
-attempt. It does not change product acceptance, authorize application changes,
-or waive the production/browser verification gates.
+The Project Owner approved **Alternative A — Baseline-Aware Transition Window**
+on 2026-07-27 and authorized its implementation, independent AU-AGENT-003
+review, and one subsequent controlled production attempt. The attempt remains
+gated by exact-source review, required CI, and protected merge. Approval does
+not change product acceptance, authorize application changes, or waive the
+production/browser verification gates.
+
+## Implementation Candidate
+
+The implementation:
+
+- classifies a direct GET/HEAD observation against the exact registered prior
+  status, HEAD status, content type, and body SHA-256;
+- waits only for that exact prior classification;
+- recognizes the exact candidate root sentinel captured by zero-traffic smoke
+  and then runs one complete semantic contract with no semantic retry;
+- immediately fails every unknown response, transport failure, or candidate
+  contract failure so the existing rollback state machine runs;
+- enforces both a 61-observation ceiling and a strict 120-second wall-clock
+  ceiling;
+- retains only allowlisted status, hash, content type, CSP, cache, server,
+  classification, attempt, and window fields;
+- has deterministic success, prior-timeout, wall-clock-timeout, unknown-state,
+  transport-failure, candidate-failure, rollback, and evidence-sanitization
+  tests.
+
+This candidate does not change the accepted executable application paths.
 
 ## References
 

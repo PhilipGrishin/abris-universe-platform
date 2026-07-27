@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; attempt 3 passed zero-traffic smoke, promoted, then rolled back after the runner edge retained the exact prior cached baseline; TD-GATE-003 closed; Technical Alternative Proposal awaiting owner decision |
+| Status | No-deploy rehearsal `[TESTED]`; attempt 3 rolled back; TD-GATE-003 closed; owner-approved baseline-aware transition candidate `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 exact-source review and protected merge open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | Technical Design v1.5.8 section 12; ADR-TS001-004 v1.3.4; Production Deployment Verification v1.4.1; Production Deployment Record v1.5.0; Production Propagation Technical Alternative Proposal v1.0.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9 section 12; ADR-TS001-004 v1.3.5; Production Deployment Verification v1.4.1; Production Deployment Record v1.6.0; Production Propagation Technical Alternative Proposal v1.1.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -114,10 +114,9 @@ placeholder.
 
 Production remains blocked by:
 
-- Project Owner disposition of the baseline-aware post-promotion transition
-  proposal;
-- exact-source implementation, tests, AU-AGENT-003 review, and protected merge
-  if the proposal is approved;
+- exact-source AU-AGENT-003 review of the approved baseline-aware transition
+  implementation;
+- required remote CI and protected merge;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - corrected production and browser verification.
@@ -157,9 +156,17 @@ The implementation owner cannot change AU-AGENT-003 status.
 AU-AGENT-003 independently assigned exact observability remediation `a503500`
 task-scoped `VERIFIED`; 61 attempts apply only before promotion and production
 smoke remains at six. Superseded `7381112` is not mergeable. The independently
-allowed dispatch is now exhausted. Another deployment is not allowed until the
-Project Owner dispositions `AU-TAP-TS001-001` and any approved implementation
-passes an exact-source AU-AGENT-003 gate.
+allowed dispatch is now exhausted. The Project Owner approved Alternative A
+and one new controlled attempt. The attempt is not allowed until the
+implementation passes an exact-source AU-AGENT-003 gate, required CI, and
+protected merge.
+
+The implementation classifies the registered prior GET/HEAD/content/hash
+baseline separately from the exact candidate root sentinel, applies both
+61-observation and strict 120-second limits, performs one complete candidate
+contract without semantic retry, immediately rejects unknown and transport
+states, and allowlists retained failure evidence. Twenty-seven focused
+deployment tests pass.
 
 ## References
 

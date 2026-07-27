@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.8 |
+| Version | 1.5.9 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -83,6 +83,13 @@ Version 1.5.8 records attempt 3: zero-traffic semantic smoke passed on attempt
 retained runner-edge observation matched the exact prior cached baseline.
 Exact rollback succeeded. It registers a Technical Alternative Proposal
 without changing the current deployment contract.
+Version 1.5.9 records the Project Owner's approval of
+`AU-TAP-TS001-001` Alternative A and the tested implementation candidate. The
+post-promotion transition waits only on the exact registered prior baseline,
+uses both a 61-observation and strict 120-second ceiling, verifies the exact
+candidate once, and fails every unknown or candidate-defect state into the
+existing rollback path. Product behavior and accepted application source do
+not change.
 
 ## 2. Scope and Non-Scope
 
@@ -1028,12 +1035,16 @@ retains sanitized last-response metadata. Post-promotion smoke remains limited
 to six attempts. Failure after the pre-promotion interval requires a Technical
 Alternative Proposal; the gate must not be weakened silently.
 
-The third attempt passed the complete zero-traffic contract, promoted the
-candidate, then observed only the exact prior cached baseline during the
-six-attempt production window and rolled back exactly. The one authorized retry
-is exhausted. `AU-TAP-TS001-001` proposes a baseline-aware transition window;
-it remains `[PROPOSED]` and must not be implemented before Project Owner
-approval and AU-AGENT-003 exact-source review.
+The third attempt passed the complete zero-traffic contract and promoted the
+candidate. Production smoke exhausted six attempts; the final retained
+observation matched the exact prior cached baseline and exact rollback
+succeeded. The earlier authorized retry is exhausted. The Project Owner
+approved `AU-TAP-TS001-001` Alternative A and one new controlled attempt. Its
+implementation candidate waits only on the registered prior baseline for at
+most 61 observations and 120 seconds, then executes one full candidate
+contract. Unknown, transport, timeout, and candidate-contract failures remain
+fail-closed. AU-AGENT-003 exact-source review, required CI, and protected merge
+remain mandatory before dispatch.
 
 ## 16. Architecture Review Checklist
 

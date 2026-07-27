@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed on the exact prior cached baseline and rolled back; TD-GATE-003 closed; Technical Alternative Proposal and production/browser evidence open |
+| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A owner-approved and implementation candidate `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 exact-source review, protected merge, and production/browser evidence open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.8; ADR-TS001-004 v1.3.4; Production Deployment Verification v1.4.1; Production Propagation Technical Alternative Proposal v1.0.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; Production Deployment Verification v1.4.1; Production Propagation Technical Alternative Proposal v1.1.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -235,14 +235,31 @@ IndexedDB.
 ## Current Blocker
 
 TD-GATE-003 is closed and no further owner credential action is required.
-The one independently allowed retry is exhausted. Attempt 3 proved the
+The earlier independently allowed retry is exhausted. Attempt 3 proved the
 zero-traffic version but not default-route convergence within the six-attempt
-post-promotion window. The separately registered
+post-promotion window. The Project Owner approved the separately registered
 [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
-requires Project Owner disposition before implementation or another
-deployment. Do not silently extend post-promotion exposure or weaken the
-semantic contract. AU-AGENT-003 records production continuation as `BLOCKED`;
-TS001-DEPLOY-005 remains High/Open.
+Alternative A and one new controlled attempt. The baseline-aware implementation
+candidate and deterministic tests are complete. Do not dispatch the attempt
+until exact-source AU-AGENT-003 review, required CI, and protected merge pass.
+
+## Approved Baseline-Aware Transition
+
+After promotion, the workflow now:
+
+1. polls only while the direct GET/HEAD observation exactly matches the
+   registered prior status, HEAD status, content type, and body SHA-256;
+2. allows no more than 61 observations or 120 seconds, whichever is reached
+   first;
+3. runs one complete semantic production contract after the exact candidate
+   root sentinel appears;
+4. fails immediately on an unknown response, transport failure, or candidate
+   contract failure so the existing exact rollback executes;
+5. retains only allowlisted transition and failure evidence.
+
+Twenty-seven focused deployment tests pass. AU-AGENT-003 must independently
+close or re-disposition TS001-DEPLOY-005 at the exact implementation source
+before the newly authorized attempt may run.
 
 ## References
 

@@ -535,13 +535,14 @@
   rollback restored prior version `d1f2b05d` at 100 percent and the complete
   public baseline. The retained artifact digest is
   `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`.
-- `[PROPOSED]` `AU-TAP-TS001-001` defines a baseline-aware 120-second
+- `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]` `AU-TAP-TS001-001` defines a
+  baseline-aware 120-second
   post-promotion transition window with immediate rollback for any unknown or
-  candidate-contract failure. The one allowed retry is exhausted; Project
-  Owner disposition is required before implementation or another deployment.
-  AU-AGENT-003 assigns production continuation `BLOCKED`; High finding
-  TS001-DEPLOY-005 remains open. Evidence-wording finding TS001-DEPLOY-006 is
-  resolved in the reviewed documentation diff.
+  candidate-contract failure. The Project Owner approved the implementation,
+  independent AU-AGENT-003 review, and one new controlled attempt. Twenty-seven
+  focused deployment tests and the full 95-test suite pass. AU-AGENT-003
+  exact-source review, required CI, and protected merge remain mandatory
+  before dispatch.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -592,6 +593,6 @@ automatic rollback restored the exact prior version and public baseline.
 
 ## Next Step
 
-Obtain Project Owner disposition for Alternative A in
-`AU-TAP-TS001-001`. Do not implement the alternative or dispatch another
-production deployment before approval.
+Obtain AU-AGENT-003 exact-source review of the approved transition
+implementation, then required CI and protected merge before the one authorized
+production attempt.

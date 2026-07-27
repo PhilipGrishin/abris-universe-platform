@@ -56,7 +56,11 @@ export const executeProductionDeployment = async ({
     state.promoted = true;
 
     state.stage = "production-smoke";
-    state.productionSmoke = await smokeProduction();
+    state.productionSmoke = await smokeProduction({
+      priorVersionId,
+      uploadedVersionId: state.uploadedVersionId,
+      prePromotionSmoke: state.prePromotionSmoke,
+    });
     state.stage = "complete";
     return state;
   } catch (cause) {

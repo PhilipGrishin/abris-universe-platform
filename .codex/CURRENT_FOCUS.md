@@ -38,10 +38,13 @@ exact source `a503500`; superseded source `7381112` was rejected because it
 also extended post-promotion exposure. Run `30250084131` passed the complete
 zero-traffic candidate contract on attempt 17 and promoted. Production smoke
 exhausted six attempts; the final retained observation matched the exact prior
-cached baseline. Exact rollback succeeded. The one allowed retry is exhausted.
-`AU-TAP-TS001-001` requires Project Owner disposition before implementation
-or another deployment. AU-AGENT-003 assigns production continuation `BLOCKED`;
-TS001-DEPLOY-005 remains High/Open and TS001-DEPLOY-006 is resolved.
+cached baseline. Exact rollback succeeded. The earlier allowed retry is
+exhausted.
+The Project Owner approved `AU-TAP-TS001-001` Alternative A, its implementation,
+independent AU-AGENT-003 review, and one new controlled attempt. The
+baseline-aware implementation and 27 focused tests are complete.
+AU-AGENT-003 exact-source review, required CI, and protected merge remain
+mandatory before dispatch.
 
 ## Confirmed Inputs
 
@@ -66,7 +69,7 @@ TS001-DEPLOY-005 remains High/Open and TS001-DEPLOY-006 is resolved.
 
 ## Current Design State
 
-- Technical Design v1.5.8 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.9 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -276,8 +279,7 @@ remains open.
 
 ## Next Concrete Step
 
-Obtain Project Owner disposition for Alternative A in
-`AU-TAP-TS001-001`. If approved, implement the baseline-aware transition
-state machine with deterministic tests, obtain AU-AGENT-003 exact-source
-review, merge through protected `main`, and only then dispatch one controlled
-attempt. Never place secret values in chat or the repository.
+Commit the owner-approved baseline-aware transition candidate, obtain
+AU-AGENT-003 exact-source review, pass required CI, merge through protected
+`main`, and only then dispatch the one controlled attempt. Never place secret
+values in chat or the repository.

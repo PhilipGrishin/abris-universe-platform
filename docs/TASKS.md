@@ -96,12 +96,14 @@ authorized disposition.
   zero-traffic smoke on semantic attempt 17 and promoted candidate `5eca15e6`.
   Production smoke exhausted six attempts; the final retained observation
   matched the exact prior cached baseline. The exact prior version/baseline was
-  restored. The one allowed retry is exhausted. `AU-TAP-TS001-001` requires
-  Project Owner disposition before implementation or another deployment.
-  AU-AGENT-003 assigns production continuation `BLOCKED`; TS001-DEPLOY-005 is
-  High/Open and TS001-DEPLOY-006 is resolved. Production/browser results
+  restored. The earlier allowed retry is exhausted. The Project Owner approved
+  `AU-TAP-TS001-001` Alternative A, implementation, AU-AGENT-003 review, and
+  one new controlled attempt. The baseline-aware implementation and 27 focused
+  tests are complete; exact-source AU-AGENT-003 review, required CI, and
+  protected merge remain mandatory before dispatch. Production/browser results
   remain open.
-- **Source:** PROD-DEC-013; Technical Design sections 12.2 through 12.4;
+- **Source:** PROD-DEC-013;
+  OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;
   AU-AGENT-003 for independent engineering verification.

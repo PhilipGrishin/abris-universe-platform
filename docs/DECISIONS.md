@@ -259,6 +259,44 @@
   Collaboration Bridge, acceptance, and AU-AGENT-003 branch chain, by PR #2 for
   AU-AGENT-004, and by PR #3 for AU-AGENT-005. AU-AGENT-006 uses the same gate.
 
+## OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 — Approve the Baseline-Aware Transition Window
+
+- **Status:** `[APPROVED]`
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive dated 2026-07-27 approving
+  `AU-TAP-TS001-001` Alternative A.
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; finding
+  TS001-DEPLOY-005.
+- **Context:** Run `30250084131` completely verified the candidate through the
+  zero-traffic version override, promoted it, then exhausted the existing
+  post-promotion smoke window. The final retained runner-edge observation
+  still matched the exact registered prior baseline, and automatic rollback
+  succeeded.
+- **Decision:** Implement the baseline-aware post-promotion transition from
+  `AU-TAP-TS001-001`. Continue polling only while GET status, HEAD status,
+  content type, and body SHA-256 exactly match the registered prior baseline.
+  When the exact candidate root sentinel appears, run one complete production
+  semantic contract. Roll back immediately on an unrecognized response,
+  transport failure, or candidate-contract failure.
+- **Boundary:** The transition is limited to 61 observations and a strict
+  120-second wall-clock window. The full candidate smoke is not generically
+  retried. Evidence remains allowlisted. No product behavior, accepted
+  executable application, DNS, secret scope, security-header contract, or
+  rollback anchor changes.
+- **Authorization:** Implement, independently review through AU-AGENT-003, and,
+  only after protected merge and passing gates, perform one controlled
+  production attempt.
+- **Alternatives:** One-percent canary, access-protected preview hostname,
+  fixed sleep/generic long retry, or no deployment, as evaluated in
+  `AU-TAP-TS001-001`.
+- **Consequence:** TS001-DEPLOY-005 has an owner disposition but remains open
+  until exact implementation, deterministic tests, required CI, and
+  AU-AGENT-003 reverification pass. The one new deployment attempt cannot be
+  dispatched before those gates close.
+- **Reversibility:** Revert the deployment-tooling commit; runtime rollback
+  continues to target the registered immutable prior version.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent
