@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.10 |
+| Version | 1.3.11 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -193,3 +193,9 @@ production smoke, rollback rehearsal, and local-data compatibility.
   exact external state `enabled: false`, `previews_enabled: true`, a
   fail-closed preflight, and retained sanitized version provenance; no further
   attempt is authorized.
+- 2026-07-27: Version 1.3.11 records
+  OWNER-DEC-TS001-PRODUCTION-PREVIEW-003, reload-confirmed remote state
+  `enabled: false`, `previews_enabled: true`, locally tested read-only
+  exact-state preflight, deployment-evidence schema v3, and sanitized
+  upload/version-ID retention. Independent exact-source review and protected
+  merge remain open before the single new authorized attempt.

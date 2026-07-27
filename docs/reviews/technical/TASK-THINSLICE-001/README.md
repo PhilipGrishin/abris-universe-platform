@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.31.0 |
+| Version | 1.32.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -142,8 +142,11 @@ disabled and Wrangler emitted no immutable preview URL. The prior version and
 public baseline remain unchanged. The attempt authority is exhausted;
 AU-AGENT-003 assigned production continuation `REWORK REQUIRED` with
 TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium).
-`AU-TAP-TS001-003` is `[PROPOSED]` and requires owner disposition before
-exact-state preflight/provenance implementation or another run.
+The Project Owner approved `AU-TAP-TS001-003` through
+OWNER-DEC-TS001-PRODUCTION-PREVIEW-003. Exact remote state is reload-confirmed;
+exact-state preflight and sanitized upload/version provenance are implemented
+and locally tested. AU-AGENT-003 exact-source review, required CI, protected
+merge, and exact-main CI remain mandatory before the one authorized attempt.
 
 ## Owner
 

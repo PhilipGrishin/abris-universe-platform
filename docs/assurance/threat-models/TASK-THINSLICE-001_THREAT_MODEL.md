@@ -8,7 +8,7 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.5.2 |
+| Version | 1.5.3 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `AU-TAP-TS001-002`, `AU-TAP-TS001-003`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
@@ -99,7 +99,7 @@ no product-data network egress in Phase 0.
 | TM-020 | Concurrent tabs corrupt progress ordering or derive from stale state | exclusive per-project Web Lock; read-only second tab; in-transaction derivation and sequence; event payload hash | two-context concurrency and duplicate-ID tests | Web Locks unavailable disables editing |
 | TM-021 | Failed imports retain large orphaned source Blobs | byte limit before persistence; failure/interruption transaction deletes Blob and preserves bounded metadata/report | repeated-failure quota and orphan-absence tests | Browser transaction defect |
 | TM-022 | Production completes while edges alternate between prior, candidate, or unknown cache states | hostname-only purge; exact prior/candidate/unknown classification; three consecutive complete candidate contracts; abort-aware request/backoff; 25-observation and 120-second limits; immediate rollback on unknown or inconsistent state | deterministic stability/deadline tests and retained production evidence | One runner edge cannot prove simultaneous global convergence |
-| TM-023 | Remote Worker subdomain state drifts from repository configuration and consumes an attempt without a usable immutable preview | owner-controlled exact state `enabled: false`, `previews_enabled: true`; read-only exact-state preflight before version upload; preserve sanitized upload/version provenance; fail closed on false, missing, malformed, or unauthorized state | dashboard/API state evidence; deterministic preflight, no-mutation, provenance, and disclosure-boundary tests | Remote state can drift after verification; attempt 5 likely left an untraceable zero-traffic version |
+| TM-023 | Remote Worker subdomain state drifts from repository configuration and consumes an attempt without a usable immutable preview | owner-controlled exact state `enabled: false`, `previews_enabled: true`; read-only exact-state preflight before version upload; preserve sanitized upload/version provenance; fail closed on false, missing, malformed, or unauthorized state | reload-confirmed dashboard state; deterministic preflight, no-upload/no-mutation, provenance, and disclosure-boundary tests `[TESTED]`; exact-source review `[OPEN]` | Remote state can drift after verification; attempt 5 likely left an untraceable zero-traffic version |
 
 ## Security Requirements
 

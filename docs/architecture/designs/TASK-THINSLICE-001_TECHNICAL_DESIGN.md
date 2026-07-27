@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.14 |
+| Version | 1.5.15 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -118,6 +118,14 @@ TS001-DEPLOY-012/013. `AU-TAP-TS001-003` proposes exact owner-controlled
 remote state `enabled: false`, `previews_enabled: true`, read-only fail-closed
 preflight, and sanitized version-provenance retention after upload. The
 proposal changes no approved architecture until owner disposition.
+
+Version 1.5.15 records OWNER-DEC-TS001-PRODUCTION-PREVIEW-003. The owner
+established and reload-confirmed exact remote state `enabled: false`,
+`previews_enabled: true`. The workflow now queries that state read-only and
+fails before upload on drift, malformed state, or authorization failure.
+Deployment evidence schema v3 retains sanitized upload occurrence and
+immutable version ID even when preview discovery fails. No product, accepted
+application, DNS, custom-domain, purge, header, or rollback contract changes.
 
 ## 2. Scope and Non-Scope
 
@@ -924,6 +932,7 @@ feature branch
   -> security and dependency review
   -> merge to main
   -> repeat trusted build checks
+  -> require remote enabled:false + previews_enabled:true
   -> upload immutable Cloudflare version
   -> smoke exact immutable *.workers.dev preview version
   -> promote exact version to 100 percent
@@ -958,6 +967,8 @@ Forked pull requests never receive production secrets.
   environment;
 - required checks must pass before merge and deployment;
 - concurrent production deploys are serialized;
+- the read-only Worker subdomain query must return exactly `enabled: false`
+  and `previews_enabled: true` before any version upload;
 - deployment records source commit, immutable Cloudflare version ID, previous
   version ID, immutable preview result, hostname-purge result, workflow run,
   production stability result, and operator;
@@ -965,6 +976,8 @@ Forked pull requests never receive production secrets.
   artifact;
 - the existing custom domain remains attached to the existing Worker; the
   pipeline does not mutate DNS.
+- successful upload sets `uploadOccurred` and retains the immutable version ID
+  even if preview discovery fails; preview capability URLs are never retained.
 
 Before the first deploy, TD-GATE-003 records the existing placeholder version
 and a recoverable artifact. If the platform cannot provide a restorable prior

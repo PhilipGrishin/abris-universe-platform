@@ -7,10 +7,10 @@
 | Status | Historical implementation gate `VERIFIED`; production continuation `REWORK REQUIRED`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design v1.5.14; ADR-TS001-004 v1.3.10; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.0.0; AU-TAP-TS001-002 v1.3.0; AU-TAP-TS001-003 v1.1.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; PR #11; runs `30261460673`, `30261463795`, `30262250573`, and `30262328350`; retained artifact `8651402890` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; Technical Design v1.5.15; ADR-TS001-004 v1.3.11; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.1.0; AU-TAP-TS001-002 v1.3.0; AU-TAP-TS001-003 v1.2.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; PR #11; runs `30261460673`, `30261463795`, `30262250573`, and `30262328350`; retained artifact `8651402890` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -528,9 +528,16 @@ sanitized evidence.
 - **Exact live source:** `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`.
 - **Mandatory unresolved findings:** TS001-DEPLOY-012 (High) and
   TS001-DEPLOY-013 (Medium).
-- **Attempt authority:** exhausted by run `30262328350`; no automatic or manual
-  rerun is authorized under the prior disposition.
-- **Provider-state mutation:** not authorized by the exhausted disposition.
+- **Prior attempt authority:** exhausted by run `30262328350`; no repeat is
+  authorized under OWNER-DEC-TS001-PRODUCTION-DELIVERY-002.
+- **New conditional authority:** OWNER-DEC-TS001-PRODUCTION-PREVIEW-003
+  authorizes one separate attempt only after remediation, exact-source
+  AU-AGENT-003 review, protected merge, and exact-main CI. It is not yet
+  exercisable at this report revision.
+- **Provider state:** the Project Owner authorized exact state
+  `enabled: false`, `previews_enabled: true`; Dashboard application and reload
+  confirmation are registered. This does not resolve findings without
+  exact-source implementation review.
 - **Required remediation:** register the run and findings; obtain explicit
   owner authority for the exact remote state and another attempt; implement
   read-only exact-state preflight and sanitized version-ID preservation; add
@@ -561,8 +568,9 @@ later live-evidence `REWORK REQUIRED` decision.
   remain open.
 - A single workflow runner cannot prove simultaneous global edge convergence.
 
-These items remain mandatory evidence. No new protected-main attempt is
-currently authorized.
+These items remain mandatory evidence. One attempt is conditionally authorized
+but cannot be dispatched before the registered review, merge, and exact-main
+CI gates pass.
 
 ## References
 

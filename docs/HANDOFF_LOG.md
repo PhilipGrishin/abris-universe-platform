@@ -1,5 +1,23 @@
 # Handoff Log
 
+## 2026-07-27 — Remote Preview Prerequisite Remediation Authorized and Implemented
+
+- **Owner decision:** OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 approves
+  `AU-TAP-TS001-003` Alternative A and exactly one later production attempt
+  after every implementation gate.
+- **Provider state:** Production Worker URL Off and Preview URLs On were applied
+  in the authenticated Cloudflare Dashboard and confirmed after full reload as
+  `enabled: false`, `previews_enabled: true`.
+- **Implementation:** read-only exact-state preflight before upload;
+  deployment-evidence schema v3; sanitized `uploadOccurred` and immutable
+  version-ID retention on missing-preview failure.
+- **Safety:** no DNS, custom-domain, traffic, cache, product, or accepted
+  application change. No ordinary `wrangler deploy`.
+- **Evidence:** focused exact-state, unauthorized/malformed response,
+  no-upload/no-mutation, provenance, and disclosure-boundary tests pass.
+- **Next gate:** AU-AGENT-003 exact-source review before branch CI and protected
+  merge.
+
 ## 2026-07-27 — Immutable Preview Attempt Failed Before Production Mutation
 
 - **Task/source:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT at protected-main

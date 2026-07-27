@@ -12,6 +12,7 @@ import {
   readVersionUpload,
   validateProductionDomain,
   validateProductionPreflight,
+  validateWorkerSubdomainResponse,
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
 import { environmentForWrangler } from "./production-deployment-environment.mjs";
@@ -118,6 +119,23 @@ const productionDomain = async () => {
   });
 };
 
+const productionWorkerSubdomain = async () => {
+  const query = new URL(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/workers/scripts/${workerName}/subdomain`,
+  );
+  const response = await fetch(query, {
+    headers: {
+      Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+    },
+    redirect: "error",
+    signal: AbortSignal.timeout(10_000),
+  });
+  return validateWorkerSubdomainResponse({
+    status: response.status,
+    response: await response.json(),
+  });
+};
+
 const sourceCommit = process.env.GITHUB_SHA;
 const expectedCommit = process.env.EXPECTED_SOURCE_COMMIT;
 assert(process.env.GITHUB_REF_NAME === "main", "Production deploys require main.");
@@ -184,6 +202,7 @@ let failure;
 try {
   lifecycle = await executeProductionDeployment({
     priorVersionId: prior.versionId,
+    verifyRemotePreviewState: productionWorkerSubdomain,
     uploadVersion: async () => {
       runWrangler(
         [
@@ -286,7 +305,7 @@ try {
   throw error;
 } finally {
   const evidence = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     workerName,
     productionUrl,
     sourceCommit,

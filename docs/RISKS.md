@@ -518,8 +518,8 @@
 
 ## RISK-020 — Remote Preview Setting Drifts From Reviewed Configuration
 
-- **Status:** `[OPEN]`; observed in run `30262328350`; `AU-TAP-TS001-003`
-  `[PROPOSED]`
+- **Status:** Mitigation `[IMPLEMENTED]`, locally `[TESTED]`; provider state
+  reload-confirmed; independent review and production evidence `[OPEN]`
 - **Probability:** Observed
 - **Impact:** High
 - **Trigger:** The repository requires `workers_dev: false` and
@@ -535,10 +535,12 @@
 - **Mitigation:** Run `30262328350` failed before preview smoke, promotion,
   purge, or traffic mutation. The prior version remained at 100 percent and
   independent GET/HEAD/hash checks retained the registered public baseline.
+  OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 establishes the exact remote state.
+  The implementation now fails before upload on drift and retains sanitized
+  version provenance after a successful upload.
 - **Fallback:** Keep the prior production version. Do not repeat the workflow
-  until the owner approves `AU-TAP-TS001-003`, the exact remote state is
-  established, the read-only preflight and evidence correction are implemented
-  and independently reviewed, required CI and protected merge pass, and new
-  attempt authority exists.
+  until the read-only preflight and evidence correction are independently
+  reviewed, required CI and protected merge pass, and the exact-main source is
+  selected for the single owner-authorized attempt.
 - **Owner:** Project Owner for remote setting and new attempt authority;
   AU-AGENT-001 for technical correction; AU-AGENT-003 for independent review

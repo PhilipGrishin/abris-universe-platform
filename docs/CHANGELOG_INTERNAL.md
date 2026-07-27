@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.25.0 |
+| Version | 4.26.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,20 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Remote Preview Prerequisite Remediation Implemented
+
+- Registered OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 approval of
+  `AU-TAP-TS001-003` Alternative A and one controlled post-gate attempt.
+- Applied and reload-confirmed remote state `enabled: false`,
+  `previews_enabled: true` without changing the custom domain, traffic, or
+  cache.
+- Added read-only exact-state preflight before version upload.
+- Added deployment-evidence schema v3 with sanitized upload occurrence and
+  immutable version-ID retention when preview discovery fails.
+- Added deterministic disabled, malformed/unauthorized, no-mutation,
+  provenance, and disclosure-boundary tests.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Remote Preview Prerequisite Failure Recorded
 
