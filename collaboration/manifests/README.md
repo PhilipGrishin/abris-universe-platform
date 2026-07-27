@@ -69,7 +69,7 @@ not approve returned meaning.
 - [`AU-EX-20260727-001`](AU-EX-20260727-001/README.md) —
   independent production acceptance review of the successful bounded
   TASK-THINSLICE-001 deployment at `https://abris.653915.com`; checksum-bound
-  package prepared against canonical evidence source `3796cb3` and deployed
+  package exported against canonical evidence source `3796cb3` and deployed
   application source `1021abf3`; return pending, with no further deployment
   authority.
 

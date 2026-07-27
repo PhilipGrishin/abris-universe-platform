@@ -353,7 +353,8 @@ remains open.
 
 ## Next Concrete Step
 
-Export the prepared `AU-EX-20260727-001` package through the Collaboration
-Bridge for independent bounded production acceptance. Do not retry production.
-Preserve the exact deployed source, retained evidence, and declared
-limitations. Never place secret values in chat or the repository.
+Wait for the registered Claude return to exported exchange
+`AU-EX-20260727-001`. Do not retry production. Preserve the exact deployed
+source, retained evidence, and declared limitations. Validate any future
+return through the Collaboration Bridge before integration. Never place secret
+values in chat or the repository.

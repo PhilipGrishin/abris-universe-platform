@@ -3,7 +3,8 @@
 ## 2026-07-27 — TASK-THINSLICE-001 Production Acceptance Handoff Registered
 
 - **Status:** Successful bounded production result recorded; independent
-  production acceptance exchange `AU-EX-20260727-001` registered.
+  production acceptance exchange `AU-EX-20260727-001` exported to the external
+  Claude inbox.
 - **Evidence source:** Canonical main `3796cb3`; deployed application source
   `1021abf3`; workflow run `30278965044`; artifact `8658016223`; live Worker
   version `8c49fb69`.
@@ -14,8 +15,8 @@
   the Bridge. Claude may not edit the repository, deploy, alter production, or
   expand product scope.
 - **Documentation Impact:** Material.
-- **Next step:** Prepare, validate, and export the checksum-bound package, then
-  stop for the registered Claude return.
+- **Next step:** Stop for the registered Claude return; validate it through the
+  Bridge before any canonical integration.
 
 ## 2026-07-27 — Production Deployment Completed
 

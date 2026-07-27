@@ -4,7 +4,7 @@
 | --- | --- |
 | Document ID | AU-COLLAB-EX-20260727-001 |
 | Title | TASK-THINSLICE-001 Production Acceptance Exchange |
-| Status | `PREPARED`; source `CURRENT`; return `PENDING`; integration `NOT_STARTED` |
+| Status | `EXPORTED`; source `CURRENT`; return `PENDING`; integration `NOT_STARTED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Independent Reviewer | Claude Cowork — Quality, Security & Independent Acceptance Lead |
@@ -49,7 +49,8 @@ outside the exact production scope.
 - Retained production artifact: `8658016223`
 - Registered files: 97
 - Registered payload bytes: 1,143,270
-- Lifecycle: `PREPARED`
+- External inbox: exported and checksum-bound
+- Lifecycle: `EXPORTED`
 - Return: pending
 - Project `[VERIFIED]`: unchanged pending a valid reviewed return
 - Further production deployment: not authorized
