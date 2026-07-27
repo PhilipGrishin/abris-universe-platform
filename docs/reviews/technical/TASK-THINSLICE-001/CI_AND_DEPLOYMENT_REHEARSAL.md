@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; attempts 3 and 4 rolled back; TD-GATE-003 closed; Alternative A safety execution `VERIFIED`; production continuation `BLOCKED` |
+| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview and hostname-purge continuation `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.8.0 |
+| Version | 1.10.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11 section 12; ADR-TS001-004 v1.3.7; Production Deployment Verification v1.6.0; Production Deployment Record v1.7.0; Production Propagation Technical Alternative Proposal v1.2.0; Threat Model TM-011 through TM-019; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; protected-main source `80d942ec`; runs `30252463472` and `30253457090` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.2.0; Technical Design v1.5.13 section 12; ADR-TS001-004 v1.3.9; Production Deployment Verification v1.7.0; Production Deployment Record v1.9.0; Threat Model TM-011 through TM-022; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -174,6 +174,33 @@ contract without semantic retry, immediately rejects unknown and transport
 states, and allowlists retained failure evidence. Twenty-seven focused
 deployment tests pass.
 
+## Immutable Preview and Purge Rehearsal
+
+OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 replaces the blocked custom-domain
+override continuation with:
+
+- exact immutable Workers preview discovery and full-contract verification;
+- exact-version promotion to 100 percent;
+- hostname-only purge for `abris.653915.com` using a separate zone-scoped
+  Cache Purge token and a strict 10-second operation timeout;
+- three consecutive complete production contracts inside 25 observations and
+  120 seconds;
+- rollback, second hostname purge, active-version confirmation, and bounded
+  registered-baseline restoration using the shared remaining deadline.
+
+The no-deploy rehearsal now requires the exact reviewed Wrangler static-assets
+configuration, including `workers_dev: false` and `preview_urls: true`, and
+rejects every deployment or purge secret/variable marker in the generated
+bundle. Local evidence passes strict typecheck, 46 script tests, 68 package
+tests, production build verification, dependency audit with no known
+vulnerabilities, and Wrangler dry-run. No Cloudflare mutation occurred.
+AU-AGENT-003 independently reviewed exact source `1054a2f0`, resolved the
+preliminary purge-timeout, deadline, classification, and preview-capability
+findings, recorded no remaining finding, and assigned task-scoped Engineering
+Verification Status `VERIFIED`. Both exact-source CI runs pass. Protected
+merge and the single authorized live attempt remain open. Abort-aware request
+and backoff tests distinguish exact prior, exact candidate, and unknown states.
+
 ## References
 
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
@@ -183,4 +210,5 @@ deployment tests pass.
 - [Client Integration Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [Task Review Index](README.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
+- [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)

@@ -98,7 +98,27 @@ export const readVersionUpload = (outputPath) => {
     .find((entry) => entry.type === "version-upload");
   const versionId = upload?.version_id ?? upload?.versionId;
   assert(typeof versionId === "string", "Wrangler did not report a version ID.");
-  return { versionId };
+  const previewUrl = upload?.preview_url ?? upload?.previewUrl;
+  assert(
+    typeof previewUrl === "string",
+    "Wrangler did not report an immutable preview URL.",
+  );
+  const parsedPreviewUrl = new URL(previewUrl);
+  assert(
+    parsedPreviewUrl.protocol === "https:" &&
+      parsedPreviewUrl.pathname === "/" &&
+      parsedPreviewUrl.port === "" &&
+      parsedPreviewUrl.search === "" &&
+      parsedPreviewUrl.hash === "" &&
+      parsedPreviewUrl.username === "" &&
+      parsedPreviewUrl.password === "" &&
+      parsedPreviewUrl.hostname.endsWith(".workers.dev"),
+    "Wrangler reported an invalid immutable preview URL.",
+  );
+  return {
+    versionId,
+    previewUrl: parsedPreviewUrl.origin,
+  };
 };
 
 export const writeJsonEvidence = (outputPath, evidence) => {
@@ -107,6 +127,24 @@ export const writeJsonEvidence = (outputPath, evidence) => {
     `${JSON.stringify(evidence, null, 2)}\n`,
     "utf8",
   );
+};
+
+const withoutBaseUrl = (value) => {
+  if (!value || typeof value !== "object") return value ?? null;
+  const { baseUrl: _baseUrl, ...evidence } = value;
+  return evidence;
+};
+
+export const deploymentLifecycleEvidence = (state) => {
+  if (!state || typeof state !== "object") return null;
+  return {
+    ...state,
+    candidate: state.candidate
+      ? { versionId: state.candidate.versionId }
+      : null,
+    previewSmoke: withoutBaseUrl(state.previewSmoke),
+    productionSmoke: withoutBaseUrl(state.productionSmoke),
+  };
 };
 
 const observationFields = [
@@ -133,6 +171,7 @@ const optionalInteger = (value) =>
 
 export const deploymentFailureEvidence = (error) => {
   const cause = error?.cause ?? null;
+  const rollbackCause = error?.rollbackCause ?? null;
   return {
     name: typeof error?.name === "string" ? error.name : "Error",
     failureStage:
@@ -161,5 +200,26 @@ export const deploymentFailureEvidence = (error) => {
         : null,
     transitionObservation:
       sanitizeObservation(cause?.transitionObservation),
+    stabilityAttempt: optionalInteger(cause?.stabilityAttempt),
+    stabilityAttemptsExhausted:
+      optionalInteger(cause?.stabilityAttemptsExhausted),
+    stabilityWindowMs:
+      optionalInteger(cause?.stabilityWindowMs),
+    stabilityClassification:
+      [
+        "prior-baseline",
+        "candidate-contract",
+        "candidate-not-stable",
+        "unrecognized",
+        "timeout",
+      ].includes(cause?.stabilityClassification)
+        ? cause.stabilityClassification
+        : null,
+    stabilityObservation:
+      sanitizeObservation(cause?.stabilityObservation),
+    rollbackAttemptsExhausted:
+      optionalInteger(rollbackCause?.rollbackAttemptsExhausted),
+    rollbackObservation:
+      sanitizeObservation(rollbackCause?.rollbackObservation),
   };
 };

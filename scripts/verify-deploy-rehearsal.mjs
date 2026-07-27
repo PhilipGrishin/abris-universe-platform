@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { deepStrictEqual } from "node:assert";
 import {
   existsSync,
   readFileSync,
@@ -10,8 +11,36 @@ import { extname, join, resolve } from "node:path";
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
 const rehearsalRoot = resolve(repositoryRoot, ".deploy-dry-run");
+const wranglerConfigPath = resolve(
+  repositoryRoot,
+  "apps/web/wrangler.jsonc",
+);
 if (!existsSync(rehearsalRoot)) {
   throw new Error("Wrangler dry-run output is missing.");
+}
+
+const wranglerConfig = JSON.parse(
+  readFileSync(wranglerConfigPath, "utf8"),
+);
+try {
+  deepStrictEqual(wranglerConfig, {
+    $schema: "../../node_modules/wrangler/config-schema.json",
+    name: "abris-universe",
+    main: "./worker/index.ts",
+    compatibility_date: "2026-07-26",
+    workers_dev: false,
+    preview_urls: true,
+    assets: {
+      directory: "./dist",
+      binding: "ASSETS",
+      not_found_handling: "single-page-application",
+      run_worker_first: true,
+    },
+  });
+} catch {
+  throw new Error(
+    "Wrangler production delivery config differs from the exact reviewed static-asset and immutable-preview contract.",
+  );
 }
 
 const outputFiles = [];
@@ -36,6 +65,8 @@ if (totalBytes > 5 * 1024 * 1024) {
 const forbiddenMarkers = [
   "CLOUDFLARE_API_TOKEN",
   "CLOUDFLARE_ACCOUNT_ID",
+  "CLOUDFLARE_CACHE_PURGE_TOKEN",
+  "CLOUDFLARE_ZONE_ID",
   "github_pat_",
   "-----BEGIN PRIVATE KEY-----",
 ];

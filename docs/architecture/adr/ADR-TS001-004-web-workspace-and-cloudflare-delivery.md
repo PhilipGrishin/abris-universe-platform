@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; credentials configured; TD-GATE-003 `[TESTED]`, closed; successful production/browser evidence `[OPEN]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, `[TESTED]`, exact-source engineering `VERIFIED`; credentials configured; TD-GATE-003 `[TESTED]`, closed; protected merge and successful production/browser evidence `[OPEN]` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.7 |
+| Version | 1.3.9 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -41,8 +41,10 @@ deferred.
 
 Deliver the static `dist/` artifact through the existing Cloudflare Worker
 `abris-universe`. GitHub Actions builds from a frozen lockfile, runs mandatory
-checks, uploads an immutable Cloudflare version, smokes that version, promotes
-it to `abris.653915.com`, and records both new and previous version IDs.
+checks, uploads an immutable Cloudflare version, smokes its exact Workers
+preview URL, promotes that version to `abris.653915.com`, purges only that
+hostname, requires three consecutive complete production contracts, and
+records both new and previous version IDs.
 
 Production deployment is blocked until the existing placeholder is recorded as
 a recoverable rollback target. The pipeline does not change DNS.
@@ -74,8 +76,10 @@ production smoke checks assert the headers before a release can pass.
 
 ## Risks
 
-- A public preview URL could expose unreleased work; previews remain disabled
-  until access policy is approved.
+- A version preview URL is publicly reachable during a protected production
+  run. It contains only the independently accepted static application, is not
+  advertised, and carries no user or server-side data. Pull-request previews
+  remain disabled.
 - Repository-plan features may limit environment reviewers; required branch
   checks and PR review remain mandatory controls.
 - The current placeholder may not have a recoverable version or source.
@@ -170,3 +174,14 @@ production smoke, rollback rehearsal, and local-data compatibility.
   baseline during the one-shot full contract. The workflow failed closed and
   restored the exact prior version/baseline. No retry is authorized;
   TS001-DEPLOY-007 blocks continuation pending separate disposition.
+- 2026-07-27: Version 1.3.8 records
+  OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and `AU-TAP-TS001-002`. The approved
+  continuation uses the exact immutable Workers preview, exact-version
+  promotion, a separate least-privilege hostname-purge credential, and three
+  consecutive complete production contracts. Exact-source AU-AGENT-003
+  verification and protected merge remain required before one controlled
+  attempt.
+- 2026-07-27: Version 1.3.9 records AU-AGENT-003 task-scoped Engineering
+  Verification Status `VERIFIED` at exact source `1054a2f0`, no remaining
+  finding, and successful CI runs `30261460673` and `30261463795`. Protected
+  merge and live production/browser evidence remain open.

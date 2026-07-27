@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.29.0 |
+| Version | 1.30.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -50,6 +50,7 @@ acceptance remains canonical under `product/reviews/`.
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Production Deployment Record](PRODUCTION_DEPLOYMENT.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
+- [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
 - [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
@@ -128,6 +129,13 @@ complete. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source
 `80d942ec`; run `30253457090` exhausted the one authorized attempt and rolled
 back safely. AU-AGENT-003 records safety execution `VERIFIED`, production
 continuation `BLOCKED`, and High finding TS001-DEPLOY-007.
+The Project Owner subsequently approved `AU-TAP-TS001-002`, replacing the
+unstable custom-domain override with an immutable Workers preview, exact
+version promotion, least-privilege hostname purge, and a three-pass production
+stability quorum. Implementation and tests pass; exact-source AU-AGENT-003
+review passed at `1054a2f0` with no remaining finding, and CI runs
+`30261460673` and `30261463795` passed. Protected merge and the single
+controlled attempt remain gated.
 
 ## Owner
 

@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.11 |
+| Version | 1.5.13 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -99,6 +99,16 @@ observation, the one-shot complete contract received the exact prior cached
 baseline and failed into verified rollback. No retry is authorized;
 TS001-DEPLOY-007 blocks production continuation pending a separately reviewed
 technical alternative or explicit stop decision.
+Version 1.5.12 records the owner-approved immutable Workers preview and
+hostname-purge continuation after TS001-DEPLOY-007. It changes deployment
+tooling and credential separation only; the accepted application, product
+behavior, production hostname, DNS, and rollback anchor are unchanged.
+
+Version 1.5.13 records AU-AGENT-003 exact-source Engineering Verification
+Status `VERIFIED` for commit `1054a2f0`, resolution of TS001-DEPLOY-008 through
+TS001-DEPLOY-011, and two successful exact-source CI runs. It changes no
+architecture or product meaning. Protected merge and live production/browser
+evidence remain separate gates.
 
 ## 2. Scope and Non-Scope
 
@@ -903,13 +913,13 @@ feature branch
   -> unit + golden + persistence + renderer checks
   -> production build
   -> security and dependency review
-  -> optional protected preview
   -> merge to main
   -> repeat trusted build checks
   -> upload immutable Cloudflare version
-  -> smoke preview version
-  -> deploy version to production
-  -> smoke abris.653915.com
+  -> smoke exact immutable *.workers.dev preview version
+  -> promote exact version to 100 percent
+  -> purge cache for abris.653915.com
+  -> require three consecutive full production contracts
   -> record deployment evidence
 ```
 
@@ -917,16 +927,21 @@ GitHub Actions permissions default to `contents: read`. Cloudflare credentials
 are production-environment secrets:
 
 - `CLOUDFLARE_API_TOKEN`;
-- `CLOUDFLARE_ACCOUNT_ID`.
+- `CLOUDFLARE_ACCOUNT_ID`;
+- `CLOUDFLARE_CACHE_PURGE_TOKEN`;
+- `CLOUDFLARE_ZONE_ID` as a non-secret environment variable.
 
-The token is scoped to the required account and Worker deployment permission.
-It receives no DNS-edit authority. The repository contains only variable names,
-never values. Third-party actions are pinned to full commit SHAs during
-implementation.
+The deployment token is scoped to the required account and Worker deployment
+permission. The separate purge token has only Zone Cache Purge permission for
+the `653915.com` zone. Neither receives DNS-edit authority. The repository
+contains only variable names, never values. Third-party actions are pinned to
+full commit SHAs during implementation.
 
-Pull-request preview deployment is enabled only after its URL access model is
-approved and protected. Until then, PRs produce a build artifact without a
-public deployment. Forked pull requests never receive production secrets.
+Pull requests produce build artifacts without a public deployment. The
+version-specific Workers preview exists only inside the protected production
+workflow after merge and is used solely for the exact pre-promotion contract.
+It contains the accepted static application and no user or server-side data.
+Forked pull requests never receive production secrets.
 
 ### 12.3 Production safeguards
 
@@ -935,7 +950,8 @@ public deployment. Forked pull requests never receive production secrets.
 - required checks must pass before merge and deployment;
 - concurrent production deploys are serialized;
 - deployment records source commit, immutable Cloudflare version ID, previous
-  version ID, workflow run, smoke result, and operator;
+  version ID, immutable preview result, hostname-purge result, workflow run,
+  production stability result, and operator;
 - the workflow deploys the same reviewed build/version, not a locally rebuilt
   artifact;
 - the existing custom domain remains attached to the existing Worker; the
@@ -963,9 +979,20 @@ Pre-promotion smoke checks validate the immutable preview version:
   bodies, headers, logs, analytics, or telemetry;
 - browser smoke opens the import entry point without console errors.
 
-After promotion, the same checks run against `abris.653915.com`. Failure
-automatically invokes Cloudflare rollback to the recorded prior version and
-re-runs smoke checks. Manual rollback uses the same recorded version ID.
+After preview success, the exact version is promoted to 100 percent and the
+workflow purges cache only for `abris.653915.com`; each purge operation has a
+strict 10-second timeout. Production must pass the
+same complete contract three consecutive times within 25 observations and a
+strict 120-second ceiling. An exact registered prior-baseline observation
+resets the consecutive-pass quorum; an unknown response or an internally
+inconsistent exact-candidate contract fails immediately. Requests and retry
+backoffs consume the shared deadline and are abort-aware; production stability
+uses no inner request retry.
+
+Promotion-or-later failure automatically invokes Cloudflare rollback to the
+recorded prior version, purges the production hostname cache again, confirms
+the prior version at 100 percent, and verifies the registered public baseline.
+Manual rollback uses the same recorded version ID.
 
 Static rollback does not mutate or delete IndexedDB. Every released client
 schema change must remain readable by the immediately previous production

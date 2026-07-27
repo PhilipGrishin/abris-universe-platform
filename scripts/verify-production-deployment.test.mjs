@@ -4,11 +4,14 @@ import { createServer } from "node:http";
 import test from "node:test";
 import {
   inspectProductionDeployment,
-  inspectProductionTransition,
+  inspectProductionStability,
+  PREVIEW_SEMANTIC_ATTEMPTS,
+  PREVIEW_SEMANTIC_TIMEOUT_MS,
   PRODUCTION_SEMANTIC_ATTEMPTS,
-  PRODUCTION_TRANSITION_ATTEMPTS,
-  PRODUCTION_TRANSITION_TIMEOUT_MS,
-  ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+  PRODUCTION_STABILITY_ATTEMPTS,
+  PRODUCTION_STABILITY_REQUIRED_PASSES,
+  PRODUCTION_STABILITY_RETRY_DELAY_MS,
+  PRODUCTION_STABILITY_TIMEOUT_MS,
 } from "./verify-production-deployment.mjs";
 
 const EXPECTED_COMMIT = "a".repeat(40);
@@ -29,6 +32,8 @@ const SHELL =
   '<!doctype html><title>Abris Universe</title><script src="/assets/app-12345678.js"></script><link rel="stylesheet" href="/assets/app-12345678.css">';
 const PLACEHOLDER =
   "<!doctype html><title>Abris Universe placeholder</title>";
+const UNKNOWN =
+  "<!doctype html><title>Unknown edge response</title>";
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
 const PRIOR_BASELINE = {
@@ -37,7 +42,7 @@ const PRIOR_BASELINE = {
   bodySha256: sha256(PLACEHOLDER),
   contentType: "text/html",
 };
-const CANDIDATE_SMOKE = {
+const PREVIEW_SMOKE = {
   observedCommit: EXPECTED_COMMIT,
   root: {
     status: 200,
@@ -51,33 +56,54 @@ const securityHeaders = {
   "X-Content-Type-Options": "nosniff",
 };
 
-test("keeps generic semantic retry narrow and bounds both propagation windows", () => {
+test("bounds preview propagation and production stability quorum", () => {
   assert.equal(PRODUCTION_SEMANTIC_ATTEMPTS, 6);
-  assert.equal(ZERO_TRAFFIC_SEMANTIC_ATTEMPTS, 61);
-  assert.equal(PRODUCTION_TRANSITION_ATTEMPTS, 61);
-  assert.equal(PRODUCTION_TRANSITION_TIMEOUT_MS, 120_000);
+  assert.equal(PREVIEW_SEMANTIC_ATTEMPTS, 61);
+  assert.equal(PREVIEW_SEMANTIC_TIMEOUT_MS, 120_000);
+  assert.equal(PRODUCTION_STABILITY_ATTEMPTS, 25);
+  assert.equal(PRODUCTION_STABILITY_REQUIRED_PASSES, 3);
+  assert.equal(PRODUCTION_STABILITY_RETRY_DELAY_MS, 5_000);
+  assert.equal(PRODUCTION_STABILITY_TIMEOUT_MS, 120_000);
+});
+
+test("stops preview semantic retry when its total signal is aborted", async () => {
+  const controller = new AbortController();
+  controller.abort();
+  await assert.rejects(
+    inspectProductionDeployment({
+      baseUrl: "https://preview.example.workers.dev",
+      expectedCommit: EXPECTED_COMMIT,
+      semanticAttempts: PREVIEW_SEMANTIC_ATTEMPTS,
+      semanticRetryDelayMs: 0,
+      signal: controller.signal,
+    }),
+    /inspection was aborted/u,
+  );
 });
 
 const createFixtureServer = async ({
   wrongCommit = false,
-  staleRootResponses = 0,
-  staleBody = PLACEHOLDER,
+  rootSequence = [],
+  rootStatus = null,
+  holdRoot = false,
 } = {}) => {
-  let remainingStaleRoots = staleRootResponses;
+  const remainingRootResponses = [...rootSequence];
   let rootRequests = 0;
   const server = createServer((request, response) => {
     if (request.method === "GET" && request.url === "/") {
       rootRequests += 1;
-    }
-    if (
-      request.method === "GET" &&
-      request.url === "/" &&
-      remainingStaleRoots > 0
-    ) {
-      remainingStaleRoots -= 1;
-      response.setHeader("Content-Type", "text/html");
-      response.end(staleBody);
-      return;
+      if (holdRoot) return;
+      if (rootStatus !== null) {
+        response.writeHead(rootStatus);
+        response.end("unavailable");
+        return;
+      }
+      const body = remainingRootResponses.shift();
+      if (body) {
+        response.setHeader("Content-Type", "text/html");
+        response.end(body);
+        return;
+      }
     }
     for (const [name, value] of Object.entries(securityHeaders)) {
       response.setHeader(name, value);
@@ -116,11 +142,100 @@ const createFixtureServer = async ({
   return {
     httpBaseUrl: `http://127.0.0.1:${address.port}`,
     rootRequests: () => rootRequests,
-    close: () => new Promise((resolve) => server.close(resolve)),
+    close: () =>
+      new Promise((resolve) => {
+        server.closeAllConnections?.();
+        server.close(resolve);
+      }),
   };
 };
 
-test("accepts the exact production shell, provenance, assets, methods, and headers", async () => {
+test("aborts during a non-OK retry backoff without exceeding the deadline", async () => {
+  const fixture = await createFixtureServer({ rootStatus: 503 });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("preview deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 1,
+        requestAttempts: 5,
+        signal: controller.signal,
+      }),
+      /preview deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
+
+test("aborts during a semantic retry backoff without exceeding the deadline", async () => {
+  const fixture = await createFixtureServer({ wrongCommit: true });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("semantic deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 5,
+        semanticRetryDelayMs: 1_000,
+        requestAttempts: 1,
+        signal: controller.signal,
+      }),
+      /semantic deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
+
+test("aborts a hung request without retrying past the deadline", async () => {
+  const fixture = await createFixtureServer({ holdRoot: true });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("request deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 1,
+        requestAttempts: 5,
+        signal: controller.signal,
+      }),
+      /request deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
+
+test("accepts the exact shell, provenance, assets, methods, and headers", async () => {
   const fixture = await createFixtureServer();
   try {
     const result = await inspectProductionDeployment({
@@ -133,6 +248,7 @@ test("accepts the exact production shell, provenance, assets, methods, and heade
     assert.equal(result.assets.length, 2);
     assert.equal(result.securityHeaders.contentSecurityPolicy, CSP);
     assert.equal(result.semanticAttempt, 1);
+    assert.equal(result.root.observation.headStatus, 200);
   } finally {
     await fixture.close();
   }
@@ -153,7 +269,7 @@ test("rejects a non-HTTPS production origin before making a request", async () =
   }
 });
 
-test("rejects production provenance from a different source commit", async () => {
+test("rejects provenance from a different source commit", async () => {
   const fixture = await createFixtureServer({ wrongCommit: true });
   try {
     await assert.rejects(
@@ -170,8 +286,10 @@ test("rejects production provenance from a different source commit", async () =>
   }
 });
 
-test("retries a semantically stale 200 until the candidate version is visible", async () => {
-  const fixture = await createFixtureServer({ staleRootResponses: 1 });
+test("retries a semantically stale 200 while immutable preview propagates", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [PLACEHOLDER],
+  });
   try {
     const result = await inspectProductionDeployment({
       baseUrl: fixture.httpBaseUrl,
@@ -187,8 +305,10 @@ test("retries a semantically stale 200 until the candidate version is visible", 
   }
 });
 
-test("retains bounded diagnostics when semantic propagation never converges", async () => {
-  const fixture = await createFixtureServer({ staleRootResponses: 2 });
+test("retains bounded diagnostics when preview propagation never converges", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [PLACEHOLDER, PLACEHOLDER],
+  });
   try {
     await assert.rejects(
       inspectProductionDeployment({
@@ -202,6 +322,7 @@ test("retains bounded diagnostics when semantic propagation never converges", as
         assert.equal(error.semanticAttempt, 2);
         assert.equal(error.semanticAttemptsExhausted, 2);
         assert.equal(error.deploymentObservation.status, 200);
+        assert.equal(error.deploymentObservation.headStatus, 200);
         assert.equal(
           error.deploymentObservation.contentSecurityPolicy,
           null,
@@ -219,64 +340,83 @@ test("retains bounded diagnostics when semantic propagation never converges", as
   }
 });
 
-test("waits only on the exact prior baseline and then verifies the candidate once", async () => {
-  const fixture = await createFixtureServer({ staleRootResponses: 2 });
+test("requires three consecutive full contracts after prior baseline observations", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [PLACEHOLDER, PLACEHOLDER],
+  });
   try {
-    const result = await inspectProductionTransition({
+    const result = await inspectProductionStability({
       baseUrl: fixture.httpBaseUrl,
       expectedCommit: EXPECTED_COMMIT,
       allowHttpForTest: true,
       priorBaseline: PRIOR_BASELINE,
-      candidateSmoke: CANDIDATE_SMOKE,
-      transitionAttempts: 4,
-      transitionRetryDelayMs: 0,
+      previewSmoke: PREVIEW_SMOKE,
+      stabilityAttempts: 6,
+      requiredConsecutivePasses: 3,
+      stabilityRetryDelayMs: 0,
     });
     assert.equal(result.observedCommit, EXPECTED_COMMIT);
-    assert.deepEqual(result.transition, {
-      attempt: 3,
+    assert.deepEqual(result.stability, {
+      attempt: 5,
+      requiredConsecutivePasses: 3,
+      consecutivePasses: 3,
       priorBaselineObservations: 2,
-      classification: "candidate",
-      observation: {
-        status: 200,
-        headStatus: 200,
-        bodySha256: CANDIDATE_SMOKE.root.bodySha256,
-        contentType: "text/html",
-        contentSecurityPolicy: CSP,
-        cfCacheStatus: null,
-        server: null,
-      },
+      windowMs: 120_000,
+      observation: result.root.observation,
     });
-    assert.equal(fixture.rootRequests(), 4);
+    assert.equal(fixture.rootRequests(), 5);
   } finally {
     await fixture.close();
   }
 });
 
-test("rolls back immediately on an unrecognized transition response", async () => {
+test("resets the stability quorum when the exact prior baseline reappears", async () => {
   const fixture = await createFixtureServer({
-    staleRootResponses: 1,
-    staleBody: "<!doctype html><title>Unknown edge response</title>",
+    rootSequence: [undefined, PLACEHOLDER],
+  });
+  try {
+    const result = await inspectProductionStability({
+      baseUrl: fixture.httpBaseUrl,
+      expectedCommit: EXPECTED_COMMIT,
+      allowHttpForTest: true,
+      priorBaseline: PRIOR_BASELINE,
+      previewSmoke: PREVIEW_SMOKE,
+      stabilityAttempts: 6,
+      requiredConsecutivePasses: 3,
+      stabilityRetryDelayMs: 0,
+    });
+    assert.equal(result.stability.attempt, 5);
+    assert.equal(result.stability.priorBaselineObservations, 1);
+    assert.equal(fixture.rootRequests(), 5);
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("fails immediately on an unrecognized root response", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [UNKNOWN],
   });
   try {
     await assert.rejects(
-      inspectProductionTransition({
+      inspectProductionStability({
         baseUrl: fixture.httpBaseUrl,
         expectedCommit: EXPECTED_COMMIT,
         allowHttpForTest: true,
         priorBaseline: PRIOR_BASELINE,
-        candidateSmoke: CANDIDATE_SMOKE,
-        transitionAttempts: 4,
-        transitionRetryDelayMs: 0,
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 4,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 0,
       }),
       (error) => {
-        assert.equal(error.transitionAttempt, 1);
-        assert.equal(error.transitionClassification, "unrecognized");
-        assert.equal(error.transitionAttemptsExhausted, undefined);
+        assert.equal(error.stabilityAttempt, 1);
+        assert.equal(error.stabilityClassification, "unrecognized");
         assert.match(
-          error.transitionObservation.bodySha256,
+          error.stabilityObservation.bodySha256,
           /^[0-9a-f]{64}$/u,
         );
-        assert.equal("body" in error.transitionObservation, false);
+        assert.equal("body" in error.stabilityObservation, false);
         return true;
       },
     );
@@ -286,27 +426,53 @@ test("rolls back immediately on an unrecognized transition response", async () =
   }
 });
 
-test("fails after the bounded window when every observation is the exact prior baseline", async () => {
-  const fixture = await createFixtureServer({ staleRootResponses: 3 });
+test("fails immediately when a candidate full contract is internally inconsistent", async () => {
+  const fixture = await createFixtureServer({ wrongCommit: true });
   try {
     await assert.rejects(
-      inspectProductionTransition({
+      inspectProductionStability({
         baseUrl: fixture.httpBaseUrl,
         expectedCommit: EXPECTED_COMMIT,
         allowHttpForTest: true,
         priorBaseline: PRIOR_BASELINE,
-        candidateSmoke: CANDIDATE_SMOKE,
-        transitionAttempts: 3,
-        transitionRetryDelayMs: 0,
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 4,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 0,
       }),
       (error) => {
-        assert.equal(error.transitionAttempt, 3);
-        assert.equal(error.transitionAttemptsExhausted, 3);
-        assert.equal(error.transitionClassification, "prior-baseline");
-        assert.equal(
-          error.transitionObservation.bodySha256,
-          PRIOR_BASELINE.bodySha256,
-        );
+        assert.equal(error.stabilityAttempt, 1);
+        assert.equal(error.stabilityClassification, "candidate-contract");
+        assert.equal(error.semanticAttemptsExhausted, 1);
+        return true;
+      },
+    );
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("fails when the attempt ceiling cannot satisfy the consecutive quorum", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [undefined, PLACEHOLDER],
+  });
+  try {
+    await assert.rejects(
+      inspectProductionStability({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        priorBaseline: PRIOR_BASELINE,
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 3,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 0,
+      }),
+      (error) => {
+        assert.equal(error.stabilityAttempt, 3);
+        assert.equal(error.stabilityAttemptsExhausted, 3);
+        assert.equal(error.stabilityClassification, "candidate-not-stable");
         return true;
       },
     );
@@ -316,30 +482,33 @@ test("fails after the bounded window when every observation is the exact prior b
   }
 });
 
-test("enforces the wall-clock transition timeout before the attempt ceiling", async () => {
-  const fixture = await createFixtureServer({ staleRootResponses: 10 });
+test("enforces the wall-clock stability timeout before the attempt ceiling", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: Array(10).fill(PLACEHOLDER),
+  });
   let elapsedMs = 0;
   try {
     await assert.rejects(
-      inspectProductionTransition({
+      inspectProductionStability({
         baseUrl: fixture.httpBaseUrl,
         expectedCommit: EXPECTED_COMMIT,
         allowHttpForTest: true,
         priorBaseline: PRIOR_BASELINE,
-        candidateSmoke: CANDIDATE_SMOKE,
-        transitionAttempts: 61,
-        transitionRetryDelayMs: 2_000,
-        transitionTimeoutMs: 5_000,
-        transitionNow: () => elapsedMs,
-        transitionSleep: async (delayMs) => {
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 25,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 2_000,
+        stabilityTimeoutMs: 5_000,
+        stabilityNow: () => elapsedMs,
+        stabilitySleep: async (delayMs) => {
           elapsedMs += delayMs;
         },
       }),
       (error) => {
-        assert.equal(error.transitionAttempt, 3);
-        assert.equal(error.transitionAttemptsExhausted, 3);
-        assert.equal(error.transitionWindowMs, 5_000);
-        assert.equal(error.transitionClassification, "prior-baseline");
+        assert.equal(error.stabilityAttempt, 3);
+        assert.equal(error.stabilityAttemptsExhausted, 3);
+        assert.equal(error.stabilityWindowMs, 5_000);
+        assert.equal(error.stabilityClassification, "timeout");
         return true;
       },
     );
@@ -350,51 +519,28 @@ test("enforces the wall-clock transition timeout before the attempt ceiling", as
   }
 });
 
-test("does not retry a candidate whose complete contract fails", async () => {
-  const fixture = await createFixtureServer({ wrongCommit: true });
-  try {
-    await assert.rejects(
-      inspectProductionTransition({
-        baseUrl: fixture.httpBaseUrl,
-        expectedCommit: EXPECTED_COMMIT,
-        allowHttpForTest: true,
-        priorBaseline: PRIOR_BASELINE,
-        candidateSmoke: CANDIDATE_SMOKE,
-        transitionAttempts: 3,
-        transitionRetryDelayMs: 0,
-      }),
-      (error) => {
-        assert.equal(error.transitionAttempt, 1);
-        assert.equal(error.transitionClassification, "candidate");
-        assert.equal(error.semanticAttemptsExhausted, 1);
-        return true;
-      },
-    );
-    assert.equal(fixture.rootRequests(), 2);
-  } finally {
-    await fixture.close();
-  }
-});
-
-test("treats a transition transport failure as an immediate unrecognized state", async () => {
+test("treats a transport failure as an immediate unrecognized state", async () => {
   const fixture = await createFixtureServer();
   const baseUrl = fixture.httpBaseUrl;
   await fixture.close();
+  const startedAt = Date.now();
   await assert.rejects(
-    inspectProductionTransition({
+    inspectProductionStability({
       baseUrl,
       expectedCommit: EXPECTED_COMMIT,
       allowHttpForTest: true,
       priorBaseline: PRIOR_BASELINE,
-      candidateSmoke: CANDIDATE_SMOKE,
-      transitionAttempts: 3,
-      transitionRetryDelayMs: 0,
+      previewSmoke: PREVIEW_SMOKE,
+      stabilityAttempts: 3,
+      requiredConsecutivePasses: 3,
+      stabilityRetryDelayMs: 0,
     }),
     (error) => {
-      assert.equal(error.transitionAttempt, 1);
-      assert.equal(error.transitionClassification, "unrecognized");
-      assert.equal(error.transitionAttemptsExhausted, undefined);
+      assert.equal(error.stabilityAttempt, 1);
+      assert.equal(error.stabilityClassification, "unrecognized");
+      assert.equal(error.stabilityAttemptsExhausted, undefined);
       return true;
     },
   );
+  assert(Date.now() - startedAt < 500);
 });

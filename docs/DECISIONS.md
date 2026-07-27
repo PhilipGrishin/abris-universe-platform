@@ -299,6 +299,43 @@
   continues to target the registered immutable prior version.
 - **Owner:** Project Owner
 
+## OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 — Approve Immutable Preview and Hostname Purge
+
+- **Status:** `[APPROVED]`
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive approving “A — Workers +
+  immutable preview + purge,” followed by owner configuration of the dedicated
+  GitHub production-environment secret and zone variable.
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; High finding
+  TS001-DEPLOY-007; `AU-TAP-TS001-002`.
+- **Context:** Protected run `30253457090` demonstrated that the custom-domain
+  version override could return a candidate sentinel immediately before the
+  same edge returned the exact prior cached baseline during the full contract.
+  The workflow rolled back safely, but that mechanism is not reusable.
+- **Decision:** Verify the exact uploaded version through Wrangler's immutable
+  `*.workers.dev` preview URL, promote only that version to 100 percent, purge
+  cache only for `abris.653915.com`, and require three consecutive complete
+  production contracts.
+- **Boundary:** At most 25 production observations and 120 seconds. The exact
+  prior baseline resets the stability quorum; unknown or internally
+  inconsistent responses fail immediately. Promotion-or-later failure restores
+  the prior immutable version, purges the hostname again, and verifies the
+  registered baseline.
+- **Security:** Use a separate Zone Cache Purge token restricted to
+  `653915.com`; keep the existing Worker deployment token separate. Store
+  secrets only in the GitHub `production` environment and retain no secret
+  values in evidence.
+- **Authorization:** Implement, independently verify through AU-AGENT-003,
+  merge through protected `main`, and perform one controlled production
+  attempt after all gates pass.
+- **Consequence:** `AU-TAP-TS001-002` becomes the approved continuation
+  contract. `AU-TAP-TS001-001` and run `30253457090` remain authoritative
+  historical safety evidence but no longer define the next attempt mechanism.
+- **Reversibility:** Revert the deployment-tooling commit and do not dispatch
+  the production workflow; any runtime failure follows the recorded immutable
+  rollback path.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent

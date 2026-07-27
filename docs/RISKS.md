@@ -471,9 +471,10 @@
 
 ## RISK-019 — Default Route Lags Verified Candidate After Promotion
 
-- **Status:** `[OPEN]`; attempts 3 and 4 evidence retained; Alternative A
-  safety execution `VERIFIED`; production continuation `BLOCKED` by High
-  TS001-DEPLOY-007
+- **Status:** `[OPEN]`; attempts 3 and 4 evidence retained; prior continuation
+  superseded; replacement `AU-TAP-TS001-002` `[APPROVED]`, `[IMPLEMENTED]`,
+  `[TESTED]`, exact-source Engineering Verification Status `VERIFIED`;
+  protected merge and live evidence open
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -482,10 +483,10 @@
   after promotion for longer than the current production-smoke window.
 - **Affected areas:** Production availability, security-header assertions,
   deployment confidence, rollback timing, and release auditability.
-- **Prevention:** Keep full zero-traffic candidate smoke mandatory. Do not
-  extend post-promotion exposure generically or retry an unrecognized response.
-  Require explicit owner approval and independent AU-AGENT-003 review for any
-  baseline-aware transition state machine.
+- **Prevention:** Verify the exact immutable Workers preview before traffic
+  mutation. Promote only its captured version ID, purge only the registered
+  hostname, and require a three-pass complete production stability quorum. Do
+  not retry an unrecognized response.
 - **Mitigation:** Attempt 3 retained the exact candidate provenance and
   security contract at zero traffic, classified the post-promotion response as
   the registered prior body with `cf-cache-status: HIT`, and restored immutable
@@ -501,9 +502,16 @@
   one-shot complete contract receives the exact prior cached baseline. The
   approved state machine rejected that response and restored the exact prior
   version/baseline.
-- **Fallback:** Keep the restored prior placeholder. Select a separately
-  approved preview/canary or other cache-coherency strategy only through a new
-  technical alternative, security review, deterministic tests, required CI,
-  protected merge, and explicit attempt authority.
+  The Project Owner then approved `AU-TAP-TS001-002`. Its implementation uses
+  a separate zone-scoped Cache Purge token, 25-observation/120-second
+  production bounds, exact prior/candidate classification, and cache purge
+  both after promotion and rollback. Forty-three focused deployment tests and
+  the complete local repository gate pass. AU-AGENT-003 exact-source review at
+  `1054a2f0` resolves TS001-DEPLOY-008 through TS001-DEPLOY-011 with no
+  remaining finding; both CI runs pass. Protected merge and live evidence
+  remain required.
+- **Fallback:** Keep or restore the prior placeholder. If the approved
+  immutable-preview/purge attempt fails, retain sanitized evidence and require
+  a new finding disposition before another attempt.
 - **Owner:** AU-AGENT-001 for the technical proposal; Project Owner for risk
   approval; AU-AGENT-003 for independent verification

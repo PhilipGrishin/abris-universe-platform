@@ -7,65 +7,87 @@ export class ProductionDeploymentError extends Error {
   }
 }
 
-const requiredVersionId = (value) => {
-  if (typeof value !== "string" || value.length === 0) {
-    throw new Error("Version upload did not produce a version ID.");
+const requiredCandidate = (value) => {
+  if (
+    typeof value?.versionId !== "string" ||
+    value.versionId.length === 0 ||
+    typeof value?.previewUrl !== "string" ||
+    !value.previewUrl.startsWith("https://")
+  ) {
+    throw new Error(
+      "Version upload did not produce an immutable preview candidate.",
+    );
   }
-  return value;
+  return {
+    versionId: value.versionId,
+    previewUrl: value.previewUrl,
+  };
+};
+
+const withoutBaseUrl = (value) => {
+  if (!value || typeof value !== "object") return value;
+  const { baseUrl: _baseUrl, ...evidence } = value;
+  return evidence;
 };
 
 export const executeProductionDeployment = async ({
   priorVersionId,
   uploadVersion,
-  deployPrePromotion,
-  smokePrePromotion,
+  smokePreview,
   promote,
+  purgeProductionCache,
   smokeProduction,
   rollback,
+  purgeRollbackCache,
   confirmRollbackActive,
   verifyRollbackBaseline,
 }) => {
   const state = {
     stage: "upload",
     priorVersionId,
-    uploadedVersionId: null,
-    prePromotionSmoke: null,
+    candidate: null,
+    previewSmoke: null,
+    productionMutationAttempted: false,
+    productionCachePurge: null,
     productionSmoke: null,
     promoted: false,
     failureStage: null,
     rollbackAttempted: false,
     rollbackPerformed: false,
+    rollbackCachePurge: null,
     rollbackFailureStage: null,
     rollbackActive: null,
     rollbackBaseline: null,
   };
 
   try {
-    state.uploadedVersionId = requiredVersionId(await uploadVersion());
+    const uploadedCandidate = requiredCandidate(await uploadVersion());
+    state.candidate = { versionId: uploadedCandidate.versionId };
 
-    state.stage = "pre-promotion-deploy";
-    await deployPrePromotion(state.uploadedVersionId, priorVersionId);
-
-    state.stage = "pre-promotion-smoke";
-    state.prePromotionSmoke = await smokePrePromotion(
-      state.uploadedVersionId,
+    state.stage = "preview-smoke";
+    state.previewSmoke = withoutBaseUrl(
+      await smokePreview(uploadedCandidate),
     );
 
+    state.productionMutationAttempted = true;
     state.stage = "promotion";
-    await promote(state.uploadedVersionId);
+    await promote(state.candidate.versionId);
     state.promoted = true;
+
+    state.stage = "production-cache-purge";
+    state.productionCachePurge = await purgeProductionCache();
 
     state.stage = "production-smoke";
     state.productionSmoke = await smokeProduction({
       priorVersionId,
-      uploadedVersionId: state.uploadedVersionId,
-      prePromotionSmoke: state.prePromotionSmoke,
+      candidate: state.candidate,
+      previewSmoke: state.previewSmoke,
     });
     state.stage = "complete";
     return state;
   } catch (cause) {
     state.failureStage = state.stage;
-    if (!state.uploadedVersionId) {
+    if (!state.productionMutationAttempted) {
       throw new ProductionDeploymentError(
         "Production deployment failed before Cloudflare traffic mutation.",
         { cause, state },
@@ -78,11 +100,17 @@ export const executeProductionDeployment = async ({
       await rollback(priorVersionId);
       state.rollbackPerformed = true;
 
+      state.stage = "rollback-cache-purge";
+      state.rollbackCachePurge = await purgeRollbackCache();
+
       state.stage = "rollback-active-version";
       state.rollbackActive = await confirmRollbackActive(priorVersionId);
 
       state.stage = "rollback-baseline";
-      state.rollbackBaseline = await verifyRollbackBaseline();
+      state.rollbackBaseline = await verifyRollbackBaseline({
+        candidate: state.candidate,
+        previewSmoke: state.previewSmoke,
+      });
       state.stage = "rolled-back";
     } catch (rollbackCause) {
       state.rollbackFailureStage = state.stage;

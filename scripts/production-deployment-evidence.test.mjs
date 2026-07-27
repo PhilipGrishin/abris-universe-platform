@@ -5,6 +5,7 @@ import { join } from "node:path";
 import test from "node:test";
 import {
   deploymentFailureEvidence,
+  deploymentLifecycleEvidence,
   deploymentList,
   readVersionUpload,
   validateProductionDomain,
@@ -121,6 +122,8 @@ test("parses upload provenance and persists failure-safe JSON evidence", async (
         JSON.stringify({
           type: "version-upload",
           version_id: "uploaded-version",
+          preview_url:
+            "https://uploaded-version-abris-universe.example.workers.dev",
         }),
         "",
       ].join("\n"),
@@ -128,6 +131,8 @@ test("parses upload provenance and persists failure-safe JSON evidence", async (
     );
     assert.deepEqual(readVersionUpload(uploadPath), {
       versionId: "uploaded-version",
+      previewUrl:
+        "https://uploaded-version-abris-universe.example.workers.dev",
     });
 
     const evidence = {
@@ -153,6 +158,61 @@ test("parses upload provenance and persists failure-safe JSON evidence", async (
   }
 });
 
+test("rejects missing or non-Cloudflare preview URLs", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "abris-preview-evidence-"));
+  const outputPath = join(directory, "wrangler.ndjson");
+  try {
+    await writeFile(
+      outputPath,
+      `${JSON.stringify({
+        type: "version-upload",
+        version_id: "uploaded-version",
+        preview_url: "https://example.invalid/preview",
+      })}\n`,
+      "utf8",
+    );
+    assert.throws(
+      () => readVersionUpload(outputPath),
+      /invalid immutable preview URL/u,
+    );
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("retains version and smoke evidence without the public preview capability URL", () => {
+  const lifecycle = deploymentLifecycleEvidence({
+    stage: "complete",
+    candidate: {
+      versionId: "candidate-version",
+      previewUrl: "https://capability.example.workers.dev",
+    },
+    previewSmoke: {
+      baseUrl: "https://capability.example.workers.dev",
+      observedCommit: "a".repeat(40),
+      root: { status: 200, bodySha256: "b".repeat(64) },
+    },
+    productionSmoke: {
+      baseUrl: "https://abris.653915.com",
+      observedCommit: "a".repeat(40),
+    },
+  });
+
+  assert.deepEqual(lifecycle, {
+    stage: "complete",
+    candidate: { versionId: "candidate-version" },
+    previewSmoke: {
+      observedCommit: "a".repeat(40),
+      root: { status: 200, bodySha256: "b".repeat(64) },
+    },
+    productionSmoke: {
+      observedCommit: "a".repeat(40),
+    },
+  });
+  assert.equal(JSON.stringify(lifecycle).includes("workers.dev"), false);
+  assert.equal(JSON.stringify(lifecycle).includes("abris.653915.com"), false);
+});
+
 test("allowlists semantic and transition failure evidence", () => {
   const failure = deploymentFailureEvidence({
     name: "ProductionDeploymentError",
@@ -167,12 +227,16 @@ test("allowlists semantic and transition failure evidence", () => {
       transitionAttemptsExhausted: 61,
       transitionWindowMs: 120_000,
       transitionClassification: "prior-baseline",
+      stabilityAttempt: 4,
+      stabilityAttemptsExhausted: 25,
+      stabilityWindowMs: 120_000,
+      stabilityClassification: "candidate-not-stable",
       deploymentObservation: {
         status: 200,
         bodySha256: "a".repeat(64),
         contentSecurityPolicy: null,
         body: "<html>must not be retained</html>",
-        authorization: "Bearer must-not-be-retained",
+        authorization: "authorization-value-must-not-be-retained",
       },
       transitionObservation: {
         status: 200,
@@ -181,6 +245,23 @@ test("allowlists semantic and transition failure evidence", () => {
         contentType: "text/html",
         cfCacheStatus: "HIT",
         requestHeaders: { authorization: "must-not-be-retained" },
+        token: "must-not-be-retained",
+      },
+      stabilityObservation: {
+        status: 200,
+        headStatus: 200,
+        bodySha256: "c".repeat(64),
+        contentType: "text/html",
+        authorization: "must-not-be-retained",
+      },
+    },
+    rollbackCause: {
+      rollbackAttemptsExhausted: 25,
+      rollbackObservation: {
+        status: 200,
+        headStatus: 200,
+        bodySha256: "d".repeat(64),
+        contentType: "text/html",
         token: "must-not-be-retained",
       },
     },
@@ -207,6 +288,23 @@ test("allowlists semantic and transition failure evidence", () => {
       bodySha256: "b".repeat(64),
       contentType: "text/html",
       cfCacheStatus: "HIT",
+    },
+    stabilityAttempt: 4,
+    stabilityAttemptsExhausted: 25,
+    stabilityWindowMs: 120_000,
+    stabilityClassification: "candidate-not-stable",
+    stabilityObservation: {
+      status: 200,
+      headStatus: 200,
+      bodySha256: "c".repeat(64),
+      contentType: "text/html",
+    },
+    rollbackAttemptsExhausted: 25,
+    rollbackObservation: {
+      status: 200,
+      headStatus: 200,
+      bodySha256: "d".repeat(64),
+      contentType: "text/html",
     },
   });
   assert.equal(JSON.stringify(failure).includes("must-not-be-retained"), false);

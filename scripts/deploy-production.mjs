@@ -7,17 +7,22 @@ import { resolve } from "node:path";
 import {
   currentVersion,
   deploymentFailureEvidence,
+  deploymentLifecycleEvidence,
   deploymentList,
   readVersionUpload,
   validateProductionDomain,
   validateProductionPreflight,
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
+import { environmentForWrangler } from "./production-deployment-environment.mjs";
+import { purgeCloudflareHostnameCache } from "./cloudflare-cache-purge.mjs";
 import { executeProductionDeployment } from "./production-deployment-state.mjs";
+import { waitForRegisteredRollbackBaseline } from "./production-rollback-verification.mjs";
 import {
   inspectProductionDeployment,
-  inspectProductionTransition,
-  ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+  inspectProductionStability,
+  PREVIEW_SEMANTIC_ATTEMPTS,
+  PREVIEW_SEMANTIC_TIMEOUT_MS,
 } from "./verify-production-deployment.mjs";
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
@@ -37,18 +42,29 @@ const assert = (condition, message) => {
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
 
-const runWrangler = (args, options = {}) =>
-  execFileSync("pnpm", ["exec", "wrangler", ...args], {
-    cwd: webRoot,
-    encoding: "utf8",
-    stdio: options.capture ? ["ignore", "pipe", "pipe"] : "inherit",
-    env: {
-      ...process.env,
-      WRANGLER_SEND_METRICS: "false",
-      WRANGLER_WRITE_LOGS: "false",
-      ...options.env,
-    },
-  });
+const runWrangler = (args, options = {}) => {
+  try {
+    return execFileSync("pnpm", ["exec", "wrangler", ...args], {
+      cwd: webRoot,
+      encoding: "utf8",
+      stdio:
+        options.capture || options.redactOutput
+          ? ["ignore", "pipe", "pipe"]
+          : "inherit",
+      env: {
+        ...environmentForWrangler(process.env),
+        WRANGLER_SEND_METRICS: "false",
+        WRANGLER_WRITE_LOGS: "false",
+        ...options.env,
+      },
+    });
+  } catch (error) {
+    if (options.redactOutput) {
+      throw new Error("Wrangler version upload failed with output redacted.");
+    }
+    throw error;
+  }
+};
 
 const parseJsonOutput = (value, label) => {
   try {
@@ -58,12 +74,14 @@ const parseJsonOutput = (value, label) => {
   }
 };
 
-const publicSnapshot = async () => {
+const publicSnapshot = async ({ timeoutMs = 10_000 } = {}) => {
+  const signal = AbortSignal.timeout(Math.max(1, timeoutMs));
   const request = (method) =>
     fetch(`${productionUrl}/`, {
       method,
       cache: "no-store",
       redirect: "error",
+      signal,
     });
   const response = await request("GET");
   const body = await response.text();
@@ -90,6 +108,7 @@ const productionDomain = async () => {
       Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
     },
     redirect: "error",
+    signal: AbortSignal.timeout(10_000),
   });
   assert(response.status === 200, "Cloudflare domain query did not return 200.");
   return validateProductionDomain({
@@ -118,6 +137,14 @@ assert(
   process.env.CLOUDFLARE_ACCOUNT_ID,
   "CLOUDFLARE_ACCOUNT_ID is not configured.",
 );
+assert(
+  process.env.CLOUDFLARE_CACHE_PURGE_TOKEN,
+  "CLOUDFLARE_CACHE_PURGE_TOKEN is not configured.",
+);
+assert(
+  /^[0-9a-f]{32}$/u.test(process.env.CLOUDFLARE_ZONE_ID ?? ""),
+  "CLOUDFLARE_ZONE_ID must be a 32-character lowercase hexadecimal ID.",
+);
 
 mkdirSync(evidenceRoot, { recursive: true });
 const startedAt = new Date().toISOString();
@@ -137,7 +164,7 @@ const { prior } = validateProductionPreflight({
 writeJsonEvidence(
   resolve(evidenceRoot, "production-preflight-evidence.json"),
   {
-    schemaVersion: 1,
+    schemaVersion: 2,
     workerName,
     productionUrl,
     sourceCommit,
@@ -172,29 +199,17 @@ try {
         ],
         {
           env: { WRANGLER_OUTPUT_FILE_PATH: uploadOutput },
+          redactOutput: true,
         },
       );
-      return readVersionUpload(uploadOutput).versionId;
+      return readVersionUpload(uploadOutput);
     },
-    deployPrePromotion: async (uploadedVersionId, priorVersionId) => {
-      runWrangler([
-        "versions",
-        "deploy",
-        `${uploadedVersionId}@0%`,
-        `${priorVersionId}@100%`,
-        "--name",
-        workerName,
-        "--message",
-        `Pre-promotion smoke for ${sourceCommit}`,
-        "--yes",
-      ]);
-    },
-    smokePrePromotion: async (uploadedVersionId) =>
+    smokePreview: async (candidate) =>
       inspectProductionDeployment({
-        baseUrl: productionUrl,
+        baseUrl: candidate.previewUrl,
         expectedCommit: sourceCommit,
-        versionId: uploadedVersionId,
-        semanticAttempts: ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+        semanticAttempts: PREVIEW_SEMANTIC_ATTEMPTS,
+        signal: AbortSignal.timeout(PREVIEW_SEMANTIC_TIMEOUT_MS),
       }),
     promote: async (uploadedVersionId) => {
       runWrangler([
@@ -208,12 +223,18 @@ try {
         "--yes",
       ]);
     },
-    smokeProduction: async ({ prePromotionSmoke }) =>
-      inspectProductionTransition({
+    purgeProductionCache: async () =>
+      purgeCloudflareHostnameCache({
+        zoneId: process.env.CLOUDFLARE_ZONE_ID,
+        token: process.env.CLOUDFLARE_CACHE_PURGE_TOKEN,
+        hostname: productionHostname,
+      }),
+    smokeProduction: async ({ previewSmoke }) =>
+      inspectProductionStability({
         baseUrl: productionUrl,
         expectedCommit: sourceCommit,
         priorBaseline: preDeploySnapshot,
-        candidateSmoke: prePromotionSmoke,
+        previewSmoke,
       }),
     rollback: async (priorVersionId) => {
       runWrangler([
@@ -226,6 +247,12 @@ try {
         "--yes",
       ]);
     },
+    purgeRollbackCache: async () =>
+      purgeCloudflareHostnameCache({
+        zoneId: process.env.CLOUDFLARE_ZONE_ID,
+        token: process.env.CLOUDFLARE_CACHE_PURGE_TOKEN,
+        hostname: productionHostname,
+      }),
     confirmRollbackActive: async (priorVersionId) => {
       const currentDeployments = runWrangler(
         ["deployments", "list", "--name", workerName, "--json"],
@@ -245,17 +272,13 @@ try {
       );
       return restored;
     },
-    verifyRollbackBaseline: async () => {
-      const restored = await publicSnapshot();
-      assert(
-        restored.status === preDeploySnapshot.status &&
-          restored.headStatus === preDeploySnapshot.headStatus &&
-          restored.bodySha256 === preDeploySnapshot.bodySha256 &&
-          restored.contentType === preDeploySnapshot.contentType,
-        "Rollback did not restore the recorded public baseline.",
-      );
-      return restored;
-    },
+    verifyRollbackBaseline: async ({ previewSmoke }) =>
+      waitForRegisteredRollbackBaseline({
+        priorBaseline: preDeploySnapshot,
+        candidateObservation: previewSmoke.root.observation,
+        snapshot: ({ remainingMs }) =>
+          publicSnapshot({ timeoutMs: Math.min(10_000, remainingMs) }),
+      }),
   });
 } catch (error) {
   lifecycle = error.state ?? null;
@@ -263,7 +286,7 @@ try {
   throw error;
 } finally {
   const evidence = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     workerName,
     productionUrl,
     sourceCommit,
@@ -275,7 +298,7 @@ try {
     prior,
     productionDomain: preDeployDomain,
     preDeploySnapshot,
-    lifecycle: lifecycle ?? null,
+    lifecycle: deploymentLifecycleEvidence(lifecycle),
     failure: failure ?? null,
   };
   writeJsonEvidence(
@@ -285,5 +308,5 @@ try {
 }
 
 process.stdout.write(
-  `Production deployment completed for ${sourceCommit}; previous version ${prior.versionId}, current version ${lifecycle.uploadedVersionId}.\n`,
+  `Production deployment completed for ${sourceCommit}; previous version ${prior.versionId}, current version ${lifecycle.candidate.versionId}.\n`,
 );

@@ -53,7 +53,17 @@ the one-shot complete contract immediately received the exact prior cached
 baseline; the approved rule failed closed and restored `d1f2b05d` plus the
 registered public baseline. AU-AGENT-003 records safety execution `VERIFIED`,
 production continuation `BLOCKED`, and High finding TS001-DEPLOY-007. No retry
-is authorized.
+is authorized under the superseded continuation mechanism.
+The Project Owner approved `AU-TAP-TS001-002` and configured a separate
+zone-scoped cache-purge secret plus `CLOUDFLARE_ZONE_ID`. The replacement
+workflow verifies the exact immutable Workers preview before mutation,
+promotes the captured version, purges only `abris.653915.com`, requires three
+consecutive complete production contracts, and purges again after rollback.
+It is `[IMPLEMENTED]`, `[TESTED]` with 43 focused deployment tests and the
+complete local repository gate. AU-AGENT-003 assigned task-scoped Engineering
+Verification Status `VERIFIED` at exact source `1054a2f0`, recorded no
+remaining finding, and both exact-source CI runs passed. Protected merge and
+the one controlled attempt remain open.
 
 ## Confirmed Inputs
 
@@ -78,7 +88,7 @@ is authorized.
 
 ## Current Design State
 
-- Technical Design v1.5.11 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.12 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.

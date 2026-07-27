@@ -1,9 +1,23 @@
 # Current Status
 
 **Status date:** 2026-07-27
-**Current focus:** TASK-THINSLICE-001 owner-authorized production deployment preparation
+**Current focus:** TASK-THINSLICE-001 immutable-preview and hostname-purge deployment continuation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace`, the bounded INIT-003 organizational-validation scope at `f748c95`, and the bounded TASK-THINSLICE-001 Phase 0 result at immutable source `1a683ab`; every recorded exclusion remains unverified
+
+The Project Owner approved OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and
+`AU-TAP-TS001-002` after the custom-domain override failed closed in run
+`30253457090`. The replacement workflow captures and fully verifies the exact
+immutable Workers preview, promotes only that version, purges cache only for
+`abris.653915.com` with a separate zone-scoped token, and requires three
+consecutive complete production contracts. The implementation is
+`[IMPLEMENTED]`, locally `[TESTED]`: strict typecheck, 46 script tests, 68
+package tests, production build, dependency audit with no known
+vulnerabilities, and Wrangler dry-run pass. AU-AGENT-003 independently
+assigned task-scoped Engineering Verification Status `VERIFIED` at exact source
+`1054a2f0`, with no remaining finding; exact-source CI runs `30261460673` and
+`30261463795` passed. Protected merge and one controlled production attempt
+remain open.
 
 ## Confirmed Workspace State
 
