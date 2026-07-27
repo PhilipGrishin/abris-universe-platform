@@ -407,6 +407,30 @@
   `AU-TECHREV-TS001-CF-LAB-001`.
 - **Owner:** Project Owner
 
+## OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 — Authorize Main Deployment Sequence
+
+- **Status:** `[APPROVED]`; prerequisite configuration `[TESTED]`; production
+  execution pending protected gates
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive: "Начинай основной деплой".
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; OQ-009;
+  TS001-DEPLOY-014 through TS001-DEPLOY-017.
+- **Decision:** Authorize AU-CODEX-PRIMARY to establish the permanent
+  least-privilege affinity prerequisite, remediate review findings, complete
+  independent exact-source review, branch CI, protected merge, exact-main CI,
+  and execute one controlled production deployment if every gate passes.
+- **External prerequisite:** A token limited to Account Rulesets Read and
+  Transform Rules Edit for exact zone `653915.com` is registered as
+  `CLOUDFLARE_RULES_TOKEN` in the GitHub `production` environment. The exact
+  enabled `abris.653915.com` IP-affinity rule was applied and read back.
+- **Safety boundary:** No direct local deployment. The production workflow
+  remains main-only, exact-SHA bound, immutable-preview-first, fail-closed, and
+  automatically restores the authenticated prior version and registered
+  baseline after any promotion-or-later failure.
+- **Attempt boundary:** One workflow dispatch after all gates. No automatic
+  repeat is authorized by this decision.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent

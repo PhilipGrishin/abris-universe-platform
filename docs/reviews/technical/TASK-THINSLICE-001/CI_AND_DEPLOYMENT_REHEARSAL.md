@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; attempt 6 rollback task-scoped `VERIFIED`; production continuation `REWORK REQUIRED`; authority exhausted |
+| Status | No-deploy rehearsal `[TESTED]`; transition remediation task-scoped `VERIFIED`; protected integration pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.15.0 |
+| Version | 1.16.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; Production Deployment Record v2.3.0; Threat Model TM-011 through TM-024; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888` |
@@ -245,7 +245,13 @@ version-coherent contracts at a 50/50 split, then a full promotion with 12
 prior-baseline observations followed by three strict candidate contracts in
 72,979 milliseconds. Exact rollback and external cleanup passed. This evidence
 is `[TESTED]` outside production and does not replace the required production
-review and integration gates.
+review and integration gates. AU-AGENT-003 rejected first source `2eaae2a`,
+then assigned Quality Gate Decision `PASS` and task-scoped Engineering
+Verification Status `VERIFIED` to exact remediation `e22e4c7`. The remediation
+resolves TS001-DEPLOY-015/016/017 and is fit for protected integration.
+Permanent production rules-secret presence and exact-host rule read-back are
+operator-tested; authenticated workflow preflight remains the retained
+external-state gate.
 
 ## References
 

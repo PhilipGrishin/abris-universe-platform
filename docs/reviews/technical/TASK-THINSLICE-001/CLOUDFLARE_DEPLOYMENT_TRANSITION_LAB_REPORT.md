@@ -4,10 +4,10 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CF-LAB-001 |
 | Title | TASK-THINSLICE-001 Cloudflare Deployment Transition Lab Report |
-| Status | Isolated remediation `[IMPLEMENTED]`, `[TESTED]`; production integration and production result `[OPEN]` |
+| Status | Remediation `[IMPLEMENTED]`, `[TESTED]`, task-scoped engineering `VERIFIED` at `e22e4c7`; protected integration and production result `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
 | Dependencies | Production run `30266185702`; artifact `8652895888`; `AU-TAP-TS001-002`; `AU-TAP-TS001-003`; code sources `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c` and `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`; Cloudflare Workers Versions and Deployments documentation |
@@ -211,14 +211,13 @@ response bodies, user data, or unrestricted provider responses.
 - Evidence covers one Cloudflare account, one zone, and one isolated custom
   hostname from the current operator location.
 - The rehearsal did not include independent multi-region probes.
-- The production Transform Rule and permanent GitHub secret are intentionally
-  not installed by this test-only task.
-- This branch has not received AU-AGENT-003 review, CI, protected merge, or
-  exact-main CI by Project Owner instruction for the isolated preparation
-  stage.
-- The historical AU-AGENT-003 findings remain open until independently
-  reviewed exact-source remediation and later production evidence satisfy
-  their registered gates.
+- Permanent GitHub secret presence and exact-host rule read-back are
+  owner/operator evidence until authenticated workflow preflight retains the
+  result.
+- This branch has received task-scoped AU-AGENT-003 executable review but not
+  branch CI, protected merge, or exact-main CI.
+- Live production convergence and TS001-DEPLOY-014 production closure remain
+  open until a controlled workflow result satisfies the registered contract.
 
 ## Common Mistakes
 
@@ -243,12 +242,32 @@ response bodies, user data, or unrestricted provider responses.
 - [x] Exact rollback version and root hash were restored.
 - [x] Test resources and temporary credentials were removed.
 - [x] Tests and typecheck passed.
-- [ ] Permanent production Transform Rule credential is registered in the
+- [x] Permanent production Transform Rule credential is registered in the
   GitHub `production` environment.
-- [ ] Exact production Transform Rule is applied and read-only preflight passes.
-- [ ] AU-AGENT-003 independently reviews the exact production candidate.
+- [x] Exact production Transform Rule is applied and operator read-back passes.
+- [x] AU-AGENT-003 independently reviews the exact executable candidate.
 - [ ] Protected merge and exact-main CI pass.
-- [ ] Project Owner authorizes the next production attempt.
+- [x] Project Owner authorizes one post-gate production attempt.
+
+## Independent Engineering Review
+
+AU-AGENT-003 rejected first source `2eaae2a` with High
+TS001-DEPLOY-016, Medium TS001-DEPLOY-017, and the remaining populated
+serializer-evidence condition of TS001-DEPLOY-015. Exact remediation source
+`e22e4c7602ccaa3716c1607a928b66583accab80`:
+
+- fails any non-null Worker identity outside the exact candidate/prior pair on
+  the first observation;
+- bounds null legacy identity to transition-sensitive paths with null source
+  provenance;
+- rejects duplicate managed rules and later enabled same-header set/remove
+  operations while preserving valid ordering;
+- proves populated nested evidence bounds and sensitive-field removal.
+
+AU-AGENT-003 assigned Quality Gate Decision `PASS` and task-scoped
+Engineering Verification Status `VERIFIED`, with no mandatory unresolved
+finding. This status permits protected integration; it does not claim
+production success or product acceptance.
 
 ## Production Readiness Sequence
 

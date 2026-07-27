@@ -45,7 +45,15 @@ branch `codex/task-thinslice-001-deployment-lab`. A 50/50 rehearsal completed
 20 version-coherent user contracts; a production-like promotion converged to
 three strict candidate contracts after 72,979 milliseconds; exact rollback and
 external cleanup passed. Production remains unchanged, findings remain open,
-and no production attempt is authorized.
+and no production attempt was authorized by the lab decision. The Project
+Owner subsequently issued OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005. Permanent
+least-privilege rules credential presence and the exact enabled affinity rule
+are operator-tested; the public baseline remained exact. AU-AGENT-003 rejected
+first source `2eaae2a`, then assigned task-scoped `VERIFIED` at exact
+remediation source `e22e4c7`, resolving TS001-DEPLOY-015/016/017 and accepting
+TS001-DEPLOY-014 technical remediation for protected integration. Branch CI,
+protected merge, exact-main CI, the one controlled deployment, and live
+browser verification remain open.
 
 ## Confirmed Workspace State
 

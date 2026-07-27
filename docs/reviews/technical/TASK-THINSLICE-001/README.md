@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.35.0 |
+| Version | 1.36.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -161,8 +161,13 @@ per-attempt/check evidence. The isolated candidate completed a 50/50 affinity
 rehearsal, a full baseline-to-candidate promotion with three consecutive strict
 contracts after 72,979 milliseconds, exact rollback, and cleanup. The
 remediation is `[IMPLEMENTED]`, `[TESTED]` on branch
-`codex/task-thinslice-001-deployment-lab`; production integration, independent
-review, TS001-DEPLOY-014/015 disposition, and a new attempt remain open.
+`codex/task-thinslice-001-deployment-lab`; first exact-source review and
+finding remediation followed.
+AU-AGENT-003 rejected first source `2eaae2a`, then assigned task-scoped
+`VERIFIED` at exact remediation `e22e4c7`, resolving TS001-DEPLOY-015/016/017
+and accepting TS001-DEPLOY-014 technical remediation for integration.
+OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one post-gate run; protected
+merge, exact-main CI, and live production evidence remain open.
 
 ## Owner
 

@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–6 retained as failed-closed history; attempt 6 rollback task-scoped `VERIFIED`; production continuation `REWORK REQUIRED`; authority exhausted |
+| Status | Attempts 1–6 retained as failed-closed history; transition remediation task-scoped `VERIFIED`; one controlled post-gate attempt `[APPROVED]`; protected integration pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.4.0 |
+| Version | 2.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
@@ -460,8 +460,33 @@ consecutive strict candidate contracts completed in 72,979 milliseconds.
 Rollback restored the exact baseline Worker and root hash. Every temporary
 Cloudflare resource and credential was removed. Production was not mutated.
 The result is `[IMPLEMENTED]`, `[TESTED]`, not independently `VERIFIED`;
-TS001-DEPLOY-014/015, production integration, and attempt authorization remain
-open.
+the first exact-source review and remediation are recorded below.
+
+## Production Attempt 7 Readiness
+
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 approves one
+  controlled workflow dispatch after all gates.
+- **External prerequisite:** permanent secret name
+  `CLOUDFLARE_RULES_TOKEN` is present in the GitHub `production` environment;
+  the token is scoped to Account Rulesets Read and exact-zone Transform Rules
+  Edit. No secret value is retained here.
+- **Affinity rule:** exact enabled hostname
+  `abris.653915.com`, header `Cloudflare-Workers-Version-Key`, and key
+  `to_string(ip.src)` were applied and read back. Three public root checks and
+  HEAD retained the exact baseline SHA-256.
+- **First review:** AU-AGENT-003 assigned `FAIL` / `REWORK REQUIRED` to
+  `2eaae2a` with TS001-DEPLOY-016/017 and the remaining TS001-DEPLOY-015
+  serializer condition.
+- **Remediation:** exact source `e22e4c7` rejects unknown third versions,
+  tightly bounds null legacy identity, proves effective ordered rule
+  semantics, and tests populated bounded evidence sanitization.
+- **Independent gate:** AU-AGENT-003 assigned Quality Gate Decision `PASS` and
+  task-scoped Engineering Verification Status `VERIFIED` at `e22e4c7`, with no
+  mandatory unresolved finding. TS001-DEPLOY-014 technical remediation is fit
+  for integration; live closure remains open.
+- **Remaining gates:** documentation integration, exact-head executable-tree
+  preservation, branch CI, protected merge, exact-main CI, exact authenticated
+  workflow preflight, and the controlled deployment result.
 
 ## References
 

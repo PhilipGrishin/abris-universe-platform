@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.29.0 |
+| Version | 4.30.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -20,6 +20,26 @@
 Record significant internal engineering changes in a concise, navigable
 history without replacing Git history, ADRs, task records, or handoff
 evidence.
+
+## 2026-07-27 — Production Affinity and Review Remediation Integrated
+
+- Registered OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 for one controlled
+  post-gate production workflow dispatch.
+- Registered permanent production rules-secret presence and exact-host
+  affinity-rule read-back without retaining a credential value.
+- Integrated AU-AGENT-003 first-source `FAIL` / `REWORK REQUIRED` findings
+  TS001-DEPLOY-016/017 and the remaining TS001-DEPLOY-015 condition without
+  changing reviewer meaning.
+- Added exact prior Worker identity to the bounded transition allowlist and
+  immediate failure for any third non-null version.
+- Bounded null legacy evidence by transition-sensitive path and null source
+  provenance.
+- Made affinity preflight reject duplicate managed rules and later enabled
+  same-header set/remove writers while preserving valid ordering.
+- Added populated nested evidence bound and disclosure tests.
+- Integrated AU-AGENT-003 task-scoped `VERIFIED` result at exact source
+  `e22e4c7`, with no mandatory unresolved finding.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Cloudflare Deployment Transition Lab Completed
 

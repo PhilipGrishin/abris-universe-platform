@@ -158,8 +158,8 @@
 
 ## OQ-009 — Post-Promotion Endpoint Stability Disposition
 
-- **Status:** Technical mechanism and isolated remediation `[TESTED]`;
-  production disposition `[OPEN]`
+- **Status:** Technical mechanism task-scoped `VERIFIED`; controlled
+  production result `[OPEN]`
 - **Question:** Which separately reviewed technical alternative, if any,
   should address the observed post-promotion `/version.json` instability and
   self-contained per-attempt evidence before another production attempt is
@@ -171,7 +171,7 @@
 - **Evidence:** protected-main source `53389089`; run `30266185702`; artifact
   `8652895888`; TS001-DEPLOY-014 (High); TS001-DEPLOY-015 (Medium);
   `AU-TECHREV-TS001-CF-LAB-001`; isolated implementation sources `bcdd369` and
-  `d741abd`.
+  `d741abd`; exact remediation `e22e4c7`.
 - **Required disposition:** AU-AGENT-001 prepares a Technical Alternative
   Proposal and evidence-schema remediation with explicit acceptance criteria,
   deterministic tests, rollback preservation, and exact-source AU-AGENT-003
@@ -182,7 +182,11 @@
   tested remediation combines exact-host version affinity, Worker-owned
   runtime identity, a bounded baseline-aware transition window, strict
   eventual quorum, stronger asset checks, and per-attempt/check evidence.
-- **Boundary:** The lab evidence does not close AU-AGENT-003 findings, install
-  the production rule, merge the branch, authorize a repeat, or prove
-  multi-region production convergence.
+- **Disposition:** AU-AGENT-003 resolved TS001-DEPLOY-015/016/017 and accepted
+  TS001-DEPLOY-014 technical remediation for integration at `e22e4c7`.
+  Permanent credential presence and exact-host rule read-back are
+  operator-tested. OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
+  controlled run after protected gates.
+- **Boundary:** Protected merge, exact-main CI, live production convergence,
+  multi-region evidence, and browser production verification remain open.
 - **Decision owner:** Project Owner after technical and independent review

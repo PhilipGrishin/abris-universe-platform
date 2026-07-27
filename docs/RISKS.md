@@ -548,8 +548,7 @@
 ## RISK-021 — Promoted Static Asset Endpoint Is Not Stable Across Observations
 
 - **Status:** Production observation confirmed in an isolated reproduction;
-  remediation `[IMPLEMENTED]`, `[TESTED]` outside production; production
-  continuation remains `REWORK REQUIRED`
+  technical remediation task-scoped `VERIFIED`; live production result open
 - **Probability:** Observed in production once and repeatedly reproduced in the
   isolated deployment lab
 - **Impact:** High
@@ -567,8 +566,9 @@
 - **Prevention:** Worker-owned immutable runtime provenance; exact-host
   IP-based Worker version affinity; per-request version identity; strict
   content-type and non-SPA asset assertions; bounded baseline-aware transition
-  handling; three consecutive complete candidate contracts. Implemented and
-  tested on the isolated branch, not yet production-reviewed or integrated.
+  handling; three consecutive complete candidate contracts. AU-AGENT-003
+  assigned task-scoped `VERIFIED` at `e22e4c7`; protected integration remains
+  pending.
 - **Mitigation:** Preserve exact preview verification, fail-closed production
   quorum, immutable rollback, rollback purge, and baseline restoration. Extend
   sanitized retained evidence with bounded per-attempt/check identifiers.

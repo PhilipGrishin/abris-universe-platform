@@ -1,5 +1,28 @@
 # Handoff Log
 
+## 2026-07-27 — Production Affinity Gate and Exact Remediation Verified
+
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
+  controlled post-gate production workflow dispatch.
+- **External state:** permanent scoped `CLOUDFLARE_RULES_TOKEN` presence is
+  confirmed in GitHub `production`; exact-host IP affinity rule was applied
+  and read back; three GET checks, HEAD, and exact root SHA-256 confirmed the
+  unchanged production baseline.
+- **First independent review:** exact source `2eaae2a`; `FAIL` /
+  `REWORK REQUIRED`; TS001-DEPLOY-016 High, TS001-DEPLOY-017 Medium, and the
+  remaining TS001-DEPLOY-015 populated-evidence condition.
+- **Remediation:** exact source `e22e4c7`; unknown Worker identities now fail
+  immediately; null legacy evidence is path/provenance bounded; later
+  same-header rules are rejected; populated 25-attempt/24-check evidence
+  bounds and disclosure stripping are tested.
+- **Reverification:** AU-AGENT-003 Quality Gate Decision `PASS`; task-scoped
+  Engineering Verification Status `VERIFIED`; no mandatory unresolved finding;
+  49 focused, 60 script, and 70 package tests plus typecheck, build, rehearsal,
+  audit, and patch checks pass.
+- **Boundary:** production has not been deployed. Documentation integration,
+  exact-head preservation, branch CI, protected merge, exact-main CI, and live
+  workflow evidence remain mandatory.
+
 ## 2026-07-27 — Isolated Cloudflare Transition Lab Completed
 
 - **Authority:** OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized autonomous
