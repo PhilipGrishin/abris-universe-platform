@@ -87,6 +87,31 @@ export const parseProductionSourceRegistry = (contents) => {
   return registry;
 };
 
+export const validateProductionSourceRegistryAnchors = ({
+  registry,
+  acceptedProductSourceAnchor,
+  reviewedDeploymentSourceAnchor,
+}) => {
+  assert(
+    FULL_SHA.test(acceptedProductSourceAnchor ?? ""),
+    "ACCEPTED_EXECUTABLE_SOURCE_COMMIT external anchor must be a full lowercase Git SHA.",
+  );
+  assert(
+    FULL_SHA.test(reviewedDeploymentSourceAnchor ?? ""),
+    "REVIEWED_DEPLOYMENT_SOURCE_COMMIT external anchor must be a full lowercase Git SHA.",
+  );
+  assert(
+    registry.acceptedProductSourceCommit === acceptedProductSourceAnchor,
+    "Registered accepted product source does not match the external production anchor.",
+  );
+  assert(
+    registry.reviewedDeploymentSourceCommit ===
+      reviewedDeploymentSourceAnchor,
+    "Registered reviewed deployment source does not match the external production anchor.",
+  );
+  return registry;
+};
+
 export const productionSourceChanges = ({
   acceptedCommit,
   reviewedDeploymentCommit,
@@ -168,11 +193,13 @@ const runCli = () => {
   const registry = parseProductionSourceRegistry(
     readFileSync(registryPath, "utf8"),
   );
-  assert(
-    process.env.ACCEPTED_EXECUTABLE_SOURCE_COMMIT ===
-      registry.acceptedProductSourceCommit,
-    "Workflow accepted product source does not match the registered source.",
-  );
+  validateProductionSourceRegistryAnchors({
+    registry,
+    acceptedProductSourceAnchor:
+      process.env.ACCEPTED_EXECUTABLE_SOURCE_COMMIT,
+    reviewedDeploymentSourceAnchor:
+      process.env.REVIEWED_DEPLOYMENT_SOURCE_COMMIT,
+  });
   const result = productionSourceChanges({
     acceptedCommit: registry.acceptedProductSourceCommit,
     reviewedDeploymentCommit: registry.reviewedDeploymentSourceCommit,

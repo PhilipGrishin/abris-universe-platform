@@ -14,6 +14,7 @@ import {
   parseProductionSourceRegistry,
   productionSourceChanges,
   validateProductionSourceChanges,
+  validateProductionSourceRegistryAnchors,
 } from "./verify-production-source-boundary.mjs";
 
 const ACCEPTED = "a".repeat(40);
@@ -119,23 +120,55 @@ test("rejects product, package, OXS fixture, lockfile, and workspace changes", (
 });
 
 test("validates the registered accepted and independently reviewed commits", () => {
-  assert.deepEqual(
-    parseProductionSourceRegistry(
-      JSON.stringify({
-        schemaVersion: 1,
-        acceptedProductSourceCommit: ACCEPTED,
-        reviewedDeploymentSourceCommit: REVIEWED,
-      }),
-    ),
-    {
+  const registry = parseProductionSourceRegistry(
+    JSON.stringify({
       schemaVersion: 1,
       acceptedProductSourceCommit: ACCEPTED,
       reviewedDeploymentSourceCommit: REVIEWED,
-    },
+    }),
+  );
+  assert.deepEqual(registry, {
+    schemaVersion: 1,
+    acceptedProductSourceCommit: ACCEPTED,
+    reviewedDeploymentSourceCommit: REVIEWED,
+  });
+  assert.equal(
+    validateProductionSourceRegistryAnchors({
+      registry,
+      acceptedProductSourceAnchor: ACCEPTED,
+      reviewedDeploymentSourceAnchor: REVIEWED,
+    }),
+    registry,
   );
   assert.throws(
     () => parseProductionSourceRegistry('{"schemaVersion":1}'),
     /acceptedProductSourceCommit/u,
+  );
+});
+
+test("fails when either external production source anchor differs", () => {
+  const registry = {
+    schemaVersion: 1,
+    acceptedProductSourceCommit: ACCEPTED,
+    reviewedDeploymentSourceCommit: REVIEWED,
+  };
+  assert.throws(
+    () =>
+      validateProductionSourceRegistryAnchors({
+        registry,
+        acceptedProductSourceAnchor: CURRENT,
+        reviewedDeploymentSourceAnchor: REVIEWED,
+      }),
+    /accepted product source.*external production anchor/u,
+  );
+  assert.throws(
+    () =>
+      validateProductionSourceRegistryAnchors({
+        registry,
+        acceptedProductSourceAnchor: ACCEPTED,
+        reviewedDeploymentSourceAnchor: CURRENT,
+      }),
+    /reviewed deployment source.*external production anchor/u,
   );
 });
 
@@ -238,6 +271,53 @@ test("fails closed for a real cross-boundary rename", () => {
     assert.throws(
       () => validateRepository(repository, currentCommit),
       /deployment trust inputs differ.*renamed-product\.ts/u,
+    );
+  } finally {
+    rmSync(repository.cwd, { recursive: true, force: true });
+  }
+});
+
+test("external anchor blocks a two-commit self-registration bypass", () => {
+  const repository = createBoundaryRepository();
+  try {
+    write(repository.cwd, "apps/web/worker/index.ts", "unreviewed worker\n");
+    const unreviewedCommit = commit(repository.cwd, "unreviewed worker");
+    write(
+      repository.cwd,
+      ".codex/production-deployment-source.json",
+      `${JSON.stringify(
+        {
+          schemaVersion: 1,
+          acceptedProductSourceCommit: repository.acceptedCommit,
+          reviewedDeploymentSourceCommit: unreviewedCommit,
+        },
+        null,
+        2,
+      )}\n`,
+    );
+    const selfRegisteredCommit = commit(repository.cwd, "self-register");
+
+    const selfDeclaredResult = productionSourceChanges({
+      acceptedCommit: repository.acceptedCommit,
+      reviewedDeploymentCommit: unreviewedCommit,
+      currentCommit: selfRegisteredCommit,
+      runGit: (command, args, options) =>
+        git(repository.cwd, args, options),
+    });
+    assert.ok(selfDeclaredResult.reviewedDeploymentPaths.length > 0);
+    assert.throws(
+      () =>
+        validateProductionSourceRegistryAnchors({
+          registry: {
+            schemaVersion: 1,
+            acceptedProductSourceCommit: repository.acceptedCommit,
+            reviewedDeploymentSourceCommit: unreviewedCommit,
+          },
+          acceptedProductSourceAnchor: repository.acceptedCommit,
+          reviewedDeploymentSourceAnchor:
+            repository.reviewedDeploymentCommit,
+        }),
+      /reviewed deployment source.*external production anchor/u,
     );
   } finally {
     rmSync(repository.cwd, { recursive: true, force: true });
