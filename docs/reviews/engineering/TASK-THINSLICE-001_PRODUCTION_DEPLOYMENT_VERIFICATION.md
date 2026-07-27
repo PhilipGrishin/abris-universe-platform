@@ -753,7 +753,7 @@ successful production deployment, or release approval.
 - **Authority:** this review grants no further deployment action and no
   project/product `[VERIFIED]`.
 
-## Residual External Blockers
+## Residual Limitations
 
 - TD-GATE-003 is closed by retained run `30248680612`.
 - Remote Worker subdomain state passed attempt 6 as `enabled: false`,
@@ -762,22 +762,23 @@ successful production deployment, or release approval.
   from retained sanitized evidence and likely remains orphaned at zero traffic.
 - Findings TS001-DEPLOY-012 and TS001-DEPLOY-013 are resolved at exact source
   `497991c`; PR #13, protected merge, and exact-main CI completed.
-- TS001-DEPLOY-015/016/017 are resolved at `e22e4c7`.
-  TS001-DEPLOY-014 technical remediation is task-scoped `VERIFIED`; live
-  production completion remains open until protected integration, exact-main
-  gates, and a controlled production result pass.
+- TS001-DEPLOY-014 through TS001-DEPLOY-020 are resolved within the bounded
+  deployment scope. The final source-boundary remediation was independently
+  reviewed before protected integration and the controlled production run.
 - Immutable preview, exact promotion, hostname purge, rollback purge, and exact
-  baseline restoration are proven. Stable production delivery is not.
-- Production security headers, runtime request inventory, browser network
-  capture, console, import entry point, and live post-promotion assertions
-  remain open.
-- A single workflow runner cannot prove simultaneous global edge convergence.
+  baseline restoration are proven. The bounded production deployment is proven
+  by the retained workflow artifact, independent HTTP verification, and the
+  operator browser session.
+- A single workflow runner and the bounded post-deployment checks do not prove
+  simultaneous global or multi-region edge convergence or long-duration
+  stability.
+- The operator browser session verified the landing page and import entry point.
+  Broad platform and browser coverage, and an independently repeated browser
+  console and network capture, remain outside this deployment scope.
 
-These items remain mandatory evidence. AU-AGENT-003 supplies no deployment
-authority. OWNER-DEC-TS001-PRODUCTION-RETRY-006 separately authorizes exactly
-one corrected repeat only after documentation integration, exact-head
-preservation, branch CI, protected merge, exact-main CI, and authenticated
-workflow preflight pass.
+OWNER-DEC-TS001-PRODUCTION-RETRY-006 was consumed by run `30278965044`. It does
+not authorize another production deployment. AU-AGENT-003 supplies no
+deployment authority.
 
 ## References
 

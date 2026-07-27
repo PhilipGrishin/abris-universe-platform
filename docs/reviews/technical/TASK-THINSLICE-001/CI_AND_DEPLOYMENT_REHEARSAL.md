@@ -263,7 +263,8 @@ AU-AGENT-003 assigned `PASS` and task-scoped `VERIFIED` at final source
 `3ae376f`, resolving TS001-DEPLOY-018/019/020. Exact final local evidence passes
 strict typecheck, 71 script tests, 70 package tests, production build,
 dependency audit, and Wrangler rehearsal. Corrected branch CI, protected merge,
-and exact-main CI remain mandatory before the owner-authorized repeat.
+and exact-main CI remained mandatory at that review point before the
+owner-authorized repeat. They subsequently passed as recorded below.
 
 PR #16 passed both branch checks and merged through protected main as
 `1021abf3`. Exact-main CI run `30278863068` passed the complete no-deploy
