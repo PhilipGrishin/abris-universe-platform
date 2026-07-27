@@ -7,10 +7,10 @@
 | Status | Remediation `[IMPLEMENTED]`, `[TESTED]`, task-scoped engineering `VERIFIED` at `e22e4c7`; protected integration and production result `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | Production run `30266185702`; artifact `8652895888`; `AU-TAP-TS001-002`; `AU-TAP-TS001-003`; code sources `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c` and `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`; Cloudflare Workers Versions and Deployments documentation |
+| Dependencies | Production run `30266185702`; artifact `8652895888`; `AU-TAP-TS001-002`; `AU-TAP-TS001-003`; code sources `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c`, `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`, and exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; Production Deployment Verification v2.2.1; Cloudflare Workers Versions and Deployments documentation |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Cloudflare routing or deployment semantics change; verifier contract change; production affinity-rule change; production attempt; AU-AGENT-003 finding disposition |

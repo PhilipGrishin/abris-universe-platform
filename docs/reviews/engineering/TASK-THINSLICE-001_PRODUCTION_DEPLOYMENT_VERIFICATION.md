@@ -7,10 +7,10 @@
 | Status | Deployment-transition remediation task-scoped `VERIFIED` at `e22e4c7`; protected integration and live production result pending; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.2.0 |
+| Version | 2.2.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-DEPLOYMENT-LAB-004; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Record v2.4.0; production run `30266185702`; retained artifact `8652895888`; first transition-remediation review `2eaae2ad122d920516bbc7bbd5d599f724822de1`; exact remediation source `e22e4c7602ccaa3716c1607a928b66583accab80` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-DEPLOYMENT-LAB-004; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Record v2.5.1; production run `30266185702`; retained artifact `8652895888`; first transition-remediation review `2eaae2ad122d920516bbc7bbd5d599f724822de1`; exact remediation source `e22e4c7602ccaa3716c1607a928b66583accab80` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -702,8 +702,11 @@ successful production deployment, or release approval.
   remain open.
 - A single workflow runner cannot prove simultaneous global edge convergence.
 
-These items remain mandatory evidence. Attempt authority is exhausted; no
-repeat is authorized.
+These items remain mandatory evidence. AU-AGENT-003 supplies no deployment
+authority. Separately, OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
+controlled attempt only after documentation integration, exact-head
+preservation, branch CI, protected merge, exact-main CI, and authenticated
+workflow preflight pass.
 
 ## References
 

@@ -8,10 +8,10 @@
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.16.0 |
+| Version | 1.16.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; Production Deployment Record v2.3.0; Threat Model TM-011 through TM-024; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.2.1; Production Deployment Record v2.5.1; Threat Model TM-011 through TM-024; exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; production run `30266185702`; artifact `8652895888` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
