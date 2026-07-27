@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.12 |
+| Version | 1.3.13 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -201,4 +201,11 @@ production smoke, rollback rehearsal, and local-data compatibility.
   merge remain open before the single new authorized attempt.
 - 2026-07-27: Version 1.3.12 records AU-AGENT-003 task-scoped `VERIFIED` at
   exact remediation source `497991c`, resolution of TS001-DEPLOY-012/013, and
-  no unresolved finding. Protected merge and exact-main CI remain open.
+  no unresolved finding. Protected merge and exact-main CI were open at that
+  revision.
+- 2026-07-27: Version 1.3.13 records protected-main run `30266185702`.
+  Immutable preview, exact promotion, and hostname purge passed; production
+  stability attempt 3 received `/version.json` `404` while the candidate root
+  remained active. Exact rollback and rollback purge restored the prior
+  version/baseline. Production is `REWORK REQUIRED`; TS001-DEPLOY-014/015 are
+  open; no new architecture decision is adopted.

@@ -1,5 +1,31 @@
 # Handoff Log
 
+## 2026-07-27 — Attempt 6 Failed Production Stability and Rolled Back
+
+- **Exact source:** protected-main merge
+  `53389089fecf571705c27d620e11243f9a31f99d`; PR #13; exact-main CI run
+  `30266042191` passed on the same-SHA failed-job rerun.
+- **Production run:** `30266185702`; exact remote-state preflight, immutable
+  preview, exact promotion to 100 percent, and hostname-only purge passed.
+- **Failure:** production stability attempt 3 retained the exact candidate
+  root and required headers, but `GET /version.json` returned `404`.
+- **Safety result:** automatic rollback restored prior version `d1f2b05d` at
+  100 percent; rollback hostname purge succeeded; retained and independent
+  GET/HEAD/hash checks restored the exact registered placeholder baseline.
+- **Evidence:** artifact `8652895888`, digest
+  `sha256:ca292e72a7a071b1577d21b004224ac35339fffe1bf741d3af21ef0b731faa6c`,
+  retained until 2026-10-25; both JSON checksums are registered in the
+  Production Deployment Record; forbidden-data scan passed.
+- **Independent gate:** AU-AGENT-003 assigned `FAIL` / task-scoped
+  `REWORK REQUIRED`; rollback sub-result `VERIFIED`; TS001-DEPLOY-014 (High)
+  and TS001-DEPLOY-015 (Medium) are mandatory.
+- **Authority:** the single attempt is exhausted. No automatic or manual
+  repeat is authorized.
+- **Next gate:** AU-AGENT-001 prepares a separately reviewed Technical
+  Alternative Proposal plus evidence-schema remediation. A later attempt
+  requires exact-source AU-AGENT-003 review, CI, protected merge, exact-main
+  CI, and separate Project Owner authorization.
+
 ## 2026-07-27 — Remote Preview Prerequisite Remediation Authorized and Implemented
 
 - **Owner decision:** OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 approves
@@ -17,8 +43,8 @@
   no-upload/no-mutation, provenance, and disclosure-boundary tests pass.
 - **Independent gate:** AU-AGENT-003 assigned `PASS` and task-scoped
   `VERIFIED` at exact source `497991c`; TS001-DEPLOY-012/013 are resolved.
-- **Next gate:** required branch CI and protected merge, followed by exact-main
-  CI.
+- **Outcome:** PR #13, protected merge `53389089`, and exact-main CI completed;
+  the resulting single attempt is recorded above.
 
 ## 2026-07-27 — Immutable Preview Attempt Failed Before Production Mutation
 

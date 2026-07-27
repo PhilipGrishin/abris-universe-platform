@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-003 |
 | Title | Remote Preview Enablement and Fail-Closed Preflight Technical Alternative |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; provider state established; protected merge and exact-main CI `[OPEN]`; one controlled attempt authorized only after those gates |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; live prerequisite passed; one controlled attempt executed and authority exhausted |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; production run `30262328350`; retained artifact `8651402890` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002`; exact remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; production runs `30262328350` and `30266185702`; retained artifacts `8651402890` and `8652895888` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Owner disposition; Cloudflare Preview URLs configuration change; Wrangler output-contract change; preflight implementation; production retry |
@@ -188,8 +188,16 @@ attempt remain separate gates.
 AU-AGENT-003 independently reviewed exact source
 `497991c7eb5d9c558becafa2f4d2461e639be1ec`, assigned Quality Gate Decision
 `PASS` and task-scoped Engineering Verification Status `VERIFIED`, and resolved
-TS001-DEPLOY-012/013. Protected merge and exact-main CI remain open before the
-single authorized attempt.
+TS001-DEPLOY-012/013. Protected merge and exact-main CI were the remaining
+gates before the single authorized attempt.
+
+PR #13, protected merge `53389089`, and exact-main CI completed. Production
+run `30266185702` proved the exact remote state and immutable preview contract,
+then failed later production stability on `/version.json` `404`. Automatic
+rollback restored the exact prior version/baseline. This alternative's
+prerequisite objective is `[TESTED]`; it does not establish production
+success. AU-AGENT-003 assigned production `REWORK REQUIRED` with
+TS001-DEPLOY-014/015. Attempt authority is exhausted.
 
 ## References
 
