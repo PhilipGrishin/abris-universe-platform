@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, `[TESTED]`, historical exact-source engineering `VERIFIED`; credentials configured; TD-GATE-003 `[TESTED]`, closed; protected merge complete; production continuation `REWORK REQUIRED`; successful production/browser evidence `[OPEN]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow and successful bounded deployment `[IMPLEMENTED]`, `[TESTED]`, task-scoped engineering `VERIFIED`; expanded project `[VERIFIED]` remains open |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.13 |
+| Version | 1.3.14 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -209,3 +209,9 @@ production smoke, rollback rehearsal, and local-data compatibility.
   remained active. Exact rollback and rollback purge restored the prior
   version/baseline. Production is `REWORK REQUIRED`; TS001-DEPLOY-014/015 are
   open; no new architecture decision is adopted.
+- 2026-07-27: Version 1.3.14 records PR #16, protected merge `1021abf3`,
+  exact-main CI `30278863068`, and successful production run `30278965044`.
+  Immutable version `8c49fb69` passed preview, promotion, purge, bounded
+  transition, and three consecutive candidate contracts. AU-AGENT-003 closes
+  TS001-DEPLOY-014 for bounded deployment. The delivery architecture is not
+  changed; global/long-duration and expanded product acceptance remain open.

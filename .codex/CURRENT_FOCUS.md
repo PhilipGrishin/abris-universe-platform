@@ -108,8 +108,17 @@ accepted source `1a683ab`, the complete deployment trust plane to reviewed
 source `a20bb8b`, and both identities to owner-controlled GitHub `production`
 environment variables. AU-AGENT-003 assigned `PASS` and task-scoped
 Engineering Verification Status `VERIFIED`; all three findings are resolved.
-The next gate is documentation integration, exact-head preservation, branch
-CI, protected merge, and exact-main CI before the one authorized repeat.
+PR #16, protected merge `1021abf3`, and exact-main CI run `30278863068`
+passed. Production run `30278965044` completed immutable preview verification,
+promotion, hostname purge, four bounded prior-baseline observations, and three
+consecutive candidate contracts. Candidate `8c49fb69` remains live at exact
+source `1021abf3`. Artifact `8658016223`, independent semantic verification,
+and operator browser evidence pass. AU-AGENT-003 assigned post-production
+`PASS` and task-scoped Engineering Verification Status `VERIFIED`, closing
+TS001-DEPLOY-014 in the bounded deployment scope with no new finding.
+Global/multi-region and long-duration convergence, broader browser/platform
+coverage, and expanded Claude product `[VERIFIED]` scope remain unclaimed. No
+further deployment attempt is authorized.
 
 ## Confirmed Inputs
 

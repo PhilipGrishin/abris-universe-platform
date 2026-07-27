@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.31.0 |
+| Version | 4.32.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -20,6 +20,22 @@
 Record significant internal engineering changes in a concise, navigable
 history without replacing Git history, ADRs, task records, or handoff
 evidence.
+
+## 2026-07-27 — Production Deployment Completed
+
+- Merged PR #16 through protected main as `1021abf3` after both branch checks.
+- Passed exact-main CI `30278863068`.
+- Completed production run `30278965044` with immutable preview, promotion,
+  hostname purge, bounded transition, and three-pass stability quorum.
+- Registered live version `8c49fb69`, artifact `8658016223`, archive/JSON
+  checksums, clean disclosure scan, and public semantic verification.
+- Registered operator production browser evidence for the landing and import
+  entry points.
+- Integrated AU-AGENT-003 post-production `PASS`, task-scoped `VERIFIED`,
+  TS001-DEPLOY-014 closure, no new finding, and residual limitations.
+- Marked OWNER-DEC-TS001-PRODUCTION-RETRY-006 consumed; no further deployment
+  action is authorized.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Production Affinity and Review Remediation Integrated
 

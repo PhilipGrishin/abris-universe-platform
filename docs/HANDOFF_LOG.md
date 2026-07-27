@@ -1,5 +1,27 @@
 # Handoff Log
 
+## 2026-07-27 — Production Deployment Completed
+
+- **Protected delivery:** PR #16; merge `1021abf3`; exact-main CI
+  `30278863068` passed.
+- **Production run:** `30278965044`; every authorization, source, credential,
+  install, test, build, audit, rehearsal, immutable upload, preview smoke,
+  promotion, purge, stability, and evidence step passed.
+- **Live result:** version `8c49fb69` at source `1021abf3`; four registered
+  prior-baseline observations followed by three candidate passes.
+- **Artifact:** `8658016223`; archive digest
+  `sha256:ecfd99648e7aaf712de55d3e8e07ee3baf7f005933151c2e4d8802d012fca57a`;
+  both JSON checksums and disclosure scan pass.
+- **Independent checks:** public semantic contract passed on attempt 1;
+  operator browser landing/import evidence passed; AU-AGENT-003 assigned
+  `PASS` and task-scoped `VERIFIED`, closing TS001-DEPLOY-014 with no new
+  finding.
+- **Limitations:** global/multi-region, long-duration, and broader
+  platform/browser claims remain open; Claude product `[VERIFIED]` scope is
+  unchanged.
+- **Authority:** OWNER-DEC-TS001-PRODUCTION-RETRY-006 is consumed. No further
+  deployment action is authorized.
+
 ## 2026-07-27 — Corrected Production Source Boundary Verified
 
 - **Failed dispatch:** run `30276596270` failed at the accepted-source guard;

@@ -4,15 +4,15 @@
 | --- | --- |
 | Document ID | AU-COMP-TS001-001 |
 | Title | TASK-THINSLICE-001 Completion Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; attempts 3–6 retained; attempts 3, 4, and 6 restored the exact prior state while attempt 5 failed before production mutation; production continuation `REWORK REQUIRED` |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; internal implementation Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within its original bounded scope; production deployment `[TESTED]` and task-scoped engineering `VERIFIED`; expanded independent production acceptance not yet assigned |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.1.11 |
+| Version | 1.1.12 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | TASK-THINSLICE-001 v1.1; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; Technical Design v1.5.17; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; Production Deployment Verification v2.1.0; Production Deployment Record v2.3.0; exact protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; production run `30266185702`; artifact `8652895888`; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
+| Dependencies | TASK-THINSLICE-001 v1.1; OWNER-DEC-TS001-PRODUCTION-RETRY-006; Technical Design v1.5.18; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; Production Deployment Verification v2.4.0; Production Deployment Record v2.7.0; protected-main source `1021abf3bf82512292bfdc34103e8c3ef141a633`; exact-main CI `30278863068`; production run `30278965044`; artifact `8658016223`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; prior evidence and CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package, implementation source, test, evidence, finding, limitation, deployment, acceptance, or documentation-result change |
@@ -150,7 +150,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
 | Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
-| Production deployment | Runs `30247393181` through `30262328350` retain failed-closed history. Run `30266185702` passed exact remote preflight, immutable preview, promotion, and purge, then failed production stability when `/version.json` returned `404` on attempt 3 while the candidate root remained active. Exact rollback and rollback purge restored the prior version/baseline. AU-AGENT-003 assigns production `REWORK REQUIRED`, rollback task-scoped `VERIFIED`, High TS001-DEPLOY-014, and Medium TS001-DEPLOY-015. Attempt authority is exhausted; browser production assertions remain open. |
+| Production deployment | Failed-closed history remains retained. PR #16 and exact-main CI passed; run `30278965044` promoted immutable version `8c49fb69`, purged the hostname, observed four exact prior-baseline contracts, then completed three consecutive candidate contracts. Artifact `8658016223`, independent semantic verification, and operator browser inspection pass. AU-AGENT-003 assigns post-production `PASS` and task-scoped `VERIFIED`, closing TS001-DEPLOY-014 for bounded deployment. Global/multi-region, long-duration, broader platforms, and expanded Claude production acceptance remain open. |
 
 These dispositions do not change product requirements.
 

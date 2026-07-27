@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–6 retained as failed-closed history; run `30276596270` failed before mutation; transition and source-boundary remediation task-scoped `VERIFIED`; one corrected repeat `[APPROVED]`; protected integration pending |
+| Status | Failed-closed history retained; run `30278965044` `[TESTED]`, task-scoped engineering `VERIFIED`; production version `8c49fb69` live; expanded project `[VERIFIED]` not assigned |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.6.0 |
+| Version | 2.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; OWNER-DEC-TS001-PRODUCTION-RETRY-006; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.3.0; bounded independent acceptance at `1a683ab`; transition remediation `e22e4c7`; source-boundary remediation `3ae376f`; production runs `30266185702` and `30276596270`; artifact `8652895888`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-RETRY-006; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.18; ADR-TS001-004 v1.3.14; Production Deployment Verification v2.4.0; bounded independent acceptance at `1a683ab`; protected merge `1021abf3`; exact-main CI `30278863068`; production run `30278965044`; artifact `8658016223`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -513,6 +513,45 @@ Verification Status `VERIFIED` to exact source `3ae376f`. The final contract:
 5. requires branch CI, protected merge, and exact-main CI before dispatch.
 
 No automatic second repeat is authorized.
+
+## Successful Corrected Production Result
+
+- **Protected source:** PR #16; merge
+  `1021abf3bf82512292bfdc34103e8c3ef141a633`.
+- **Exact-main CI:** run `30278863068`; all required checks passed.
+- **Production workflow:** run `30278965044`; authorization and deployment
+  jobs passed; every source, credential, install, test, build, audit,
+  rehearsal, upload, smoke, promote, purge, stability, and evidence step
+  passed.
+- **Live version:** `8c49fb69-788c-449c-a9fa-bc321ff8d852`; runtime source
+  `1021abf3`; `sourceDirty: false`.
+- **Transition:** four exact registered prior-baseline observations followed
+  by three consecutive complete candidate contracts inside the 120-second
+  bound.
+- **Cache:** exact-host purge returned `200` and success.
+- **Contract:** root and HEAD `200`; POST `405`; `Allow: GET, HEAD`; exact
+  JavaScript/CSS media types and hashes; SPA fallback matches the root;
+  restrictive CSP with `connect-src 'none'`; `nosniff`; `no-referrer`.
+- **Artifact:** ID `8658016223`; archive digest
+  `sha256:ecfd99648e7aaf712de55d3e8e07ee3baf7f005933151c2e4d8802d012fca57a`;
+  retained until 2026-10-25. Preflight JSON SHA-256:
+  `f29cf2ea0077ab747967178150e0fcb5ade854b0a9764ba72d88fb6390aad97d`.
+  Deployment JSON SHA-256:
+  `d42fb3c02970be13e9165239c32869d786c71af3827ada93496f966c7d7c75d2`.
+- **Disclosure boundary:** independent scan found no token, secret,
+  authorization, cookie, account ID, preview capability URL, request headers,
+  or response body.
+- **Independent engineering gate:** AU-AGENT-003 `PASS`; task-scoped
+  Engineering Verification Status `VERIFIED`; TS001-DEPLOY-014 closed for the
+  bounded deployment scope; no new finding.
+- **Operator browser evidence:** production title, complete landing DOM,
+  visible and enabled Import OXS entry points, local-first/privacy copy, and
+  visual rendering passed.
+- **Limitations:** no simultaneous global/multi-region or long-duration
+  convergence proof; broader browser/platform matrix and expanded Claude
+  product acceptance remain outside this result.
+- **Authority:** the single repeat is consumed. No further deployment action
+  is authorized.
 
 ## References
 

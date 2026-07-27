@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-REVIEW-ENG-TS001-DEPLOY-001 |
 | Title | Engineering Verification Report — TASK-THINSLICE-001 Production Deployment Readiness |
-| Status | Deployment-transition remediation task-scoped `VERIFIED` at `e22e4c7`; source-boundary remediation task-scoped `VERIFIED` at `3ae376f`; corrected protected integration and live production result pending; not project `[VERIFIED]` |
+| Status | Transition/source-boundary remediation and successful run `30278965044` task-scoped engineering `VERIFIED`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.3.0 |
+| Version | 2.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-DEPLOYMENT-LAB-004; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; OWNER-DEC-TS001-PRODUCTION-RETRY-006; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Record v2.6.0; production runs `30266185702` and `30276596270`; retained artifact `8652895888`; transition remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; source-boundary remediation `3ae376fa526cafa9b89748a584322c7b5ed67161` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-RETRY-006; Technical Design v1.5.18; ADR-TS001-004 v1.3.14; Production Deployment Record v2.7.0; protected merge `1021abf3`; exact-main CI `30278863068`; successful production run `30278965044`; artifact `8658016223`; transition remediation `e22e4c7`; source-boundary remediation `3ae376f` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -726,6 +726,32 @@ successful production deployment, or release approval.
 - **Authority:** OWNER-DEC-TS001-PRODUCTION-RETRY-006 supplies one corrected
   workflow dispatch after all gates. AU-AGENT-003 does not itself grant
   deployment authority or product acceptance.
+
+## Post-Production Verification
+
+- **Exact source:** protected merge
+  `1021abf3bf82512292bfdc34103e8c3ef141a633`.
+- **Exact-main CI:** `30278863068`, PASS.
+- **Production run:** `30278965044`, PASS; every workflow step completed.
+- **Artifact:** `8658016223`; GitHub archive digest and both JSON checksums
+  independently match; schema, source/run provenance, and disclosure scan
+  pass.
+- **Live verification:** exact source `1021abf3`, exact Worker version
+  `8c49fb69`, root/assets/method/security/fallback/runtime-provenance contract
+  passed independently on semantic attempt 1.
+- **Stability:** four registered prior-baseline observations followed by three
+  consecutive complete candidate passes; required quorum 3/3.
+- **Quality Gate Decision:** PASS.
+- **Engineering Verification Status:** VERIFIED, task-scoped only.
+- **Finding disposition:** TS001-DEPLOY-014 is closed within the bounded
+  deployment scope; TS001-DEPLOY-015 through TS001-DEPLOY-020 remain resolved;
+  no new finding.
+- **Residual limitations:** no proof of simultaneous global/multi-region or
+  long-duration convergence; broad platform/browser matrix remains outside
+  scope; operator browser evidence was not independently repeated by
+  AU-AGENT-003; Claude product acceptance scope is unchanged.
+- **Authority:** this review grants no further deployment action and no
+  project/product `[VERIFIED]`.
 
 ## Residual External Blockers
 

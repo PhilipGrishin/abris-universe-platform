@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; transition and source-boundary remediation task-scoped `VERIFIED`; corrected protected integration pending |
+| Status | CI/rehearsal `[TESTED]`; protected integration, exact-main CI, and production run passed; task-scoped engineering `VERIFIED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.17.0 |
+| Version | 1.18.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.2.1; Production Deployment Record v2.5.1; Threat Model TM-011 through TM-024; exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; production run `30266185702`; artifact `8652895888` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-RETRY-006; Technical Design v1.5.18 section 12; ADR-TS001-004 v1.3.14; Production Deployment Verification v2.4.0; Production Deployment Record v2.7.0; Threat Model TM-011 through TM-024; protected merge `1021abf3`; exact-main CI `30278863068`; production run `30278965044`; artifact `8658016223` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -264,6 +264,12 @@ AU-AGENT-003 assigned `PASS` and task-scoped `VERIFIED` at final source
 strict typecheck, 71 script tests, 70 package tests, production build,
 dependency audit, and Wrangler rehearsal. Corrected branch CI, protected merge,
 and exact-main CI remain mandatory before the owner-authorized repeat.
+
+PR #16 passed both branch checks and merged through protected main as
+`1021abf3`. Exact-main CI run `30278863068` passed the complete no-deploy
+contract. Production run `30278965044` subsequently passed the same source,
+credential, frozen-install, typecheck, 71-script-test, 70-package-test, build,
+audit, and rehearsal gates before the successful Cloudflare deployment.
 
 ## References
 
