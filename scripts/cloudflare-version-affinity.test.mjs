@@ -19,6 +19,28 @@ const rulesetWith = (rule) => ({
   rules: [{ id: RULE_ID, enabled: true, ...rule }],
 });
 
+const rewriteRule = ({
+  id,
+  header = VERSION_AFFINITY_HEADER,
+  operation = "set",
+  expression = '"other-key"',
+  enabled = true,
+}) => ({
+  id,
+  ref: id,
+  enabled,
+  expression: "true",
+  action: "rewrite",
+  action_parameters: {
+    headers: {
+      [header]: {
+        operation,
+        ...(operation === "set" ? { expression } : {}),
+      },
+    },
+  },
+});
+
 test("defines IP-based Worker version affinity for the exact hostname", () => {
   assert.deepEqual(versionAffinityRuleDefinition(HOSTNAME), {
     ref: VERSION_AFFINITY_RULE_REF,
@@ -77,5 +99,72 @@ test("rejects a disabled or broadened affinity rule", () => {
         hostname: HOSTNAME,
       }),
     /hostname expression/u,
+  );
+});
+
+test("rejects a later enabled rule that sets or removes the affinity header", () => {
+  for (const operation of ["set", "remove"]) {
+    assert.throws(
+      () =>
+        validateVersionAffinityRule({
+          ruleset: {
+            ...rulesetWith(versionAffinityRuleDefinition(HOSTNAME)),
+            rules: [
+              ...rulesetWith(
+                versionAffinityRuleDefinition(HOSTNAME),
+              ).rules,
+              rewriteRule({
+                id: `later-${operation}`,
+                operation,
+              }),
+            ],
+          },
+          hostname: HOSTNAME,
+        }),
+      /later enabled Transform Rule overrides/u,
+    );
+  }
+});
+
+test("accepts disabled, unrelated, or earlier header modifications when the managed rule is final", () => {
+  const managed = rulesetWith(
+    versionAffinityRuleDefinition(HOSTNAME),
+  ).rules[0];
+  assert.doesNotThrow(() =>
+    validateVersionAffinityRule({
+      ruleset: {
+        ...rulesetWith(versionAffinityRuleDefinition(HOSTNAME)),
+        rules: [
+          rewriteRule({ id: "earlier-affinity" }),
+          managed,
+          rewriteRule({
+            id: "disabled-later-affinity",
+            enabled: false,
+          }),
+          rewriteRule({
+            id: "unrelated-later-header",
+            header: "X-Unrelated-Header",
+          }),
+        ],
+      },
+      hostname: HOSTNAME,
+    }),
+  );
+});
+
+test("rejects duplicate managed affinity rules", () => {
+  const managed = rulesetWith(
+    versionAffinityRuleDefinition(HOSTNAME),
+  ).rules[0];
+  assert.throws(
+    () =>
+      validateVersionAffinityRule({
+        ruleset: {
+          ...rulesetWith(versionAffinityRuleDefinition(HOSTNAME)),
+          rules: [managed, { ...managed, id: "rule-2" }],
+        },
+        hostname: HOSTNAME,
+      }),
+    /duplicated/u,
   );
 });

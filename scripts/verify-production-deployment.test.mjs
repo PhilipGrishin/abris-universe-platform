@@ -16,6 +16,10 @@ import {
 
 const EXPECTED_COMMIT = "a".repeat(40);
 const WORKER_VERSION_ID = "11111111-1111-4111-8111-111111111111";
+const PRIOR_WORKER_VERSION_ID =
+  "22222222-2222-4222-8222-222222222222";
+const UNKNOWN_WORKER_VERSION_ID =
+  "33333333-3333-4333-8333-333333333333";
 const CSP = [
   "default-src 'self'",
   "script-src 'self'",
@@ -91,11 +95,15 @@ const createFixtureServer = async ({
   versionStatusSequence = [],
   runtimeStatus = 200,
   legacyRuntimeResponses = 0,
+  runtimeWorkerVersionIdSequence = [],
 } = {}) => {
   const remainingRootResponses = [...rootSequence];
   const remainingVersionStatuses = [...versionStatusSequence];
   let rootRequests = 0;
   let remainingLegacyRuntimeResponses = legacyRuntimeResponses;
+  const remainingRuntimeWorkerVersionIds = [
+    ...runtimeWorkerVersionIdSequence,
+  ];
   let notifyFirstRootRequest;
   const firstRootRequest = new Promise((resolve) => {
     notifyFirstRootRequest = resolve;
@@ -143,6 +151,12 @@ const createFixtureServer = async ({
         response.end(SHELL);
         return;
       }
+      const runtimeWorkerVersionId =
+        remainingRuntimeWorkerVersionIds.shift() ?? WORKER_VERSION_ID;
+      response.setHeader(
+        "X-Abris-Worker-Version",
+        runtimeWorkerVersionId,
+      );
       response.statusCode = runtimeStatus;
       response.setHeader("Content-Type", "application/json");
       response.end(
@@ -152,7 +166,7 @@ const createFixtureServer = async ({
                 ? "b".repeat(40)
                 : EXPECTED_COMMIT,
               sourceDirty: false,
-              workerVersionId: WORKER_VERSION_ID,
+              workerVersionId: runtimeWorkerVersionId,
               workerVersionTag: "test",
               workerVersionCreatedAt: "2026-07-27T00:00:00.000Z",
             })
@@ -569,6 +583,41 @@ test("retries a bounded transition when a legacy Worker answers without runtime 
       result.stability.attempts[0].checks.at(-1).workerVersionId,
       null,
     );
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("fails immediately when an unregistered third Worker version answers", async () => {
+  const fixture = await createFixtureServer({
+    rootSequence: [SHELL],
+    runtimeWorkerVersionIdSequence: [UNKNOWN_WORKER_VERSION_ID],
+  });
+  try {
+    await assert.rejects(
+      inspectProductionStability({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        expectedWorkerVersionId: WORKER_VERSION_ID,
+        allowHttpForTest: true,
+        priorBaseline: PRIOR_BASELINE,
+        priorWorkerVersionId: PRIOR_WORKER_VERSION_ID,
+        previewSmoke: PREVIEW_SMOKE,
+        stabilityAttempts: 4,
+        requiredConsecutivePasses: 3,
+        stabilityRetryDelayMs: 0,
+      }),
+      (error) => {
+        assert.equal(error.stabilityAttempt, 1);
+        assert.equal(error.stabilityClassification, "unrecognized");
+        assert.equal(
+          error.deploymentChecks.at(-1).workerVersionId,
+          UNKNOWN_WORKER_VERSION_ID,
+        );
+        return true;
+      },
+    );
+    assert.equal(fixture.rootRequests(), 1);
   } finally {
     await fixture.close();
   }

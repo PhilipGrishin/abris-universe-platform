@@ -152,6 +152,7 @@ const validateInspectionInput = ({
 
 const validateStabilityInput = ({
   priorBaseline,
+  priorWorkerVersionId,
   previewSmoke,
   expectedCommit,
 }) => {
@@ -163,6 +164,13 @@ const validateStabilityInput = ({
       typeof priorBaseline.contentType === "string" &&
       priorBaseline.contentType.length > 0,
     "priorBaseline must contain the registered status, HEAD status, body SHA-256, and content type.",
+  );
+  assert(
+    priorWorkerVersionId === undefined ||
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u.test(
+        priorWorkerVersionId,
+      ),
+    "priorWorkerVersionId must be a lowercase UUID.",
   );
   assert(
     previewSmoke?.observedCommit === expectedCommit &&
@@ -497,12 +505,14 @@ export const inspectProductionStability = async ({
   stabilitySleep = (delayMs) =>
     new Promise((resolve) => setTimeout(resolve, delayMs)),
   priorBaseline,
+  priorWorkerVersionId,
   previewSmoke,
   ...inspection
 }) => {
   validateInspectionInput(inspection);
   validateStabilityInput({
     priorBaseline,
+    priorWorkerVersionId,
     previewSmoke,
     expectedCommit: inspection.expectedCommit,
   });
@@ -602,12 +612,32 @@ export const inspectProductionStability = async ({
             .map((check) => check.workerVersionId)
             .filter((versionId) => typeof versionId === "string"),
         );
+        const unknownWorkerVersions = [...observedVersions].filter(
+          (versionId) =>
+            inspection.expectedWorkerVersionId !== undefined &&
+            versionId !== inspection.expectedWorkerVersionId &&
+            versionId !== priorWorkerVersionId,
+        );
+        const nullVersionChecks = checks.filter(
+          (check) => check.workerVersionId === null,
+        );
+        const nullLegacyChecksAreCorrelated =
+          nullVersionChecks.length === 0 ||
+          nullVersionChecks.every(
+            (check) =>
+              check.sourceCommit === null &&
+              (check.pathname === "/__deployment" ||
+                check.pathname === "/version.json" ||
+                check.pathname?.startsWith("/assets/")),
+          );
         const candidateRoot = matchesCandidateSentinel(
           lastObservation,
           previewSmoke,
         );
         const transitionInconsistency =
           candidateRoot &&
+          unknownWorkerVersions.length === 0 &&
+          nullLegacyChecksAreCorrelated &&
           (checks.some(
             (check) =>
               inspection.expectedWorkerVersionId !== undefined &&
@@ -633,9 +663,12 @@ export const inspectProductionStability = async ({
         } else {
           error.stabilityAttempt = attempt;
           error.stabilityWindowMs = stabilityTimeoutMs;
-          error.stabilityClassification = candidateRoot
-            ? "candidate-contract"
-            : "unrecognized";
+          error.stabilityClassification =
+            unknownWorkerVersions.length > 0
+              ? "unrecognized"
+              : candidateRoot
+                ? "candidate-contract"
+                : "unrecognized";
           error.stabilityObservation = lastObservation;
           error.stabilityAttemptSummaries = attemptSummaries;
           throw error;

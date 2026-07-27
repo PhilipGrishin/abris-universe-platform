@@ -52,17 +52,36 @@ export const versionAffinityRuleDefinition = (hostname) => {
   };
 };
 
-const affinityRule = (ruleset) =>
-  ruleset?.rules?.find(
-    (rule) => rule?.ref === VERSION_AFFINITY_RULE_REF,
-  ) ?? null;
+const affinityRules = (ruleset) =>
+  Array.isArray(ruleset?.rules)
+    ? ruleset.rules.filter(
+        (rule) => rule?.ref === VERSION_AFFINITY_RULE_REF,
+      )
+    : [];
+
+const affinityRule = (ruleset) => affinityRules(ruleset)[0] ?? null;
+
+const modifiesAffinityHeader = (rule) =>
+  rule?.enabled !== false &&
+  rule?.action === "rewrite" &&
+  Object.keys(rule.action_parameters?.headers ?? {}).some(
+    (header) =>
+      header.toLowerCase() === VERSION_AFFINITY_HEADER.toLowerCase(),
+  );
 
 export const validateVersionAffinityRule = ({ ruleset, hostname }) => {
   assert(
     ruleset?.kind === "zone" && ruleset?.phase === PHASE,
     "Cloudflare late-transform zone ruleset is missing.",
   );
-  const rule = affinityRule(ruleset);
+  const managedRules = affinityRules(ruleset);
+  assert(
+    managedRules.length === 1,
+    managedRules.length === 0
+      ? "Cloudflare Worker version-affinity rule is missing."
+      : "Cloudflare Worker version-affinity rule is duplicated.",
+  );
+  const [rule] = managedRules;
   assert(rule, "Cloudflare Worker version-affinity rule is missing.");
   const expected = versionAffinityRuleDefinition(hostname);
   const header =
@@ -83,6 +102,13 @@ export const validateVersionAffinityRule = ({ ruleset, hostname }) => {
     header?.operation === "set" &&
       header?.expression === "to_string(ip.src)",
     "Version-affinity header contract is invalid.",
+  );
+  const ruleIndex = ruleset.rules.indexOf(rule);
+  assert(
+    !ruleset.rules
+      .slice(ruleIndex + 1)
+      .some(modifiesAffinityHeader),
+    "A later enabled Transform Rule overrides the Worker version-affinity header.",
   );
   return {
     rulesetId: ruleset.id,

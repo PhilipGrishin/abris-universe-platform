@@ -270,6 +270,7 @@ try {
         expectedCommit: sourceCommit,
         expectedWorkerVersionId: candidate.versionId,
         priorBaseline: preDeploySnapshot,
+        priorWorkerVersionId: prior.versionId,
         previewSmoke,
       }),
     rollback: async (priorVersionId) => {
