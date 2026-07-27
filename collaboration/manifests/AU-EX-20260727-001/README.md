@@ -39,7 +39,7 @@ outside the exact production scope.
 
 - Task type: `INDEPENDENT_ACCEPTANCE_REVIEW`
 - Requested role: Quality, Security & Independent Acceptance Lead
-- Source branch: `main`
+- Source branch: `codex/task-thinslice-001-production-acceptance-source`
 - Source commit: `3796cb37dac176c8d506451524fcf0744695ef42`
 - Deployed application source: `1021abf3bf82512292bfdc34103e8c3ef141a633`
 - Review range:

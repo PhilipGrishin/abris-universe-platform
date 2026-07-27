@@ -4,7 +4,7 @@
   "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
   "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
   "source_commit_sha": "3796cb37dac176c8d506451524fcf0744695ef42",
-  "source_branch": "main",
+  "source_branch": "codex/task-thinslice-001-production-acceptance-source",
   "review_commit_range": "1021abf3bf82512292bfdc34103e8c3ef141a633..3796cb37dac176c8d506451524fcf0744695ef42",
   "prepared_at": "2026-07-27T15:37:55Z",
   "prepared_by": "AU-CODEX-PRIMARY",
