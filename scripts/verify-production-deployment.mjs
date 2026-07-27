@@ -76,10 +76,9 @@ const absoluteAssetPaths = (html) => {
   return [...paths].sort();
 };
 
-export const inspectProductionDeployment = async ({
+const validateInspectionInput = ({
   baseUrl,
   expectedCommit,
-  versionId,
   allowHttpForTest = false,
 }) => {
   assert(
@@ -91,7 +90,13 @@ export const inspectProductionDeployment = async ({
     /^[0-9a-f]{40}$/u.test(expectedCommit),
     "expectedCommit must be a full lowercase Git SHA.",
   );
+};
 
+const inspectProductionDeploymentOnce = async ({
+  baseUrl,
+  expectedCommit,
+  versionId,
+}) => {
   const requestHeaders = versionId
     ? {
         "Cloudflare-Workers-Version-Overrides":
@@ -188,6 +193,38 @@ export const inspectProductionDeployment = async ({
     },
     assets,
   };
+};
+
+export const inspectProductionDeployment = async ({
+  semanticAttempts = 6,
+  semanticRetryDelayMs = 2_000,
+  ...inspection
+}) => {
+  validateInspectionInput(inspection);
+  assert(
+    Number.isInteger(semanticAttempts) && semanticAttempts > 0,
+    "semanticAttempts must be a positive integer.",
+  );
+  assert(
+    Number.isInteger(semanticRetryDelayMs) && semanticRetryDelayMs >= 0,
+    "semanticRetryDelayMs must be a non-negative integer.",
+  );
+
+  let lastError;
+  for (let attempt = 1; attempt <= semanticAttempts; attempt += 1) {
+    try {
+      const evidence = await inspectProductionDeploymentOnce(inspection);
+      return { ...evidence, semanticAttempt: attempt };
+    } catch (error) {
+      lastError = error;
+      if (attempt < semanticAttempts) {
+        await new Promise((resolve) =>
+          setTimeout(resolve, semanticRetryDelayMs),
+        );
+      }
+    }
+  }
+  throw lastError;
 };
 
 const runCli = async () => {

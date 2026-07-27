@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Created | 2026-07-26 |
-| Last Updated | 2026-07-26 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.3; ADR-TS001-004 v1.2.0; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record |
+| Last Updated | 2026-07-27 |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.5; ADR-TS001-004 v1.3.1; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -24,6 +24,9 @@
 - **Exact reverified source:** commit
   `2c886390091fd8b05b18130c1555dcaf0a778d7a` on
   `codex/task-thinslice-001-client-integration`.
+- **Exact propagation-remediation source:** commit
+  `854ba305bdacfb6ff600f657e84bf4e61295bd1b` on
+  `codex/task-thinslice-001-production-smoke-retry`.
 - **Accepted executable source:** commit
   `1a683abd9a8294de5a36888e997e65aba7b7a167`.
 - **Implementation owner:** AU-CODEX-PRIMARY with AU-AGENT-001 technical
@@ -34,9 +37,8 @@
 - **Scope:** production workflow permissions and gates, source identity,
   immutable upload, zero-traffic smoke, promotion, rollback, evidence safety,
   smoke assertions, tests, and observed GitHub controls.
-- **Out of scope:** Cloudflare account state, unavailable secret values,
-  production mutation, live rollback, browser acceptance, DNS, and product
-  acceptance.
+- **Out of scope:** unavailable secret values, a corrected live deployment,
+  browser acceptance, DNS mutation, and product acceptance.
 - **Documentation Impact:** Material.
 
 ## Evidence
@@ -45,6 +47,8 @@
 - `scripts/deploy-production.mjs`
 - `scripts/verify-production-deployment.mjs`
 - `scripts/verify-production-deployment.test.mjs`
+- `scripts/production-deployment-evidence.mjs`
+- `scripts/production-deployment-evidence.test.mjs`
 - production deployment record, Technical Design section 12, and
   ADR-TS001-004
 - local exact-source checks: accepted-source ancestry and scoped diff, syntax
@@ -59,6 +63,19 @@
 - remote CI run
   [30219444159](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30219444159):
   successful `verify` job at the exact reverified source
+- failed-closed production attempt
+  [30247393181](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30247393181):
+  prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e`, zero-traffic candidate
+  `f231b299-63d1-43f5-acb0-416ae989ab83`, failure at pre-promotion semantic
+  smoke, exact prior-version rollback, and restored public baseline
+- focused propagation-remediation verification: syntax checks and all 17
+  deployment authorization, state, Cloudflare-response, evidence, semantic
+  retry, rollback, and HTTP smoke tests passed
+- remote CI runs
+  [30248031399](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30248031399)
+  and
+  [30248087514](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30248087514):
+  successful `verify` jobs at exact remediation source `854ba305`
 - GitHub API observation: `main` has strict required `verify`, enforced
   protection, pull-request review rules, stale-review dismissal, conversation
   resolution, and force-push/deletion disabled; the `production` environment
@@ -74,13 +91,13 @@ executable source.
 | Area | Result | Limitation |
 | --- | --- | --- |
 | Source identity | Pass for the exact reviewed source | Reusable-workflow hardening is recorded below |
-| Static smoke contract | Pass | Production responses remain unobserved |
-| Security headers | Pass in code and local test scope | Production responses remain unobserved |
-| Immutable upload and zero-traffic smoke | Pass for repository scope | No authenticated Cloudflare execution |
-| Promotion and rollback | Pass for repository scope | Live rollback remains blocked by external prerequisites |
-| Secret boundary | Pass | Credentials are step-scoped to preflight and deployment |
-| Branch/environment governance | Pass for observed controls | Environment secrets are absent; TD-GATE-003 remains open |
-| Production workflow readiness | Pass | Production dispatch remains externally blocked |
+| Static smoke contract | Pass | Corrected candidate response remains unobserved in production |
+| Security headers | Pass in code and local test scope | Corrected production response remains unobserved |
+| Immutable upload and zero-traffic smoke | Pass | Attempt 1 exercised both without promoting the candidate |
+| Promotion and rollback | Pass for reviewed scope | Live rollback succeeded; successful promotion remains unexecuted |
+| Secret boundary | Pass | Values are step-scoped, unavailable to the reviewer, and masked in immutable logs |
+| Branch/environment governance | Pass for observed controls | Corrected source still requires protected merge |
+| Production workflow readiness | Pass for protected retry | TD-GATE-003 and production/browser assertions close only through the corrected run |
 
 ## Findings
 
@@ -113,32 +130,52 @@ executable source.
 All four findings are resolved without changing product behavior or the
 accepted executable application scope.
 
+## Propagation Remediation Reverification
+
+| Control | Exact-source evidence | Result |
+| --- | --- | --- |
+| Complete semantic retry | `inspectProductionDeployment` reruns root, exact `version.json` provenance, SPA fallback, methods, headers, and assets after any semantic failure; the stale-`200` test passes on semantic attempt 2 | Pass |
+| Domain ownership before mutation | The Workers Domains API query filters and then requires exactly one `abris.653915.com` to `abris-universe` assignment before deployment-list inspection, immutable upload, or traffic mutation | Pass |
+| Sanitization | The bearer token and account ID are used only for the authenticated query and are never copied into evidence; retained domain evidence is limited to domain ID, hostname, service, environment, and zone name; attempt-1 logs mask both secret values | Pass |
+| Hidden evidence retention | The SHA-pinned artifact action explicitly enables `include-hidden-files` while retaining only `.production-deployment/*.json` | Pass |
+| Failure and rollback | Attempt 1 proved zero candidate traffic, no promotion, exact prior-version rollback at 100 percent, and public-baseline restoration; remediation does not weaken the existing failure state machine | Pass |
+| Tests and CI | 17 focused tests and two exact-source remote CI runs pass | Pass |
+| Documentation accuracy | Technical Design, ADR, deployment record, risks, tasks, traceability, completion boundary, and current state distinguish attempt-1 evidence, implemented remediation, remaining TD-GATE-003 evidence, and absent corrected production/browser results | Pass |
+
+No new `Critical`, `High`, `Medium`, `Low`, or `Recommendation` finding was
+identified in the bounded remediation.
+
 ## Quality Gate Decision
 
 - **Engineering Verification Status:** VERIFIED
-- **Rationale:** all four exact-source findings are resolved. The credential
-  boundary is least-privilege at workflow-step scope; authorization fails
-  before environment access; deterministic tests cover the deployment state
-  machine, Cloudflare parsing, evidence, failure, and rollback; rollback
-  confirms the exact prior version at 100% and the recorded public baseline.
+- **Rationale:** all prior findings remain resolved, and exact remediation
+  `854ba305` adds bounded semantic propagation retry, fail-closed exact-domain
+  ownership proof before mutation, sanitized and explicitly retained hidden
+  evidence, and focused regression tests without changing accepted application
+  source or weakening rollback.
 - **Mandatory unresolved findings:** None.
 - **Merge allowed:** Yes, subject to the registered conflict-free,
   required-check, and branch-protection workflow.
-- **Main-branch dispatch allowed:** No.
-- **Required next action:** merge the independently reverified repository
-  package. Do not dispatch production until the environment secrets are
-  configured and TD-GATE-003 is captured and validated.
+- **Protected deployment retry allowed:** Yes, only after exact remediation is
+  merged to protected `main` and the dispatch input equals that exact main
+  commit. The preflight must fail before mutation unless domain ownership,
+  rollback anchor, and public baseline all validate.
+- **Required next action:** merge the independently reverified remediation,
+  dispatch the exact protected main commit, retain the preflight/deployment
+  JSON, and independently assess the resulting production and browser
+  evidence.
 
 This task-scoped status is not project `[VERIFIED]` and does not change the
 bounded Claude Cowork acceptance of executable source `1a683abd`.
 
 ## Residual External Blockers
 
-- GitHub `production` environment secrets are absent.
-- TD-GATE-003 has not captured an authenticated immutable placeholder version,
-  route ownership, and recoverable artifact.
-- No Cloudflare production mutation, production response assertion, browser
-  network capture, or live rollback evidence exists.
+- TD-GATE-003 still requires retained exact domain-ownership and preflight
+  evidence from the corrected authenticated run.
+- The corrected candidate has not been promoted or verified on production.
+- Production security headers, runtime request inventory, browser network
+  capture, console, import entry point, and live post-promotion assertions
+  remain open.
 
 These external blockers remain blocking even after repository findings are
 resolved.
@@ -148,5 +185,6 @@ resolved.
 - [Production Deployment Record](../technical/TASK-THINSLICE-001/PRODUCTION_DEPLOYMENT.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [ADR-TS001-004](../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
+- [Cloudflare Workers Domains API](https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/list/)
 - [Cloudflare Version Overrides](https://developers.cloudflare.com/workers/versions-and-deployments/version-overrides/)
 - [Cloudflare Rollbacks](https://developers.cloudflare.com/workers/versions-and-deployments/rollbacks/)

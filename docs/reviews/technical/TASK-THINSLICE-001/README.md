@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.24.0 |
+| Version | 1.25.1 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -102,9 +102,15 @@ records that lifecycle result without changing implementation or product
 meaning.
 TD-GATE-002 remains open for exact-symbol claims about other producers.
 PROD-DEC-013 supplies owner authorization for the first production deployment.
-The protected main-only workflow is implemented and locally tested.
-Production remains factually blocked until GitHub environment credentials
-allow TD-GATE-003 rollback-anchor capture and production security assertions.
+The protected main-only workflow is implemented and locally tested. GitHub
+environment credentials are configured. Attempt 1 captured the rollback anchor,
+kept the candidate at zero traffic, and restored the prior version after a
+semantically stale edge response failed the pre-promotion check. The
+propagation retry, exact Workers-domain evidence, and retained-artifact
+corrections are locally tested. Production remains factually blocked until
+protected merge and a successful corrected run close TD-GATE-003 and record
+the production security assertions. AU-AGENT-003 independently assigned the
+exact remediation `854ba305` task-scoped `VERIFIED`.
 
 ## Owner
 

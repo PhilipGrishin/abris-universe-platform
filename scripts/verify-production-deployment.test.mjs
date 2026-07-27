@@ -26,8 +26,22 @@ const securityHeaders = {
   "X-Content-Type-Options": "nosniff",
 };
 
-const createFixtureServer = async ({ wrongCommit = false } = {}) => {
+const createFixtureServer = async ({
+  wrongCommit = false,
+  staleRootResponses = 0,
+} = {}) => {
+  let remainingStaleRoots = staleRootResponses;
   const server = createServer((request, response) => {
+    if (
+      request.method === "GET" &&
+      request.url === "/" &&
+      remainingStaleRoots > 0
+    ) {
+      remainingStaleRoots -= 1;
+      response.setHeader("Content-Type", "text/html");
+      response.end("<!doctype html><title>Abris Universe placeholder</title>");
+      return;
+    }
     for (const [name, value] of Object.entries(securityHeaders)) {
       response.setHeader(name, value);
     }
@@ -80,6 +94,7 @@ test("accepts the exact production shell, provenance, assets, methods, and heade
     assert.equal(result.methodBoundary.postStatus, 405);
     assert.equal(result.assets.length, 2);
     assert.equal(result.securityHeaders.contentSecurityPolicy, CSP);
+    assert.equal(result.semanticAttempt, 1);
   } finally {
     await fixture.close();
   }
@@ -108,9 +123,27 @@ test("rejects production provenance from a different source commit", async () =>
         baseUrl: fixture.httpBaseUrl,
         expectedCommit: EXPECTED_COMMIT,
         allowHttpForTest: true,
+        semanticAttempts: 1,
       }),
       /does not match/u,
     );
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("retries a semantically stale 200 until the candidate version is visible", async () => {
+  const fixture = await createFixtureServer({ staleRootResponses: 1 });
+  try {
+    const result = await inspectProductionDeployment({
+      baseUrl: fixture.httpBaseUrl,
+      expectedCommit: EXPECTED_COMMIT,
+      allowHttpForTest: true,
+      semanticAttempts: 3,
+      semanticRetryDelayMs: 0,
+    });
+    assert.equal(result.observedCommit, EXPECTED_COMMIT);
+    assert.equal(result.semanticAttempt, 2);
   } finally {
     await fixture.close();
   }

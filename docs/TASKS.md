@@ -83,8 +83,12 @@ authorized disposition.
   review returned `REWORK REQUIRED`; findings TS001-DEPLOY-001 through
   TS001-DEPLOY-004 are resolved at exact remediation source `2c88639`, with
   task-scoped Engineering Verification Status `VERIFIED`. Merge is allowed.
-  Production mutation remains blocked on credentials and TD-GATE-003
-  external-state capture.
+  Attempt 1 run `30247393181` failed closed before promotion and restored the
+  prior version/baseline. Propagation, route-evidence, and artifact-retention
+  remediation is `[IMPLEMENTED]`, `[TESTED]`, and independently task-scoped
+  `VERIFIED` at exact source `854ba305`; protected merge and retry are allowed.
+  TD-GATE-003 route evidence and corrected production/browser results remain
+  open.
 - **Source:** PROD-DEC-013; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;

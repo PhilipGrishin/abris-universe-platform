@@ -8,6 +8,7 @@ import {
   currentVersion,
   deploymentList,
   readVersionUpload,
+  validateProductionDomain,
   validateProductionPreflight,
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
@@ -21,6 +22,7 @@ const evidenceRoot = resolve(
   process.env.DEPLOY_EVIDENCE_DIR ?? ".production-deployment",
 );
 const productionUrl = "https://abris.653915.com";
+const productionHostname = "abris.653915.com";
 const workerName = "abris-universe";
 
 const assert = (condition, message) => {
@@ -72,6 +74,26 @@ const publicSnapshot = async () => {
   };
 };
 
+const productionDomain = async () => {
+  const query = new URL(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/workers/domains`,
+  );
+  query.searchParams.set("hostname", productionHostname);
+  query.searchParams.set("service", workerName);
+  const response = await fetch(query, {
+    headers: {
+      Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+    },
+    redirect: "error",
+  });
+  assert(response.status === 200, "Cloudflare domain query did not return 200.");
+  return validateProductionDomain({
+    response: await response.json(),
+    expectedHostname: productionHostname,
+    expectedService: workerName,
+  });
+};
+
 const sourceCommit = process.env.GITHUB_SHA;
 const expectedCommit = process.env.EXPECTED_SOURCE_COMMIT;
 assert(process.env.GITHUB_REF_NAME === "main", "Production deploys require main.");
@@ -95,6 +117,7 @@ assert(
 mkdirSync(evidenceRoot, { recursive: true });
 const startedAt = new Date().toISOString();
 const preDeploySnapshot = await publicSnapshot();
+const preDeployDomain = await productionDomain();
 const rawDeployments = runWrangler(
   ["deployments", "list", "--name", workerName, "--json"],
   { capture: true },
@@ -118,6 +141,7 @@ writeJsonEvidence(
     actor: process.env.GITHUB_ACTOR ?? null,
     capturedAt: new Date().toISOString(),
     prior,
+    productionDomain: preDeployDomain,
     preDeploySnapshot,
   },
 );
@@ -245,6 +269,7 @@ try {
     startedAt,
     completedAt: new Date().toISOString(),
     prior,
+    productionDomain: preDeployDomain,
     preDeploySnapshot,
     lifecycle: lifecycle ?? null,
     failure: failure ?? null,

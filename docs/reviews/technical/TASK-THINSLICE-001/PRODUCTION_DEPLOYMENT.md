@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Owner authorization `[APPROVED]`; pipeline `[IMPLEMENTED]`, `[TESTED]`, task-scoped engineering `[VERIFIED]`; production blocked on credentials and TD-GATE-003 |
+| Status | Attempt 1 failed closed before promotion and rollback `[TESTED]`; propagation/evidence remediation task-scoped engineering `VERIFIED` at `854ba305`; corrected main workflow and production/browser evidence remain open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.1 |
 | Created | 2026-07-26 |
-| Last Updated | 2026-07-26 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.3; ADR-TS001-004 v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Last Updated | 2026-07-27 |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.5; ADR-TS001-004 v1.3.1; Production Deployment Verification v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -67,29 +67,34 @@ The workflow `.github/workflows/deploy-production.yml`:
 7. installs from the frozen lockfile;
 8. runs typecheck, the full test suite, build verification, dependency audit,
    and the no-deploy rehearsal;
-9. reads the current Cloudflare deployment and records its immutable version
-   and the public-root body hash in a retained preflight artifact before any
-   Cloudflare mutation;
-10. uploads a new immutable version without normal traffic;
-11. deploys the new version at zero percent beside the prior version;
-12. smokes the new version through a production-domain version override;
-13. promotes the new version to 100 percent;
-14. repeats production smoke and automatically rolls back on failure;
-15. confirms after rollback that the prior immutable version owns 100 percent
+9. queries the Cloudflare Workers Domains API and requires
+   `abris.653915.com` to be uniquely assigned to `abris-universe`;
+10. reads the current Cloudflare deployment and records its immutable version,
+   route ownership, and public-root baseline in a retained preflight artifact
+   before any Cloudflare mutation;
+11. uploads a new immutable version without normal traffic;
+12. deploys the new version at zero percent beside the prior version;
+13. retries the complete semantic smoke contract while Cloudflare propagates
+   the version override, accepting only the exact commit and headers;
+14. promotes the new version to 100 percent;
+15. repeats production smoke and automatically rolls back on failure;
+16. confirms after rollback that the prior immutable version owns 100 percent
    of traffic and that the recorded GET/HEAD/content/hash baseline is restored;
-16. retains sanitized preflight and deployment-evidence artifacts for 90 days.
+17. retains sanitized preflight and deployment-evidence artifacts for 90 days,
+   including files below the explicit hidden evidence directory.
 
 The production environment exists and accepts deployments only from protected
 `main`. Strict `verify`, pull-request flow, conversation resolution, and
 force-push/deletion prevention are active on `main`.
 No Cloudflare secret value is present in the repository or chat.
 
-Fourteen focused deployment tests cover explicit dispatch rejection, registered
+Seventeen focused deployment tests cover explicit dispatch rejection, route
+ownership validation, registered
 Cloudflare output shapes, preflight health and the 100-percent rollback anchor,
 upload provenance, success order, failure before mutation, failure before and
 after promotion, exact-version rollback confirmation, rollback-baseline
-verification, rollback failure reporting, sanitized evidence persistence, and
-the HTTP smoke contract.
+verification, rollback failure reporting, sanitized evidence persistence,
+semantic propagation retry, and the HTTP smoke contract.
 
 AU-AGENT-003 first returned `REWORK REQUIRED` at exact source `4097a5c`, then
 independently reverified exact remediation source `2c88639`. Findings
@@ -124,10 +129,40 @@ script-initiated network requests or pattern-derived egress.
 - GitHub `production` environment: `[IMPLEMENTED]`; custom branch policy
   contains `main` only.
 - GitHub environment secrets `CLOUDFLARE_API_TOKEN` and
-  `CLOUDFLARE_ACCOUNT_ID`: `[OPEN]`; neither name is currently configured.
-- Current immutable placeholder Worker version and route ownership:
-  `[OPEN]` until authenticated Cloudflare access is available.
-- Production mutation: not started.
+  `CLOUDFLARE_ACCOUNT_ID`: `[IMPLEMENTED]`; both names are configured and no
+  value is recorded in the repository or chat.
+- Current immutable placeholder Worker version:
+  `d1f2b05d-77d0-4d53-9c7a-73d61135979e`, observed at 100 percent before and
+  after rollback in workflow run `30247393181`.
+- Route ownership: `[OPEN]` pending the corrected authenticated Workers Domains
+  API preflight.
+- Production mutation: candidate
+  `f231b299-63d1-43f5-acb0-416ae989ab83` was uploaded and placed at zero
+  percent only; it was never promoted.
+
+## Attempt 1 — Failed Closed and Rolled Back
+
+- **Workflow run:** `30247393181`.
+- **Source:** `c26ce9f5b8bc42452875dd2088d4e8b9e3ee7e56`.
+- **Prior version:** `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent.
+- **Candidate version:** `f231b299-63d1-43f5-acb0-416ae989ab83` at zero
+  percent.
+- **Failure stage:** pre-promotion semantic smoke.
+- **Observed failure:** the first successful HTTP response still contained the
+  placeholder and therefore did not carry the reviewed CSP. The verifier
+  rejected it.
+- **Rollback:** `[TESTED]`; the prior version returned to 100 percent and the
+  GET/HEAD/content/body baseline was restored. The public body SHA-256 remains
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`.
+- **Evidence limitation:** the action did not retain the generated JSON because
+  the path was hidden and `include-hidden-files` was not enabled. Immutable
+  workflow logs retain the version, stage, and rollback state.
+- **Root cause:** Cloudflare documents that a new version override can take a
+  few seconds to become globally available. The verifier retried transport and
+  non-success status errors but treated a semantically stale `200` as final.
+- **Remediation:** retry the complete semantic contract, explicitly include
+  the bounded hidden JSON path in artifact upload, and validate exact
+  hostname-to-Worker ownership before mutation.
 
 ## Rollback
 
@@ -144,16 +179,11 @@ IndexedDB.
 
 ## Current Blocker
 
-The Project Owner must configure the following GitHub `production` environment
-secrets without sending their values through chat or committing them:
-
-- `CLOUDFLARE_API_TOKEN`, scoped to the owner account and Worker script
-  deployment only, with no DNS-edit permission;
-- `CLOUDFLARE_ACCOUNT_ID`.
-
-After the two secret names exist, Codex can merge the reviewed deployment
-package to `main`, dispatch the exact main commit, capture TD-GATE-003, and
-complete production and browser verification.
+AU-AGENT-003 independently reverified the propagation, route-evidence, and
+artifact-retention remediation at `854ba305`. After protected merge, Codex can
+dispatch the exact corrected `main` commit, close TD-GATE-003, and complete
+production and browser verification. No further owner credential action is
+required.
 
 ## References
 

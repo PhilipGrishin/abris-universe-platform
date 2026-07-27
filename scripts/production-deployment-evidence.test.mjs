@@ -6,6 +6,7 @@ import test from "node:test";
 import {
   deploymentList,
   readVersionUpload,
+  validateProductionDomain,
   validateProductionPreflight,
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
@@ -58,6 +59,52 @@ test("requires a healthy public baseline and one 100-percent prior version", () 
         publicSnapshot: { status: 200, headStatus: 200 },
       }),
     /100% traffic/u,
+  );
+});
+
+test("records only the exact production hostname-to-worker assignment", () => {
+  const domain = validateProductionDomain({
+    response: {
+      success: true,
+      result: [
+        {
+          id: "domain-id",
+          hostname: "abris.653915.com",
+          service: "abris-universe",
+          environment: "production",
+          zone_name: "653915.com",
+        },
+      ],
+    },
+    expectedHostname: "abris.653915.com",
+    expectedService: "abris-universe",
+  });
+  assert.deepEqual(domain, {
+    id: "domain-id",
+    hostname: "abris.653915.com",
+    service: "abris-universe",
+    environment: "production",
+    zoneName: "653915.com",
+  });
+});
+
+test("rejects a domain assigned to a different Worker", () => {
+  assert.throws(
+    () =>
+      validateProductionDomain({
+        response: {
+          success: true,
+          result: [
+            {
+              hostname: "abris.653915.com",
+              service: "other-worker",
+            },
+          ],
+        },
+        expectedHostname: "abris.653915.com",
+        expectedService: "abris-universe",
+      }),
+    /not uniquely assigned/u,
   );
 });
 
