@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.26.1 |
+| Version | 1.27.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -49,6 +49,7 @@ acceptance remains canonical under `product/reviews/`.
 - [Client Integration Implementation Review](CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Production Deployment Record](PRODUCTION_DEPLOYMENT.md)
+- [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
 - [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
@@ -107,15 +108,22 @@ environment credentials are configured. Attempt 1 captured the rollback anchor,
 kept the candidate at zero traffic, and restored the prior version after a
 semantically stale edge response failed the pre-promotion check. The
 propagation retry, exact Workers-domain evidence, and retained-artifact
-corrections are locally tested. Production remains factually blocked until
-successful zero-traffic smoke and the production security assertions.
+corrections are locally tested. Production remains factually blocked until the
+approved default-route transition contract and the production security
+assertions pass.
 AU-AGENT-003 independently assigned exact remediation `854ba305` task-scoped
 `VERIFIED`; retained corrected run `30248680612` closes TD-GATE-003 but still
 failed closed after six stale override responses. The bounded two-minute
 diagnostic is task-scoped engineering `VERIFIED` at exact source `a503500`;
 61 attempts apply only before promotion and production smoke remains at six.
-Superseded `7381112` is not mergeable. Protected merge and one further
-zero-traffic attempt are allowed.
+Superseded `7381112` is not mergeable. Run `30250084131` then passed complete
+zero-traffic smoke on semantic attempt 17 and promoted the candidate.
+Production smoke exhausted six attempts; the final retained observation
+matched the exact prior cached baseline. The exact prior version/baseline was
+restored. The one allowed retry is exhausted.
+`AU-TAP-TS001-001` proposes a baseline-aware post-promotion transition window
+and requires Project Owner disposition before implementation or another
+deployment.
 
 ## Owner
 

@@ -1,5 +1,29 @@
 # Handoff Log
 
+## 2026-07-27 — Production Attempt 3 Verified Candidate and Rolled Back
+
+- **Workflow/source:** `30250084131` at exact protected-main source
+  `67878634a1b18f038dd6e25f7cd3ab4131f00773`.
+- **Zero-traffic result:** candidate
+  `5eca15e6-5ba4-4ab9-9ce7-16a7537e591c` passed the complete semantic
+  contract on attempt 17, including exact provenance, assets, methods,
+  fallback, CSP, `nosniff`, and `Referrer-Policy`.
+- **Promotion result:** production smoke exhausted six attempts. The final
+  retained runner-edge observation returned the exact registered prior
+  placeholder hash with `cf-cache-status: HIT`; the workflow rejected it.
+- **Rollback:** prior immutable version `d1f2b05d` returned to 100 percent and
+  the complete registered public baseline was restored.
+- **Evidence:** 90-day artifact
+  `production-deployment-67878634a1b18f038dd6e25f7cd3ab4131f00773-30250084131`,
+  digest
+  `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`.
+- **Disposition:** the one independently allowed retry is exhausted.
+  `AU-TAP-TS001-001` proposes a baseline-aware transition window and requires
+  Project Owner approval before implementation or another deployment.
+  AU-AGENT-003 assigns production continuation `BLOCKED`; High finding
+  TS001-DEPLOY-005 remains open. The initial evidence overstatement was
+  corrected and Medium TS001-DEPLOY-006 is resolved.
+
 ## 2026-07-27 — Zero-Traffic Observability Boundary Independently Verified
 
 - **Exact source:** `a503500c724ea618b80796fcca470d260d76b621`.

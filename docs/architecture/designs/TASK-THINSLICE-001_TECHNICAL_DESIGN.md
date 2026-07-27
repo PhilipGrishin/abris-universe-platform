@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.7 |
+| Version | 1.5.8 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -78,6 +78,11 @@ Version 1.5.7 records independent review of exact correction `a503500`: the
 61-attempt window applies exclusively before promotion at zero traffic, while
 post-promotion production smoke retains six attempts. Superseded source
 `7381112` is not mergeable.
+Version 1.5.8 records attempt 3: zero-traffic semantic smoke passed on attempt
+17 and promotion occurred. Production smoke exhausted six attempts; the final
+retained runner-edge observation matched the exact prior cached baseline.
+Exact rollback succeeded. It registers a Technical Alternative Proposal
+without changing the current deployment contract.
 
 ## 2. Scope and Non-Scope
 
@@ -156,9 +161,10 @@ Route-1 fixture production and workspace scaffolding were completed after that
 confirmation. The registered implementation sequence may proceed to
 domain-core and bounded importer implementation for the explicit route-1
 profile; both package stages are now `[IMPLEMENTED]`, `[TESTED]`. Exact-symbol
-claims for other producers remain blocked by TD-GATE-002,
-and production deployment remains blocked by successful zero-traffic smoke and
-production runtime evidence. Production credentials are configured;
+claims for other producers remain blocked by TD-GATE-002. Zero-traffic smoke
+passed in run `30250084131`; production deployment remains blocked by the
+default-route transition decision and production runtime evidence. Production
+credentials are configured;
 PROD-DEC-013 closes the explicit owner-authorization component.
 
 ## 4. Selected System Shape
@@ -1021,6 +1027,13 @@ diagnostic allows up to 61 attempts over two minutes only at zero traffic and
 retains sanitized last-response metadata. Post-promotion smoke remains limited
 to six attempts. Failure after the pre-promotion interval requires a Technical
 Alternative Proposal; the gate must not be weakened silently.
+
+The third attempt passed the complete zero-traffic contract, promoted the
+candidate, then observed only the exact prior cached baseline during the
+six-attempt production window and rolled back exactly. The one authorized retry
+is exhausted. `AU-TAP-TS001-001` proposes a baseline-aware transition window;
+it remains `[PROPOSED]` and must not be implemented before Project Owner
+approval and AU-AGENT-003 exact-source review.
 
 ## 16. Architecture Review Checklist
 

@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.19.0 |
+| Version | 4.20.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,23 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Attempt-3 Evidence and Propagation Alternative
+
+- Recorded run `30250084131`: complete zero-traffic candidate verification on
+  semantic attempt 17, promotion, six exhausted production attempts, a final
+  retained exact-prior cached observation, and exact automatic rollback.
+- Registered retained artifact digest
+  `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`
+  without secret values or response bodies.
+- Created `AU-TAP-TS001-001` with a recommended baseline-aware transition
+  state machine and four alternatives. It remains `[PROPOSED]`; another
+  deployment is blocked on Project Owner disposition and AU-AGENT-003 review
+  of any approved implementation.
+- Integrated AU-AGENT-003 attempt-3 review: production continuation `BLOCKED`,
+  TS001-DEPLOY-005 High/Open, and evidence-wording TS001-DEPLOY-006 resolved
+  after a task-scoped documentation reverification.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Zero-Traffic Observability Boundary Reverified
 

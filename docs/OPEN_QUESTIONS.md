@@ -76,3 +76,21 @@
 - **Decision owner:** Project Owner for the criterion; Claude Cowork within
   PROD-DEC-006 delegation for PROD-DEC-009; AU-AGENT-004 for technical
   evidence; AU-AGENT-001 for the Technical Review disposition.
+
+## OQ-006 — Production Default-Route Transition Window
+
+- **Status:** `[OPEN]`; owner decision required
+- **Question:** May the first production workflow keep the candidate promoted
+  for up to 120 seconds only while the runner observes the exact registered
+  prior baseline, with immediate rollback on every unknown response or
+  candidate-contract failure?
+- **Why it matters:** Attempt 3 fully verified the candidate at zero traffic.
+  Post-promotion smoke exhausted six attempts, and the final retained
+  observation matched the prior cached placeholder.
+- **Evidence:** Workflow run `30250084131`, retained artifact digest
+  `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`,
+  Production Deployment Record v1.5.0, and `AU-TAP-TS001-001`.
+- **Recommended answer:** Approve Alternative A in `AU-TAP-TS001-001`, subject
+  to deterministic tests, exact-source AU-AGENT-003 review, protected merge,
+  and one controlled deployment attempt.
+- **Decision owner:** Project Owner

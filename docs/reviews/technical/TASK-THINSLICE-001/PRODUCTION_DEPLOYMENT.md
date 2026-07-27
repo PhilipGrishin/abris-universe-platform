@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1 and 2 failed closed before promotion with rollback `[TESTED]`; TD-GATE-003 closed by retained run-2 evidence; bounded extended propagation diagnostic and production/browser evidence remain open |
+| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed on the exact prior cached baseline and rolled back; TD-GATE-003 closed; Technical Alternative Proposal and production/browser evidence open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.1 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.7; ADR-TS001-004 v1.3.3; Production Deployment Verification v1.3.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.8; ADR-TS001-004 v1.3.4; Production Deployment Verification v1.4.1; Production Propagation Technical Alternative Proposal v1.0.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -140,7 +140,9 @@ script-initiated network requests or pattern-derived egress.
 - Production mutation: candidates
   `f231b299-63d1-43f5-acb0-416ae989ab83` and
   `b855e2e0-7221-456e-aaa6-55e947b0dcf0` were uploaded and placed at zero
-  percent only; neither was promoted.
+  percent only. Candidate `5eca15e6-5ba4-4ab9-9ce7-16a7537e591c` passed
+  zero-traffic smoke and was briefly promoted before the workflow observed the
+  exact prior cached baseline and rolled back.
 
 ## Attempt 1 — Failed Closed and Rolled Back
 
@@ -205,15 +207,42 @@ match the recorded pre-deployment baseline.
 No DNS mutation is permitted. Static rollback does not alter browser-local
 IndexedDB.
 
+## Attempt 3 — Zero-Traffic Pass, Promotion, and Exact Rollback
+
+- **Workflow run:** `30250084131`.
+- **Source:** protected-main merge
+  `67878634a1b18f038dd6e25f7cd3ab4131f00773`.
+- **Prior version:** `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent.
+- **Candidate version:** `5eca15e6-5ba4-4ab9-9ce7-16a7537e591c`.
+- **Pre-promotion result:** `[TESTED]`; semantic attempt 17 selected the
+  zero-traffic candidate and passed exact source, root/fallback, asset,
+  method, and security-header assertions.
+- **Promotion:** performed to 100 percent after the zero-traffic pass.
+- **Post-promotion observation:** production smoke exhausted six attempts. The
+  final retained runner-edge observation returned the registered prior
+  placeholder body hash with `cf-cache-status: HIT` and no CSP. The verifier
+  rejected it.
+- **Rollback:** `[TESTED]`; the exact prior immutable version returned to 100
+  percent and the recorded GET/HEAD/content/body baseline was restored.
+- **Artifact:** retained for 90 days as
+  `production-deployment-67878634a1b18f038dd6e25f7cd3ab4131f00773-30250084131`,
+  GitHub digest
+  `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`.
+- **Boundary:** the run proves candidate selection and the complete
+  zero-traffic contract. It does not prove default-route convergence or
+  successful production/browser verification.
+
 ## Current Blocker
 
 TD-GATE-003 is closed and no further owner credential action is required.
-AU-AGENT-003 independently assigned exact observability remediation `a503500`
-task-scoped `VERIFIED`; superseded source `7381112` is not mergeable because it
-also extended post-promotion smoke. Protected merge and one further
-zero-traffic run are allowed. If the override remains unavailable, stop and
-raise a Technical Alternative Proposal; do not weaken pre-promotion smoke or
-expose candidate traffic.
+The one independently allowed retry is exhausted. Attempt 3 proved the
+zero-traffic version but not default-route convergence within the six-attempt
+post-promotion window. The separately registered
+[Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
+requires Project Owner disposition before implementation or another
+deployment. Do not silently extend post-promotion exposure or weaken the
+semantic contract. AU-AGENT-003 records production continuation as `BLOCKED`;
+TS001-DEPLOY-005 remains High/Open.
 
 ## References
 
@@ -221,6 +250,7 @@ expose candidate traffic.
 - [Technical Design](../../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Engineering Verification](../../engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md)
+- [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.3 |
+| Version | 1.3.4 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -148,3 +148,10 @@ production smoke, rollback rehearsal, and local-data compatibility.
   of exact correction `a503500`. The 61-attempt window is restricted to
   zero-traffic pre-promotion smoke; post-promotion smoke remains at six.
   Superseded source `7381112` is not mergeable.
+- 2026-07-27: Version 1.3.4 records attempt 3 as evidence, not a decision
+  change. The zero-traffic candidate passed on semantic attempt 17. After
+  promotion, smoke exhausted six attempts and the final retained runner-edge
+  observation matched the exact prior cached baseline; exact rollback
+  succeeded. A baseline-aware
+  post-promotion transition is separately `[PROPOSED]` in
+  `AU-TAP-TS001-001` and requires Project Owner approval.
