@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.28.1 |
+| Version | 1.29.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -124,8 +124,10 @@ restored. The earlier allowed retry is exhausted.
 `AU-TAP-TS001-001` defines the baseline-aware post-promotion transition and is
 now owner-approved. Its implementation candidate and deterministic tests are
 complete. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source
-`b4f25cda`, and CI run `30252463472` passed. Protected merge remains mandatory
-before the one newly authorized deployment attempt.
+`b4f25cda`, and CI run `30252463472` passed. Protected merge produced
+`80d942ec`; run `30253457090` exhausted the one authorized attempt and rolled
+back safely. AU-AGENT-003 records safety execution `VERIFIED`, production
+continuation `BLOCKED`, and High finding TS001-DEPLOY-007.
 
 ## Owner
 

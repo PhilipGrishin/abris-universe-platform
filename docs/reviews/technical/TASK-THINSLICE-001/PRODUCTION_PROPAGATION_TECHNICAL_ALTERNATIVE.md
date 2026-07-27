@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-001 |
 | Title | Production Default-Route Propagation Technical Alternative Proposal |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge required before one authorized deployment |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; single authorized attempt exhausted; safety execution `VERIFIED`; production continuation `BLOCKED` by TS001-DEPLOY-007 |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.1 |
+| Version | 1.2.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10; ADR-TS001-004 v1.3.6; Production Deployment Record v1.6.1; Production Deployment Verification v1.5.0; workflow runs `30250084131` and `30252463472` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11; ADR-TS001-004 v1.3.7; Production Deployment Record v1.7.0; Production Deployment Verification v1.6.0; workflow runs `30250084131`, `30252463472`, and `30253457090` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Owner decision; Cloudflare routing evidence; deployment-state-machine change; production smoke or rollback result |
@@ -220,6 +220,22 @@ The implementation:
   tests.
 
 This candidate does not change the accepted executable application paths.
+
+## Execution Outcome
+
+Protected-main run `30253457090` exercised Alternative A once. Candidate
+`2f2367c2` passed the complete zero-traffic contract and was promoted. Direct
+transition attempt 3 matched the exact candidate root sentinel, but the
+immediately following one-shot complete contract received the exact prior
+cached placeholder response. The workflow rejected that candidate-contract
+failure immediately and restored the exact prior immutable version and public
+baseline.
+
+The result proves the approved safety behavior, not stable default-route
+delivery. The one authorized attempt is exhausted. AU-AGENT-003 records High
+finding TS001-DEPLOY-007 and blocks every retry pending a separately reviewed
+technical alternative or explicit stop decision with Project Owner
+disposition.
 
 ## References
 

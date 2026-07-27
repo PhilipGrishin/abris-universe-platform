@@ -543,7 +543,14 @@
   focused deployment tests and the full 95-test suite pass. AU-AGENT-003
   assigned task-scoped `VERIFIED` at exact source `b4f25cda`, resolved
   TS001-DEPLOY-005, and recorded no new findings; required CI run `30252463472`
-  passed. Protected merge remains mandatory before dispatch.
+  passed. Protected merge produced `80d942ec`, and run `30253457090` exhausted
+  the one authorized attempt. Candidate zero-traffic smoke passed at semantic
+  attempt 18 and promotion occurred. Transition attempt 3 observed the
+  candidate, but the one-shot complete contract immediately received the exact
+  prior cached baseline; the workflow failed closed and restored the exact
+  prior version/baseline. AU-AGENT-003 records safety execution `VERIFIED`,
+  production continuation `BLOCKED`, and High finding TS001-DEPLOY-007. No
+  retry is authorized.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -587,13 +594,13 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Completed failed-closed run `30250084131`: the candidate passed full
-zero-traffic smoke and was promoted; production smoke exhausted six attempts
-and the final retained observation matched the exact prior cached baseline;
-automatic rollback restored the exact prior version and public baseline.
+Completed failed-closed run `30253457090`: the candidate passed full
+zero-traffic smoke and was promoted; transition attempt 3 observed the
+candidate, but the one-shot contract immediately received the exact prior
+cached baseline. Automatic rollback restored the exact prior version and
+public baseline.
 
 ## Next Step
 
-Merge the independently verified transition through protected `main`, then
-perform the one authorized controlled production attempt and retain
-production/browser evidence.
+Do not retry production. Prepare a separately reviewed technical alternative
+or explicit stop decision for Project Owner disposition on TS001-DEPLOY-007.

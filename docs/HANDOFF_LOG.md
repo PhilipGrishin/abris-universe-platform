@@ -1,5 +1,32 @@
 # Handoff Log
 
+## 2026-07-27 — Single Alternative A Production Attempt Failed Closed
+
+- **Protected source:** merge `80d942ec521b9f2830ea2af7730356d39e398ee6`
+  through PR #9.
+- **Workflow:** `30253457090`; every authorization, accepted-source,
+  credential-presence, test, build, audit, and rehearsal gate passed.
+- **Candidate:** `2f2367c2-d85b-49e2-b785-a1b9d5c326c5` passed the complete
+  zero-traffic contract at semantic attempt 18 and was promoted.
+- **Transition:** attempt 3 observed the exact candidate sentinel. The
+  immediately following one-shot complete contract received the exact prior
+  placeholder hash with missing CSP and `cf-cache-status: HIT`; the approved
+  candidate-failure rule rejected it without retry.
+- **Rollback:** prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e`
+  returned to 100 percent. Retained and independent post-run evidence matches
+  the registered GET/HEAD/content/hash baseline.
+- **Artifact:** ID `8647947029`, digest
+  `sha256:8da88d7c34cde83de1fd0bbe237ab445eb567f13e8cb9e36bf250f208faee379`,
+  retained until 2026-10-25. Both JSON files parse and the forbidden-key scan
+  found no token, secret, authorization, account, request-header, or
+  response-body key.
+- **Independent disposition:** AU-AGENT-003 records Alternative A safety
+  execution `VERIFIED`, production continuation `BLOCKED`, and High finding
+  TS001-DEPLOY-007.
+- **Authority:** the single attempt is exhausted. No retry is authorized.
+- **Next gate:** separately reviewed technical alternative or explicit stop
+  decision, followed by Project Owner disposition.
+
 ## 2026-07-27 — Alternative A Exact Source Independently Verified
 
 - **Exact source:** `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`.

@@ -291,8 +291,10 @@
   `AU-TAP-TS001-001`.
 - **Consequence:** Exact implementation, deterministic tests, required CI run
   `30252463472`, and AU-AGENT-003 reverification passed at source `b4f25cda`;
-  TS001-DEPLOY-005 is resolved. Protected merge remains mandatory before the
-  one new deployment attempt can be dispatched.
+  TS001-DEPLOY-005 is resolved. Protected merge produced `80d942ec`, and run
+  `30253457090` exhausted the single authorized attempt with safe rollback.
+  This decision grants no retry; TS001-DEPLOY-007 now requires a separately
+  reviewed owner disposition.
 - **Reversibility:** Revert the deployment-tooling commit; runtime rollback
   continues to target the registered immutable prior version.
 - **Owner:** Project Owner
