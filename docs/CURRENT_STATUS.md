@@ -35,7 +35,17 @@ version `d1f2b05d` at 100 percent and the exact public baseline. AU-AGENT-003
 assigned `FAIL` / `REWORK REQUIRED`, High TS001-DEPLOY-014 and Medium
 TS001-DEPLOY-015; the rollback sub-result is task-scoped `VERIFIED`. Production
 and browser verification remain open. Attempt authority is exhausted; no
-repeat is authorized.
+repeat is authorized. OWNER-DEC-TS001-DEPLOYMENT-LAB-004 then authorized an
+isolated diagnostic deployment without production gates. The temporary
+Cloudflare contour reproduced cross-request Worker-version skew during
+deployment-state convergence. Worker-owned runtime provenance, exact-host
+version affinity, strict asset validation, bounded baseline-aware transition
+handling, and per-attempt/check evidence are `[IMPLEMENTED]`, `[TESTED]` on
+branch `codex/task-thinslice-001-deployment-lab`. A 50/50 rehearsal completed
+20 version-coherent user contracts; a production-like promotion converged to
+three strict candidate contracts after 72,979 milliseconds; exact rollback and
+external cleanup passed. Production remains unchanged, findings remain open,
+and no production attempt is authorized.
 
 ## Confirmed Workspace State
 

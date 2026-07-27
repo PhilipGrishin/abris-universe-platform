@@ -8,7 +8,7 @@
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.3.0 |
+| Version | 2.4.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
@@ -446,6 +446,23 @@ rollback, as designed.
   protected merge, exact-main CI, then separate Project Owner authority for
   any later attempt.
 
+## Isolated Deployment Transition Lab
+
+OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized an isolated test-only
+investigation. The lab reproduced temporary cross-request Worker-version skew
+during deployment-state propagation and proved a combined remediation:
+Worker-owned immutable runtime identity, exact-host IP affinity, strict asset
+validation, bounded baseline-aware transition handling, sanitized per-check
+evidence, and a strict eventual three-contract candidate quorum.
+
+The full rehearsal retained 12 exact prior-baseline observations before three
+consecutive strict candidate contracts completed in 72,979 milliseconds.
+Rollback restored the exact baseline Worker and root hash. Every temporary
+Cloudflare resource and credential was removed. Production was not mutated.
+The result is `[IMPLEMENTED]`, `[TESTED]`, not independently `VERIFIED`;
+TS001-DEPLOY-014/015, production integration, and attempt authorization remain
+open.
+
 ## References
 
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
@@ -455,6 +472,7 @@ rollback, as designed.
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
+- [Cloudflare Deployment Transition Lab Report](CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

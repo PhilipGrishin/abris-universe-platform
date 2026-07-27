@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.28.0 |
+| Version | 4.29.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -20,6 +20,29 @@
 Record significant internal engineering changes in a concise, navigable
 history without replacing Git history, ADRs, task records, or handoff
 evidence.
+
+## 2026-07-27 — Cloudflare Deployment Transition Lab Completed
+
+- Added a fully isolated Cloudflare Worker/custom-hostname deployment lab and
+  a deliberately distinct baseline asset fixture.
+- Reproduced cross-request Worker-version skew during deployment-state
+  propagation and documented the confirmed failure mechanism.
+- Added Cloudflare immutable version metadata, Worker-owned runtime provenance,
+  exact response identity headers, and a separate build-source identity.
+- Added exact-host IP-based Worker version-affinity rule management and
+  fail-closed production preflight.
+- Replaced immediate transition failure with bounded prior/candidate
+  classification while preserving a strict three-consecutive-contract success
+  quorum, hard timeout, attempt ceiling, and automatic rollback.
+- Added JavaScript/CSS content-type checks, SPA-shell rejection, deterministic
+  abort tests, transition-timeout classification, and sanitized per-check and
+  per-attempt evidence.
+- Proved 20 coherent contracts under a 50/50 split, full candidate convergence
+  after 72,979 milliseconds, exact rollback, and complete external cleanup.
+- Registered OWNER-DEC-TS001-DEPLOYMENT-LAB-004,
+  AU-TECHREV-TS001-CF-LAB-001, persistent status, risk, question, task, and
+  traceability updates.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Production Attempt 6 Failed Closed and Rolled Back
 

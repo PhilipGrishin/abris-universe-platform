@@ -1,5 +1,33 @@
 # Handoff Log
 
+## 2026-07-27 — Isolated Cloudflare Transition Lab Completed
+
+- **Authority:** OWNER-DEC-TS001-DEPLOYMENT-LAB-004 authorized autonomous
+  test-only diagnosis and remediation without production review/merge gates.
+- **Isolation:** Temporary Worker `abris-universe-deployment-lab` and hostname
+  `abris-deployment-lab.653915.com`; no production Worker, hostname, traffic,
+  cache, secret, branch, or workflow mutation.
+- **Root cause:** Separate requests temporarily observed different Worker
+  deployment states after a 100-percent version switch. This reproduced the
+  static-endpoint failure mechanism from run `30266185702`.
+- **Remediation:** Worker-owned `/__deployment` provenance, immutable version
+  headers, exact-host IP-based version affinity, bounded baseline-aware
+  transition classification, strict asset validation, three-contract eventual
+  quorum, and sanitized per-attempt/check evidence.
+- **Live evidence:** 20/20 coherent 50/50 affinity contracts; full promotion
+  reached three strict candidate contracts after 12 exact prior-baseline
+  observations and 72,979 milliseconds; rollback restored the exact baseline
+  version and SHA-256 on check 2.
+- **Cleanup:** Temporary Worker, domain, DNS record, Transform Rule, ruleset,
+  token, and local token file independently confirmed absent or revoked.
+- **Source:** branch `codex/task-thinslice-001-deployment-lab`; implementation
+  commits `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c` and
+  `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`; report
+  `AU-TECHREV-TS001-CF-LAB-001`.
+- **Boundary:** `[IMPLEMENTED]`, `[TESTED]` only. AU-AGENT-003 review,
+  protected integration, exact-main CI, finding closure, and production
+  attempt authorization remain open.
+
 ## 2026-07-27 — Attempt 6 Failed Production Stability and Rolled Back
 
 - **Exact source:** protected-main merge

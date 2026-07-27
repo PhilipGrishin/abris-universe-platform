@@ -158,7 +158,8 @@
 
 ## OQ-009 — Post-Promotion Endpoint Stability Disposition
 
-- **Status:** `[OPEN]`
+- **Status:** Technical mechanism and isolated remediation `[TESTED]`;
+  production disposition `[OPEN]`
 - **Question:** Which separately reviewed technical alternative, if any,
   should address the observed post-promotion `/version.json` instability and
   self-contained per-attempt evidence before another production attempt is
@@ -168,13 +169,20 @@
   `/version.json` while the candidate root remained active. Rollback succeeded,
   but production completion is unproven.
 - **Evidence:** protected-main source `53389089`; run `30266185702`; artifact
-  `8652895888`; TS001-DEPLOY-014 (High); TS001-DEPLOY-015 (Medium).
+  `8652895888`; TS001-DEPLOY-014 (High); TS001-DEPLOY-015 (Medium);
+  `AU-TECHREV-TS001-CF-LAB-001`; isolated implementation sources `bcdd369` and
+  `d741abd`.
 - **Required disposition:** AU-AGENT-001 prepares a Technical Alternative
   Proposal and evidence-schema remediation with explicit acceptance criteria,
   deterministic tests, rollback preservation, and exact-source AU-AGENT-003
   review. A new attempt requires separate Project Owner authorization after
   all gates.
-- **Boundary:** Do not attribute the provider root cause more specifically than
-  observed endpoint inconsistency without new evidence. No repeat is
-  authorized.
+- **Current technical answer:** Isolated live evidence reproduced temporary
+  cross-request Worker-version skew during deployment-state propagation. The
+  tested remediation combines exact-host version affinity, Worker-owned
+  runtime identity, a bounded baseline-aware transition window, strict
+  eventual quorum, stronger asset checks, and per-attempt/check evidence.
+- **Boundary:** The lab evidence does not close AU-AGENT-003 findings, install
+  the production rule, merge the branch, authorize a repeat, or prove
+  multi-region production convergence.
 - **Decision owner:** Project Owner after technical and independent review

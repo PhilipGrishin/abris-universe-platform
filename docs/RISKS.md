@@ -547,8 +547,11 @@
 
 ## RISK-021 — Promoted Static Asset Endpoint Is Not Stable Across Observations
 
-- **Status:** Observed; production continuation `REWORK REQUIRED`
-- **Probability:** Observed once
+- **Status:** Production observation confirmed in an isolated reproduction;
+  remediation `[IMPLEMENTED]`, `[TESTED]` outside production; production
+  continuation remains `REWORK REQUIRED`
+- **Probability:** Observed in production once and repeatedly reproduced in the
+  isolated deployment lab
 - **Impact:** High
 - **Trigger:** After exact immutable-preview verification, promotion, and
   hostname purge, the candidate root remains healthy while a required static
@@ -558,10 +561,14 @@
   deployment completion, auditability, and safe release.
 - **Evidence:** Run `30266185702`; candidate preview passed; production
   stability attempt 3 received `/version.json` `404`; TS001-DEPLOY-014 and
-  TS001-DEPLOY-015; artifact `8652895888`.
-- **Prevention:** `[OPEN]`; requires a separately reviewed Technical
-  Alternative Proposal. Do not infer whether routing, propagation, or cache is
-  the underlying Cloudflare mechanism from one run.
+  TS001-DEPLOY-015; artifact `8652895888`; isolated
+  baseline/candidate/version-affinity lab recorded in
+  `CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md`.
+- **Prevention:** Worker-owned immutable runtime provenance; exact-host
+  IP-based Worker version affinity; per-request version identity; strict
+  content-type and non-SPA asset assertions; bounded baseline-aware transition
+  handling; three consecutive complete candidate contracts. Implemented and
+  tested on the isolated branch, not yet production-reviewed or integrated.
 - **Mitigation:** Preserve exact preview verification, fail-closed production
   quorum, immutable rollback, rollback purge, and baseline restoration. Extend
   sanitized retained evidence with bounded per-attempt/check identifiers.

@@ -8,7 +8,7 @@
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.14.0 |
+| Version | 1.15.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; Production Deployment Record v2.3.0; Threat Model TM-011 through TM-024; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888` |
@@ -236,6 +236,17 @@ AU-AGENT-003 assigned `FAIL` / `REWORK REQUIRED`, High TS001-DEPLOY-014 and
 Medium TS001-DEPLOY-015; rollback is task-scoped `VERIFIED`. Attempt authority
 is exhausted and no repeat is authorized.
 
+An isolated non-production Cloudflare lab subsequently reproduced the
+cross-request version transition. Sources `bcdd369` and `d741abd` add immutable
+Worker runtime provenance, exact-host IP affinity preflight, bounded transition
+classification, strict asset media-type and non-SPA checks, per-attempt/check
+evidence, and deterministic timeout behavior. Live evidence completed 20
+version-coherent contracts at a 50/50 split, then a full promotion with 12
+prior-baseline observations followed by three strict candidate contracts in
+72,979 milliseconds. Exact rollback and external cleanup passed. This evidence
+is `[TESTED]` outside production and does not replace the required production
+review and integration gates.
+
 ## References
 
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
@@ -247,4 +258,5 @@ is exhausted and no repeat is authorized.
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
+- [Cloudflare Deployment Transition Lab Report](CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md)
 - [Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)

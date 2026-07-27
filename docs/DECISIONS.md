@@ -381,6 +381,32 @@
   only under a later explicit disposition.
 - **Owner:** Project Owner
 
+## OWNER-DEC-TS001-DEPLOYMENT-LAB-004 — Authorize Isolated Deployment Diagnosis
+
+- **Status:** `[APPROVED]`; isolated investigation and remediation
+  `[IMPLEMENTED]`, `[TESTED]`; production action `[OPEN]`
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive authorizing autonomous deep
+  diagnosis and test deployment without per-error approval.
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; OQ-009;
+  TS001-DEPLOY-014 and TS001-DEPLOY-015.
+- **Decision:** Diagnose all known deployment failures in an isolated
+  Cloudflare test contour, implement and exercise the preferred technical
+  remediation there, and stop before the primary production deployment.
+- **Test-only gate disposition:** AU-AGENT-003 review, GitHub CI, protected
+  merge, exact-main CI, and new production-attempt authorization are not
+  required for the isolated preparation stage.
+- **Boundary:** The bypass applies only to the temporary test contour. It does
+  not close findings, assign `VERIFIED`, mutate production, weaken rollback,
+  merge the branch, or authorize a production attempt.
+- **Result:** The lab reproduced cross-request Worker-version skew, proved
+  exact-host affinity under a 50/50 split, reached a strict three-contract
+  candidate quorum after a full promotion transition, restored the exact
+  baseline through rollback, and removed all temporary Cloudflare resources
+  and credentials. The implementation is recorded by
+  `AU-TECHREV-TS001-CF-LAB-001`.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent
