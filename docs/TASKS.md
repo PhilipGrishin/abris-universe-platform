@@ -172,6 +172,26 @@ authorized disposition.
 - **Boundary:** No local-machine deployment, DNS mutation, secret commitment,
   or deployment of code differing from the bounded accepted executable source.
 
+### TASK-THINSLICE-001-PRODUCTION-ACCEPTANCE — Independent Production Acceptance
+
+- **Status:** Exchange `AU-EX-20260727-001` registered; 97-file,
+  1,143,270-byte checksum-bound package prepared; export pending.
+- **Source:** Successful production run `30278965044`; protected deployed source
+  `1021abf3`; canonical evidence source `3796cb3`; prior bounded implementation
+  acceptance `AU-EX-20260726-001`.
+- **Owner:** Claude Cowork Quality, Security & Independent Acceptance Lead for
+  the returned acceptance meaning; AU-CODEX-PRIMARY for Bridge and Git
+  operations; AU-AGENT-002 for later placement and lifecycle.
+- **Reviewer evidence:** Exact workflow and artifact identity, live public
+  endpoint contract, source and Worker provenance, security headers, delivery
+  trust boundary, operator browser evidence, and declared limitations.
+- **Documentation Impact:** Material.
+- **Gate:** A returned decision is non-canonical until Bridge contract
+  validation, authorized meaning review, Codex integration, and archival.
+- **Boundary:** No repository edits by Claude, no new deployment, no release or
+  product-scope expansion, and no unsupported global, duration, platform, or
+  scale claim.
+
 ### INIT-003-ORG-VALIDATION — Full Engineering Organization Readiness Validation
 
 - **Status:** `[IMPLEMENTED]`, `[TESTED]`, `[VERIFIED]` within the exact

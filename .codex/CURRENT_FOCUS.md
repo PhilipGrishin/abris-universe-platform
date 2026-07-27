@@ -353,6 +353,7 @@ remains open.
 
 ## Next Concrete Step
 
-Do not retry production. Prepare a separately reviewed technical alternative
-or explicit stop decision for Project Owner disposition on TS001-DEPLOY-007.
-Never place secret values in chat or the repository.
+Export the prepared `AU-EX-20260727-001` package through the Collaboration
+Bridge for independent bounded production acceptance. Do not retry production.
+Preserve the exact deployed source, retained evidence, and declared
+limitations. Never place secret values in chat or the repository.
