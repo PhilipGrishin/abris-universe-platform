@@ -974,11 +974,14 @@ Pre-promotion smoke checks validate the immutable preview version:
 - browser smoke opens the import entry point without console errors.
 
 After preview success, the exact version is promoted to 100 percent and the
-workflow purges cache only for `abris.653915.com`. Production must pass the
+workflow purges cache only for `abris.653915.com`; each purge operation has a
+strict 10-second timeout. Production must pass the
 same complete contract three consecutive times within 25 observations and a
 strict 120-second ceiling. An exact registered prior-baseline observation
 resets the consecutive-pass quorum; an unknown response or an internally
-inconsistent candidate contract fails immediately.
+inconsistent exact-candidate contract fails immediately. Requests and retry
+backoffs consume the shared deadline and are abort-aware; production stability
+uses no inner request retry.
 
 Promotion-or-later failure automatically invokes Cloudflare rollback to the
 recorded prior version, purges the production hostname cache again, confirms

@@ -11,7 +11,7 @@ The Project Owner approved OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and
 immutable Workers preview, promotes only that version, purges cache only for
 `abris.653915.com` with a separate zone-scoped token, and requires three
 consecutive complete production contracts. The implementation is
-`[IMPLEMENTED]`, locally `[TESTED]`: strict typecheck, 41 script tests, 68
+`[IMPLEMENTED]`, locally `[TESTED]`: strict typecheck, 46 script tests, 68
 package tests, production build, dependency audit with no known
 vulnerabilities, and Wrangler dry-run pass. Exact-source AU-AGENT-003 review,
 protected merge, and one controlled production attempt remain open.

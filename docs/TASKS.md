@@ -109,7 +109,7 @@ authorized disposition.
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and `AU-TAP-TS001-002`: exact
   immutable Workers preview, exact-version promotion, hostname-only cache
   purge, and a three-consecutive-pass production quorum. The replacement
-  implementation is `[IMPLEMENTED]`, locally `[TESTED]` with 38 focused
+  implementation is `[IMPLEMENTED]`, locally `[TESTED]` with 43 focused
   deployment tests and the complete repository gate. The dedicated purge
   secret and zone variable are configured. Exact-source AU-AGENT-003 review,
   protected merge, and the one controlled attempt remain open.

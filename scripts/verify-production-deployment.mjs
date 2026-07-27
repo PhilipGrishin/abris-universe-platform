@@ -32,18 +32,44 @@ const assert = (condition, message) => {
   if (!condition) throw new Error(message);
 };
 
+const abortedError = (signal) =>
+  signal?.reason instanceof Error
+    ? signal.reason
+    : new Error("Deployment request was aborted.");
+
+const waitWithSignal = (delayMs, signal) =>
+  new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(abortedError(signal));
+      return;
+    }
+    const timeout = setTimeout(() => {
+      signal?.removeEventListener("abort", onAbort);
+      resolve();
+    }, delayMs);
+    const onAbort = () => {
+      clearTimeout(timeout);
+      reject(abortedError(signal));
+    };
+    signal?.addEventListener("abort", onAbort, { once: true });
+  });
+
 const fetchWithRetry = async (url, init, attempts = 5) => {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    if (init.signal?.aborted) throw abortedError(init.signal);
     try {
       const response = await fetch(url, init);
       if (response.ok || response.status === 405) return response;
-      lastError = new Error(`${url} returned ${response.status}`);
-    } catch (error) {
-      lastError = error;
+      lastError = new Error(
+        `Deployment request returned status ${response.status}.`,
+      );
+    } catch {
+      if (init.signal?.aborted) throw abortedError(init.signal);
+      lastError = new Error("Deployment request failed.");
     }
     if (attempt < attempts) {
-      await new Promise((resolve) => setTimeout(resolve, attempt * 1_000));
+      await waitWithSignal(attempt * 1_000, init.signal);
     }
   }
   throw lastError;
@@ -128,18 +154,27 @@ const matchesPriorBaseline = (observation, priorBaseline) =>
   observation?.bodySha256 === priorBaseline.bodySha256 &&
   observation?.contentType === priorBaseline.contentType;
 
+const matchesCandidateSentinel = (observation, previewSmoke) =>
+  observation?.status === previewSmoke.root.status &&
+  observation?.bodySha256 === previewSmoke.root.bodySha256;
+
 const inspectProductionDeploymentOnce = async ({
   baseUrl,
   expectedCommit,
   signal,
+  requestAttempts,
 }) => {
   const request = (pathname, init = {}) =>
-    fetchWithRetry(`${baseUrl}${pathname}`, {
-      cache: "no-store",
-      redirect: "error",
-      signal,
-      ...init,
-    });
+    fetchWithRetry(
+      `${baseUrl}${pathname}`,
+      {
+        cache: "no-store",
+        redirect: "error",
+        signal,
+        ...init,
+      },
+      requestAttempts,
+    );
 
   const root = await readResponse(await request("/"));
   const head = await request("/", { method: "HEAD" });
@@ -242,6 +277,7 @@ const inspectProductionDeploymentOnce = async ({
 export const inspectProductionDeployment = async ({
   semanticAttempts = PRODUCTION_SEMANTIC_ATTEMPTS,
   semanticRetryDelayMs = 2_000,
+  requestAttempts = 5,
   ...inspection
 }) => {
   validateInspectionInput(inspection);
@@ -253,6 +289,10 @@ export const inspectProductionDeployment = async ({
     Number.isInteger(semanticRetryDelayMs) && semanticRetryDelayMs >= 0,
     "semanticRetryDelayMs must be a non-negative integer.",
   );
+  assert(
+    Number.isInteger(requestAttempts) && requestAttempts > 0,
+    "requestAttempts must be a positive integer.",
+  );
 
   let lastError;
   for (let attempt = 1; attempt <= semanticAttempts; attempt += 1) {
@@ -263,7 +303,10 @@ export const inspectProductionDeployment = async ({
       throw error;
     }
     try {
-      const evidence = await inspectProductionDeploymentOnce(inspection);
+      const evidence = await inspectProductionDeploymentOnce({
+        ...inspection,
+        requestAttempts,
+      });
       return { ...evidence, semanticAttempt: attempt };
     } catch (error) {
       lastError = error;
@@ -273,8 +316,9 @@ export const inspectProductionDeployment = async ({
         throw error;
       }
       if (attempt < semanticAttempts) {
-        await new Promise((resolve) =>
-          setTimeout(resolve, semanticRetryDelayMs),
+        await waitWithSignal(
+          semanticRetryDelayMs,
+          inspection.signal,
         );
       }
     }
@@ -353,6 +397,7 @@ export const inspectProductionStability = async ({
         signal: AbortSignal.timeout(remainingMs),
         semanticAttempts: 1,
         semanticRetryDelayMs: 0,
+        requestAttempts: 1,
       });
       lastObservation = lastEvidence.root.observation;
       consecutivePasses += 1;
@@ -377,7 +422,10 @@ export const inspectProductionStability = async ({
       } else {
         error.stabilityAttempt = attempt;
         error.stabilityWindowMs = stabilityTimeoutMs;
-        error.stabilityClassification = lastObservation
+        error.stabilityClassification = matchesCandidateSentinel(
+          lastObservation,
+          previewSmoke,
+        )
           ? "candidate-contract"
           : "unrecognized";
         error.stabilityObservation = lastObservation;

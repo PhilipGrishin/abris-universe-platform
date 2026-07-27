@@ -40,11 +40,16 @@ export const waitForRegisteredRollbackBaseline = async ({
   const startedAt = now();
   let lastObservation = null;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const remainingMs = timeoutMs - (now() - startedAt);
+    assert(
+      remainingMs > 0,
+      "Rollback did not restore the registered prior baseline within the approved time window.",
+    );
+    lastObservation = await snapshot({ remainingMs });
     assert(
       now() - startedAt < timeoutMs,
       "Rollback did not restore the registered prior baseline within the approved time window.",
     );
-    lastObservation = await snapshot();
     if (matches(lastObservation, priorBaseline)) {
       return { ...lastObservation, attempt };
     }
@@ -53,12 +58,12 @@ export const waitForRegisteredRollbackBaseline = async ({
       "Rollback produced neither the registered prior baseline nor the reviewed candidate.",
     );
     if (attempt < attempts) {
-      const remainingMs = timeoutMs - (now() - startedAt);
+      const remainingAfterSnapshotMs = timeoutMs - (now() - startedAt);
       assert(
-        remainingMs > 0,
+        remainingAfterSnapshotMs > 0,
         "Rollback did not restore the registered prior baseline within the approved time window.",
       );
-      await sleep(Math.min(retryDelayMs, remainingMs));
+      await sleep(Math.min(retryDelayMs, remainingAfterSnapshotMs));
     }
   }
 

@@ -13,7 +13,7 @@
 - **Credential state:** the owner configured
   `CLOUDFLARE_CACHE_PURGE_TOKEN` and `CLOUDFLARE_ZONE_ID` in the protected
   GitHub `production` environment. Values were neither read nor retained.
-- **Evidence:** strict typecheck; 41 script tests; 68 package tests; verified
+- **Evidence:** strict typecheck; 46 script tests; 68 package tests; verified
   production build; dependency audit with no known vulnerabilities; Wrangler
   dry-run rehearsal; `git diff --check`.
 - **Workspace hygiene:** empty duplicate directories

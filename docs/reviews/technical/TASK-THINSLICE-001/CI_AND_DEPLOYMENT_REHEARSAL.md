@@ -182,20 +182,21 @@ override continuation with:
 - exact immutable Workers preview discovery and full-contract verification;
 - exact-version promotion to 100 percent;
 - hostname-only purge for `abris.653915.com` using a separate zone-scoped
-  Cache Purge token;
+  Cache Purge token and a strict 10-second operation timeout;
 - three consecutive complete production contracts inside 25 observations and
   120 seconds;
 - rollback, second hostname purge, active-version confirmation, and bounded
-  registered-baseline restoration.
+  registered-baseline restoration using the shared remaining deadline.
 
 The no-deploy rehearsal now requires the exact reviewed Wrangler static-assets
 configuration, including `workers_dev: false` and `preview_urls: true`, and
 rejects every deployment or purge secret/variable marker in the generated
-bundle. Local evidence passes strict typecheck, 41 script tests, 68 package
+bundle. Local evidence passes strict typecheck, 46 script tests, 68 package
 tests, production build verification, dependency audit with no known
 vulnerabilities, and Wrangler dry-run. No Cloudflare mutation occurred.
 Exact-source AU-AGENT-003 review, protected pull-request checks, protected
-merge, and the single authorized live attempt remain open.
+merge, and the single authorized live attempt remain open. Abort-aware request
+and backoff tests distinguish exact prior, exact candidate, and unknown states.
 
 ## References
 

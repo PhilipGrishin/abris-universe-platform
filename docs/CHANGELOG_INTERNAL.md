@@ -36,7 +36,9 @@ material defect.
   Workers preview verification, exact-version promotion, hostname-only cache
   purge, and a three-consecutive-pass production stability quorum.
 - Added a separate least-privilege purge client, sanitized evidence, rollback
-  purge, bounded rollback convergence, and focused failure-path tests.
+  purge with a strict timeout, abort-aware shared deadlines, exact
+  prior/candidate/unknown classification, bounded rollback convergence, and
+  focused failure-path tests.
 - Enabled version preview URLs only for the protected post-merge production
   workflow; pull-request preview deployment remains disabled.
 - Updated Technical Design, ADR-TS001-004, deployment record, decisions, risks,

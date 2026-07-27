@@ -42,18 +42,29 @@ const assert = (condition, message) => {
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
 
-const runWrangler = (args, options = {}) =>
-  execFileSync("pnpm", ["exec", "wrangler", ...args], {
-    cwd: webRoot,
-    encoding: "utf8",
-    stdio: options.capture ? ["ignore", "pipe", "pipe"] : "inherit",
-    env: {
-      ...environmentForWrangler(process.env),
-      WRANGLER_SEND_METRICS: "false",
-      WRANGLER_WRITE_LOGS: "false",
-      ...options.env,
-    },
-  });
+const runWrangler = (args, options = {}) => {
+  try {
+    return execFileSync("pnpm", ["exec", "wrangler", ...args], {
+      cwd: webRoot,
+      encoding: "utf8",
+      stdio:
+        options.capture || options.redactOutput
+          ? ["ignore", "pipe", "pipe"]
+          : "inherit",
+      env: {
+        ...environmentForWrangler(process.env),
+        WRANGLER_SEND_METRICS: "false",
+        WRANGLER_WRITE_LOGS: "false",
+        ...options.env,
+      },
+    });
+  } catch (error) {
+    if (options.redactOutput) {
+      throw new Error("Wrangler version upload failed with output redacted.");
+    }
+    throw error;
+  }
+};
 
 const parseJsonOutput = (value, label) => {
   try {
@@ -63,13 +74,14 @@ const parseJsonOutput = (value, label) => {
   }
 };
 
-const publicSnapshot = async () => {
+const publicSnapshot = async ({ timeoutMs = 10_000 } = {}) => {
+  const signal = AbortSignal.timeout(Math.max(1, timeoutMs));
   const request = (method) =>
     fetch(`${productionUrl}/`, {
       method,
       cache: "no-store",
       redirect: "error",
-      signal: AbortSignal.timeout(10_000),
+      signal,
     });
   const response = await request("GET");
   const body = await response.text();
@@ -187,6 +199,7 @@ try {
         ],
         {
           env: { WRANGLER_OUTPUT_FILE_PATH: uploadOutput },
+          redactOutput: true,
         },
       );
       return readVersionUpload(uploadOutput);
@@ -263,7 +276,8 @@ try {
       waitForRegisteredRollbackBaseline({
         priorBaseline: preDeploySnapshot,
         candidateObservation: previewSmoke.root.observation,
-        snapshot: publicSnapshot,
+        snapshot: ({ remainingMs }) =>
+          publicSnapshot({ timeoutMs: Math.min(10_000, remainingMs) }),
       }),
   });
 } catch (error) {

@@ -2,11 +2,14 @@ const assert = (condition, message) => {
   if (!condition) throw new Error(message);
 };
 
+export const CACHE_PURGE_TIMEOUT_MS = 10_000;
+
 export const purgeCloudflareHostnameCache = async ({
   zoneId,
   token,
   hostname,
   request = fetch,
+  timeoutMs = CACHE_PURGE_TIMEOUT_MS,
 }) => {
   assert(
     /^[0-9a-f]{32}$/u.test(zoneId ?? ""),
@@ -23,35 +26,59 @@ export const purgeCloudflareHostnameCache = async ({
     "The cache-purge hostname is invalid.",
   );
   assert(typeof request === "function", "request must be a function.");
-
-  const response = await request(
-    `https://api.cloudflare.com/client/v4/zones/${zoneId}/purge_cache`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ hosts: [hostname] }),
-      redirect: "error",
-    },
-  );
-
-  let payload;
-  try {
-    payload = await response.json();
-  } catch {
-    throw new Error("Cloudflare cache purge did not return valid JSON.");
-  }
   assert(
-    response.status === 200 && payload?.success === true,
-    "Cloudflare hostname cache purge was rejected.",
+    Number.isInteger(timeoutMs) && timeoutMs > 0,
+    "Cache purge timeout must be a positive integer.",
   );
 
-  return {
-    hostname,
-    scope: "hostname",
-    status: response.status,
-    success: true,
-  };
+  const controller = new AbortController();
+  let timeout;
+  const deadline = new Promise((_, reject) => {
+    timeout = setTimeout(() => {
+      const error = new Error("Cloudflare hostname cache purge timed out.");
+      controller.abort(error);
+      reject(error);
+    }, timeoutMs);
+  });
+
+  try {
+    return await Promise.race([
+      (async () => {
+        const response = await request(
+          `https://api.cloudflare.com/client/v4/zones/${zoneId}/purge_cache`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ hosts: [hostname] }),
+            redirect: "error",
+            signal: controller.signal,
+          },
+        );
+
+        let payload;
+        try {
+          payload = await response.json();
+        } catch {
+          throw new Error("Cloudflare cache purge did not return valid JSON.");
+        }
+        assert(
+          response.status === 200 && payload?.success === true,
+          "Cloudflare hostname cache purge was rejected.",
+        );
+
+        return {
+          hostname,
+          scope: "hostname",
+          status: response.status,
+          success: true,
+        };
+      })(),
+      deadline,
+    ]);
+  } finally {
+    clearTimeout(timeout);
+  }
 };

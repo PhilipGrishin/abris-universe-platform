@@ -52,7 +52,7 @@ The deployment contract is:
    120-second total timeout;
 3. promote the captured version ID directly to 100 percent;
 4. call Cloudflare's zone cache purge API with
-   `{"hosts":["abris.653915.com"]}`;
+   `{"hosts":["abris.653915.com"]}` under a strict 10-second operation timeout;
 5. run the complete production contract until it passes three consecutive
    times, with at most 25 observations and a strict 120-second ceiling;
 6. treat the exact registered prior baseline as a known transient that resets
@@ -98,13 +98,17 @@ Three consecutive complete passes are required. An exact prior-baseline
 observation resets the quorum and remains retryable only inside the same
 25-observation and 120-second bounds. A response that is neither the exact
 prior baseline nor a complete candidate contract triggers immediate rollback.
+Requests and retry backoffs are abort-aware; production full-contract
+verification performs no inner request retry. Unknown root content is
+classified separately from an exact candidate sentinel with a broken contract.
 
 ## Failure and Rollback
 
 Upload or preview failure occurs before production mutation and therefore does
 not invoke rollback. Promotion is marked mutation-attempted before the
 Cloudflare command runs, so even a partially failed promotion enters rollback.
-Cache-purge failure and production stability failure also enter rollback.
+Cache-purge timeout/failure and production stability failure also enter
+rollback.
 
 Rollback must:
 
@@ -176,7 +180,7 @@ Production mutation remains blocked until:
 The first two gates pass locally:
 
 - strict workspace typecheck;
-- 41 script tests, including 38 deployment-focused tests;
+- 46 script tests, including 43 deployment-focused tests;
 - 68 package tests;
 - verified production build;
 - production dependency audit with no known vulnerabilities;
@@ -184,8 +188,9 @@ The first two gates pass locally:
 - Markdown-link, workflow-YAML, whitespace, and secret-value checks.
 
 The purge token and zone variable are removed from every Wrangler subprocess
-environment. The public preview URL is removed from retained lifecycle and
-smoke evidence. Production mutation has not occurred. Exact-source
+environment. Version-upload process output is suppressed, and the public
+preview URL is removed from retained lifecycle and smoke evidence. Production
+mutation has not occurred. Exact-source
 AU-AGENT-003 review, protected pull-request checks, protected merge, and the
 one controlled attempt remain open.
 

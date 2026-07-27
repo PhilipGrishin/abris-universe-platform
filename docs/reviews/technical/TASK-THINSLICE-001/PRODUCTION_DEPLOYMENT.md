@@ -93,7 +93,7 @@ The production environment exists and accepts deployments only from protected
 force-push/deletion prevention are active on `main`.
 No Cloudflare secret value is present in the repository or chat.
 
-41 script tests, including 38 deployment-focused tests,
+46 script tests, including 43 deployment-focused tests,
 cover explicit dispatch rejection, route
 ownership validation, registered
 Cloudflare output shapes, preflight health and the 100-percent rollback anchor,
@@ -269,12 +269,16 @@ The replacement contract:
    baseline on failure.
 
 The separate purge token has only Zone Cache Purge permission for the selected
-zone. Local evidence includes strict typecheck, complete repository tests,
+zone. Each purge operation has a strict 10-second timeout. Production
+requests/backoffs and rollback snapshots consume their shared remaining
+deadlines; an exact candidate sentinel with a broken contract and an unknown
+root state remain separate failure classifications. Local evidence includes
+strict typecheck, complete repository tests,
 production build verification, dependency audit with no known vulnerabilities,
 and Wrangler dry-run rehearsal. The purge credential and zone variable are
 removed from Wrangler subprocess environments, and the public preview URL is
-not written to retained evidence. Independent review and live evidence remain
-open.
+suppressed from version-upload logs and not written to retained evidence.
+Independent review and live evidence remain open.
 
 ## Approved Baseline-Aware Transition
 

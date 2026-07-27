@@ -24,6 +24,12 @@ const requiredCandidate = (value) => {
   };
 };
 
+const withoutBaseUrl = (value) => {
+  if (!value || typeof value !== "object") return value;
+  const { baseUrl: _baseUrl, ...evidence } = value;
+  return evidence;
+};
+
 export const executeProductionDeployment = async ({
   priorVersionId,
   uploadVersion,
@@ -55,10 +61,13 @@ export const executeProductionDeployment = async ({
   };
 
   try {
-    state.candidate = requiredCandidate(await uploadVersion());
+    const uploadedCandidate = requiredCandidate(await uploadVersion());
+    state.candidate = { versionId: uploadedCandidate.versionId };
 
     state.stage = "preview-smoke";
-    state.previewSmoke = await smokePreview(state.candidate);
+    state.previewSmoke = withoutBaseUrl(
+      await smokePreview(uploadedCandidate),
+    );
 
     state.productionMutationAttempted = true;
     state.stage = "promotion";

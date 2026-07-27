@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { purgeCloudflareHostnameCache } from "./cloudflare-cache-purge.mjs";
+import {
+  CACHE_PURGE_TIMEOUT_MS,
+  purgeCloudflareHostnameCache,
+} from "./cloudflare-cache-purge.mjs";
 
 const ZONE_ID = "a".repeat(32);
 const TOKEN = "secret-token";
@@ -26,6 +29,7 @@ test("purges only the registered hostname and returns sanitized evidence", async
     `https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/purge_cache`,
   );
   assert.equal(observed.init.method, "POST");
+  assert.equal(observed.init.signal instanceof AbortSignal, true);
   assert.equal(observed.init.headers.Authorization, `Bearer ${TOKEN}`);
   assert.deepEqual(JSON.parse(observed.init.body), { hosts: [HOSTNAME] });
   assert.deepEqual(result, {
@@ -36,6 +40,29 @@ test("purges only the registered hostname and returns sanitized evidence", async
   });
   assert.equal(JSON.stringify(result).includes(TOKEN), false);
   assert.equal(JSON.stringify(result).includes(ZONE_ID), false);
+});
+
+test("bounds a hung cache purge so deployment rollback can continue", async () => {
+  assert.equal(CACHE_PURGE_TIMEOUT_MS, 10_000);
+  const startedAt = Date.now();
+  await assert.rejects(
+    purgeCloudflareHostnameCache({
+      zoneId: ZONE_ID,
+      token: TOKEN,
+      hostname: HOSTNAME,
+      timeoutMs: 10,
+      request: async (_url, init) =>
+        new Promise((_resolve, reject) => {
+          init.signal.addEventListener(
+            "abort",
+            () => reject(init.signal.reason),
+            { once: true },
+          );
+        }),
+    }),
+    /cache purge timed out/u,
+  );
+  assert(Date.now() - startedAt < 500);
 });
 
 test("rejects invalid configuration before sending a request", async () => {

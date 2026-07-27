@@ -117,7 +117,7 @@
   `CLOUDFLARE_ZONE_ID`, and authorized implementation, AU-AGENT-003 review, and
   one controlled attempt after protected merge.
 - **Evidence:** OWNER-DEC-TS001-PRODUCTION-DELIVERY-002;
-  `AU-TAP-TS001-002`; 38 focused deployment tests; complete local repository
+  `AU-TAP-TS001-002`; 43 focused deployment tests; complete local repository
   gate.
 - **Boundary:** Public PR previews remain disabled. The version preview is
   created only inside the protected production workflow and contains no user

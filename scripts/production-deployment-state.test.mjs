@@ -11,7 +11,10 @@ const CANDIDATE = {
   versionId: NEXT,
   previewUrl: "https://next-version-abris.workers.dev",
 };
-const PREVIEW_SMOKE = { observedCommit: "accepted" };
+const PREVIEW_SMOKE = {
+  baseUrl: CANDIDATE.previewUrl,
+  observedCommit: "accepted",
+};
 
 const lifecycle = (overrides = {}) => {
   const calls = [];
@@ -70,7 +73,8 @@ test("executes immutable preview, exact promotion, purge, and stability smoke in
   assert.equal(state.stage, "complete");
   assert.equal(state.promoted, true);
   assert.equal(state.rollbackAttempted, false);
-  assert.deepEqual(state.candidate, CANDIDATE);
+  assert.deepEqual(state.candidate, { versionId: NEXT });
+  assert.equal(JSON.stringify(state).includes(CANDIDATE.previewUrl), false);
 });
 
 test("passes the exact preview evidence into production stability verification", async () => {
@@ -86,8 +90,8 @@ test("passes the exact preview evidence into production stability verification",
 
   assert.deepEqual(stabilityInput, {
     priorVersionId: PRIOR,
-    candidate: CANDIDATE,
-    previewSmoke: PREVIEW_SMOKE,
+    candidate: { versionId: NEXT },
+    previewSmoke: { observedCommit: "accepted" },
   });
 });
 
@@ -126,6 +130,7 @@ test("does not roll back when immutable preview smoke fails before promotion", a
       assert.equal(error.state.failureStage, "preview-smoke");
       assert.equal(error.state.rollbackAttempted, false);
       assert.equal(error.state.productionMutationAttempted, false);
+      assert.equal(JSON.stringify(error.state).includes(CANDIDATE.previewUrl), false);
       return true;
     },
   );

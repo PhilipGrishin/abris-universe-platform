@@ -84,12 +84,20 @@ test("stops preview semantic retry when its total signal is aborted", async () =
 const createFixtureServer = async ({
   wrongCommit = false,
   rootSequence = [],
+  rootStatus = null,
+  holdRoot = false,
 } = {}) => {
   const remainingRootResponses = [...rootSequence];
   let rootRequests = 0;
   const server = createServer((request, response) => {
     if (request.method === "GET" && request.url === "/") {
       rootRequests += 1;
+      if (holdRoot) return;
+      if (rootStatus !== null) {
+        response.writeHead(rootStatus);
+        response.end("unavailable");
+        return;
+      }
       const body = remainingRootResponses.shift();
       if (body) {
         response.setHeader("Content-Type", "text/html");
@@ -134,9 +142,98 @@ const createFixtureServer = async ({
   return {
     httpBaseUrl: `http://127.0.0.1:${address.port}`,
     rootRequests: () => rootRequests,
-    close: () => new Promise((resolve) => server.close(resolve)),
+    close: () =>
+      new Promise((resolve) => {
+        server.closeAllConnections?.();
+        server.close(resolve);
+      }),
   };
 };
+
+test("aborts during a non-OK retry backoff without exceeding the deadline", async () => {
+  const fixture = await createFixtureServer({ rootStatus: 503 });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("preview deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 1,
+        requestAttempts: 5,
+        signal: controller.signal,
+      }),
+      /preview deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
+
+test("aborts during a semantic retry backoff without exceeding the deadline", async () => {
+  const fixture = await createFixtureServer({ wrongCommit: true });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("semantic deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 5,
+        semanticRetryDelayMs: 1_000,
+        requestAttempts: 1,
+        signal: controller.signal,
+      }),
+      /semantic deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
+
+test("aborts a hung request without retrying past the deadline", async () => {
+  const fixture = await createFixtureServer({ holdRoot: true });
+  const controller = new AbortController();
+  const startedAt = Date.now();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("request deadline")),
+    20,
+  );
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 1,
+        requestAttempts: 5,
+        signal: controller.signal,
+      }),
+      /request deadline/u,
+    );
+    assert(Date.now() - startedAt < 500);
+    assert.equal(fixture.rootRequests(), 1);
+  } finally {
+    clearTimeout(timeout);
+    await fixture.close();
+  }
+});
 
 test("accepts the exact shell, provenance, assets, methods, and headers", async () => {
   const fixture = await createFixtureServer();
@@ -314,7 +411,7 @@ test("fails immediately on an unrecognized root response", async () => {
       }),
       (error) => {
         assert.equal(error.stabilityAttempt, 1);
-        assert.equal(error.stabilityClassification, "candidate-contract");
+        assert.equal(error.stabilityClassification, "unrecognized");
         assert.match(
           error.stabilityObservation.bodySha256,
           /^[0-9a-f]{64}$/u,
@@ -426,6 +523,7 @@ test("treats a transport failure as an immediate unrecognized state", async () =
   const fixture = await createFixtureServer();
   const baseUrl = fixture.httpBaseUrl;
   await fixture.close();
+  const startedAt = Date.now();
   await assert.rejects(
     inspectProductionStability({
       baseUrl,
@@ -444,4 +542,5 @@ test("treats a transport failure as an immediate unrecognized state", async () =
       return true;
     },
   );
+  assert(Date.now() - startedAt < 500);
 });

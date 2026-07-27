@@ -504,7 +504,7 @@
   The Project Owner then approved `AU-TAP-TS001-002`. Its implementation uses
   a separate zone-scoped Cache Purge token, 25-observation/120-second
   production bounds, exact prior/candidate classification, and cache purge
-  both after promotion and rollback. Thirty-eight focused deployment tests and
+  both after promotion and rollback. Forty-three focused deployment tests and
   the complete local repository gate pass. AU-AGENT-003 exact-source review,
   protected merge, and live evidence remain required.
 - **Fallback:** Keep or restore the prior placeholder. If the approved

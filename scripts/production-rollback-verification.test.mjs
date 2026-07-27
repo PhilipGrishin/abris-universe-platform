@@ -76,3 +76,24 @@ test("enforces the observation and wall-clock ceilings", async () => {
     /approved time window/u,
   );
 });
+
+test("passes the remaining deadline to each snapshot and rejects a late result", async () => {
+  let clock = 10;
+  let observedRemainingMs;
+  await assert.rejects(
+    waitForRegisteredRollbackBaseline({
+      priorBaseline: PRIOR,
+      candidateObservation: CANDIDATE,
+      snapshot: async ({ remainingMs }) => {
+        observedRemainingMs = remainingMs;
+        clock += remainingMs;
+        return PRIOR;
+      },
+      timeoutMs: 20,
+      now: () => clock,
+      sleep: async () => {},
+    }),
+    /approved time window/u,
+  );
+  assert.equal(observedRemainingMs, 20);
+});
