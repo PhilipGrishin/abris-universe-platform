@@ -45,7 +45,15 @@ independent AU-AGENT-003 review, and one new controlled attempt. The
 baseline-aware implementation and 27 focused tests are complete. AU-AGENT-003
 assigned task-scoped `VERIFIED` at exact source `b4f25cda`, resolved
 TS001-DEPLOY-005, and recorded no new findings. Required CI run `30252463472`
-passed. Protected merge remains mandatory before dispatch.
+passed.
+Protected merge produced `80d942ec`, and run `30253457090` exhausted the one
+authorized attempt. Candidate zero-traffic smoke passed at semantic attempt
+18 and promotion occurred. Transition attempt 3 observed the candidate, but
+the one-shot complete contract immediately received the exact prior cached
+baseline; the approved rule failed closed and restored `d1f2b05d` plus the
+registered public baseline. AU-AGENT-003 records safety execution `VERIFIED`,
+production continuation `BLOCKED`, and High finding TS001-DEPLOY-007. No retry
+is authorized.
 
 ## Confirmed Inputs
 
@@ -70,7 +78,7 @@ passed. Protected merge remains mandatory before dispatch.
 
 ## Current Design State
 
-- Technical Design v1.5.10 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.11 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -280,6 +288,6 @@ remains open.
 
 ## Next Concrete Step
 
-Merge the independently verified baseline-aware transition through protected
-`main`, and only then dispatch the one controlled attempt. Never place secret
-values in chat or the repository.
+Do not retry production. Prepare a separately reviewed technical alternative
+or explicit stop decision for Project Owner disposition on TS001-DEPLOY-007.
+Never place secret values in chat or the repository.

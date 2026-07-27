@@ -101,8 +101,11 @@ authorized disposition.
   one new controlled attempt. The baseline-aware implementation and 27 focused
   tests are complete. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact
   source `b4f25cda`, resolved TS001-DEPLOY-005, and recorded no new findings;
-  required CI run `30252463472` passed. Protected merge remains mandatory
-  before dispatch. Production/browser results remain open.
+  required CI run `30252463472` passed. Protected merge produced `80d942ec`;
+  run `30253457090` exhausted the one authorized attempt and restored the
+  prior version/baseline. AU-AGENT-003 assigns safety execution `VERIFIED`,
+  production continuation `BLOCKED`, and High TS001-DEPLOY-007. No retry is
+  authorized. Production/browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

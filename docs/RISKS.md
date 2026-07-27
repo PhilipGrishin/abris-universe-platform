@@ -471,10 +471,9 @@
 
 ## RISK-019 — Default Route Lags Verified Candidate After Promotion
 
-- **Status:** `[OPEN]`; attempt 3 evidence retained; Alternative A
-  `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003
-  Engineering Verification Status `VERIFIED`; protected merge and live result
-  pending
+- **Status:** `[OPEN]`; attempts 3 and 4 evidence retained; Alternative A
+  safety execution `VERIFIED`; production continuation `BLOCKED` by High
+  TS001-DEPLOY-007
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -497,9 +496,14 @@
   sentinel, and immediately fails every unknown, transport, timeout, or
   candidate-contract state into rollback. Twenty-seven focused tests and
   required CI run `30252463472` pass; AU-AGENT-003 independently resolved
-  TS001-DEPLOY-005 at exact source `b4f25cda`.
-- **Fallback:** Reject the proposal and keep the prior placeholder, or select a
-  separately approved preview/canary hosting strategy with its own security,
-  access, traffic, and rollback review.
+  TS001-DEPLOY-005 at exact source `b4f25cda`. Run `30253457090` then proved
+  that one edge can return the exact candidate sentinel immediately before the
+  one-shot complete contract receives the exact prior cached baseline. The
+  approved state machine rejected that response and restored the exact prior
+  version/baseline.
+- **Fallback:** Keep the restored prior placeholder. Select a separately
+  approved preview/canary or other cache-coherency strategy only through a new
+  technical alternative, security review, deterministic tests, required CI,
+  protected merge, and explicit attempt authority.
 - **Owner:** AU-AGENT-001 for the technical proposal; Project Owner for risk
   approval; AU-AGENT-003 for independent verification

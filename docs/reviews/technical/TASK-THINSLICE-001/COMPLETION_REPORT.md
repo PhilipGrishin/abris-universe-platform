@@ -4,15 +4,15 @@
 | --- | --- |
 | Document ID | AU-COMP-TS001-001 |
 | Title | TASK-THINSLICE-001 Completion Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; attempt 3 passed zero-traffic smoke, promoted, and rolled back on the exact prior cached baseline; production verification remains open |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; attempts 3 and 4 passed zero-traffic smoke, promoted, and rolled back; production continuation `BLOCKED` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.1.9 |
+| Version | 1.1.10 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | TASK-THINSLICE-001 v1.1; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; Production Deployment Verification v1.5.0; Production Deployment Record v1.6.1; Production Propagation Technical Alternative Proposal v1.1.1; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; CI run `30252463472`; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
+| Dependencies | TASK-THINSLICE-001 v1.1; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; Production Deployment Verification v1.6.0; Production Deployment Record v1.7.0; Production Propagation Technical Alternative Proposal v1.2.0; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; protected-main source `80d942ec`; runs `30252463472` and `30253457090`; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package, implementation source, test, evidence, finding, limitation, deployment, acceptance, or documentation-result change |
@@ -150,7 +150,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
 | Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
-| Production deployment | Runs `30247393181` and `30248680612` failed closed before promotion and restored the exact prior version/baseline. Run 2 closed TD-GATE-003. Run `30250084131` passed the complete zero-traffic candidate contract on attempt 17 and promoted. Production smoke exhausted six attempts; the final retained observation matched the exact prior cached baseline. Exact rollback succeeded. The Project Owner approved `AU-TAP-TS001-001` Alternative A and one controlled attempt. Implementation and 27 focused tests pass; exact-source CI `30252463472` passes; AU-AGENT-003 assigned task-scoped `VERIFIED` at `b4f25cda`. Protected merge and production/browser assertions remain open. |
+| Production deployment | Runs `30247393181` and `30248680612` failed closed before promotion and restored the exact prior version/baseline. Run 2 closed TD-GATE-003. Runs `30250084131` and `30253457090` passed complete zero-traffic candidate contracts and promoted, then received the exact prior cached baseline and rolled back. Attempt 4 exercised Alternative A: transition attempt 3 saw the candidate, but the immediately following one-shot contract saw the prior baseline and failed closed. AU-AGENT-003 assigns safety execution `VERIFIED`, production continuation `BLOCKED`, and High TS001-DEPLOY-007. The single authorized attempt is exhausted; browser production assertions remain open. |
 
 These dispositions do not change product requirements.
 
@@ -531,10 +531,10 @@ internal result is distinct from the later bounded independent acceptance.
 
 ## 22. Recommended Next Step
 
-Complete independent engineering review of the production workflow, configure
-the two GitHub environment secrets, capture TD-GATE-003, merge the reviewed
-accepted source to `main`, and dispatch the exact commit. Then retain
-production and browser smoke evidence or automatically roll back.
+Do not retry production. Prepare a separately reviewed technical alternative
+or an explicit stop decision for Project Owner disposition. Preserve the exact
+run `30253457090` artifact and rollback evidence; browser production evidence
+remains unavailable because the placeholder is live.
 
 ## 23. Version History
 

@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record; run `30250084131`; AU-TAP-TS001-001 v1.1.0; CI run `30252463472` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record; AU-TAP-TS001-001 v1.1.0; protected-main merge `80d942ec521b9f2830ea2af7730356d39e398ee6`; runs `30250084131` and `30253457090`; artifacts `8647947029` and run-3 artifact |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -33,6 +33,8 @@
 - **Exact owner-approved transition source:** commit
   `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7` on
   `codex/task-thinslice-001-baseline-aware-transition`.
+- **Exact protected-main deployment source:** merge commit
+  `80d942ec521b9f2830ea2af7730356d39e398ee6` from PR #9.
 - **Superseded observability source:** commit
   `73811129110cfa991689028441d45a4eccead613` set 61 attempts as the global
   default and was superseded before merge because that also extended
@@ -48,8 +50,9 @@
   immutable upload, zero-traffic smoke, promotion, rollback, evidence safety,
   baseline-aware transition classification, observation/time ceilings, smoke
   assertions, tests, and observed GitHub controls.
-- **Out of scope:** unavailable secret values, the next live deployment,
-  browser acceptance, DNS mutation, and product acceptance.
+- **Out of scope:** unavailable secret values, a future technical alternative,
+  browser acceptance, DNS mutation, product acceptance, and authorization for
+  another deployment.
 - **Documentation Impact:** Material.
 
 ## Evidence
@@ -138,6 +141,31 @@
   `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`, including patch hygiene,
   typecheck, tests, verified static build, production dependency audit, and
   no-deploy Cloudflare rehearsal
+- protected-main merge
+  `80d942ec521b9f2830ea2af7730356d39e398ee6` through PR #9; reviewed workflow
+  and deployment-script paths have an empty diff from exact source
+  `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`
+- single owner-authorized post-merge production run
+  [30253457090](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30253457090)
+  at exact protected-main source
+  `80d942ec521b9f2830ea2af7730356d39e398ee6`; authorization, accepted-source
+  diff, frozen install, typecheck, all tests, verified build, audit, and
+  rehearsal passed before the deployment step failed closed
+- retained attempt-4 artifact
+  `production-deployment-80d942ec521b9f2830ea2af7730356d39e398ee6-30253457090`,
+  artifact ID `8647947029`, digest
+  `sha256:8da88d7c34cde83de1fd0bbe237ab445eb567f13e8cb9e36bf250f208faee379`,
+  expiring 2026-10-25
+- downloaded evidence SHA-256:
+  `production-preflight-evidence.json`
+  `6e03f97401d6c140c47c7dd407bc4b67abeec16476d261026f800e75048ef04c`;
+  `production-deployment-evidence.json`
+  `300688b91dfb86c2baba22ac52e9814a6d4619c4d274ecea547742e27c53d9ab`
+- independent evidence validation: both JSON files parse; forbidden-key,
+  bearer-value, and private-key-marker scans return zero; an independent
+  public GET/HEAD check after the run returns `200`/`200`, `text/html`,
+  `server: cloudflare`, and exact restored body SHA-256
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`
 - GitHub API observation: `main` has strict required `verify`, enforced
   protection, pull-request review rules, stale-review dismissal, conversation
   resolution, and force-push/deletion disabled; the `production` environment
@@ -153,13 +181,13 @@ executable source.
 | Area | Result | Limitation |
 | --- | --- | --- |
 | Source identity | Pass for the exact reviewed source | Reusable-workflow hardening is recorded below |
-| Static smoke contract | Pass | Alternative A is exact-source tested; the next live result remains unobserved |
-| Security headers | Pass in code and test scope | Next production response remains unobserved |
-| Immutable upload and zero-traffic smoke | Pass | Attempt 3 exercised and passed the complete zero-traffic contract |
-| Promotion and rollback | Pass for reviewed scope | Attempt 3 promoted, failed closed, and restored the exact prior version and baseline |
+| Static smoke contract | Pass for fail-closed behavior | Attempt 4 observed a candidate sentinel, then the one full contract received the exact prior placeholder response and rejected it |
+| Security headers | Pass at zero traffic; fail closed on default route | Candidate zero-traffic smoke had the reviewed CSP, `nosniff`, and referrer policy; the immediate default-route response lacked CSP and was rejected |
+| Immutable upload and zero-traffic smoke | Pass | Candidate `2f2367c2-d85b-49e2-b785-a1b9d5c326c5` passed the complete zero-traffic contract at semantic attempt 18 |
+| Promotion and rollback | Pass for safety contract | Attempt 4 promoted, failed closed, and restored exact prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e` and baseline |
 | Secret boundary | Pass | Values are step-scoped, unavailable to the reviewer, and masked in immutable logs |
-| Branch/environment governance | Pass for observed controls | Exact Alternative A source still requires conflict-free protected merge |
-| Production workflow readiness | Pass for one controlled post-merge attempt | Successful live production and browser evidence remain open |
+| Branch/environment governance | Pass | PR #9 merged through protected main and the authorized workflow selected exact source `80d942ec` |
+| Production workflow readiness | Blocked | The single Alternative A attempt is exhausted; the placeholder remains live and no retry is authorized |
 
 ## Findings
 
@@ -171,6 +199,7 @@ executable source.
 | TS001-DEPLOY-004 | Medium | At the original source, the job-level branch/commit `if` skipped the only job rather than producing an explicit failed authorization record. | Replace the job-level skip with an always-entered, fail-closed authorization check before environment access and mutation. | AU-CODEX-PRIMARY | Tests show wrong branch/SHA fails explicitly before the production environment job can run. | Resolved at `2c886390091fd8b05b18130c1555dcaf0a778d7a` |
 | TS001-DEPLOY-005 | High | Run `30250084131` used the one further attempt authorized by the v1.3.0 gate. Candidate smoke passed at zero traffic on attempt 17 and promotion occurred, but post-promotion smoke exhausted all six attempts and the workflow rolled back. Production could not complete under the prior transition contract. | Do not run another deployment under the prior contract. Obtain an explicit Project Owner disposition on AU-TAP-TS001-001 or another separately reviewed alternative. If approved, implement the bounded state machine with deterministic tests and return its exact source to AU-AGENT-003 before deployment. | Project Owner for alternative authority; AU-AGENT-001 for technical meaning; AU-CODEX-PRIMARY for implementation | Approved alternative, exact implementation, focused tests, required CI, independent AU-AGENT-003 reverification, and a new explicitly authorized deployment attempt | Resolved at `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; merge and the single live attempt remain separate gates |
 | TS001-DEPLOY-006 | Medium | The initial AU-TAP-TS001-001 draft incorrectly attributed the final retained observation's exact prior hash, absent CSP, and `cf-cache-status: HIT` properties to every post-promotion attempt. Retained evidence proves six attempts were exhausted and records those properties only for the final observation; attempts 1–5 are not individually retained. | Replace the overgeneralized claim with the evidence-supported statement: six attempts were exhausted, and the final retained observation matched the exact prior hash with no CSP and cache HIT. Apply the same epistemic limit to related proposed documentation. | AU-AGENT-001 for claim meaning; AU-AGENT-002 for consistency | Documentation diff contains no per-attempt claim beyond retained evidence and preserves the actual final observation plus attempt count | Resolved in the reviewed documentation-only worktree diff; final-source preservation remains required |
+| TS001-DEPLOY-007 | High | The single attempt authorized by OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 exhausted its authority without completing production. After complete zero-traffic verification and promotion, transition attempt 3 observed the exact candidate sentinel, but the immediately following one-shot full contract received the exact prior placeholder hash with missing CSP and `cf-cache-status: HIT`. Alternative A correctly failed closed and restored the exact prior version/baseline; the evidence proves safe behavior but not stable default-route candidate delivery. | Do not retry, extend the window, weaken candidate verification, or change routing/deployment behavior under current authority. Register the incident evidence and require a separately reviewed technical alternative or explicit stop decision with Project Owner disposition before any new production mutation. | AU-AGENT-001 for technical analysis; AU-CODEX-PRIMARY for governance/evidence; Project Owner for any new alternative or attempt | Approved next disposition; if it authorizes implementation or another attempt, exact design/source review, deterministic tests, required CI, protected merge, and explicit attempt authority | Open; blocks production completion and every further deployment attempt |
 
 ## Finding Disposition and Reverification
 

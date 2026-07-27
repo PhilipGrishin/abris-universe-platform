@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.6 |
+| Version | 1.3.7 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -164,3 +164,9 @@ production smoke, rollback rehearsal, and local-data compatibility.
 - 2026-07-27: Version 1.3.6 records AU-AGENT-003 task-scoped `VERIFIED` review
   at exact source `b4f25cda` and successful CI run `30252463472`. Protected
   merge remains required before the one authorized run.
+- 2026-07-27: Version 1.3.7 records protected-main run `30253457090`. The
+  candidate passed zero-traffic smoke and was promoted; an exact candidate
+  transition observation was immediately followed by the prior cached
+  baseline during the one-shot full contract. The workflow failed closed and
+  restored the exact prior version/baseline. No retry is authorized;
+  TS001-DEPLOY-007 blocks continuation pending separate disposition.

@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.10 |
+| Version | 1.5.11 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -90,6 +90,15 @@ uses both a 61-observation and strict 120-second ceiling, verifies the exact
 candidate once, and fails every unknown or candidate-defect state into the
 existing rollback path. Product behavior and accepted application source do
 not change.
+Version 1.5.10 records AU-AGENT-003 exact-source `VERIFIED` review and
+successful CI before protected merge.
+Version 1.5.11 records execution of the single authorized Alternative A
+attempt at protected-main source `80d942ec`. Candidate zero-traffic smoke
+passed and promotion occurred; after an exact candidate transition
+observation, the one-shot complete contract received the exact prior cached
+baseline and failed into verified rollback. No retry is authorized;
+TS001-DEPLOY-007 blocks production continuation pending a separately reviewed
+technical alternative or explicit stop decision.
 
 ## 2. Scope and Non-Scope
 
@@ -1044,8 +1053,12 @@ implementation candidate waits only on the registered prior baseline for at
 most 61 observations and 120 seconds, then executes one full candidate
 contract. Unknown, transport, timeout, and candidate-contract failures remain
 fail-closed. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source
-`b4f25cda`, and CI run `30252463472` passed. Protected merge remains mandatory
-before dispatch.
+`b4f25cda`, and CI run `30252463472` passed. Protected merge then produced
+`80d942ec`, and run
+`30253457090` exercised the single authorized attempt. Alternative A failed
+closed after a candidate observation was followed by the exact prior cached
+baseline during the one-shot contract; exact rollback succeeded. No retry is
+authorized.
 
 ## 16. Architecture Review Checklist
 

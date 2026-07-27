@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and production/browser evidence open |
+| Status | Attempts 1 and 2 failed closed before promotion; attempts 3 and 4 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A safety execution `[TESTED]`; production continuation `BLOCKED` by TS001-DEPLOY-007 |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.6.1 |
+| Version | 1.7.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10; ADR-TS001-004 v1.3.6; Production Deployment Verification v1.5.0; Production Propagation Technical Alternative Proposal v1.1.1; bounded independent acceptance at `1a683ab`; exact transition source `b4f25cda`; CI run `30252463472`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11; ADR-TS001-004 v1.3.7; Production Deployment Verification v1.6.0; Production Propagation Technical Alternative Proposal v1.2.0; bounded independent acceptance at `1a683ab`; exact transition source `b4f25cda`; protected-main source `80d942ec`; runs `30252463472` and `30253457090`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -142,7 +142,10 @@ script-initiated network requests or pattern-derived egress.
   `b855e2e0-7221-456e-aaa6-55e947b0dcf0` were uploaded and placed at zero
   percent only. Candidate `5eca15e6-5ba4-4ab9-9ce7-16a7537e591c` passed
   zero-traffic smoke and was briefly promoted before the workflow observed the
-  exact prior cached baseline and rolled back.
+  exact prior cached baseline and rolled back. Candidate
+  `2f2367c2-d85b-49e2-b785-a1b9d5c326c5` passed zero-traffic smoke, was
+  promoted, then failed its one-shot production contract after an exact
+  candidate transition observation and was rolled back.
 
 ## Attempt 1 — Failed Closed and Rolled Back
 
@@ -235,13 +238,13 @@ IndexedDB.
 ## Current Blocker
 
 TD-GATE-003 is closed and no further owner credential action is required.
-The earlier independently allowed retry is exhausted. Attempt 3 proved the
-zero-traffic version but not default-route convergence within the six-attempt
-post-promotion window. The Project Owner approved the separately registered
-[Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
-Alternative A and one new controlled attempt. The baseline-aware implementation
-candidate and deterministic tests are complete. Do not dispatch the attempt
-until exact-source AU-AGENT-003 review, required CI, and protected merge pass.
+The single attempt authorized for Alternative A is exhausted by run
+`30253457090`. AU-AGENT-003 assigned the Alternative A safety execution
+`VERIFIED` and production continuation `BLOCKED`, with High finding
+TS001-DEPLOY-007. Do not retry, extend the window, weaken candidate
+verification, or change routing/deployment behavior without a separately
+reviewed technical alternative or explicit stop decision and Project Owner
+disposition.
 
 ## Approved Baseline-Aware Transition
 
@@ -257,9 +260,39 @@ After promotion, the workflow now:
    contract failure so the existing exact rollback executes;
 5. retains only allowlisted transition and failure evidence.
 
-Twenty-seven focused deployment tests pass. AU-AGENT-003 must independently
-close or re-disposition TS001-DEPLOY-005 at the exact implementation source
-before the newly authorized attempt may run.
+Twenty-seven focused deployment tests pass. AU-AGENT-003 resolved
+TS001-DEPLOY-005 at exact source `b4f25cda`. Run `30253457090` then exercised
+the contract: after candidate classification, the one complete contract
+received the exact prior cached baseline and failed immediately into verified
+rollback, as designed.
+
+## Attempt 4 — Alternative A Executed and Rolled Back
+
+- **Workflow run:** `30253457090`.
+- **Source:** protected-main merge
+  `80d942ec521b9f2830ea2af7730356d39e398ee6`.
+- **Prior version:** `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent.
+- **Candidate version:** `2f2367c2-d85b-49e2-b785-a1b9d5c326c5`.
+- **Pre-promotion result:** `[TESTED]`; semantic attempt 18 passed the complete
+  exact-source, root/fallback, asset, method, and security-header contract.
+- **Promotion:** performed to 100 percent.
+- **Transition result:** direct transition attempt 3 matched the exact
+  candidate root sentinel. The immediately following one-shot complete
+  contract received the exact prior placeholder hash, missing CSP, and
+  `cf-cache-status: HIT`. The approved candidate-contract failure rule rejected
+  the response without retry.
+- **Rollback:** `[TESTED]`; prior version `d1f2b05d` returned to 100 percent,
+  and independent post-run GET/HEAD/hash verification matched the registered
+  placeholder baseline.
+- **Artifact:** retained for 90 days as
+  `production-deployment-80d942ec521b9f2830ea2af7730356d39e398ee6-30253457090`,
+  artifact ID `8647947029`, digest
+  `sha256:8da88d7c34cde83de1fd0bbe237ab445eb567f13e8cb9e36bf250f208faee379`.
+- **Evidence safety:** both JSON files parse; the forbidden-key scan found no
+  token, secret, authorization, account, request-header, or response-body key.
+- **Browser verification:** not performed because rollback left the placeholder
+  live; no successful application production surface existed to verify.
+- **Authority:** exhausted. No retry is authorized.
 
 ## References
 

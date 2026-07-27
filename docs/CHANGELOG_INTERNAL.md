@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.21.1 |
+| Version | 4.22.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,24 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Alternative A Production Attempt Failed Closed
+
+- Protected merge `80d942ec` preserved the independently reviewed transition
+  and accepted executable boundary.
+- Run `30253457090` passed every preflight, test, build, audit, rehearsal, and
+  zero-traffic candidate contract gate, then promoted candidate `2f2367c2`.
+- Transition attempt 3 observed the exact candidate sentinel; the immediately
+  following one-shot complete contract received the exact prior cached
+  baseline. The workflow rejected the response and restored prior version
+  `d1f2b05d` plus the registered public baseline.
+- Retained artifact `8647947029` has digest
+  `sha256:8da88d7c34cde83de1fd0bbe237ab445eb567f13e8cb9e36bf250f208faee379`;
+  both JSON files parse and contain no forbidden secret/body/header keys.
+- AU-AGENT-003 records Alternative A safety execution `VERIFIED`, production
+  continuation `BLOCKED`, and High finding TS001-DEPLOY-007. The single
+  authority is exhausted; no retry is authorized.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Baseline-Aware Transition Independently Verified
 

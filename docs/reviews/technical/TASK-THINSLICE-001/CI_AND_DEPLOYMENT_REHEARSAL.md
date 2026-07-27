@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; attempt 3 rolled back; TD-GATE-003 closed; owner-approved baseline-aware transition `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge open |
+| Status | No-deploy rehearsal `[TESTED]`; attempts 3 and 4 rolled back; TD-GATE-003 closed; Alternative A safety execution `VERIFIED`; production continuation `BLOCKED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.7.1 |
+| Version | 1.8.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10 section 12; ADR-TS001-004 v1.3.6; Production Deployment Verification v1.5.0; Production Deployment Record v1.6.1; Production Propagation Technical Alternative Proposal v1.1.1; Threat Model TM-011 through TM-019; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; CI run `30252463472` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11 section 12; ADR-TS001-004 v1.3.7; Production Deployment Verification v1.6.0; Production Deployment Record v1.7.0; Production Propagation Technical Alternative Proposal v1.2.0; Threat Model TM-011 through TM-019; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; protected-main source `80d942ec`; runs `30252463472` and `30253457090` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -157,9 +157,15 @@ AU-AGENT-003 independently assigned exact observability remediation `a503500`
 task-scoped `VERIFIED`; 61 attempts apply only before promotion and production
 smoke remains at six. Superseded `7381112` is not mergeable. The independently
 allowed dispatch is now exhausted. The Project Owner approved Alternative A
-and one new controlled attempt. The attempt is not allowed until the
-implementation passes an exact-source AU-AGENT-003 gate, required CI, and
-protected merge.
+and one new controlled attempt, contingent on an exact-source AU-AGENT-003
+gate, required CI, and protected merge. Those gates passed, and run
+`30253457090` exercised the one
+authorized attempt. The candidate passed zero-traffic smoke and was promoted;
+after a candidate transition observation, the one-shot contract received the
+exact prior cached baseline and failed immediately into exact rollback.
+AU-AGENT-003 records Alternative A safety execution `VERIFIED`, production
+continuation `BLOCKED`, and High finding TS001-DEPLOY-007. No retry is
+authorized.
 
 The implementation classifies the registered prior GET/HEAD/content/hash
 baseline separately from the exact candidate root sentinel, applies both
