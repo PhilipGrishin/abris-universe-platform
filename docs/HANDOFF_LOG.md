@@ -1,5 +1,31 @@
 # Handoff Log
 
+## 2026-07-27 — Immutable Preview Attempt Failed Before Production Mutation
+
+- **Task/source:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT at protected-main
+  source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`.
+- **Workflow:** `30262328350`; authorization, accepted-source identity,
+  credentials, frozen install, typecheck, tests, build, audit, and rehearsal
+  passed.
+- **Failure:** stage `upload`; Wrangler returned a version ID but no immutable
+  preview URL because remote Preview URLs were disabled.
+- **Safety result:** no preview smoke, promotion, production cache purge, or
+  traffic mutation occurred. Rollback was not required. The prior version
+  remained at 100 percent and public GET/HEAD/body-hash checks matched the
+  registered baseline.
+- **Evidence:** artifact `8651402890`, digest
+  `sha256:1071767b084f3c729de52d05101832b40acbae81295a59f03dcc160e5e4835ce`,
+  retained until 2026-10-25.
+- **Independent quality gate:** AU-AGENT-003 assigned Quality Gate Decision
+  `FAIL` and Engineering Verification Status `REWORK REQUIRED`.
+  TS001-DEPLOY-012 (High) requires exact remote state `enabled: false`,
+  `previews_enabled: true` plus a fail-closed preflight. TS001-DEPLOY-013
+  (Medium) requires sanitized upload/version-ID retention when preview
+  discovery fails.
+- **Authority:** the one controlled attempt is exhausted; no automatic or
+  manual repeat is authorized.
+- **Next gate:** Project Owner disposition on `AU-TAP-TS001-003`.
+
 ## 2026-07-27 — Immutable Preview and Hostname Purge Exact Source Independently Verified
 
 - **Task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT.

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-002 |
 | Title | Immutable Preview and Hostname Cache Purge Technical Alternative |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and live attempt open |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge complete; one attempt failed before production mutation and authority is exhausted |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v1.9.0; Production Deployment Verification v1.7.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795` |
+| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v2.0.0; Production Deployment Verification v1.8.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; `AU-TAP-TS001-003` |
 | Supersedes | The continuation mechanism in `AU-TAP-TS001-001`; its historical evidence and rollback result remain authoritative |
 | Superseded By | None |
 | Review Triggers | Cloudflare preview behavior change; cache API change; deployment-state-machine change; token-scope change; production or rollback failure |
@@ -194,8 +194,19 @@ mutation has not occurred. AU-AGENT-003 independently reviewed exact source
 `1054a2f0a7c1385fd8d51661c6be013e90df9df5`, resolved one High and three
 Medium preliminary findings, recorded no remaining finding, and assigned
 task-scoped Engineering Verification Status `VERIFIED`. Both exact-source CI
-runs pass. Protected merge and the one controlled attempt remain open. This
-status is not project `[VERIFIED]` or proof of live provider behavior.
+runs pass. Protected merge and the one controlled attempt then completed as
+recorded below. This status is not project `[VERIFIED]` or proof of live
+provider behavior.
+
+Protected merge `ebdde8ec` preserved the reviewed implementation. Run
+`30262328350` then failed at stage `upload` because the remote Worker had
+Preview URLs disabled and Wrangler therefore emitted no `preview_url`.
+Production traffic and cache were not mutated, the prior version remained at
+100 percent, and the registered public baseline remained intact. The one
+authorized attempt is exhausted. `AU-TAP-TS001-003` proposes an explicit
+remote prerequisite, read-only exact-state preflight, and sanitized
+upload/version-ID retention. AU-AGENT-003 assigned production continuation
+`REWORK REQUIRED` with TS001-DEPLOY-012/013; no further attempt is authorized.
 
 ## References
 
@@ -205,3 +216,4 @@ status is not project `[VERIFIED]` or proof of live provider behavior.
 - [Technical Design](../../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Production Deployment Verification](../../engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md)
+- [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)

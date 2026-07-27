@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–4 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and one live attempt open |
+| Status | Attempts 1–5 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; attempt 5 failed before production mutation; no further attempt authorized |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.9.0 |
+| Version | 2.0.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.2.0; Technical Design v1.5.13; ADR-TS001-004 v1.3.9; Production Deployment Verification v1.7.0; bounded independent acceptance at `1a683ab`; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.3.0; `AU-TAP-TS001-003` v1.1.0; Technical Design v1.5.14; ADR-TS001-004 v1.3.10; Production Deployment Verification v1.8.0; bounded independent acceptance at `1a683ab`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; artifact `8651402890`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -249,8 +249,9 @@ TD-GATE-003 remains closed. The owner supplied the dedicated cache-purge secret
 and zone variable without exposing their values. OWNER-DEC-TS001-PRODUCTION-
 DELIVERY-002 and `AU-TAP-TS001-002` provide the required disposition for
 TS001-DEPLOY-007. The implementation and exact-source quality gate pass, but
-production mutation remains blocked until protected pull-request checks and
-protected merge complete.
+the protected merge and exact-main CI gates completed. Run `30262328350`
+consumed the one attempt and failed before production mutation. No further
+attempt is authorized.
 
 ## Approved Immutable Preview and Purge Continuation
 
@@ -332,6 +333,46 @@ rollback, as designed.
   live; no successful application production surface existed to verify.
 - **Authority:** exhausted. No retry is authorized.
 
+## Attempt 5 — Remote Preview Prerequisite Missing
+
+- **Workflow run:** `30262328350`.
+- **Source:** protected-main merge
+  `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b` from PR #11.
+- **Pre-deployment gates:** authorization, accepted-source identity,
+  credential presence, frozen installation, typecheck, all tests, verified
+  build, dependency audit, and Wrangler rehearsal passed.
+- **Prior version:** `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent.
+- **Failure stage:** `upload`.
+- **Cause:** Wrangler 4.114.0 returned a version-upload record with a version
+  ID but no immutable `preview_url`; the workflow failed closed.
+- **Remote state:** Cloudflare Dashboard inspection confirmed that the
+  production Worker URL is enabled and the separate Preview URLs switch is
+  disabled (`enabled: true`, `previews_enabled: false`); the registered target
+  state is `enabled: false`, `previews_enabled: true`.
+- **Production mutation:** none. `productionMutationAttempted: false`,
+  `promoted: false`, no production cache purge, and no production smoke.
+- **Rollback:** not required because traffic and cache were never mutated.
+- **Public baseline:** independent GET and HEAD returned `200`; the body
+  SHA-256 remained
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`.
+- **Artifact:** ID `8651402890`, digest
+  `sha256:1071767b084f3c729de52d05101832b40acbae81295a59f03dcc160e5e4835ce`,
+  retained until 2026-10-25. Individual preflight and deployment-evidence
+  SHA-256 values are registered in the engineering verification report.
+- **Authority:** exhausted. No repeat is authorized.
+- **Independent quality gate:** `FAIL`; production continuation
+  `REWORK REQUIRED`; TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium)
+  remain open.
+- **Provenance limitation:** upload returned a version ID, but the failure path
+  discarded it from sanitized evidence. A likely immutable zero-traffic
+  version remains without recoverable retained identity.
+- **Next disposition:** `AU-TAP-TS001-003` recommends owner-controlled remote
+  state `enabled: false`, `previews_enabled: true`, a fail-closed read-only
+  preflight, and sanitized upload/version-ID retention before any new version
+  upload. Owner approval, implementation, exact-source AU-AGENT-003 review,
+  required CI, protected merge, and explicit new attempt authority are
+  required.
+
 ## References
 
 - [Product Decision Log](../../../../product/decisions/05_Decision_Log.md)
@@ -340,6 +381,7 @@ rollback, as designed.
 - [Engineering Verification](../../engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
+- [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

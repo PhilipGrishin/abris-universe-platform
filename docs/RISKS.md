@@ -515,3 +515,30 @@
   a new finding disposition before another attempt.
 - **Owner:** AU-AGENT-001 for the technical proposal; Project Owner for risk
   approval; AU-AGENT-003 for independent verification
+
+## RISK-020 — Remote Preview Setting Drifts From Reviewed Configuration
+
+- **Status:** `[OPEN]`; observed in run `30262328350`; `AU-TAP-TS001-003`
+  `[PROPOSED]`
+- **Probability:** Observed
+- **Impact:** High
+- **Trigger:** The repository requires `workers_dev: false` and
+  `preview_urls: true`, but the remote Worker has `enabled: true` and
+  `previews_enabled: false`; Wrangler uploads a version but cannot provide the
+  immutable preview URL required by the deployment contract.
+- **Affected areas:** Pre-promotion verification, production attempt authority,
+  auditability, orphaned zero-traffic versions, and delivery completion.
+- **Prevention:** Treat exact remote state `enabled: false`,
+  `previews_enabled: true` as an explicit owner-controlled prerequisite and
+  query it before version upload. Preserve an upload-occurrence flag and
+  sanitized version ID even when preview discovery fails.
+- **Mitigation:** Run `30262328350` failed before preview smoke, promotion,
+  purge, or traffic mutation. The prior version remained at 100 percent and
+  independent GET/HEAD/hash checks retained the registered public baseline.
+- **Fallback:** Keep the prior production version. Do not repeat the workflow
+  until the owner approves `AU-TAP-TS001-003`, the exact remote state is
+  established, the read-only preflight and evidence correction are implemented
+  and independently reviewed, required CI and protected merge pass, and new
+  attempt authority exists.
+- **Owner:** Project Owner for remote setting and new attempt authority;
+  AU-AGENT-001 for technical correction; AU-AGENT-003 for independent review

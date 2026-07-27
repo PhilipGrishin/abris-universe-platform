@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.13 |
+| Version | 1.5.14 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -109,6 +109,15 @@ Status `VERIFIED` for commit `1054a2f0`, resolution of TS001-DEPLOY-008 through
 TS001-DEPLOY-011, and two successful exact-source CI runs. It changes no
 architecture or product meaning. Protected merge and live production/browser
 evidence remain separate gates.
+
+Version 1.5.14 records failed-closed run `30262328350`. The remote Worker had
+Preview URLs disabled, so Wrangler emitted no immutable preview URL and the
+workflow stopped before preview smoke, promotion, purge, or traffic mutation.
+AU-AGENT-003 assigned production continuation `REWORK REQUIRED` with
+TS001-DEPLOY-012/013. `AU-TAP-TS001-003` proposes exact owner-controlled
+remote state `enabled: false`, `previews_enabled: true`, read-only fail-closed
+preflight, and sanitized version-provenance retention after upload. The
+proposal changes no approved architecture until owner disposition.
 
 ## 2. Scope and Non-Scope
 
