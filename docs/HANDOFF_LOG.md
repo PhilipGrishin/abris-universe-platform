@@ -15,8 +15,10 @@
   application change. No ordinary `wrangler deploy`.
 - **Evidence:** focused exact-state, unauthorized/malformed response,
   no-upload/no-mutation, provenance, and disclosure-boundary tests pass.
-- **Next gate:** AU-AGENT-003 exact-source review before branch CI and protected
-  merge.
+- **Independent gate:** AU-AGENT-003 assigned `PASS` and task-scoped
+  `VERIFIED` at exact source `497991c`; TS001-DEPLOY-012/013 are resolved.
+- **Next gate:** required branch CI and protected merge, followed by exact-main
+  CI.
 
 ## 2026-07-27 — Immutable Preview Attempt Failed Before Production Mutation
 

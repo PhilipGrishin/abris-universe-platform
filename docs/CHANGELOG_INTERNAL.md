@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.26.0 |
+| Version | 4.27.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -39,6 +39,9 @@ material defect.
   immutable version-ID retention when preview discovery fails.
 - Added deterministic disabled, malformed/unauthorized, no-mutation,
   provenance, and disclosure-boundary tests.
+- Integrated AU-AGENT-003 Quality Gate Decision `PASS` and task-scoped
+  Engineering Verification Status `VERIFIED` at exact source `497991c`;
+  TS001-DEPLOY-012/013 are resolved with no unresolved finding.
 - Documentation Impact: Material.
 
 ## 2026-07-27 — Remote Preview Prerequisite Failure Recorded

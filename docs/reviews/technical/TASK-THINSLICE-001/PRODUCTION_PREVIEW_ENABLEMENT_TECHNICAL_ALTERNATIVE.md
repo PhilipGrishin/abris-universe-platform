@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-003 |
 | Title | Remote Preview Enablement and Fail-Closed Preflight Technical Alternative |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, locally `[TESTED]`; provider state established; independent exact-source review, protected merge, and exact-main CI `[OPEN]`; one controlled attempt authorized only after those gates |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; provider state established; protected merge and exact-main CI `[OPEN]`; one controlled attempt authorized only after those gates |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
 | Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; production run `30262328350`; retained artifact `8651402890` |
@@ -182,8 +182,14 @@ The implementation:
   tests.
 
 The implementation does not automate provider-state mutation and does not use
-ordinary `wrangler deploy`. Independent exact-source review, protected merge,
-exact-main CI, and the controlled attempt remain separate gates.
+ordinary `wrangler deploy`. Protected merge, exact-main CI, and the controlled
+attempt remain separate gates.
+
+AU-AGENT-003 independently reviewed exact source
+`497991c7eb5d9c558becafa2f4d2461e639be1ec`, assigned Quality Gate Decision
+`PASS` and task-scoped Engineering Verification Status `VERIFIED`, and resolved
+TS001-DEPLOY-012/013. Protected merge and exact-main CI remain open before the
+single authorized attempt.
 
 ## References
 

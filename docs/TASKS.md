@@ -122,9 +122,10 @@ authorized disposition.
   TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium). The Project Owner
   approved `AU-TAP-TS001-003`; exact remote state is reload-confirmed and the
   read-only preflight plus sanitized version-provenance correction are
-  `[IMPLEMENTED]`, locally `[TESTED]`. Independent exact-source review,
-  required CI, protected merge, exact-main CI, and the single controlled
-  attempt remain open. Production/browser results remain open.
+  `[IMPLEMENTED]`, `[TESTED]`. AU-AGENT-003 assigned task-scoped `VERIFIED` at
+  exact source `497991c` and resolved TS001-DEPLOY-012/013. Required CI,
+  protected merge, exact-main CI, and the single controlled attempt remain
+  open. Production/browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

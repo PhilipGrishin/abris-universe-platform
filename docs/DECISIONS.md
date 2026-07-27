@@ -339,8 +339,8 @@
 ## OWNER-DEC-TS001-PRODUCTION-PREVIEW-003 — Approve Remote Preview Prerequisite Remediation
 
 - **Status:** `[APPROVED]`; provider state `[TESTED]`; implementation
-  `[IMPLEMENTED]`, locally `[TESTED]`; independent exact-source review and
-  protected merge `[OPEN]`
+  `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; protected
+  merge and exact-main CI `[OPEN]`
 - **Date:** 2026-07-27
 - **Source:** Explicit Project Owner directive approving
   `AU-TAP-TS001-003` Alternative A.
@@ -370,7 +370,10 @@
   is authorized.
 - **Consequence:** The previous attempt authority remains exhausted. The newly
   authorized attempt becomes exercisable only after every implementation gate
-  passes.
+  passes. AU-AGENT-003 independently verified exact source `497991c`, resolved
+  TS001-DEPLOY-012/013, and allowed protected merge. The Project Owner's
+  one-attempt authority becomes exercisable only after successful exact-main
+  CI.
 - **Reversibility:** Revert the deployment-tooling change and do not dispatch
   the production workflow. The owner-controlled subdomain state can be changed
   only under a later explicit disposition.

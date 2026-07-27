@@ -518,8 +518,8 @@
 
 ## RISK-020 — Remote Preview Setting Drifts From Reviewed Configuration
 
-- **Status:** Mitigation `[IMPLEMENTED]`, locally `[TESTED]`; provider state
-  reload-confirmed; independent review and production evidence `[OPEN]`
+- **Status:** Mitigation `[IMPLEMENTED]`, `[TESTED]`, exact-source engineering
+  `VERIFIED`; provider state reload-confirmed; production evidence `[OPEN]`
 - **Probability:** Observed
 - **Impact:** High
 - **Trigger:** The repository requires `workers_dev: false` and

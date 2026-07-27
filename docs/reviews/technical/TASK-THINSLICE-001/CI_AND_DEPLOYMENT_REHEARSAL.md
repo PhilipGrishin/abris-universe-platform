@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; remote-state/provenance remediation `[IMPLEMENTED]`, locally `[TESTED]`; independent exact-source review and protected merge `[OPEN]` |
+| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; remote-state/provenance remediation `[IMPLEMENTED]`, `[TESTED]`, and exact-source Engineering Verification Status `VERIFIED`; protected merge and exact-main CI `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.12.0 |
+| Version | 1.13.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.1; `AU-TAP-TS001-003` v1.2.0; Technical Design v1.5.15 section 12; ADR-TS001-004 v1.3.11; Production Deployment Verification v1.9.0; Production Deployment Record v2.1.0; Threat Model TM-011 through TM-023; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; runs `30262250573` and `30262328350` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.2; `AU-TAP-TS001-003` v1.3.0; Technical Design v1.5.16 section 12; ADR-TS001-004 v1.3.12; Production Deployment Verification v2.0.0; Production Deployment Record v2.2.0; Threat Model TM-011 through TM-023; exact immutable-preview source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; runs `30262250573` and `30262328350` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -221,8 +221,11 @@ state, and retains only its two booleans. Deployment-evidence schema v3 records
 `uploadOccurred` and the immutable version ID after successful upload even
 when preview discovery fails. Focused exact-state, malformed/unauthorized
 response, no-upload/no-mutation, provenance, and disclosure-boundary tests
-pass. Independent exact-source review, required CI, and protected merge remain
-open.
+pass. AU-AGENT-003 independently reviewed exact source
+`497991c7eb5d9c558becafa2f4d2461e639be1ec`, resolved TS001-DEPLOY-012 and
+TS001-DEPLOY-013, assigned Quality Gate Decision `PASS`, and assigned
+task-scoped Engineering Verification Status `VERIFIED`. Required branch CI,
+protected merge, and exact-main CI remain open.
 
 ## References
 

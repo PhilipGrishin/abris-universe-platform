@@ -146,8 +146,9 @@
   controlled attempt after all gates. No automatic repeat is authorized.
 - **Implementation state:** Dashboard state `enabled: false`,
   `previews_enabled: true` is applied and reload-confirmed. Exact-state
-  preflight and upload/version provenance are locally implemented and tested;
-  independent review and merge remain open.
+  preflight and upload/version provenance are implemented, tested, and
+  independently verified at exact source `497991c`; protected merge and
+  exact-main CI remain open.
 - **Boundary:** Ordinary `wrangler deploy` is not an allowed configuration
   path. The prior version remains production until the controlled attempt
   succeeds.

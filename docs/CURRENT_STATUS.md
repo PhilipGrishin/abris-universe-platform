@@ -24,8 +24,10 @@ prior version and public baseline remain unchanged. The Project Owner approved
 authorized exactly one new attempt after all gates. Exact remote state
 `enabled: false`, `previews_enabled: true` is reload-confirmed. Read-only
 preflight and sanitized version-provenance evidence are `[IMPLEMENTED]`,
-locally `[TESTED]`; AU-AGENT-003 exact-source review, protected merge,
-exact-main CI, production, and browser evidence remain open.
+`[TESTED]`. AU-AGENT-003 assigned task-scoped Engineering Verification Status
+`VERIFIED` at exact source `497991c`, resolving TS001-DEPLOY-012/013.
+Required CI, protected merge, exact-main CI, production, and browser evidence
+remain open.
 
 ## Confirmed Workspace State
 

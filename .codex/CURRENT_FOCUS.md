@@ -72,8 +72,10 @@ TS001-DEPLOY-013 (Medium). The Project Owner approved `AU-TAP-TS001-003`.
 Exact remote state `enabled: false`, `previews_enabled: true` is
 reload-confirmed; fail-closed read-only preflight and retained sanitized
 upload/version provenance are implemented and locally tested. AU-AGENT-003
-exact-source review is the next gate before CI, protected merge, exact-main CI,
-and the single authorized attempt.
+assigned Quality Gate Decision `PASS` and task-scoped Engineering Verification
+Status `VERIFIED` at exact source `497991c`, resolving TS001-DEPLOY-012/013.
+Required CI, protected merge, exact-main CI, and the single authorized attempt
+remain.
 
 ## Confirmed Inputs
 
