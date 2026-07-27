@@ -1,40 +1,95 @@
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 const FULL_SHA = /^[0-9a-f]{40}$/u;
+const DEFAULT_REGISTRY_PATH = ".codex/production-deployment-source.json";
+
+const PRODUCT_AND_TRUST_INPUTS = [
+  ".github/workflows",
+  "apps",
+  "package.json",
+  "packages",
+  "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
+  "scripts",
+  "tests/fixtures/cloudflare",
+  "tests/fixtures/oxs",
+  "tsconfig.base.json",
+];
+
+const DEPLOYMENT_TRUST_INPUTS = [
+  ".github/workflows",
+  "apps/web/worker",
+  "apps/web/test/worker.test.ts",
+  "apps/web/wrangler.jsonc",
+  "apps/web/wrangler.deployment-lab.jsonc",
+  "package.json",
+  "scripts",
+  "tests/fixtures/cloudflare",
+];
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(message);
 };
 
-const allowedDeploymentPath = (pathname) =>
-  pathname.startsWith("apps/web/worker/") ||
-  [
-    "apps/web/test/worker.test.ts",
-    "apps/web/wrangler.jsonc",
-    "apps/web/wrangler.deployment-lab.jsonc",
-  ].includes(pathname);
+const parsePaths = (output) =>
+  output
+    .split("\0")
+    .filter((pathname) => pathname.length > 0);
+
+const isDeploymentTrustInput = (pathname) =>
+  DEPLOYMENT_TRUST_INPUTS.some(
+    (trustedPath) =>
+      pathname === trustedPath || pathname.startsWith(`${trustedPath}/`),
+  );
 
 export const validateProductionSourceChanges = (changedPaths) => {
   assert(Array.isArray(changedPaths), "changedPaths must be an array.");
-  const normalized = changedPaths.filter(
-    (pathname) => typeof pathname === "string" && pathname.length > 0,
+  assert(
+    changedPaths.every(
+      (pathname) => typeof pathname === "string" && pathname.length > 0,
+    ),
+    "changedPaths must contain only non-empty strings.",
   );
-  const rejected = normalized.filter(
-    (pathname) => !allowedDeploymentPath(pathname),
+  const rejected = changedPaths.filter(
+    (pathname) => !isDeploymentTrustInput(pathname),
   );
   assert(
     rejected.length === 0,
     `Production source boundary includes unaccepted product paths: ${rejected.join(", ")}`,
   );
   return {
-    changedPaths: normalized,
-    allowedDeploymentPaths: normalized.filter(allowedDeploymentPath),
+    changedPaths,
+    reviewedDeploymentPaths: changedPaths.filter(isDeploymentTrustInput),
   };
+};
+
+export const parseProductionSourceRegistry = (contents) => {
+  let registry;
+  try {
+    registry = JSON.parse(contents);
+  } catch {
+    throw new Error("Production deployment source registry must be valid JSON.");
+  }
+  assert(
+    registry?.schemaVersion === 1,
+    "Production deployment source registry schemaVersion must be 1.",
+  );
+  assert(
+    FULL_SHA.test(registry.acceptedProductSourceCommit ?? ""),
+    "Registry acceptedProductSourceCommit must be a full lowercase Git SHA.",
+  );
+  assert(
+    FULL_SHA.test(registry.reviewedDeploymentSourceCommit ?? ""),
+    "Registry reviewedDeploymentSourceCommit must be a full lowercase Git SHA.",
+  );
+  return registry;
 };
 
 export const productionSourceChanges = ({
   acceptedCommit,
+  reviewedDeploymentCommit,
   currentCommit,
   runGit = execFileSync,
 }) => {
@@ -43,40 +98,88 @@ export const productionSourceChanges = ({
     "ACCEPTED_EXECUTABLE_SOURCE_COMMIT must be a full lowercase Git SHA.",
   );
   assert(
+    FULL_SHA.test(reviewedDeploymentCommit ?? ""),
+    "reviewedDeploymentSourceCommit must be a full lowercase Git SHA.",
+  );
+  assert(
     FULL_SHA.test(currentCommit ?? ""),
     "GITHUB_SHA must be a full lowercase Git SHA.",
   );
-  runGit("git", ["cat-file", "-e", `${acceptedCommit}^{commit}`], {
-    stdio: "ignore",
-  });
+
+  for (const commit of [
+    acceptedCommit,
+    reviewedDeploymentCommit,
+    currentCommit,
+  ]) {
+    runGit("git", ["cat-file", "-e", `${commit}^{commit}`], {
+      stdio: "ignore",
+    });
+  }
+  runGit(
+    "git",
+    ["merge-base", "--is-ancestor", reviewedDeploymentCommit, currentCommit],
+    { stdio: "ignore" },
+  );
+
+  const deploymentDrift = runGit(
+    "git",
+    [
+      "diff",
+      "--name-only",
+      "-z",
+      "--no-renames",
+      reviewedDeploymentCommit,
+      currentCommit,
+      "--",
+      ...DEPLOYMENT_TRUST_INPUTS,
+    ],
+    { encoding: "utf8" },
+  );
+  const driftPaths = parsePaths(deploymentDrift);
+  assert(
+    driftPaths.length === 0,
+    `Production deployment trust inputs differ from independently reviewed source ${reviewedDeploymentCommit}: ${driftPaths.join(", ")}`,
+  );
+
   const output = runGit(
     "git",
     [
       "diff",
       "--name-only",
+      "-z",
       "--no-renames",
       acceptedCommit,
       currentCommit,
       "--",
-      "apps",
-      "packages",
-      "tests/fixtures/oxs",
-      "pnpm-lock.yaml",
-      "pnpm-workspace.yaml",
-      "tsconfig.base.json",
+      ...PRODUCT_AND_TRUST_INPUTS,
     ],
     { encoding: "utf8" },
   );
-  return validateProductionSourceChanges(output.split(/\r?\n/u));
+  const result = validateProductionSourceChanges(parsePaths(output));
+  return {
+    ...result,
+    reviewedDeploymentCommit,
+  };
 };
 
 const runCli = () => {
+  const registryPath =
+    process.env.PRODUCTION_SOURCE_REGISTRY_PATH ?? DEFAULT_REGISTRY_PATH;
+  const registry = parseProductionSourceRegistry(
+    readFileSync(registryPath, "utf8"),
+  );
+  assert(
+    process.env.ACCEPTED_EXECUTABLE_SOURCE_COMMIT ===
+      registry.acceptedProductSourceCommit,
+    "Workflow accepted product source does not match the registered source.",
+  );
   const result = productionSourceChanges({
-    acceptedCommit: process.env.ACCEPTED_EXECUTABLE_SOURCE_COMMIT,
+    acceptedCommit: registry.acceptedProductSourceCommit,
+    reviewedDeploymentCommit: registry.reviewedDeploymentSourceCommit,
     currentCommit: process.env.GITHUB_SHA,
   });
   process.stdout.write(
-    `Accepted production source boundary passed: ${result.allowedDeploymentPaths.length} deployment-only path(s), no product path changes.\n`,
+    `Accepted production source boundary passed: ${result.reviewedDeploymentPaths.length} exact reviewed deployment path(s), no product path changes or deployment trust drift.\n`,
   );
 };
 
