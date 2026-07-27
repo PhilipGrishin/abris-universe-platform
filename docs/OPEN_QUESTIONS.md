@@ -125,3 +125,23 @@
   data or secrets. Live success and global cache convergence are not yet
   claimed.
 - **Decision owner:** Project Owner
+
+## OQ-008 — Remote Preview Enablement and Another Controlled Attempt
+
+- **Status:** `[OPEN]`
+- **Question:** Approve `AU-TAP-TS001-003` Alternative A: set the remote Worker
+  subdomain state to `enabled: false`, `previews_enabled: true`, add a
+  fail-closed read-only exact-state preflight and sanitized upload/version-ID
+  evidence, independently review and merge it, and authorize exactly one new
+  controlled production attempt?
+- **Why it matters:** Run `30262328350` proved that repository configuration
+  alone did not satisfy the remote non-versioned prerequisite. The workflow
+  failed before traffic mutation, but its single attempt authority is
+  exhausted.
+- **Evidence:** protected-main source `ebdde8ec`; run `30262328350`; artifact
+  `8651402890`; unchanged public baseline; Cloudflare Dashboard Preview URLs
+  switch observed disabled; Wrangler 4.114.0 output contract.
+- **Boundary:** No setting change, implementation, or production repeat is
+  authorized by this question. Ordinary `wrangler deploy` is not an allowed
+  configuration path. The prior version remains production.
+- **Decision owner:** Project Owner

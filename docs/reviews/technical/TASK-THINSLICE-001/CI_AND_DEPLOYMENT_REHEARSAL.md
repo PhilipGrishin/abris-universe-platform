@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview and hostname-purge continuation `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge open |
+| Status | No-deploy rehearsal `[TESTED]`; historical attempts retained; immutable-preview implementation exact-source engineering `VERIFIED`; protected merge complete; run `30262328350` failed before production mutation; production continuation `REWORK REQUIRED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.10.0 |
+| Version | 1.11.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.2.0; Technical Design v1.5.13 section 12; ADR-TS001-004 v1.3.9; Production Deployment Verification v1.7.0; Production Deployment Record v1.9.0; Threat Model TM-011 through TM-022; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; CI runs `30261460673` and `30261463795` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002` v1.3.0; `AU-TAP-TS001-003` v1.1.0; Technical Design v1.5.14 section 12; ADR-TS001-004 v1.3.10; Production Deployment Verification v1.8.0; Production Deployment Record v2.0.0; Threat Model TM-011 through TM-023; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; runs `30262250573` and `30262328350` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -197,9 +197,21 @@ vulnerabilities, and Wrangler dry-run. No Cloudflare mutation occurred.
 AU-AGENT-003 independently reviewed exact source `1054a2f0`, resolved the
 preliminary purge-timeout, deadline, classification, and preview-capability
 findings, recorded no remaining finding, and assigned task-scoped Engineering
-Verification Status `VERIFIED`. Both exact-source CI runs pass. Protected
-merge and the single authorized live attempt remain open. Abort-aware request
-and backoff tests distinguish exact prior, exact candidate, and unknown states.
+Verification Status `VERIFIED`. Both exact-source CI runs pass. The protected
+merge and single authorized attempt subsequently completed as recorded below.
+Abort-aware request and backoff tests distinguish exact prior, exact candidate,
+and unknown states.
+
+Protected merge `ebdde8ec` retained a byte-identical reviewed implementation,
+and exact-main CI run `30262250573` passed. Production run `30262328350`
+passed every repository and credential-presence gate, then failed closed at
+version upload because the remote Worker had Preview URLs disabled and
+Wrangler emitted no `preview_url`. No promotion, production cache purge, or
+traffic mutation occurred. `AU-TAP-TS001-003` proposes the missing remote
+precondition, read-only exact-state preflight, and sanitized upload/version-ID
+retention. AU-AGENT-003 assigned production continuation `REWORK REQUIRED`
+with TS001-DEPLOY-012/013. The consumed run is not repeatable under the
+existing authority.
 
 ## References
 
@@ -211,4 +223,5 @@ and backoff tests distinguish exact prior, exact candidate, and unknown states.
 - [Task Review Index](README.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
+- [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
 - [Consolidated Implementation Verification](../../engineering/TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md)

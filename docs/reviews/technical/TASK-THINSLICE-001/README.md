@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.30.0 |
+| Version | 1.31.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -51,6 +51,7 @@ acceptance remains canonical under `product/reviews/`.
 - [Production Deployment Record](PRODUCTION_DEPLOYMENT.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
 - [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
+- [Remote Preview Enablement Technical Alternative](PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md)
 - [Runtime Request Inventory](../../../assurance/threat-models/TASK-THINSLICE-001_RUNTIME_REQUEST_INVENTORY.md)
 - [Browser Benchmark Report](../../../assurance/benchmarks/TASK-THINSLICE-001_BROWSER_BENCHMARK_REPORT.md)
 - [Browser Evidence Index](../../../assurance/benchmarks/evidence/TASK-THINSLICE-001/README.md)
@@ -134,8 +135,15 @@ unstable custom-domain override with an immutable Workers preview, exact
 version promotion, least-privilege hostname purge, and a three-pass production
 stability quorum. Implementation and tests pass; exact-source AU-AGENT-003
 review passed at `1054a2f0` with no remaining finding, and CI runs
-`30261460673` and `30261463795` passed. Protected merge and the single
-controlled attempt remain gated.
+`30261460673` and `30261463795` passed. Protected merge `ebdde8ec` and main CI
+then passed. Run `30262328350` failed
+before production mutation because the remote Worker Preview URLs switch was
+disabled and Wrangler emitted no immutable preview URL. The prior version and
+public baseline remain unchanged. The attempt authority is exhausted;
+AU-AGENT-003 assigned production continuation `REWORK REQUIRED` with
+TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium).
+`AU-TAP-TS001-003` is `[PROPOSED]` and requires owner disposition before
+exact-state preflight/provenance implementation or another run.
 
 ## Owner
 

@@ -16,8 +16,15 @@ package tests, production build, dependency audit with no known
 vulnerabilities, and Wrangler dry-run pass. AU-AGENT-003 independently
 assigned task-scoped Engineering Verification Status `VERIFIED` at exact source
 `1054a2f0`, with no remaining finding; exact-source CI runs `30261460673` and
-`30261463795` passed. Protected merge and one controlled production attempt
-remain open.
+`30261463795` passed. Protected merge `ebdde8ec` and exact-main CI passed.
+Run `30262328350` consumed the one controlled attempt and failed before
+production mutation because remote Worker Preview URLs were disabled. The
+prior version and public baseline remain unchanged. `AU-TAP-TS001-003` is
+`[PROPOSED]`. AU-AGENT-003 assigned production continuation `REWORK REQUIRED`
+with TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium). Owner disposition,
+exact remote state `enabled: false`, `previews_enabled: true`, read-only
+preflight and sanitized version-provenance implementation/review, protected
+merge, and new explicit attempt authority are required.
 
 ## Confirmed Workspace State
 

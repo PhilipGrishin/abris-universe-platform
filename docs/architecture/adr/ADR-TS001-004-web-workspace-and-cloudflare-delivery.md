@@ -4,12 +4,12 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, `[TESTED]`, exact-source engineering `VERIFIED`; credentials configured; TD-GATE-003 `[TESTED]`, closed; protected merge and successful production/browser evidence `[OPEN]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, `[TESTED]`, historical exact-source engineering `VERIFIED`; credentials configured; TD-GATE-003 `[TESTED]`, closed; protected merge complete; production continuation `REWORK REQUIRED`; successful production/browser evidence `[OPEN]` |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.9 |
+| Version | 1.3.10 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -185,3 +185,11 @@ production smoke, rollback rehearsal, and local-data compatibility.
   Verification Status `VERIFIED` at exact source `1054a2f0`, no remaining
   finding, and successful CI runs `30261460673` and `30261463795`. Protected
   merge and live production/browser evidence remain open.
+- 2026-07-27: Version 1.3.10 records protected-main run `30262328350`.
+  Remote Preview URLs were disabled, Wrangler emitted no immutable preview
+  URL, and the workflow failed before traffic or cache mutation. The prior
+  version and public baseline remain intact. AU-AGENT-003 assigned
+  `REWORK REQUIRED` with TS001-DEPLOY-012/013. `AU-TAP-TS001-003` proposes
+  exact external state `enabled: false`, `previews_enabled: true`, a
+  fail-closed preflight, and retained sanitized version provenance; no further
+  attempt is authorized.

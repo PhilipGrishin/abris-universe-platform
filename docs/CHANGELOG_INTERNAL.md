@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.24.0 |
+| Version | 4.25.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,25 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Remote Preview Prerequisite Failure Recorded
+
+- Recorded protected merge `ebdde8ec`, successful exact-main CI, and
+  failed-closed production run `30262328350`.
+- Confirmed the run stopped at version upload before preview, promotion, cache
+  purge, or traffic mutation because remote Preview URLs were disabled.
+- Registered retained artifact `8651402890`, unchanged prior version/public
+  baseline, exhausted attempt authority, RISK-020, OQ-008, and
+  `AU-TAP-TS001-003`.
+- Integrated AU-AGENT-003 Quality Gate Decision `FAIL`, Engineering
+  Verification Status `REWORK REQUIRED`, High finding TS001-DEPLOY-012 for the
+  unestablished remote preview prerequisite, and Medium finding
+  TS001-DEPLOY-013 for lost upload/version provenance.
+- Proposed exact owner-controlled remote state `enabled: false`,
+  `previews_enabled: true`, fail-closed read-only preflight, and sanitized
+  upload/version-ID retention without changing product or application
+  behavior.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Immutable Preview Delivery Independently Verified
 

@@ -59,11 +59,19 @@ zone-scoped cache-purge secret plus `CLOUDFLARE_ZONE_ID`. The replacement
 workflow verifies the exact immutable Workers preview before mutation,
 promotes the captured version, purges only `abris.653915.com`, requires three
 consecutive complete production contracts, and purges again after rollback.
-It is `[IMPLEMENTED]`, `[TESTED]` with 43 focused deployment tests and the
+It is `[IMPLEMENTED]`, `[TESTED]` with 46 script tests and the
 complete local repository gate. AU-AGENT-003 assigned task-scoped Engineering
 Verification Status `VERIFIED` at exact source `1054a2f0`, recorded no
-remaining finding, and both exact-source CI runs passed. Protected merge and
-the one controlled attempt remain open.
+remaining finding, and both exact-source CI runs passed. Protected merge
+`ebdde8ec` and main CI passed. Run `30262328350` then failed at stage `upload`
+before preview smoke or production mutation because the remote Worker Preview
+URLs switch was disabled. The prior version and baseline remain intact. The
+attempt is exhausted. AU-AGENT-003 assigned production continuation
+`REWORK REQUIRED` with open findings TS001-DEPLOY-012 (High) and
+TS001-DEPLOY-013 (Medium). `AU-TAP-TS001-003` proposes exact remote state
+`enabled: false`, `previews_enabled: true`, fail-closed read-only preflight,
+and retained sanitized upload/version provenance. Owner disposition is the
+next gate.
 
 ## Confirmed Inputs
 

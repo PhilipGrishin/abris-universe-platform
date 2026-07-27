@@ -109,14 +109,22 @@ authorized disposition.
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and `AU-TAP-TS001-002`: exact
   immutable Workers preview, exact-version promotion, hostname-only cache
   purge, and a three-consecutive-pass production quorum. The replacement
-  implementation is `[IMPLEMENTED]`, `[TESTED]` with 43 focused deployment
-  tests and the complete repository gate. The dedicated purge secret and zone
+  implementation is `[IMPLEMENTED]`, `[TESTED]` with 46 script tests and the
+  complete repository gate. The dedicated purge secret and zone
   variable are configured. AU-AGENT-003 assigned task-scoped Engineering
   Verification Status `VERIFIED` at exact source `1054a2f0`, resolved
   TS001-DEPLOY-008 through TS001-DEPLOY-011, and recorded no remaining
   finding; CI runs `30261460673` and `30261463795` passed. Protected merge and
-  the one controlled attempt remain open.
-  Production/browser results remain open.
+  main CI passed at `ebdde8ec`. Run `30262328350` exhausted the one controlled
+  attempt and failed before production mutation because remote Preview URLs
+  were disabled. The prior version and baseline remain intact.
+  AU-AGENT-003 assigned production continuation `REWORK REQUIRED` with open
+  TS001-DEPLOY-012 (High) and TS001-DEPLOY-013 (Medium).
+  `AU-TAP-TS001-003` is `[PROPOSED]`; owner disposition, exact remote state
+  `enabled: false`, `previews_enabled: true`, read-only preflight and
+  sanitized version-provenance implementation, independent exact-source
+  review, required CI, protected merge, and new explicit attempt authority
+  remain open. Production/browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
