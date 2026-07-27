@@ -676,5 +676,7 @@ public baseline.
 
 ## Next Step
 
-Do not retry production. Prepare a separately reviewed technical alternative
-or explicit stop decision for Project Owner disposition on TS001-DEPLOY-007.
+Export the prepared `AU-EX-20260727-001` package through the Collaboration
+Bridge for independent bounded production acceptance. Do not retry production
+or expand the existing product `[VERIFIED]` scope before a valid reviewed
+return.

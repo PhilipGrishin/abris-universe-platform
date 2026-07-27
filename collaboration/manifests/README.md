@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]`, not `[VERIFIED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | Project Owner |
-| Version | 1.11.0 |
+| Version | 1.12.0 |
 | Created | 2026-07-21 |
-| Last Updated | 2026-07-25 |
+| Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `collaboration/README.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -66,6 +66,12 @@ not approve returned meaning.
   byte-for-byte with zero blocking and sixteen non-blocking findings. The
   bounded result grants no release, production, or deployment authority;
   exchange is archived with canonical outcome provenance.
+- [`AU-EX-20260727-001`](AU-EX-20260727-001/README.md) —
+  independent production acceptance review of the successful bounded
+  TASK-THINSLICE-001 deployment at `https://abris.653915.com`; checksum-bound
+  package prepared against canonical evidence source `3796cb3` and deployed
+  application source `1021abf3`; return pending, with no further deployment
+  authority.
 
 ## Rules
 

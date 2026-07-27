@@ -1,0 +1,670 @@
+{
+  "schema_version": "1.0.0",
+  "exchange_id": "AU-EX-20260727-001",
+  "task_id": "TASK-THINSLICE-001-PRODUCTION-ACCEPTANCE",
+  "task_type": "INDEPENDENT_ACCEPTANCE_REVIEW",
+  "requested_claude_role": "Quality, Security & Independent Acceptance Lead",
+  "source_commit_sha": "3796cb37dac176c8d506451524fcf0744695ef42",
+  "source_branch": "main",
+  "review_commit_range": "1021abf3bf82512292bfdc34103e8c3ef141a633..3796cb37dac176c8d506451524fcf0744695ef42",
+  "prepared_at": "2026-07-27T15:37:55Z",
+  "prepared_by": "AU-CODEX-PRIMARY",
+  "purpose": "Request independent production acceptance review of the successful bounded TASK-THINSLICE-001 deployment at https://abris.653915.com against exact deployed source 1021abf3bf82512292bfdc34103e8c3ef141a633, retained run and artifact evidence, public runtime behavior, security controls, and declared limitations.",
+  "scope": [
+    "Review exact canonical evidence source 3796cb37dac176c8d506451524fcf0744695ef42, the exact post-deployment documentation range from deployed source 1021abf3bf82512292bfdc34103e8c3ef141a633, and the included current deployment trust-surface files.",
+    "Independently assess GitHub production workflow run 30278965044 and retained artifact 8658016223 using the checksum, provenance, transition, promotion, cache-purge, production-smoke, and rollback-readiness evidence registered in the canonical records.",
+    "Verify that the deployed public endpoint reports exact source 1021abf3bf82512292bfdc34103e8c3ef141a633 and Worker version 8c49fb69-788c-449c-a9fa-bc321ff8d852 through the registered public provenance contract.",
+    "Independently inspect https://abris.653915.com and its same-origin runtime contract, including root shell, static assets, SPA fallback, allowed methods, restrictive security headers, version metadata, landing page, and Import OXS entry point.",
+    "Review that the production workflow pinned the independently accepted product source and independently reviewed deployment trust surface through owner-controlled external anchors, protected main, exact-main CI, and fail-closed checks.",
+    "Review AU-AGENT-003 post-production and publication-preservation dispositions without accepting their conclusions by default, and identify any unsupported status, evidence gap, security issue, or traceability conflict.",
+    "Confirm that OWNER-DEC-TS001-PRODUCTION-RETRY-006 was consumed exactly once and grants no further deployment authority.",
+    "Preserve the explicit limitations for simultaneous global or multi-region convergence, long-duration stability, broader browsers and platforms, independent browser console/network capture, Prototype 9.1 scale, and all other previously excluded scope.",
+    "Return decision VERIFIED only if the bounded production result is independently acceptable; otherwise return REWORK_REQUIRED with precise blocking evidence and required rework."
+  ],
+  "out_of_scope": [
+    "Editing the canonical repository, implementation, tests, product requirements, Task Package, Technical Design, ADRs, deployment records, Engineering Verification Reports, prior independent acceptance report, or retained evidence.",
+    "Deploying or redeploying to Cloudflare, changing traffic, DNS, routes, Workers, versions, cache, GitHub settings, branch protection, credentials, secrets, environment variables, or production state.",
+    "Reopening or broadening the prior TASK-THINSLICE-001 Phase 0 implementation acceptance beyond production-delivery evidence.",
+    "Accepting Phase 1 functionality, Prototype 9.1 scale, additional import formats or producer profiles, backend or synchronization features, broader browser or platform support, or long-duration and global convergence.",
+    "Authorizing release changes, another production attempt, remediation implementation, architecture redesign, product changes, or project-wide verification."
+  ],
+  "required_inputs": [
+    "sources/review/review-range.diff",
+    "sources/review/review-range.stat.txt",
+    "sources/review/review-range.commits.txt",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+    "sources/repository/product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_DEPLOYMENT.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+    "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md",
+    "sources/repository/.github/workflows/deploy-production.yml",
+    "sources/repository/.codex/production-deployment-source.json",
+    "sources/repository/scripts/deploy-production.mjs",
+    "sources/repository/scripts/verify-production-source-boundary.mjs",
+    "sources/repository/scripts/verify-production-deployment.mjs",
+    "sources/repository/apps/web/worker/index.ts",
+    "sources/repository/apps/web/wrangler.jsonc",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md",
+    "sources/repository/docs/CURRENT_STATUS.md",
+    "sources/repository/docs/DECISIONS.md",
+    "sources/repository/docs/RISKS.md",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md"
+  ],
+  "included_files": [
+    {
+      "path": "sources/repository/.codex/CURRENT_FOCUS.md",
+      "sha256": "3e7dd8c3a10203047ba3a32683c22e72daa50f5eb7a92f66371f1c8cb6bf95b8",
+      "size_bytes": 22523
+    },
+    {
+      "path": "sources/repository/.codex/production-deployment-source.json",
+      "sha256": "58d2d5cfc9a481191d2874d1e138d02d11e85a3ac91b5dec635078b529fa532d",
+      "size_bytes": 182
+    },
+    {
+      "path": "sources/repository/.github/workflows/ci.yml",
+      "sha256": "6471182461884535eec17a1e255414ccfe3149fb9221e441c41910c6fdd58527",
+      "size_bytes": 1530
+    },
+    {
+      "path": "sources/repository/.github/workflows/deploy-production.yml",
+      "sha256": "35d0809922d1264ba7204cf705422799bbf5c1cc55aa4bc860bb65dd1a56dee3",
+      "size_bytes": 4006
+    },
+    {
+      "path": "sources/repository/AGENTS.md",
+      "sha256": "e1a01e40d3181e7fa521a9c4bf347bb17bacd274f04bf98684855702b590733c",
+      "size_bytes": 16160
+    },
+    {
+      "path": "sources/repository/apps/web/README.md",
+      "sha256": "166389fbdbdcbf9f7db13be56b29e5455f924c703ac506d25072772dd3f9962e",
+      "size_bytes": 5952
+    },
+    {
+      "path": "sources/repository/apps/web/accessibility.html",
+      "sha256": "477463c1a21c7bd736235b73d08f4cf5c89ec9e97956b1a42874e5ba1605ae9c",
+      "size_bytes": 453
+    },
+    {
+      "path": "sources/repository/apps/web/benchmark.html",
+      "sha256": "7411bb0750c4a36c64d599a230048c5e377a0ad8c0e648a40213c31924cdacdc",
+      "size_bytes": 526
+    },
+    {
+      "path": "sources/repository/apps/web/browser-failure.html",
+      "sha256": "986c1639acaf3fd61c19ce73f52727d42040d93bad86977151407aeadd09512b",
+      "size_bytes": 619
+    },
+    {
+      "path": "sources/repository/apps/web/index.html",
+      "sha256": "4bbd286c6d21d5f01aba4ccf327e239ca9453b830aa54161596e7174a5fb3e90",
+      "size_bytes": 447
+    },
+    {
+      "path": "sources/repository/apps/web/package.json",
+      "sha256": "e31332b13e347b340425f26495dc00bba427060c64f94eea96cc09b642974735",
+      "size_bytes": 1383
+    },
+    {
+      "path": "sources/repository/apps/web/src/App.tsx",
+      "sha256": "3a658c482824cad416d07ec7dfedb8bde838ee20a3289e53a8dacab2d80526dd",
+      "size_bytes": 8727
+    },
+    {
+      "path": "sources/repository/apps/web/src/accessibility-main.tsx",
+      "sha256": "06454956b2c3c6747438434a83f9a6767cb7b95adbd807de362a89cbf582c629",
+      "size_bytes": 2867
+    },
+    {
+      "path": "sources/repository/apps/web/src/benchmark-main.ts",
+      "sha256": "c0ea96877668b6a5cf3fe55102054de406d8bd3864bff232ac0afe08145d85e1",
+      "size_bytes": 8322
+    },
+    {
+      "path": "sources/repository/apps/web/src/browser-failure-main.ts",
+      "sha256": "034440802912434729f172a0431b1665d5efebceb08b431233c9fd2ad877b0fc",
+      "size_bytes": 4878
+    },
+    {
+      "path": "sources/repository/apps/web/src/client-state.ts",
+      "sha256": "690a9ff6590389f6e0ef237a3cdbb60375c58b686a9562e2bb6ce1a2656bb591",
+      "size_bytes": 2912
+    },
+    {
+      "path": "sources/repository/apps/web/src/engineering-evidence-output.tsx",
+      "sha256": "8edc77b6a44032ec814da6a0a1942d089f59d8c89e37cacad1a5747a9592e5d5",
+      "size_bytes": 1212
+    },
+    {
+      "path": "sources/repository/apps/web/src/engineering-evidence.ts",
+      "sha256": "8d2251b7fe33378c0984fab01754d1b4c075e68f5f456c1c232677a42cb50ab2",
+      "size_bytes": 8735
+    },
+    {
+      "path": "sources/repository/apps/web/src/glyph-atlas.ts",
+      "sha256": "7ce72e3f14d2c9ac48a856ff83b935844c0f93dc78b6aacc04e8c1a43470d6d5",
+      "size_bytes": 2698
+    },
+    {
+      "path": "sources/repository/apps/web/src/import-client.ts",
+      "sha256": "d22de28d15cb34a9d8b183af633b29ec10cfef72da23b4c4533e38fb9ea806f2",
+      "size_bytes": 2010
+    },
+    {
+      "path": "sources/repository/apps/web/src/import.worker.ts",
+      "sha256": "2aec9c21ca3a987a7af20812b097eaada3cca2afe18392b9469311c90c4bb693",
+      "size_bytes": 1247
+    },
+    {
+      "path": "sources/repository/apps/web/src/main.tsx",
+      "sha256": "ab3b482f534238923009c4a46346c1f7cdb23a10248b6d48f66ee6f1227e7e4c",
+      "size_bytes": 409
+    },
+    {
+      "path": "sources/repository/apps/web/src/messages.ts",
+      "sha256": "1e8d1432ca12add8b052f27b9158a6be9b2945ba132dba93ed18aff7dd046462",
+      "size_bytes": 1915
+    },
+    {
+      "path": "sources/repository/apps/web/src/project-service.ts",
+      "sha256": "c15ec43289b448d7b071106bfdf60d9e2bca3cb8caf2548d568daf097da6b66a",
+      "size_bytes": 12138
+    },
+    {
+      "path": "sources/repository/apps/web/src/render-worker-cache.ts",
+      "sha256": "04e9ea5658a55167252ed2730e5bf754acb01d81ef6209bbc123e61ed21fcbb9",
+      "size_bytes": 1338
+    },
+    {
+      "path": "sources/repository/apps/web/src/render-worker-client.ts",
+      "sha256": "793bb9e414354accf23d36938fd404f6d134da72878635e731750d59c718e66f",
+      "size_bytes": 2774
+    },
+    {
+      "path": "sources/repository/apps/web/src/render.worker.ts",
+      "sha256": "55705add8783312a99edaf2a5dd3f4696f6472604e4d11147c93ca62359ecac3",
+      "size_bytes": 9144
+    },
+    {
+      "path": "sources/repository/apps/web/src/styles.css",
+      "sha256": "111964eb072ebdca44f3f2212067c2bc8e0be7cc96ecffc0115aa1b2a09d865f",
+      "size_bytes": 9443
+    },
+    {
+      "path": "sources/repository/apps/web/src/viewer.tsx",
+      "sha256": "6f19855e6c6367286c19182689e2f370a466fb2b661cfd8fd52c4b877c00333c",
+      "size_bytes": 20939
+    },
+    {
+      "path": "sources/repository/apps/web/src/worker-contracts.ts",
+      "sha256": "36bc2a351e506cdf272cfd19a320aa32ab3c9773aa1d0a09893db10f6985e24e",
+      "size_bytes": 715
+    },
+    {
+      "path": "sources/repository/apps/web/test/client-state.test.ts",
+      "sha256": "e18fd494ecd28d80a49b4470374b9065ede1df26013b7bb20d22ad54893b54c2",
+      "size_bytes": 4256
+    },
+    {
+      "path": "sources/repository/apps/web/test/worker.test.ts",
+      "sha256": "e67e05a3ccc2324c039f044e64f3eaf82851b72b96acb6acd6312807afad6ca3",
+      "size_bytes": 3709
+    },
+    {
+      "path": "sources/repository/apps/web/tsconfig.json",
+      "sha256": "cae6a1f0546d27332c7585b4c83b4e0ef4c552bafce7f2e61580079c3e81ffa4",
+      "size_bytes": 354
+    },
+    {
+      "path": "sources/repository/apps/web/vite.config.ts",
+      "sha256": "0a069bd182970e36bc0ae060bb782a06c4bb0cd77ebcccd90bbe608175594809",
+      "size_bytes": 1238
+    },
+    {
+      "path": "sources/repository/apps/web/worker/index.ts",
+      "sha256": "6fa67cba8d01e49d8355c0928275eb743ca58925cb80f0ff2a6f271b2673e376",
+      "size_bytes": 2948
+    },
+    {
+      "path": "sources/repository/apps/web/wrangler.deployment-lab.jsonc",
+      "sha256": "7a6d7253d547e5a1cf57a85b68747bddf7070a2f924726b54e2c5d953b06eebf",
+      "size_bytes": 556
+    },
+    {
+      "path": "sources/repository/apps/web/wrangler.jsonc",
+      "sha256": "aa6034debd63ace0049861982118e068b5776d60dd99af12a459ed40760e5fb1",
+      "size_bytes": 430
+    },
+    {
+      "path": "sources/repository/collaboration/README.md",
+      "sha256": "191e8f2b74bb97d27abb85e0a004690ae811cbf037aa8508bce5a7d9f1ccbaa8",
+      "size_bytes": 5714
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/README.md",
+      "sha256": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+      "size_bytes": 2073
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-return-manifest.schema.json",
+      "sha256": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+      "size_bytes": 3542
+    },
+    {
+      "path": "sources/repository/collaboration/schemas/claude-task-manifest.schema.json",
+      "sha256": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+      "size_bytes": 4451
+    },
+    {
+      "path": "sources/repository/docs/CURRENT_STATUS.md",
+      "sha256": "17a0638ffa1c4770b9a044cff4a218176bb271f9c140287128137b1ef2099300",
+      "size_bytes": 45848
+    },
+    {
+      "path": "sources/repository/docs/DECISIONS.md",
+      "sha256": "51b9a36da881b4b820ccaa6529cb49005b6144907aa4e1d2a81530f725b56c76",
+      "size_bytes": 32664
+    },
+    {
+      "path": "sources/repository/docs/RISKS.md",
+      "sha256": "1165c8704c5cecd3f43e57117e16c365a9f5fb9cf3c45b63888444e0519301ad",
+      "size_bytes": 36674
+    },
+    {
+      "path": "sources/repository/docs/SOURCE_OF_TRUTH.md",
+      "sha256": "2b78529927a75bdc9708220fcbc71ff206cbcebaf9df9fb737d3ddb2af33abd1",
+      "size_bytes": 13652
+    },
+    {
+      "path": "sources/repository/docs/TASKS.md",
+      "sha256": "a185046dfb1c7aa6f08b2e58e7934371710a8a2e5eef99c3bf475410210e2ac6",
+      "size_bytes": 62389
+    },
+    {
+      "path": "sources/repository/docs/TRACEABILITY_MATRIX.md",
+      "sha256": "5b51c1c7830df6f6207892750f1a1cf2b13521f3119cddbe7ee75e28900f3592",
+      "size_bytes": 28986
+    },
+    {
+      "path": "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md",
+      "sha256": "afe2b99b8343ea6726412de2506de37a4c053f1d0c259a806f45e20d2303d130",
+      "size_bytes": 11713
+    },
+    {
+      "path": "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md",
+      "sha256": "93334fa0c3a7d056ec2ab7a03df9f74725ff9f563c6d22964b65aece0c530f04",
+      "size_bytes": 58106
+    },
+    {
+      "path": "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md",
+      "sha256": "f0b2ce4c70ddbc8c933e6bce11520fb0e2b3ffff1ba88a84d5315e518302bc7a",
+      "size_bytes": 18142
+    },
+    {
+      "path": "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md",
+      "sha256": "6b404d8dd5bdfaf4cdaa7b63a604d80c3e6bb6306b4e71240a3a4096d0b7e801",
+      "size_bytes": 65675
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md",
+      "sha256": "2354841c01fe81a9f4efcd924070fef1ca131b4442877ef5acb96a7b61c021aa",
+      "size_bytes": 5714
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md",
+      "sha256": "3f19ae7de3b0f01044bbc57f262189c8581e5b728bf9066eb8f264479c23c03b",
+      "size_bytes": 15992
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md",
+      "sha256": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+      "size_bytes": 4433
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md",
+      "sha256": "3ab3c1990ac7d8f9f89ab65480855ff673dfdd04902d8b16c34763102763e586",
+      "size_bytes": 7446
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md",
+      "sha256": "90dd8a7acb8023a463089e75e6e4f300bf985059386d2d4dc347c5545479615d",
+      "size_bytes": 14929
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md",
+      "sha256": "d7e10ac94ae6b791693e45c1b49de54f29b79eb0b773cdd38511039c4591c803",
+      "size_bytes": 30961
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md",
+      "sha256": "fd6733b4bf3fd93135121f32d922c0d144127672cac02e70c53ea108fb08d071",
+      "size_bytes": 4613
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md",
+      "sha256": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+      "size_bytes": 8442
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md",
+      "sha256": "5d3df1a0b099bf747f4069638f0fe6fbdbfc822d37702e6d37c60828d374f51e",
+      "size_bytes": 6182
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PERSISTENCE_IMPLEMENTATION_REVIEW.md",
+      "sha256": "6b21c169c97b4500d2cde4a822abc1e6d02050b4f1e7bed78554a97c9e94c952",
+      "size_bytes": 8285
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_DEPLOYMENT.md",
+      "sha256": "41478a0ff7ab6a4cc422f5eda5d2cc328c960ec39c997cbd9d8b62b2db144879",
+      "size_bytes": 31365
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md",
+      "sha256": "d639862474114e4d6a3fe1e204477e20c550fc7a743dff8f985dfd27003d4434",
+      "size_bytes": 11397
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md",
+      "sha256": "024bc53a96c328d54298d43a2f34342502887b0ba6a3981ceb82d283b01e5580",
+      "size_bytes": 10684
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md",
+      "sha256": "ba1ac181d42301ca0fcce6332b97fba517856ee6c39d73e66cb673808ab0b9de",
+      "size_bytes": 11734
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md",
+      "sha256": "80b94265b4e395bee06ae110bd742123698b57884691163879fea36f3d8ac83f",
+      "size_bytes": 13295
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md",
+      "sha256": "a4499c40e650bb6dbae8adda74d3844d4db3e50ad5e40b48d7964c1dd63967f4",
+      "size_bytes": 7300
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md",
+      "sha256": "5e885799622fe06429579c993af70118126c748928d1c0ca2e4ac578263e6c97",
+      "size_bytes": 5495
+    },
+    {
+      "path": "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md",
+      "sha256": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+      "size_bytes": 17897
+    },
+    {
+      "path": "sources/repository/package.json",
+      "sha256": "fbf7e08d9ca1b0f1bc5e65cab0e3dc548ee32a38afa7802337133e954a7f5c15",
+      "size_bytes": 1396
+    },
+    {
+      "path": "sources/repository/pnpm-lock.yaml",
+      "sha256": "dee7b9639024c7b45688eaed668a8db3bbcad12eb733cd38ce768469b2511956",
+      "size_bytes": 55864
+    },
+    {
+      "path": "sources/repository/pnpm-workspace.yaml",
+      "sha256": "f10cbb2eb8aab0c45ac2bc640c70343667c6e990f88cf90b559d43314645198c",
+      "size_bytes": 98
+    },
+    {
+      "path": "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md",
+      "sha256": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+      "size_bytes": 52062
+    },
+    {
+      "path": "sources/repository/product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md",
+      "sha256": "3f9ac59eb4d234be99ef3471c6e071ba3892fc4efd8ed693adf6a3be234846f6",
+      "size_bytes": 23669
+    },
+    {
+      "path": "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md",
+      "sha256": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+      "size_bytes": 45137
+    },
+    {
+      "path": "sources/repository/scripts/cloudflare-cache-purge.mjs",
+      "sha256": "91954a8d1fe19600c1ad2cbc12f527bf301ea3d424608792209fa8d315bc51b1",
+      "size_bytes": 2242
+    },
+    {
+      "path": "sources/repository/scripts/cloudflare-cache-purge.test.mjs",
+      "sha256": "004af24bfeccebc606500426a69ede01892ac856a6e80b77adfc2b7a6e2c5b80",
+      "size_bytes": 3334
+    },
+    {
+      "path": "sources/repository/scripts/cloudflare-version-affinity.mjs",
+      "sha256": "9c2753c39b3934b0aaf4151f87ff22d087dc2914ccaa01107a7c49f1f4736ada",
+      "size_bytes": 6068
+    },
+    {
+      "path": "sources/repository/scripts/cloudflare-version-affinity.test.mjs",
+      "sha256": "10d2ced1f7d8f137934dac6a2ffa3a6a0f386e397eeeb39eb638f967ca041871",
+      "size_bytes": 4297
+    },
+    {
+      "path": "sources/repository/scripts/deploy-production.mjs",
+      "sha256": "182cc3fb61434a0da4d88fc18aabe40dd2373f870a951d5b5e29b5c887e3d3dc",
+      "size_bytes": 10870
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-environment.mjs",
+      "sha256": "ea9ef243be7cc2a99588e201b521c00fd56656256415c6140f7304c92342d57a",
+      "size_bytes": 251
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-environment.test.mjs",
+      "sha256": "186d62704cb45e2108d5af63e88f269d8236d04aa1f6edd4d742f8ffce0a7dd2",
+      "size_bytes": 792
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-evidence.mjs",
+      "sha256": "186e4a50afb97d90c75240a74f2d90dc702d9cf838d16a31f2a0d9235fd6a0a4",
+      "size_bytes": 9268
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-evidence.test.mjs",
+      "sha256": "8319313a4c664d115e7466727e5d1b6631f4d23677ee967fa10a1e192b40fe59",
+      "size_bytes": 14614
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-state.mjs",
+      "sha256": "fefb7b31b08d9b28298eff7dadde7ff6762429e42bde3f994d92dd472c1db03b",
+      "size_bytes": 4628
+    },
+    {
+      "path": "sources/repository/scripts/production-deployment-state.test.mjs",
+      "sha256": "638cd291a8d76977aa3fb111c3b14222b9756ce5e6c3983769554bd3691f0ef7",
+      "size_bytes": 11207
+    },
+    {
+      "path": "sources/repository/scripts/production-rollback-verification.mjs",
+      "sha256": "45cc7545eb3245bc32494505a7b7af6eb9cd07169fecaff710cefe71f27486f2",
+      "size_bytes": 2551
+    },
+    {
+      "path": "sources/repository/scripts/production-rollback-verification.test.mjs",
+      "sha256": "bb631b1249a1f9a1a9a1ab41108ebb6eb62ca7254e99f987417ce8889e3aaff0",
+      "size_bytes": 2766
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-authorization.mjs",
+      "sha256": "908976ca3db99658c65d79fd28f1667f78a78fc4e7535e176c4eb64b62bbf624",
+      "size_bytes": 961
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-authorization.test.mjs",
+      "sha256": "0e381f9be22ac675558e95e003c826fbe93b7ca7d9242d0aeabd08cbbcaa90c7",
+      "size_bytes": 1008
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-deployment.mjs",
+      "sha256": "f728a867b56b5cf5fe2a9cfee468688c825ad5592aa6300e82ec55270504113b",
+      "size_bytes": 24011
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-deployment.test.mjs",
+      "sha256": "fca53194ca838f68574d1039192ee8e0f7827c5266d9af0a60d139ecb7565182",
+      "size_bytes": 23995
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-source-boundary.mjs",
+      "sha256": "53fc5ca29b1bd4393915655c538a6a84f356fbf4fff988223a197a26066eb155",
+      "size_bytes": 6008
+    },
+    {
+      "path": "sources/repository/scripts/verify-production-source-boundary.test.mjs",
+      "sha256": "dc3fd235c0152fc723bb3ce05f93a18e01d3b32a7a3be8e26c8e304faa8c3493",
+      "size_bytes": 11404
+    },
+    {
+      "path": "sources/review/review-range.diff",
+      "sha256": "597fda93df7f0375f631a9789632a109a52b38f9f9a733687deeee456046a322",
+      "size_bytes": 47845
+    },
+    {
+      "path": "sources/review/review-range.stat.txt",
+      "sha256": "5f7c08fcffcf66b0489921c079540dc88a9d3f47efdb8eb5c98cfcc42a59e081",
+      "size_bytes": 1147
+    },
+    {
+      "path": "sources/review/review-range.commits.txt",
+      "sha256": "11e9d23628de8ba40b7cc49e864807594516397746cebe2f7f25416b92cd1218",
+      "size_bytes": 289
+    }
+  ],
+  "expected_outputs": [
+    "return-manifest.json conforming to the registered return schema with result_type INDEPENDENT_ACCEPTANCE_REVIEW and decision VERIFIED or REWORK_REQUIRED.",
+    "outputs/task-thinslice-001-production-acceptance-report.md containing exact evidence and deployed-source identity, reviewer independence, live endpoint observations, workflow/artifact and source-boundary assessment, security and privacy assessment, finding list, verified and excluded scopes, limitations, decision, and exact next step."
+  ],
+  "acceptance_criteria": [
+    "The response identifies exact canonical evidence source 3796cb37dac176c8d506451524fcf0744695ef42, exact deployed source 1021abf3bf82512292bfdc34103e8c3ef141a633, the full review range, workflow run 30278965044, artifact 8658016223, and Worker version 8c49fb69-788c-449c-a9fa-bc321ff8d852.",
+    "Every checksum-registered required input is reviewed and the response independently performs and records a live public endpoint check rather than accepting Codex or AU-AGENT-003 conclusions by default.",
+    "The response explicitly dispositions immutable preview, exact promotion, hostname-only purge, bounded prior-baseline transition, three consecutive candidate contracts, rollback readiness, exact source provenance, and retained artifact integrity.",
+    "The response independently checks root, static assets, SPA fallback, HEAD and rejected POST behavior, source and Worker provenance, CSP, nosniff, referrer policy, landing page, and Import OXS entry point.",
+    "The response checks the external source-anchor and protected-delivery trust model against the included workflow, registry, guard, deployment scripts, tests and canonical evidence.",
+    "Any finding identifies severity, exact evidence, violated requirement or invariant, risk, owner, required remediation, and reverification condition.",
+    "The response preserves every declared limitation and does not infer simultaneous global or multi-region convergence, long-duration stability, broad platform support, console/network evidence not captured, Prototype 9.1 scale, or another deployment authorization.",
+    "The response assigns decision VERIFIED only for the exact bounded production scope when all mandatory production acceptance criteria pass; otherwise it assigns REWORK_REQUIRED.",
+    "The response does not modify sources, expose or request secret values, invent product or engineering meaning, authorize deployment, or extend project VERIFIED status beyond the exact declared scope."
+  ],
+  "authority_boundaries": {
+    "product_authority": "The Project Owner and registered Claude Cowork product roles retain product meaning, requirements, UX, scope, acceptance criteria, release meaning, and independent product acceptance. The reviewer may reject the bounded production result but may not rewrite those sources.",
+    "engineering_authority": "AU-CODEX-PRIMARY and AU-AGENT-001 retain implementation, architecture, deployment integration, and remediation authority. AU-AGENT-003 retains its internal Engineering Verification Report meaning. Claude independently reviews the production result but does not implement or directly edit engineering sources.",
+    "documentation_authority": "AU-AGENT-002 owns canonical placement, navigation, metadata, lifecycle, and traceability after return validation without changing Claude-authored or engineering-authored meaning.",
+    "git_authority": "AU-CODEX-PRIMARY is the sole Git writer and GitHub operator; Claude must not run Git, commit, push, merge, or mutate the canonical repository."
+  },
+  "documentation_impact": "Material",
+  "return_location": "claude/outbox/AU-EX-20260727-001",
+  "allowed_output_extensions": [
+    ".md",
+    ".json",
+    ".txt"
+  ],
+  "integrity_checksums": {
+    "sources/repository/.codex/CURRENT_FOCUS.md": "3e7dd8c3a10203047ba3a32683c22e72daa50f5eb7a92f66371f1c8cb6bf95b8",
+    "sources/repository/.codex/production-deployment-source.json": "58d2d5cfc9a481191d2874d1e138d02d11e85a3ac91b5dec635078b529fa532d",
+    "sources/repository/.github/workflows/ci.yml": "6471182461884535eec17a1e255414ccfe3149fb9221e441c41910c6fdd58527",
+    "sources/repository/.github/workflows/deploy-production.yml": "35d0809922d1264ba7204cf705422799bbf5c1cc55aa4bc860bb65dd1a56dee3",
+    "sources/repository/AGENTS.md": "e1a01e40d3181e7fa521a9c4bf347bb17bacd274f04bf98684855702b590733c",
+    "sources/repository/apps/web/README.md": "166389fbdbdcbf9f7db13be56b29e5455f924c703ac506d25072772dd3f9962e",
+    "sources/repository/apps/web/accessibility.html": "477463c1a21c7bd736235b73d08f4cf5c89ec9e97956b1a42874e5ba1605ae9c",
+    "sources/repository/apps/web/benchmark.html": "7411bb0750c4a36c64d599a230048c5e377a0ad8c0e648a40213c31924cdacdc",
+    "sources/repository/apps/web/browser-failure.html": "986c1639acaf3fd61c19ce73f52727d42040d93bad86977151407aeadd09512b",
+    "sources/repository/apps/web/index.html": "4bbd286c6d21d5f01aba4ccf327e239ca9453b830aa54161596e7174a5fb3e90",
+    "sources/repository/apps/web/package.json": "e31332b13e347b340425f26495dc00bba427060c64f94eea96cc09b642974735",
+    "sources/repository/apps/web/src/App.tsx": "3a658c482824cad416d07ec7dfedb8bde838ee20a3289e53a8dacab2d80526dd",
+    "sources/repository/apps/web/src/accessibility-main.tsx": "06454956b2c3c6747438434a83f9a6767cb7b95adbd807de362a89cbf582c629",
+    "sources/repository/apps/web/src/benchmark-main.ts": "c0ea96877668b6a5cf3fe55102054de406d8bd3864bff232ac0afe08145d85e1",
+    "sources/repository/apps/web/src/browser-failure-main.ts": "034440802912434729f172a0431b1665d5efebceb08b431233c9fd2ad877b0fc",
+    "sources/repository/apps/web/src/client-state.ts": "690a9ff6590389f6e0ef237a3cdbb60375c58b686a9562e2bb6ce1a2656bb591",
+    "sources/repository/apps/web/src/engineering-evidence-output.tsx": "8edc77b6a44032ec814da6a0a1942d089f59d8c89e37cacad1a5747a9592e5d5",
+    "sources/repository/apps/web/src/engineering-evidence.ts": "8d2251b7fe33378c0984fab01754d1b4c075e68f5f456c1c232677a42cb50ab2",
+    "sources/repository/apps/web/src/glyph-atlas.ts": "7ce72e3f14d2c9ac48a856ff83b935844c0f93dc78b6aacc04e8c1a43470d6d5",
+    "sources/repository/apps/web/src/import-client.ts": "d22de28d15cb34a9d8b183af633b29ec10cfef72da23b4c4533e38fb9ea806f2",
+    "sources/repository/apps/web/src/import.worker.ts": "2aec9c21ca3a987a7af20812b097eaada3cca2afe18392b9469311c90c4bb693",
+    "sources/repository/apps/web/src/main.tsx": "ab3b482f534238923009c4a46346c1f7cdb23a10248b6d48f66ee6f1227e7e4c",
+    "sources/repository/apps/web/src/messages.ts": "1e8d1432ca12add8b052f27b9158a6be9b2945ba132dba93ed18aff7dd046462",
+    "sources/repository/apps/web/src/project-service.ts": "c15ec43289b448d7b071106bfdf60d9e2bca3cb8caf2548d568daf097da6b66a",
+    "sources/repository/apps/web/src/render-worker-cache.ts": "04e9ea5658a55167252ed2730e5bf754acb01d81ef6209bbc123e61ed21fcbb9",
+    "sources/repository/apps/web/src/render-worker-client.ts": "793bb9e414354accf23d36938fd404f6d134da72878635e731750d59c718e66f",
+    "sources/repository/apps/web/src/render.worker.ts": "55705add8783312a99edaf2a5dd3f4696f6472604e4d11147c93ca62359ecac3",
+    "sources/repository/apps/web/src/styles.css": "111964eb072ebdca44f3f2212067c2bc8e0be7cc96ecffc0115aa1b2a09d865f",
+    "sources/repository/apps/web/src/viewer.tsx": "6f19855e6c6367286c19182689e2f370a466fb2b661cfd8fd52c4b877c00333c",
+    "sources/repository/apps/web/src/worker-contracts.ts": "36bc2a351e506cdf272cfd19a320aa32ab3c9773aa1d0a09893db10f6985e24e",
+    "sources/repository/apps/web/test/client-state.test.ts": "e18fd494ecd28d80a49b4470374b9065ede1df26013b7bb20d22ad54893b54c2",
+    "sources/repository/apps/web/test/worker.test.ts": "e67e05a3ccc2324c039f044e64f3eaf82851b72b96acb6acd6312807afad6ca3",
+    "sources/repository/apps/web/tsconfig.json": "cae6a1f0546d27332c7585b4c83b4e0ef4c552bafce7f2e61580079c3e81ffa4",
+    "sources/repository/apps/web/vite.config.ts": "0a069bd182970e36bc0ae060bb782a06c4bb0cd77ebcccd90bbe608175594809",
+    "sources/repository/apps/web/worker/index.ts": "6fa67cba8d01e49d8355c0928275eb743ca58925cb80f0ff2a6f271b2673e376",
+    "sources/repository/apps/web/wrangler.deployment-lab.jsonc": "7a6d7253d547e5a1cf57a85b68747bddf7070a2f924726b54e2c5d953b06eebf",
+    "sources/repository/apps/web/wrangler.jsonc": "aa6034debd63ace0049861982118e068b5776d60dd99af12a459ed40760e5fb1",
+    "sources/repository/collaboration/README.md": "191e8f2b74bb97d27abb85e0a004690ae811cbf037aa8508bce5a7d9f1ccbaa8",
+    "sources/repository/collaboration/schemas/README.md": "626a48d22310c43951b1a96401cc504e49cc8bc86391a823e8792974804604a1",
+    "sources/repository/collaboration/schemas/claude-return-manifest.schema.json": "a0e009fe57a117c6da9d5b1af8d139ef30df6f0dacac70e3659a3eb62d4425cc",
+    "sources/repository/collaboration/schemas/claude-task-manifest.schema.json": "cbccb9d25d2240b0bbb3609b79b908aa53c5b392a8c73dafe579e59e5ddbf070",
+    "sources/repository/docs/CURRENT_STATUS.md": "17a0638ffa1c4770b9a044cff4a218176bb271f9c140287128137b1ef2099300",
+    "sources/repository/docs/DECISIONS.md": "51b9a36da881b4b820ccaa6529cb49005b6144907aa4e1d2a81530f725b56c76",
+    "sources/repository/docs/RISKS.md": "1165c8704c5cecd3f43e57117e16c365a9f5fb9cf3c45b63888444e0519301ad",
+    "sources/repository/docs/SOURCE_OF_TRUTH.md": "2b78529927a75bdc9708220fcbc71ff206cbcebaf9df9fb737d3ddb2af33abd1",
+    "sources/repository/docs/TASKS.md": "a185046dfb1c7aa6f08b2e58e7934371710a8a2e5eef99c3bf475410210e2ac6",
+    "sources/repository/docs/TRACEABILITY_MATRIX.md": "5b51c1c7830df6f6207892750f1a1cf2b13521f3119cddbe7ee75e28900f3592",
+    "sources/repository/docs/architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md": "afe2b99b8343ea6726412de2506de37a4c053f1d0c259a806f45e20d2303d130",
+    "sources/repository/docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md": "93334fa0c3a7d056ec2ab7a03df9f74725ff9f563c6d22964b65aece0c530f04",
+    "sources/repository/docs/assurance/threat-models/TASK-THINSLICE-001_THREAT_MODEL.md": "f0b2ce4c70ddbc8c933e6bce11520fb0e2b3ffff1ba88a84d5315e518302bc7a",
+    "sources/repository/docs/reviews/engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md": "6b404d8dd5bdfaf4cdaa7b63a604d80c3e6bb6306b4e71240a3a4096d0b7e801",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/BROWSER_PERSISTENCE_AND_RUNTIME_REVIEW.md": "2354841c01fe81a9f4efcd924070fef1ca131b4442877ef5acb96a7b61c021aa",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CI_AND_DEPLOYMENT_REHEARSAL.md": "3f19ae7de3b0f01044bbc57f262189c8581e5b728bf9066eb8f264479c23c03b",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLARIFICATION_AND_CONFLICT_REPORT.md": "b9de5f71702bd06947c86dfdd172666cf7a668c966d63251a86747de5dae1ccc",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLIENT_INTEGRATION_IMPLEMENTATION_REVIEW.md": "3ab3c1990ac7d8f9f89ab65480855ff673dfdd04902d8b16c34763102763e586",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/CLOUDFLARE_DEPLOYMENT_TRANSITION_LAB_REPORT.md": "90dd8a7acb8023a463089e75e6e4f300bf985059386d2d4dc347c5545479615d",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/COMPLETION_REPORT.md": "d7e10ac94ae6b791693e45c1b49de54f29b79eb0b773cdd38511039c4591c803",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/DOMAIN_CORE_IMPLEMENTATION_REVIEW.md": "fd6733b4bf3fd93135121f32d922c0d144127672cac02e70c53ea108fb08d071",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OQ-005_IMPORT_FORMAT_SPIKE.md": "805a1ff4237b41ad2209472a3fb9d42b5404b561054b5812583845a9e5e01c64",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md": "5d3df1a0b099bf747f4069638f0fe6fbdbfc822d37702e6d37c60828d374f51e",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PERSISTENCE_IMPLEMENTATION_REVIEW.md": "6b21c169c97b4500d2cde4a822abc1e6d02050b4f1e7bed78554a97c9e94c952",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_DEPLOYMENT.md": "41478a0ff7ab6a4cc422f5eda5d2cc328c960ec39c997cbd9d8b62b2db144879",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md": "d639862474114e4d6a3fe1e204477e20c550fc7a743dff8f985dfd27003d4434",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_PREVIEW_ENABLEMENT_TECHNICAL_ALTERNATIVE.md": "024bc53a96c328d54298d43a2f34342502887b0ba6a3981ceb82d283b01e5580",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md": "ba1ac181d42301ca0fcce6332b97fba517856ee6c39d73e66cb673808ab0b9de",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/README.md": "80b94265b4e395bee06ae110bd742123698b57884691163879fea36f3d8ac83f",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/RENDERER_IMPLEMENTATION_REVIEW.md": "a4499c40e650bb6dbae8adda74d3844d4db3e50ad5e40b48d7964c1dd63967f4",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/ROUTE1_FIXTURE_AND_SCAFFOLD_REVIEW.md": "5e885799622fe06429579c993af70118126c748928d1c0ca2e4ac578263e6c97",
+    "sources/repository/docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md": "109796d5e98fa7f289ca360260ff50d361edb1076a067b921da210d6d86f9c8e",
+    "sources/repository/package.json": "fbf7e08d9ca1b0f1bc5e65cab0e3dc548ee32a38afa7802337133e954a7f5c15",
+    "sources/repository/pnpm-lock.yaml": "dee7b9639024c7b45688eaed668a8db3bbcad12eb733cd38ce768469b2511956",
+    "sources/repository/pnpm-workspace.yaml": "f10cbb2eb8aab0c45ac2bc640c70343667c6e990f88cf90b559d43314645198c",
+    "sources/repository/product/agents/definitions/quality-security-independent-acceptance-lead.md": "19dfe94350b3334a31de658aaf11ab6cffc870337dc912eacff788eb082cf09f",
+    "sources/repository/product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md": "3f9ac59eb4d234be99ef3471c6e071ba3892fc4efd8ed693adf6a3be234846f6",
+    "sources/repository/product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md": "cca71c69350d59122a8ee942b9e48ca3f055ea570671ca954cca0df31f99fa8f",
+    "sources/repository/scripts/cloudflare-cache-purge.mjs": "91954a8d1fe19600c1ad2cbc12f527bf301ea3d424608792209fa8d315bc51b1",
+    "sources/repository/scripts/cloudflare-cache-purge.test.mjs": "004af24bfeccebc606500426a69ede01892ac856a6e80b77adfc2b7a6e2c5b80",
+    "sources/repository/scripts/cloudflare-version-affinity.mjs": "9c2753c39b3934b0aaf4151f87ff22d087dc2914ccaa01107a7c49f1f4736ada",
+    "sources/repository/scripts/cloudflare-version-affinity.test.mjs": "10d2ced1f7d8f137934dac6a2ffa3a6a0f386e397eeeb39eb638f967ca041871",
+    "sources/repository/scripts/deploy-production.mjs": "182cc3fb61434a0da4d88fc18aabe40dd2373f870a951d5b5e29b5c887e3d3dc",
+    "sources/repository/scripts/production-deployment-environment.mjs": "ea9ef243be7cc2a99588e201b521c00fd56656256415c6140f7304c92342d57a",
+    "sources/repository/scripts/production-deployment-environment.test.mjs": "186d62704cb45e2108d5af63e88f269d8236d04aa1f6edd4d742f8ffce0a7dd2",
+    "sources/repository/scripts/production-deployment-evidence.mjs": "186e4a50afb97d90c75240a74f2d90dc702d9cf838d16a31f2a0d9235fd6a0a4",
+    "sources/repository/scripts/production-deployment-evidence.test.mjs": "8319313a4c664d115e7466727e5d1b6631f4d23677ee967fa10a1e192b40fe59",
+    "sources/repository/scripts/production-deployment-state.mjs": "fefb7b31b08d9b28298eff7dadde7ff6762429e42bde3f994d92dd472c1db03b",
+    "sources/repository/scripts/production-deployment-state.test.mjs": "638cd291a8d76977aa3fb111c3b14222b9756ce5e6c3983769554bd3691f0ef7",
+    "sources/repository/scripts/production-rollback-verification.mjs": "45cc7545eb3245bc32494505a7b7af6eb9cd07169fecaff710cefe71f27486f2",
+    "sources/repository/scripts/production-rollback-verification.test.mjs": "bb631b1249a1f9a1a9a1ab41108ebb6eb62ca7254e99f987417ce8889e3aaff0",
+    "sources/repository/scripts/verify-production-authorization.mjs": "908976ca3db99658c65d79fd28f1667f78a78fc4e7535e176c4eb64b62bbf624",
+    "sources/repository/scripts/verify-production-authorization.test.mjs": "0e381f9be22ac675558e95e003c826fbe93b7ca7d9242d0aeabd08cbbcaa90c7",
+    "sources/repository/scripts/verify-production-deployment.mjs": "f728a867b56b5cf5fe2a9cfee468688c825ad5592aa6300e82ec55270504113b",
+    "sources/repository/scripts/verify-production-deployment.test.mjs": "fca53194ca838f68574d1039192ee8e0f7827c5266d9af0a60d139ecb7565182",
+    "sources/repository/scripts/verify-production-source-boundary.mjs": "53fc5ca29b1bd4393915655c538a6a84f356fbf4fff988223a197a26066eb155",
+    "sources/repository/scripts/verify-production-source-boundary.test.mjs": "dc3fd235c0152fc723bb3ce05f93a18e01d3b32a7a3be8e26c8e304faa8c3493",
+    "sources/review/review-range.diff": "597fda93df7f0375f631a9789632a109a52b38f9f9a733687deeee456046a322",
+    "sources/review/review-range.stat.txt": "5f7c08fcffcf66b0489921c079540dc88a9d3f47efdb8eb5c98cfcc42a59e081",
+    "sources/review/review-range.commits.txt": "11e9d23628de8ba40b7cc49e864807594516397746cebe2f7f25416b92cd1218"
+  }
+}
