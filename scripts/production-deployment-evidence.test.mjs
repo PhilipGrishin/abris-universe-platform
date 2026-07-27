@@ -378,11 +378,12 @@ test("allowlists semantic and transition failure evidence", () => {
     rollbackFailureStage: null,
     semanticAttempt: 1,
     semanticAttemptsExhausted: 1,
-    deploymentObservation: {
-      status: 200,
-      bodySha256: "a".repeat(64),
-      contentSecurityPolicy: null,
-    },
+      deploymentObservation: {
+        status: 200,
+        bodySha256: "a".repeat(64),
+        contentSecurityPolicy: null,
+      },
+      deploymentChecks: [],
     transitionAttempt: 3,
     transitionAttemptsExhausted: 61,
     transitionWindowMs: 120_000,
@@ -398,12 +399,13 @@ test("allowlists semantic and transition failure evidence", () => {
     stabilityAttemptsExhausted: 25,
     stabilityWindowMs: 120_000,
     stabilityClassification: "candidate-not-stable",
-    stabilityObservation: {
-      status: 200,
-      headStatus: 200,
-      bodySha256: "c".repeat(64),
-      contentType: "text/html",
-    },
+      stabilityObservation: {
+        status: 200,
+        headStatus: 200,
+        bodySha256: "c".repeat(64),
+        contentType: "text/html",
+      },
+      stabilityAttemptSummaries: [],
     rollbackAttemptsExhausted: 25,
     rollbackObservation: {
       status: 200,

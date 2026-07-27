@@ -16,6 +16,7 @@ import {
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
 import { environmentForWrangler } from "./production-deployment-environment.mjs";
+import { inspectCloudflareVersionAffinity } from "./cloudflare-version-affinity.mjs";
 import { purgeCloudflareHostnameCache } from "./cloudflare-cache-purge.mjs";
 import { executeProductionDeployment } from "./production-deployment-state.mjs";
 import { waitForRegisteredRollbackBaseline } from "./production-rollback-verification.mjs";
@@ -160,6 +161,10 @@ assert(
   "CLOUDFLARE_CACHE_PURGE_TOKEN is not configured.",
 );
 assert(
+  process.env.CLOUDFLARE_RULES_TOKEN,
+  "CLOUDFLARE_RULES_TOKEN is not configured.",
+);
+assert(
   /^[0-9a-f]{32}$/u.test(process.env.CLOUDFLARE_ZONE_ID ?? ""),
   "CLOUDFLARE_ZONE_ID must be a 32-character lowercase hexadecimal ID.",
 );
@@ -168,6 +173,11 @@ mkdirSync(evidenceRoot, { recursive: true });
 const startedAt = new Date().toISOString();
 const preDeploySnapshot = await publicSnapshot();
 const preDeployDomain = await productionDomain();
+const versionAffinity = await inspectCloudflareVersionAffinity({
+  zoneId: process.env.CLOUDFLARE_ZONE_ID,
+  token: process.env.CLOUDFLARE_RULES_TOKEN,
+  hostname: productionHostname,
+});
 const rawDeployments = runWrangler(
   ["deployments", "list", "--name", workerName, "--json"],
   { capture: true },
@@ -192,6 +202,7 @@ writeJsonEvidence(
     capturedAt: new Date().toISOString(),
     prior,
     productionDomain: preDeployDomain,
+    versionAffinity,
     preDeploySnapshot,
   },
 );
@@ -215,6 +226,10 @@ try {
           `git-${sourceCommit.slice(0, 12)}`,
           "--message",
           `Abris Universe ${sourceCommit}`,
+          "--var",
+          `SOURCE_COMMIT:${sourceCommit}`,
+          "--var",
+          "SOURCE_DIRTY:false",
         ],
         {
           env: { WRANGLER_OUTPUT_FILE_PATH: uploadOutput },
@@ -227,6 +242,7 @@ try {
       inspectProductionDeployment({
         baseUrl: candidate.previewUrl,
         expectedCommit: sourceCommit,
+        expectedWorkerVersionId: candidate.versionId,
         semanticAttempts: PREVIEW_SEMANTIC_ATTEMPTS,
         signal: AbortSignal.timeout(PREVIEW_SEMANTIC_TIMEOUT_MS),
       }),
@@ -248,10 +264,11 @@ try {
         token: process.env.CLOUDFLARE_CACHE_PURGE_TOKEN,
         hostname: productionHostname,
       }),
-    smokeProduction: async ({ previewSmoke }) =>
+    smokeProduction: async ({ candidate, previewSmoke }) =>
       inspectProductionStability({
         baseUrl: productionUrl,
         expectedCommit: sourceCommit,
+        expectedWorkerVersionId: candidate.versionId,
         priorBaseline: preDeploySnapshot,
         previewSmoke,
       }),
@@ -305,7 +322,7 @@ try {
   throw error;
 } finally {
   const evidence = {
-    schemaVersion: 3,
+    schemaVersion: 4,
     workerName,
     productionUrl,
     sourceCommit,
@@ -316,6 +333,7 @@ try {
     completedAt: new Date().toISOString(),
     prior,
     productionDomain: preDeployDomain,
+    versionAffinity,
     preDeploySnapshot,
     lifecycle: deploymentLifecycleEvidence(lifecycle),
     failure: failure ?? null,
