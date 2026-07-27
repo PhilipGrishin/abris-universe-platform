@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–5 retained as failed-closed history; remote preview prerequisite remediation `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`, and exact-source Engineering Verification Status `VERIFIED`; attempt 6 authorized only after protected merge and exact-main CI |
+| Status | Attempts 1–6 retained as failed-closed history; attempt 6 rollback task-scoped `VERIFIED`; production continuation `REWORK REQUIRED`; authority exhausted |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.2.0 |
+| Version | 2.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.2; `AU-TAP-TS001-003` v1.3.0; Technical Design v1.5.16; ADR-TS001-004 v1.3.12; Production Deployment Verification v2.0.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; artifact `8651402890`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.1.0; bounded independent acceptance at `1a683ab`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; exact-main CI `30266042191`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -392,10 +392,59 @@ rollback, as designed.
   `497991c7eb5d9c558becafa2f4d2461e639be1ec`, resolved TS001-DEPLOY-012 and
   TS001-DEPLOY-013, assigned Quality Gate Decision `PASS`, and assigned
   task-scoped Engineering Verification Status `VERIFIED`.
-- **Open gates:** required branch CI, protected merge, exact-main CI, and exact
-  protected-main source selection.
+- **Completed gates:** required branch CI, protected merge, exact-main CI, and
+  exact protected-main source selection completed before dispatch.
 - **Repeat rule:** no automatic retry. Dispatching the authorized attempt
   exhausts its authority regardless of result.
+
+## Attempt 6 — Candidate Endpoint Instability and Exact Rollback
+
+- **Workflow run:** `30266185702`.
+- **Source:** protected-main merge
+  `53389089fecf571705c27d620e11243f9a31f99d` from PR #13.
+- **Pre-dispatch gates:** both PR checks passed; AU-AGENT-003 exact-head
+  preservation check passed; exact-main CI run `30266042191` passed on a
+  same-SHA failed-job rerun after one timing-sensitive test invocation failed
+  before its fixture received the first request.
+- **Remote prerequisite:** `[TESTED]`; `enabled: false`,
+  `previews_enabled: true`.
+- **Candidate version:** `4e32ad7b-5518-4cca-af10-bca94334b92e`.
+- **Immutable preview:** `[TESTED]`; the complete provenance, root/fallback,
+  assets, method, and security-header contract passed for exact source
+  `53389089`.
+- **Promotion and purge:** candidate promoted to 100 percent; hostname-only
+  purge returned `200` and success.
+- **Production failure:** stability attempt 3 retained the exact candidate
+  root, HEAD, body hash, CSP, and other registered headers, but
+  `GET /version.json` returned `404`. The verifier failed closed at
+  `production-smoke`. Because the loop reached attempt 3, attempts 1 and 2 are
+  `[DERIVED]` to have passed the full contract; the artifact does not retain
+  their individual summaries.
+- **Root-cause boundary:** the immediate failure mechanism is confirmed.
+  Routing, propagation, or cache inconsistency is plausible but not
+  distinguished by this evidence and must not be asserted as the provider root
+  cause.
+- **Rollback:** `[TESTED]`; prior version
+  `d1f2b05d-77d0-4d53-9c7a-73d61135979e` returned to 100 percent; rollback
+  hostname purge succeeded; retained rollback baseline and independent
+  post-run GET/HEAD/hash checks restored the exact registered placeholder.
+- **Artifact:** ID `8652895888`; digest
+  `sha256:ca292e72a7a071b1577d21b004224ac35339fffe1bf741d3af21ef0b731faa6c`;
+  retained until 2026-10-25. Preflight JSON SHA-256:
+  `7309a773b88a6ae0abd086b4b1a3da95f98a36e2c3172de4c049d9f96a9c175a`.
+  Deployment JSON SHA-256:
+  `166ff85e0a70fbf3e0eae696ccc170085f36e0c12a4e6369b4e983b7c5512486`.
+- **Evidence safety:** forbidden-data scan found no token, secret,
+  authorization, account ID, preview URL, request headers, response body, or
+  Workers preview hostname.
+- **Independent gate:** `FAIL`; Engineering Verification Status
+  `REWORK REQUIRED`; rollback sub-result task-scoped `VERIFIED`;
+  TS001-DEPLOY-014 (High) and TS001-DEPLOY-015 (Medium) are mandatory.
+- **Authority:** exhausted. No automatic or manual repeat is authorized.
+- **Next gate:** separately reviewed Technical Alternative Proposal and
+  evidence-schema remediation, exact-source AU-AGENT-003 review, required CI,
+  protected merge, exact-main CI, then separate Project Owner authority for
+  any later attempt.
 
 ## References
 

@@ -1,7 +1,7 @@
 # Current Status
 
 **Status date:** 2026-07-27
-**Current focus:** TASK-THINSLICE-001 immutable-preview and hostname-purge deployment continuation
+**Current focus:** TASK-THINSLICE-001 post-promotion endpoint-stability alternative and evidence remediation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace`, the bounded INIT-003 organizational-validation scope at `f748c95`, and the bounded TASK-THINSLICE-001 Phase 0 result at immutable source `1a683ab`; every recorded exclusion remains unverified
 
@@ -26,8 +26,16 @@ authorized exactly one new attempt after all gates. Exact remote state
 preflight and sanitized version-provenance evidence are `[IMPLEMENTED]`,
 `[TESTED]`. AU-AGENT-003 assigned task-scoped Engineering Verification Status
 `VERIFIED` at exact source `497991c`, resolving TS001-DEPLOY-012/013.
-Required CI, protected merge, exact-main CI, production, and browser evidence
-remain open.
+PR #13, protected merge `53389089`, and exact-main CI run `30266042191`
+completed. The single authorized production run `30266185702` passed immutable
+preview, promotion, and hostname purge, then failed the third production
+stability contract when `/version.json` returned `404` while the candidate
+root remained healthy. Automatic rollback and rollback purge restored prior
+version `d1f2b05d` at 100 percent and the exact public baseline. AU-AGENT-003
+assigned `FAIL` / `REWORK REQUIRED`, High TS001-DEPLOY-014 and Medium
+TS001-DEPLOY-015; the rollback sub-result is task-scoped `VERIFIED`. Production
+and browser verification remain open. Attempt authority is exhausted; no
+repeat is authorized.
 
 ## Confirmed Workspace State
 

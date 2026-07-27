@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-REVIEW-ENG-TS001-DEPLOY-001 |
 | Title | Engineering Verification Report — TASK-THINSLICE-001 Production Deployment Readiness |
-| Status | Remote preview prerequisite remediation task-scoped engineering `VERIFIED`; protected merge, exact-main CI, and live production/browser evidence `[OPEN]`; not project `[VERIFIED]` |
+| Status | Production continuation `REWORK REQUIRED`; attempt 6 rollback task-scoped `VERIFIED`; TS001-DEPLOY-014/015 open; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.0.0 |
+| Version | 2.1.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; Technical Design v1.5.16; ADR-TS001-004 v1.3.12; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.2.0; AU-TAP-TS001-002 v1.3.2; AU-TAP-TS001-003 v1.3.0; exact immutable-preview source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; PR #11; runs `30261460673`, `30261463795`, `30262250573`, and `30262328350`; retained artifact `8651402890` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; Production Deployment Record v2.3.0; AU-TAP-TS001-002 v1.3.3; AU-TAP-TS001-003 v1.4.0; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; PR #13; exact-main CI `30266042191`; production run `30266185702`; retained artifact `8652895888` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -273,6 +273,8 @@ executable source.
 | TS001-DEPLOY-011 | Medium | Suppressing retained JSON alone did not prevent the public preview capability URL from appearing in Wrangler output, live error state, or request errors. | Suppress upload output, remove preview origin from live state and retained evidence, and use URL-free request errors. | AU-CODEX-PRIMARY / AU-AGENT-001 | State/evidence non-disclosure tests, manual error-path review, exact-source re-review | Resolved at `1054a2f0a7c1385fd8d51661c6be013e90df9df5` |
 | TS001-DEPLOY-012 | High | Run `30262328350` proved that repository `preview_urls: true` did not establish the remote Worker preview capability. Wrangler 4.114.0 `versions upload` does not apply the non-versioned subdomain setting, so the run created a version but received no preview URL. | Treat exact remote state `enabled: false`, `previews_enabled: true` as an external prerequisite. Add a read-only fail-closed preflight before upload. Any provider-state mutation requires explicit Project Owner authority and a separately reviewed idempotent action that preserves `enabled: false`; ordinary `wrangler deploy` is prohibited for this correction. | Project Owner for provider-state authority; AU-CODEX-PRIMARY / AU-AGENT-001 for implementation | Owner approval; exact-state preflight; disabled/malformed/unauthorized-state tests; complete gates; exact-source AU-AGENT-003 review | Resolved at `497991c7eb5d9c558becafa2f4d2461e639be1ec` |
 | TS001-DEPLOY-013 | Medium | The upload succeeded far enough to return an immutable version ID, but preview validation failed and sanitized evidence retained neither the ID nor an upload-occurrence flag. A likely zero-traffic version therefore lacks retained provenance. | Preserve `uploadOccurred: true` and the sanitized immutable version ID whenever upload succeeded, including missing-preview failure. Continue excluding preview capability URLs and sensitive values. | AU-CODEX-PRIMARY / AU-AGENT-001 | Deterministic missing/invalid-preview tests prove version-ID retention, zero production/cache mutation, and secret/capability non-disclosure; exact-source AU-AGENT-003 review | Resolved at `497991c7eb5d9c558becafa2f4d2461e639be1ec` |
+| TS001-DEPLOY-014 | High | Run `30266185702` promoted the exact preview-verified candidate and purged the hostname, but production stability attempt 3 received `404` for `/version.json` while the candidate root remained active with the exact candidate hash and required headers. Provenance and static-asset availability were not stable. | Prepare a separately reviewed Technical Alternative Proposal or incident-backed revision with explicit acceptance criteria, deterministic tests, rollback preservation, and exact-source independent review. Do not weaken the consecutive full-contract gate or repeat under current authority. | AU-AGENT-001 / AU-CODEX-PRIMARY; Project Owner for any future attempt | Approved alternative; exact implementation evidence; deterministic endpoint-instability tests; AU-AGENT-003 exact-source review; CI; protected merge; exact-main CI; separate owner attempt authority | Open — production completion blocked |
+| TS001-DEPLOY-015 | Medium | Deployment evidence records the final root observation, stability attempt/classification, and generic `404`, but not the failed check/path or bounded summaries of attempts 1 and 2. Artifact-only audit therefore depends on workflow logs and source inference to identify `/version.json` and derive the first two full passes. | Retain safe bounded per-attempt/check evidence such as check identifier, status, and attempt result. Exclude capability URLs, raw headers/bodies, response bodies, tokens, account IDs, authorization, and secrets. | AU-AGENT-001 / AU-CODEX-PRIMARY; AU-AGENT-002 for traceability | Evidence-schema implementation; synthetic failure test; disclosure-boundary tests; exact-source AU-AGENT-003 review | Open |
 
 ## Finding Disposition and Reverification
 
@@ -590,25 +592,65 @@ This task-scoped, unbracketed `VERIFIED` status is an engineering disposition.
 It is not project `[VERIFIED]`, product acceptance, live production success, or
 release approval.
 
+## Attempt 6 Live-Evidence Review
+
+| Control | Evidence | Result |
+| --- | --- | --- |
+| Exact source and gates | PR #13; protected-main merge `53389089fecf571705c27d620e11243f9a31f99d`; merge tree byte-identical to reviewed head; exact-main CI `30266042191` passed on its same-SHA failed-job rerun | Pass |
+| Workflow prerequisites | Run `30266185702`; authorization, accepted-source identity, credential presence, frozen install, typecheck, tests, build, audit, and rehearsal passed | Pass |
+| Remote state | Authenticated read-only preflight returned `enabled: false`, `previewsEnabled: true` | Pass |
+| Immutable preview | Candidate `4e32ad7b-5518-4cca-af10-bca94334b92e` passed the complete contract at exact source `53389089` | Pass |
+| Promotion and purge | Candidate promoted to 100 percent; hostname-only purge returned `200` and success | Pass |
+| Production stability | Attempt 3 kept the exact candidate root/HEAD/hash/CSP but `GET /version.json` returned `404`; attempts 1 and 2 are only `[DERIVED]` to have passed because individual summaries are not retained | Fail — TS001-DEPLOY-014/015 |
+| Rollback | Prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e` restored at 100 percent; rollback purge succeeded; retained and independent GET/HEAD/hash checks restored the exact baseline | Pass; rollback sub-result task-scoped `VERIFIED` |
+| Evidence retention | Artifact `8652895888`, digest `sha256:ca292e72a7a071b1577d21b004224ac35339fffe1bf741d3af21ef0b731faa6c`, retained until 2026-10-25; registered JSON checksums independently matched | Pass with TS001-DEPLOY-015 |
+| Disclosure boundary | No token, secret, authorization, account ID, preview URL, raw request headers, response body, or Workers preview hostname in retained JSON | Pass |
+
+The immediate failure mechanism has high confidence: `/version.json` returned
+`404` during production stability after the candidate root remained healthy.
+The underlying Cloudflare mechanism has only low-to-medium confidence. Routing,
+propagation, or cache inconsistency is plausible but not distinguished by this
+single run.
+
+## Attempt 6 Quality Gate Decision
+
+- **Quality Gate Decision:** FAIL.
+- **Engineering Verification Status:** REWORK REQUIRED.
+- **Exact live source:** `53389089fecf571705c27d620e11243f9a31f99d`.
+- **Mandatory unresolved findings:** TS001-DEPLOY-014 (High) and
+  TS001-DEPLOY-015 (Medium).
+- **Rollback sub-result:** VERIFIED within this task scope.
+- **Candidate production result:** failed; candidate is not active.
+- **Current production:** prior registered baseline restored and independently
+  rechecked.
+- **Authority:** exhausted. No automatic or manual repeat is authorized.
+- **Next gate:** register the run/findings; prepare a separately reviewed
+  Technical Alternative Proposal and evidence-schema remediation; obtain
+  exact-source AU-AGENT-003 review before any new owner authorization.
+
+This task-scoped status is not project `[VERIFIED]`, product acceptance,
+successful production deployment, or release approval.
+
 ## Residual External Blockers
 
 - TD-GATE-003 is closed by retained run `30248680612`.
-- Remote Worker subdomain state is confirmed as `enabled: true`,
-  `previews_enabled: false`; required state is `enabled: false`,
-  `previews_enabled: true`.
+- Remote Worker subdomain state passed attempt 6 as `enabled: false`,
+  `previews_enabled: true`; later drift remains fail-closed.
 - The exact immutable version created by attempt 5 cannot be reconstructed
   from retained sanitized evidence and likely remains orphaned at zero traffic.
 - Findings TS001-DEPLOY-012 and TS001-DEPLOY-013 are resolved at exact source
-  `497991c`; protected merge and exact-main CI remain open.
-- Immutable preview, exact promotion, hostname purge, rollback purge, and
-  production stability remain unproven in a live execution.
+  `497991c`; PR #13, protected merge, and exact-main CI completed.
+- Findings TS001-DEPLOY-014 and TS001-DEPLOY-015 block production
+  continuation.
+- Immutable preview, exact promotion, hostname purge, rollback purge, and exact
+  baseline restoration are proven. Stable production delivery is not.
 - Production security headers, runtime request inventory, browser network
   capture, console, import entry point, and live post-promotion assertions
   remain open.
 - A single workflow runner cannot prove simultaneous global edge convergence.
 
-These items remain mandatory evidence. One attempt is conditionally authorized
-but cannot be dispatched before protected merge and successful exact-main CI.
+These items remain mandatory evidence. Attempt authority is exhausted; no
+repeat is authorized.
 
 ## References
 

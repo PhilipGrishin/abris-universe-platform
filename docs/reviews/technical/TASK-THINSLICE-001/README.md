@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.33.0 |
+| Version | 1.34.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -146,8 +146,13 @@ The Project Owner approved `AU-TAP-TS001-003` through
 OWNER-DEC-TS001-PRODUCTION-PREVIEW-003. Exact remote state is reload-confirmed;
 exact-state preflight and sanitized upload/version provenance are implemented
 and tested. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source
-`497991c` and resolved TS001-DEPLOY-012/013. Required CI, protected merge, and
-exact-main CI remain mandatory before the one authorized attempt.
+`497991c` and resolved TS001-DEPLOY-012/013. PR #13, protected merge
+`53389089`, and exact-main CI completed. Run `30266185702` passed immutable
+preview, promotion, and purge, then failed production stability on
+`/version.json` `404` and rolled back to the exact prior baseline.
+AU-AGENT-003 assigned production `REWORK REQUIRED`, High TS001-DEPLOY-014,
+Medium TS001-DEPLOY-015, and task-scoped rollback `VERIFIED`. Authority is
+exhausted; no repeat is authorized.
 
 ## Owner
 

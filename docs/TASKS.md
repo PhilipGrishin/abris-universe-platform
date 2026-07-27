@@ -123,9 +123,14 @@ authorized disposition.
   approved `AU-TAP-TS001-003`; exact remote state is reload-confirmed and the
   read-only preflight plus sanitized version-provenance correction are
   `[IMPLEMENTED]`, `[TESTED]`. AU-AGENT-003 assigned task-scoped `VERIFIED` at
-  exact source `497991c` and resolved TS001-DEPLOY-012/013. Required CI,
-  protected merge, exact-main CI, and the single controlled attempt remain
-  open. Production/browser results remain open.
+  exact source `497991c` and resolved TS001-DEPLOY-012/013. PR #13, protected
+  merge `53389089`, and exact-main CI completed. Run `30266185702` passed
+  immutable preview, promotion, and purge, then failed production stability
+  when `/version.json` returned `404` on attempt 3 while the candidate root
+  remained active. Automatic rollback restored the prior version and exact
+  baseline. AU-AGENT-003 assigned `REWORK REQUIRED`, High TS001-DEPLOY-014,
+  and Medium TS001-DEPLOY-015; rollback is task-scoped `VERIFIED`. Attempt
+  authority is exhausted. Production/browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

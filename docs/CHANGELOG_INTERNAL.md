@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.27.0 |
+| Version | 4.28.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -17,8 +17,26 @@
 
 ## Purpose
 
-Record significant internal engineering changes in a concise, navigable history
-without replacing Git history, ADRs, task records, or handoff evidence.
+Record significant internal engineering changes in a concise, navigable
+history without replacing Git history, ADRs, task records, or handoff
+evidence.
+
+## 2026-07-27 — Production Attempt 6 Failed Closed and Rolled Back
+
+- Recorded PR #13, protected merge `53389089`, and successful exact-main CI
+  run `30266042191` on its same-SHA failed-job rerun.
+- Recorded production run `30266185702`: immutable preview, promotion, and
+  hostname purge passed; production stability attempt 3 received
+  `/version.json` `404` while the candidate root remained active.
+- Registered retained artifact `8652895888`, its digest and file checksums,
+  sanitized-evidence scan, exact rollback, rollback purge, and public-baseline
+  restoration.
+- Integrated AU-AGENT-003 `FAIL` / `REWORK REQUIRED`, High
+  TS001-DEPLOY-014, Medium TS001-DEPLOY-015, and task-scoped rollback
+  `VERIFIED`.
+- Recorded exhausted attempt authority, OQ-009, RISK-021, and the next
+  separately reviewed Technical Alternative Proposal/evidence-schema gate.
+- Documentation Impact: Material.
 
 ## Scope
 

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-002 |
 | Title | Immutable Preview and Hostname Cache Purge Technical Alternative |
-| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge complete; one attempt failed before production mutation and authority is exhausted |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering `VERIFIED`; attempt 6 failed production stability and rolled back; authority exhausted |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.2 |
+| Version | 1.3.3 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v2.2.0; Production Deployment Verification v2.0.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `ebdde8ec7e3dc7cb292868ab9d908cd19f3b0e9b`; run `30262328350`; `AU-TAP-TS001-003` v1.3.0 |
+| Dependencies | PROD-DEC-013; TS001-DEPLOY-007; `AU-TAP-TS001-001`; Production Deployment Record v2.3.0; Production Deployment Verification v2.1.0; exact reviewed source `1054a2f0a7c1385fd8d51661c6be013e90df9df5`; exact remote-preflight remediation source `497991c7eb5d9c558becafa2f4d2461e639be1ec`; protected-main source `53389089fecf571705c27d620e11243f9a31f99d`; production run `30266185702`; `AU-TAP-TS001-003` v1.4.0 |
 | Supersedes | The continuation mechanism in `AU-TAP-TS001-001`; its historical evidence and rollback result remain authoritative |
 | Superseded By | None |
 | Review Triggers | Cloudflare preview behavior change; cache API change; deployment-state-machine change; token-scope change; production or rollback failure |
@@ -210,8 +210,16 @@ upload/version-ID retention. AU-AGENT-003 assigned production continuation
 approved `AU-TAP-TS001-003` and one separate attempt after its exact-source
 review, protected merge, and exact-main CI gates. Exact-source review passed at
 `497991c` and resolved TS001-DEPLOY-012/013; protected merge and exact-main CI
-remain open. The exhausted
+were the remaining gates. The exhausted
 OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 authority grants no repeat by itself.
+
+PR #13, protected merge `53389089`, and exact-main CI completed. Run
+`30266185702` passed immutable preview, exact promotion, and hostname purge.
+The third production stability contract then received `/version.json` `404`
+while the candidate root remained active. Exact rollback and rollback purge
+restored the prior version/baseline. AU-AGENT-003 assigned production
+`REWORK REQUIRED`, TS001-DEPLOY-014/015, and task-scoped rollback `VERIFIED`.
+No repeat is authorized.
 
 ## References
 

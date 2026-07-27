@@ -474,7 +474,7 @@
 - **Status:** `[OPEN]`; attempts 3 and 4 evidence retained; prior continuation
   superseded; replacement `AU-TAP-TS001-002` `[APPROVED]`, `[IMPLEMENTED]`,
   `[TESTED]`, exact-source Engineering Verification Status `VERIFIED`;
-  protected merge and live evidence open
+  attempt 6 live evidence retained; production continuation `REWORK REQUIRED`
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -508,8 +508,9 @@
   both after promotion and rollback. Forty-three focused deployment tests and
   the complete local repository gate pass. AU-AGENT-003 exact-source review at
   `1054a2f0` resolves TS001-DEPLOY-008 through TS001-DEPLOY-011 with no
-  remaining finding; both CI runs pass. Protected merge and live evidence
-  remain required.
+  remaining finding; both CI runs pass. Attempt 6 later passed immutable
+  preview, promotion, and purge, but failed on candidate endpoint instability;
+  RISK-021 and TS001-DEPLOY-014/015 supersede the next technical disposition.
 - **Fallback:** Keep or restore the prior placeholder. If the approved
   immutable-preview/purge attempt fails, retain sanitized evidence and require
   a new finding disposition before another attempt.
@@ -519,7 +520,7 @@
 ## RISK-020 — Remote Preview Setting Drifts From Reviewed Configuration
 
 - **Status:** Mitigation `[IMPLEMENTED]`, `[TESTED]`, exact-source engineering
-  `VERIFIED`; provider state reload-confirmed; production evidence `[OPEN]`
+  `VERIFIED`; live preflight `[TESTED]`; provider drift remains possible
 - **Probability:** Observed
 - **Impact:** High
 - **Trigger:** The repository requires `workers_dev: false` and
@@ -539,8 +540,33 @@
   The implementation now fails before upload on drift and retains sanitized
   version provenance after a successful upload.
 - **Fallback:** Keep the prior production version. Do not repeat the workflow
-  until the read-only preflight and evidence correction are independently
-  reviewed, required CI and protected merge pass, and the exact-main source is
-  selected for the single owner-authorized attempt.
+  when the preflight fails. Run `30266185702` proved the exact remote state and
+  proceeded; its later production-stability failure is tracked separately.
 - **Owner:** Project Owner for remote setting and new attempt authority;
   AU-AGENT-001 for technical correction; AU-AGENT-003 for independent review
+
+## RISK-021 — Promoted Static Asset Endpoint Is Not Stable Across Observations
+
+- **Status:** Observed; production continuation `REWORK REQUIRED`
+- **Probability:** Observed once
+- **Impact:** High
+- **Trigger:** After exact immutable-preview verification, promotion, and
+  hostname purge, the candidate root remains healthy while a required static
+  endpoint such as `/version.json` returns a non-success response during the
+  consecutive production quorum.
+- **Affected areas:** Production provenance, static asset consistency,
+  deployment completion, auditability, and safe release.
+- **Evidence:** Run `30266185702`; candidate preview passed; production
+  stability attempt 3 received `/version.json` `404`; TS001-DEPLOY-014 and
+  TS001-DEPLOY-015; artifact `8652895888`.
+- **Prevention:** `[OPEN]`; requires a separately reviewed Technical
+  Alternative Proposal. Do not infer whether routing, propagation, or cache is
+  the underlying Cloudflare mechanism from one run.
+- **Mitigation:** Preserve exact preview verification, fail-closed production
+  quorum, immutable rollback, rollback purge, and baseline restoration. Extend
+  sanitized retained evidence with bounded per-attempt/check identifiers.
+- **Fallback:** Keep prior version `d1f2b05d` at 100 percent. Do not retry
+  without exact-source independent review, required CI, protected merge,
+  exact-main CI, and separate Project Owner authority.
+- **Owner:** AU-AGENT-001 for technical alternative; AU-AGENT-003 for
+  independent verification; Project Owner for any future attempt

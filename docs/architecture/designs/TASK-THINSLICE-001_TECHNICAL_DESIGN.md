@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.16 |
+| Version | 1.5.17 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -131,6 +131,15 @@ Version 1.5.16 records AU-AGENT-003 exact-source Quality Gate Decision `PASS`
 and task-scoped Engineering Verification Status `VERIFIED` for remediation
 `497991c`. TS001-DEPLOY-012/013 are resolved. Protected merge, exact-main CI,
 and live production/browser evidence remain separate gates.
+
+Version 1.5.17 records protected-main run `30266185702`. Exact remote state,
+immutable preview, exact promotion, and hostname purge passed. Production
+stability attempt 3 then received `/version.json` `404` while the candidate
+root remained healthy. Fail-closed rollback restored the exact prior
+version/baseline. AU-AGENT-003 assigned production `REWORK REQUIRED`, High
+TS001-DEPLOY-014, Medium TS001-DEPLOY-015, and task-scoped rollback
+`VERIFIED`. No architecture change is adopted; the next technical alternative
+and evidence-schema remediation remain `[OPEN]`.
 
 ## 2. Scope and Non-Scope
 

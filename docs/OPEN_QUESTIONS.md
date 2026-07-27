@@ -147,9 +147,34 @@
 - **Implementation state:** Dashboard state `enabled: false`,
   `previews_enabled: true` is applied and reload-confirmed. Exact-state
   preflight and upload/version provenance are implemented, tested, and
-  independently verified at exact source `497991c`; protected merge and
-  exact-main CI remain open.
+  independently verified at exact source `497991c`. Protected merge
+  `53389089`, exact-main CI, and the one authorized attempt completed. Run
+  `30266185702` failed production stability and safely rolled back; the
+  authority is exhausted.
 - **Boundary:** Ordinary `wrangler deploy` is not an allowed configuration
-  path. The prior version remains production until the controlled attempt
-  succeeds.
+  path. The failed controlled attempt restored the prior production version;
+  no later attempt is authorized.
 - **Decision owner:** Project Owner
+
+## OQ-009 — Post-Promotion Endpoint Stability Disposition
+
+- **Status:** `[OPEN]`
+- **Question:** Which separately reviewed technical alternative, if any,
+  should address the observed post-promotion `/version.json` instability and
+  self-contained per-attempt evidence before another production attempt is
+  considered?
+- **Why it matters:** Run `30266185702` passed immutable preview, promotion,
+  and purge, but the third production contract received `404` for
+  `/version.json` while the candidate root remained active. Rollback succeeded,
+  but production completion is unproven.
+- **Evidence:** protected-main source `53389089`; run `30266185702`; artifact
+  `8652895888`; TS001-DEPLOY-014 (High); TS001-DEPLOY-015 (Medium).
+- **Required disposition:** AU-AGENT-001 prepares a Technical Alternative
+  Proposal and evidence-schema remediation with explicit acceptance criteria,
+  deterministic tests, rollback preservation, and exact-source AU-AGENT-003
+  review. A new attempt requires separate Project Owner authorization after
+  all gates.
+- **Boundary:** Do not attribute the provider root cause more specifically than
+  observed endpoint inconsistency without new evidence. No repeat is
+  authorized.
+- **Decision owner:** Project Owner after technical and independent review
