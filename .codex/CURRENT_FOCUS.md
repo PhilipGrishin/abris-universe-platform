@@ -33,8 +33,11 @@ preflight, candidate, and rollback evidence, closing TD-GATE-003, but the
 version override still served the placeholder through all six semantic
 attempts. Candidate `b855e2e0` remained at zero traffic and the exact prior
 version/baseline was restored. A bounded two-minute data-plane wait and
-sanitized last-response diagnostic are now under implementation and review;
-production promotion remains open.
+sanitized last-response diagnostic are task-scoped engineering `VERIFIED` at
+exact source `a503500`; superseded source `7381112` was rejected because it
+also extended post-promotion exposure. Protected merge and one further
+zero-traffic attempt
+are allowed. Production promotion remains open.
 
 ## Confirmed Inputs
 
@@ -268,8 +271,8 @@ remains open.
 
 ## Next Concrete Step
 
-Independently verify and merge the bounded two-minute propagation diagnostic,
-then run one exact protected-main attempt. If the override still cannot select
+Merge exact observability remediation `a503500`, then run one exact
+protected-main attempt. If the override still cannot select
 the zero-traffic version, stop and raise a Technical Alternative Proposal
 instead of weakening the pre-promotion gate. Never place secret values in chat
 or the repository.

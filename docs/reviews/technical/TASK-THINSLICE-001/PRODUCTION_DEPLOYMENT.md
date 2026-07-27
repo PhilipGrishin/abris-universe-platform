@@ -8,10 +8,10 @@
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.0 |
+| Version | 1.4.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.6; ADR-TS001-004 v1.3.2; Production Deployment Verification v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.7; ADR-TS001-004 v1.3.3; Production Deployment Verification v1.3.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -187,9 +187,10 @@ script-initiated network requests or pattern-derived egress.
 - **Artifact:** retained for 90 days as
   `production-deployment-bb9a5e56c1627a3da4146c972a72b4c4006f59b3-30248680612`.
 - **Next bounded diagnostic:** allow up to 61 complete semantic attempts at
-  two-second intervals and retain only the last response status, SHA-256,
-  CSP/cache/server fields, and attempt count. No response body, token, account
-  ID, or request header is retained.
+  two-second intervals only while the candidate remains at zero traffic;
+  post-promotion production smoke remains at six attempts. Retain only the last
+  response status, SHA-256, CSP/cache/server fields, and attempt count. No
+  response body, token, account ID, or request header is retained.
 
 ## Rollback
 
@@ -206,11 +207,13 @@ IndexedDB.
 
 ## Current Blocker
 
-TD-GATE-003 is closed and no further owner credential action is required. The
-bounded two-minute propagation diagnostic must pass exact-source AU-AGENT-003
-review and protected merge before one further run. If the zero-traffic version
-override remains unavailable, stop and raise a Technical Alternative Proposal;
-do not silently weaken pre-promotion smoke or expose candidate traffic.
+TD-GATE-003 is closed and no further owner credential action is required.
+AU-AGENT-003 independently assigned exact observability remediation `a503500`
+task-scoped `VERIFIED`; superseded source `7381112` is not mergeable because it
+also extended post-promotion smoke. Protected merge and one further
+zero-traffic run are allowed. If the override remains unavailable, stop and
+raise a Technical Alternative Proposal; do not weaken pre-promotion smoke or
+expose candidate traffic.
 
 ## References
 

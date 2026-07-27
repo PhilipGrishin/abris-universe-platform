@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.9.0 |
+| Version | 3.0.0 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
@@ -35,7 +35,7 @@ contain Claude Cowork product acceptance reports and does not grant project
 | TASK-THINSLICE-001 | [Persistence Verification](TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Exact remediation commit `854073c`; findings 001–005 resolved; finding 006 remains the browser/client evidence gate |
 | TASK-THINSLICE-001 | [Renderer Verification](TASK-THINSLICE-001_RENDERER_VERIFICATION.md) | `VERIFIED` | Exact commit `930cad2`; findings TS001-RENDER-001 through 004 resolved; repository-core scope only |
 | TASK-THINSLICE-001 | [Consolidated Implementation Verification](TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md) | Underlying implementation and Completion Report v1.1.0 `VERIFIED WITH FINDINGS` | All mandatory bounded Phase 0 implementation/report findings resolved; TS001-COMP-004 remains a non-blocking recommendation |
-| TASK-THINSLICE-001 | [Production Deployment Verification](TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md) | `VERIFIED` | Exact propagation remediation `854ba305`; 17 focused tests and CI pass; later retained run `30248680612` closes TD-GATE-003; bounded extended diagnostic and production/browser evidence remain open |
+| TASK-THINSLICE-001 | [Production Deployment Verification](TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md) | `VERIFIED` | Exact final observability remediation `a503500`; 61 attempts only at zero traffic, six after promotion, 19 focused tests and final-source CI runs `30249687717`/`30249690631` pass; protected merge/retry allowed |
 
 The report closes the independent security-review component of TD-GATE-004.
 TS001-SEC-001 is resolved. TS001-SEC-002 retains its future runtime request

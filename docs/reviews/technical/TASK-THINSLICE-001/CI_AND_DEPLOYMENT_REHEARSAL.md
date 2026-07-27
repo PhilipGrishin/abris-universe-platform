@@ -8,7 +8,7 @@
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.5.0 |
+| Version | 1.5.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | Technical Design v1.5.6 section 12; ADR-TS001-004 v1.3.2; Production Deployment Verification v1.2.0; Production Deployment Record v1.4.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
@@ -114,8 +114,8 @@ placeholder.
 
 Production remains blocked by:
 
-- exact-source review and protected merge of the bounded two-minute
-  propagation diagnostic;
+- protected merge of independently verified exact observability remediation
+  `a503500`;
 - successful zero-traffic candidate smoke;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
@@ -145,8 +145,10 @@ implementation findings; the current underlying implementation status is
 blocked by its explicit deployment gates regardless of either internal status.
 The implementation owner cannot change AU-AGENT-003 status.
 
-The bounded two-minute propagation diagnostic and sanitized failure evidence
-require a separate exact-source AU-AGENT-003 review before merge and dispatch.
+AU-AGENT-003 independently assigned exact observability remediation `a503500`
+task-scoped `VERIFIED`; 61 attempts apply only before promotion and production
+smoke remains at six. Superseded `7381112` is not mergeable. Protected merge
+and one further zero-traffic dispatch are allowed.
 
 ## References
 

@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.6 |
+| Version | 1.5.7 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -74,6 +74,10 @@ Version 1.5.6 records retained run-2 route/preflight/rollback evidence, closes
 TD-GATE-003, and introduces a bounded two-minute data-plane diagnostic after
 six shorter semantic attempts remained stale. It does not weaken zero-traffic
 smoke, change product behavior, or authorize an alternative promotion path.
+Version 1.5.7 records independent review of exact correction `a503500`: the
+61-attempt window applies exclusively before promotion at zero traffic, while
+post-promotion production smoke retains six attempts. Superseded source
+`7381112` is not mergeable.
 
 ## 2. Scope and Non-Scope
 
@@ -1013,8 +1017,9 @@ production execution remain required before step 11 is complete.
 The second attempt retained the route and preflight evidence, left its candidate
 at zero traffic, and restored the prior version after six complete semantic
 attempts remained stale over approximately twelve seconds. A final bounded
-diagnostic allows up to 61 attempts over two minutes and retains only sanitized
-last-response metadata. Failure after that interval requires a Technical
+diagnostic allows up to 61 attempts over two minutes only at zero traffic and
+retains sanitized last-response metadata. Post-promotion smoke remains limited
+to six attempts. Failure after the pre-promotion interval requires a Technical
 Alternative Proposal; the gate must not be weakened silently.
 
 ## 16. Architecture Review Checklist

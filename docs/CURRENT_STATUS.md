@@ -522,8 +522,11 @@
 - `[OPEN]` Candidate `b855e2e0-7221-456e-aaa6-55e947b0dcf0` remained at zero
   traffic. Six semantic attempts over approximately twelve seconds still
   observed the placeholder/CSP mismatch, so no promotion occurred. A bounded
-  two-minute wait plus sanitized last-response diagnostic requires exact-source
-  verification before one further protected attempt.
+  two-minute wait plus sanitized last-response diagnostic is independently
+  task-scoped `VERIFIED` at exact source `a503500`; 61 attempts apply only
+  before promotion and post-promotion smoke remains bounded to six. Superseded
+  source `7381112` is not mergeable. Protected merge and one further
+  zero-traffic attempt are allowed.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -571,6 +574,6 @@ version and public baseline.
 
 ## Next Step
 
-Verify and merge the bounded two-minute propagation diagnostic, then run one
-exact protected-main attempt. Escalate a platform-path alternative if the
+Merge exact observability remediation `a503500`, then run one exact
+protected-main attempt. Escalate a platform-path alternative if the
 zero-traffic override remains unavailable.

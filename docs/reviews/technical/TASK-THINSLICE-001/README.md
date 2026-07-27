@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.26.0 |
+| Version | 1.26.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/07_TaskPackage_EP01_ThinSlice.md` exact review source, `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md` current editorial revision, `docs/SOURCE_OF_TRUTH.md`, `docs/SHARED_WORKFLOW.md` |
@@ -112,7 +112,10 @@ successful zero-traffic smoke and the production security assertions.
 AU-AGENT-003 independently assigned exact remediation `854ba305` task-scoped
 `VERIFIED`; retained corrected run `30248680612` closes TD-GATE-003 but still
 failed closed after six stale override responses. The bounded two-minute
-diagnostic requires exact-source review before one further protected attempt.
+diagnostic is task-scoped engineering `VERIFIED` at exact source `a503500`;
+61 attempts apply only before promotion and production smoke remains at six.
+Superseded `7381112` is not mergeable. Protected merge and one further
+zero-traffic attempt are allowed.
 
 ## Owner
 

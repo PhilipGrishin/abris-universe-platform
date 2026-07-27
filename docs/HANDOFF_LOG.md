@@ -1,5 +1,18 @@
 # Handoff Log
 
+## 2026-07-27 — Zero-Traffic Observability Boundary Independently Verified
+
+- **Exact source:** `a503500c724ea618b80796fcca470d260d76b621`.
+- **Result:** AU-AGENT-003 assigned task-scoped `VERIFIED` with no remaining
+  finding. Accepted application diff remains empty and 19 focused tests pass.
+- **Boundary:** 61 semantic attempts apply exclusively before promotion while
+  candidate traffic is zero; ordinary and post-promotion production smoke
+  retain six attempts. Superseded source `7381112` is not mergeable.
+- **Disposition:** Protected merge is allowed after final-source required CI,
+  followed by one further zero-traffic attempt. Another exhausted window
+  requires a Technical Alternative Proposal. No project `[VERIFIED]` was
+  assigned.
+
 ## 2026-07-27 — Production Attempt 2 Retained and Rolled Back
 
 - **Workflow/source:** `30248680612` at exact protected-main source

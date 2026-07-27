@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.18.0 |
+| Version | 4.19.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,15 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Zero-Traffic Observability Boundary Reverified
+
+- AU-AGENT-003 assigned exact correction `a503500` task-scoped `VERIFIED`
+  after 19 focused tests and accepted-source identity verification.
+- Restricted the 61-attempt window to zero-traffic pre-promotion smoke and
+  retained six attempts after promotion; superseded `7381112` is not mergeable.
+- Allowed protected merge after required CI and one further zero-traffic
+  attempt without assigning project `[VERIFIED]`.
 
 ## 2026-07-27 — Retained Production Attempt 2
 

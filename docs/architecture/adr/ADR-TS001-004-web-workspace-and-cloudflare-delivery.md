@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.2 |
+| Version | 1.3.3 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -144,3 +144,7 @@ production smoke, rollback rehearsal, and local-data compatibility.
   TD-GATE-003 but still failed closed before promotion after six stale override
   responses. A bounded two-minute diagnostic remains inside the approved
   zero-traffic design; failure requires a separately reviewed alternative.
+- 2026-07-27: Version 1.3.3 records AU-AGENT-003 task-scoped `VERIFIED` review
+  of exact correction `a503500`. The 61-attempt window is restricted to
+  zero-traffic pre-promotion smoke; post-promotion smoke remains at six.
+  Superseded source `7381112` is not mergeable.
