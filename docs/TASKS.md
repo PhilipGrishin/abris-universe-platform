@@ -141,8 +141,18 @@ authorized disposition.
   accepting TS001-DEPLOY-014 technical remediation for integration. Permanent
   rules credential presence and the exact-host rule are operator-tested.
   OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one post-gate production
-  run. Protected integration, exact-main CI, live production, and browser
-  results remain open.
+  run. Protected merge `f86d1421` and exact-main CI passed, but dispatched run
+  `30276596270` failed before credentials or Cloudflare mutation because its
+  source guard treated reviewed deployment-wrapper changes as product drift.
+  The run retained no artifact and did not change production.
+  OWNER-DEC-TS001-PRODUCTION-RETRY-006 authorizes exactly one corrected repeat
+  after all gates. AU-AGENT-003 assigned intermediate High findings
+  TS001-DEPLOY-018/019/020, then assigned `PASS` and task-scoped `VERIFIED` at
+  exact remediation `3ae376f`. The final guard externally anchors accepted
+  product source `1a683ab` and reviewed deployment source `a20bb8b`, pins the
+  full deployment trust plane, and includes adversarial real-Git regression
+  tests. Protected integration, branch CI, exact-main CI, live production, and
+  browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

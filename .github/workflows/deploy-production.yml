@@ -37,7 +37,8 @@ jobs:
       url: https://abris.653915.com
     env:
       CI: "true"
-      ACCEPTED_EXECUTABLE_SOURCE_COMMIT: 1a683abd9a8294de5a36888e997e65aba7b7a167
+      ACCEPTED_EXECUTABLE_SOURCE_COMMIT: ${{ vars.ACCEPTED_PRODUCT_SOURCE_COMMIT }}
+      REVIEWED_DEPLOYMENT_SOURCE_COMMIT: ${{ vars.REVIEWED_DEPLOYMENT_SOURCE_COMMIT }}
       EXPECTED_SOURCE_COMMIT: ${{ inputs.expected_commit }}
       DEPLOY_EVIDENCE_DIR: .production-deployment
     steps:
@@ -63,16 +64,7 @@ jobs:
           git show --check --oneline --no-renames HEAD
 
       - name: Verify independently accepted executable source
-        run: |
-          git cat-file -e "$ACCEPTED_EXECUTABLE_SOURCE_COMMIT^{commit}"
-          git diff --quiet "$ACCEPTED_EXECUTABLE_SOURCE_COMMIT" "$GITHUB_SHA" -- \
-            apps \
-            ':(exclude)apps/web/wrangler.jsonc' \
-            packages \
-            tests/fixtures/oxs \
-            pnpm-lock.yaml \
-            pnpm-workspace.yaml \
-            tsconfig.base.json
+        run: node scripts/verify-production-source-boundary.mjs
 
       - name: Verify production credentials exist
         env:

@@ -186,7 +186,12 @@
   TS001-DEPLOY-014 technical remediation for integration at `e22e4c7`.
   Permanent credential presence and exact-host rule read-back are
   operator-tested. OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
-  controlled run after protected gates.
-- **Boundary:** Protected merge, exact-main CI, live production convergence,
-  multi-region evidence, and browser production verification remain open.
+  controlled run after protected gates. That run was dispatched as
+  `30276596270` but failed before Cloudflare mutation at an over-broad
+  accepted-source check. OWNER-DEC-TS001-PRODUCTION-RETRY-006 authorizes one
+  corrected repeat. AU-AGENT-003 resolved source-boundary findings
+  TS001-DEPLOY-018/019/020 at exact source `3ae376f`.
+- **Boundary:** Corrected protected merge, exact-main CI, live production
+  convergence, multi-region evidence, and browser production verification
+  remain open.
 - **Decision owner:** Project Owner after technical and independent review

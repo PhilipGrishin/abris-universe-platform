@@ -4,11 +4,11 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; transition remediation task-scoped `VERIFIED`; protected integration pending |
+| Status | No-deploy rehearsal `[TESTED]`; transition and source-boundary remediation task-scoped `VERIFIED`; corrected protected integration pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.16.1 |
+| Version | 1.17.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
 | Dependencies | OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17 section 12; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.2.1; Production Deployment Record v2.5.1; Threat Model TM-011 through TM-024; exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; production run `30266185702`; artifact `8652895888` |
@@ -252,6 +252,18 @@ resolves TS001-DEPLOY-015/016/017 and is fit for protected integration.
 Permanent production rules-secret presence and exact-host rule read-back are
 operator-tested; authenticated workflow preflight remains the retained
 external-state gate.
+
+Protected merge `f86d1421` and exact-main CI passed. Run `30276596270` stopped
+at the accepted-source guard before credentials or any Cloudflare mutation
+because the former whole-app comparison rejected reviewed deployment-wrapper
+changes. The corrected guard externally anchors accepted product source
+`1a683ab` and reviewed deployment source `a20bb8b`, pins the complete
+deployment trust surface, and rejects repository self-registration.
+AU-AGENT-003 assigned `PASS` and task-scoped `VERIFIED` at final source
+`3ae376f`, resolving TS001-DEPLOY-018/019/020. Exact final local evidence passes
+strict typecheck, 71 script tests, 70 package tests, production build,
+dependency audit, and Wrangler rehearsal. Corrected branch CI, protected merge,
+and exact-main CI remain mandatory before the owner-authorized repeat.
 
 ## References
 

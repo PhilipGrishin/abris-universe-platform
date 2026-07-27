@@ -55,6 +55,22 @@ TS001-DEPLOY-014 technical remediation for protected integration. Branch CI,
 protected merge, exact-main CI, the one controlled deployment, and live
 browser verification remain open.
 
+Protected merge `f86d1421` and exact-main CI completed. Production workflow
+run `30276596270` then failed at the accepted-source guard before credential
+validation, dependency installation, build, or any Cloudflare call. No
+deployment artifact was produced and the public baseline remained exact.
+The Project Owner issued OWNER-DEC-TS001-PRODUCTION-RETRY-006 for one corrected
+post-gate repeat. AU-AGENT-003 rejected the first guard source with
+TS001-DEPLOY-018/019 and the first pinning source with TS001-DEPLOY-020.
+Exact source `3ae376f` uses external GitHub `production` environment anchors
+for accepted product source `1a683ab` and independently reviewed deployment
+source `a20bb8b`; the registry must match both, the full deployment trust plane
+must have zero drift, and product paths must match the accepted source.
+AU-AGENT-003 assigned Quality Gate Decision `PASS` and task-scoped Engineering
+Verification Status `VERIFIED`, resolving TS001-DEPLOY-018/019/020. Protected
+integration and exact-main CI remain mandatory before the one authorized
+repeat.
+
 ## Confirmed Workspace State
 
 - `[CONFIRMED]` The selected workspace directory exists.

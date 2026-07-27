@@ -577,3 +577,33 @@
   exact-main CI, and separate Project Owner authority.
 - **Owner:** AU-AGENT-001 for technical alternative; AU-AGENT-003 for
   independent verification; Project Owner for any future attempt
+
+## RISK-022 — Repository Self-Declares Production Acceptance Anchors
+
+- **Status:** Mitigation `[IMPLEMENTED]`, `[TESTED]`; exact-source engineering
+  `VERIFIED`; external variable mutation remains privileged owner/admin action
+- **Probability:** Reproduced in independent review before remediation
+- **Impact:** High
+- **Trigger:** A repository commit changes deployment trust inputs and a later
+  repository-only commit re-registers that unreviewed source as reviewed.
+- **Affected areas:** Independent acceptance boundary, production workflow,
+  Worker security headers and responses, secret-bearing deployment scripts,
+  build provenance, and auditability.
+- **Prevention:** Keep accepted-product and reviewed-deployment SHA anchors in
+  the protected GitHub `production` environment. Require exact equality with
+  the repository registry, exact reviewed-source ancestry, zero drift across
+  workflows/Worker/root manifest/all scripts/Cloudflare fixtures, and no
+  product drift outside that surface.
+- **Evidence:** AU-AGENT-003 reproduced the two-commit bypass at source
+  `afd17ca`, assigned TS001-DEPLOY-020 High, then independently confirmed the
+  external-anchor correction at exact source `3ae376f`. Eleven focused
+  boundary tests include external mismatch and two-commit self-registration
+  rejection; the complete repository gate passes.
+- **Mitigation:** Any change to either environment anchor requires a matching
+  registry update, new exact-source AU-AGENT-003 review, governance record,
+  branch CI, protected merge, and exact-main CI.
+- **Fallback:** Fail before credentials, build, or Cloudflare mutation when an
+  anchor is absent, malformed, mismatched, non-ancestral, or drifted.
+- **Owner:** Project Owner / repository administrator for external anchors;
+  AU-CODEX-PRIMARY for workflow enforcement; AU-AGENT-003 for independent
+  verification

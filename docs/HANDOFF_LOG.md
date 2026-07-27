@@ -1,5 +1,29 @@
 # Handoff Log
 
+## 2026-07-27 — Corrected Production Source Boundary Verified
+
+- **Failed dispatch:** run `30276596270` failed at the accepted-source guard;
+  credential, install, build, and Cloudflare steps were skipped; zero artifacts
+  were retained; production baseline remained exact.
+- **Owner authority:** OWNER-DEC-TS001-PRODUCTION-RETRY-006 authorizes exactly
+  one corrected repeat after all gates.
+- **Independent findings:** first source `3f3feac` received
+  TS001-DEPLOY-018/019 High; second source `afd17ca` resolved surface
+  completeness but received TS001-DEPLOY-020 High for repository
+  self-registration.
+- **Final remediation:** exact source `3ae376f`; accepted product source
+  `1a683ab` and reviewed deployment source `a20bb8b` are independently anchored
+  in the GitHub `production` environment; the complete deployment trust plane
+  must have zero drift and registry values must match both external anchors.
+- **Reverification:** AU-AGENT-003 Quality Gate `PASS`; task-scoped Engineering
+  Verification Status `VERIFIED`; TS001-DEPLOY-018/019/020 resolved; no
+  mandatory unresolved finding.
+- **Evidence:** actual guard pass with 32 reviewed paths; 11 adversarial
+  boundary tests; 71 script and 70 package tests; typecheck, exact build, audit,
+  and rehearsal pass.
+- **Boundary:** corrected branch CI, protected merge, and exact-main CI remain
+  required. Only one repeat is authorized; no product acceptance is assigned.
+
 ## 2026-07-27 — Production Affinity Gate and Exact Remediation Verified
 
 - **Owner authority:** OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
