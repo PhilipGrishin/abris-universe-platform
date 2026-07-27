@@ -547,8 +547,8 @@
 
 ## RISK-021 — Promoted Static Asset Endpoint Is Not Stable Across Observations
 
-- **Status:** Production observation confirmed in an isolated reproduction;
-  technical remediation task-scoped `VERIFIED`; live production result open
+- **Status:** Mitigation `[IMPLEMENTED]`, `[TESTED]`; bounded live result and
+  task-scoped engineering `VERIFIED`; global/long-duration residual open
 - **Probability:** Observed in production once and repeatedly reproduced in the
   isolated deployment lab
 - **Impact:** High
@@ -575,6 +575,12 @@
 - **Fallback:** Keep prior version `d1f2b05d` at 100 percent. Do not retry
   without exact-source independent review, required CI, protected merge,
   exact-main CI, and separate Project Owner authority.
+- **Live resolution evidence:** Run `30278965044` verified immutable preview,
+  promotion, hostname purge, four exact prior-baseline observations, and three
+  consecutive candidate contracts for version `8c49fb69`. Independent
+  post-run semantic verification passed on attempt 1; AU-AGENT-003 closed
+  TS001-DEPLOY-014 for this bounded scope. This does not prove simultaneous
+  global-edge or long-duration convergence.
 - **Owner:** AU-AGENT-001 for technical alternative; AU-AGENT-003 for
   independent verification; Project Owner for any future attempt
 

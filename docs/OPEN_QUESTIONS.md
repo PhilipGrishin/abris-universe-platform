@@ -158,8 +158,8 @@
 
 ## OQ-009 — Post-Promotion Endpoint Stability Disposition
 
-- **Status:** Technical mechanism task-scoped `VERIFIED`; controlled
-  production result `[OPEN]`
+- **Status:** `[CONFIRMED]`; bounded production result `[TESTED]` and
+  task-scoped engineering `VERIFIED`
 - **Question:** Which separately reviewed technical alternative, if any,
   should address the observed post-promotion `/version.json` instability and
   self-contained per-attempt evidence before another production attempt is
@@ -192,6 +192,11 @@
   corrected repeat. AU-AGENT-003 resolved source-boundary findings
   TS001-DEPLOY-018/019/020 at exact source `3ae376f`.
 - **Boundary:** Corrected protected merge, exact-main CI, live production
-  convergence, multi-region evidence, and browser production verification
-  remain open.
+  convergence, and browser production verification passed in run
+  `30278965044` at source `1021abf3`. Global/multi-region and long-duration
+  convergence, broader browser/platform coverage, and expanded independent
+  product acceptance remain open.
+- **Resolution evidence:** PR #16; exact-main CI `30278863068`; production run
+  `30278965044`; artifact `8658016223`; post-production AU-AGENT-003
+  task-scoped `VERIFIED`; operator browser inspection.
 - **Decision owner:** Project Owner after technical and independent review

@@ -166,8 +166,14 @@ finding remediation followed.
 AU-AGENT-003 rejected first source `2eaae2a`, then assigned task-scoped
 `VERIFIED` at exact remediation `e22e4c7`, resolving TS001-DEPLOY-015/016/017
 and accepting TS001-DEPLOY-014 technical remediation for integration.
-OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one post-gate run; protected
-merge, exact-main CI, and live production evidence remain open.
+After source-boundary remediation and OWNER-DEC-TS001-PRODUCTION-RETRY-006,
+PR #16 merged as `1021abf3`, exact-main CI passed, and production run
+`30278965044` completed immutable preview, promotion, hostname purge, four
+prior-baseline observations, and three candidate passes. Artifact
+`8658016223`, independent semantic verification, operator browser inspection,
+and AU-AGENT-003 post-production `PASS` / task-scoped `VERIFIED` are recorded.
+TS001-DEPLOY-014 is closed for bounded deployment. Global/multi-region,
+long-duration, broader platform, and expanded product acceptance remain open.
 
 ## Owner
 

@@ -151,8 +151,14 @@ authorized disposition.
   exact remediation `3ae376f`. The final guard externally anchors accepted
   product source `1a683ab` and reviewed deployment source `a20bb8b`, pins the
   full deployment trust plane, and includes adversarial real-Git regression
-  tests. Protected integration, branch CI, exact-main CI, live production, and
-  browser results remain open.
+  tests. PR #16, protected merge `1021abf3`, exact-main CI `30278863068`, and
+  production run `30278965044` passed. Candidate `8c49fb69` reached three
+  complete candidate contracts after four bounded prior-baseline observations;
+  artifact `8658016223`, independent semantic verification, and operator
+  browser evidence pass. AU-AGENT-003 assigns post-production `PASS` and
+  task-scoped `VERIFIED`, closes TS001-DEPLOY-014 for bounded deployment, and
+  records no new finding. Global/multi-region, long-duration, and broader
+  platform claims remain open; no further deployment is authorized.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

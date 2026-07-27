@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.17 |
+| Version | 1.5.18 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -1084,11 +1084,14 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 7. `[IMPLEMENTED]`, `[TESTED]`; repository-level `VERIFIED`: implement tiled
    renderer and measured medium-fixture prototype. Browser rendering and
    performance evidence remains open.
-8. Integrate the accessible web flow and end-to-end persistence.
-9. Add the reviewed CI pipeline and a non-production deployment rehearsal.
-10. Pass AU-AGENT-003 engineering verification.
-11. Capture the current production rollback anchor and perform the separately
-    authorized production deployment.
+8. `[IMPLEMENTED]`, `[TESTED]`: integrate the accessible web flow and
+   end-to-end persistence.
+9. `[IMPLEMENTED]`, `[TESTED]`: add the reviewed CI pipeline and a
+   non-production deployment rehearsal.
+10. `[IMPLEMENTED]`, `[TESTED]`: pass AU-AGENT-003 engineering verification.
+11. `[IMPLEMENTED]`, `[TESTED]`; task-scoped engineering `VERIFIED`: capture
+    the production rollback anchor and perform the separately authorized
+    production deployment.
 12. Produce the Completion Report and send evidence through the Collaboration
     Bridge for independent Claude acceptance.
 
@@ -1122,6 +1125,16 @@ fail-closed. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source
 closed after a candidate observation was followed by the exact prior cached
 baseline during the one-shot contract; exact rollback succeeded. No retry is
 authorized.
+
+After the isolated transition remediation, external source-anchor correction,
+and protected gates, production run `30278965044` completed step 11 at exact
+source `1021abf3`. The workflow verified immutable candidate `8c49fb69`,
+promoted and purged the exact hostname, observed four registered prior-baseline
+contracts, and then completed three consecutive candidate contracts. Retained
+evidence, independent semantic verification, operator browser inspection, and
+AU-AGENT-003 post-production review pass. This closes TS001-DEPLOY-014 only for
+the bounded deployment scope; it does not prove simultaneous global-edge or
+long-duration convergence and does not expand Claude product acceptance.
 
 ## 16. Architecture Review Checklist
 

@@ -433,8 +433,8 @@
 
 ## OWNER-DEC-TS001-PRODUCTION-RETRY-006 — Authorize One Corrected Repeat
 
-- **Status:** `[APPROVED]`; source-boundary remediation task-scoped engineering
-  `VERIFIED`; protected integration pending
+- **Status:** `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; single repeat consumed;
+  post-production task-scoped engineering `VERIFIED`
 - **Date:** 2026-07-27
 - **Source:** Explicit Project Owner directive after failed workflow run
   `30276596270`: "Выполняй повторный запуск продакшен после того, как исправишь
@@ -456,6 +456,10 @@
   bound, immutable-preview-first, fail-closed, and rollback protected.
 - **Attempt boundary:** Exactly one post-gate repeat. No automatic second
   repeat is authorized.
+- **Result:** PR #16, protected merge `1021abf3`, exact-main CI `30278863068`,
+  and production run `30278965044` passed. Candidate `8c49fb69` is live and
+  AU-AGENT-003 closed TS001-DEPLOY-014 for bounded deployment. The authority is
+  consumed; no further deployment is authorized by this decision.
 - **Owner:** Project Owner
 
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
