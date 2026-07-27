@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-COMP-TS001-001 |
 | Title | TASK-THINSLICE-001 Completion Report |
-| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; production deployment owner-authorized but not performed |
+| Status | `[IMPLEMENTED]`, `[TESTED]`; internal Engineering Verification Status `VERIFIED WITH FINDINGS`; independent Claude Cowork acceptance `[VERIFIED]` within the report's bounded scope; production attempt 1 failed closed and rolled back before promotion |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.1.2 |
+| Version | 1.1.3 |
 | Created | 2026-07-26 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.3; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
@@ -150,7 +150,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
 | Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
-| Production deployment | Not performed. PROD-DEC-013 closes explicit authorization; TD-GATE-003, production assertions, rollback-anchor capture, credentials, and deployment-workflow verification remain factual gates. |
+| Production deployment | Attempt 1 run `30247393181` uploaded a zero-traffic candidate, rejected a semantically stale pre-promotion response, and restored the exact prior version/baseline. No candidate traffic was promoted. Corrective workflow reverification and the successful production/browser assertions remain open. |
 
 These dispositions do not change product requirements.
 
@@ -471,31 +471,32 @@ not an assumed pass.
 
 ## 18. Deployment Instructions and Status
 
-Production deployment is authorized by PROD-DEC-013 and has not yet been
-performed. The repository now supplies both the no-deploy rehearsal and a
-protected main-only production workflow candidate.
+Production deployment is authorized by PROD-DEC-013. Attempt 1 executed the
+protected workflow through zero-traffic candidate deployment, failed closed at
+pre-promotion smoke, and restored the exact placeholder version and baseline.
+The candidate was never promoted.
 
-Before the first production deployment:
+Before the corrected production promotion:
 
 1. close TD-GATE-003 by capturing the current
    `https://abris.653915.com` placeholder version, route, and recoverable
    artifact;
 2. preserve the explicit PROD-DEC-013 Project Owner authorization;
-3. configure approved Cloudflare and GitHub environment credentials without
-   committing or printing them;
+3. preserve the configured approved Cloudflare and GitHub environment
+   credentials without committing or printing them;
 4. deploy only the accepted exact static artifact;
 5. assert the custom domain, route, provenance, response headers, method
    boundary, SPA fallback, and complete runtime network inventory;
 6. retain smoke evidence and a tested rollback target.
 
-This report does not authorize those actions.
+The Project Owner authorization is recorded separately in PROD-DEC-013.
 
 ## 19. Rollback
 
-No production or remote Cloudflare state was mutated, so the current delivery
-can be rejected without a production rollback. The review branch can remain
-unmerged or be reverted through a new non-destructive Git commit. Do not use a
-destructive history rewrite.
+Attempt 1 uploaded an immutable candidate and briefly registered it at zero
+percent traffic. Automatic rollback restored prior version
+`d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent and reproduced the
+placeholder GET/HEAD/content/body baseline. The candidate was not promoted.
 
 Local benchmark origins are disposable and separate from production. Schema
 version 1 has no prior production user-data migration. If a later accepted

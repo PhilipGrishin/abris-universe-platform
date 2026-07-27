@@ -1,5 +1,26 @@
 # Handoff Log
 
+## 2026-07-27 — Production Attempt 1 Failed Closed
+
+- **Workflow:** `30247393181`, exact protected `main` source `c26ce9f`.
+- **Result:** Uploaded candidate
+  `f231b299-63d1-43f5-acb0-416ae989ab83` at zero percent. Pre-promotion smoke
+  received the still-propagating placeholder, rejected its missing reviewed
+  CSP, and did not promote candidate traffic.
+- **Rollback evidence:** Prior version
+  `d1f2b05d-77d0-4d53-9c7a-73d61135979e` was restored at 100 percent. GET,
+  HEAD, content type, and body SHA-256
+  `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a`
+  matched the recorded baseline.
+- **Findings:** The smoke verifier did not retry semantically stale successful
+  responses during documented version-override propagation. The artifact
+  action excluded JSON below the hidden evidence directory.
+- **Remediation:** Full semantic retry, exact Workers Domain ownership
+  preflight, explicit hidden-artifact retention, and 17 focused deployment
+  tests are locally complete.
+- **Next gate:** AU-AGENT-003 exact-source reverification, protected merge,
+  corrected deployment, and production/browser verification.
+
 ## 2026-07-26 — Production Pipeline Independent Reverification
 
 - **Scope:** TASK-THINSLICE-001 first controlled production deployment.

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | ADR-TS001-004 |
 | Title | Portable TypeScript Workspace and Immutable Cloudflare Delivery |
-| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; production credentials and TD-GATE-003 `[OPEN]` |
+| Status | `[PROPOSED]`; independent architecture disposition `ACCEPTED_WITH_GATES`; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; credentials configured; TD-GATE-003 `[OPEN]` pending reviewed route evidence and a successful corrected run |
 | Owner | AU-AGENT-001 |
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -130,3 +130,10 @@ production smoke, rollback rehearsal, and local-data compatibility.
   immutable upload/zero-traffic smoke/promotion/automatic-rollback workflow,
   and retained evidence contract. No production mutation occurred; credentials
   and TD-GATE-003 remain open.
+- 2026-07-27: GitHub production credentials are configured. Attempt 1 captured
+  the exact prior immutable version, uploaded the candidate at zero traffic,
+  failed closed on a semantically stale edge response, and restored the prior
+  version and public baseline. Version 1.3.0 records the locally tested
+  propagation retry, exact Workers-domain ownership query, and hidden-artifact
+  retention corrections. TD-GATE-003 remains open until exact-source review
+  and the corrected production run record the route and successful assertions.

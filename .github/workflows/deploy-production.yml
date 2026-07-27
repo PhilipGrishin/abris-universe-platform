@@ -111,5 +111,6 @@ jobs:
         with:
           name: production-deployment-${{ github.sha }}-${{ github.run_id }}
           path: .production-deployment/*.json
+          include-hidden-files: true
           if-no-files-found: warn
           retention-days: 90

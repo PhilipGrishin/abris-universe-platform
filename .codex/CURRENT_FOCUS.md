@@ -24,8 +24,13 @@ PROD-DEC-014 mirrors the Worker-memory limitation. The protected deployment
 workflow is implemented; AU-AGENT-003's first exact-source review returned
 `REWORK REQUIRED`, and exact remediation source `2c88639` resolves all four
 findings with task-scoped Engineering Verification Status `VERIFIED`.
-Production mutation remains blocked on GitHub environment secrets and
-TD-GATE-003.
+Both GitHub environment secret names are configured. Workflow run
+`30247393181` uploaded a zero-traffic candidate, rejected a semantically stale
+pre-promotion response, and restored the prior version and placeholder
+baseline. Semantic-propagation, route-evidence, and artifact-retention
+remediation is locally `[IMPLEMENTED]`, `[TESTED]`; production remains blocked
+on AU-AGENT-003 reverification, protected merge, and a successful corrected
+run.
 
 ## Confirmed Inputs
 

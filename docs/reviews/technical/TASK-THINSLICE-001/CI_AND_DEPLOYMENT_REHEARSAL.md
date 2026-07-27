@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[IMPLEMENTED]`, `[TESTED]` locally and in remote CI; protected production workflow `[IMPLEMENTED]`, locally `[TESTED]`; production deployment `[BLOCKED]` on credentials and TD-GATE-003 |
+| Status | No-deploy rehearsal `[TESTED]`; production attempt 1 failed closed and rollback `[TESTED]`; semantic-propagation, route-evidence, and artifact-retention remediation locally `[TESTED]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.4.0 |
 | Created | 2026-07-26 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
 | Supersedes | None |
 | Superseded By | None |
@@ -101,32 +101,35 @@ It also applies `X-Content-Type-Options: nosniff` and
 
 ## Production Boundary
 
-No production route, custom domain, Cloudflare account identifier, API token,
-GitHub environment secret, deploy job, DNS mutation, Worker upload, or
-production smoke was created or executed. The existing
-`https://abris.653915.com` placeholder remains unchanged.
+No DNS mutation or secret exposure occurred. Both GitHub environment secret
+names are configured. Workflow `30247393181` uploaded candidate
+`f231b299-63d1-43f5-acb0-416ae989ab83`, registered it at zero percent, rejected
+the still-propagating placeholder response, and restored prior version
+`d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent. The placeholder body
+hash is unchanged.
 
 Production remains blocked by:
 
 - TD-GATE-003: capture the current Worker version/route and recoverable
   placeholder artifact;
-- GitHub `production` environment credentials;
+- corrected workflow exact-source AU-AGENT-003 reverification and merge;
+- retained route-ownership and preflight evidence;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - production workflow engineering verification.
 
 PROD-DEC-013 closes the explicit authorization item. The main-only GitHub
 environment and versioned deployment workflow are now implemented. The
-workflow captures the current immutable version, stages the candidate at zero
-traffic, verifies it with a version override, promotes it, repeats production
-smoke, and rolls back automatically on failure. No Cloudflare mutation has
-occurred because the required environment secrets are absent.
+workflow captures the current immutable version and route ownership, stages
+the candidate at zero traffic, retries the exact semantic contract during
+version-override propagation, promotes it, repeats production smoke, and rolls
+back automatically on failure.
 
 ## Rollback
 
-This stage changes only repository source. Revert commit `35bbb34` to remove
-the CI/Worker rehearsal implementation. No remote Cloudflare state requires
-rollback because no deployment occurred.
+Attempt 1 proved rollback to the exact prior version and public baseline. The
+unused zero-traffic candidate version remains immutable Cloudflare history; it
+does not receive production traffic.
 
 ## Quality Gate
 

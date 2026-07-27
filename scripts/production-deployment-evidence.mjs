@@ -62,6 +62,32 @@ export const validateProductionPreflight = ({
   return { prior, publicSnapshot };
 };
 
+export const validateProductionDomain = ({
+  response,
+  expectedHostname,
+  expectedService,
+}) => {
+  assert(response?.success === true, "Cloudflare domain query was not successful.");
+  assert(Array.isArray(response.result), "Cloudflare domain result is invalid.");
+  const matches = response.result.filter(
+    (domain) =>
+      domain?.hostname === expectedHostname &&
+      domain?.service === expectedService,
+  );
+  assert(
+    matches.length === 1,
+    "The production hostname is not uniquely assigned to the expected Worker.",
+  );
+  const [domain] = matches;
+  return {
+    id: domain.id ?? null,
+    hostname: domain.hostname,
+    service: domain.service,
+    environment: domain.environment ?? null,
+    zoneName: domain.zone_name ?? null,
+  };
+};
+
 export const readVersionUpload = (outputPath) => {
   const entries = readFileSync(outputPath, "utf8")
     .split(/\r?\n/u)

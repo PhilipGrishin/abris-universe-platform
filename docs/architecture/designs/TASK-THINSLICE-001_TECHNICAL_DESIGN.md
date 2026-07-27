@@ -9,9 +9,9 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.3 |
+| Version | 1.5.4 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -64,6 +64,11 @@ Version 1.5.3 records the owner-authorized, protected main-only production
 workflow implementation and preserves TD-GATE-003 as a factual external-state
 gate until authenticated Cloudflare access captures the current rollback
 version. It does not change product behavior or the accepted executable scope.
+Version 1.5.4 records configured GitHub environment credentials, the failed-
+closed first attempt and successful automatic rollback, and the locally tested
+edge-propagation, exact-domain evidence, and artifact-retention corrections.
+It changes evidence and workflow robustness only; TD-GATE-003 remains open
+until exact-source review and a successful corrected production run.
 
 ## 2. Scope and Non-Scope
 
@@ -141,9 +146,9 @@ confirmation. The registered implementation sequence may proceed to
 domain-core and bounded importer implementation for the explicit route-1
 profile; both package stages are now `[IMPLEMENTED]`, `[TESTED]`. Exact-symbol
 claims for other producers remain blocked by TD-GATE-002,
-and production deployment remains blocked by TD-GATE-003, credential
-availability, and production runtime evidence. PROD-DEC-013 closes only the
-explicit owner-authorization component.
+and production deployment remains blocked by TD-GATE-003, corrected-workflow
+review, and production runtime evidence. Production credentials are configured;
+PROD-DEC-013 closes only the explicit owner-authorization component.
 
 ## 4. Selected System Shape
 
@@ -990,6 +995,13 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
     authorized production deployment.
 12. Produce the Completion Report and send evidence through the Collaboration
     Bridge for independent Claude acceptance.
+
+The first authorized attempt on 2026-07-27 captured and restored the prior
+immutable version without promoting the candidate. A semantically stale edge
+response exposed an insufficient propagation wait. The corrected workflow
+retries complete semantic verification, records exact Workers-domain ownership,
+and retains hidden evidence artifacts; its exact source and successful
+production execution remain required before step 11 is complete.
 
 ## 16. Architecture Review Checklist
 

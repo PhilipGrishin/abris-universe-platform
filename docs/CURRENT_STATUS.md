@@ -500,9 +500,18 @@
   `2c88639`; all four deployment findings are resolved, remote CI
   `30219444159` passed, and merge is allowed. This task-scoped engineering
   status is not production or product acceptance.
-- `[OPEN]` TD-GATE-003 placeholder rollback anchor and GitHub environment
-  secrets block the production workflow. Cloudflare CLI authentication is
-  absent; current placeholder HTTPS `200` body hash is recorded.
+- `[TESTED]` Production run `30247393181` uploaded candidate
+  `f231b299-63d1-43f5-acb0-416ae989ab83` at zero percent, rejected the
+  semantically stale pre-promotion response, restored prior version
+  `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent, and reproduced the
+  exact placeholder baseline. The candidate was never promoted.
+- `[IMPLEMENTED]`, locally `[TESTED]` Both environment secret names are
+  configured. Corrective tooling retries semantic version propagation,
+  validates hostname-to-Worker ownership through the Cloudflare API, and
+  explicitly retains hidden JSON evidence. AU-AGENT-003 reverification and
+  corrected protected merge remain open.
+- `[OPEN]` TD-GATE-003 route-ownership evidence and a retained preflight
+  artifact remain blocking until the corrected authenticated run.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -544,13 +553,11 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Registered PROD-DEC-012 through PROD-DEC-014, routed accepted code findings to
-the Phase 1 rework gate, created the main-only GitHub `production` environment,
-and implemented the versioned Cloudflare deployment/rollback workflow without
-mutating Cloudflare.
+Ran the first protected production attempt. It failed closed at
+pre-promotion semantic smoke and automatically restored the exact immutable
+placeholder version and public baseline; no candidate traffic was promoted.
 
 ## Next Step
 
-Obtain `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as GitHub
-`production` environment secrets, capture TD-GATE-003, then run the reviewed
-main-branch workflow and production/browser smoke.
+Independently reverify and merge the semantic-propagation, route-evidence, and
+artifact-retention fix; then rerun the exact protected `main` workflow.
