@@ -17,6 +17,9 @@ const EXPECTED_CSP = [
   "frame-ancestors 'none'",
 ].join("; ");
 
+export const PRODUCTION_SEMANTIC_ATTEMPTS = 6;
+export const ZERO_TRAFFIC_SEMANTIC_ATTEMPTS = 61;
+
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
 
@@ -209,7 +212,7 @@ const inspectProductionDeploymentOnce = async ({
 };
 
 export const inspectProductionDeployment = async ({
-  semanticAttempts = 61,
+  semanticAttempts = PRODUCTION_SEMANTIC_ATTEMPTS,
   semanticRetryDelayMs = 2_000,
   ...inspection
 }) => {

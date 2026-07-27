@@ -13,7 +13,10 @@ import {
   writeJsonEvidence,
 } from "./production-deployment-evidence.mjs";
 import { executeProductionDeployment } from "./production-deployment-state.mjs";
-import { inspectProductionDeployment } from "./verify-production-deployment.mjs";
+import {
+  inspectProductionDeployment,
+  ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+} from "./verify-production-deployment.mjs";
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
 const webRoot = resolve(repositoryRoot, "apps/web");
@@ -189,6 +192,7 @@ try {
         baseUrl: productionUrl,
         expectedCommit: sourceCommit,
         versionId: uploadedVersionId,
+        semanticAttempts: ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
       }),
     promote: async (uploadedVersionId) => {
       runWrangler([

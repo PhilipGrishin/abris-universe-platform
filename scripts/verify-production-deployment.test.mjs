@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import test from "node:test";
-import { inspectProductionDeployment } from "./verify-production-deployment.mjs";
+import {
+  inspectProductionDeployment,
+  PRODUCTION_SEMANTIC_ATTEMPTS,
+  ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+} from "./verify-production-deployment.mjs";
 
 const EXPECTED_COMMIT = "a".repeat(40);
 const CSP = [
@@ -25,6 +29,11 @@ const securityHeaders = {
   "Referrer-Policy": "no-referrer",
   "X-Content-Type-Options": "nosniff",
 };
+
+test("keeps the extended wait exclusive to zero-traffic smoke", () => {
+  assert.equal(PRODUCTION_SEMANTIC_ATTEMPTS, 6);
+  assert.equal(ZERO_TRAFFIC_SEMANTIC_ATTEMPTS, 61);
+});
 
 const createFixtureServer = async ({
   wrongCommit = false,
