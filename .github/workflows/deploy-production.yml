@@ -63,16 +63,7 @@ jobs:
           git show --check --oneline --no-renames HEAD
 
       - name: Verify independently accepted executable source
-        run: |
-          git cat-file -e "$ACCEPTED_EXECUTABLE_SOURCE_COMMIT^{commit}"
-          git diff --quiet "$ACCEPTED_EXECUTABLE_SOURCE_COMMIT" "$GITHUB_SHA" -- \
-            apps \
-            ':(exclude)apps/web/wrangler.jsonc' \
-            packages \
-            tests/fixtures/oxs \
-            pnpm-lock.yaml \
-            pnpm-workspace.yaml \
-            tsconfig.base.json
+        run: node scripts/verify-production-source-boundary.mjs
 
       - name: Verify production credentials exist
         env:
