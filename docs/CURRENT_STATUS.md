@@ -1,6 +1,6 @@
 # Current Status
 
-**Status date:** 2026-07-26
+**Status date:** 2026-07-27
 **Current focus:** TASK-THINSLICE-001 owner-authorized production deployment preparation
 **Technical state:** `[IMPLEMENTED]`, `[TESTED]` private shared repository, governed product and engineering contours, documentation infrastructure, controlled Option B local exchange, AU-AGENT-003 quality gate, AU-AGENT-004–006 domain-role infrastructure, route-1 OXS fixture evidence, TypeScript workspace, canonical domain-core, bounded route-1 importer core, IndexedDB schema-v1 persistence/recovery, tiled renderer, OffscreenCanvas Worker with bounded caches and fallback, accessible local-first web flow, measured-profile browser evidence, and no-deploy CI/Cloudflare rehearsal
 **Independent state:** `[VERIFIED]` for the bounded INIT-002 scope at `1ccaace`, the bounded INIT-003 organizational-validation scope at `f748c95`, and the bounded TASK-THINSLICE-001 Phase 0 result at immutable source `1a683ab`; every recorded exclusion remains unverified
@@ -541,8 +541,9 @@
   candidate-contract failure. The Project Owner approved the implementation,
   independent AU-AGENT-003 review, and one new controlled attempt. Twenty-seven
   focused deployment tests and the full 95-test suite pass. AU-AGENT-003
-  exact-source review, required CI, and protected merge remain mandatory
-  before dispatch.
+  assigned task-scoped `VERIFIED` at exact source `b4f25cda`, resolved
+  TS001-DEPLOY-005, and recorded no new findings; required CI run `30252463472`
+  passed. Protected merge remains mandatory before dispatch.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -593,6 +594,6 @@ automatic rollback restored the exact prior version and public baseline.
 
 ## Next Step
 
-Obtain AU-AGENT-003 exact-source review of the approved transition
-implementation, then required CI and protected merge before the one authorized
-production attempt.
+Merge the independently verified transition through protected `main`, then
+perform the one authorized controlled production attempt and retain
+production/browser evidence.

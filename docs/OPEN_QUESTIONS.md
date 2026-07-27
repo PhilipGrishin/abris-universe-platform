@@ -79,7 +79,7 @@
 
 ## OQ-006 — Production Default-Route Transition Window
 
-- **Status:** `[CONFIRMED]`; implementation gate in progress
+- **Status:** `[CONFIRMED]`; protected merge gate in progress
 - **Question:** May the first production workflow keep the candidate promoted
   for up to 120 seconds only while the runner observes the exact registered
   prior baseline, with immediate rollback on every unknown response or
@@ -89,11 +89,12 @@
   observation matched the prior cached placeholder.
 - **Evidence:** Workflow run `30250084131`, retained artifact digest
   `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`,
-  Production Deployment Record v1.6.0, and `AU-TAP-TS001-001`.
+  Production Deployment Record v1.6.1, and `AU-TAP-TS001-001`.
 - **Answer:** The Project Owner approved Alternative A in
   `AU-TAP-TS001-001` on 2026-07-27 and authorized implementation,
   independent AU-AGENT-003 review, and one controlled deployment attempt.
 - **Result:** The implementation and deterministic tests are complete.
-  Exact-source AU-AGENT-003 review, required CI, and protected merge remain
-  mandatory before dispatch.
+  AU-AGENT-003 assigned task-scoped `VERIFIED` at exact source `b4f25cda`,
+  resolved TS001-DEPLOY-005, and recorded no new findings. Required CI run
+  `30252463472` passed. Protected merge remains mandatory before dispatch.
 - **Decision owner:** Project Owner

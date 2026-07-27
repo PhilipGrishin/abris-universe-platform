@@ -42,9 +42,10 @@ cached baseline. Exact rollback succeeded. The earlier allowed retry is
 exhausted.
 The Project Owner approved `AU-TAP-TS001-001` Alternative A, its implementation,
 independent AU-AGENT-003 review, and one new controlled attempt. The
-baseline-aware implementation and 27 focused tests are complete.
-AU-AGENT-003 exact-source review, required CI, and protected merge remain
-mandatory before dispatch.
+baseline-aware implementation and 27 focused tests are complete. AU-AGENT-003
+assigned task-scoped `VERIFIED` at exact source `b4f25cda`, resolved
+TS001-DEPLOY-005, and recorded no new findings. Required CI run `30252463472`
+passed. Protected merge remains mandatory before dispatch.
 
 ## Confirmed Inputs
 
@@ -69,7 +70,7 @@ mandatory before dispatch.
 
 ## Current Design State
 
-- Technical Design v1.5.9 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.10 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -279,7 +280,6 @@ remains open.
 
 ## Next Concrete Step
 
-Commit the owner-approved baseline-aware transition candidate, obtain
-AU-AGENT-003 exact-source review, pass required CI, merge through protected
+Merge the independently verified baseline-aware transition through protected
 `main`, and only then dispatch the one controlled attempt. Never place secret
 values in chat or the repository.

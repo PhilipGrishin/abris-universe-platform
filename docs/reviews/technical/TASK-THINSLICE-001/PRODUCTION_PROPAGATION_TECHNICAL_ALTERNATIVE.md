@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TAP-TS001-001 |
 | Title | Production Default-Route Propagation Technical Alternative Proposal |
-| Status | `[APPROVED]`; implementation candidate `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 review and protected merge required before one authorized deployment |
+| Status | `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge required before one authorized deployment |
 | Owner | AU-AGENT-001 |
 | Technical Approver | Project Owner |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; Production Deployment Record v1.6.0; Production Deployment Verification v1.4.1; workflow run `30250084131` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10; ADR-TS001-004 v1.3.6; Production Deployment Record v1.6.1; Production Deployment Verification v1.5.0; workflow runs `30250084131` and `30252463472` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Owner decision; Cloudflare routing evidence; deployment-state-machine change; production smoke or rollback result |
@@ -195,7 +195,8 @@ prior baseline. Do not authorize another deployment until:
 The Project Owner approved **Alternative A — Baseline-Aware Transition Window**
 on 2026-07-27 and authorized its implementation, independent AU-AGENT-003
 review, and one subsequent controlled production attempt. The attempt remains
-gated by exact-source review, required CI, and protected merge. Approval does
+gated by protected merge after exact-source AU-AGENT-003 review and required
+CI passed at `b4f25cda`. Approval does
 not change product acceptance, authorize application changes, or waive the
 production/browser verification gates.
 

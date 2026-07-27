@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; attempt 3 rolled back; TD-GATE-003 closed; owner-approved baseline-aware transition candidate `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 exact-source review and protected merge open |
+| Status | No-deploy rehearsal `[TESTED]`; attempt 3 rolled back; TD-GATE-003 closed; owner-approved baseline-aware transition `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.7.0 |
+| Version | 1.7.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9 section 12; ADR-TS001-004 v1.3.5; Production Deployment Verification v1.4.1; Production Deployment Record v1.6.0; Production Propagation Technical Alternative Proposal v1.1.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10 section 12; ADR-TS001-004 v1.3.6; Production Deployment Verification v1.5.0; Production Deployment Record v1.6.1; Production Propagation Technical Alternative Proposal v1.1.1; Threat Model TM-011 through TM-019; exact transition source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; CI run `30252463472` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |

@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A owner-approved and implementation candidate `[IMPLEMENTED]`, `[TESTED]`; AU-AGENT-003 exact-source review, protected merge, and production/browser evidence open |
+| Status | Attempts 1 and 2 failed closed before promotion; attempt 3 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003 Engineering Verification Status `VERIFIED`; protected merge and production/browser evidence open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.6.0 |
+| Version | 1.6.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; Production Deployment Verification v1.4.1; Production Propagation Technical Alternative Proposal v1.1.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.10; ADR-TS001-004 v1.3.6; Production Deployment Verification v1.5.0; Production Propagation Technical Alternative Proposal v1.1.1; bounded independent acceptance at `1a683ab`; exact transition source `b4f25cda`; CI run `30252463472`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |

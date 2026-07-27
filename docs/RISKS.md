@@ -472,8 +472,9 @@
 ## RISK-019 — Default Route Lags Verified Candidate After Promotion
 
 - **Status:** `[OPEN]`; attempt 3 evidence retained; Alternative A
-  `[APPROVED]`, implementation candidate `[IMPLEMENTED]`, `[TESTED]`;
-  exact-source AU-AGENT-003 review and live result pending
+  `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003
+  Engineering Verification Status `VERIFIED`; protected merge and live result
+  pending
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -494,7 +495,9 @@
   exactly match that registered prior baseline, applies 61-observation and
   strict 120-second ceilings, runs one full contract at the exact candidate
   sentinel, and immediately fails every unknown, transport, timeout, or
-  candidate-contract state into rollback. Twenty-seven focused tests pass.
+  candidate-contract state into rollback. Twenty-seven focused tests and
+  required CI run `30252463472` pass; AU-AGENT-003 independently resolved
+  TS001-DEPLOY-005 at exact source `b4f25cda`.
 - **Fallback:** Reject the proposal and keep the prior placeholder, or select a
   separately approved preview/canary hosting strategy with its own security,
   access, traffic, and rollback review.

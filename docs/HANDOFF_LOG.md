@@ -1,5 +1,22 @@
 # Handoff Log
 
+## 2026-07-27 — Alternative A Exact Source Independently Verified
+
+- **Exact source:** `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`.
+- **Independent result:** AU-AGENT-003 assigned task-scoped Engineering
+  Verification Status `VERIFIED`, resolved TS001-DEPLOY-005, and recorded no
+  new finding.
+- **Evidence:** Independent 27-test focused run and full 95-test suite passed;
+  exact-source CI run `30252463472` succeeded; accepted executable boundary
+  diff remains empty.
+- **Disposition:** Protected conflict-free merge is allowed if the reviewed
+  diff and required checks are preserved. Exactly one controlled post-merge
+  production attempt is authorized; no repeat is allowed without new explicit
+  owner authority and evidence review.
+- **Next gate:** Merge through protected `main`, dispatch the one authorized
+  run at the resulting exact protected-main source, and retain
+  production/browser evidence.
+
 ## 2026-07-27 — Alternative A Owner Approval and Implementation Candidate
 
 - **Owner decision:** OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 approves
@@ -15,9 +32,7 @@
   cannot retain response bodies, request headers, tokens, or account values.
 - **Verification:** 27 focused deployment tests, full 95-test suite, and strict
   typecheck pass. Accepted application paths remain unchanged.
-- **Next gate:** Commit the exact source, obtain AU-AGENT-003 review, pass
-  required CI, and merge through protected `main` before the single authorized
-  dispatch.
+- **Next gate:** Completed by the subsequent exact-source verification entry.
 
 ## 2026-07-27 — Production Attempt 3 Verified Candidate and Rolled Back
 

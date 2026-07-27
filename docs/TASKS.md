@@ -99,9 +99,10 @@ authorized disposition.
   restored. The earlier allowed retry is exhausted. The Project Owner approved
   `AU-TAP-TS001-001` Alternative A, implementation, AU-AGENT-003 review, and
   one new controlled attempt. The baseline-aware implementation and 27 focused
-  tests are complete; exact-source AU-AGENT-003 review, required CI, and
-  protected merge remain mandatory before dispatch. Production/browser results
-  remain open.
+  tests are complete. AU-AGENT-003 assigned task-scoped `VERIFIED` at exact
+  source `b4f25cda`, resolved TS001-DEPLOY-005, and recorded no new findings;
+  required CI run `30252463472` passed. Protected merge remains mandatory
+  before dispatch. Production/browser results remain open.
 - **Source:** PROD-DEC-013;
   OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.

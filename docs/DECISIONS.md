@@ -289,10 +289,10 @@
 - **Alternatives:** One-percent canary, access-protected preview hostname,
   fixed sleep/generic long retry, or no deployment, as evaluated in
   `AU-TAP-TS001-001`.
-- **Consequence:** TS001-DEPLOY-005 has an owner disposition but remains open
-  until exact implementation, deterministic tests, required CI, and
-  AU-AGENT-003 reverification pass. The one new deployment attempt cannot be
-  dispatched before those gates close.
+- **Consequence:** Exact implementation, deterministic tests, required CI run
+  `30252463472`, and AU-AGENT-003 reverification passed at source `b4f25cda`;
+  TS001-DEPLOY-005 is resolved. Protected merge remains mandatory before the
+  one new deployment attempt can be dispatched.
 - **Reversibility:** Revert the deployment-tooling commit; runtime rollback
   continues to target the registered immutable prior version.
 - **Owner:** Project Owner
