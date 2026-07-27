@@ -105,9 +105,17 @@ authorized disposition.
   run `30253457090` exhausted the one authorized attempt and restored the
   prior version/baseline. AU-AGENT-003 assigns safety execution `VERIFIED`,
   production continuation `BLOCKED`, and High TS001-DEPLOY-007. No retry is
-  authorized. Production/browser results remain open.
+  authorized under `AU-TAP-TS001-001`. The Project Owner subsequently approved
+  OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and `AU-TAP-TS001-002`: exact
+  immutable Workers preview, exact-version promotion, hostname-only cache
+  purge, and a three-consecutive-pass production quorum. The replacement
+  implementation is `[IMPLEMENTED]`, locally `[TESTED]` with 38 focused
+  deployment tests and the complete repository gate. The dedicated purge
+  secret and zone variable are configured. Exact-source AU-AGENT-003 review,
+  protected merge, and the one controlled attempt remain open.
+  Production/browser results remain open.
 - **Source:** PROD-DEC-013;
-  OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design sections 12.2 through 12.4;
+  OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; Technical Design sections 12.2 through 12.4;
   ADR-TS001-004.
 - **Owner:** AU-CODEX-PRIMARY; AU-AGENT-001 for technical contract;
   AU-AGENT-003 for independent engineering verification.

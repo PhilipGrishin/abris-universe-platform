@@ -102,3 +102,25 @@
   one-shot contract. The attempt is exhausted; TS001-DEPLOY-007 blocks every
   retry pending separate owner disposition.
 - **Decision owner:** Project Owner
+
+## OQ-007 — Immutable Preview and Hostname Cache Purge
+
+- **Status:** `[CONFIRMED]`; implementation locally tested; independent review
+  and live attempt open
+- **Question:** May production continuation use the exact immutable Workers
+  preview, exact-version promotion, a hostname-only cache purge, and a
+  three-consecutive-pass production quorum?
+- **Why it matters:** The custom-domain version override was not stable enough
+  to distinguish preview selection from default-route cache convergence.
+- **Answer:** Yes. The Project Owner approved “A — Workers + immutable preview
+  + purge,” configured a separate Cache Purge token for `653915.com`, added
+  `CLOUDFLARE_ZONE_ID`, and authorized implementation, AU-AGENT-003 review, and
+  one controlled attempt after protected merge.
+- **Evidence:** OWNER-DEC-TS001-PRODUCTION-DELIVERY-002;
+  `AU-TAP-TS001-002`; 38 focused deployment tests; complete local repository
+  gate.
+- **Boundary:** Public PR previews remain disabled. The version preview is
+  created only inside the protected production workflow and contains no user
+  data or secrets. Live success and global cache convergence are not yet
+  claimed.
+- **Decision owner:** Project Owner

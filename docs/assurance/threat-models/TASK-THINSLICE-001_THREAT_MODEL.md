@@ -8,10 +8,10 @@
 | Owner | AU-AGENT-001 with AU-AGENT-004 through AU-AGENT-006 domain inputs |
 | Technical Approver | AU-AGENT-001 |
 | Security Reviewer | AU-AGENT-003 |
-| Version | 1.4.0 |
+| Version | 1.5.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-26 |
-| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
+| Last Updated | 2026-07-27 |
+| Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, `AU-TAP-TS001-002`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `docs/reviews/technical/TASK-THINSLICE-001/OXS_IMPORTER_IMPLEMENTATION_REVIEW.md` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Data flow, parser, persistence, dependency, hosting, analytics, or deployment credential change; security finding or incident |
@@ -63,6 +63,9 @@ canonical GitHub repository
   -> protected GitHub Actions
   -> Cloudflare API
   -> immutable Worker version
+  -> exact *.workers.dev preview contract
+  -> exact-version promotion
+  -> hostname-only cache purge
   -> abris.653915.com
 ```
 
@@ -85,16 +88,17 @@ no product-data network egress in Phase 0.
 | TM-009 | Local data is evicted or unavailable | Request persistent storage; expose durability and quota state; never silently reset | Capability and denial tests | No manual backup in approved scope |
 | TM-010 | Worker or renderer denial of service blocks UI | Worker isolation, cancellation, visible-tile work, bounded cache | long-task and cancellation evidence | Main-thread fallback limitations |
 | TM-011 | Dependency or GitHub Action compromise | Frozen lockfile, minimal dependencies, action SHA pinning, review, read-only default token | dependency inventory, provenance and workflow review | Upstream compromise |
-| TM-012 | Cloudflare credential exfiltration | Environment secrets, no fork secret access, least privilege, no logging, no DNS permission | secret scan and token-permission review | GitHub/Cloudflare account compromise |
+| TM-012 | Cloudflare credential exfiltration or over-broad cache authority | Protected environment secrets, no fork secret access, separate Worker-deploy and zone-scoped Cache Purge tokens, no logging, no DNS permission | secret scan, step-scope review, token-permission review, sanitized-evidence tests | GitHub/Cloudflare account compromise |
 | TM-013 | Unreviewed code reaches production | protected main, required checks, serialized environment deploy, immutable version evidence | branch/workflow evidence and deployment rehearsal | Repository-plan control limitations |
-| TM-014 | Failed deploy cannot restore service | capture prior version/artifact; automatic and manual rollback; post-rollback smoke | rollback rehearsal and recorded IDs | Initial placeholder may lack recoverable source |
-| TM-015 | Public preview exposes unreleased content | no public preview until access policy is approved | workflow condition review | Authorized reviewers can still disclose content |
+| TM-014 | Failed deploy or stale cache cannot restore service | capture prior version/artifact; automatic and manual rollback; purge the exact hostname after promotion and rollback; bounded post-rollback baseline verification | rollback rehearsal, purge tests, and recorded IDs | Distributed cache convergence cannot be proven globally |
+| TM-015 | Public preview exposes unreleased content | no pull-request previews; production workflow uses only the unadvertised exact version URL after protected merge; preview contains the accepted static app and no user/server data; URL is omitted from retained evidence | workflow/config review, evidence-redaction test, and build secret/network scan | Anyone who obtains the capability URL while it remains reachable can view the accepted static UI |
 | TM-016 | Static rollback cannot read newer IndexedDB schema | one-release backward read compatibility; migration/rollback review | prior-client compatibility test | Multi-release downgrade is not guaranteed |
 | TM-017 | Product pattern data is transmitted unexpectedly | no analytics client for pattern data; restrictive `connect-src`; reviewed minimum runtime request inventory; no pattern-derived URL, body, header, log, analytics, or telemetry content | header assertion, dependency review, inventory comparison, and full network capture across import, render, toggle, reload, and error paths | Browser extensions and device compromise |
 | TM-018 | Fixture provenance or redistribution authority is missing or falsified | project-original route-1 fixtures by default; explicit Decision Log grant for route 2; checksums and provenance README | fixture inventory, rights record, generator review, and checksum verification | Fraudulent or mistaken source-owner assertion |
 | TM-019 | Static application executes injected content or is framed after a dependency defect | Worker-enforced CSP, `nosniff`, `frame-ancestors 'none'`, no-referrer policy, no inline/runtime-remote assets | pre-promotion and production header assertions; CSP browser test | Browser or platform enforcement defect |
 | TM-020 | Concurrent tabs corrupt progress ordering or derive from stale state | exclusive per-project Web Lock; read-only second tab; in-transaction derivation and sequence; event payload hash | two-context concurrency and duplicate-ID tests | Web Locks unavailable disables editing |
 | TM-021 | Failed imports retain large orphaned source Blobs | byte limit before persistence; failure/interruption transaction deletes Blob and preserves bounded metadata/report | repeated-failure quota and orphan-absence tests | Browser transaction defect |
+| TM-022 | Production completes while edges alternate between prior and candidate cache states | hostname-only purge; exact prior/candidate classification; three consecutive complete candidate contracts; 25-observation and 120-second limits; immediate rollback on unknown or inconsistent state | deterministic stability tests and retained production evidence | One runner edge cannot prove simultaneous global convergence |
 
 ## Security Requirements
 
@@ -115,6 +119,8 @@ no product-data network egress in Phase 0.
    Engineering Verification Report can pass.
 9. Progress and import transactions request strict durability when supported;
    unsupported abrupt-power-loss durability is recorded rather than overstated.
+10. Cache mutation is limited to the registered production hostname and uses a
+    credential separate from Worker deployment authority.
 
 ## Open Findings
 
@@ -125,10 +131,14 @@ no product-data network egress in Phase 0.
   Phase 0 AU-AGENT-003 implementation review are complete. Actual
   import-Worker peak memory remains mandatory in Prototype 9.1 before any
   500,000-stitch scale claim.
-- `THREAT-OPEN-002`: current Cloudflare token scope and recoverable placeholder
-  version are external-state unknowns.
-- `THREAT-OPEN-003`: public preview access control is not approved; previews
-  remain disabled.
+- `THREAT-OPEN-002`: `[TESTED]`, closed for the current rollback anchor and
+  credential separation. Historical runs restored the registered prior
+  version; the owner configured a separate zone-scoped Cache Purge token
+  without exposing its value. Live purge execution remains a deployment gate.
+- `THREAT-OPEN-003`: `[CONFIRMED]` bounded exception. Pull-request previews
+  remain disabled. The Project Owner approved the unadvertised exact-version
+  preview only inside the protected post-merge production workflow; it
+  contains the accepted static app and no user/server data.
 - `THREAT-OPEN-004`: browser persistent-storage grants cannot be guaranteed and
   manual backup is outside scope.
 - `THREAT-OPEN-005`: `[TESTED]`, closed for design scope. AU-AGENT-003
@@ -172,6 +182,10 @@ no product-data network egress in Phase 0.
   production response assertions remain open.
 - TM-020 real Web Locks contention fails closed and visually restores the
   committed progress state on the declared profile.
+- TM-012, TM-014, TM-015, and TM-022 immutable-preview, credential-separation,
+  hostname-purge, stability-quorum, and rollback-convergence controls are
+  `[IMPLEMENTED]`, locally `[TESTED]`. Exact-source AU-AGENT-003 review and live
+  production evidence remain open.
 
 The underlying consolidated implementation has task-scoped Engineering
 Verification Status `VERIFIED WITH FINDINGS`. The Completion Report remains
@@ -193,7 +207,9 @@ project `[VERIFIED]`.
 - [x] Dependency and action inventories are reviewed.
 - [x] CI permission and secret boundaries are tested for the no-deploy
       workflow.
-- [ ] Rollback rehearsal restores the prior Cloudflare version.
+- [x] Historical rollback rehearsal restores the prior Cloudflare version and
+      registered public baseline; the new post-rollback purge path is locally
+      tested and awaits live evidence.
 - [ ] CSP and required HTTP headers pass pre-promotion and production checks.
 - [x] Two-context progress and failed-import Blob-lifecycle tests pass on the
       declared repository/browser evidence boundaries.
@@ -203,6 +219,7 @@ project `[VERIFIED]`.
 
 - [Source of Truth Registry](../../SOURCE_OF_TRUTH.md)
 - [Technical Design](../../architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md)
+- [Immutable Preview and Hostname Purge Alternative](../../reviews/technical/TASK-THINSLICE-001/PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [Threat Model Index](README.md)
 - [Project Risks](../../RISKS.md)
 - [Independent Pre-Implementation Architecture Review](../../../product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md)

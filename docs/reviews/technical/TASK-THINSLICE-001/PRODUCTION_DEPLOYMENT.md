@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1 and 2 failed closed before promotion; attempts 3 and 4 passed zero-traffic smoke, promoted, then failed closed and rolled back; Alternative A safety execution `[TESTED]`; production continuation `BLOCKED` by TS001-DEPLOY-007 |
+| Status | Attempts 1–4 retained as failed-closed history; immutable-preview and hostname-purge continuation `[APPROVED]`, `[IMPLEMENTED]`, locally `[TESTED]`; exact-source AU-AGENT-003 review and protected merge open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.7.0 |
+| Version | 1.8.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.11; ADR-TS001-004 v1.3.7; Production Deployment Verification v1.6.0; Production Propagation Technical Alternative Proposal v1.2.0; bounded independent acceptance at `1a683ab`; exact transition source `b4f25cda`; protected-main source `80d942ec`; runs `30252463472` and `30253457090`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; `AU-TAP-TS001-002`; Technical Design v1.5.12; ADR-TS001-004 v1.3.8; Production Deployment Verification v1.6.0; bounded independent acceptance at `1a683ab`; protected-main source `80d942ec`; run `30253457090`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -62,8 +62,9 @@ The workflow `.github/workflows/deploy-production.yml`:
    workspace manifest, and shared TypeScript configuration are unchanged from
    independently accepted executable source
    `1a683abd9a8294de5a36888e997e65aba7b7a167`;
-6. keeps both Cloudflare values out of job scope and exposes them only to the
-   credential-presence check and the final deployment step;
+6. keeps both deployment credentials and the zone variable out of job scope
+   and exposes them only to the credential-presence check and final deployment
+   step;
 7. installs from the frozen lockfile;
 8. runs typecheck, the full test suite, build verification, dependency audit,
    and the no-deploy rehearsal;
@@ -72,15 +73,19 @@ The workflow `.github/workflows/deploy-production.yml`:
 10. reads the current Cloudflare deployment and records its immutable version,
    route ownership, and public-root baseline in a retained preflight artifact
    before any Cloudflare mutation;
-11. uploads a new immutable version without normal traffic;
-12. deploys the new version at zero percent beside the prior version;
-13. retries the complete semantic smoke contract while Cloudflare propagates
-   the version override, accepting only the exact commit and headers;
-14. promotes the new version to 100 percent;
-15. repeats production smoke and automatically rolls back on failure;
-16. confirms after rollback that the prior immutable version owns 100 percent
+11. uploads a new immutable version and records its exact Workers preview URL;
+12. runs the complete semantic contract against that preview before traffic
+   mutation;
+13. promotes the exact captured version to 100 percent;
+14. purges cache only for `abris.653915.com` with a separate least-privilege
+   token;
+15. requires three consecutive complete production contracts within 25
+   observations and 120 seconds;
+16. automatically restores the prior version and purges the hostname after
+   any promotion-or-later failure;
+17. confirms after rollback that the prior immutable version owns 100 percent
    of traffic and that the recorded GET/HEAD/content/hash baseline is restored;
-17. retains sanitized preflight and deployment-evidence artifacts for 90 days,
+18. retains sanitized preflight and deployment-evidence artifacts for 90 days,
    including files below the explicit hidden evidence directory.
 
 The production environment exists and accepts deployments only from protected
@@ -88,13 +93,16 @@ The production environment exists and accepts deployments only from protected
 force-push/deletion prevention are active on `main`.
 No Cloudflare secret value is present in the repository or chat.
 
-Seventeen focused deployment tests cover explicit dispatch rejection, route
+41 script tests, including 38 deployment-focused tests,
+cover explicit dispatch rejection, route
 ownership validation, registered
 Cloudflare output shapes, preflight health and the 100-percent rollback anchor,
 upload provenance, success order, failure before mutation, failure before and
 after promotion, exact-version rollback confirmation, rollback-baseline
 verification, rollback failure reporting, sanitized evidence persistence,
-semantic propagation retry, and the HTTP smoke contract.
+preview propagation, hostname-purge request scope and failure, three-pass
+production stability, rollback cache purge, rollback convergence, and the HTTP
+smoke contract.
 
 AU-AGENT-003 first returned `REWORK REQUIRED` at exact source `4097a5c`, then
 independently reverified exact remediation source `2c88639`. Findings
@@ -235,16 +243,38 @@ IndexedDB.
   zero-traffic contract. It does not prove default-route convergence or
   successful production/browser verification.
 
-## Current Blocker
+## Current Gate
 
-TD-GATE-003 is closed and no further owner credential action is required.
-The single attempt authorized for Alternative A is exhausted by run
-`30253457090`. AU-AGENT-003 assigned the Alternative A safety execution
-`VERIFIED` and production continuation `BLOCKED`, with High finding
-TS001-DEPLOY-007. Do not retry, extend the window, weaken candidate
-verification, or change routing/deployment behavior without a separately
-reviewed technical alternative or explicit stop decision and Project Owner
-disposition.
+TD-GATE-003 remains closed. The owner supplied the dedicated cache-purge secret
+and zone variable without exposing their values. OWNER-DEC-TS001-PRODUCTION-
+DELIVERY-002 and `AU-TAP-TS001-002` provide the required disposition for
+TS001-DEPLOY-007. The implementation and local gate pass, but production
+mutation remains blocked until exact-source AU-AGENT-003 review, protected
+pull-request checks, and protected merge complete.
+
+## Approved Immutable Preview and Purge Continuation
+
+The replacement contract:
+
+1. captures the exact immutable `*.workers.dev` preview URL from version
+   upload output;
+2. runs the complete contract on that URL before traffic mutation;
+3. promotes only the captured version ID;
+4. purges cache only for the production hostname;
+5. requires three consecutive complete production contracts;
+6. retries only the exact registered prior baseline inside 25 observations and
+   120 seconds;
+7. fails unknown or inconsistent candidate responses immediately;
+8. restores the prior version, purges again, and verifies the registered
+   baseline on failure.
+
+The separate purge token has only Zone Cache Purge permission for the selected
+zone. Local evidence includes strict typecheck, complete repository tests,
+production build verification, dependency audit with no known vulnerabilities,
+and Wrangler dry-run rehearsal. The purge credential and zone variable are
+removed from Wrangler subprocess environments, and the public preview URL is
+not written to retained evidence. Independent review and live evidence remain
+open.
 
 ## Approved Baseline-Aware Transition
 
@@ -301,6 +331,7 @@ rollback, as designed.
 - [ADR-TS001-004](../../../architecture/adr/ADR-TS001-004-web-workspace-and-cloudflare-delivery.md)
 - [Engineering Verification](../../engineering/TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md)
 - [Production Propagation Technical Alternative Proposal](PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
+- [Immutable Preview and Hostname Purge Technical Alternative](PRODUCTION_IMMUTABLE_PREVIEW_PURGE_TECHNICAL_ALTERNATIVE.md)
 - [CI and Deployment Rehearsal](CI_AND_DEPLOYMENT_REHEARSAL.md)
 - [Completion Report](COMPLETION_REPORT.md)
 - [Independent Acceptance Report](../../../../product/reviews/TASK-THINSLICE-001_Independent_Acceptance_Report.md)

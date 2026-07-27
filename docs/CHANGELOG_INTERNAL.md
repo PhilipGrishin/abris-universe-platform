@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.22.0 |
+| Version | 4.23.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,26 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Immutable Preview and Hostname Purge Continuation
+
+- Recorded OWNER-DEC-TS001-PRODUCTION-DELIVERY-002 and
+  `AU-TAP-TS001-002` without changing product behavior or the independently
+  accepted application.
+- Replaced the unstable custom-domain version override with exact immutable
+  Workers preview verification, exact-version promotion, hostname-only cache
+  purge, and a three-consecutive-pass production stability quorum.
+- Added a separate least-privilege purge client, sanitized evidence, rollback
+  purge, bounded rollback convergence, and focused failure-path tests.
+- Enabled version preview URLs only for the protected post-merge production
+  workflow; pull-request preview deployment remains disabled.
+- Updated Technical Design, ADR-TS001-004, deployment record, decisions, risks,
+  open questions, tasks, traceability, status, focus, handoff, and navigation.
+- Removed two empty duplicate directories after confirming they contained no
+  files.
+- Documentation Impact: Material.
+- Status: `[IMPLEMENTED]`, locally `[TESTED]`; exact-source AU-AGENT-003
+  review, protected merge, and one controlled production attempt remain open.
 
 ## 2026-07-27 — Alternative A Production Attempt Failed Closed
 

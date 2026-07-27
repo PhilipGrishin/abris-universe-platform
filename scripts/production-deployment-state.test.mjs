@@ -7,6 +7,11 @@ import {
 
 const PRIOR = "prior-version";
 const NEXT = "next-version";
+const CANDIDATE = {
+  versionId: NEXT,
+  previewUrl: "https://next-version-abris.workers.dev",
+};
+const PREVIEW_SMOKE = { observedCommit: "accepted" };
 
 const lifecycle = (overrides = {}) => {
   const calls = [];
@@ -14,17 +19,18 @@ const lifecycle = (overrides = {}) => {
     priorVersionId: PRIOR,
     uploadVersion: async () => {
       calls.push("upload");
-      return NEXT;
+      return CANDIDATE;
     },
-    deployPrePromotion: async (next, prior) => {
-      calls.push(`deploy:${next}@0:${prior}@100`);
-    },
-    smokePrePromotion: async (next) => {
-      calls.push(`smoke-candidate:${next}`);
-      return { observedCommit: "accepted" };
+    smokePreview: async (candidate) => {
+      calls.push(`smoke-preview:${candidate.versionId}`);
+      return PREVIEW_SMOKE;
     },
     promote: async (next) => {
       calls.push(`promote:${next}@100`);
+    },
+    purgeProductionCache: async () => {
+      calls.push("purge-production-cache");
+      return { success: true };
     },
     smokeProduction: async () => {
       calls.push("smoke-production");
@@ -32,6 +38,10 @@ const lifecycle = (overrides = {}) => {
     },
     rollback: async (prior) => {
       calls.push(`rollback:${prior}`);
+    },
+    purgeRollbackCache: async () => {
+      calls.push("purge-rollback-cache");
+      return { success: true };
     },
     confirmRollbackActive: async (prior) => {
       calls.push(`confirm-active:${prior}`);
@@ -46,37 +56,38 @@ const lifecycle = (overrides = {}) => {
   return { calls, operations };
 };
 
-test("executes upload, zero-traffic smoke, promotion, and production smoke in order", async () => {
+test("executes immutable preview, exact promotion, purge, and stability smoke in order", async () => {
   const fixture = lifecycle();
   const state = await executeProductionDeployment(fixture.operations);
 
   assert.deepEqual(fixture.calls, [
     "upload",
-    `deploy:${NEXT}@0:${PRIOR}@100`,
-    `smoke-candidate:${NEXT}`,
+    `smoke-preview:${NEXT}`,
     `promote:${NEXT}@100`,
+    "purge-production-cache",
     "smoke-production",
   ]);
   assert.equal(state.stage, "complete");
   assert.equal(state.promoted, true);
   assert.equal(state.rollbackAttempted, false);
+  assert.deepEqual(state.candidate, CANDIDATE);
 });
 
-test("passes the exact candidate smoke into the post-promotion transition", async () => {
-  let transitionInput;
+test("passes the exact preview evidence into production stability verification", async () => {
+  let stabilityInput;
   const fixture = lifecycle({
     smokeProduction: async (input) => {
       fixture.calls.push("smoke-production");
-      transitionInput = input;
+      stabilityInput = input;
       return { observedCommit: "accepted" };
     },
   });
   await executeProductionDeployment(fixture.operations);
 
-  assert.deepEqual(transitionInput, {
+  assert.deepEqual(stabilityInput, {
     priorVersionId: PRIOR,
-    uploadedVersionId: NEXT,
-    prePromotionSmoke: { observedCommit: "accepted" },
+    candidate: CANDIDATE,
+    previewSmoke: PREVIEW_SMOKE,
   });
 });
 
@@ -100,10 +111,10 @@ test("does not roll back when immutable upload fails before traffic mutation", a
   assert.deepEqual(fixture.calls, ["upload"]);
 });
 
-test("restores and verifies the prior version when candidate smoke fails", async () => {
+test("does not roll back when immutable preview smoke fails before promotion", async () => {
   const fixture = lifecycle({
-    smokePrePromotion: async () => {
-      fixture.calls.push("smoke-candidate:failed");
+    smokePreview: async () => {
+      fixture.calls.push("smoke-preview:failed");
       throw new Error("candidate rejected");
     },
   });
@@ -112,26 +123,68 @@ test("restores and verifies the prior version when candidate smoke fails", async
     executeProductionDeployment(fixture.operations),
     (error) => {
       assert(error instanceof ProductionDeploymentError);
-      assert.equal(error.state.failureStage, "pre-promotion-smoke");
-      assert.equal(error.state.rollbackPerformed, true);
-      assert.deepEqual(error.state.rollbackActive, {
-        versionId: PRIOR,
-        percentage: 100,
-      });
-      assert.deepEqual(error.state.rollbackBaseline, {
-        bodySha256: "baseline",
-      });
+      assert.equal(error.state.failureStage, "preview-smoke");
+      assert.equal(error.state.rollbackAttempted, false);
+      assert.equal(error.state.productionMutationAttempted, false);
       return true;
     },
   );
-  assert.deepEqual(fixture.calls.slice(-3), [
+  assert.deepEqual(fixture.calls, ["upload", "smoke-preview:failed"]);
+});
+
+test("rolls back when exact-version promotion may have partially mutated traffic", async () => {
+  const fixture = lifecycle({
+    promote: async () => {
+      fixture.calls.push("promote:failed");
+      throw new Error("promotion failed");
+    },
+  });
+
+  await assert.rejects(
+    executeProductionDeployment(fixture.operations),
+    (error) => {
+      assert(error instanceof ProductionDeploymentError);
+      assert.equal(error.state.failureStage, "promotion");
+      assert.equal(error.state.productionMutationAttempted, true);
+      assert.equal(error.state.rollbackPerformed, true);
+      return true;
+    },
+  );
+  assert.deepEqual(fixture.calls.slice(-4), [
     `rollback:${PRIOR}`,
+    "purge-rollback-cache",
     `confirm-active:${PRIOR}`,
     "verify-baseline",
   ]);
 });
 
-test("restores the prior version after a failed post-promotion smoke", async () => {
+test("restores and purges the prior version after production cache purge fails", async () => {
+  const fixture = lifecycle({
+    purgeProductionCache: async () => {
+      fixture.calls.push("purge-production-cache:failed");
+      throw new Error("cache purge rejected");
+    },
+  });
+
+  await assert.rejects(
+    executeProductionDeployment(fixture.operations),
+    (error) => {
+      assert(error instanceof ProductionDeploymentError);
+      assert.equal(error.state.failureStage, "production-cache-purge");
+      assert.equal(error.state.promoted, true);
+      assert.equal(error.state.rollbackPerformed, true);
+      return true;
+    },
+  );
+  assert.deepEqual(fixture.calls.slice(-4), [
+    `rollback:${PRIOR}`,
+    "purge-rollback-cache",
+    `confirm-active:${PRIOR}`,
+    "verify-baseline",
+  ]);
+});
+
+test("restores and purges the prior version after failed production stability smoke", async () => {
   const fixture = lifecycle({
     smokeProduction: async () => {
       fixture.calls.push("smoke-production:failed");
@@ -149,11 +202,38 @@ test("restores the prior version after a failed post-promotion smoke", async () 
       return true;
     },
   );
-  assert.deepEqual(fixture.calls.slice(-3), [
+  assert.deepEqual(fixture.calls.slice(-4), [
     `rollback:${PRIOR}`,
+    "purge-rollback-cache",
     `confirm-active:${PRIOR}`,
     "verify-baseline",
   ]);
+});
+
+test("preserves the original stage when rollback cache purge fails", async () => {
+  const fixture = lifecycle({
+    smokeProduction: async () => {
+      fixture.calls.push("smoke-production:failed");
+      throw new Error("production rejected");
+    },
+    purgeRollbackCache: async () => {
+      fixture.calls.push("purge-rollback-cache:failed");
+      throw new Error("rollback purge failed");
+    },
+  });
+
+  await assert.rejects(
+    executeProductionDeployment(fixture.operations),
+    (error) => {
+      assert(error instanceof ProductionDeploymentError);
+      assert.equal(error.state.failureStage, "production-smoke");
+      assert.equal(error.state.rollbackFailureStage, "rollback-cache-purge");
+      assert.equal(error.state.rollbackPerformed, true);
+      assert.equal(error.cause.message, "production rejected");
+      assert.equal(error.rollbackCause.message, "rollback purge failed");
+      return true;
+    },
+  );
 });
 
 test("preserves the original stage and reports rollback verification failure", async () => {
