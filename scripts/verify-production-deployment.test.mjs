@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import test from "node:test";
-import { inspectProductionDeployment } from "./verify-production-deployment.mjs";
+import {
+  inspectProductionDeployment,
+  PRODUCTION_SEMANTIC_ATTEMPTS,
+  ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
+} from "./verify-production-deployment.mjs";
 
 const EXPECTED_COMMIT = "a".repeat(40);
 const CSP = [
@@ -25,6 +29,11 @@ const securityHeaders = {
   "Referrer-Policy": "no-referrer",
   "X-Content-Type-Options": "nosniff",
 };
+
+test("keeps the extended wait exclusive to zero-traffic smoke", () => {
+  assert.equal(PRODUCTION_SEMANTIC_ATTEMPTS, 6);
+  assert.equal(ZERO_TRAFFIC_SEMANTIC_ATTEMPTS, 61);
+});
 
 const createFixtureServer = async ({
   wrongCommit = false,
@@ -144,6 +153,38 @@ test("retries a semantically stale 200 until the candidate version is visible", 
     });
     assert.equal(result.observedCommit, EXPECTED_COMMIT);
     assert.equal(result.semanticAttempt, 2);
+  } finally {
+    await fixture.close();
+  }
+});
+
+test("retains bounded diagnostics when semantic propagation never converges", async () => {
+  const fixture = await createFixtureServer({ staleRootResponses: 2 });
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 2,
+        semanticRetryDelayMs: 0,
+      }),
+      (error) => {
+        assert.equal(error.semanticAttempt, 2);
+        assert.equal(error.semanticAttemptsExhausted, 2);
+        assert.equal(error.deploymentObservation.status, 200);
+        assert.equal(
+          error.deploymentObservation.contentSecurityPolicy,
+          null,
+        );
+        assert.match(
+          error.deploymentObservation.bodySha256,
+          /^[0-9a-f]{64}$/u,
+        );
+        assert.equal("body" in error.deploymentObservation, false);
+        return true;
+      },
+    );
   } finally {
     await fixture.close();
   }

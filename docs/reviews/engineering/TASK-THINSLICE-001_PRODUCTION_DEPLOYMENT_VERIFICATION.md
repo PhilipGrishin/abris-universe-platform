@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.5; ADR-TS001-004 v1.3.1; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.7; ADR-TS001-004 v1.3.3; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -27,6 +27,13 @@
 - **Exact propagation-remediation source:** commit
   `854ba305bdacfb6ff600f657e84bf4e61295bd1b` on
   `codex/task-thinslice-001-production-smoke-retry`.
+- **Exact observability-remediation source:** commit
+  `a503500c724ea618b80796fcca470d260d76b621` on
+  `codex/task-thinslice-001-production-smoke-observability`.
+- **Superseded observability source:** commit
+  `73811129110cfa991689028441d45a4eccead613` set 61 attempts as the global
+  default and was superseded before merge because that also extended
+  post-promotion smoke at 100 percent traffic.
 - **Accepted executable source:** commit
   `1a683abd9a8294de5a36888e997e65aba7b7a167`.
 - **Implementation owner:** AU-CODEX-PRIMARY with AU-AGENT-001 technical
@@ -76,6 +83,26 @@
   and
   [30248087514](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30248087514):
   successful `verify` jobs at exact remediation source `854ba305`
+- corrected failed-closed production attempt
+  [30248680612](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30248680612):
+  retained exact domain/preflight/lifecycle evidence, closed TD-GATE-003, kept
+  candidate `b855e2e0-7221-456e-aaa6-55e947b0dcf0` at zero traffic through six
+  stale semantic attempts, and restored the exact prior version and baseline
+- retained run-2 artifact
+  `production-deployment-bb9a5e56c1627a3da4146c972a72b4c4006f59b3-30248680612`,
+  digest `sha256:6abec25f1b432cce932e03fff7e08d01c5428eb018801b091883d6b50c659a6e`;
+  parsed JSON contains no token, secret, authorization, account, request-header,
+  HTML, or raw-body key
+- focused observability-remediation verification: syntax checks and all 19
+  deployment tests passed
+- remote CI run
+  [30249435527](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30249435527):
+  successful `verify` job at superseded observability source `73811129`
+- final-source remote CI runs
+  [30249687717](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30249687717)
+  and
+  [30249690631](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30249690631):
+  successful `verify` jobs at exact correction `a503500`
 - GitHub API observation: `main` has strict required `verify`, enforced
   protection, pull-request review rules, stale-review dismissal, conversation
   resolution, and force-push/deletion disabled; the `production` environment
@@ -91,13 +118,13 @@ executable source.
 | Area | Result | Limitation |
 | --- | --- | --- |
 | Source identity | Pass for the exact reviewed source | Reusable-workflow hardening is recorded below |
-| Static smoke contract | Pass | Corrected candidate response remains unobserved in production |
+| Static smoke contract | Pass | Candidate remained unobserved after six live attempts; extended path is exact-source tested |
 | Security headers | Pass in code and local test scope | Corrected production response remains unobserved |
 | Immutable upload and zero-traffic smoke | Pass | Attempt 1 exercised both without promoting the candidate |
 | Promotion and rollback | Pass for reviewed scope | Live rollback succeeded; successful promotion remains unexecuted |
 | Secret boundary | Pass | Values are step-scoped, unavailable to the reviewer, and masked in immutable logs |
 | Branch/environment governance | Pass for observed controls | Corrected source still requires protected merge |
-| Production workflow readiness | Pass for protected retry | TD-GATE-003 and production/browser assertions close only through the corrected run |
+| Production workflow readiness | Pass for one protected retry | TD-GATE-003 is closed; production/browser assertions remain open |
 
 ## Findings
 
@@ -145,21 +172,45 @@ accepted executable application scope.
 No new `Critical`, `High`, `Medium`, `Low`, or `Recommendation` finding was
 identified in the bounded remediation.
 
+## Extended Observability Reverification
+
+| Control | Exact-source evidence | Result |
+| --- | --- | --- |
+| Bounded retry | Zero-traffic pre-promotion smoke explicitly receives 61 complete semantic attempts with 60 two-second intervals; ordinary and post-promotion production smoke retain the six-attempt default | Pass |
+| Final observation | A failed root semantic check retains only status, body SHA-256, CSP, `cf-cache-status`, server, final attempt, and exhausted-attempt count | Pass |
+| Prohibited data | The observation object has no HTML body, token, account ID, Authorization value, request header, or generic environment field; the test asserts absence of `body` and a valid SHA-256 | Pass |
+| Evidence plumbing | The deployment failure record copies only the bounded observation and numeric attempt fields from the final semantic cause; existing sanitized JSON writer and hidden-artifact retention remain unchanged | Pass |
+| Failure and rollback | The change does not alter the zero-traffic, promotion, exception, or rollback state machine; exhaustion still fails pre-promotion and invokes exact rollback | Pass |
+| Source identity | Accepted application, package, fixture, lockfile, workspace, and shared TypeScript paths have an empty diff from `1a683abd` | Pass |
+| Tests and CI | 19 focused deployment tests pass, including an explicit 61-versus-6 boundary assertion; final-source CI runs `30249687717` and `30249690631` pass | Pass |
+| Documentation | Run 2, TD-GATE-003 closure, the final bounded attempt, sanitization, and the mandatory Technical Alternative Proposal after another stale result are explicit | Pass |
+
+Superseded source `73811129` was rejected before merge because its global
+61-attempt default also applied after promotion. Exact correction `a503500`
+restores the six-attempt production default and applies 61 attempts explicitly
+only while the candidate remains at zero traffic. No finding remains in the
+final bounded remediation.
+
 ## Quality Gate Decision
 
 - **Engineering Verification Status:** VERIFIED
 - **Rationale:** all prior findings remain resolved, and exact remediation
   `854ba305` adds bounded semantic propagation retry, fail-closed exact-domain
-  ownership proof before mutation, sanitized and explicitly retained hidden
-  evidence, and focused regression tests without changing accepted application
-  source or weakening rollback.
+  ownership proof before mutation, sanitized hidden evidence, and regression
+  tests. Exact observability remediation `a503500` extends only zero-traffic
+  pre-promotion smoke to approximately two minutes, preserves six attempts
+  after promotion, and retains a strict final-observation allowlist without
+  changing accepted application source or weakening rollback.
 - **Mandatory unresolved findings:** None.
 - **Merge allowed:** Yes, subject to the registered conflict-free,
-  required-check, and branch-protection workflow.
-- **Protected deployment retry allowed:** Yes, only after exact remediation is
+  and branch-protection workflow; both final-source required CI runs pass.
+  Superseded source `73811129` is not mergeable.
+- **Protected deployment retry allowed:** Yes, one further attempt only after
+  exact observability remediation `a503500` is
   merged to protected `main` and the dispatch input equals that exact main
-  commit. The preflight must fail before mutation unless domain ownership,
-  rollback anchor, and public baseline all validate.
+  commit. The candidate must remain at zero traffic until the complete smoke
+  contract passes. Another exhausted semantic window requires a Technical
+  Alternative Proposal rather than another silent retry or weakened gate.
 - **Required next action:** merge the independently reverified remediation,
   dispatch the exact protected main commit, retain the preflight/deployment
   JSON, and independently assess the resulting production and browser
@@ -170,9 +221,8 @@ bounded Claude Cowork acceptance of executable source `1a683abd`.
 
 ## Residual External Blockers
 
-- TD-GATE-003 still requires retained exact domain-ownership and preflight
-  evidence from the corrected authenticated run.
-- The corrected candidate has not been promoted or verified on production.
+- TD-GATE-003 is closed by retained run `30248680612`.
+- Neither candidate has been promoted or verified on production.
 - Production security headers, runtime request inventory, browser network
   capture, console, import entry point, and live post-promotion assertions
   remain open.

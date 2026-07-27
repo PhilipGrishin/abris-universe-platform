@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempt 1 failed closed before promotion and rollback `[TESTED]`; propagation/evidence remediation task-scoped engineering `VERIFIED` at `854ba305`; corrected main workflow and production/browser evidence remain open |
+| Status | Attempts 1 and 2 failed closed before promotion with rollback `[TESTED]`; TD-GATE-003 closed by retained run-2 evidence; bounded extended propagation diagnostic and production/browser evidence remain open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.1 |
+| Version | 1.4.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.5; ADR-TS001-004 v1.3.1; Production Deployment Verification v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.7; ADR-TS001-004 v1.3.3; Production Deployment Verification v1.3.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -134,11 +134,13 @@ script-initiated network requests or pattern-derived egress.
 - Current immutable placeholder Worker version:
   `d1f2b05d-77d0-4d53-9c7a-73d61135979e`, observed at 100 percent before and
   after rollback in workflow run `30247393181`.
-- Route ownership: `[OPEN]` pending the corrected authenticated Workers Domains
-  API preflight.
-- Production mutation: candidate
-  `f231b299-63d1-43f5-acb0-416ae989ab83` was uploaded and placed at zero
-  percent only; it was never promoted.
+- Route ownership: `[TESTED]`; retained run-2 preflight records the exact
+  `abris.653915.com` hostname, `abris-universe` service, production
+  environment, and `653915.com` zone without credential values.
+- Production mutation: candidates
+  `f231b299-63d1-43f5-acb0-416ae989ab83` and
+  `b855e2e0-7221-456e-aaa6-55e947b0dcf0` were uploaded and placed at zero
+  percent only; neither was promoted.
 
 ## Attempt 1 — Failed Closed and Rolled Back
 
@@ -164,6 +166,32 @@ script-initiated network requests or pattern-derived egress.
   the bounded hidden JSON path in artifact upload, and validate exact
   hostname-to-Worker ownership before mutation.
 
+## Attempt 2 — Retained Evidence, Failed Closed, and Rolled Back
+
+- **Workflow run:** `30248680612`.
+- **Source:** protected-main merge
+  `bb9a5e56c1627a3da4146c972a72b4c4006f59b3`.
+- **Prior version:** `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent.
+- **Candidate version:** `b855e2e0-7221-456e-aaa6-55e947b0dcf0` at zero
+  percent.
+- **TD-GATE-003:** `[TESTED]`, closed. The retained preflight proves exact
+  hostname-to-Worker ownership, current immutable version, public baseline,
+  and recoverability; the lifecycle proves exact rollback.
+- **Failure stage:** pre-promotion semantic smoke.
+- **Observed failure:** all six semantic attempts over approximately twelve
+  seconds still received the placeholder without the reviewed CSP, consistent
+  with the override not yet selecting the candidate at the runner's edge.
+- **Promotion:** none.
+- **Rollback:** `[TESTED]`; the exact prior version returned to 100 percent and
+  the recorded GET/HEAD/content/body baseline was restored.
+- **Artifact:** retained for 90 days as
+  `production-deployment-bb9a5e56c1627a3da4146c972a72b4c4006f59b3-30248680612`.
+- **Next bounded diagnostic:** allow up to 61 complete semantic attempts at
+  two-second intervals only while the candidate remains at zero traffic;
+  post-promotion production smoke remains at six attempts. Retain only the last
+  response status, SHA-256, CSP/cache/server fields, and attempt count. No
+  response body, token, account ID, or request header is retained.
+
 ## Rollback
 
 The workflow refuses first promotion unless the current deployment exposes one
@@ -179,11 +207,13 @@ IndexedDB.
 
 ## Current Blocker
 
-AU-AGENT-003 independently reverified the propagation, route-evidence, and
-artifact-retention remediation at `854ba305`. After protected merge, Codex can
-dispatch the exact corrected `main` commit, close TD-GATE-003, and complete
-production and browser verification. No further owner credential action is
-required.
+TD-GATE-003 is closed and no further owner credential action is required.
+AU-AGENT-003 independently assigned exact observability remediation `a503500`
+task-scoped `VERIFIED`; superseded source `7381112` is not mergeable because it
+also extended post-promotion smoke. Protected merge and one further
+zero-traffic run are allowed. If the override remains unavailable, stop and
+raise a Technical Alternative Proposal; do not weaken pre-promotion smoke or
+expose candidate traffic.
 
 ## References
 

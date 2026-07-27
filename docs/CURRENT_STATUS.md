@@ -490,7 +490,8 @@
 - `[IMPLEMENTED]`, locally `[TESTED]` The protected main-only GitHub
   `production` environment, immutable-version deployment workflow, pre-
   promotion smoke, production smoke, automatic rollback, and evidence scripts
-  are implemented. Production mutation has not started.
+  are implemented. Two zero-traffic candidates have been uploaded; neither was
+  promoted.
 - `[IMPLEMENTED]`, locally `[TESTED]` AU-AGENT-003 findings
   TS001-DEPLOY-001 through TS001-DEPLOY-004 are remediated by step-scoped
   secrets, explicit pre-environment authorization failure, deterministic
@@ -513,8 +514,19 @@
   `854ba305`; 17 focused tests and exact-source CI runs `30248031399` and
   `30248087514` passed. Protected merge and corrected deployment retry are
   allowed; this task-scoped status is not production or product acceptance.
-- `[OPEN]` TD-GATE-003 route-ownership evidence and a retained preflight
-  artifact remain blocking until the corrected authenticated run.
+- `[TESTED]` Corrected run `30248680612` at exact main source `bb9a5e56`
+  retained the preflight and lifecycle artifacts, proved the exact
+  `abris.653915.com` to `abris-universe` assignment, captured the immutable
+  prior version and baseline, and restored both after failure. TD-GATE-003 is
+  closed.
+- `[OPEN]` Candidate `b855e2e0-7221-456e-aaa6-55e947b0dcf0` remained at zero
+  traffic. Six semantic attempts over approximately twelve seconds still
+  observed the placeholder/CSP mismatch, so no promotion occurred. A bounded
+  two-minute wait plus sanitized last-response diagnostic is independently
+  task-scoped `VERIFIED` at exact source `a503500`; 61 attempts apply only
+  before promotion and post-promotion smoke remains bounded to six. Superseded
+  source `7381112` is not mergeable. Protected merge and one further
+  zero-traffic attempt are allowed.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
   bounded TASK-THINSLICE-001 scope at `1a683ab`.
 - `Resolved` TS001-ACCEPT-F-02 through PROD-DEC-012 and F-16 through
@@ -556,10 +568,12 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Independently reverified exact propagation, domain-evidence, artifact-retention,
-and rollback remediation `854ba305` as task-scoped `VERIFIED`.
+Completed failed-closed run `30248680612`: TD-GATE-003 evidence was retained,
+the candidate stayed at zero traffic, and rollback restored the exact prior
+version and public baseline.
 
 ## Next Step
 
-Merge the reverified remediation through protected `main`, rerun the exact main
-workflow, and assess retained TD-GATE-003 plus production/browser evidence.
+Merge exact observability remediation `a503500`, then run one exact
+protected-main attempt. Escalate a platform-path alternative if the
+zero-traffic override remains unavailable.
