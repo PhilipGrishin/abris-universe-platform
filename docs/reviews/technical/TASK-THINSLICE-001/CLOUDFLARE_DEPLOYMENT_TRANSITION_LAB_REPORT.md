@@ -7,7 +7,7 @@
 | Status | Isolated remediation `[IMPLEMENTED]`, `[TESTED]`; production integration and production result `[OPEN]` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Created | 2026-07-27 |
 | Last Updated | 2026-07-27 |
 | Dependencies | Production run `30266185702`; artifact `8652895888`; `AU-TAP-TS001-002`; `AU-TAP-TS001-003`; code sources `bcdd369a0c719b5dbfe374a9f04f09f6bfb3513c` and `d741abd90008b57122cd2c8ba08d0e5f6d50de6b`; Cloudflare Workers Versions and Deployments documentation |
@@ -185,8 +185,14 @@ response bodies, user data, or unrestricted provider responses.
 | Post-promotion stability | 12 prior-baseline observations followed by 3/3 strict candidate contracts in 72,979 ms |
 | Rollback | Exact prior version and exact root hash restored on check 2 |
 | Focused deployment tests | 33/33 passed |
+| Complete script tests | 55/55 passed |
+| Complete package tests | 70/70 passed |
 | Worker tests | 11/11 passed |
 | TypeScript typecheck | Passed |
+| Production build and static verification | Passed |
+| Production dependency audit at High threshold | No known vulnerabilities |
+| Wrangler no-deploy rehearsal | Passed; version metadata binding present; no secret markers |
+| Current production safety check | GET `200`; HEAD `200`; exact registered baseline SHA-256 `9fbac1c04aa53f14d910af10e108602e393c99bc25b9f5d6d1d80d7b9f84d09a` |
 | External cleanup | Worker absent; domain absent; DNS NXDOMAIN; rule/ruleset absent; token revoked |
 
 ## Engineering Principles
