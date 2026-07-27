@@ -4,13 +4,13 @@
 | --- | --- |
 | Document ID | AU-REVIEW-ENG-TS001-DEPLOY-001 |
 | Title | Engineering Verification Report — TASK-THINSLICE-001 Production Deployment Readiness |
-| Status | Deployment-transition remediation task-scoped `VERIFIED` at `e22e4c7`; protected integration and live production result pending; not project `[VERIFIED]` |
+| Status | Deployment-transition remediation task-scoped `VERIFIED` at `e22e4c7`; source-boundary remediation task-scoped `VERIFIED` at `3ae376f`; corrected protected integration and live production result pending; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.2.1 |
+| Version | 2.3.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-DEPLOYMENT-LAB-004; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Record v2.5.1; production run `30266185702`; retained artifact `8652895888`; first transition-remediation review `2eaae2ad122d920516bbc7bbd5d599f724822de1`; exact remediation source `e22e4c7602ccaa3716c1607a928b66583accab80` |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-DEPLOYMENT-LAB-004; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; OWNER-DEC-TS001-PRODUCTION-RETRY-006; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Record v2.6.0; production runs `30266185702` and `30276596270`; retained artifact `8652895888`; transition remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; source-boundary remediation `3ae376fa526cafa9b89748a584322c7b5ed67161` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -682,6 +682,51 @@ successful production deployment, or release approval.
 - **Deployment disposition:** this engineering review does not itself
   authorize production execution.
 
+## Accepted-Source Boundary Reverification
+
+- **Failed dispatch evidence:** run `30276596270` passed authorization and
+  exact source identity, then failed at the accepted-source guard. Credential
+  validation, install, typecheck, tests, build, audit, rehearsal, Cloudflare
+  upload/promotion/purge, and production verification were skipped. GitHub
+  retained zero artifacts; independent root checks retained the registered
+  public baseline.
+- **First reviewed source:** `3f3feac54f8b5bd89eb95e6fd8a8887bb35c1392`;
+  Quality Gate `FAIL`; Engineering Verification Status `REWORK REQUIRED`.
+  TS001-DEPLOY-018 High recorded an open-ended Worker/wrapper allowlist.
+  TS001-DEPLOY-019 High recorded omitted root manifest and trusted
+  build/deployment inputs.
+- **Second reviewed source:** `afd17ca3e6a5c399de20dd866fe8cf714f3d3bc1`;
+  Quality Gate `FAIL`; TS001-DEPLOY-019 resolved. TS001-DEPLOY-018 remained and
+  TS001-DEPLOY-020 High proved a two-commit repository self-registration
+  bypass.
+- **Exact final source:** `3ae376fa526cafa9b89748a584322c7b5ed67161`.
+- **Reviewed deployment trust source:**
+  `a20bb8b67f33d220ea141abedd91b1b6964cfdc9`.
+- **External anchors:** GitHub `production` environment variables independently
+  register accepted product source `1a683ab` and reviewed deployment source
+  `a20bb8b`; the deployment environment is restricted to exact branch `main`.
+- **Quality Gate Decision:** PASS.
+- **Engineering Verification Status:** VERIFIED, task-scoped only.
+- **Finding disposition:** TS001-DEPLOY-018, TS001-DEPLOY-019, and
+  TS001-DEPLOY-020 are resolved; no mandatory unresolved finding.
+- **Boundary contract:** Exact external/registry equality; accepted and
+  reviewed commit existence; reviewed-source ancestry; zero drift across all
+  workflows, Worker code, exact wrapper tests/configs, root manifest, complete
+  scripts tree, and Cloudflare fixtures; no accepted-product drift elsewhere.
+- **Adversarial evidence:** 11 focused tests include real Git product
+  modification/addition, deployment modification/addition/deletion,
+  cross-boundary rename, missing commit, external-anchor mismatch, and
+  two-commit self-registration rejection.
+- **Complete evidence:** strict typecheck; 71 script tests; 70 package tests;
+  exact-source production build; dependency audit with no known
+  vulnerabilities; Wrangler rehearsal; clean worktree.
+- **Protected disposition:** documentation integration, exact-head
+  preservation, branch CI, and protected merge may proceed. Exact-main CI is
+  mandatory before the one owner-authorized corrected repeat.
+- **Authority:** OWNER-DEC-TS001-PRODUCTION-RETRY-006 supplies one corrected
+  workflow dispatch after all gates. AU-AGENT-003 does not itself grant
+  deployment authority or product acceptance.
+
 ## Residual External Blockers
 
 - TD-GATE-003 is closed by retained run `30248680612`.
@@ -703,8 +748,8 @@ successful production deployment, or release approval.
 - A single workflow runner cannot prove simultaneous global edge convergence.
 
 These items remain mandatory evidence. AU-AGENT-003 supplies no deployment
-authority. Separately, OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one
-controlled attempt only after documentation integration, exact-head
+authority. OWNER-DEC-TS001-PRODUCTION-RETRY-006 separately authorizes exactly
+one corrected repeat only after documentation integration, exact-head
 preservation, branch CI, protected merge, exact-main CI, and authenticated
 workflow preflight pass.
 

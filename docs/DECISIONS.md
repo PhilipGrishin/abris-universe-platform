@@ -431,6 +431,33 @@
   repeat is authorized by this decision.
 - **Owner:** Project Owner
 
+## OWNER-DEC-TS001-PRODUCTION-RETRY-006 — Authorize One Corrected Repeat
+
+- **Status:** `[APPROVED]`; source-boundary remediation task-scoped engineering
+  `VERIFIED`; protected integration pending
+- **Date:** 2026-07-27
+- **Source:** Explicit Project Owner directive after failed workflow run
+  `30276596270`: "Выполняй повторный запуск продакшен после того, как исправишь
+  ошибку."
+- **Related task:** TASK-THINSLICE-001-PRODUCTION-DEPLOYMENT; OQ-009;
+  TS001-DEPLOY-018 through TS001-DEPLOY-020.
+- **Decision:** Authorize exactly one corrected production workflow dispatch
+  after the accepted-source defect is fixed, AU-AGENT-003 independently
+  verifies the exact source, branch CI passes, protected merge completes, and
+  exact-main CI passes.
+- **Source anchors:** The GitHub `production` environment must independently
+  supply exact accepted-product and reviewed-deployment commit variables.
+  Repository registry values must match them, product paths must match the
+  independently accepted source, and the complete deployment trust surface
+  must have zero drift from the reviewed deployment source.
+- **Safety boundary:** Run `30276596270` performed no credential check,
+  install, build, Cloudflare upload, promotion, purge, or traffic mutation and
+  retained no artifact. The corrected repeat remains main-only, exact-SHA
+  bound, immutable-preview-first, fail-closed, and rollback protected.
+- **Attempt boundary:** Exactly one post-gate repeat. No automatic second
+  repeat is authorized.
+- **Owner:** Project Owner
+
 ## TASK-THINSLICE-001 Proposed Architecture Decisions
 
 The following task-scoped decisions remain `[PROPOSED]` and have independent

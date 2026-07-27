@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.30.0 |
+| Version | 4.31.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -22,6 +22,25 @@ history without replacing Git history, ADRs, task records, or handoff
 evidence.
 
 ## 2026-07-27 — Production Affinity and Review Remediation Integrated
+
+## 2026-07-27 — Production Source Boundary Externally Anchored
+
+- Recorded failed-before-mutation workflow run `30276596270` and the unchanged
+  production baseline.
+- Registered OWNER-DEC-TS001-PRODUCTION-RETRY-006 for exactly one corrected
+  repeat after all gates.
+- Replaced the open-ended wrapper allowlist with separate accepted-product and
+  reviewed-deployment source identities.
+- Pinned all workflows, Worker inputs, exact wrapper tests/configs, root
+  package manifest, complete scripts tree, and Cloudflare fixtures to exact
+  reviewed source `a20bb8b`.
+- Added owner-controlled GitHub `production` environment anchors and exact
+  external/registry equality checks.
+- Added real-Git drift, add/delete, cross-boundary rename, missing-object,
+  external-mismatch, and two-commit self-registration regression tests.
+- Integrated AU-AGENT-003 High TS001-DEPLOY-018/019/020 and final task-scoped
+  `VERIFIED` result at exact source `3ae376f`.
+- Documentation Impact: Material.
 
 - Registered OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 for one controlled
   post-gate production workflow dispatch.

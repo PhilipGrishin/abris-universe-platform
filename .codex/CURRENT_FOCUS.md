@@ -98,8 +98,18 @@ first source `2eaae2a` with TS001-DEPLOY-016/017 and the remaining
 TS001-DEPLOY-015 serializer condition. Exact remediation `e22e4c7` resolves
 all three and has task-scoped Engineering Verification Status `VERIFIED`.
 OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005 authorizes one controlled post-gate
-attempt. The next gate is documentation integration, executable-tree
-preservation confirmation, branch CI, and protected merge.
+attempt. Protected merge `f86d1421` and exact-main CI completed, but workflow
+run `30276596270` failed before credentials or Cloudflare mutation because the
+accepted-source guard rejected the already reviewed deployment wrapper.
+OWNER-DEC-TS001-PRODUCTION-RETRY-006 authorizes one corrected post-gate
+repeat. AU-AGENT-003 rejected intermediate sources with High
+TS001-DEPLOY-018/019/020. Exact remediation `3ae376f` now binds product code to
+accepted source `1a683ab`, the complete deployment trust plane to reviewed
+source `a20bb8b`, and both identities to owner-controlled GitHub `production`
+environment variables. AU-AGENT-003 assigned `PASS` and task-scoped
+Engineering Verification Status `VERIFIED`; all three findings are resolved.
+The next gate is documentation integration, exact-head preservation, branch
+CI, protected merge, and exact-main CI before the one authorized repeat.
 
 ## Confirmed Inputs
 

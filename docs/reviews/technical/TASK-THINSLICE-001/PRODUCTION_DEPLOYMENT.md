@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempts 1–6 retained as failed-closed history; transition remediation task-scoped `VERIFIED`; one controlled post-gate attempt `[APPROVED]`; protected integration pending |
+| Status | Attempts 1–6 retained as failed-closed history; run `30276596270` failed before mutation; transition and source-boundary remediation task-scoped `VERIFIED`; one corrected repeat `[APPROVED]`; protected integration pending |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 2.5.1 |
+| Version | 2.6.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.2.1; bounded independent acceptance at `1a683ab`; exact remediation `e22e4c7602ccaa3716c1607a928b66583accab80`; production run `30266185702`; artifact `8652895888`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-DELIVERY-002; OWNER-DEC-TS001-PRODUCTION-PREVIEW-003; OWNER-DEC-TS001-PRODUCTION-ATTEMPT-005; OWNER-DEC-TS001-PRODUCTION-RETRY-006; `AU-TAP-TS001-002` v1.3.3; `AU-TAP-TS001-003` v1.4.0; Technical Design v1.5.17; ADR-TS001-004 v1.3.13; Production Deployment Verification v2.3.0; bounded independent acceptance at `1a683ab`; transition remediation `e22e4c7`; source-boundary remediation `3ae376f`; production runs `30266185702` and `30276596270`; artifact `8652895888`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -487,6 +487,32 @@ the first exact-source review and remediation are recorded below.
 - **Remaining gates:** documentation integration, exact-head executable-tree
   preservation, branch CI, protected merge, exact-main CI, exact authenticated
   workflow preflight, and the controlled deployment result.
+
+## Corrected Repeat Readiness
+
+Protected merge `f86d1421` and exact-main CI passed for the transition
+remediation. Workflow run `30276596270` then failed before credentials,
+installation, build, or Cloudflare access because its accepted-source guard
+did not distinguish independently reviewed deployment-wrapper changes from
+product drift. The Cloudflare deployment step was skipped, GitHub reports zero
+artifacts, and independent GET/HEAD/hash checks retained the exact public
+baseline.
+
+OWNER-DEC-TS001-PRODUCTION-RETRY-006 authorizes one corrected repeat after all
+gates. AU-AGENT-003 assigned High TS001-DEPLOY-018/019/020 across two rejected
+intermediate sources, then assigned `PASS` and task-scoped Engineering
+Verification Status `VERIFIED` to exact source `3ae376f`. The final contract:
+
+1. accepts product code only from independently accepted source `1a683ab`;
+2. accepts deployment inputs only when the full trust surface has zero drift
+   from independently reviewed source `a20bb8b`;
+3. requires both identities to match owner-controlled GitHub `production`
+   environment variables;
+4. rejects product drift, trust-input drift, rename/add/delete cases, missing
+   commits, external-anchor mismatch, and repository self-registration;
+5. requires branch CI, protected merge, and exact-main CI before dispatch.
+
+No automatic second repeat is authorized.
 
 ## References
 
