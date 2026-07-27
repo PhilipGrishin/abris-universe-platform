@@ -508,8 +508,11 @@
 - `[IMPLEMENTED]`, locally `[TESTED]` Both environment secret names are
   configured. Corrective tooling retries semantic version propagation,
   validates hostname-to-Worker ownership through the Cloudflare API, and
-  explicitly retains hidden JSON evidence. AU-AGENT-003 reverification and
-  corrected protected merge remain open.
+  explicitly retains hidden JSON evidence.
+- `[VERIFIED]` AU-AGENT-003 independently reverified exact remediation
+  `854ba305`; 17 focused tests and exact-source CI runs `30248031399` and
+  `30248087514` passed. Protected merge and corrected deployment retry are
+  allowed; this task-scoped status is not production or product acceptance.
 - `[OPEN]` TD-GATE-003 route-ownership evidence and a retained preflight
   artifact remain blocking until the corrected authenticated run.
 - `[VERIFIED]` Independent Claude Cowork acceptance is complete only for the
@@ -553,11 +556,10 @@ See `docs/RISKS.md` for controls.
 
 ## Last Completed Step
 
-Ran the first protected production attempt. It failed closed at
-pre-promotion semantic smoke and automatically restored the exact immutable
-placeholder version and public baseline; no candidate traffic was promoted.
+Independently reverified exact propagation, domain-evidence, artifact-retention,
+and rollback remediation `854ba305` as task-scoped `VERIFIED`.
 
 ## Next Step
 
-Independently reverify and merge the semantic-propagation, route-evidence, and
-artifact-retention fix; then rerun the exact protected `main` workflow.
+Merge the reverified remediation through protected `main`, rerun the exact main
+workflow, and assess retained TD-GATE-003 plus production/browser evidence.

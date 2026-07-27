@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 |
 | Independent Architecture Review | `AU-EX-20260725-005`; `ACCEPTED_WITH_GATES` |
 | Security Review | `AU-REVIEW-ENG-TS001-SEC-001`; `VERIFIED WITH FINDINGS` for design scope |
-| Version | 1.3.0 |
+| Version | 1.3.1 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/architecture/designs/TASK-THINSLICE-001_TECHNICAL_DESIGN.md`, TASK-THINSLICE-001 v1.1, PROD-DEC-007, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md` |
@@ -135,5 +135,8 @@ production smoke, rollback rehearsal, and local-data compatibility.
   failed closed on a semantically stale edge response, and restored the prior
   version and public baseline. Version 1.3.0 records the locally tested
   propagation retry, exact Workers-domain ownership query, and hidden-artifact
-  retention corrections. TD-GATE-003 remains open until exact-source review
-  and the corrected production run record the route and successful assertions.
+  retention corrections. TD-GATE-003 remains open until the corrected
+  production run records the route and successful assertions.
+- 2026-07-27: Version 1.3.1 records AU-AGENT-003 task-scoped `VERIFIED`
+  reverification of exact remediation `854ba305` without changing the
+  architecture decision.

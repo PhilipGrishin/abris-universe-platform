@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.16.0 |
+| Version | 4.17.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,16 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Production Propagation Remediation Reverified
+
+- AU-AGENT-003 independently assigned task-scoped `VERIFIED` to exact
+  remediation `854ba305`; no new finding was identified.
+- Confirmed complete semantic retry, exact pre-mutation Workers-domain
+  ownership proof, sanitized hidden evidence retention, preserved rollback
+  behavior, 17 focused tests, and two successful exact-source CI runs.
+- Allowed protected merge and retry while preserving TD-GATE-003 and
+  corrected production/browser evidence as open.
 
 ## 2026-07-27 — Failed-Closed Production Attempt and Smoke Correction
 

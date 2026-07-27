@@ -1,5 +1,18 @@
 # Handoff Log
 
+## 2026-07-27 — Production Propagation Remediation Independently Verified
+
+- **Exact source:** `854ba305bdacfb6ff600f657e84bf4e61295bd1b`.
+- **Result:** AU-AGENT-003 assigned task-scoped Engineering Verification
+  Status `VERIFIED` with no new findings.
+- **Evidence:** Accepted application diff remains empty; 17 focused tests and
+  exact-source CI runs `30248031399` and `30248087514` passed; semantic retry,
+  exact Workers-domain preflight, sanitization, hidden artifact retention, and
+  failed-closed rollback behavior passed review.
+- **Disposition:** Protected merge and exact-main deployment retry are allowed.
+  TD-GATE-003 retained route/preflight evidence and corrected
+  production/browser results remain open. No project `[VERIFIED]` was assigned.
+
 ## 2026-07-27 — Production Attempt 1 Failed Closed
 
 - **Workflow:** `30247393181`, exact protected `main` source `c26ce9f`.

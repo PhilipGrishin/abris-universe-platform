@@ -9,10 +9,10 @@
 | Technical Approver | AU-CODEX-PRIMARY |
 | Quality Reviewer | AU-AGENT-003 |
 | Independent Reviewer | Claude Cowork roles registered by TASK-THINSLICE-001 section 37 |
-| Version | 1.1.3 |
+| Version | 1.1.4 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.3; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
+| Dependencies | TASK-THINSLICE-001 v1.1; Technical Design v1.5.5; ADR-TS001-001 through ADR-TS001-004; Engineering Verification Report v1.9.0; Production Deployment Verification v1.2.0; exact executable source `470a30a7ea04860c9dacab5ae6edace960ca7d6d`; evidence package `58d5832fd248b085774aadd417b4c0a54855ed10`; supplemental interaction record `manual-interaction-contracts-6bbf691.json`; final report-gate source `c6314a9c3b2b7a8f96061bbd8ee43613c4fc1bc5`; independent acceptance source `1a683abd9a8294de5a36888e997e65aba7b7a167`; `AU-EX-20260726-001`; PROD-DEC-012 through PROD-DEC-014; CI runs listed below |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Task Package, implementation source, test, evidence, finding, limitation, deployment, acceptance, or documentation-result change |
@@ -150,7 +150,7 @@ No item from TASK-THINSLICE-001 section 10 was intentionally implemented.
 | Import-Worker peak memory | Actual Worker peak was not measurable with the registered safe method. Project Owner approved the documented Phase 0 limitation under the tested 384 MiB preflight control and mandatory Prototype 9.1 measurement before any scale claim. |
 | Browser/platform coverage | Evidence is bounded to Chrome 150/macOS 26.5.2. No cross-browser or mobile support claim is made. |
 | Repeat import | Importing the same file more than once is not required to be idempotent in Phase 0. This report makes no guarantee about reuse or creation of identities or PatternVersions; the Phase 1 repeated-import/versioning behavior remains outside this task. |
-| Production deployment | Attempt 1 run `30247393181` uploaded a zero-traffic candidate, rejected a semantically stale pre-promotion response, and restored the exact prior version/baseline. No candidate traffic was promoted. Corrective workflow reverification and the successful production/browser assertions remain open. |
+| Production deployment | Attempt 1 run `30247393181` uploaded a zero-traffic candidate, rejected a semantically stale pre-promotion response, and restored the exact prior version/baseline. No candidate traffic was promoted. Exact remediation `854ba305` is task-scoped engineering `VERIFIED`; protected merge and successful production/browser assertions remain open. |
 
 These dispositions do not change product requirements.
 

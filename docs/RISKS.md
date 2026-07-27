@@ -309,7 +309,8 @@
 
 - **Status:** Mitigation `[TESTED]` in failed-closed run `30247393181`; exact
   rollback anchor captured; route-ownership evidence and retained preflight
-  artifact remain `[OPEN]`
+  artifact remain `[OPEN]`; corrected workflow independently task-scoped
+  `VERIFIED` at `854ba305`
 - **Probability:** Unknown
 - **Impact:** High
 - **Trigger:** The current `abris-universe` placeholder is replaced before its
@@ -334,6 +335,8 @@
   `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent after rejecting a
   zero-traffic candidate. The corrected preflight now requires exact
   hostname-to-Worker assignment and retains its hidden JSON artifacts.
+  AU-AGENT-003 independently reverified the correction with 17 focused tests
+  and exact-source remote CI.
 - **Fallback:** If no prior version is recoverable, do not deploy until the
   Project Owner approves a specific replacement rollback artifact.
 - **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence

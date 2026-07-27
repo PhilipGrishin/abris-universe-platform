@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.4 |
+| Version | 1.5.5 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -67,8 +67,10 @@ version. It does not change product behavior or the accepted executable scope.
 Version 1.5.4 records configured GitHub environment credentials, the failed-
 closed first attempt and successful automatic rollback, and the locally tested
 edge-propagation, exact-domain evidence, and artifact-retention corrections.
-It changes evidence and workflow robustness only; TD-GATE-003 remains open
-until exact-source review and a successful corrected production run.
+It changes evidence and workflow robustness only. Version 1.5.5 records that
+AU-AGENT-003 independently reverified exact remediation `854ba305` without a
+new finding; TD-GATE-003 remains open until a successful corrected production
+run.
 
 ## 2. Scope and Non-Scope
 

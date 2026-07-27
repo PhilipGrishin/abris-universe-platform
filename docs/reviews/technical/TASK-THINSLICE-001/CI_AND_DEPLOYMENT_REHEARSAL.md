@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; production attempt 1 failed closed and rollback `[TESTED]`; semantic-propagation, route-evidence, and artifact-retention remediation locally `[TESTED]` |
+| Status | No-deploy rehearsal `[TESTED]`; production attempt 1 failed closed and rollback `[TESTED]`; exact propagation/evidence remediation task-scoped engineering `VERIFIED` |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.0 |
+| Version | 1.4.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | Technical Design v1.5.2 section 12; ADR-TS001-004; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | Technical Design v1.5.5 section 12; ADR-TS001-004 v1.3.1; Production Deployment Verification v1.2.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -112,11 +112,11 @@ Production remains blocked by:
 
 - TD-GATE-003: capture the current Worker version/route and recoverable
   placeholder artifact;
-- corrected workflow exact-source AU-AGENT-003 reverification and merge;
+- protected merge of independently reverified exact remediation `854ba305`;
 - retained route-ownership and preflight evidence;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
-- production workflow engineering verification.
+- corrected production and browser verification.
 
 PROD-DEC-013 closes the explicit authorization item. The main-only GitHub
 environment and versioned deployment workflow are now implemented. The

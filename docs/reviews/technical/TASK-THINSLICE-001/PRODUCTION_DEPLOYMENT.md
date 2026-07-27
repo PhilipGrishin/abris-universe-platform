@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-DEPLOY-TS001-001 |
 | Title | TASK-THINSLICE-001 Production Deployment Record |
-| Status | Attempt 1 failed closed before promotion and rollback `[TESTED]`; propagation/evidence remediation `[IMPLEMENTED]`, locally `[TESTED]`; AU-AGENT-003 reverification and corrected main workflow remain open |
+| Status | Attempt 1 failed closed before promotion and rollback `[TESTED]`; propagation/evidence remediation task-scoped engineering `VERIFIED` at `854ba305`; corrected main workflow and production/browser evidence remain open |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.3.0 |
+| Version | 1.3.1 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.3; ADR-TS001-004 v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
+| Dependencies | PROD-DEC-013; Technical Design v1.5.5; ADR-TS001-004 v1.3.1; Production Deployment Verification v1.2.0; bounded independent acceptance at `1a683ab`; GitHub `production` environment |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Credential, workflow, source commit, Cloudflare version, route, smoke, rollback, production failure, or deployment authorization change |
@@ -179,9 +179,9 @@ IndexedDB.
 
 ## Current Blocker
 
-AU-AGENT-003 must independently reverify the propagation, route-evidence, and
-artifact-retention remediation. After required CI and protected merge, Codex
-can dispatch the exact corrected `main` commit, close TD-GATE-003, and complete
+AU-AGENT-003 independently reverified the propagation, route-evidence, and
+artifact-retention remediation at `854ba305`. After protected merge, Codex can
+dispatch the exact corrected `main` commit, close TD-GATE-003, and complete
 production and browser verification. No further owner credential action is
 required.
 

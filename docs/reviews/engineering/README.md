@@ -7,9 +7,9 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 2.8.0 |
+| Version | 2.9.0 |
 | Created | 2026-07-25 |
-| Last Updated | 2026-07-26 |
+| Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `.codex/agents/definitions/au-agent-003-engineering-quality-devsecops-security-lead.md`, `docs/DEVELOPMENT_WORKFLOW.md` |
 | Supersedes | None |
 | Superseded By | None |
@@ -35,7 +35,7 @@ contain Claude Cowork product acceptance reports and does not grant project
 | TASK-THINSLICE-001 | [Persistence Verification](TASK-THINSLICE-001_PERSISTENCE_VERIFICATION.md) | `VERIFIED WITH FINDINGS` | Exact remediation commit `854073c`; findings 001–005 resolved; finding 006 remains the browser/client evidence gate |
 | TASK-THINSLICE-001 | [Renderer Verification](TASK-THINSLICE-001_RENDERER_VERIFICATION.md) | `VERIFIED` | Exact commit `930cad2`; findings TS001-RENDER-001 through 004 resolved; repository-core scope only |
 | TASK-THINSLICE-001 | [Consolidated Implementation Verification](TASK-THINSLICE-001_IMPLEMENTATION_VERIFICATION.md) | Underlying implementation and Completion Report v1.1.0 `VERIFIED WITH FINDINGS` | All mandatory bounded Phase 0 implementation/report findings resolved; TS001-COMP-004 remains a non-blocking recommendation |
-| TASK-THINSLICE-001 | [Production Deployment Verification](TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md) | `VERIFIED` | Exact remediation commit `2c88639`; findings TS001-DEPLOY-001 through 004 resolved; merge allowed, production dispatch still blocked by secrets and TD-GATE-003 |
+| TASK-THINSLICE-001 | [Production Deployment Verification](TASK-THINSLICE-001_PRODUCTION_DEPLOYMENT_VERIFICATION.md) | `VERIFIED` | Exact propagation remediation `854ba305`; 17 focused tests and CI pass; protected merge/retry allowed, while TD-GATE-003 and corrected production/browser evidence remain open |
 
 The report closes the independent security-review component of TD-GATE-004.
 TS001-SEC-001 is resolved. TS001-SEC-002 retains its future runtime request

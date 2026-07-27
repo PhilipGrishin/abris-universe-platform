@@ -29,8 +29,9 @@ Both GitHub environment secret names are configured. Workflow run
 pre-promotion response, and restored the prior version and placeholder
 baseline. Semantic-propagation, route-evidence, and artifact-retention
 remediation is locally `[IMPLEMENTED]`, `[TESTED]`; production remains blocked
-on AU-AGENT-003 reverification, protected merge, and a successful corrected
-run.
+on protected merge and a successful corrected run. AU-AGENT-003 independently
+reverified exact remediation `854ba305` as task-scoped `VERIFIED`; protected
+merge and deployment retry are allowed.
 
 ## Confirmed Inputs
 
@@ -263,7 +264,6 @@ remains open.
 
 ## Next Concrete Step
 
-Commit and independently review the deployment workflow. Production then
-requires two GitHub `production` environment secrets, TD-GATE-003 capture,
-main-branch workflow dispatch, and production/browser evidence. Never place
-secret values in chat or the repository.
+Merge exact remediation `854ba305` through protected `main`, dispatch that exact
+main commit, retain TD-GATE-003 evidence, and independently assess the
+production/browser result. Never place secret values in chat or the repository.
