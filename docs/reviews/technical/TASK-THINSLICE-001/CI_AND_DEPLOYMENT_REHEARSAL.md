@@ -4,14 +4,14 @@
 | --- | --- |
 | Document ID | AU-TECHREV-TS001-CI-001 |
 | Title | TASK-THINSLICE-001 CI and Deployment Rehearsal |
-| Status | No-deploy rehearsal `[TESTED]`; production attempt 1 failed closed and rollback `[TESTED]`; exact propagation/evidence remediation task-scoped engineering `VERIFIED` |
+| Status | No-deploy rehearsal `[TESTED]`; production attempts 1 and 2 failed closed and rollback `[TESTED]`; TD-GATE-003 closed; bounded extended propagation diagnostic awaiting review |
 | Owner | AU-CODEX-PRIMARY |
 | Technical Approver | AU-AGENT-001 |
 | Quality Reviewer | AU-AGENT-003 |
-| Version | 1.4.1 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | Technical Design v1.5.5 section 12; ADR-TS001-004 v1.3.1; Production Deployment Verification v1.2.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
+| Dependencies | Technical Design v1.5.6 section 12; ADR-TS001-004 v1.3.2; Production Deployment Verification v1.2.0; Production Deployment Record v1.4.0; Threat Model TM-011 through TM-019; exact implementation commit `35bbb34bdeb5c4133de88e4edea36762281a65ca` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Workflow, action SHA, dependency, build, Worker, header, asset, Cloudflare, route, credential, or rollback change |
@@ -106,14 +106,17 @@ names are configured. Workflow `30247393181` uploaded candidate
 `f231b299-63d1-43f5-acb0-416ae989ab83`, registered it at zero percent, rejected
 the still-propagating placeholder response, and restored prior version
 `d1f2b05d-77d0-4d53-9c7a-73d61135979e` at 100 percent. The placeholder body
-hash is unchanged.
+hash is unchanged. Corrected workflow `30248680612` retained the exact route,
+preflight, candidate, and rollback JSON, closing TD-GATE-003. Its candidate
+`b855e2e0-7221-456e-aaa6-55e947b0dcf0` also remained at zero traffic and was
+rolled back after six complete semantic attempts still observed the
+placeholder.
 
 Production remains blocked by:
 
-- TD-GATE-003: capture the current Worker version/route and recoverable
-  placeholder artifact;
-- protected merge of independently reverified exact remediation `854ba305`;
-- retained route-ownership and preflight evidence;
+- exact-source review and protected merge of the bounded two-minute
+  propagation diagnostic;
+- successful zero-traffic candidate smoke;
 - full runtime network capture against the registered inventory;
 - production header/smoke assertion;
 - corrected production and browser verification.
@@ -127,9 +130,9 @@ back automatically on failure.
 
 ## Rollback
 
-Attempt 1 proved rollback to the exact prior version and public baseline. The
-unused zero-traffic candidate version remains immutable Cloudflare history; it
-does not receive production traffic.
+Attempts 1 and 2 proved rollback to the exact prior version and public baseline.
+Both unused zero-traffic candidate versions remain immutable Cloudflare history;
+they do not receive production traffic.
 
 ## Quality Gate
 
@@ -142,8 +145,8 @@ implementation findings; the current underlying implementation status is
 blocked by its explicit deployment gates regardless of either internal status.
 The implementation owner cannot change AU-AGENT-003 status.
 
-The new production workflow and smoke scripts require a separate exact-source
-AU-AGENT-003 review before merge and dispatch.
+The bounded two-minute propagation diagnostic and sanitized failure evidence
+require a separate exact-source AU-AGENT-003 review before merge and dispatch.
 
 ## References
 

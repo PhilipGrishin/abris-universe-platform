@@ -251,10 +251,16 @@ try {
   });
 } catch (error) {
   lifecycle = error.state ?? null;
+  const smokeCause = error.cause ?? null;
   failure = {
     name: error.name,
     failureStage: error.state?.failureStage ?? null,
     rollbackFailureStage: error.state?.rollbackFailureStage ?? null,
+    semanticAttempt: smokeCause?.semanticAttempt ?? null,
+    semanticAttemptsExhausted:
+      smokeCause?.semanticAttemptsExhausted ?? null,
+    deploymentObservation:
+      smokeCause?.deploymentObservation ?? null,
   };
   throw error;
 } finally {

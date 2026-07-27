@@ -27,11 +27,14 @@ findings with task-scoped Engineering Verification Status `VERIFIED`.
 Both GitHub environment secret names are configured. Workflow run
 `30247393181` uploaded a zero-traffic candidate, rejected a semantically stale
 pre-promotion response, and restored the prior version and placeholder
-baseline. Semantic-propagation, route-evidence, and artifact-retention
-remediation is locally `[IMPLEMENTED]`, `[TESTED]`; production remains blocked
-on protected merge and a successful corrected run. AU-AGENT-003 independently
-reverified exact remediation `854ba305` as task-scoped `VERIFIED`; protected
-merge and deployment retry are allowed.
+baseline. Exact remediation `854ba305` is task-scoped engineering `VERIFIED`
+and merged through `bb9a5e56`. Corrected run `30248680612` retained exact route,
+preflight, candidate, and rollback evidence, closing TD-GATE-003, but the
+version override still served the placeholder through all six semantic
+attempts. Candidate `b855e2e0` remained at zero traffic and the exact prior
+version/baseline was restored. A bounded two-minute data-plane wait and
+sanitized last-response diagnostic are now under implementation and review;
+production promotion remains open.
 
 ## Confirmed Inputs
 
@@ -56,7 +59,7 @@ merge and deployment retry are allowed.
 
 ## Current Design State
 
-- Technical Design v1.5.3 remains `[PROPOSED]` with independent disposition
+- Technical Design v1.5.6 remains `[PROPOSED]` with independent disposition
   `CONFIRMED_ACCEPTED_WITH_GATES`.
 - AU-AGENT-003 Engineering Verification Status remains
   `VERIFIED WITH FINDINGS` for the design-only security review.
@@ -226,7 +229,8 @@ Client integration and the CI/no-deploy rehearsal are implemented and tested.
 Exact implementation source `1c2bd5d` passes frozen install, strict typecheck,
 67 tests, verified clean-source static build, production dependency audit, and
 the no-deploy Cloudflare rehearsal in GitHub Actions run `30195542862`.
-TD-GATE-003 and production assertions remain open.
+Later retained run `30248680612` closes TD-GATE-003; successful zero-traffic
+smoke and production/browser assertions remain open.
 
 AU-AGENT-003 reports no Critical or High defect and has resolved
 TS001-IMPL-001, TS001-IMPL-002 and TS001-IMPL-003 for their bounded Phase 0
@@ -264,6 +268,8 @@ remains open.
 
 ## Next Concrete Step
 
-Merge exact remediation `854ba305` through protected `main`, dispatch that exact
-main commit, retain TD-GATE-003 evidence, and independently assess the
-production/browser result. Never place secret values in chat or the repository.
+Independently verify and merge the bounded two-minute propagation diagnostic,
+then run one exact protected-main attempt. If the override still cannot select
+the zero-traffic version, stop and raise a Technical Alternative Proposal
+instead of weakening the pre-promotion gate. Never place secret values in chat
+or the repository.

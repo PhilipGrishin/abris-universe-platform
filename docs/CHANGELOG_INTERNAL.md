@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.17.0 |
+| Version | 4.18.0 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,16 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Retained Production Attempt 2
+
+- Recorded exact-main workflow `30248680612`, candidate `b855e2e0`, six stale
+  semantic override attempts, zero candidate traffic, and exact rollback.
+- Retained sanitized route, preflight, lifecycle, and rollback evidence;
+  TD-GATE-003 is `[TESTED]` and closed.
+- Added a bounded 61-attempt/two-minute diagnostic and sanitized last-response
+  evidence contract. Exact-source AU-AGENT-003 review remains required before
+  one further protected run.
 
 ## 2026-07-27 — Production Propagation Remediation Reverified
 

@@ -1,5 +1,19 @@
 # Handoff Log
 
+## 2026-07-27 — Production Attempt 2 Retained and Rolled Back
+
+- **Workflow/source:** `30248680612` at exact protected-main source
+  `bb9a5e56c1627a3da4146c972a72b4c4006f59b3`.
+- **Result:** candidate `b855e2e0-7221-456e-aaa6-55e947b0dcf0` stayed at zero
+  traffic; six semantic attempts still observed the placeholder; no promotion
+  occurred.
+- **Evidence:** retained Workers-domain assignment, immutable prior version,
+  public baseline, lifecycle, exact rollback, and restored-baseline JSON close
+  TD-GATE-003 without exposing credential values.
+- **Next:** independently review the bounded two-minute propagation diagnostic.
+  If it still cannot select the zero-traffic version, stop and raise a
+  Technical Alternative Proposal.
+
 ## 2026-07-27 — Production Propagation Remediation Independently Verified
 
 - **Exact source:** `854ba305bdacfb6ff600f657e84bf4e61295bd1b`.

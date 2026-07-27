@@ -9,7 +9,7 @@
 | Technical Approver | AU-AGENT-001 after architecture review; independent product architecture acceptance remains separate |
 | Independent Architecture Reviewer | Claude Cowork System Architecture, Data & AI Governance Lead through `AU-EX-20260725-005` |
 | Independent Revision Confirmation | `AU-EX-20260725-006`; `CONFIRMED_ACCEPTED_WITH_GATES` |
-| Version | 1.5.5 |
+| Version | 1.5.6 |
 | Created | 2026-07-25 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `product/task-packages/08_TaskPackage_EP01_ThinSlice_v1.1.md`, PROD-DEC-005 through PROD-DEC-014, `docs/reviews/technical/TASK-THINSLICE-001/TECHNICAL_REVIEW.md`, `product/reviews/TASK-THINSLICE-001_Pre-Implementation_Architecture_Review.md`, `product/reviews/TASK-THINSLICE-001_Design_Revision_Confirmation.md` |
@@ -69,8 +69,11 @@ closed first attempt and successful automatic rollback, and the locally tested
 edge-propagation, exact-domain evidence, and artifact-retention corrections.
 It changes evidence and workflow robustness only. Version 1.5.5 records that
 AU-AGENT-003 independently reverified exact remediation `854ba305` without a
-new finding; TD-GATE-003 remains open until a successful corrected production
-run.
+new finding; TD-GATE-003 was still open at that revision.
+Version 1.5.6 records retained run-2 route/preflight/rollback evidence, closes
+TD-GATE-003, and introduces a bounded two-minute data-plane diagnostic after
+six shorter semantic attempts remained stale. It does not weaken zero-traffic
+smoke, change product behavior, or authorize an alternative promotion path.
 
 ## 2. Scope and Non-Scope
 
@@ -138,7 +141,9 @@ gates.
 TD-GATE-004 is closed at the independently reverified source
 `b4eaedc0233f1f785beff87968c300d54c449c28`. TD-GATE-001 is closed only for
 the initial route-1 producer profile recorded in the compatibility matrix.
-TD-GATE-002 and TD-GATE-003 remain open within their recorded scopes.
+TD-GATE-002 remains open within its recorded scope. TD-GATE-003 is closed by
+retained workflow run `30248680612`: exact route ownership, immutable prior
+version, public baseline, and tested recovery are recorded.
 
 Claude Cowork independently confirmed the complete revision at source
 `395c5d62975ba0f52e0da69af256ef870bf02770` through
@@ -148,9 +153,9 @@ confirmation. The registered implementation sequence may proceed to
 domain-core and bounded importer implementation for the explicit route-1
 profile; both package stages are now `[IMPLEMENTED]`, `[TESTED]`. Exact-symbol
 claims for other producers remain blocked by TD-GATE-002,
-and production deployment remains blocked by TD-GATE-003, corrected-workflow
-review, and production runtime evidence. Production credentials are configured;
-PROD-DEC-013 closes only the explicit owner-authorization component.
+and production deployment remains blocked by successful zero-traffic smoke and
+production runtime evidence. Production credentials are configured;
+PROD-DEC-013 closes the explicit owner-authorization component.
 
 ## 4. Selected System Shape
 
@@ -970,7 +975,7 @@ applicable evidence gates, and AU-AGENT-003 security review are recorded.
 | Canvas accessibility gap | DOM controls, status representation, keyboard path, manual assistive-tech evidence | Review required |
 | Tiled renderer misses future 500k target | Medium fixture now; separate 500k prototype before scale claim | `[OPEN]`, non-blocking for Phase 0 design |
 | Public preview leaks unreleased UI | No public preview until access policy exists | Controlled |
-| First deploy cannot restore placeholder | TD-GATE-003 recoverable version/artifact | `[OPEN]`, blocks production deploy |
+| First deploy cannot restore placeholder | TD-GATE-003 recoverable version/artifact | `[TESTED]`, closed by retained run `30248680612` and two exact rollbacks |
 | Browser-side code execution or product-data egress | Worker-enforced restrictive headers and smoke assertions | Dependency/browser defects remain review risks |
 | Dependency/action supply chain | Frozen lockfile, least privilege, pinned action SHAs, review | Implementation evidence required |
 
@@ -1004,6 +1009,13 @@ response exposed an insufficient propagation wait. The corrected workflow
 retries complete semantic verification, records exact Workers-domain ownership,
 and retains hidden evidence artifacts; its exact source and successful
 production execution remain required before step 11 is complete.
+
+The second attempt retained the route and preflight evidence, left its candidate
+at zero traffic, and restored the prior version after six complete semantic
+attempts remained stale over approximately twelve seconds. A final bounded
+diagnostic allows up to 61 attempts over two minutes and retains only sanitized
+last-response metadata. Failure after that interval requires a Technical
+Alternative Proposal; the gate must not be weakened silently.
 
 ## 16. Architecture Review Checklist
 

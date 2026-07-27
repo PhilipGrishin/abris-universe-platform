@@ -307,10 +307,9 @@
 
 ## RISK-014 — First Cloudflare Deployment Has No Recoverable Rollback Anchor
 
-- **Status:** Mitigation `[TESTED]` in failed-closed run `30247393181`; exact
-  rollback anchor captured; route-ownership evidence and retained preflight
-  artifact remain `[OPEN]`; corrected workflow independently task-scoped
-  `VERIFIED` at `854ba305`
+- **Status:** Mitigation `[TESTED]` in failed-closed runs `30247393181` and
+  `30248680612`; exact rollback anchor, route ownership, and retained preflight
+  artifact recorded; TD-GATE-003 closed; production promotion remains `[OPEN]`
 - **Probability:** Unknown
 - **Impact:** High
 - **Trigger:** The current `abris-universe` placeholder is replaced before its
@@ -336,7 +335,10 @@
   zero-traffic candidate. The corrected preflight now requires exact
   hostname-to-Worker assignment and retains its hidden JSON artifacts.
   AU-AGENT-003 independently reverified the correction with 17 focused tests
-  and exact-source remote CI.
+  and exact-source remote CI. Run `30248680612` retained the exact
+  `abris.653915.com` to `abris-universe` assignment, preflight, and lifecycle
+  evidence; candidate `b855e2e0` stayed at zero traffic and the prior version
+  and baseline were restored after the override remained semantically stale.
 - **Fallback:** If no prior version is recoverable, do not deploy until the
   Project Owner approves a specific replacement rollback artifact.
 - **Owner:** AU-AGENT-001; AU-AGENT-003 reviews CI/CD and release evidence

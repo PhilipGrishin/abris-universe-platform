@@ -148,3 +148,35 @@ test("retries a semantically stale 200 until the candidate version is visible", 
     await fixture.close();
   }
 });
+
+test("retains bounded diagnostics when semantic propagation never converges", async () => {
+  const fixture = await createFixtureServer({ staleRootResponses: 2 });
+  try {
+    await assert.rejects(
+      inspectProductionDeployment({
+        baseUrl: fixture.httpBaseUrl,
+        expectedCommit: EXPECTED_COMMIT,
+        allowHttpForTest: true,
+        semanticAttempts: 2,
+        semanticRetryDelayMs: 0,
+      }),
+      (error) => {
+        assert.equal(error.semanticAttempt, 2);
+        assert.equal(error.semanticAttemptsExhausted, 2);
+        assert.equal(error.deploymentObservation.status, 200);
+        assert.equal(
+          error.deploymentObservation.contentSecurityPolicy,
+          null,
+        );
+        assert.match(
+          error.deploymentObservation.bodySha256,
+          /^[0-9a-f]{64}$/u,
+        );
+        assert.equal("body" in error.deploymentObservation, false);
+        return true;
+      },
+    );
+  } finally {
+    await fixture.close();
+  }
+});

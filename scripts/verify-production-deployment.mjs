@@ -115,12 +115,25 @@ const inspectProductionDeploymentOnce = async ({
     });
 
   const root = await readResponse(await request("/"));
-  assert(root.status === 200, "Production root did not return 200.");
-  assert(
-    root.body.includes("Abris Universe"),
-    "Production root does not contain the application shell.",
-  );
-  assertSecurityHeaders(root.headers, "Production root");
+  const rootObservation = {
+    status: root.status,
+    bodySha256: root.bodySha256,
+    contentSecurityPolicy:
+      root.headers["content-security-policy"] ?? null,
+    cfCacheStatus: root.headers["cf-cache-status"] ?? null,
+    server: root.headers.server ?? null,
+  };
+  try {
+    assert(root.status === 200, "Production root did not return 200.");
+    assert(
+      root.body.includes("Abris Universe"),
+      "Production root does not contain the application shell.",
+    );
+    assertSecurityHeaders(root.headers, "Production root");
+  } catch (error) {
+    error.deploymentObservation = rootObservation;
+    throw error;
+  }
 
   const version = await readResponse(await request("/version.json"));
   assert(version.status === 200, "Production version.json did not return 200.");
@@ -196,7 +209,7 @@ const inspectProductionDeploymentOnce = async ({
 };
 
 export const inspectProductionDeployment = async ({
-  semanticAttempts = 6,
+  semanticAttempts = 61,
   semanticRetryDelayMs = 2_000,
   ...inspection
 }) => {
@@ -217,6 +230,7 @@ export const inspectProductionDeployment = async ({
       return { ...evidence, semanticAttempt: attempt };
     } catch (error) {
       lastError = error;
+      error.semanticAttempt = attempt;
       if (attempt < semanticAttempts) {
         await new Promise((resolve) =>
           setTimeout(resolve, semanticRetryDelayMs),
@@ -224,6 +238,7 @@ export const inspectProductionDeployment = async ({
       }
     }
   }
+  lastError.semanticAttemptsExhausted = semanticAttempts;
   throw lastError;
 };
 
