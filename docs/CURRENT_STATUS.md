@@ -676,7 +676,6 @@ public baseline.
 
 ## Next Step
 
-Export the prepared `AU-EX-20260727-001` package through the Collaboration
-Bridge for independent bounded production acceptance. Do not retry production
-or expand the existing product `[VERIFIED]` scope before a valid reviewed
-return.
+Wait for the registered Claude return to exported exchange
+`AU-EX-20260727-001`. Do not retry production or expand the existing product
+`[VERIFIED]` scope before a valid reviewed return is validated and integrated.
