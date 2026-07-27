@@ -19,6 +19,8 @@ const EXPECTED_CSP = [
 
 export const PRODUCTION_SEMANTIC_ATTEMPTS = 6;
 export const ZERO_TRAFFIC_SEMANTIC_ATTEMPTS = 61;
+export const PRODUCTION_TRANSITION_ATTEMPTS = 61;
+export const PRODUCTION_TRANSITION_TIMEOUT_MS = 120_000;
 
 const sha256 = (value) =>
   createHash("sha256").update(value).digest("hex");
@@ -94,6 +96,60 @@ const validateInspectionInput = ({
     "expectedCommit must be a full lowercase Git SHA.",
   );
 };
+
+const validateTransitionInput = ({
+  priorBaseline,
+  candidateSmoke,
+  expectedCommit,
+}) => {
+  assert(
+    priorBaseline &&
+      Number.isInteger(priorBaseline.status) &&
+      Number.isInteger(priorBaseline.headStatus) &&
+      /^[0-9a-f]{64}$/u.test(priorBaseline.bodySha256 ?? "") &&
+      typeof priorBaseline.contentType === "string" &&
+      priorBaseline.contentType.length > 0,
+    "priorBaseline must contain the registered status, HEAD status, body SHA-256, and content type.",
+  );
+  assert(
+    candidateSmoke?.observedCommit === expectedCommit &&
+      Number.isInteger(candidateSmoke?.root?.status) &&
+      /^[0-9a-f]{64}$/u.test(candidateSmoke?.root?.bodySha256 ?? ""),
+    "candidateSmoke must contain the exact reviewed commit and root sentinel.",
+  );
+};
+
+const observeProductionTransition = async ({ baseUrl, signal }) => {
+  const request = (method) =>
+    fetch(`${baseUrl}/`, {
+      method,
+      cache: "no-store",
+      redirect: "error",
+      signal,
+    });
+  const root = await readResponse(await request("GET"));
+  const head = await request("HEAD");
+  return {
+    status: root.status,
+    headStatus: head.status,
+    bodySha256: root.bodySha256,
+    contentType: root.headers["content-type"] ?? null,
+    contentSecurityPolicy:
+      root.headers["content-security-policy"] ?? null,
+    cfCacheStatus: root.headers["cf-cache-status"] ?? null,
+    server: root.headers.server ?? null,
+  };
+};
+
+const matchesPriorBaseline = (observation, priorBaseline) =>
+  observation.status === priorBaseline.status &&
+  observation.headStatus === priorBaseline.headStatus &&
+  observation.bodySha256 === priorBaseline.bodySha256 &&
+  observation.contentType === priorBaseline.contentType;
+
+const matchesCandidateSentinel = (observation, candidateSmoke) =>
+  observation.status === candidateSmoke.root.status &&
+  observation.bodySha256 === candidateSmoke.root.bodySha256;
 
 const inspectProductionDeploymentOnce = async ({
   baseUrl,
@@ -243,6 +299,136 @@ export const inspectProductionDeployment = async ({
   }
   lastError.semanticAttemptsExhausted = semanticAttempts;
   throw lastError;
+};
+
+export const inspectProductionTransition = async ({
+  transitionAttempts = PRODUCTION_TRANSITION_ATTEMPTS,
+  transitionRetryDelayMs = 2_000,
+  transitionTimeoutMs = PRODUCTION_TRANSITION_TIMEOUT_MS,
+  transitionNow = Date.now,
+  transitionSleep = (delayMs) =>
+    new Promise((resolve) => setTimeout(resolve, delayMs)),
+  priorBaseline,
+  candidateSmoke,
+  ...inspection
+}) => {
+  validateInspectionInput(inspection);
+  validateTransitionInput({
+    priorBaseline,
+    candidateSmoke,
+    expectedCommit: inspection.expectedCommit,
+  });
+  assert(
+    Number.isInteger(transitionAttempts) && transitionAttempts > 0,
+    "transitionAttempts must be a positive integer.",
+  );
+  assert(
+    Number.isInteger(transitionRetryDelayMs) &&
+      transitionRetryDelayMs >= 0,
+    "transitionRetryDelayMs must be a non-negative integer.",
+  );
+  assert(
+    Number.isInteger(transitionTimeoutMs) && transitionTimeoutMs > 0,
+    "transitionTimeoutMs must be a positive integer.",
+  );
+  assert(
+    typeof transitionNow === "function" &&
+      typeof transitionSleep === "function",
+    "transition clock dependencies must be functions.",
+  );
+
+  const startedAt = transitionNow();
+  let attemptsObserved = 0;
+  let lastObservation = null;
+  for (let attempt = 1; attempt <= transitionAttempts; attempt += 1) {
+    const remainingMs =
+      transitionTimeoutMs - (transitionNow() - startedAt);
+    if (remainingMs <= 0) {
+      const error = new Error(
+        "Production transition did not leave the registered prior baseline within the approved window.",
+      );
+      error.transitionAttempt = attemptsObserved;
+      error.transitionAttemptsExhausted = attemptsObserved;
+      error.transitionWindowMs = transitionTimeoutMs;
+      error.transitionClassification = "prior-baseline";
+      error.transitionObservation = lastObservation;
+      throw error;
+    }
+
+    let observation;
+    try {
+      observation = await observeProductionTransition({
+        ...inspection,
+        signal: AbortSignal.timeout(remainingMs),
+      });
+    } catch (cause) {
+      const error = new Error(
+        "Production transition probe failed before a known state was observed.",
+        { cause },
+      );
+      error.transitionAttempt = attempt;
+      error.transitionClassification = "unrecognized";
+      throw error;
+    }
+    attemptsObserved = attempt;
+    lastObservation = observation;
+
+    if (matchesCandidateSentinel(observation, candidateSmoke)) {
+      try {
+        const evidence = await inspectProductionDeployment({
+          ...inspection,
+          semanticAttempts: 1,
+          semanticRetryDelayMs: 0,
+        });
+        return {
+          ...evidence,
+          transition: {
+            attempt,
+            priorBaselineObservations: attempt - 1,
+            classification: "candidate",
+            observation,
+          },
+        };
+      } catch (error) {
+        error.transitionAttempt = attempt;
+        error.transitionClassification = "candidate";
+        error.transitionObservation = observation;
+        throw error;
+      }
+    }
+
+    if (!matchesPriorBaseline(observation, priorBaseline)) {
+      const error = new Error(
+        "Production transition returned neither the registered prior baseline nor the exact candidate sentinel.",
+      );
+      error.transitionAttempt = attempt;
+      error.transitionClassification = "unrecognized";
+      error.transitionObservation = observation;
+      throw error;
+    }
+
+    if (attempt < transitionAttempts) {
+      const delayMs = Math.min(
+        transitionRetryDelayMs,
+        Math.max(
+          0,
+          transitionTimeoutMs - (transitionNow() - startedAt),
+        ),
+      );
+      await transitionSleep(delayMs);
+      continue;
+    }
+
+    const error = new Error(
+      "Production transition did not leave the registered prior baseline within the approved window.",
+    );
+    error.transitionAttempt = attempt;
+    error.transitionAttemptsExhausted = transitionAttempts;
+    error.transitionWindowMs = transitionTimeoutMs;
+    error.transitionClassification = "prior-baseline";
+    error.transitionObservation = observation;
+    throw error;
+  }
 };
 
 const runCli = async () => {

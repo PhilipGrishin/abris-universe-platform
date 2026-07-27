@@ -7,7 +7,7 @@
 | Status | `[IMPLEMENTED]` |
 | Owner | AU-AGENT-002 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 4.20.0 |
+| Version | 4.21.1 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-27 |
 | Dependencies | `docs/SOURCE_OF_TRUTH.md`, `docs/HANDOFF_LOG.md` |
@@ -26,6 +26,36 @@ Includes material changes to engineering organization, governance, architecture,
 implementation, delivery workflow, releases, and documentation infrastructure.
 Minor wording and navigation fixes do not require an entry unless they correct a
 material defect.
+
+## 2026-07-27 — Baseline-Aware Transition Independently Verified
+
+- AU-AGENT-003 assigned task-scoped Engineering Verification Status `VERIFIED`
+  to exact source `b4f25cda`, resolved TS001-DEPLOY-005, and recorded no new
+  findings.
+- Independent reruns passed 27 focused deployment tests and the full 95-test
+  suite; exact-source CI run `30252463472` passed.
+- Protected conflict-free merge is allowed before exactly one controlled
+  production attempt. No repeat is authorized without new owner authority and
+  evidence review.
+- Documentation Impact: Material.
+
+## 2026-07-27 — Baseline-Aware Production Transition Implemented
+
+- Registered OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 approving
+  `AU-TAP-TS001-001` Alternative A and one gated controlled production attempt.
+- Implemented exact prior-baseline classification, exact candidate-sentinel
+  recognition, one complete candidate contract, immediate unknown/transport/
+  candidate-failure rejection, and existing exact rollback.
+- Added independent 61-observation and strict 120-second ceilings plus
+  allowlisted transition failure evidence.
+- Added deterministic transition-success, observation-ceiling,
+  wall-clock-timeout, unknown-response, transport-failure, candidate-failure,
+  rollback-input, and evidence-sanitization coverage. Twenty-seven focused
+  deployment tests and the full 95-test suite pass.
+- Preserved an empty accepted executable application diff; exact-source
+  AU-AGENT-003 review and required CI passed. Protected merge remains open
+  before the one authorized attempt.
+- Documentation Impact: Material.
 
 ## 2026-07-27 — Attempt-3 Evidence and Propagation Alternative
 

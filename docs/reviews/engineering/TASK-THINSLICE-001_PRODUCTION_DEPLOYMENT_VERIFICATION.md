@@ -7,10 +7,10 @@
 | Status | `[IMPLEMENTED]`, `[TESTED]`; not project `[VERIFIED]` |
 | Owner | AU-AGENT-003 |
 | Technical Approver | AU-CODEX-PRIMARY |
-| Version | 1.4.1 |
+| Version | 1.5.0 |
 | Created | 2026-07-26 |
 | Last Updated | 2026-07-27 |
-| Dependencies | PROD-DEC-013; Technical Design v1.5.7; ADR-TS001-004 v1.3.3; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record; run `30250084131`; AU-TAP-TS001-001 v1.0.0 |
+| Dependencies | PROD-DEC-013; OWNER-DEC-TS001-PRODUCTION-TRANSITION-001; Technical Design v1.5.9; ADR-TS001-004 v1.3.5; accepted executable source `1a683abd9a8294de5a36888e997e65aba7b7a167`; production deployment record; run `30250084131`; AU-TAP-TS001-001 v1.1.0; CI run `30252463472` |
 | Supersedes | None |
 | Superseded By | None |
 | Review Triggers | Reviewed-source change; finding remediation; deployment, credential, rollback, smoke, evidence, branch, or environment-control change |
@@ -30,6 +30,9 @@
 - **Exact observability-remediation source:** commit
   `a503500c724ea618b80796fcca470d260d76b621` on
   `codex/task-thinslice-001-production-smoke-observability`.
+- **Exact owner-approved transition source:** commit
+  `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7` on
+  `codex/task-thinslice-001-baseline-aware-transition`.
 - **Superseded observability source:** commit
   `73811129110cfa991689028441d45a4eccead613` set 61 attempts as the global
   default and was superseded before merge because that also extended
@@ -43,8 +46,9 @@
   or deployment scripts. This report and its index link are its only outputs.
 - **Scope:** production workflow permissions and gates, source identity,
   immutable upload, zero-traffic smoke, promotion, rollback, evidence safety,
-  smoke assertions, tests, and observed GitHub controls.
-- **Out of scope:** unavailable secret values, a corrected live deployment,
+  baseline-aware transition classification, observation/time ceilings, smoke
+  assertions, tests, and observed GitHub controls.
+- **Out of scope:** unavailable secret values, the next live deployment,
   browser acceptance, DNS mutation, and product acceptance.
 - **Documentation Impact:** Material.
 
@@ -115,9 +119,25 @@
   digest `sha256:a6ad02c1019cc227db383a312bacc32d4f2966da304d6f087bb48e9177eb8a5d`;
   its parsed JSON contains no token, secret, authorization, account,
   request-header, HTML, or raw-body key
-- proposed
+- owner-approved
   [Production Propagation Technical Alternative](../technical/TASK-THINSLICE-001/PRODUCTION_PROPAGATION_TECHNICAL_ALTERNATIVE.md)
-  v1.0.0
+  v1.1.0 and OWNER-DEC-TS001-PRODUCTION-TRANSITION-001
+- exact Alternative A implementation source
+  `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`
+- independent focused rerun: all 27 deployment authorization, state,
+  evidence, rollback, semantic-smoke, transition-classification, timeout,
+  transport-failure, and candidate-failure tests passed
+- independent full-suite rerun: 95 tests passed; fixture and workspace
+  boundaries also passed
+- provided exact-source local evidence: strict typecheck, clean static build,
+  production dependency audit with no known vulnerabilities, Wrangler
+  no-deploy rehearsal, and `git show --check` passed
+- exact-source remote CI run
+  [30252463472](https://github.com/PhilipGrishin/abris-universe-platform/actions/runs/30252463472):
+  successful `verify` job at
+  `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`, including patch hygiene,
+  typecheck, tests, verified static build, production dependency audit, and
+  no-deploy Cloudflare rehearsal
 - GitHub API observation: `main` has strict required `verify`, enforced
   protection, pull-request review rules, stale-review dismissal, conversation
   resolution, and force-push/deletion disabled; the `production` environment
@@ -133,13 +153,13 @@ executable source.
 | Area | Result | Limitation |
 | --- | --- | --- |
 | Source identity | Pass for the exact reviewed source | Reusable-workflow hardening is recorded below |
-| Static smoke contract | Pass | Candidate remained unobserved after six live attempts; extended path is exact-source tested |
-| Security headers | Pass in code and local test scope | Corrected production response remains unobserved |
-| Immutable upload and zero-traffic smoke | Pass | Attempt 1 exercised both without promoting the candidate |
-| Promotion and rollback | Pass for reviewed scope | Live rollback succeeded; successful promotion remains unexecuted |
+| Static smoke contract | Pass | Alternative A is exact-source tested; the next live result remains unobserved |
+| Security headers | Pass in code and test scope | Next production response remains unobserved |
+| Immutable upload and zero-traffic smoke | Pass | Attempt 3 exercised and passed the complete zero-traffic contract |
+| Promotion and rollback | Pass for reviewed scope | Attempt 3 promoted, failed closed, and restored the exact prior version and baseline |
 | Secret boundary | Pass | Values are step-scoped, unavailable to the reviewer, and masked in immutable logs |
-| Branch/environment governance | Pass for observed controls | Corrected source still requires protected merge |
-| Production workflow readiness | Blocked | The single authorized retry is exhausted; current post-promotion contract cannot verify default-route convergence |
+| Branch/environment governance | Pass for observed controls | Exact Alternative A source still requires conflict-free protected merge |
+| Production workflow readiness | Pass for one controlled post-merge attempt | Successful live production and browser evidence remain open |
 
 ## Findings
 
@@ -149,7 +169,7 @@ executable source.
 | TS001-DEPLOY-002 | High | At the original source, the three new tests exercised only `inspectProductionDeployment`; the production-mutating state machine had no automated success, failure, rollback, or evidence tests. | Make the orchestrator testable through injected command/network/file boundaries and add deterministic tests for the successful sequence and failures before and after promotion, including rollback and evidence preservation. | AU-AGENT-001 | Focused tests prove command order, fail-closed behavior, rollback invocation, rollback failure reporting, and evidence output; full local and remote gates pass. | Resolved at `2c886390091fd8b05b18130c1555dcaf0a778d7a` |
 | TS001-DEPLOY-003 | Medium | At the original source, rollback verified only the public-root body hash, not the recorded prior version at 100% and the complete registered public baseline. | Confirm the active prior version and its traffic allocation after rollback, then verify the recorded rollback baseline and retain that result. Preserve both the original deployment error and any rollback error. | AU-AGENT-001 | Failure-path test evidence and the resulting evidence schema demonstrate exact-version restoration and post-rollback validation. | Resolved at `2c886390091fd8b05b18130c1555dcaf0a778d7a` |
 | TS001-DEPLOY-004 | Medium | At the original source, the job-level branch/commit `if` skipped the only job rather than producing an explicit failed authorization record. | Replace the job-level skip with an always-entered, fail-closed authorization check before environment access and mutation. | AU-CODEX-PRIMARY | Tests show wrong branch/SHA fails explicitly before the production environment job can run. | Resolved at `2c886390091fd8b05b18130c1555dcaf0a778d7a` |
-| TS001-DEPLOY-005 | High | Run `30250084131` used the one further attempt authorized by the v1.3.0 gate. Candidate smoke passed at zero traffic on attempt 17 and promotion occurred, but post-promotion smoke exhausted all six attempts and the workflow rolled back. Production cannot complete under the current approved transition contract. | Do not run another deployment. Obtain an explicit Project Owner disposition on AU-TAP-TS001-001 or another separately reviewed alternative. If approved, implement the bounded state machine with deterministic tests and return its exact source to AU-AGENT-003 before deployment. | Project Owner for alternative authority; AU-AGENT-001 for technical meaning; AU-CODEX-PRIMARY for implementation | Approved alternative, exact implementation, focused tests, required CI, independent AU-AGENT-003 reverification, and a new explicitly authorized deployment attempt | Open; blocks further deployment |
+| TS001-DEPLOY-005 | High | Run `30250084131` used the one further attempt authorized by the v1.3.0 gate. Candidate smoke passed at zero traffic on attempt 17 and promotion occurred, but post-promotion smoke exhausted all six attempts and the workflow rolled back. Production could not complete under the prior transition contract. | Do not run another deployment under the prior contract. Obtain an explicit Project Owner disposition on AU-TAP-TS001-001 or another separately reviewed alternative. If approved, implement the bounded state machine with deterministic tests and return its exact source to AU-AGENT-003 before deployment. | Project Owner for alternative authority; AU-AGENT-001 for technical meaning; AU-CODEX-PRIMARY for implementation | Approved alternative, exact implementation, focused tests, required CI, independent AU-AGENT-003 reverification, and a new explicitly authorized deployment attempt | Resolved at `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`; merge and the single live attempt remain separate gates |
 | TS001-DEPLOY-006 | Medium | The initial AU-TAP-TS001-001 draft incorrectly attributed the final retained observation's exact prior hash, absent CSP, and `cf-cache-status: HIT` properties to every post-promotion attempt. Retained evidence proves six attempts were exhausted and records those properties only for the final observation; attempts 1–5 are not individually retained. | Replace the overgeneralized claim with the evidence-supported statement: six attempts were exhausted, and the final retained observation matched the exact prior hash with no CSP and cache HIT. Apply the same epistemic limit to related proposed documentation. | AU-AGENT-001 for claim meaning; AU-AGENT-002 for consistency | Documentation diff contains no per-attempt claim beyond retained evidence and preserves the actual final observation plus attempt count | Resolved in the reviewed documentation-only worktree diff; final-source preservation remains required |
 
 ## Finding Disposition and Reverification
@@ -170,16 +190,19 @@ executable source.
 - **TS001-DEPLOY-004:** a separate `authorize` job validates `main` and the
   exact full commit before the `deploy` job can request the production
   environment. Non-main and mismatched-commit cases fail explicitly in tests.
+- **TS001-DEPLOY-005:** OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 approves
+  Alternative A. Exact source `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`
+  implements the bounded classifier, deterministic state and timeout tests,
+  fail-closed rollback integration, and sanitized evidence. Exact-source CI
+  run `30252463472` passes.
 - **TS001-DEPLOY-006:** AU-TAP-TS001-001 and every related proposed/current
   status record now state only that production smoke exhausted six attempts
   and that the final retained observation matched the exact prior baseline
   hash with no CSP and `cf-cache-status: HIT`. No reviewed record attributes
   those final-observation properties to attempts 1–5.
 
-Findings TS001-DEPLOY-001 through TS001-DEPLOY-004 and TS001-DEPLOY-006 are
-resolved without changing product behavior or the accepted executable
-application scope. TS001-DEPLOY-005 remains open and separately blocks further
-production deployment.
+Findings TS001-DEPLOY-001 through TS001-DEPLOY-006 are resolved without
+changing product behavior or the accepted executable application scope.
 
 ## Propagation Remediation Reverification
 
@@ -215,7 +238,7 @@ restores the six-attempt production default and applies 61 attempts explicitly
 only while the candidate remains at zero traffic. No finding remains in the
 final bounded remediation.
 
-## Repository Remediation Quality Gate Decision
+## Repository Remediation Quality Gate Decision — Historical
 
 - **Engineering Verification Status:** VERIFIED
 - **Rationale:** all prior findings remain resolved, and exact remediation
@@ -229,7 +252,8 @@ final bounded remediation.
 - **Merge allowed:** Yes, subject to the registered conflict-free,
   and branch-protection workflow; both final-source required CI runs pass.
   Superseded source `73811129` is not mergeable.
-- **Protected deployment retry allowed:** Yes, one further attempt only after
+- **Protected deployment retry authorized at that gate:** Yes, one further
+  attempt only after
   exact observability remediation `a503500` is
   merged to protected `main` and the dispatch input equals that exact main
   commit. The candidate must remain at zero traffic until the complete smoke
@@ -244,11 +268,11 @@ This task-scoped status is not project `[VERIFIED]` and does not change the
 bounded Claude Cowork acceptance of executable source `1a683abd`.
 
 That `VERIFIED` decision remains valid for exact deployment-tooling source
-`a503500` and authorized one further attempt. It did not guarantee that
-Cloudflare's default custom-domain route would converge within the approved
-post-promotion window.
+`a503500`. Its single retry authorization was exhausted by run `30250084131`;
+it did not guarantee that Cloudflare's default custom-domain route would
+converge within the approved post-promotion window.
 
-## Attempt 3 Evidence Gate Decision
+## Attempt 3 Evidence Gate Decision — Historical
 
 - **Engineering Verification Status:** BLOCKED
 - **Evidence validity:** The run identity, artifact digest, route ownership,
@@ -257,24 +281,69 @@ post-promotion window.
   retained prior-baseline observation, rollback version, and restored baseline
   are supported.
 - **One allowed retry:** Exhausted by run `30250084131`.
-- **Mandatory unresolved finding:** TS001-DEPLOY-005.
+- **Mandatory unresolved finding at that gate:** TS001-DEPLOY-005.
 - **Documentation-only branch:** VERIFIED for the bounded evidence-wording
   correction and cross-document consistency in the reviewed worktree diff.
   This is an unbracketed, task-scoped engineering disposition; it is not
   project `[VERIFIED]`, owner approval of AU-TAP-TS001-001, or production
   authorization. The correction must remain unchanged in the final committed
   source.
-- **Further deployment allowed:** No.
+- **Further deployment allowed under that gate:** No.
 - **Blocker:** Project Owner disposition on AU-TAP-TS001-001, followed by any
   approved implementation, deterministic state/timeout tests, required CI, and
   exact-source AU-AGENT-003 review.
-- **Required immediate action:** Register the corrected TAP for owner decision
-  and stop. Do not implement Alternative A or dispatch another workflow
-  without new authority.
+- **Disposition:** Superseded for future-deployment authority by
+  OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 and the exact-source Alternative A
+  gate below. The historical failed-closed evidence and rollback result remain
+  unchanged.
 
-This `BLOCKED` status is scoped to production-deployment continuation. It does
-not revoke the repository-remediation `VERIFIED` decision, bounded independent
-product acceptance, or TD-GATE-003 closure.
+That historical `BLOCKED` status was scoped to production-deployment
+continuation. It did not revoke the repository-remediation `VERIFIED`
+decision, bounded independent product acceptance, or TD-GATE-003 closure.
+
+## Alternative A Exact-Source Reverification
+
+| Control | Exact-source evidence | Result |
+| --- | --- | --- |
+| Owner authority | OWNER-DEC-TS001-PRODUCTION-TRANSITION-001 approves AU-TAP-TS001-001 Alternative A, implementation, independent review, and one subsequent controlled attempt after gates | Pass |
+| Exact prior baseline | `matchesPriorBaseline` requires exact GET status, HEAD status, body SHA-256, and content type from the registered preflight snapshot; only that state may wait | Pass |
+| Exact candidate and full contract | The candidate sentinel requires the zero-traffic root status/hash from smoke evidence whose observed commit equals the exact source; its first observation triggers one complete provenance, root/fallback, method, header, and asset contract with no semantic retry | Pass |
+| Observation ceiling | Production uses the fixed default of 61 direct observations; tests assert the 61-attempt constant and exercise exhaustion behavior | Pass |
+| Time ceiling | Production uses the fixed strict 120,000 ms transition ceiling; every probe receives only the remaining interval through `AbortSignal.timeout`, and bounded-delay timeout behavior is tested | Pass |
+| Unknown and transport states | Any response outside the exact prior and candidate classifications, redirect/transport failure, or probe failure throws immediately without another transition observation | Pass |
+| Candidate failure | A candidate sentinel followed by any complete-contract failure throws immediately; the candidate path explicitly uses one semantic attempt | Pass |
+| Rollback integration | Every transition exception enters the existing production-smoke failure path, restores the recorded immutable prior version at 100 percent, and verifies the registered public baseline; state tests cover post-promotion failure and rollback-verification failure | Pass |
+| Evidence allowlist | Failure evidence copies only registered numeric/classification fields and allowlisted observation metadata; tests prove response bodies, request headers, tokens, authorization values, and account values are excluded | Pass |
+| Accepted executable boundary | Application, package, fixture, lockfile, workspace, and shared TypeScript paths have an empty diff from accepted source `1a683abd9a8294de5a36888e997e65aba7b7a167` | Pass |
+| Tests | Independent rerun: 27 focused deployment tests and the complete 95-test suite passed; supplied strict typecheck, clean static build, audit, Wrangler rehearsal, and patch-hygiene evidence passed | Pass |
+| Remote CI | GitHub Actions run `30252463472` completed its exact-source `verify` job successfully at `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7` | Pass |
+| Documentation and traceability | Owner decision, TAP v1.1.0, Technical Design v1.5.9, ADR v1.3.5, deployment/rehearsal records, risks, tasks, current status, and traceability preserve the approved bounds and remaining live-evidence gates | Pass |
+
+No new `Critical`, `High`, `Medium`, `Low`, or `Recommendation` finding was
+identified in the exact-source Alternative A implementation.
+
+## Alternative A Quality Gate Decision
+
+- **Engineering Verification Status:** VERIFIED
+- **Exact source:** `b4f25cdaaf5da1e37e416bf7d2bc7f148b5dd7e7`.
+- **TS001-DEPLOY-005:** Resolved.
+- **Mandatory unresolved findings:** None.
+- **Merge allowed:** Yes, through the registered protected, conflict-free
+  workflow, provided the merge preserves the reviewed implementation and
+  documentation diff and all mandatory checks pass. A content-changing merge
+  requires another exact-source review.
+- **Production attempt allowed:** Yes, exactly one controlled attempt after
+  protected merge. The dispatch must select the resulting exact protected
+  `main` source and must not be repeated without a new explicit authority and
+  evidence review.
+- **Required evidence:** Retain preflight, transition, production-smoke, and
+  rollback evidence as applicable, then return the live production and browser
+  result to AU-AGENT-003.
+
+This task-scoped `VERIFIED` status approves the owner-authorized deployment
+tooling for merge and one bounded attempt. It is not product `[VERIFIED]`,
+successful production verification, browser acceptance, or release
+authorization.
 
 ## Residual External Blockers
 
@@ -285,8 +354,9 @@ product acceptance, or TD-GATE-003 closure.
   capture, console, import entry point, and live post-promotion assertions
   remain open.
 
-These external blockers remain blocking even after repository findings are
-resolved.
+These items remain mandatory completion and acceptance evidence. They do not
+authorize a second production attempt and do not negate the single attempt
+allowed by the current Alternative A gate.
 
 ## References
 

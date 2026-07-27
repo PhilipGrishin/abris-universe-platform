@@ -471,8 +471,10 @@
 
 ## RISK-019 — Default Route Lags Verified Candidate After Promotion
 
-- **Status:** `[OPEN]`; attempt 3 evidence retained; Technical Alternative
-  Proposal pending Project Owner disposition
+- **Status:** `[OPEN]`; attempt 3 evidence retained; Alternative A
+  `[APPROVED]`, `[IMPLEMENTED]`, `[TESTED]`; exact-source AU-AGENT-003
+  Engineering Verification Status `VERIFIED`; protected merge and live result
+  pending
 - **Probability:** Observed once after a successful zero-traffic candidate
   smoke
 - **Impact:** High
@@ -489,9 +491,13 @@
   security contract at zero traffic, classified the post-promotion response as
   the registered prior body with `cf-cache-status: HIT`, and restored immutable
   prior version `d1f2b05d-77d0-4d53-9c7a-73d61135979e` plus the complete public
-  baseline. `AU-TAP-TS001-001` proposes polling only while observations exactly
-  match that registered prior baseline, with immediate rollback for every
-  unknown or candidate-contract failure.
+  baseline. The owner-approved implementation polls only while observations
+  exactly match that registered prior baseline, applies 61-observation and
+  strict 120-second ceilings, runs one full contract at the exact candidate
+  sentinel, and immediately fails every unknown, transport, timeout, or
+  candidate-contract state into rollback. Twenty-seven focused tests and
+  required CI run `30252463472` pass; AU-AGENT-003 independently resolved
+  TS001-DEPLOY-005 at exact source `b4f25cda`.
 - **Fallback:** Reject the proposal and keep the prior placeholder, or select a
   separately approved preview/canary hosting strategy with its own security,
   access, traffic, and rollback review.

@@ -6,6 +6,7 @@ import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 import {
   currentVersion,
+  deploymentFailureEvidence,
   deploymentList,
   readVersionUpload,
   validateProductionDomain,
@@ -15,6 +16,7 @@ import {
 import { executeProductionDeployment } from "./production-deployment-state.mjs";
 import {
   inspectProductionDeployment,
+  inspectProductionTransition,
   ZERO_TRAFFIC_SEMANTIC_ATTEMPTS,
 } from "./verify-production-deployment.mjs";
 
@@ -206,10 +208,12 @@ try {
         "--yes",
       ]);
     },
-    smokeProduction: async () =>
-      inspectProductionDeployment({
+    smokeProduction: async ({ prePromotionSmoke }) =>
+      inspectProductionTransition({
         baseUrl: productionUrl,
         expectedCommit: sourceCommit,
+        priorBaseline: preDeploySnapshot,
+        candidateSmoke: prePromotionSmoke,
       }),
     rollback: async (priorVersionId) => {
       runWrangler([
@@ -255,17 +259,7 @@ try {
   });
 } catch (error) {
   lifecycle = error.state ?? null;
-  const smokeCause = error.cause ?? null;
-  failure = {
-    name: error.name,
-    failureStage: error.state?.failureStage ?? null,
-    rollbackFailureStage: error.state?.rollbackFailureStage ?? null,
-    semanticAttempt: smokeCause?.semanticAttempt ?? null,
-    semanticAttemptsExhausted:
-      smokeCause?.semanticAttemptsExhausted ?? null,
-    deploymentObservation:
-      smokeCause?.deploymentObservation ?? null,
-  };
+  failure = deploymentFailureEvidence(error);
   throw error;
 } finally {
   const evidence = {

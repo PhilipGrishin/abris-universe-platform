@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import {
+  deploymentFailureEvidence,
   deploymentList,
   readVersionUpload,
   validateProductionDomain,
@@ -150,4 +151,63 @@ test("parses upload provenance and persists failure-safe JSON evidence", async (
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+test("allowlists semantic and transition failure evidence", () => {
+  const failure = deploymentFailureEvidence({
+    name: "ProductionDeploymentError",
+    state: {
+      failureStage: "production-smoke",
+      rollbackFailureStage: null,
+    },
+    cause: {
+      semanticAttempt: 1,
+      semanticAttemptsExhausted: 1,
+      transitionAttempt: 3,
+      transitionAttemptsExhausted: 61,
+      transitionWindowMs: 120_000,
+      transitionClassification: "prior-baseline",
+      deploymentObservation: {
+        status: 200,
+        bodySha256: "a".repeat(64),
+        contentSecurityPolicy: null,
+        body: "<html>must not be retained</html>",
+        authorization: "Bearer must-not-be-retained",
+      },
+      transitionObservation: {
+        status: 200,
+        headStatus: 200,
+        bodySha256: "b".repeat(64),
+        contentType: "text/html",
+        cfCacheStatus: "HIT",
+        requestHeaders: { authorization: "must-not-be-retained" },
+        token: "must-not-be-retained",
+      },
+    },
+  });
+
+  assert.deepEqual(failure, {
+    name: "ProductionDeploymentError",
+    failureStage: "production-smoke",
+    rollbackFailureStage: null,
+    semanticAttempt: 1,
+    semanticAttemptsExhausted: 1,
+    deploymentObservation: {
+      status: 200,
+      bodySha256: "a".repeat(64),
+      contentSecurityPolicy: null,
+    },
+    transitionAttempt: 3,
+    transitionAttemptsExhausted: 61,
+    transitionWindowMs: 120_000,
+    transitionClassification: "prior-baseline",
+    transitionObservation: {
+      status: 200,
+      headStatus: 200,
+      bodySha256: "b".repeat(64),
+      contentType: "text/html",
+      cfCacheStatus: "HIT",
+    },
+  });
+  assert.equal(JSON.stringify(failure).includes("must-not-be-retained"), false);
 });

@@ -62,6 +62,24 @@ test("executes upload, zero-traffic smoke, promotion, and production smoke in or
   assert.equal(state.rollbackAttempted, false);
 });
 
+test("passes the exact candidate smoke into the post-promotion transition", async () => {
+  let transitionInput;
+  const fixture = lifecycle({
+    smokeProduction: async (input) => {
+      fixture.calls.push("smoke-production");
+      transitionInput = input;
+      return { observedCommit: "accepted" };
+    },
+  });
+  await executeProductionDeployment(fixture.operations);
+
+  assert.deepEqual(transitionInput, {
+    priorVersionId: PRIOR,
+    uploadedVersionId: NEXT,
+    prePromotionSmoke: { observedCommit: "accepted" },
+  });
+});
+
 test("does not roll back when immutable upload fails before traffic mutation", async () => {
   const fixture = lifecycle({
     uploadVersion: async () => {
