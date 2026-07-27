@@ -17,7 +17,9 @@
 
 ## Purpose
 
-Record significant internal engineering changes in a concise, navigable history
+Record significant internal engineering changes in a concise, navigable
+history without replacing Git history, ADRs, task records, or handoff
+evidence.
 
 ## 2026-07-27 — Production Attempt 6 Failed Closed and Rolled Back
 
@@ -35,7 +37,6 @@ Record significant internal engineering changes in a concise, navigable history
 - Recorded exhausted attempt authority, OQ-009, RISK-021, and the next
   separately reviewed Technical Alternative Proposal/evidence-schema gate.
 - Documentation Impact: Material.
-without replacing Git history, ADRs, task records, or handoff evidence.
 
 ## Scope
 
